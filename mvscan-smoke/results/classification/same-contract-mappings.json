@@ -1,0 +1,158 @@
+[
+  {
+    "pattern": "multi_var_intra_contract",
+    "vars": [
+      {
+        "name": "balances",
+        "kind": "state",
+        "slot": null,
+        "branch_groups": [
+          4554309392
+        ]
+      },
+      {
+        "name": "{balances, debts}",
+        "kind": "multi_var_group",
+        "members": [
+          "balances",
+          "debts"
+        ]
+      }
+    ],
+    "tx_set": [
+      "contracts/SameContractMappings.sol::SameContractMappings.inspect()",
+      "contracts/SameContractMappings.sol::SameContractMappings.updateBalance(uint256)"
+    ],
+    "writers": [
+      {
+        "sig": "SameContractMappings.('updateBalance', ['uint256'], [])",
+        "selector": "0x3d6ef558",
+        "file": "contracts/SameContractMappings.sol",
+        "line": 16
+      }
+    ],
+    "readers": [
+      {
+        "sig": "SameContractMappings.('inspect', [], [])",
+        "selector": "0x43f6e3a5",
+        "file": "contracts/SameContractMappings.sol",
+        "line": 10
+      }
+    ],
+    "op_patterns": [
+      "cross_tx_stale_read"
+    ],
+    "shape": {
+      "shared_callee": false,
+      "reentrant": false
+    },
+    "shape_by_var": [
+      {
+        "var": {
+          "name": "balances",
+          "kind": "state",
+          "slot": null,
+          "branch_groups": [
+            4554309392
+          ]
+        },
+        "shape": {
+          "shared_callee": false,
+          "reentrant": false
+        }
+      },
+      {
+        "var": {
+          "name": "{balances, debts}",
+          "kind": "multi_var_group",
+          "members": [
+            "balances",
+            "debts"
+          ]
+        },
+        "shape": {
+          "shared_callee": false,
+          "reentrant": false
+        }
+      }
+    ]
+  },
+  {
+    "pattern": "multi_var_intra_contract",
+    "vars": [
+      {
+        "name": "debts",
+        "kind": "state",
+        "slot": null,
+        "branch_groups": [
+          4554309392
+        ]
+      },
+      {
+        "name": "{balances, debts}",
+        "kind": "multi_var_group",
+        "members": [
+          "balances",
+          "debts"
+        ]
+      }
+    ],
+    "tx_set": [
+      "contracts/SameContractMappings.sol::SameContractMappings.inspect()",
+      "contracts/SameContractMappings.sol::SameContractMappings.updateDebt(uint256)"
+    ],
+    "writers": [
+      {
+        "sig": "SameContractMappings.('updateDebt', ['uint256'], [])",
+        "selector": "0x8b2561c4",
+        "file": "contracts/SameContractMappings.sol",
+        "line": 20
+      }
+    ],
+    "readers": [
+      {
+        "sig": "SameContractMappings.('inspect', [], [])",
+        "selector": "0x43f6e3a5",
+        "file": "contracts/SameContractMappings.sol",
+        "line": 10
+      }
+    ],
+    "op_patterns": [
+      "cross_tx_stale_read"
+    ],
+    "shape": {
+      "shared_callee": false,
+      "reentrant": false
+    },
+    "shape_by_var": [
+      {
+        "var": {
+          "name": "debts",
+          "kind": "state",
+          "slot": null,
+          "branch_groups": [
+            4554309392
+          ]
+        },
+        "shape": {
+          "shared_callee": false,
+          "reentrant": false
+        }
+      },
+      {
+        "var": {
+          "name": "{balances, debts}",
+          "kind": "multi_var_group",
+          "members": [
+            "balances",
+            "debts"
+          ]
+        },
+        "shape": {
+          "shared_callee": false,
+          "reentrant": false
+        }
+      }
+    ]
+  }
+]

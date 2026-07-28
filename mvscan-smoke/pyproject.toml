@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mvscan-slither-plugin"
+version = "0.1.0"
+requires-python = ">=3.10,<3.11"
+dependencies = [
+    "slither-analyzer==0.11.3",
+    "crytic-compile==0.3.11",
+    "eth-utils",
+    "eth-abi",
+]
+
+[project.entry-points."slither_analyzer.plugin"]
+mvscan = "mvscan_plugin:make_plugin"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mvscan_plugin*"]

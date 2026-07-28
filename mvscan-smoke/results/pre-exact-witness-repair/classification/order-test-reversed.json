@@ -1,0 +1,158 @@
+[
+  {
+    "pattern": "multi_var_intra_contract",
+    "vars": [
+      {
+        "name": "a",
+        "kind": "state",
+        "slot": null
+      },
+      {
+        "name": "{a, b}",
+        "kind": "multi_var_group",
+        "members": [
+          "a",
+          "b"
+        ]
+      }
+    ],
+    "tx_set": [
+      "contracts/OrderTestReversed.sol::OrderTest.inspect()",
+      "contracts/OrderTestReversed.sol::OrderTest.updateA(uint256)"
+    ],
+    "writers": [
+      {
+        "sig": "OrderTest.('updateA', ['uint256'], [])",
+        "selector": "0x7c56812d",
+        "file": "contracts/OrderTestReversed.sol",
+        "line": 28
+      }
+    ],
+    "readers": [
+      {
+        "sig": "OrderTest.('snapshot', [], ['uint256', 'uint256'])",
+        "selector": "0x98430823",
+        "file": "contracts/OrderTestReversed.sol",
+        "line": 14
+      },
+      {
+        "sig": "OrderTest.('inspect', [], ['bool'])",
+        "selector": "0x457577ff",
+        "file": "contracts/OrderTestReversed.sol",
+        "line": 18
+      }
+    ],
+    "op_patterns": [
+      "destructive_write"
+    ],
+    "shape": {
+      "shared_callee": false,
+      "reentrant": false
+    },
+    "shape_by_var": [
+      {
+        "var": {
+          "name": "a",
+          "kind": "state",
+          "slot": null
+        },
+        "shape": {
+          "shared_callee": false,
+          "reentrant": false
+        }
+      },
+      {
+        "var": {
+          "name": "{a, b}",
+          "kind": "multi_var_group",
+          "members": [
+            "a",
+            "b"
+          ]
+        },
+        "shape": {
+          "shared_callee": false,
+          "reentrant": false
+        }
+      }
+    ]
+  },
+  {
+    "pattern": "multi_var_intra_contract",
+    "vars": [
+      {
+        "name": "b",
+        "kind": "state",
+        "slot": null
+      },
+      {
+        "name": "{a, b}",
+        "kind": "multi_var_group",
+        "members": [
+          "a",
+          "b"
+        ]
+      }
+    ],
+    "tx_set": [
+      "contracts/OrderTestReversed.sol::OrderTest.inspect()",
+      "contracts/OrderTestReversed.sol::OrderTest.updateB(uint256)"
+    ],
+    "writers": [
+      {
+        "sig": "OrderTest.('updateB', ['uint256'], [])",
+        "selector": "0x80f26b",
+        "file": "contracts/OrderTestReversed.sol",
+        "line": 32
+      }
+    ],
+    "readers": [
+      {
+        "sig": "OrderTest.('snapshot', [], ['uint256', 'uint256'])",
+        "selector": "0x98430823",
+        "file": "contracts/OrderTestReversed.sol",
+        "line": 14
+      },
+      {
+        "sig": "OrderTest.('inspect', [], ['bool'])",
+        "selector": "0x457577ff",
+        "file": "contracts/OrderTestReversed.sol",
+        "line": 18
+      }
+    ],
+    "op_patterns": [
+      "destructive_write"
+    ],
+    "shape": {
+      "shared_callee": false,
+      "reentrant": false
+    },
+    "shape_by_var": [
+      {
+        "var": {
+          "name": "b",
+          "kind": "state",
+          "slot": null
+        },
+        "shape": {
+          "shared_callee": false,
+          "reentrant": false
+        }
+      },
+      {
+        "var": {
+          "name": "{a, b}",
+          "kind": "multi_var_group",
+          "members": [
+            "a",
+            "b"
+          ]
+        },
+        "shape": {
+          "shared_callee": false,
+          "reentrant": false
+        }
+      }
+    ]
+  }
+]
