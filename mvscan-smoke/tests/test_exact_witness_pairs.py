@@ -176,9 +176,6 @@ def test_enumeration_is_independent_of_mapping_insertion_order() -> None:
 
     graph_a.var_writes.update(beta_graph_a.var_writes)
     graph_a.var_reads.update(beta_graph_a.var_reads)
-    graph_a.var_to_branchgroups.update(
-        beta_graph_a.var_to_branchgroups
-    )
     graph_a.fn_lookup.update(beta_graph_a.fn_lookup)
     graph_a.blocks.update(beta_graph_a.blocks)
 
@@ -196,9 +193,6 @@ def test_enumeration_is_independent_of_mapping_insertion_order() -> None:
 
     graph_b.var_writes.update(alpha_graph_b.var_writes)
     graph_b.var_reads.update(alpha_graph_b.var_reads)
-    graph_b.var_to_branchgroups.update(
-        alpha_graph_b.var_to_branchgroups
-    )
     graph_b.fn_lookup.update(alpha_graph_b.fn_lookup)
     graph_b.blocks.update(alpha_graph_b.blocks)
 

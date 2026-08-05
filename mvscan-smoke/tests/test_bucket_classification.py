@@ -16,7 +16,6 @@ BASE_ENV = {
     "INIT_ONLY_FILTER": "0",
     "ADMIN_WRITES_BENIGN": "0",
     "REQUIRE_SAME_SLOT_KEY": "1",
-    "PROMOTE_MAPPING_BASE": "0",
     "COARSE_DEDUP": "1",
 }
 
@@ -44,8 +43,6 @@ CASES = [
         "contract": "contracts/SameContractMappings.sol",
         "required": {"multi_var_intra_contract"},
         "forbidden": {"multi_var_cross_contract"},
-        # Explicitly exercises mapping-base participation.
-        "extra_env": {"PROMOTE_MAPPING_BASE": "1"},
     },
     {
         "name": "inheritance-same-base",

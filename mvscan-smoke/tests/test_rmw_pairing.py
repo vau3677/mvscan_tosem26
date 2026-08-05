@@ -1,5 +1,3 @@
-from collections import defaultdict
-
 import mvscan_plugin.utils.icfg as icfg_module
 
 
@@ -20,7 +18,6 @@ class FakeICFG:
     def __init__(self, var, writer, reader):
         self.var_writes = {var: {writer}}
         self.var_reads = {var: {writer, reader}}
-        self.var_to_branchgroups = defaultdict(set)
         self.fn_lookup = {
             writer[0]: FakeFunction("increment"),
             reader[0]: FakeFunction("consume"),

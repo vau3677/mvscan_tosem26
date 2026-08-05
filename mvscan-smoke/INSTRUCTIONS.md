@@ -1,2028 +1,1629 @@
-Proceed in the order below. Do not begin semantic pruning until contextual key recovery and interface dispatch both pass their Bug 112 gates.
+Agreed. Those constraints materially change the freeze strategy.
 
-The current checkpoint is worth preserving:
+The detector should be frozen as **one uniform static may-analysis**. It should not classify candidates by confidence, infer semantic bug classes, rank alarms, guess protocol intent, or suppress candidates using unproven value semantics. The current stated goal already supports this boundary: build the ICFG, restrict analysis to reachable transactions, infer multi-variable groupings, and approximate stale/destructive state interference rather than perfectly calculate all state inconsistency. 
 
-* 759 physical writer/reader block pairs.
-* 361 context-qualified JSON instances.
-* 271 Slither-visible results.
-* 622 same-root context pairs removed.
-* 77 mapping bases shadowed.
-* The H‑02 relation remains present.
+The current build should **not** be frozen unchanged. One bounded, deletion-heavy hardening pass remains. After the changes below, freeze it and begin evaluation. Do not add another semantic phase after this.
 
-This is a substantial improvement over the former 1,163 block pairs, 905 relation-family instances, and 659 Slither results.  
+# Canonical freeze semantics
 
-The remaining architectural problem is specific: relation accesses are registered against physical block-level locations before execution contexts are known, relation evidence is also decided before context expansion, and an execution context currently contains only an owner and storage domain.   
+The frozen detector should emit one candidate when all of the following hold:
 
-The target architecture should remain incremental:
+1. A source expression or control sink establishes that two or more persistent locations are related by dataflow.
+2. A transaction root can reach a write to at least one member.
+3. A distinct transaction root can reach a sensitive read of a different member.
+4. Writer and reader locations are compatible with the relation after contextual argument substitution.
+5. Their storage domains are compatible.
+6. The writer root is **not already proven by the ordinary must-write summary to write every member** of the relation.
+7. The contextual candidate is aggregated by writer root, writer effect site, relation members, written members, and potentially stale members.
 
-```text
-existing physical ICFG
-    + one unified call-target resolver
-    + relation-relevant argument bindings on execution contexts
-    + context-qualified relation evidence
-    + owner-qualified sink evidence
-    + writer-centered candidate aggregation
-    + a local semantic refinement pass
-```
+That is the entire canonical approximation.
 
-Do not clone the CFG per root or per argument binding.
+It should not ask:
 
----
+* Whether the relation is a conservation law.
+* Whether the candidate is “high confidence.”
+* Whether one sink is economically stronger than another.
+* Whether a later write uses the correct amount or sign.
+* Whether the candidate resembles a known bug.
+* Whether the function, contract, or variable has a recognizable protocol-specific name.
 
-# Phase 2A — Introduce guarded feature switches and schema 3
-
-Implement the following switches with defaults of `False` while each phase is being validated:
-
-```python
-MVSCAN_CONTEXTUAL_KEYS = env_bool(
-    "MVSCAN_CONTEXTUAL_KEYS",
-    False,
-)
-
-MVSCAN_INTERFACE_DISPATCH = env_bool(
-    "MVSCAN_INTERFACE_DISPATCH",
-    False,
-)
-
-MVSCAN_ROOT_CONTEXT_SINKS = env_bool(
-    "MVSCAN_ROOT_CONTEXT_SINKS",
-    False,
-)
-
-MVSCAN_WRITER_CENTERED = env_bool(
-    "MVSCAN_WRITER_CENTERED",
-    False,
-)
-
-MVSCAN_SEMANTIC_REFINEMENT = env_bool(
-    "MVSCAN_SEMANTIC_REFINEMENT",
-    False,
-)
-
-MVSCAN_EMIT_RECALL_STREAM = env_bool(
-    "MVSCAN_EMIT_RECALL_STREAM",
-    True,
-)
-```
-
-Add two bounded integer settings:
-
-```python
-MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK = env_int(
-    "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK",
-    default=128,
-    minimum=1,
-)
-
-MVSCAN_MAX_DISPATCH_TARGETS = env_int(
-    "MVSCAN_MAX_DISPATCH_TARGETS",
-    default=16,
-    minimum=1,
-)
-```
-
-## Add `env_int()` to `mvscan_env.py`
-
-```python
-def env_int(
-    name: str,
-    default: int,
-    minimum: int | None = None,
-    maximum: int | None = None,
-) -> int:
-    raw = os.getenv(name)
-
-    if raw is None:
-        value = default
-    else:
-        try:
-            value = int(raw.strip())
-        except ValueError as exc:
-            raise ValueError(
-                f"{name} must be an integer, got {raw!r}"
-            ) from exc
-
-    if minimum is not None and value < minimum:
-        raise ValueError(
-            f"{name} must be >= {minimum}, got {value}"
-        )
-
-    if maximum is not None and value > maximum:
-        raise ValueError(
-            f"{name} must be <= {maximum}, got {value}"
-        )
-
-    return value
-```
-
-Add every new `MVSCAN_*` name to `_KNOWN_MVSCAN_ENV` and every effective value to `effective_config()`.
-
-## Extend metadata
-
-Import the configuration module itself:
-
-```python
-from .utils import mvscan_env as mvscan_env_module
-```
-
-Add its hash:
-
-```python
-"mvscan_env": _sha256_file(
-    mvscan_env_module.__file__
-),
-```
-
-The current metadata hashes the detector, ICFG, and alias modules but not the environment parser. 
-
-Bump:
-
-```python
-MVSCAN_JSON_SCHEMA_VERSION = 3
-```
-
-Do not change finding semantics yet.
-
-## Phase 2A stop gate
-
-Run Bug 112 with every new semantic switch disabled.
-
-Required:
-
-```text
-context-qualified JSON instances = 361
-Slither-visible results          = 271
-raw block pairs                  = 759
-owner context pairs              = 2751
-```
-
-A schema or metadata change is allowed. Semantic counters and rendered findings must remain unchanged.
+The current strict H‑02 result must remain: `TopUpAction.register` reaches the concrete balance write and leaves `actionLockedBalances[payer]` potentially stale. 
 
 ---
 
-# Phase 2B — Create one authoritative call-target resolver
+# 1. Remove every ranking, stream, semantic-repair, and versioning feature
 
-Call handling is currently divided among:
+## 1.1 Delete these settings from `inconsistent_state(60).py`
 
-* `ICFG.add_block()`
-* function influence summaries
-* may/must write summaries
-* branch-return inlining
-* the detector’s secondary `call_edges_any`
-* external-call classification
-
-That is unsafe once interface dispatch is added. The same callsite must resolve identically in every subsystem.
-
-The current ICFG creates a body edge only when `ir.function.entry_point` exists, while the fallback resolver is a bare-name/global-uniqueness heuristic.  
-
-## 2B.1 Add stable callsite and target records to `icfg.py`
-
-```python
-CallSiteId = tuple[BasicBlock, int]
-
-
-@dataclass(frozen=True, slots=True)
-class ResolvedCallTarget:
-    target_function_key: str
-    resolution_kind: str
-    confidence: str
-
-
-@dataclass(frozen=True, slots=True)
-class CallEdgeRecord:
-    source_bid: BasicBlock
-    target_bid: BasicBlock
-    callsite_id: CallSiteId
-
-    target_function_key: str
-
-    storage_mode: str
-    target_storage_context: str | None
-
-    # callee placeholder -> expression in caller namespace
-    substitutions: tuple[tuple[str, str], ...]
-
-    resolution_kind: str
-    confidence: str
-```
-
-Use these resolution kinds:
+Delete the declarations, `_KNOWN_MVSCAN_ENV` entries, `effective_config()` entries, and every conditional use of:
 
 ```text
-direct_concrete
-internal_unique_signature
-interface_unique
-interface_ambiguous
-receiver_concrete
-fallback_unique_signature
-unresolved
+USER_CALLABLE_INCLUDE_ROLE_GATED
+INIT_ONLY_FILTER
+ADMIN_WRITES_BENIGN
+COARSE_DEDUP
+MVSCAN_WRITER_CENTERED
+MVSCAN_SEMANTIC_REFINEMENT
+MVSCAN_EMIT_RECALL_STREAM
 ```
 
-Use these confidence values:
+Also delete:
+
+```python
+ADMIN_ONLY
+MVSCAN_JSON_SCHEMA_VERSION
+```
+
+The current configuration still exposes the ranking/stream and semantic-refinement switches, even though the canonical analysis should no longer have alternate output semantics. 
+
+Keep these settings:
 
 ```text
-exact
-high
-ambiguous
-unknown
+MVSCAN_STRICT_CONFIG
+MVSCAN_ABLATION
+MVSCAN_INCLUDE_SCALAR_WITNESSES
+MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS
+MVSCAN_CONTEXTUAL_KEYS
+MVSCAN_INTERFACE_DISPATCH
+MVSCAN_ROOT_CONTEXT_SINKS
+MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK
+MVSCAN_MAX_DISPATCH_TARGETS
+
+DIVERGENCE_BUDGET
+USER_CALLABLE_ALWAYS
+USER_CALLABLE_DENY
+SINK_TEST
+ATOMIC_GROUP
+MERGE_OVERLOADS
+PROMOTE_MAPPING_BASE
+NOOP_WRITE_FILTER
+REQUIRE_SAME_SLOT_KEY
+ISD_JSON_OUT
 ```
 
-## 2B.2 Add ICFG fields
+Those retained settings are either genuine analysis ablations, explicit user overrides, or safety bounds.
 
-Inside `ICFG.__init__()`:
+## 1.2 Hardwire writer-centered output
+
+The old transaction-pair bucket output should be deleted. Writer-centered aggregation is now the detector’s canonical output unit; it should not be an optional mode.
+
+Delete:
+
+* The `if MVSCAN_WRITER_CENTERED:` branch.
+* Its entire legacy `else:` branch.
+* `emit_var_map()`.
+* `seen`.
+* `COARSE_DEDUP`.
+* `_partition_relation_families()`, once no other code references it.
+* The legacy bucket classifications:
+
+  * `single_var_cross_tx`
+  * `multi_var_intra_contract`
+  * `multi_var_cross_contract`
+* The legacy aggregated shape records.
+
+Retain one Slither `Output` per writer-centered candidate and the existing count assertion.
+
+## 1.3 Delete confidence and stream machinery
+
+From `CandidateAccumulator`, delete:
 
 ```python
-self.call_targets_by_site: dict[
-    CallSiteId,
-    tuple[ResolvedCallTarget, ...],
-] = {}
-
-self.call_edges_by_source: DefaultDict[
-    BasicBlock,
-    set[CallEdgeRecord],
-] = defaultdict(set)
-
-self.call_resolution_stats = defaultdict(int)
+dispatch_kinds
+confidence_features
+sibling_path_evidence
 ```
 
-Retain `self.call_edges` temporarily because existing reachability helpers consume it. Populate it from `CallEdgeRecord.target_bid`.
-
-Deprecate `call_edge_context_modes`; do not remove it until the resolver-skeleton checkpoint passes.
-
-## 2B.3 Use one callsite iterator
-
-Use SSA IR consistently:
-
-```python
-def iter_call_sites(node):
-    call_ordinal = 0
-
-    for ir in _ssa_irs(node):
-        if not isinstance(
-            ir,
-            (HighLevelCall, InternalCall, LibraryCall),
-        ):
-            continue
-
-        callsite_id = (
-            (
-                function_key(node.function),
-                node.node_id,
-            ),
-            call_ordinal,
-        )
-
-        yield callsite_id, ir
-        call_ordinal += 1
-```
-
-Do not use the raw IR-array index as the callsite ordinal unless every subsystem uses the same IR representation.
-
-## 2B.4 Build resolver indexes once
-
-After `fn_lookup` is populated, create stable indexes:
-
-```python
-functions_by_key
-functions_by_full_signature
-functions_by_selector
-functions_by_bare_name
-functions_by_contract_and_signature
-concrete_functions_by_signature
-```
-
-Use a full signature:
-
-```python
-def function_signature_key(fn) -> str:
-    full_name = getattr(fn, "full_name", None)
-    if full_name:
-        return str(full_name)
-
-    parameter_types = ",".join(
-        str(parameter.type).replace(" ", "")
-        for parameter in getattr(fn, "parameters", [])
-    )
-
-    return f"{fn.name}({parameter_types})"
-```
-
-Normalize selectors to one hex-string representation.
-
-## 2B.5 First implement baseline-preserving resolution
-
-Before enabling interface dispatch, the resolver should return only:
-
-1. The direct `ir.function` when it has an entry point.
-2. A same-contract unique full-signature target for unresolved internal/library calls.
-3. A globally unique full-signature target only when no same-contract target exists.
-
-Do not use a bare-name match when a parameter signature is available.
-
-The first resolver implementation must reproduce existing results.
-
-## 2B.6 Replace all direct callee access
-
-Every one of these sites must use the resolver:
+Delete from candidate JSON and CLI text:
 
 ```text
-ICFG.add_block
-_analyze_function_influence
-compute_function_write_summaries
-branch-return summary inlining
-detector call_edges_any construction
-external-effect classification
-path/provenance generation
+confidence
+confidence_features
+dispatch_kinds
+sibling_path_evidence
+sink strength
 ```
 
-The detector should no longer rebuild a separate call graph by reading `ir.function` directly. The current secondary call graph does exactly that. 
+Delete the entire confidence-calculation block. It currently promotes candidates based on relation “strength,” match-kind ranking, sink presence, sibling evidence, and dispatch categories. 
 
-Instead:
+Every accepted candidate should be emitted identically.
+
+## 1.4 Delete semantic repair
+
+Delete from `inconsistent_state(60).py`:
 
 ```python
-for edges in icfg.call_edges_by_source.values():
-    for edge in edges:
-        call_edges_any[
-            edge.source_bid[0]
-        ].add(edge.target_function_key)
+_proven_parent_repair
+_local_repair_status
+_sibling_omission_evidence
+_writer_dispatch_metadata
 ```
 
-## 2B.7 Correct may/must handling for multiple targets
-
-When later interface dispatch produces several possible targets:
-
-```text
-may-read / may-write / sensitive effects = union
-must-write effects                       = intersection
-```
-
-For write summaries:
+Delete from `icfg(48).py`:
 
 ```python
-target_may_sets = []
-target_must_sets = []
-
-for target in targets:
-    summary = summaries.get(
-        fn_lookup[target.target_function_key]
-    )
-
-    if summary is None:
-        continue
-
-    target_may_sets.append(
-        instantiate_set(summary.may_writes)
-    )
-
-    target_must_sets.append(
-        instantiate_set(summary.must_writes)
-    )
-
-may_writes.update(
-    set().union(*target_may_sets)
-    if target_may_sets else set()
-)
-
-generated.update(
-    set.intersection(*target_must_sets)
-    if target_must_sets else set()
-)
+WriteEffect
+FunctionEffectSummary
+_effect_value_term
+self.function_effect_summaries
 ```
 
-Never union ambiguous-target `must_writes`.
-
-## Phase 2B stop gate
-
-With:
-
-```text
-MVSCAN_INTERFACE_DISPATCH=0
-MVSCAN_CONTEXTUAL_KEYS=0
-```
-
-the Bug 112 output must remain at the Phase 1 checkpoint.
-
-Any difference means the resolver refactor changed existing call semantics and must be corrected before continuing.
-
----
-
-# Phase 2C — Carry relation-relevant key bindings through execution contexts
-
-The current execution context is:
+Inside `compute_function_write_summaries()`, stop immediately after:
 
 ```python
-(owner, storage_context)
+self.function_write_summaries = summaries
 ```
 
-and call propagation only preserves or switches storage context. 
+Delete all code below that assignment that constructs `effect_summaries`. The current effect layer associates every block location with the first storage-writing IR in the block and then uses that approximate information to suppress candidates. 
 
-Extend it without cloning physical blocks.
+Do not replace this with value analysis, symbolic execution, SMT, or another repair engine.
 
-## 2C.1 Add `ExecutionContext`
+## 1.5 Retain only the existing must-write-all-members filter
 
-In `icfg.py`:
+Currently, `summary_covers_relation()` is bypassed when semantic refinement is enabled. Change the contextual pair loop to apply it unconditionally:
 
 ```python
-@dataclass(frozen=True, slots=True, order=True)
-class ExecutionContext:
-    owner: str
-    storage_context: str
-
-    # Sorted tuple: callee formal placeholder -> canonical root expression
-    bindings: tuple[tuple[str, str], ...] = ()
-
-    @property
-    def binding_map(self) -> dict[str, str]:
-        return dict(self.bindings)
-```
-
-Do not include the call path in context identity. Different paths that produce the same owner, storage domain, and relevant bindings should merge.
-
-Track path provenance separately.
-
-## 2C.2 Represent root inputs explicitly
-
-Seed root bindings as:
-
-```python
-def root_context_bindings(fn, owner):
-    return tuple(
-        (
-            f"$arg{index}",
-            f"@txarg::{owner}::{index}",
-        )
-        for index, _ in enumerate(
-            getattr(fn, "parameters", []) or []
-        )
-    )
-```
-
-Normalize sender-sensitive terms as:
-
-```text
-@sender::<owner>
-```
-
-Do not leave every transaction’s `msg.sender` as one global literal.
-
-## 2C.3 Canonicalize call arguments in the caller namespace
-
-Add a helper separate from the current generic `canon_key()`:
-
-```python
-def contextual_argument_template(
-    argument,
-    caller_fn,
-) -> str:
-    parameter_index = _formal_parameter_index(
-        caller_fn,
-        argument,
-    )
-
-    if parameter_index is not None:
-        return f"$arg{parameter_index}"
-
-    text = norm_txt(str(argument))
-
-    if text in {
-        "msg.sender",
-        "_msgsender()",
-        "_msgsender",
-    }:
-        return "$sender"
-
-    concrete = _non_ssa_variable(argument)
-
-    if isinstance(concrete, StateVariable):
-        return (
-            "@state::"
-            + source_file_key(concrete)
-            + "::"
-            + str(
-                getattr(
-                    concrete,
-                    "canonical_name",
-                    concrete.name,
-                )
-            )
-        )
-
-    if _looks_like_literal(argument):
-        return f"@const::{text}"
-
-    return (
-        f"@local::{function_key(caller_fn)}::{text}"
-    )
-```
-
-For the first implementation, `_looks_like_literal()` should recognize:
-
-```text
-integer literals
-hex literals
-true / false
-address literals
-bytes literals
-enum literals where Slither exposes a concrete declaration
-```
-
-## 2C.4 Store call-edge substitutions
-
-When creating each `CallEdgeRecord`:
-
-```python
-substitutions = tuple(
-    sorted(
-        (
-            f"$arg{index}",
-            contextual_argument_template(
-                argument,
-                caller_fn,
-            ),
-        )
-        for index, argument in enumerate(
-            getattr(ir, "arguments", []) or []
-        )
-    )
-)
-```
-
-## 2C.5 Compose substitutions during reachability
-
-```python
-_ARG_PATTERN = re.compile(r"\$arg\d+")
-
-
-def instantiate_key_template(
-    template: str,
-    bindings: dict[str, str],
-    owner: str,
-) -> str:
-    current = str(template)
-
-    if current == "$sender":
-        return f"@sender::{owner}"
-
-    for _ in range(16):
-        changed = False
-
-        def replace(match):
-            nonlocal changed
-            placeholder = match.group(0)
-
-            replacement = bindings.get(
-                placeholder,
-                placeholder,
-            )
-
-            if replacement != placeholder:
-                changed = True
-
-            return replacement
-
-        updated = _ARG_PATTERN.sub(
-            replace,
-            current,
-        )
-
-        current = updated
-
-        if not changed:
-            break
-    else:
-        return (
-            "@unknown::recursive-substitution::"
-            + current
-        )
-
-    current = current.replace(
-        "$sender",
-        f"@sender::{owner}",
-    )
-
-    return current
-```
-
-Do not use unrestricted substring replacement for placeholders. The current helper operates by textual replacement and is suitable only for the existing one-hop summary use. 
-
-Compose a callee environment:
-
-```python
-def compose_callee_bindings(
-    caller_context: ExecutionContext,
-    edge: CallEdgeRecord,
-    relevant_formals: set[str],
-) -> tuple[tuple[str, str], ...]:
-    caller_bindings = (
-        caller_context.binding_map
-    )
-
-    composed = {}
-
-    for placeholder, caller_template in edge.substitutions:
-        if placeholder not in relevant_formals:
-            continue
-
-        composed[placeholder] = (
-            instantiate_key_template(
-                caller_template,
-                caller_bindings,
-                caller_context.owner,
-            )
-        )
-
-    return tuple(sorted(composed.items()))
-```
-
-## 2C.6 Carry only relation-relevant formals
-
-Do not carry every argument across every call.
-
-Precompute:
-
-```python
-self.relevant_formals_by_function: dict[
-    str,
-    set[str],
-]
-```
-
-Initial relevance comes from formal placeholders appearing in:
-
-* Local mapping reads/writes.
-* External-state argument terms.
-* External-state receiver terms.
-* Return-location summaries.
-
-Then propagate relevance backward:
-
-```text
-callee $arg1 relevant
-caller passes caller $arg0 into callee arg1
-therefore caller $arg0 is relevant
-```
-
-Compute this to a monotone fixed point over call edges.
-
-## 2C.7 Update `compute_entry_owners()`
-
-The worklist becomes:
-
-```python
-deque[
-    tuple[
-        BasicBlock,
-        ExecutionContext,
-    ]
-]
-```
-
-Root seed:
-
-```python
-context = ExecutionContext(
-    owner=analysis_owner,
-    storage_context=storage_context,
-    bindings=root_context_bindings(
-        root_function,
-        analysis_owner,
-    ),
-)
-```
-
-CFG propagation preserves the context.
-
-Call propagation:
-
-```python
-for edge in sorted(
-    icfg.call_edges_by_source.get(
-        block_id,
-        set(),
-    ),
-    key=call_edge_sort_key,
-):
-    if edge.storage_mode == "preserve":
-        next_storage_context = (
-            context.storage_context
-        )
-    else:
-        next_storage_context = (
-            edge.target_storage_context
-            or "<unknown-storage-context>"
-        )
-
-    target_relevant_formals = (
-        icfg.relevant_formals_by_function.get(
-            edge.target_function_key,
-            set(),
-        )
-    )
-
-    next_context = ExecutionContext(
-        owner=context.owner,
-        storage_context=next_storage_context,
-        bindings=compose_callee_bindings(
-            context,
-            edge,
-            target_relevant_formals,
-        ),
-    )
-
-    worklist.append(
-        (edge.target_bid, next_context)
-    )
-```
-
-## 2C.8 Guard against context explosion
-
-Group contexts by:
-
-```text
-block
-owner
-storage context
-```
-
-If more than `MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK` distinct binding environments occur, do not silently truncate.
-
-During development:
-
-```python
-raise RuntimeError(
-    "MV-Scan contextual key limit exceeded: ..."
-)
-```
-
-Only introduce widening after observing a real benchmark that requires it. If widening becomes necessary, merge conflicting terms into explicit `@unknown::...` values and route resulting candidates to the recall stream.
-
-## 2C.9 Store call-path provenance separately
-
-Add:
-
-```python
-self.context_call_parents = defaultdict(set)
-```
-
-For each call transition:
-
-```python
-self.context_call_parents[
-    (
-        edge.target_bid,
-        next_context,
-    )
-].add(
-    (
-        edge.source_bid,
-        context,
-        edge.callsite_id,
-        edge.target_function_key,
-        edge.resolution_kind,
-        edge.confidence,
-    )
-)
-```
-
-Do not add these paths to `ExecutionContext.__hash__`.
-
-A deterministic shortest call chain can later be reconstructed by walking from a function entry context to its parent callsite context.
-
----
-
-# Phase 2D — Register unresolved key templates as candidates, not evidence
-
-The new exact matching removed invalid base/slot findings, but it also lost physical helper accesses such as:
-
-```text
-currentUInts256[$arg0]
-```
-
-when the relation members are:
-
-```text
-currentUInts256[BOUND_KEY]
-currentUInts256[TARGET_KEY]
-```
-
-The correct response is not to restore mapping-base wildcard matching.
-
-## 2D.1 Add template maps to `ICFG.__init__()`
-
-```python
-self.relation_template_reads = defaultdict(
-    lambda: defaultdict(set)
-)
-
-self.relation_template_writes = defaultdict(
-    lambda: defaultdict(set)
-)
-```
-
-Keep these distinct from:
-
-```text
-relation_reads
-relation_writes
-relation_unresolved_base_reads
-relation_unresolved_base_writes
-```
-
-## 2D.2 Identify a potential key template
-
-```python
-def is_symbolic_key_template(key: str) -> bool:
-    text = str(key)
-
-    return (
-        bool(re.search(r"\$arg\d+", text))
-        or "$sender" in text
-        or "msg.sender" in text
-        or text.startswith("@local::")
-        or text.startswith("@unknown::")
-    )
-```
-
-## 2D.3 Modify `register_relation_access()`
-
-Retain exact registration first:
-
-```python
-matched_members = matching_relation_members(
-    members,
-    entity,
-)
-
-if matched_members:
-    ...
-    return
-```
-
-Then add:
-
-```python
-if isinstance(entity, MappingSlotVar):
-    same_base_members = {
-        member
-        for member in members
-        if (
-            isinstance(
-                member,
-                MappingSlotVar,
-            )
-            and member.base == entity.base
-        )
-    }
+if isinstance(var, MultiVarGroup):
+    writer_root_fn = icfg.root_function_by_owner.get(outer_w)
+    writer_summary = icfg.function_write_summaries.get(writer_root_fn)
 
     if (
-        same_base_members
-        and is_symbolic_key_template(
-            entity.key
-        )
+        writer_summary is not None
+        and summary_covers_relation(writer_summary, var)
     ):
-        aggregate_map[pseudo].update(
-            block_ids
-        )
-
-        for block_id in block_ids:
-            template_access_map[
-                pseudo
-            ][block_id].add(entity)
-
-        pair_stats[
-            "relation_unbound_key_templates"
-        ] += len(block_ids)
-
-        return
-```
-
-Use separate read and write template maps.
-
-Do not register:
-
-```text
-config[FIXED_A]
-```
-
-as a candidate for:
-
-```text
-config[FIXED_B]
-```
-
-when both sides are concrete and unequal.
-
-## 2D.4 Prune the maps
-
-After reachability:
-
-```python
-filter_relation_access_map(
-    icfg.relation_template_reads,
-    keep,
-)
-
-filter_relation_access_map(
-    icfg.relation_template_writes,
-    keep,
-)
-```
-
-## 2D.5 Add counters
-
-```text
-relation_template_read_blocks
-relation_template_write_blocks
-relation_template_accesses
-relation_templates_contextually_resolved
-relation_templates_contextually_rejected
-```
-
-Add template counts to relation metadata and the future relation catalog.
-
----
-
-# Phase 2E — Move relation compatibility after context selection
-
-This is the critical ordering correction.
-
-Currently `_relation_access_evidence()` runs inside `stale_read_pairs()` before writer and reader contexts are enumerated.  
-
-## 2E.1 Make `stale_read_pairs()` a physical candidate generator
-
-For relations, remove:
-
-```python
-relation_evidence = (
-    _relation_access_evidence(...)
-)
-
-if not relation_evidence:
-    ...
-    continue
-```
-
-`RawStateWitness` should carry only:
-
-```python
-writer_bid
-reader_bid
-variable
-operation_pattern
-writer_reaches_reader
-reader_reaches_writer
-```
-
-Its relation evidence remains empty until a writer and reader execution context have been selected.
-
-## 2E.2 Keep a broad physical prefilter
-
-Add:
-
-```python
-def relation_block_has_candidate_access(
-    icfg,
-    relation,
-    bid,
-    kind: str,
-) -> bool:
-    exact_map = (
-        icfg.relation_writes
-        if kind == "write"
-        else icfg.relation_reads
-    )
-
-    template_map = (
-        icfg.relation_template_writes
-        if kind == "write"
-        else icfg.relation_template_reads
-    )
-
-    return bool(
-        exact_map
-        .get(relation, {})
-        .get(bid, set())
-        or template_map
-        .get(relation, {})
-        .get(bid, set())
-    )
-```
-
-This is only a candidate prefilter. It must not create evidence.
-
-## 2E.3 Contextualize locations lazily
-
-In `ICFG`:
-
-```python
-self.contextual_location_cache = {}
-```
-
-```python
-def contextualize_location(
-    self,
-    location,
-    context: ExecutionContext,
-):
-    cache_key = (
-        location,
-        context.owner,
-        context.bindings,
-    )
-
-    cached = (
-        self.contextual_location_cache
-        .get(cache_key)
-    )
-
-    if cached is not None:
-        return cached
-
-    if isinstance(location, MappingSlotVar):
-        instantiated = MappingSlotVar(
-            location.base,
-            instantiate_key_template(
-                location.key,
-                context.binding_map,
-                context.owner,
-            ),
-        )
-
-    elif isinstance(location, ExternalStateVar):
-        instantiated = ExternalStateVar(
-            location.selector,
-            instantiate_key_template(
-                location.addr,
-                context.binding_map,
-                context.owner,
-            ),
-            tuple(
-                instantiate_key_template(
-                    argument,
-                    context.binding_map,
-                    context.owner,
-                )
-                for argument in location.args
-            ),
-        )
-
-    else:
-        instantiated = location
-
-    self.contextual_location_cache[
-        cache_key
-    ] = instantiated
-
-    return instantiated
-```
-
-## 2E.4 Add relation-key unification
-
-An expected `$arg0` in a relation origin is a relation-local entity variable, not proof that every function’s first parameter is the same variable.
-
-Use one shared constraint environment while matching the writer and reader members.
-
-```python
-@dataclass(frozen=True, slots=True)
-class KeyEqualityConstraint:
-    left: str
-    right: str
-    certainty: str
-```
-
-Split nested mapping keys into components:
-
-```python
-def split_key_path(key: str) -> tuple[str, ...]:
-    return tuple(
-        str(key).split("][")
-    )
-```
-
-Implement:
-
-```python
-def concrete_key_term(term: str) -> bool:
-    return (
-        term.startswith("@const::")
-        or term.startswith("@state::")
-        or bool(re.fullmatch(r"0x[0-9a-f]+", term))
-        or bool(re.fullmatch(r"\d+", term))
-        or term in {"true", "false"}
-    )
-```
-
-Unification rules:
-
-1. Same strings: exact.
-2. Expected relation placeholder such as `$arg0`:
-
-   * Bind it to the observed term.
-   * Repeated bindings conflict only when both observed terms are concrete and unequal.
-3. Expected concrete term versus observed concrete term:
-
-   * Must be equal.
-4. Expected concrete term versus symbolic observed term:
-
-   * Allow with an equality constraint.
-5. Unknown term:
-
-   * Allow only in the recall stream and mark `unknown`.
-6. Nested key paths:
-
-   * Path arity must match.
-   * Unify component by component.
-
-This preserves:
-
-```text
-balances[relation-user]
-actionLockedBalances[relation-user]
-```
-
-even where the writer and reader expose the user through different transaction parameters, while rejecting contradictory fixed constants.
-
-## 2E.5 Replace `_relation_access_evidence()`
-
-New signature:
-
-```python
-def contextual_relation_access_evidence(
-    icfg,
-    relation,
-    writer_bid,
-    writer_context,
-    reader_bid,
-    reader_context,
-):
-    ...
-```
-
-Collect exact and template accesses:
-
-```python
-writer_locations = (
-    set(
-        icfg.relation_writes
-        .get(relation, {})
-        .get(writer_bid, set())
-    )
-    | set(
-        icfg.relation_template_writes
-        .get(relation, {})
-        .get(writer_bid, set())
-    )
-)
-
-reader_locations = (
-    set(
-        icfg.relation_reads
-        .get(relation, {})
-        .get(reader_bid, set())
-    )
-    | set(
-        icfg.relation_template_reads
-        .get(relation, {})
-        .get(reader_bid, set())
-    )
-)
-```
-
-Contextualize every location, then match members using a shared key-constraint environment.
-
-Extend `RelationAccessEvidence`:
-
-```python
-@dataclass(frozen=True, slots=True)
-class RelationAccessEvidence:
-    writer_location: Hashable
-    writer_member: Hashable
-
-    reader_location: Hashable
-    reader_member: Hashable
-
-    writer_match_kind: str
-    reader_match_kind: str
-
-    key_constraints: tuple[
-        KeyEqualityConstraint,
-        ...
-    ] = ()
-
-    dispatch_confidence: str = "exact"
-```
-
-Use match kinds:
-
-```text
-exact
-contextual_exact
-symbolic_constraint
-unknown
-```
-
-Rank them in that order.
-
-## 2E.6 Invoke evidence inside the context cross-product
-
-After:
-
-```text
-distinct-root check
-storage-context check
-```
-
-but before must-write filtering:
-
-```python
-relation_evidence = ()
-
-if isinstance(var, MultiVarGroup):
-    relation_evidence = (
-        contextual_relation_access_evidence(
-            icfg,
-            var,
-            w_bid,
-            write_context,
-            r_bid,
-            read_context,
-        )
-    )
-
-    if not relation_evidence:
-        pair_stats[
-            "relation_context_incompatible"
-        ] += 1
+        pair_stats["must_full_relation_filtered"] += 1
         continue
 ```
 
-Use this contextual evidence in `FindingWitnessRecord`.
+This is a suitable static approximation:
 
-## Phase 2E Bug 112 gate
+> When the writer root must write every relation member, it is not a missing-member candidate.
 
-Required:
-
-1. No base-plus-own-slot relation returns.
-2. The relation containing the two distinct exact `currentUInts256` keys reappears.
-3. Its generic `_setConfig` physical access is instantiated to the correct fixed key under each caller.
-4. No generic `$arg0` helper is matched against every concrete key without a proven context.
-5. The H‑02 relation remains.
-
-Do not continue to interface dispatch until this passes.
+It does not attempt to prove value correctness, which is outside the frozen detector.
 
 ---
 
-# Phase 2F — Add interface and abstract dispatch
+# 2. Remove all name-based access-control and initializer logic
 
-Enable this only after the baseline resolver and contextual bindings are stable.
+The current root model still recognizes names such as `onlyAction`, `onlyController`, `onlyGovernance`, `ownerOf`, `initialize`, `setup`, and source paths containing `mock` or `test`. 
 
-## 2F.1 Determine whether a target has a body
+Delete all of that.
+
+## 2.1 Delete these functions and data structures
+
+Delete:
 
 ```python
-def function_has_body(fn) -> bool:
-    if fn is None:
-        return False
+_ROOT_TEST_PATH_MARKERS
+has_inline_admin_guard
+is_admin_only
 
-    if getattr(fn, "entry_point", None) is None:
-        return False
+ExposureClass
+classify_root_exposure
 
-    contract = (
-        getattr(fn, "contract_declarer", None)
-        or getattr(fn, "contract", None)
-    )
-
-    if contract is None:
-        return True
-
-    return not (
-        _bool_attr(contract, "is_interface")
-        or _bool_attr(contract, "is_abstract")
-    )
+latch_candidates_from_fn_guards
+fn_has_post_guard_for
+is_creation_phase
+_intraprocedural_dominators
+has_monotone_flip_write
+has_reset
+entry_paths_guarded
+initializer_fn
+passes_monotone_latch
+_init_only_vars
 ```
 
-## 2F.2 Extract the receiver’s declared contract type
-
-Use duck typing because Slither versions expose this differently:
+Also delete:
 
 ```python
-def receiver_contract_type(ir):
-    destination = getattr(
-        ir,
-        "destination",
-        None,
-    )
+icfg.root_exposure_class_by_owner
+icfg.root_exposure_evidence_by_owner
+```
 
-    candidates = [
-        destination,
-        getattr(destination, "type", None),
-        getattr(
-            getattr(destination, "type", None),
-            "type",
-            None,
-        ),
-        getattr(
-            getattr(destination, "type", None),
-            "contract",
-            None,
-        ),
-    ]
+from `ICFG.__init__()`.
 
-    for candidate in candidates:
-        if candidate is None:
-            continue
+The dominator implementation itself is not objectionable, but its only current purpose is the name-driven initializer suppression. Removing the complete feature is smaller and safer than retaining dead machinery.
 
-        if (
-            hasattr(candidate, "functions")
-            or hasattr(candidate, "functions_declared")
-        ):
-            return candidate
+## 2.2 Replace `is_user_callable()` with a structural predicate
+
+Use:
+
+```python
+def is_user_callable(fn, contextual_ids=()) -> bool:
+    if fn.visibility not in {"public", "external"}:
+        return False
+
+    if getattr(fn, "is_constructor", False):
+        return False
+
+    # Standalone view roots cannot create the writer transaction.
+    # Their bodies remain analyzable through stateful callers.
+    if is_view_only(fn):
+        return False
+
+    candidate_ids = {
+        function_key(fn),
+        getattr(fn, "full_name", ""),
+        *contextual_ids,
+    }
+    candidate_ids.discard("")
+
+    if candidate_ids & USER_CALLABLE_DENY:
+        return False
+
+    if candidate_ids & USER_CALLABLE_ALWAYS:
+        return True
+
+    return True
+```
+
+Do not exclude:
+
+* Initializer names.
+* Role-gated functions.
+* Governance functions.
+* Contract-gated functions.
+* Owner functions.
+* Functions containing a particular modifier name.
+
+A public or external state-changing entrypoint is a transaction root. Access restrictions affect exploitability but do not make its state transition irrelevant to MV-SI evaluation.
+
+## 2.3 Make contract exclusion structural
+
+Replace `_source_is_dependency()` with:
+
+```python
+def _source_is_dependency(obj) -> bool:
+    source_mapping = getattr(obj, "source_mapping", None)
+    return bool(getattr(source_mapping, "is_dependency", False))
+```
+
+Remove the `/node_modules/` fallback.
+
+Replace `_root_contract_exclusion_reason()` with:
+
+```python
+def _root_contract_exclusion_reason(contract):
+    if _source_is_dependency(contract):
+        return "dependency"
+
+    if _bool_attr(contract, "is_interface"):
+        return "interface"
+
+    if _bool_attr(contract, "is_library"):
+        return "library"
+
+    if _bool_attr(contract, "is_abstract"):
+        return "abstract"
 
     return None
 ```
 
-Do not rely on one version-specific attribute without a fallback.
+Do not detect tests, mocks, harnesses, or fixtures from filenames. Benchmark scoping belongs to the evaluation data, not to the detector’s semantics.
 
-## 2F.3 Implement contract compatibility
+## 2.4 Simplify `compute_entry_owners()`
 
-```python
-def contract_lineage(contract) -> set:
-    if contract is None:
-        return set()
-
-    values = {
-        contract,
-    }
-
-    for attribute in (
-        "inheritance",
-        "linearized_base_contracts",
-        "_linearizedBaseContracts",
-    ):
-        values.update(
-            getattr(contract, attribute, None)
-            or []
-        )
-
-    return values
-```
-
-A concrete candidate is compatible when:
-
-* Its contract is the receiver’s concrete declared contract; or
-* It inherits/implements the apparent interface; or
-* Its override metadata points to the apparent function; or
-* The receiver type is absent, the complete signature is globally unique, and this is explicitly marked `fallback_unique_signature`.
-
-## 2F.4 Resolution order for high-level calls
-
-For each `HighLevelCall`:
-
-1. Direct concrete `ir.function` with a body.
-2. Concrete implementation on the receiver’s exact contract.
-3. Concrete functions with the same complete signature whose contracts implement the apparent interface.
-4. A globally unique complete-signature function.
-5. Unresolved.
-
-Never select by bare function name when multiple signatures or contracts exist.
-
-## 2F.5 Multiple implementations
-
-If one implementation remains:
-
-```text
-resolution_kind = interface_unique
-confidence      = high
-```
-
-If several remain:
-
-```text
-resolution_kind = interface_ambiguous
-confidence      = ambiguous
-```
-
-Create one call edge per target.
-
-Do not merge their storage effects into one fictitious contract.
-
-If the number exceeds `MVSCAN_MAX_DISPATCH_TARGETS`, fail loudly in strict development mode. Do not choose the first N.
-
-## 2F.6 Update every analysis subsystem
-
-For multiple targets:
-
-* Influence summaries: union read/sink effects.
-* Return locations: union possible return locations.
-* May writes: union.
-* Must writes: intersection.
-* Reachability: fork target contexts.
-* Path provenance: retain the exact target and resolution kind.
-* Candidate confidence: ambiguous dispatch cannot be high confidence.
-
-## 2F.7 Storage context
-
-For a unique concrete high-level target:
+Remove:
 
 ```python
-target_storage_context = (
-    contract_storage_key(
-        target_contract
-    )
-)
+exposure_class
+exposure_evidence
+excluded_contract_gated
+excluded_role_gated
+excluded_protocol_admin
+excluded_view_only
+excluded_test_or_mock
 ```
 
-Internal and library calls preserve caller storage context.
-
-High-level calls switch to the concrete target’s storage domain.
-
-## Phase 2F Bug 112 gate
-
-The concrete body of `StakerVault.transferFrom` must become reachable under:
-
-```text
-writer owner:
-    TopUpAction.register(...)
-
-writer storage context:
-    StakerVault
-
-call path:
-    TopUpAction.register
-      -> _lockFunds
-      -> TopUpActionLibrary.lockFunds
-      -> IStakerVault.transferFrom
-      -> StakerVault.transferFrom
-```
-
-The relation must remain:
-
-```text
-balances[payer]
-actionLockedBalances[payer]
-```
-
-This is the first strict H‑02 reachability gate.
-
-Do not count direct `StakerVault.transferFrom` root findings as satisfying this gate.
-
----
-
-# Phase 2G — Separate root eligibility from callee reachability
-
-Every body should remain available as a callee. Only exposure seeding should apply the attacker model.
-
-The current root test reduces public/external functions to “admin-like or not,” and the physical writer is also filtered before the outer root has been selected.  
-
-## 2G.1 Add exposure classes
+The candidate record should contain only:
 
 ```python
-class ExposureClass:
-    ARBITRARY_USER = "arbitrary_user"
-    RESOURCE_OWNER = "resource_owner"
-    CONTRACT_GATED = "contract_gated"
-    ROLE_GATED = "role_gated"
-    PROTOCOL_ADMIN = "protocol_admin"
-    VIEW_ONLY = "view_only"
+candidate = {
+    "entry_bid": entry_bid,
+    "exposure_owner": exposure_owner,
+    "implementation_owner": implementation_owner,
+    "force_included": force_included,
+    "implementation_is_dependency": _source_is_dependency(fn),
+    "storage_context": _contract_classification_key(contract),
+    "root_function": fn,
+}
 ```
 
-Store:
+Keep inherited-exposure collapsing and multiple storage-context propagation. Those solve a genuine ICFG representation issue and do not depend on names.
+
+## 2.5 Remove initializer-name exclusions from pair generation
+
+In `stale_read_pairs()`, change write and read filtering from:
 
 ```python
-icfg.root_exposure_class_by_owner = {}
-icfg.root_exposure_evidence_by_owner = {}
-```
-
-## 2G.2 Classify concrete exposures
-
-Classification order:
-
-1. Constructor/init: excluded.
-2. View/pure: `view_only`.
-3. Protocol governance/admin modifier or guard: `protocol_admin`.
-4. Role membership guard: `role_gated`.
-5. Guard comparing sender against a configured contract/interface address: `contract_gated`.
-6. Guard proving sender owns the specific resource passed to the function: `resource_owner`.
-7. Otherwise: `arbitrary_user`.
-
-Contract-gate evidence includes patterns such as:
-
-```text
-msg.sender == action
-msg.sender == controller
-msg.sender == vault
-authorizedActions[msg.sender]
-onlyAction
-onlyController
-onlyStakerVault
-```
-
-Resource-owner evidence includes patterns such as:
-
-```text
-ownerOf(tokenId) == msg.sender
-position.owner == msg.sender
-account == msg.sender where account identifies the affected resource
-```
-
-Do not classify every sender equality as protocol administration.
-
-## 2G.3 Canonical root policy
-
-Canonical external-attacker roots:
-
-```text
-arbitrary_user
-resource_owner
-```
-
-Optional roots under existing or new ablations:
-
-```text
-role_gated
-protocol_admin
-contract_gated
-view_only
-```
-
-Contract-gated functions remain traversable through call edges even when not seeded.
-
-## 2G.4 Remove the physical admin writer filter
-
-Delete the pre-context filter:
-
-```python
-if (
-    w_full in ADMIN_ONLY
-    and r_full not in ADMIN_ONLY
-):
-    continue
-```
-
-It is based on the implementation block rather than the transaction root.
-
-If an admin-write ablation is retained, apply it after selecting `outer_w`:
-
-```python
-writer_class = (
-    icfg.root_exposure_class_by_owner[
-        write_context.owner
-    ]
-)
-
-if (
-    ADMIN_WRITES_BENIGN
-    and writer_class
-        == ExposureClass.PROTOCOL_ADMIN
-):
-    ...
-```
-
-For the canonical run, use:
-
-```text
-ADMIN_WRITES_BENIGN=0
-```
-
-because canonical root seeding already enforces the root policy.
-
-## Phase 2G Bug 112 gate
-
-Expected:
-
-* `TopUpAction.register` remains a root.
-* Contract-gated `increaseActionLockedBalance` and `decreaseActionLockedBalance` are no longer arbitrary-user roots if their guards support that classification.
-* Their bodies remain reachable when called through valid action flows.
-* Strict H‑02 remains.
-
-This should remove several misleading direct-root combinations without losing their effects as callees.
-
----
-
-# Phase 3A — Make sensitive reads owner-qualified
-
-The current influence pass unions `read_to_sink` from every function summary into one global sensitive-event set. 
-
-Retain that global set for diagnostics, but stop using it as the canonical eligibility decision.
-
-## 3A.1 Add owner-specific maps
-
-```python
-self.sensitive_read_events_by_owner = (
-    defaultdict(set)
-)
-
-self.sink_sites_by_owner_and_event = (
-    defaultdict(set)
-)
-```
-
-After influence summaries and root owners are available:
-
-```python
-for owner, root_fn in (
-    self.root_function_by_owner.items()
-):
-    summary = (
-        self.function_influence_summaries
-        .get(root_fn)
-    )
-
-    if summary is None:
-        continue
-
-    self.sensitive_read_events_by_owner[
-        owner
-    ].update(summary.read_to_sink)
-
-    for sink_site, events in (
-        summary.sink_reads.items()
-    ):
-        for event in events:
-            self.sink_sites_by_owner_and_event[
-                (owner, event)
-            ].add(sink_site)
-```
-
-## 3A.2 Use the reader owner
-
-Change:
-
-```python
-read_event_is_sensitive(
-    bid,
-    var,
+if not (
+    fn.is_constructor
+    or fn.name.startswith("initialize")
 )
 ```
 
 to:
 
 ```python
-read_event_is_sensitive(
-    bid,
-    var,
-    context: ExecutionContext,
-)
+if not fn.is_constructor
 ```
 
-The canonical check uses:
-
-```python
-sensitive_read_events_by_owner[
-    context.owner
-]
-```
-
-Then contextualize the event location with `context.bindings`.
-
-## 3A.3 Attach sink sites to witnesses
-
-Add to `FindingWitnessRecord`:
-
-```python
-sink_sites: tuple = ()
-```
-
-Serialize:
-
-```json
-"sinks": [
-  {
-    "function_key": "...",
-    "node_id": 123,
-    "ir_index": 4,
-    "kind": "storage_write"
-  }
-]
-```
-
-A reader witness without a sink site should be diagnostic only.
-
-## 3A.4 Stop treating resolved view/pure calls as effects
-
-The current `_is_external_effect()` returns true for essentially every remaining `Call`. 
-
-Change high-level call handling:
-
-```python
-def callsite_is_external_effect(
-    ir,
-    targets,
-) -> bool:
-    if isinstance(
-        ir,
-        (InternalCall, LibraryCall, EventCall),
-    ):
-        return False
-
-    if isinstance(ir, SolidityCall):
-        text = str(
-            getattr(ir, "function", "")
-        ).lower()
-
-        return (
-            "selfdestruct" in text
-            or "suicide" in text
-        )
-
-    if isinstance(ir, HighLevelCall):
-        if not targets:
-            # Unknown high-level call remains effectful.
-            return True
-
-        target_functions = [
-            fn_lookup[
-                target.target_function_key
-            ]
-            for target in targets
-        ]
-
-        if all(
-            is_view_only(target_fn)
-            for target_fn in target_functions
-        ):
-            return False
-
-        return True
-
-    return isinstance(ir, Call)
-```
-
-View/pure returns must still propagate into later real sinks.
-
-## 3A.5 Sink-strength classification
-
-Classify sink evidence without filtering it yet:
-
-```text
-economic_external_effect
-authorization_effect
-persistent_state_write
-security_control
-informational_control
-unknown_external_effect
-```
-
-Selectors such as transfer, transferFrom, mint, burn, liquidation, reward, claim, fee, cap, and authorization updates should raise sink strength.
-
-This is ranking metadata until the precision oracle is labeled.
-
-## Phase 3A gate
-
-Required:
-
-* H‑02 reader witnesses survive under the roots that use the stale aggregate in stateful or economic behavior.
-* Standalone view exposure no longer creates a primary impact witness merely because some other caller uses the same physical getter.
-* The owner-specific sensitive-event digest is deterministic.
+Also delete all initializer filtering in `_detect()` and relation normalization.
 
 ---
 
-# Phase 3B — Preserve relation-origin semantics
+# 3. Remove semantic relation categories while preserving source provenance
 
-The current `MultiVarGroup` identity is only its normalized member set, and `register_pseudo()` merges every origin with that same member set.  
+The current relation representation assigns origin kinds and strengths such as `arithmetic_return`, `control_comparison`, `weak`, `supported`, and `strong`. 
 
-This conflates different relational meanings.
+Delete those categories, but keep the source site.
 
-## 3B.1 Add origin metadata
-
-```python
-@dataclass(frozen=True, slots=True)
-class RelationOriginMeta:
-    origin_id: str
-    origin_kind: str
-
-    function_key: str
-    block_id: BasicBlock | None
-    ir_index: int | None
-
-    operator: str | None
-    strength: str
-```
-
-Origin kinds:
-
-```text
-arithmetic_return
-comparison_return
-single_return_expression
-multi_return_tuple
-control_comparison
-control_conjunction
-control_disjunction
-authorization_alternative
-unknown_control
-```
-
-## 3B.2 Extend `MultiVarGroup`
-
-```python
-__slots__ = (
-    "vars",
-    "gid",
-    "semantic_id",
-    "equivalence_id",
-)
-```
+## 3.1 Replace `RelationOriginMeta`
 
 Use:
 
 ```python
-equivalence_id = tuple(
-    var_key(member)
-    for member in members
-)
+@dataclass(frozen=True, slots=True)
+class RelationOrigin:
+    origin_id: str
+    function_key: str
+    block_id: BasicBlock | None
+    ir_index: int | None
+    expression: str
+```
+
+Update `MultiVarGroup`:
+
+```python
+class MultiVarGroup:
+    __slots__ = (
+        "vars",
+        "gid",
+        "semantic_id",
+        "equivalence_id",
+        "origin",
+    )
+
+    def __init__(
+        self,
+        gid,
+        vars_: tuple,
+        semantic_id: tuple,
+        equivalence_id: tuple,
+        origin: RelationOrigin,
+    ):
+        self.gid = gid
+        self.vars = vars_
+        self.semantic_id = semantic_id
+        self.equivalence_id = equivalence_id
+        self.origin = origin
+```
+
+## 3.2 Make relation identity source-based only
+
+Inside `register_pseudo()`:
+
+```python
+members = tuple(sorted(logical_members, key=var_key))
+equivalence_id = tuple(var_key(member) for member in members)
+
+if origin is None:
+    origin = RelationOrigin(
+        origin_id=str(gid),
+        function_key="",
+        block_id=None,
+        ir_index=None,
+        expression="",
+    )
 
 semantic_id = (
-    origin_meta.origin_kind,
-    origin_meta.operator,
-    origin_meta.function_key,
-    origin_meta.block_id,
-    origin_meta.ir_index,
+    origin.origin_id,
     equivalence_id,
 )
 ```
 
-Do not merge different source origins merely because their member sets are equal.
+No operator, strength, or origin-kind fields should enter relation identity.
 
-Equivalent origins can later be attached to one candidate as supporting evidence.
+## 3.3 Keep return-site precision without classifying expressions
 
-## 3B.3 Make returns site-sensitive
+For each return site:
 
-The current function-return summary retains components but ultimately flattens locations per function for relation construction. Preserve a separate map:
+```python
+origin = RelationOrigin(
+    origin_id=origin_id,
+    function_key=function_key(fn),
+    block_id=return_site.block_id,
+    ir_index=return_site.ir_index,
+    expression=return_text,
+)
+
+register_pseudo(
+    origin_id,
+    members,
+    origin,
+)
+```
+
+Delete the operator search and all return-kind assignments.
+
+## 3.4 Keep SSA control-sink relations without parsing conditions
+
+The current sink relation construction is useful because it uses state-read events that actually influence one control sink. Keep that dataflow.
+
+Replace its entire `||` / `&&` / comparison classification block with:
+
+```python
+origin_id = (
+    f"sink::{sink_site.block_id[0]}::"
+    f"{sink_site.block_id[1]}::{sink_site.ir_index}"
+)
+
+register_pseudo(
+    origin_id,
+    members,
+    RelationOrigin(
+        origin_id=origin_id,
+        function_key=sink_site.block_id[0],
+        block_id=sink_site.block_id,
+        ir_index=sink_site.ir_index,
+        expression=expression_text,
+    ),
+)
+```
+
+This preserves indirect relations such as:
+
+```solidity
+x = A[user];
+y = B[user];
+
+if (x < y) {
+    ...
+}
+```
+
+without deciding what type of invariant the condition represents.
+
+## 3.5 Preserve mapping-base shadowing exactly
+
+Do not modify `normalize_relation_members()`.
+
+It correctly removes a base mapping only when an exact slot under that base is already present, while retaining two distinct exact slots. That correction eliminated the former unary base-plus-own-slot explosion.
+
+---
+
+# 4. Make key identity function-qualified and case-preserving
+
+This is the most important canonicalization correction.
+
+The current `canon_key()` still falls back to:
+
+```python
+norm_txt(str(key))
+```
+
+which strips spaces, lowercases the expression, and loses the defining function. 
+
+That is why unrelated locals named `key_1` can become equal.
+
+## 4.1 Add an identity-preserving text helper
+
+Keep `norm_txt()` for non-semantic textual diagnostics. Add:
+
+```python
+def identity_txt(value) -> str:
+    text = str(value or "").replace("this.", "")
+    text = re.sub(
+        r"\baddress\((.+?)\)",
+        r"\1",
+        text,
+    )
+    return re.sub(r"\s+", "", text)
+```
+
+Do not lowercase canonical identifiers.
+
+Solidity identifiers and function names are case-sensitive.
+
+## 4.2 Replace `canon_key()`
+
+```python
+def canon_key(key, fn=None) -> str:
+    parameter_index = _formal_parameter_index(
+        fn,
+        key,
+    )
+
+    if parameter_index is not None:
+        return f"$arg{parameter_index}"
+
+    if fn is not None:
+        aliases = _function_parameter_aliases(fn)
+        indexes = set(aliases.get(key, set()))
+        indexes.update(
+            aliases.get(
+                _non_ssa_variable(key),
+                set(),
+            )
+        )
+
+        if len(indexes) == 1:
+            return f"$arg{next(iter(indexes))}"
+
+    text = identity_txt(key)
+    lowered = text.lower()
+
+    if lowered in {
+        "msg.sender",
+        "_msgsender()",
+        "_msgsender",
+    }:
+        return "$sender"
+
+    concrete = _non_ssa_variable(key)
+
+    if isinstance(concrete, StateVariable):
+        canonical_name = (
+            getattr(concrete, "canonical_name", None)
+            or getattr(concrete, "name", None)
+            or str(concrete)
+        )
+
+        return (
+            "@state::"
+            + source_file_key(concrete)
+            + "::"
+            + str(canonical_name)
+        )
+
+    if _looks_like_literal(key):
+        return "@const::" + text
+
+    if fn is not None:
+        return (
+            "@local::"
+            + function_key(fn)
+            + "::"
+            + type(concrete).__name__
+            + "::"
+            + text
+        )
+
+    return (
+        "@unknown::"
+        + type(concrete).__name__
+        + "::"
+        + text
+    )
+```
+
+No bare local identifier should ever be a canonical mapping key.
+
+## 4.3 Use one canonicalizer for call arguments
+
+Replace `contextual_argument_template()` with:
+
+```python
+def contextual_argument_template(
+    argument,
+    caller_fn,
+) -> str:
+    return canon_key(argument, caller_fn)
+```
+
+Do not maintain separate key rules for mapping accesses and call arguments.
+
+## 4.4 Preserve receiver and selector case
+
+In `alias(58).py`, change:
+
+```python
+return AliasKey(
+    canonical_addr.lower(),
+    selector.lower(),
+    tuple(str(arg) for arg in args),
+)
+```
+
+to:
+
+```python
+return AliasKey(
+    canonical_addr,
+    str(selector),
+    tuple(str(arg) for arg in args),
+)
+```
+
+In `ExternalStateVar.__init__()`, replace:
+
+```python
+self.selector = selector.lower()
+self.addr = (addr or "unknown").lower()
+```
+
+with:
+
+```python
+self.selector = str(selector)
+self.addr = str(addr or "unknown")
+```
+
+The registry already correctly refuses an empty receiver and clears itself between compilation units. 
+
+---
+
+# 5. Make key unification conservative, without match rankings
+
+The current `_unify_key()` treats two unequal non-concrete terms as symbolically equal. 
+
+Replace that behavior.
+
+## 5.1 Simplify the evidence records
+
+Use:
 
 ```python
 @dataclass(frozen=True, slots=True)
-class ReturnSite:
-    block_id: BasicBlock
-    ir_index: int
-    return_index: int
+class KeyEqualityConstraint:
+    left: str
+    right: str
+
+
+@dataclass(frozen=True, slots=True)
+class RelationAccessEvidence:
+    writer_location: Hashable
+    writer_member: Hashable
+    reader_location: Hashable
+    reader_member: Hashable
+    key_constraints: tuple[KeyEqualityConstraint, ...] = ()
+```
+
+Delete:
+
+```text
+writer_match_kind
+reader_match_kind
+dispatch_confidence
+certainty
+```
+
+## 5.2 Add structural term predicates
+
+```python
+def _is_relation_placeholder(term: str) -> bool:
+    return (
+        term == "$sender"
+        or bool(re.fullmatch(r"\$arg\d+", term))
+    )
+
+
+def _is_fixed_term(term: str) -> bool:
+    return term.startswith((
+        "@const::",
+        "@state::",
+    ))
+
+
+def _is_free_runtime_term(term: str) -> bool:
+    return term.startswith((
+        "@txarg::",
+        "@sender::",
+    ))
+
+
+def _is_opaque_term(term: str) -> bool:
+    return term.startswith((
+        "@local::",
+        "@unknown::",
+    ))
+```
+
+An uninstantiated `$argN` appearing on the observed side should also be treated as opaque.
+
+## 5.3 Replace `_unify_key()`
+
+```python
+def _constraint(left: str, right: str):
+    first, second = sorted((left, right))
+    return KeyEqualityConstraint(first, second)
+
+
+def _unify_component(
+    expected: str,
+    observed: str,
+    bindings: dict[str, str],
+    constraints: set[KeyEqualityConstraint],
+) -> bool:
+    if expected == observed:
+        return True
+
+    if _is_relation_placeholder(expected):
+        previous = bindings.get(expected)
+
+        if previous is None:
+            bindings[expected] = observed
+            return not (
+                _is_opaque_term(observed)
+                or _is_relation_placeholder(observed)
+            )
+
+        if previous == observed:
+            return True
+
+        if (
+            _is_opaque_term(previous)
+            or _is_opaque_term(observed)
+            or _is_relation_placeholder(previous)
+            or _is_relation_placeholder(observed)
+        ):
+            return False
+
+        if (
+            _is_fixed_term(previous)
+            and _is_fixed_term(observed)
+        ):
+            return False
+
+        constraints.add(
+            _constraint(previous, observed)
+        )
+        return True
+
+    if (
+        _is_opaque_term(expected)
+        or _is_opaque_term(observed)
+        or _is_relation_placeholder(observed)
+    ):
+        return False
+
+    if (
+        _is_fixed_term(expected)
+        and _is_fixed_term(observed)
+    ):
+        return False
+
+    if (
+        _is_fixed_term(expected)
+        or _is_fixed_term(observed)
+        or _is_free_runtime_term(expected)
+        or _is_free_runtime_term(observed)
+    ):
+        constraints.add(
+            _constraint(expected, observed)
+        )
+        return True
+
+    return False
+
+
+def _unify_key(
+    expected: str,
+    observed: str,
+    bindings: dict[str, str],
+    constraints: set[KeyEqualityConstraint],
+) -> bool:
+    expected_parts = split_key_path(expected)
+    observed_parts = split_key_path(observed)
+
+    if len(expected_parts) != len(observed_parts):
+        return False
+
+    return all(
+        _unify_component(
+            left,
+            right,
+            bindings,
+            constraints,
+        )
+        for left, right in zip(
+            expected_parts,
+            observed_parts,
+        )
+    )
+```
+
+This permits the static existential condition:
+
+```text
+writer transaction argument == reader transaction argument
+```
+
+while rejecting:
+
+```text
+@local::<function A>::key_1
+==
+@local::<function B>::key_1
+```
+
+It also rejects two different fixed configuration declarations.
+
+## 5.4 Simplify `_contextual_member_match()`
+
+It should return only `bool`:
+
+```python
+def _contextual_member_match(
+    location,
+    member,
+    bindings,
+    constraints,
+) -> bool:
+    if location == member:
+        return True
+
+    if (
+        isinstance(location, MappingSlotVar)
+        and isinstance(member, MappingSlotVar)
+    ):
+        if location.base != member.base:
+            return False
+
+        return _unify_key(
+            member.key,
+            location.key,
+            bindings,
+            constraints,
+        )
+
+    if (
+        isinstance(location, ExternalStateVar)
+        and isinstance(member, ExternalStateVar)
+    ):
+        if (
+            location.selector != member.selector
+            or len(location.args) != len(member.args)
+        ):
+            return False
+
+        pairs = [
+            (member.addr, location.addr),
+            *zip(member.args, location.args),
+        ]
+
+        return all(
+            _unify_key(
+                str(expected),
+                str(observed),
+                bindings,
+                constraints,
+            )
+            for expected, observed in pairs
+        )
+
+    return False
+```
+
+## 5.5 Remove evidence ranking
+
+In `contextual_relation_access_evidence()`, delete:
+
+```python
+rank_by_kind
+best
+rank
+```
+
+Collect every distinct valid member edge:
+
+```python
+evidence = set()
+
+for writer_template in ...:
+    ...
+    for reader_template in ...:
+        ...
+        for writer_member in relation.vars:
+            for reader_member in relation.vars:
+                if writer_member == reader_member:
+                    continue
+
+                bindings = {}
+                constraints = set()
+
+                if not _contextual_member_match(
+                    writer_location,
+                    writer_member,
+                    bindings,
+                    constraints,
+                ):
+                    continue
+
+                if not _contextual_member_match(
+                    reader_location,
+                    reader_member,
+                    bindings,
+                    constraints,
+                ):
+                    continue
+
+                evidence.add(
+                    RelationAccessEvidence(
+                        writer_location,
+                        writer_member,
+                        reader_location,
+                        reader_member,
+                        tuple(sorted(
+                            constraints,
+                            key=lambda item: (
+                                item.left,
+                                item.right,
+                            ),
+                        )),
+                    )
+                )
+
+return tuple(sorted(
+    evidence,
+    key=lambda item: (
+        state_entity_sort_key(
+            item.writer_location
+        ),
+        state_entity_sort_key(
+            item.writer_member
+        ),
+        state_entity_sort_key(
+            item.reader_location
+        ),
+        state_entity_sort_key(
+            item.reader_member
+        ),
+        tuple(
+            (constraint.left, constraint.right)
+            for constraint
+            in item.key_constraints
+        ),
+    ),
+))
+```
+
+Update `read_event_is_sensitive()` and every other caller for the Boolean return.
+
+---
+
+# 6. Make high-level dispatch receiver-sensitive
+
+The current resolver can use global signature uniqueness and can map an interface call to a repository implementation merely because it is the only implementation found. 
+
+That caused the external CVX `totalSupply()` read to be conflated with a local OpenZeppelin `_totalSupply` body. 
+
+## 6.1 Remove dispatch categories
+
+Change:
+
+```python
+@dataclass(frozen=True, slots=True)
+class ResolvedCallTarget:
+    target_function_key: str
+```
+
+And:
+
+```python
+@dataclass(frozen=True, slots=True)
+class CallEdgeRecord:
+    source_bid: BasicBlock
+    target_bid: BasicBlock
+    callsite_id: CallSiteId
+    target_function_key: str
+    storage_mode: str
+    target_storage_context: str | None
+    substitutions: tuple[tuple[str, str], ...]
+```
+
+Delete:
+
+```text
+resolution_kind
+confidence
+```
+
+from:
+
+* Call records.
+* Context parent tuples.
+* Call digests.
+* Dispatch JSON.
+* Candidate construction.
+
+## 6.2 Treat a function as implemented when it has an entry block
+
+Replace `function_has_body()` with:
+
+```python
+def function_has_body(fn) -> bool:
+    return (
+        fn is not None
+        and getattr(fn, "entry_point", None)
+        is not None
+    )
+```
+
+An implemented function may be declared in an abstract base contract. `entry_point` is the relevant structural fact.
+
+## 6.3 Add a dependency predicate
+
+```python
+def declaration_is_dependency(obj) -> bool:
+    source_mapping = getattr(
+        obj,
+        "source_mapping",
+        None,
+    )
+
+    return bool(
+        getattr(
+            source_mapping,
+            "is_dependency",
+            False,
+        )
+    )
+```
+
+## 6.4 Replace `resolve_call_functions()`
+
+Use this resolution order:
+
+```python
+def resolve_call_functions(
+    self,
+    ir,
+    caller_fn,
+) -> tuple:
+    direct = getattr(ir, "function", None)
+
+    if function_has_body(direct):
+        return (direct,)
+
+    signature = _call_signature_key(ir)
+    caller_contract = getattr(
+        caller_fn,
+        "contract_declarer",
+        None,
+    )
+
+    if isinstance(ir, InternalCall):
+        lineage = contract_lineage(caller_contract)
+
+        candidates = sorted({
+            fn
+            for fn in self.concrete_functions_by_signature.get(
+                signature,
+                set(),
+            )
+            if (
+                function_has_body(fn)
+                and (
+                    getattr(
+                        fn,
+                        "contract_declarer",
+                        None,
+                    )
+                    in lineage
+                )
+            )
+        }, key=function_key)
+
+        return (
+            tuple(candidates)
+            if len(candidates) == 1
+            else ()
+        )
+
+    if isinstance(ir, LibraryCall):
+        library_contract = (
+            receiver_contract_type(ir)
+            or getattr(
+                direct,
+                "contract_declarer",
+                None,
+            )
+        )
+
+        candidates = sorted({
+            fn
+            for fn in self.functions_by_contract_and_signature.get(
+                (library_contract, signature),
+                set(),
+            )
+            if function_has_body(fn)
+        }, key=function_key)
+
+        return (
+            tuple(candidates)
+            if len(candidates) == 1
+            else ()
+        )
+
+    if not (
+        self.interface_dispatch_enabled
+        and isinstance(ir, HighLevelCall)
+    ):
+        return ()
+
+    receiver_contract = receiver_contract_type(ir)
+
+    if (
+        receiver_contract is not None
+        and not _bool_attr(
+            receiver_contract,
+            "is_interface",
+        )
+        and not _bool_attr(
+            receiver_contract,
+            "is_abstract",
+        )
+    ):
+        visible_functions = sorted({
+            fn
+            for fn in (
+                getattr(
+                    receiver_contract,
+                    "functions",
+                    [],
+                )
+                or []
+            )
+            if (
+                function_has_body(fn)
+                and function_signature_key(fn)
+                == signature
+            )
+        }, key=function_key)
+
+        if len(visible_functions) == 1:
+            return tuple(visible_functions)
+
+        exact = sorted({
+            fn
+            for fn in self.concrete_functions_by_signature.get(
+                signature,
+                set(),
+            )
+            if (
+                function_has_body(fn)
+                and (
+                    getattr(
+                        fn,
+                        "contract_declarer",
+                        None,
+                    )
+                    is receiver_contract
+                )
+            )
+        }, key=function_key)
+
+        return tuple(exact) if len(exact) == 1 else ()
+
+    apparent_contract = (
+        getattr(direct, "contract_declarer", None)
+        or getattr(direct, "contract", None)
+        or receiver_contract
+    )
+
+    if apparent_contract is None:
+        return ()
+
+    # Do not infer a local implementation for an imported
+    # dependency interface solely from signature uniqueness.
+    if declaration_is_dependency(apparent_contract):
+        return ()
+
+    candidates = sorted({
+        fn
+        for fn in self.concrete_functions_by_signature.get(
+            signature,
+            set(),
+        )
+        if (
+            function_has_body(fn)
+            and not declaration_is_dependency(fn)
+            and apparent_contract
+            in contract_lineage(
+                getattr(
+                    fn,
+                    "contract_declarer",
+                    None,
+                )
+                or getattr(fn, "contract", None)
+            )
+        )
+    }, key=function_key)
+
+    if len(candidates) > self.max_dispatch_targets:
+        return ()
+
+    return tuple(candidates)
+```
+
+Critical removals:
+
+* No global high-level `len(concrete) == 1` fallback.
+* No dependency-interface-to-local-body inference.
+* No bare-name matching.
+* No selecting the “best” implementation.
+* Multiple compatible first-party implementations are all retained as may-targets.
+
+This remains a purely static call-graph approximation.
+
+## 6.5 Update every caller
+
+Change all loops from:
+
+```python
+for callee, kind, confidence in ...:
+```
+
+to:
+
+```python
+for callee in ...:
+```
+
+Change:
+
+```python
+ResolvedCallTarget(
+    function_key(callee),
+    kind,
+    confidence,
+)
+```
+
+to:
+
+```python
+ResolvedCallTarget(
+    function_key(callee),
+)
+```
+
+Change context parent records to:
+
+```python
+(
+    edge.source_bid,
+    execution_context,
+    edge.callsite_id,
+    edge.target_function_key,
+)
+```
+
+Update `_shortest_call_chain()` for the four-element tuple.
+
+The dispatch catalog should contain only:
+
+```json
+{
+  "callsite": ...,
+  "targets": [
+    "contracts/...::Contract.function(...)"
+  ]
+}
+```
+
+---
+
+# 7. Replace selector/name-based external state with a generic view-return abstraction
+
+Current external-state handling hardcodes getter and mutator names and maps storage variables with names such as `_balances` and `_lastBalance` into external wrappers.  
+
+Remove all of that.
+
+## 7.1 Delete these constants
+
+From `icfg(48).py`, delete:
+
+```python
+EXT_READS
+EXT_WRITES
+STORAGE_TO_SELECTOR
+```
+
+## 7.2 Delete name-based local-storage aliases
+
+Inside `ICFG.add_block()`, delete:
+
+* `Map local storage writes to external-state abstractions`.
+* The `ERC-20 balance mapping writes should alias EXT::balanceof` block.
+* The `_lastBalance` public-getter block.
+
+These blocks rely on source-level names and are not universal storage semantics. 
+
+## 7.3 Retain return summaries for one-location getters
+
+Current `precompute_return_summaries()` discards functions unless their aggregate return contains at least two locations. 
+
+Change:
+
+```python
+if len(all_locations) < 2:
+    continue
+```
+
+to:
+
+```python
+if not all_locations:
+    continue
+```
+
+Continue registering an MV relation only when `register_pseudo()` sees at least two members.
+
+This allows concrete getters returning one storage location to be inlined at callsites without turning those unary getters into relations.
+
+## 7.4 Add one generic external receiver helper
+
+```python
+def external_receiver_term(
+    ir,
+    caller_fn,
+    callsite_id,
+) -> str:
+    destination = getattr(
+        ir,
+        "destination",
+        None,
+    )
+
+    if destination is None:
+        return (
+            "@unknown-receiver::"
+            + callsite_id[0][0]
+            + "::"
+            + str(callsite_id[0][1])
+            + "::"
+            + str(callsite_id[1])
+        )
+
+    term = canon_key(
+        destination,
+        caller_fn,
+    )
+
+    if term:
+        return term
+
+    return (
+        "@unknown-receiver::"
+        + callsite_id[0][0]
+        + "::"
+        + str(callsite_id[0][1])
+        + "::"
+        + str(callsite_id[1])
+    )
+```
+
+## 7.5 Add one generic external read abstraction
+
+```python
+def external_view_location(
+    ir,
+    caller_fn,
+    callsite_id,
+):
+    if not ENABLE_EXTERNAL_STATE:
+        return None
+
+    if not isinstance(ir, HighLevelCall):
+        return None
+
+    apparent = getattr(ir, "function", None)
+
+    if apparent is None or not is_view_only(apparent):
+        return None
+
+    if getattr(ir, "lvalue", None) is None:
+        return None
+
+    return ExternalStateVar(
+        _call_signature_key(ir),
+        external_receiver_term(
+            ir,
+            caller_fn,
+            callsite_id,
+        ),
+        tuple(
+            canon_key(argument, caller_fn)
+            for argument in (
+                getattr(ir, "arguments", [])
+                or []
+            )
+        ),
+    )
+```
+
+This is API-independent:
+
+```text
+receiver
+full call signature
+canonical arguments
+```
+
+No `balanceOf`, `totalSupply`, `transfer`, `mint`, `burn`, or `sync` names are required.
+
+## 7.6 Use the same helper in both analysis paths
+
+### In `ICFG.add_block()`
+
+After resolving and inlining concrete return summaries:
+
+```python
+instantiated_returns = set()
+
+for callee in resolved_functions:
+    if callee not in self.fn_returns:
+        continue
+
+    instantiated_returns.update(
+        _subst_returns_with_args(
+            callee,
+            ir,
+            self.fn_returns[callee],
+            fn,
+        )
+    )
+
+reads.update(instantiated_returns)
+
+if not instantiated_returns:
+    external_location = external_view_location(
+        ir,
+        fn,
+        callsite_id,
+    )
+
+    if external_location is not None:
+        reads.add(external_location)
+```
+
+Delete the current selector-table external abstraction. 
+
+### In `_analyze_function_influence()`
+
+Track whether the resolved call summary produced any returned state locations.
+
+Only when it did not, call the same `external_view_location()` helper and originate the call’s lvalue from that location.
+
+The call ordinal used there must be calculated by the same rule as `iter_call_sites()`.
+
+## 7.7 Do not synthesize external writes
+
+An unresolved non-view external call should remain:
+
+```text
+external-effect sink
+```
+
+It should not be converted into a speculative storage location.
+
+Without an interface specification, the detector cannot generally infer which getter-visible external state an arbitrary mutating function changes. Inventing that mapping is precisely the kind of hardcoded semantic behavior being removed.
+
+## 7.8 Correct view-call sink handling
+
+In `_sensitive_operation_kind()`, exclude an apparent view/pure call even when no concrete target was resolved:
+
+```python
+if isinstance(ir, HighLevelCall):
+    apparent = getattr(ir, "function", None)
+
+    if (
+        apparent is not None
+        and is_view_only(apparent)
+    ):
+        return None
+```
+
+Its returned value can still flow into a later control, storage-write, or external-effect sink.
+
+---
+
+# 8. Simplify witness and candidate construction
+
+## 8.1 Remove operation-pattern categories
+
+Delete `classify_witness_operation()` and the strings:
+
+```text
+cross_tx_stale_read
+stale_read
+destructive_write
+cyclic_state_inconsistency
+unordered_state_inconsistency
+reentrant_stale_read
+reentrant_destructive_write
+```
+
+Change `RawStateWitness` to:
+
+```python
+@dataclass(frozen=True, slots=True)
+class RawStateWitness:
+    writer_bid: BasicBlock
+    reader_bid: BasicBlock
+    variable: object
+    writer_reaches_reader: bool
+    reader_reaches_writer: bool
+    relation_evidence: tuple[
+        RelationAccessEvidence,
+        ...
+    ] = ()
+```
+
+For different physical functions:
+
+```python
+writer_reaches_reader = False
+reader_reaches_writer = False
+```
+
+For the same physical function, retain the existing two CFG-reachability calculations.
+
+These are raw facts rather than a named finding category.
+
+## 8.2 Update `FindingWitnessRecord`
+
+Remove:
+
+```python
+operation_pattern
 ```
 
 Add:
 
 ```python
-FunctionInfluenceSummary.return_locations_by_site
+writer_reaches_reader: bool = False
+reader_reaches_writer: bool = False
 ```
 
-During each `Return` IR:
+Serialize the two Booleans directly.
+
+## 8.3 Remove shape heuristics
+
+Delete:
 
 ```python
-return_site = ReturnSite(
-    block_id=bid,
-    ir_index=ir_index,
-    return_index=return_index,
-)
-
-summary.return_locations_by_site[
-    return_site
-].update(logical_locations)
+shapes_by_key
+shared_callee
+reentrant
+call_edges_intra
+call_edges_any
 ```
 
-Register one relation per return site.
+The call path remains available as evidence. No speculative reentrancy label is needed.
 
-Required behavior:
+## 8.4 Collect records directly
 
-```solidity
-if (condition) return A[user];
-return B[user];
+Replace transaction-set buckets with:
+
+```python
+all_records: set[FindingWitnessRecord] = set()
 ```
 
-must not produce `{A[user], B[user]}`.
+After a contextual pair passes all filters:
 
-This remains valid:
-
-```solidity
-return A[user] + B[user];
+```python
+all_records.add(pair_record)
 ```
 
-## 3B.4 Classify branch shapes
+No `tx_id` or legacy bucket is required for canonical writer-centered output.
 
-Use Slither expression classes where available. Use normalized text only as a defensive fallback.
+## 8.5 Simplify candidate records
 
-Classify:
-
-```text
-admin || fundAdmin
-```
-
-as `authorization_alternative`, not a strong coupled-state invariant.
-
-Classify:
-
-```text
-x + y
-x - y
-x == y
-x <= y
-x && y
-```
-
-separately.
-
-Initial strength policy:
-
-```text
-arithmetic_return       strong
-comparison_return       strong
-control_comparison      supported
-control_conjunction     supported
-control_disjunction     weak
-authorization_alternative weak
-multi_return_tuple      weak unless co-consumed
-unknown_control         recall
-```
-
-Do not delete weak origins. Route them to the recall stream until labeled evidence justifies stronger filtering.
-
-## 3B.5 Emit a relation catalog
-
-Each compilation unit should serialize every registered relation, including relations that yield no candidate:
-
-```json
-{
-  "relation_id": "...",
-  "equivalence_id": "...",
-  "origins": [],
-  "origin_kind": "arithmetic_return",
-  "operator": "+",
-  "strength": "strong",
-  "members": [],
-  "shadowed_members": [],
-  "exact_read_blocks": 0,
-  "template_read_blocks": 0,
-  "exact_write_blocks": 0,
-  "template_write_blocks": 0,
-  "candidate_count": 0
-}
-```
-
-This is necessary for recall diagnosis.
-
----
-
-# Phase 4 — Replace transaction-pair findings with writer-centered candidates
-
-The current primary output identity is a relation family plus an unordered transaction-context set. Storage contexts are present in JSON but omitted from the rendered Slither description, which is why 361 JSON instances collapse to 271 visible results. 
-
-## 4.1 Add a directional candidate key
+Use:
 
 ```python
 @dataclass(frozen=True, slots=True)
 class CandidateKey:
-    mode: str
-
     writer_owner: str
     writer_bid: BasicBlock
-
     relation_id: tuple
-
     written_members: tuple
     potentially_stale_members: tuple
-```
 
-Modes:
 
-```text
-cross_transaction_final_state
-intermediate_external_observation
-same_transaction_internal
-```
-
-Do not include:
-
-* Reader owner.
-* Reader site.
-* Reader storage context.
-* Writer storage context.
-* Current `shared_callee` flag.
-* Current direct-link reentrancy heuristic.
-
-Those belong to evidence or exposures.
-
-## 4.2 Determine written and potentially stale members
-
-From contextual relation evidence:
-
-```python
-written_members = frozenset(
-    evidence.writer_member
-    for evidence in relation_evidence
-)
-```
-
-Initial conservative stale set:
-
-```python
-potentially_stale_members = (
-    set(relation.vars)
-    - set(written_members)
-)
-```
-
-After semantic effect refinement, replace this with the members not proven repaired by successful root exit.
-
-## 4.3 Add an accumulator
-
-```python
 @dataclass
 class CandidateAccumulator:
     key: CandidateKey
@@ -2031,872 +1632,709 @@ class CandidateAccumulator:
     context_instances: set = field(
         default_factory=set
     )
-
     writer_exposures: set = field(
         default_factory=set
     )
-
     reader_witnesses: set = field(
         default_factory=set
     )
-
     sink_sites: set = field(
         default_factory=set
     )
-
     call_paths: set = field(
         default_factory=set
     )
-
     key_constraints: set = field(
         default_factory=set
     )
-
-    dispatch_kinds: set = field(
-        default_factory=set
-    )
-
-    confidence_features: set = field(
+    supporting_origins: set = field(
         default_factory=set
     )
 ```
 
-## 4.4 Aggregate after context validation
+Update `candidate_id()` to omit `mode`.
 
-For every surviving contextual writer/reader instance:
+## 8.6 Replace candidate assembly
+
+The assembly loop becomes:
 
 ```python
-candidate = candidates.setdefault(
-    candidate_key,
-    CandidateAccumulator(...),
-)
+candidates = {}
 
-candidate.context_instances.add(
-    context_instance_key
-)
+for record in sorted(
+    all_records,
+    key=witness_sort_key,
+):
+    relation = record.subject
 
-candidate.writer_exposures.add(
-    (
-        write_context.storage_context,
-        tuple(
+    if not isinstance(
+        relation,
+        MultiVarGroup,
+    ):
+        continue
+
+    written_members = frozenset(
+        evidence.writer_member
+        for evidence
+        in record.relation_evidence
+    )
+
+    potentially_stale = (
+        set(relation.vars)
+        - set(written_members)
+    )
+
+    if not potentially_stale:
+        continue
+
+    key = CandidateKey(
+        writer_owner=record.writer_owner,
+        writer_bid=record.writer_bid,
+        relation_id=relation.equivalence_id,
+        written_members=tuple(sorted(
+            (
+                var_key(member)
+                for member in written_members
+            ),
+            key=repr,
+        )),
+        potentially_stale_members=tuple(
             sorted(
-                icfg.root_exposures.get(
-                    write_context.owner,
-                    set(),
-                )
+                (
+                    var_key(member)
+                    for member
+                    in potentially_stale
+                ),
+                key=repr,
             )
         ),
     )
-)
 
-candidate.reader_witnesses.add(
-    directional_reader_witness
-)
-```
-
-## 4.5 Candidate ID
-
-Generate a stable ID:
-
-```python
-def candidate_id(key: CandidateKey) -> str:
-    payload = json.dumps(
-        _jsonable(key),
-        sort_keys=True,
-        separators=(",", ":"),
-    ).encode()
-
-    return sha256(payload).hexdigest()[:20]
-```
-
-## 4.6 Stop using `frozenset` transaction identity
-
-Writer and reader direction is essential. Do not make:
-
-```text
-writer -> reader
-```
-
-equal to:
-
-```text
-reader -> writer
-```
-
-The old transaction-set output can remain behind:
-
-```text
-MVSCAN_WRITER_CENTERED=0
-```
-
-for ablation only.
-
-## 4.7 Stop using transitive relation-family partitioning as primary identity
-
-`_partition_relation_families()` currently unions relations transitively when they share member pairs. 
-
-In writer-centered mode:
-
-* Build candidates per relation schema.
-* Attach equivalent or overlapping relations as `supporting_relations`.
-* Do not emit one candidate containing a transitive connected component of relation sets.
-
-## 4.8 JSON schema 3 output
-
-Use:
-
-```json
-{
-  "schema_version": 3,
-  "candidate_count": 0,
-  "context_instance_count": 0,
-  "reader_witness_count": 0,
-  "compilation_units": [
-    {
-      "unit_id": "...",
-      "candidate_count": 0,
-      "context_instance_count": 0,
-      "reader_witness_count": 0,
-      "relation_catalog": [],
-      "dispatch_catalog": [],
-      "candidates": []
-    }
-  ],
-  "candidates": []
-}
-```
-
-Do not call all three counts “finding count.”
-
-## 4.9 One Slither result per candidate
-
-Render:
-
-```text
-[MV-SI candidate abc123...] {relation}
- writer root       -> TopUpAction.register(...)
- writer effect     -> StakerVault.sol:...
- written member    -> balances[payer]
- potentially stale -> actionLockedBalances[payer]
- reader witnesses  -> 12 across 5 roots
- storage exposures -> 1
- confidence        -> supported
-```
-
-Include the short candidate ID in the rendered text so Slither cannot collapse distinct candidate descriptions accidentally.
-
-Assert:
-
-```python
-len(results) == len(candidates)
-```
-
-before returning from `_detect()`.
-
-## Phase 4 Bug 112 gate
-
-Required:
-
-* JSON `candidate_count` equals detector-generated Slither result count.
-* Context instances are retained under each candidate.
-* The 361-versus-271 ambiguity is gone.
-* H‑02 appears as one writer-centered candidate, not a separate primary candidate for every reader transaction.
-* Its reader and sink evidence remains complete.
-
----
-
-# Phase 5 — Add semantic effect refinement
-
-Only begin this phase once:
-
-1. Fixed-key contextual recovery passes.
-2. Strict H‑02 has the correct outer root.
-3. Writer-centered aggregation passes.
-
-The refinement should suppress only candidates for which consistency is positively proven.
-
----
-
-## 5.1 Extract storage write effects
-
-Add:
-
-```python
-@dataclass(frozen=True, slots=True)
-class WriteEffect:
-    block_id: BasicBlock
-    ir_index: int
-
-    location: Hashable
-
-    operation: str
-    value_term: Hashable | None
-
-    certainty: str
-```
-
-Operations:
-
-```text
-set
-add
-subtract
-delete
-increment
-decrement
-unknown
-```
-
-Use SlithIR operation classes first. Use normalized IR strings only as fallback.
-
-`value_term` should be derived from SSA origins:
-
-```text
-formal parameter
-constant
-msg.sender
-state read
-call return
-arithmetic combination
-unknown
-```
-
-Do not use variable-name substrings as value equivalence.
-
-## 5.2 Extend function summaries
-
-```python
-@dataclass(slots=True)
-class FunctionEffectSummary:
-    may_effects: set[WriteEffect]
-    must_effects: set[WriteEffect]
-```
-
-For ambiguous dispatch:
-
-```text
-may effects  = union
-must effects = intersection
-```
-
-Instantiate location and value terms through callsite bindings.
-
-## 5.3 Prove repair after the writer
-
-A candidate may be filtered from the final-state stream only when every potentially stale member has a compatible repair on every normal path after the writer.
-
-For one function, use backward must-effect dataflow:
-
-```text
-OUT[block] =
-    intersection(IN[successor])
-    across normal successors
-
-IN[block] =
-    GEN[block] union OUT[block]
-```
-
-Exclude reverting exits from successful-state proofs.
-
-For a writer inside a callee:
-
-1. Compute must-effects from writer block to callee return.
-2. Move to the parent callsite using stored context-call provenance.
-3. Add must-effects from that callsite’s continuation.
-4. Continue to the root.
-5. Require the repair on every possible parent call path.
-
-Do not filter when parent provenance or return behavior is ambiguous.
-
-## 5.4 Require key compatibility
-
-A companion update repairs a relation member only when:
-
-* Its storage base matches.
-* Its contextual key satisfies the relation key constraints.
-* Its receiver/storage domain matches.
-* Dispatch is not contradictory.
-
-A write to `balances[userB]` does not repair stale state at `balances[userA]`.
-
-## 5.5 Require value and sign compatibility for known relation shapes
-
-Support a bounded set of relation templates:
-
-### Sum invariant
-
-```text
-A + B
-```
-
-A decrement of `A` by `x` is repaired by an increment of `B` by `x`.
-
-### Difference invariant
-
-```text
-A - B
-```
-
-Compatible signs depend on which side is changed.
-
-### Equality
-
-```text
-A == B
-```
-
-Compatible assignments or deltas must preserve equality.
-
-### Bound or comparison
-
-```text
-A <= B
-```
-
-Do not infer arbitrary repair algebra. Treat it as a control relation unless the effect is directly provable.
-
-### Unknown operator
-
-Never suppress based on guessed algebra.
-
-H‑02’s central state movement is a sum-like transfer between:
-
-```text
-balances[payer]
-actionLockedBalances[payer]
-```
-
-## 5.6 Add sibling-branch evidence
-
-This is particularly valuable for H‑02.
-
-For each candidate writer:
-
-1. Find branch predicates dominating the writer callsite.
-2. Compute the nearest common postdominator of the branch successors.
-3. Summarize relation-relevant effects in each successor region up to that join.
-4. Compare sibling regions.
-
-High-confidence omission evidence exists when:
-
-```text
-branch A:
-    performs primary value movement
-    performs companion relation update
-
-branch B:
-    performs analogous primary value movement
-    omits companion relation update
-```
-
-Record:
-
-```json
-"sibling_path_evidence": {
-  "branch_site": "...",
-  "reference_branch_effects": [],
-  "candidate_branch_effects": [],
-  "missing_effect": "..."
-}
-```
-
-Use real dominators and postdominators. Do not approximate “dominating” by searching every node in the function.
-
-## 5.7 Separate final-state from intermediate-state candidates
-
-### Cross-transaction final state
-
-Emit when the relation is not proven repaired by successful root exit.
-
-### Intermediate external observation
-
-Emit when:
-
-* The relation is partial before an external effect.
-* Repair occurs only afterward or is unknown.
-* A callback-reachable reader may observe the partial state.
-
-Replace the current direct-function-link reentrancy heuristic. A direct call relation between writer and reader functions is not proof of reentrancy.
-
-## 5.8 Confidence tiers
-
-Use deterministic rules.
-
-### High confidence
-
-Require all:
-
-* Strong relation origin.
-* Exact or contextually exact member matching.
-* Direct or unique interface dispatch.
-* Writer-centered partial effect.
-* No proven final repair, or a proven externally observable prefix.
-* Stateful, security, or economic sink.
-* No unknown key/receiver.
-
-### Supported
-
-Permit one of:
-
-* Symbolic equality constraint.
-* Moderate relation origin.
-* Non-economic persistent sink.
-* Unique interface dispatch inferred from source compatibility.
-
-### Recall
-
-Any of:
-
-* Ambiguous dispatch.
-* Unknown key or receiver.
-* Weak relation origin.
-* View-only consequence.
-* Unproven relation algebra.
-* Context widening.
-
-Do not use one opaque scalar score as the only explanation. Serialize the features producing the tier.
-
-## 5.9 Patched-code suppression
-
-The patched H‑02 variant must not produce a high-confidence candidate when the missing `increaseActionLockedBalance` is restored with:
-
-* The same payer key.
-* The same amount.
-* The correct sign.
-* Execution on the same successful path.
-
-It may remain in a weak diagnostic stream only if some separate uncertainty is genuinely unresolved.
-
----
-
-# Phase 6 — Canonicalization and soundness hardening
-
-These items should be completed before freezing but after strict H‑02 is working.
-
-## 6.1 External-state identity
-
-Include external arguments in `var_key()`:
-
-```python
-if isinstance(v, ExternalStateVar):
-    return (
-        "EXT",
-        str(v.addr),
-        str(v.selector),
-        tuple(v.args),
+    candidate = candidates.setdefault(
+        key,
+        CandidateAccumulator(
+            key=key,
+            relation=relation,
+        ),
     )
+
+    candidate.context_instances.add((
+        record.writer_owner,
+        record.writer_storage_context,
+        record.reader_owner,
+        record.reader_storage_context,
+        record.writer_bid,
+        record.reader_bid,
+    ))
+
+    candidate.writer_exposures.add((
+        record.writer_storage_context,
+        tuple(sorted(
+            icfg.root_exposures.get(
+                record.writer_owner,
+                set(),
+            )
+        )),
+    ))
+
+    candidate.reader_witnesses.add(
+        record
+    )
+    candidate.sink_sites.update(
+        record.sink_sites
+    )
+    candidate.call_paths.add(
+        _shortest_call_chain(
+            icfg,
+            record,
+        )
+    )
+    candidate.supporting_origins.update(
+        icfg.relation_origins.get(
+            relation,
+            set(),
+        )
+    )
+
+    for evidence in record.relation_evidence:
+        candidate.key_constraints.update(
+            evidence.key_constraints
+        )
 ```
 
-Different accounts passed to `balanceOf` must not collapse into one external-state entity.
+Do not select a “stronger” relation origin. Relations with the same equivalence ID have the same logical members; attach all source origins.
 
-## 6.2 Unknown receivers
+## 8.7 Emit one neutral candidate
 
-Do not intern every unresolved receiver as `"self"` or `"unknown"` globally.
-
-Use a callsite-scoped receiver:
+Each candidate JSON object should contain only:
 
 ```text
-@unknown-receiver::<function-key>::<node-id>::<call-ordinal>
+candidate_id
+writer_owner
+writer_block
+relation members
+supporting origin sites
+written members
+potentially stale members
+context instances
+reader witnesses
+sink sites with raw IR kind
+call paths
+key equality constraints
 ```
 
-If two receiver expressions later resolve to the same contextual term, canonicalize them then.
-
-## 6.3 Nested mapping keys
-
-Replace flattened strings such as:
+Do not include:
 
 ```text
-$arg0][$arg1
+mode
+confidence
+strength
+origin_kind
+operator
+sink strength
+dispatch kind
+storage-domain classification
+sibling evidence
 ```
 
-with a structured key path:
+The writer and reader contexts already expose the actual storage domains.
+
+## 8.8 Make Slither’s required classification neutral
+
+Slither requires detector-level classifications. Use:
 
 ```python
-@dataclass(frozen=True, slots=True)
-class MappingKeyPath:
-    components: tuple[str, ...]
+IMPACT = DetectorClassification.INFORMATIONAL
+CONFIDENCE = DetectorClassification.INFORMATIONAL
 ```
 
-Keep `.key` as a rendered compatibility property during migration.
+These are framework boilerplate and apply uniformly to every result.
 
-Unify components independently.
-
-## 6.4 Storage layout identity
-
-Do not use the current name-only slot lookup as semantic equality.
-
-Use:
+CLI output:
 
 ```python
-@dataclass(frozen=True, slots=True)
-class StorageIdentity:
-    source_file: str
-    layout_contract: str
+lines = [
+    f"\n[MV-SI candidate {cid}] "
+    f"{relation.name}",
 
-    slot: int
-    byte_offset: int
-    byte_width_or_type: str
+    f"\n writer root       -> "
+    f"{key.writer_owner}",
 
-    key_path: tuple
+    f"\n writer effect     -> "
+    f"{writer_file}:{writer_line}",
+
+    "\n written member    -> "
+    + ", ".join(
+        map(str, key.written_members)
+    ),
+
+    "\n potentially stale -> "
+    + ", ".join(
+        map(
+            str,
+            key.potentially_stale_members,
+        )
+    ),
+
+    f"\n reader witnesses  -> "
+    f"{len(witnesses)}",
+
+    f"\n storage exposures -> "
+    f"{len(candidate.writer_exposures)}",
+]
 ```
-
-Parse storage layout using exact:
-
-```text
-source path
-contract name
-slot
-offset
-type
-```
-
-Do not strip leading underscores when determining equality.
-
-The legacy slot fallback may remain diagnostic metadata but must not prove two declarations equal.
-
-## 6.5 Storage-domain classification
-
-Classify candidates using execution storage domains, not merely the contracts that declared the state variables.
-
-Use:
-
-```text
-same_storage_domain
-cross_storage_domain
-external_state
-```
-
-Inherited base variables operating in one deployed storage domain are not cross-contract state merely because their declarations originate in different source contracts.
-
-## 6.6 Initializer filtering
-
-Until this is hardened, run the canonical development configuration with:
-
-```text
-INIT_ONLY_FILTER=0
-```
-
-The current implementation accepts any forward-reachable latch flip and identifies guarded entries by whether a function contains an expression mentioning the latch, rather than a true dominance/postdominance proof.
-
-Implement:
-
-1. Intraprocedural dominators.
-2. Intraprocedural postdominators over normal exits.
-3. Pre-init guard dominates the candidate write.
-4. Latch transition postdominates the candidate write.
-5. No user-reachable reset.
-6. Every external root reaching the write satisfies the same proof.
-
-Only then restore:
-
-```text
-INIT_ONLY_FILTER=1
-```
-
-for the canonical run.
-
-## 6.7 Determinism
-
-Add structural digests:
-
-```text
-call-target digest
-execution-context digest
-sensitive-read-event digest
-relation-catalog digest
-candidate digest
-```
-
-Each digest must be built from sorted structural IDs, never Python object identities.
-
-Serialize:
-
-* Solidity compiler version.
-* Build-info digest.
-* Target repository/source digest.
-* `mvscan_env.py` hash.
-* Candidate pipeline version.
-
-Run with multiple `PYTHONHASHSEED` values.
-
-The current repeated logs have stable downstream findings but differed by one sensitive event, so this must be resolved before freezing.
 
 ---
 
-# Tests — add after the implementation phases
+# 9. Simplify the JSON artifact without version numbering
 
-## 1. Resolver invariance test
+The current artifact includes both schema and pipeline version fields and computes top-level compilation metadata from whichever compilation unit invoked `_record_json_unit()` last.  
 
-With all new semantic switches disabled:
+## 9.1 Remove version fields
+
+Delete:
 
 ```text
-Bug 112 JSON context instances = 361
-Bug 112 Slither results        = 271
-raw block pairs                = 759
+schema_version
+candidate_pipeline_version
 ```
 
-This verifies the call-resolver refactor itself was neutral.
+from:
 
-## 2. Contextual fixed-key helper
+* `detector_metadata()`
+* The top-level document.
+* Every unit.
 
-Fixture:
+Keep:
+
+```text
+detector name
+Python version
+Slither version
+source hashes
+compiler version
+target source digest
+build-info digest
+effective configuration
+structural digests
+```
+
+Those support research reproducibility.
+
+## 9.2 Store compilation metadata per unit
+
+When recording a unit:
+
+```python
+state.units[unit_id] = {
+    "unit_id": unit_id,
+    "compilation_metadata":
+        compilation_metadata(detector),
+    "stats": dict(
+        sorted(unit_stats.items())
+    ),
+    "relations": list(
+        relation_catalog
+    ),
+    "calls": list(
+        dispatch_catalog
+    ),
+    "candidates": findings,
+    "candidate_count": len(findings),
+    "context_instance_count": sum(
+        finding.get(
+            "context_instance_count",
+            0,
+        )
+        for finding in findings
+    ),
+    "reader_witness_count": sum(
+        finding.get(
+            "reader_witness_count",
+            0,
+        )
+        for finding in findings
+    ),
+}
+```
+
+Remove top-level:
+
+```python
+"compilation_metadata":
+    compilation_metadata(detector)
+```
+
+That prevents the empty secondary unit from supplying metadata for the main unit.
+
+## 9.3 Use one candidate collection
+
+The final document can remain simple:
+
+```python
+document = {
+    "detector": detector_metadata(),
+    "effective_config": effective_config(),
+    "candidate_count": sum(
+        unit["candidate_count"]
+        for unit in ordered_units
+    ),
+    "context_instance_count": sum(
+        unit["context_instance_count"]
+        for unit in ordered_units
+    ),
+    "reader_witness_count": sum(
+        unit["reader_witness_count"]
+        for unit in ordered_units
+    ),
+    "compilation_units": ordered_units,
+}
+```
+
+Do not duplicate candidates under both `findings` and `candidates`.
+
+## 9.4 Simplify relation catalog entries
+
+Use:
+
+```python
+{
+    "relation_id":
+        repr(relation.equivalence_id),
+
+    "source_origins":
+        sorted(
+            icfg.relation_origins[
+                relation
+            ]
+        ),
+
+    "members": [
+        var_meta(member, icfg)
+        for member in relation.vars
+    ],
+
+    "shadowed_members": [...],
+
+    "exact_read_blocks": ...,
+    "template_read_blocks": ...,
+    "exact_write_blocks": ...,
+    "template_write_blocks": ...,
+}
+```
+
+No relation category or strength.
+
+## 9.5 Update comments
+
+Replace:
+
+```text
+future dynamic exploit generator
+```
+
+with:
+
+```text
+static evaluation and reproducibility
+```
+
+The current header and pipeline comments still describe future dynamic generation.  
+
+---
+
+# 10. `mvscan_env(3).py` and `alias(58).py`
+
+## `mvscan_env(3).py`
+
+The parsing helpers are appropriate and require no redesign. 
+
+Only remove the deleted option names from the detector’s known-option set. No new configuration is required.
+
+## `alias(58).py`
+
+Make only the case-preservation change described above. The nonempty receiver requirement and cache-reset method should remain.
+
+---
+
+# 11. Tests required before freezing
+
+Leave tests until all code changes are complete, as requested.
+
+## 11.1 Mapping relation tests
+
+### Base plus own slot
+
+Input:
+
+```text
+balances
+balances[user]
+```
+
+Expected:
+
+```text
+logical members:
+    balances[user]
+
+relation rejected as unary
+```
+
+### Distinct same-base slots
+
+Input:
+
+```text
+config[KEY_A]
+config[KEY_B]
+```
+
+Expected:
+
+```text
+both members retained
+```
+
+## 11.2 Key canonicalization tests
+
+### Function-local collision
 
 ```solidity
-mapping(bytes32 => uint256) internal config;
+function a() {
+    bytes32 key = ...;
+    config[key] = 1;
+}
 
-bytes32 constant BOUND = keccak256("BOUND");
-bytes32 constant TARGET = keccak256("TARGET");
+function b() {
+    bytes32 key = ...;
+    config[key] = 2;
+}
+```
 
+Expected canonical terms:
+
+```text
+@local::<a function key>::...::key
+@local::<b function key>::...::key
+```
+
+They must not unify.
+
+### Fixed-key propagation
+
+```solidity
 function _set(bytes32 key, uint256 value) internal {
     config[key] = value;
 }
 
-function setBound(uint256 value) external {
-    _set(BOUND, value);
+function setA(uint256 value) external {
+    _set(KEY_A, value);
 }
 
-function setTarget(uint256 value) external {
-    _set(TARGET, value);
-}
-
-function values()
-    external
-    view
-    returns (uint256, uint256)
-{
-    return (config[BOUND], config[TARGET]);
+function setB(uint256 value) external {
+    _set(KEY_B, value);
 }
 ```
 
-Assert:
-
-* Physical `_set` access is `config[$arg0]`.
-* Under `setBound`, it becomes `config[BOUND]`.
-* Under `setTarget`, it becomes `config[TARGET]`.
-* No mapping-base wildcard evidence.
-* No matching of `BOUND` to `TARGET`.
-
-## 3. Relation-variable unification
-
-Fixture relation:
+Expected:
 
 ```text
-balances[$arg0]
-locked[$arg0]
+setA writes config[@state::...::KEY_A]
+setB writes config[@state::...::KEY_B]
 ```
 
-Assert:
+Neither may be attributed to the other key.
 
-* Writer `balances[@txarg::writer::0]`
-* Reader `locked[@txarg::reader::1]`
+### Cross-transaction entity equality
 
-can produce a satisfiable equality constraint.
+For a relation:
 
-Assert two unequal fixed constants cannot satisfy the same relation variable.
+```text
+A[$arg0]
+B[$arg0]
+```
 
-## 4. Interface unique dispatch
+a writer using one root argument and a reader using another root argument must be retained with an explicit equality constraint between the two transaction arguments.
 
-Fixture:
+### Unbound helper argument
+
+A helper access still containing an observed `$arg0` after context propagation must not match a fixed key or a different runtime term.
+
+## 11.3 Dispatch tests
+
+### First-party interface
+
+A project-defined interface with one compatible first-party implementation should reach the concrete body.
+
+### Imported interface
+
+An imported interface call through an interface-typed external receiver must not resolve to a repository implementation merely because one matching implementation exists.
+
+This test should cover the structural form that caused:
+
+```text
+local _totalSupply
+external CVX totalSupply()
+```
+
+The family visible in the current run must disappear. 
+
+### Multiple first-party implementations
+
+All compatible implementations should be returned when the count is under the configured cap. No target should be preferred.
+
+## 11.4 External-state tests
+
+### Concrete unary getter
+
+A concrete getter returning one state location should inline that location.
+
+It should not simultaneously produce a generic external wrapper.
+
+### Unresolved view getter
+
+Two calls with:
+
+* The same receiver term.
+* The same signature.
+* The same canonical arguments.
+
+should produce the same `ExternalStateVar`.
+
+Different callsite-scoped unknown receivers should remain different.
+
+### No bare temporaries
+
+No external receiver or argument entity key may be simply:
+
+```text
+tmp_1234
+key_1
+ref_1234
+```
+
+A local term may contain that source name only under its complete function-qualified identity.
+
+## 11.5 Relation-source tests
+
+### Alternative returns
 
 ```solidity
-interface IVault {
-    function move(address user, uint256 amount)
-        external;
+if (condition) {
+    return A[user];
 }
 
-contract Vault is IVault {
-    mapping(address => uint256) balances;
-
-    function move(address user, uint256 amount)
-        external
-    {
-        balances[user] -= amount;
-    }
-}
-
-contract Action {
-    IVault vault;
-
-    function register(uint256 amount) external {
-        vault.move(msg.sender, amount);
-    }
-}
+return B[user];
 ```
 
-Assert:
+Expected:
 
-* `Action.register` reaches `Vault.move`.
-* Context owner remains `Action.register`.
-* Storage domain switches to `Vault`.
-* Dispatch kind is `interface_unique`.
-
-## 5. Interface ambiguous dispatch
-
-Add two concrete implementations.
-
-Assert:
-
-* Both target edges exist.
-* May effects are unioned.
-* Must effects are intersected.
-* Candidate is not high confidence solely from dispatch.
-* No first-target selection.
-
-## 6. Contract-gated root test
-
-Fixture:
-
-```solidity
-function update(address user, uint256 value)
-    external
-    onlyAction
-{
-    ...
-}
+```text
+no A/B relation
 ```
 
-Assert:
-
-* `update` is not seeded as arbitrary-user.
-* Its body remains reachable through the public action.
-* Effects are attributed to the public action root.
-
-## 7. Owner-qualified sensitivity
-
-Use one getter called by:
-
-* A standalone view root.
-* A stateful function whose result controls a transfer or storage write.
-
-Assert:
-
-* The read is impact-sensitive under the stateful root.
-* It is not a primary impact witness under the standalone view exposure.
-
-## 8. Alternative return paths
-
-```solidity
-function value(address user)
-    external
-    view
-    returns (uint256)
-{
-    if (flag) {
-        return A[user];
-    }
-
-    return B[user];
-}
-```
-
-Assert no `{A[user], B[user]}` relation.
-
-## 9. Same-expression return
+### Same-expression return
 
 ```solidity
 return A[user] + B[user];
 ```
 
-Assert the relation remains strong.
+Expected:
 
-## 10. Authorization alternative
+```text
+A/B relation retained
+```
+
+### Indirect control influence
 
 ```solidity
-require(
-    msg.sender == admin
-    || msg.sender == fundAdmin
-);
+uint256 x = A[user];
+uint256 y = B[user];
+
+if (x < y) {
+    ...
+}
 ```
 
-Assert the relation is classified as:
+Expected:
 
 ```text
-authorization_alternative
-weak
+A/B relation retained
 ```
 
-and is absent from the high-confidence stream.
+No relation category should be assigned.
 
-## 11. Writer-centered aggregation
-
-Create one writer and several sensitive reader roots.
+## 11.6 Candidate-output tests
 
 Assert:
 
 ```text
-candidate_count = 1
-context_instance_count > 1
-reader_witness_count > 1
-Slither outputs = 1
+one Slither result per candidate
 ```
 
-## 12. Final-state repair
-
-Writer changes one relation member, then every successful path updates the companion member with the compatible amount and sign.
-
-Assert no final-state candidate.
-
-## 13. External-prefix observation
-
-Writer temporarily changes one member, performs an external call, then repairs the companion member.
-
-Assert:
-
-* No final-state candidate.
-* Intermediate-observation candidate remains if callback reachability exists.
-
-## 14. Bug 112 strict positive
-
-Require one candidate with:
+Assert that neither CLI nor JSON contains:
 
 ```text
-writer owner:
-    TopUpAction.register(...)
+confidence
+supported
+recall
+high
+strength
+origin_kind
+schema_version
+pipeline_version
+sibling_path_evidence
+```
 
-physical effect:
-    concrete StakerVault.transferFrom path
+Assert that each candidate contains:
+
+```text
+writer root
+writer effect
+relation
+written members
+potentially stale members
+reader witnesses
+source origins
+```
+
+## 11.7 Bug 112 integration assertions
+
+The canonical H‑02 candidate must remain:
+
+```text
+writer root:
+    TopUpAction.register
+
+writer effect:
+    concrete StakerVault balance write
 
 relation:
     balances[payer]
     actionLockedBalances[payer]
 
+written:
+    balances[payer]
+
 potentially stale:
     actionLockedBalances[payer]
-
-dispatch:
-    unique or otherwise explicitly qualified
-
-sink:
-    persistent/economic/security consequence
 ```
 
-## 15. Bug 112 patched negative
+Do **not** require every other candidate involving those two members to disappear. Eliminating every such false positive would require interpreting the aggregate as a conservation or transfer invariant, which is outside the selected approximation.
 
-Restore the missing action-locked balance increase.
+The unrelated configuration-key family must disappear. In the current run, functions such as `executePerformanceFee()` are incorrectly shown as writing the keeper-required-stake key. 
 
-Assert the strict high-confidence candidate disappears.
+No base-plus-own-slot relation may return.
 
-## 16. Multi-compilation-unit preservation
-
-The empty second compilation unit must not erase the main unit.
-
-## 17. Determinism
+## 11.8 Determinism tests
 
 Run with:
 
-```bash
+```text
 PYTHONHASHSEED=1
 PYTHONHASHSEED=2
 PYTHONHASHSEED=3
 ```
 
-Assert byte-identical canonical JSON and matching structural digests.
+Require:
+
+* Identical candidate count.
+* Identical candidate IDs.
+* Identical call-target digest.
+* Identical execution-context digest.
+* Identical relation digest.
+* Identical candidate digest.
+* Byte-identical JSON after excluding no fields—there should be no timestamps or process IDs.
+
+## 11.9 Cross-repository smoke tests
+
+Before freezing, run the exact same detector configuration on at least two other Web3Bugs repositories.
+
+Do not:
+
+* Tune names.
+* Add selectors.
+* Add contract-specific exclusions.
+* Change context caps unless the run fails and the same new bound is then used globally.
+
+Required smoke result:
+
+```text
+analysis completes
+JSON is valid
+result/candidate counts agree
+no canonicalization invariant fails
+no context-accounting assertion fails
+```
+
+The findings need not be labeled before the freeze. Their evaluation occurs after the detector is frozen.
 
 ---
 
-# Development run sequence
+# 12. Final canonical run command
 
-## Resolver-only checkpoint
+After deleting the removed options, use:
 
 ```bash
 env \
@@ -2905,97 +2343,58 @@ env \
   MVSCAN_ABLATION=full \
   MVSCAN_INCLUDE_SCALAR_WITNESSES=0 \
   MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS=1 \
-  MVSCAN_CONTEXTUAL_KEYS=0 \
-  MVSCAN_INTERFACE_DISPATCH=0 \
-  MVSCAN_ROOT_CONTEXT_SINKS=0 \
-  MVSCAN_WRITER_CENTERED=0 \
-  MVSCAN_SEMANTIC_REFINEMENT=0 \
+  MVSCAN_CONTEXTUAL_KEYS=1 \
+  MVSCAN_INTERFACE_DISPATCH=1 \
+  MVSCAN_ROOT_CONTEXT_SINKS=1 \
+  MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK=128 \
+  MVSCAN_MAX_DISPATCH_TARGETS=16 \
   SINK_TEST=none \
-  INIT_ONLY_FILTER=1 \
-  ADMIN_WRITES_BENIGN=1 \
-  USER_CALLABLE_INCLUDE_ROLE_GATED=0 \
-  COARSE_DEDUP=1 \
   MERGE_OVERLOADS=0 \
   PROMOTE_MAPPING_BASE=0 \
   NOOP_WRITE_FILTER=1 \
   REQUIRE_SAME_SLOT_KEY=1 \
-  ISD_JSON_OUT="$out_dir/resolver-baseline.json" \
+  ISD_JSON_OUT=/tmp/mvscan-runs/frozen.json \
   ../../../.venv/bin/slither . \
     --detect inconsistent_state \
     --hardhat-ignore-compile \
     --fail-none \
-  >"$out_dir/resolver-baseline.log" 2>&1
+  > /tmp/mvscan-runs/frozen.log 2>&1
 ```
 
-## Contextual-key checkpoint
-
-Change:
+These options should no longer exist and therefore must not appear:
 
 ```text
-MVSCAN_CONTEXTUAL_KEYS=1
-INIT_ONLY_FILTER=0
-ADMIN_WRITES_BENIGN=0
+MVSCAN_WRITER_CENTERED
+MVSCAN_SEMANTIC_REFINEMENT
+MVSCAN_EMIT_RECALL_STREAM
+INIT_ONLY_FILTER
+ADMIN_WRITES_BENIGN
+USER_CALLABLE_INCLUDE_ROLE_GATED
+COARSE_DEDUP
 ```
 
-Required:
+---
 
-* Fixed-key helper relations return.
-* Base-plus-own-slot relations remain absent.
-* Strict H‑02 may still be absent at this point.
+# Freeze gate
 
-## Dispatch checkpoint
+Freeze immediately after all of the following hold:
 
-Change:
+1. Strict H‑02 remains visible under `TopUpAction.register`.
+2. Mapping bases are not treated as separate variables from their own exact slots.
+3. Fixed configuration keys remain distinct through helper calls.
+4. Function-local unresolved terms cannot collide across functions.
+5. Imported interface calls do not enter unrelated local implementation bodies.
+6. First-party interface dispatch still reaches compatible first-party bodies.
+7. Concrete unary getters inline their actual state location.
+8. Unresolved view calls use receiver-, signature-, and argument-qualified external identities.
+9. No name-based admin, role, initializer, test, mock, token, getter, or storage-variable rule remains.
+10. No candidate ranking, confidence stream, semantic relation category, or repair inference remains.
+11. No schema or pipeline version appears in the artifact.
+12. One Slither output corresponds to one writer-centered candidate.
+13. The three hash-seed runs are identical.
+14. Two additional Web3Bugs repositories complete without detector-specific changes.
 
-```text
-MVSCAN_INTERFACE_DISPATCH=1
-```
+There should be **no target candidate count**. The final number is whatever remains after mechanically invalid identities and unsound dispatch edges are removed.
 
-Required:
+At that point, further precision work would require choosing stronger semantic assumptions about what relations mean. Under the constraints you set, that work belongs after evaluation as a documented future extension—not before the detector freeze.
 
-* `TopUpAction.register` reaches concrete `StakerVault.transferFrom`.
-* Strict H‑02 relation and writer root appear.
-
-## Owner-sensitive checkpoint
-
-Change:
-
-```text
-MVSCAN_ROOT_CONTEXT_SINKS=1
-```
-
-Required:
-
-* H‑02 stateful/economic readers remain.
-* Standalone view-only reader multiplication falls.
-
-## Writer-centered checkpoint
-
-Change:
-
-```text
-MVSCAN_WRITER_CENTERED=1
-```
-
-Required:
-
-* One detector output per candidate.
-* Context and reader counts remain attached.
-* No unexplained 361-versus-271 split.
-
-## Full refinement checkpoint
-
-Change:
-
-```text
-MVSCAN_SEMANTIC_REFINEMENT=1
-MVSCAN_EMIT_RECALL_STREAM=1
-```
-
-Keep:
-
-```text
-INIT_ONLY_FILTER=0
-```
-
-until initializer proof tests pass.

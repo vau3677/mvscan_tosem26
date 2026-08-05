@@ -27,6 +27,27 @@ def test_pay_fees(alice, bob, topUpAction, lpToken, initialAmount):
     assert pytest.approx(tx.events["FeesPayed"][0]["lpAmount"]) == 0.02 * initialAmount
 
 
+def test_independent_keeper_fee_update_can_make_total_fees_exceed_one(
+    alice, bob, topUpAction, topUpActionFeeHandler, lpToken, chain, admin
+):
+    topUpActionFeeHandler.prepareTreasuryFee(0.4 * 1e18, {"from": admin})
+    chain.sleep(ADMIN_DELAY)
+    topUpActionFeeHandler.executeTreasuryFee()
+
+    assert topUpActionFeeHandler.getKeeperFeeFraction() == 0.6 * 1e18
+    assert topUpActionFeeHandler.getTreasuryFeeFraction() == 0.4 * 1e18
+
+    topUpActionFeeHandler.prepareKeeperFee(0.8 * 1e18, {"from": admin})
+    chain.sleep(ADMIN_DELAY)
+    topUpActionFeeHandler.executeKeeperFee()
+
+    assert topUpActionFeeHandler.getKeeperFeeFraction() == 0.8 * 1e18
+    assert topUpActionFeeHandler.getTreasuryFeeFraction() == 0.4 * 1e18
+
+    with brownie.reverts():
+        topUpAction.testingPayFees(alice, bob, 100, lpToken, {"from": alice})
+
+
 def claim_keeper_fees_for_pool_single_keeper(
     alice, bob, topUpAction, topUpActionFeeHandler, lpToken
 ):

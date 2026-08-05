@@ -172,6 +172,40 @@ def test_claiming_works_after_kill(
 
 
 @pytest.mark.usefixtures("setup_amm_gauge")
+def test_amm_decay_checkpoint_applies_new_rate_to_elapsed_old_rate_interval(
+    minter, ammGauge, mockAmmToken, alice, chain
+):
+    mockAmmToken.mint(alice, 1e18)
+    mockAmmToken.approve(ammGauge, 1e18, {"from": alice})
+    ammGauge.stake(1e18, {"from": alice})
+
+    # The first yearly update moves AMM emissions out of the initial-period rate.
+    chain.sleep(365 * 86400)
+    minter.executeInflationRateUpdate()
+
+    old_rate = minter.getAmmInflationRate()
+    old_total_rate = minter.currentTotalInflation()
+    old_interval_start = ammGauge.ammLastUpdated()
+    integral_before_decay = ammGauge.ammStakedIntegral()
+    total_available_before_decay = minter.totalAvailableToNow()
+
+    chain.sleep(365 * 86400)
+    minter.executeInflationRateUpdate()
+
+    new_rate = minter.getAmmInflationRate()
+    elapsed = ammGauge.ammLastUpdated() - old_interval_start
+    actual_integral_delta = ammGauge.ammStakedIntegral() - integral_before_decay
+    actual_total_available_delta = (
+        minter.totalAvailableToNow() - total_available_before_decay
+    )
+
+    assert new_rate < old_rate
+    assert actual_integral_delta == new_rate * elapsed
+    assert actual_integral_delta < old_rate * elapsed
+    assert actual_total_available_delta == old_total_rate * elapsed
+
+
+@pytest.mark.usefixtures("setup_amm_gauge")
 def test_zero_staked_phases_do_not_accrue_inflation(
     minter, ammGauge, mockAmmToken, alice, chain
 ):
