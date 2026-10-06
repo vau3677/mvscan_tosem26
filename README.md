@@ -1,6 +1,6 @@
 # MV-Scan: TOSEM publication artifact
 
-This artifact contains the evaluated detector, current manuscript, completed annotations, frozen detector outputs, and code to regenerate the six publication tables. The accepted benchmark inputs and pinned Linux runtime are distributed as checksummed data bundles.
+This artifact contains the evaluated detector, anonymous-review manuscript, completed annotations, frozen detector outputs, and code to regenerate the six publication tables. The accepted benchmark inputs and pinned Linux runtime are distributed as checksummed data bundles.
 
 Start with [the manuscript](manuscript/main.pdf), [the result tables](results/final/PAPER_TABLES.md), and [the evaluation protocol](protocol/MVSCAN_EVALUATION_PLAN.md). The frozen detector is in [mvscan-smoke/mvscan_plugin](mvscan-smoke/mvscan_plugin/).
 
@@ -28,7 +28,7 @@ python3.10 -m unittest discover -s tests -q
 python3.10 publication/check_detector_regressions.py
 ```
 
-[The bundle manifest](publication/artifact-bundles.json) lists each asset's size and SHA-256. Downloaded bundles live in ignored `publication/data/`; extracted workspaces and runtime files are also ignored. Repository internals, repeated dependency installations, failed build workspaces, and housekeeping archives are excluded from the publication distribution.
+[The bundle manifest](publication/artifact-bundles.json) lists each asset's size and SHA-256. Download hosting is derived from the clone's Git origin; set `MVSCAN_BUNDLE_BASE_URL` explicitly for an exported checkout. Downloaded bundles live in ignored `publication/data/`; extracted workspaces and runtime files are also ignored. Repository internals, repeated dependency installations, failed build workspaces, and housekeeping archives are excluded from the publication distribution.
 
 The selected input files reconstruct **all 153 evaluated subjects with exactly their frozen source-snapshot and compiler-artifact hashes**. [The subject-by-subject validation](benchmarks/bundles/restoration-validation.json) records the checks. Source evidence includes all 6,454 scope-declared Web3Bugs source files, the historical oracle corpus, ISU Solidity originals, and revision-resolution evidence.
 
@@ -72,6 +72,14 @@ The locally authored Backd tests under `validation/` are also preserved locally 
 - `publication/VALIDATION.json`: preservation checks and explicit historical snapshot differences.
 - `reports/README.md`: locations and restoration instructions for hidden historical setup reports referenced by the deviation ledger.
 
-The three evaluated detector modules retain their original frozen hashes. The historical evaluation snapshot has 185 matching artifacts and nine later review/protocol/interface changes that were already present on the remote before this copy. These differences are listed explicitly; the historical snapshot itself remains unchanged.
+The three evaluated detector modules retain their original frozen hashes. At initial publication, the historical evaluation snapshot had 185 matching artifacts and nine later review/protocol/interface changes that were already present on the remote before this copy. These differences are listed explicitly; the historical snapshot itself remains unchanged.
 
 Upstream development configurations are preserved where required by the frozen snapshot hashes. [Public fixture provenance](publication/UPSTREAM_FIXTURE_PROVENANCE.json) records the original source URLs and byte-level checks without repeating credential-like fixture values.
+
+## Anonymous-review manuscript and metadata
+
+The manuscript source and PDF omit study-author identities, affiliations, contact details, acknowledgments, and author-specific private comments. Published bibliographic attribution is retained. Investigator workspace paths in published metadata use a neutral prefix; `publication/anonymization-map.json.gz` records the original and redacted hashes. Pending-manifest checksum references are updated to their redacted copies. The original frozen snapshot, detector outputs, annotations, benchmark sources, and input bundles remain unchanged, and original metadata is preserved in Git history and a separate local backup.
+
+These metadata copies have different byte hashes from the historical snapshot. The anonymization mapping distinguishes those changes from scientific changes. All twelve generated result files are checked against their pre-anonymization bytes.
+
+**The complete hosted artifact is not anonymous:** the hosting account and earlier Git history identify investigators, and original release bundles contain investigator names in archive ownership headers and absolute paths in frozen build artifacts. See [the anonymity audit](publication/ANONYMITY.md). An anonymous manuscript alone does not remove these disclosures.

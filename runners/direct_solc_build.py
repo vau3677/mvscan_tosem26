@@ -11,7 +11,7 @@ import re
 import subprocess
 import sys
 
-PROJECT_ROOT = Path("/home/vau3677/liu_coop/anonymized_repo_TOSEM")
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 def main() -> int:

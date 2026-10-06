@@ -12,19 +12,7 @@ Build from this directory with:
 latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-The draft starts in ACM single-column review mode. Internal comments are
-enabled in `main.tex`:
-
-```tex
-\VU{discussion for Vladislav}
-\YL{discussion for Yinxi}
-\VUTODO{action for Vladislav}
-\YLTODO{action for Yinxi}
-```
-
-Set `\internalcommentsfalse` before sharing a clean manuscript. A clean build
-must contain no visible VU/YL comments, placeholder email addresses, TODOs,
-undefined references, or invented ACM production metadata.
+The manuscript uses ACM single-column anonymous review mode. Author names, affiliations, contact details, and private author-comment commands are excluded from the review source and rendered PDF. Bibliographic attribution to published work remains intact.
 
 ## Writing contract
 
@@ -47,11 +35,9 @@ undefined references, or invented ACM production metadata.
 
 ## Submission checklist
 
-- Confirm title, author order, affiliations, emails, and every author's ORCID.
+- Keep author names, affiliations, contact details, acknowledgments, and author-identifying PDF metadata out of the review copy.
 - Generate and insert accurate ACM CCS concepts and XML.
-- Confirm whether the current editorial process requests an anonymous copy;
-  the public TOSEM guidelines do not currently state that it does.
-- Remove internal comments and TODOs and audit all manuscript numbers against
+- Audit the manuscript for private comments and TODOs and verify all numbers against
   machine-readable artifacts.
 - Check that essential content is in the paper; appendices over one page are
   online-only under TOSEM's current policy.

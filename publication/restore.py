@@ -53,6 +53,24 @@ class Parts(io.RawIOBase):
             self.current.close()
         super().close()
 
+def bundle_base_url():
+    """Use explicit bundle hosting or the checkout's origin without embedding an account."""
+    configured = os.environ.get("MVSCAN_BUNDLE_BASE_URL") or MANIFEST.get("download_base")
+    if configured:
+        return configured.rstrip("/") + "/"
+    remote = subprocess.run(["git", "remote", "get-url", "origin"], cwd=ROOT, capture_output=True, text=True)
+    value = remote.stdout.strip()
+    if value.startswith("git@github.com:"):
+        path = value.removeprefix("git@github.com:")
+    elif value.startswith("https://github.com/"):
+        path = value.removeprefix("https://github.com/")
+    else:
+        raise RuntimeError("Set MVSCAN_BUNDLE_BASE_URL to the release download directory")
+    path = path.removesuffix(".git").strip("/")
+    if len(path.split("/")) != 2:
+        raise RuntimeError("Set MVSCAN_BUNDLE_BASE_URL to the release download directory")
+    return f"https://github.com/{path}/releases/download/{MANIFEST['release_tag']}/"
+
 def assets(group, download):
     paths = []
     for entry in group["assets"]:
@@ -62,7 +80,7 @@ def assets(group, download):
                 raise RuntimeError(f"Missing {path}; use --download to fetch release assets")
             path.parent.mkdir(parents=True, exist_ok=True)
             temporary = path.with_name(path.name + ".download")
-            url = MANIFEST["download_base"] + entry["name"]
+            url = bundle_base_url() + entry["name"]
             request = urllib.request.Request(url, headers={"User-Agent": "MV-Scan-publication"})
             try:
                 with urllib.request.urlopen(request, timeout=120) as response, temporary.open("wb") as output:
