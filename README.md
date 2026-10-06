@@ -52,7 +52,7 @@ python3.10 -m runners.run_mvscan_recovery \
 
 The eight subject IDs are `3b40d4c2e2c5c78d66a1`, `45244eb6ad77ecbb8d10`, `57417c735ac666efab33`, `7243363cfd2599257952`, `8d760c6fa69de52797f1`, `b6da317163e7b77bd40c`, `bee019e8a0d6149543c5`, and `fed6883739d838ef60fe`. The accepted recovery attempts and compatibility changes are documented in `benchmarks/isu/analysis_failure_recovery.csv` and `environment/recovery_patches/`.
 
-Both runners create new attempt directories. The published manifests and outputs preserve the original attempts used for the results. Redundant run-local code/compiler copies, empty logs, lock files, and unused template extras are ignored rather than deleted from the local workspace. Their original bytes remain in Git commit `3e9b63c37a4558a2e31560593ce768d9c5d1a867`; the compressed integrity inventory is `publication/ignored-material.json.gz`. To restore all historical paths for an integrity audit, run:
+Both runners create new attempt directories. The published manifests and outputs preserve the original attempts used for the results. Redundant run-local code/compiler copies, empty logs, lock files, unused template extras, historical administrative reports, and one duplicate source-resolution CSV are ignored rather than deleted from the local workspace. Their original bytes remain in Git commit `3e9b63c37a4558a2e31560593ce768d9c5d1a867`; the compressed integrity inventory is `publication/ignored-material.json.gz`. To restore all historical paths for an integrity audit, run:
 
 ```bash
 python3.10 publication/restore.py historical --download
@@ -69,6 +69,7 @@ This checks every original file or symlink, restores missing paths, and refuses 
 - `manuscript/`: the current local manuscript and pinned ACM template.
 - `validation/backd/`: two locally authored regression tests preserved during reconciliation.
 - `publication/VALIDATION.json`: preservation checks and explicit historical snapshot differences.
+- `reports/README.md`: locations and restoration instructions for hidden historical setup reports referenced by the deviation ledger.
 
 The three evaluated detector modules retain their original frozen hashes. The historical evaluation snapshot has 185 matching artifacts and nine later review/protocol/interface changes that were already present on the remote before this copy. These differences are listed explicitly; the historical snapshot itself remains unchanged.
 
