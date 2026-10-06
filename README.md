@@ -1,56 +1,98 @@
-# README.md - MV-Scan Research Artifacts
+# MV-Scan — TOSEM research artifact
 
-This repository contains the source code for the **MV-Scan** tool, the analysis rules used in the experiment, the dataset of target repositories, and the Python scripts used to orchestrate and evaluate the experiment.
+MV-Scan is a Slither plugin that reports candidate multi-variable state
+inconsistencies. It infers state relationships, identifies partial writes, and
+attaches evidence of omitted-state consumption. Candidates require manual
+validation; the detector does not prove path feasibility or exploitability.
 
-## Repository Structure
+## Publication-facing entry points
 
-1. **Ablation study and basic evaluation**. This evaluation is done over 61 Web3Bugs repos, each repo with 5 distinct ablations and the reference configuration (a total of 6 runs each). We report precision, triage-yield, runtimes, and compare the results to determine how components independently contribute to the reference configuration's performance.
+| Path | Purpose |
+| --- | --- |
+| [mvscan-smoke/mvscan_plugin/](mvscan-smoke/mvscan_plugin/) | Frozen detector implementation and configuration parsing |
+| [mvscan-smoke/pyproject.toml](mvscan-smoke/pyproject.toml) | Plugin registration and pinned frontend dependencies |
+| [mvscan-smoke/tests/](mvscan-smoke/tests/) | Current unit tests for roots, read/write pairing, witnesses, and freeze repairs |
+| [mvscan-smoke/contracts/](mvscan-smoke/contracts/) | Small Solidity examples and regression subjects |
+| [protocol/MVSCAN_EVALUATION_PLAN.md](protocol/MVSCAN_EVALUATION_PLAN.md) | Evaluation protocol and authoritative detector hashes |
+| [runners/](runners/) | Paper-result and reviewer-material generators |
+| [results/final/](results/final/) | Preserved paper-facing summary tables and note analysis |
+| [manuscript/](manuscript/) | LaTeX paper, tables, bibliography, and pinned ACM template |
+| [dataset/Web3Bugs/](dataset/Web3Bugs/) | Benchmark source, reports, and upstream evidence |
+| [deliverables/](deliverables/) | Reviewer cards, source mapping, and validation handoff |
+| [reviewer_handoff_ISU/](reviewer_handoff_ISU/) and [isu_annotator_2_packet/](isu_annotator_2_packet/) | Distinct historical-finding reviewer packets |
 
-2. **Oracle.** The independent annotation pass over 116 known-bug rows from a previous TOSEM study that labeled and identified ISU vulnerabilities from various repositories. These are confirmed as ISU, so it is our job to build on the literature by semantically distinguishing MV-SI from SV-SI from ISU-other. Once this is done, we then compare them to our reference configuration's performance. We also do a separate annotation pass over the zero-days we discovered during our evaluation/ablation study (over 61 repos). We report agreement and Cohen's kappa with reported disagreements and adjudications over both the known-bugs (MV-SI denominator) and the zero-days. We then use that data to report strict lower-bound recall.
+`dataset/Web3Bugs/excluded_contracts_from_ablations/` contains sources cited by
+the current review materials. Preserve it. The additional Backd fee-handler and
+AMM-gauge regression tests are research additions and must remain distinguishable
+from the upstream snapshot.
 
-```
-oracle
-  TOSEM_study_folder/    # the original ISU study artifacts
-  download_ISU_study.py  # downloads the TOSEM ISU study artifacts used in our oracle
-  generate_packet.py     # generate the packet we use to annotate semantic MV-SI
-  packet/                # the packet handed to each annotator; includes the known-bug rows to be labeled and compared to B0 with our orthogonal criteria
-    known_bug_rows.csv   # the 116 rows with our additional columns/schema
-    zero_day_rows.csv    # the rows from our evaluation of 61 Web3Bugs repositories
-  reports/
-    A1/                        # annotations from annotator 1 (will include a packet/)
-    A2/                        # annotations from annotator 2 (will include a packet/)
-    known_bug_rows_results.csv # final semantic labels (MV-SI/SV-SI/ISU-other) with reference configuration matches
-    zero_day_rows_results.csv  # final agreements on zero-days with accompanying PoCs, traces, and notes
-    oracle_results.csv         # all final oracle numbers including strict lower-bound recall
-    generate_results.py        # generates the final known-bug results and zero-day results, with all reported numbers in oracle_results.csv
+## Install and run a small detector example
 
-evaluation
-  master.py              # generates the results from our ablation_study.csv
-  <results go here>
+The plugin requires Python 3.10, Slither 0.11.3, and crytic-compile 0.3.11.
+From the repository root:
 
-slither-si-detector/     # source code for the MV-Scan tool that is located at /slither/detectors/inconsistent_state
-```
-
-## MV-Scan Tool
-
-Our custom analysis tool uses Slither/SlitherIR to interface with smart contract code. Slither is a Solidity & Vyper static analysis framework written in Python3. It runs a suite of vulnerability detectors, prints visual information about contract details, and provides an API to write custom analyses.
-
-### Building & Running
-
-From source:
-
-```bash
-# First install Slither and configure it to run as required
-cd slither-si-detector
-python3.10 -m pip install -e .
-
-# Smoke test: can you run `slither`?
-
-# Locate your target Solidity repository and compile it
-npx hardhat clean && npx hardhat compile
-
-# Run the inconsistent_state detector over your repository
-ISD_JSON_OUT=out.json slither smart-contract/repo --detect inconsistent_state
+```sh
+python3.10 -m venv .venv
+. .venv/bin/activate
+python -m pip install -e ./mvscan-smoke
+python -m pip install solc-select
+solc-select install 0.8.20
+solc-select use 0.8.20
+slither mvscan-smoke/contracts/CorePredicateSmoke.sol \
+  --detect inconsistent_state --solc-disable-warnings --fail-none
 ```
 
-The instructions above install MV-Scan as a Slither plugin and pins the frontend to `slither-analyzer==0.11.3`. The detector is discovered through Slither's standard plugin entry point.
+This is a small example, not a reproduction of the full study. The five study
+configurations are B0, A1 (no branch-derived relations), A2 (no return-derived
+relations), A4 (mapping-insensitive identity), and A5 (no contextual keys).
+Their complete preserved settings are in
+[remote_edit/runners/configuration.py](remote_edit/runners/configuration.py).
+Do not substitute detector defaults or the archived seven-configuration scheme
+for the study configuration.
+
+For the current unit tests, install `pytest` in that environment and run:
+
+```sh
+python -m pytest mvscan-smoke/tests
+```
+
+For the manuscript build, see [manuscript/README.md](manuscript/README.md).
+
+## Reproduction status
+
+This checkout preserves the frozen detector, summary tables, and supporting
+source and review materials. It does **not yet contain the complete study
+reproduction bundle**. The finalized annotation/adjudication inputs, frozen
+sample and union inventories, environment/configuration manifests, and recorded
+run manifests referenced by the generators are missing from their expected
+locations. Blank reviewer forms are not substitutes for finalized labels.
+
+[remote_edit/](remote_edit/) contains preserved evaluation-runner versions,
+frontend compatibility patches, and a deviation ledger. Several match the
+frozen snapshot exactly. Retain these until the canonical reproduction layout
+and missing inputs are restored. The staging directories are not independently
+runnable study entry points, and the root generators currently have unresolved
+imports and inputs.
+
+The overlap note in `results/final/PAPER_TABLES.md` reports 156 shared sampled
+buckets, while the manuscript reports 376. Resolve this from the original
+membership sets before packaging; preserve both records meanwhile.
+
+The separately maintained original-study repository under
+`oracle/SolidityStateStudy/` and review UI under
+`ideas/web3bugs_agreement_ui/` are excluded from this parent Git repository.
+They remain local and are not included by cloning this repository.
+
+## Historical archive
+
+[archive/legacy/](archive/legacy/) preserves obsolete evaluation tooling,
+development instructions, the old classification drivers and their fixtures,
+debugging outputs, duplicate review cards, an ISU distribution ZIP, upstream
+template examples, and a historical compiler patch. Their original paths and
+verified SHA-256 hashes are recorded in
+[MANIFEST.json](archive/legacy/MANIFEST.json).
+
+[archive/reviewer_optimization/](archive/reviewer_optimization/) preserves a
+historical reviewer-workflow snapshot and unique scripts. These archives are
+research provenance, not current detector or study execution entry points.
+No research files were deleted during this reorganization.
