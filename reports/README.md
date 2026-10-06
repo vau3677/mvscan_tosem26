@@ -12,6 +12,8 @@ This restores all ignored historical material, including the paths under `report
 
 Hidden administrative records:
 
+- `SUBJECT_MANIFEST_DISCOVERY*.json` (seven generated status summaries; the 153 execution subject manifests remain tracked)
+
 - `ARTIFACT_INVENTORY.csv`
 - `FINAL_SETUP_REPORT.md`
 - `F1_READINESS.md`
