@@ -39,7 +39,7 @@
 | A4 | 4735 | 3502 | 400 | 2100 | 251 | 70 | +3.0 pp |
 | A5 | 3725 | 3007 | 400 | 1254 | 171 | 33 | -1.2 pp |
 
-*Note:* The frozen union contains 6873 buckets; the five samples merge to 1270, including 156 sampled buckets shared across configurations.
+*Note:* The frozen union contains 6873 buckets; the five samples merge to 1270, including 376 sampled buckets shared across configurations.
 
 ## Table 5. Completion, runtime, memory, and deterministic reproducibility.
 

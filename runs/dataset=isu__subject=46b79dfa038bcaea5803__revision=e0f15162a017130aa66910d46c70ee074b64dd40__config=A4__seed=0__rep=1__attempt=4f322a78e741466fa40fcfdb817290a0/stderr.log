@@ -1,0 +1,103 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=0 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=1 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1356 vars=56
+[mvscan-stage] root-seeding-done eligible_exposures=93 seeded=61 multi_exposure_entry_blocks=13 collapsed_contextual_aliases=32 excluded_dependency=0 excluded_interface=41 excluded_library=0 excluded_abstract=2 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=9f8526a4e9507c4a47c26a3fc74e12e20b80dbf40f2c4f8ae73b19e7f5630e88 candidate_count=13 candidate_digest=5e8619230f5f888314e8fc0420fca5fefe2172c269e61b92ffb57b837c695f59 context_instance_count=85 eligible_readers=35 eligible_writers=21 execution_context_digest=02343b026b35a4ced5315b4d57b603954be0f234735270bd5a2f1cc0d239bba8 insensitive_readers_filtered=12 invalid_partial_write_filtered=0 must_full_relation_filtered=36 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=223 owner_context_pairs_considered=1068 raw_block_pairs=126 reader_witness_count=223 relation_base_members_shadowed=0 relation_context_incompatible=179 relation_digest=2f6a9f8a90239935fba0e6b677e4d8c1953dde0e09210cfbd7a276a2e8c1b29c relation_members_raw=56 relation_origins_registered=7 relation_origins_rejected_unary_after_shadowing=42 relation_origins_rejected_unreachable=27 relation_origins_seen=49 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=9 scalar_variables_skipped=26 storage_context_mismatch=630 variables_considered=33
+INFO:Detectors:
+
+[MV-SI candidate 0ad65dd5022040a012a2] {_initialized, _initializing}
+ writer root       -> contracts/visor/Visor.sol::Visor.initializeLock()
+ writer effect     -> @openzeppelin/contracts/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 114ebd7845226beeb5f6] {_initialized, _initializing}
+ writer root       -> contracts/visor/Visor.sol::Visor.initializeLock()
+ writer effect     -> @openzeppelin/contracts/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 11cf055c29015b2d4ea4] {_operatorApprovals, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:458
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 36
+ storage exposures -> 3
+[MV-SI candidate 26dc15dfc2bd42ff02f2] {_operatorApprovals, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:458
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 36
+ storage exposures -> 3
+[MV-SI candidate 2d22c8c7d464f719bf5e] {_initialized, _initializing}
+ writer root       -> contracts/visor/Visor.sol::Visor.initializeLock()
+ writer effect     -> @openzeppelin/contracts/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 34f5b327ccb9ff79d238] {_initialized, _initializing}
+ writer root       -> contracts/visor/Visor.sol::Visor.initialize()
+ writer effect     -> @openzeppelin/contracts/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3561744af390543b2ccb] {_operatorApprovals, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.approve(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:458
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 36
+ storage exposures -> 3
+[MV-SI candidate 85aa86716c2134d48e9a] {timelockERC721Keys, timelockERC721s}
+ writer root       -> contracts/visor/Visor.sol::Visor.timeUnlockERC721(address,address,uint256,uint256)
+ writer effect     -> contracts/visor/Visor.sol:572
+ written member    -> ('SV', 'contracts/visor/Visor.sol', 'Visor.timelockERC721s')
+ potentially stale -> ('SV', 'contracts/visor/Visor.sol', 'Visor.timelockERC721Keys')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 9c2ae24e65689051da6a] {_initialized, _initializing}
+ writer root       -> contracts/visor/Visor.sol::Visor.initialize()
+ writer effect     -> @openzeppelin/contracts/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b2908e1eeaff3ea53343] {_initialized, _initializing}
+ writer root       -> contracts/visor/Visor.sol::Visor.initialize()
+ writer effect     -> @openzeppelin/contracts/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c24aefdb6cd9ec9e8008] {timelockERC721Keys, timelockERC721s}
+ writer root       -> contracts/visor/Visor.sol::Visor.transferERC721(address,address,uint256)
+ writer effect     -> contracts/visor/Visor.sol:504
+ written member    -> ('SV', 'contracts/visor/Visor.sol', 'Visor.timelockERC721Keys')
+ potentially stale -> ('SV', 'contracts/visor/Visor.sol', 'Visor.timelockERC721s')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate de88ff494a20455ad147] {_operatorApprovals, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:458
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 36
+ storage exposures -> 3
+[MV-SI candidate e00a6266c8bfbb06fde0] {_operatorApprovals, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:214
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 27
+ storage exposures -> 3Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (54 contracts with 1 detectors), 13 result(s) found

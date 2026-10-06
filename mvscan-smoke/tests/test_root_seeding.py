@@ -179,8 +179,9 @@ def test_root_seeding():
     # Dependency contract is not independently seeded.
     assert standalone_dependency_owner not in owners[transfer_bid]
 
-    # Profiling contract is not independently seeded.
-    assert profiler_bid not in owners
+    # Frozen root seeding retains first-party APIs; source-scope filtering
+    # happens when constructing the evaluation candidate union.
+    assert profiler_bid in owners
 
     all_owner_names = {
         owner
@@ -192,14 +193,14 @@ def test_root_seeding():
         owner.startswith("node_modules/")
         for owner in all_owner_names
     )
-    assert not any(
+    assert any(
         "contracts/testing/" in owner
         for owner in all_owner_names
     )
 
 def main():
     test_root_seeding()
-    print("PASS: root seeding excludes dependency/test roots")
+    print("PASS: dependency roots excluded; first-party roots retained for later scope filtering")
     print("PASS: inherited first-party APIs remain seeded")
     print("PASS: dependency callees remain reachable")
 

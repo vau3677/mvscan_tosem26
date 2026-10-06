@@ -1,0 +1,204 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+ERROR:ContractSolcParsing:Impossible to generate IR for Ladle._pour (contracts/Ladle.sol#296-321):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for Ladle._roll (contracts/Ladle.sol#410-441):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for Pool._mintInternal (contracts/yieldspace/Pool.sol#231-298):
+ 'NoneType' object has no attribute 'parameters'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=3087 vars=116
+[mvscan-stage] root-seeding-done eligible_exposures=198 seeded=102 multi_exposure_entry_blocks=12 collapsed_contextual_aliases=96 excluded_dependency=0 excluded_interface=75 excluded_library=0 excluded_abstract=4 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4c598b8d37a69ca13606718136104299a8a355dbd974242183889a795648357b candidate_count=26 candidate_digest=da5ed882fe9c8d20d8267915310a697d04ad7c72c8fdd76405c142ff438ff57e context_instance_count=288 eligible_readers=193 eligible_writers=76 execution_context_digest=af1bd961cccd8e9b9a1e1b523b20c2a9ce472d4a3c38509febed665a02241e76 insensitive_readers_filtered=59 invalid_partial_write_filtered=0 must_full_relation_filtered=1507 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=509 owner_context_pairs=928 owner_context_pairs_considered=33383 raw_block_pairs=1078 reader_witness_count=928 relation_base_members_shadowed=0 relation_context_incompatible=3284 relation_digest=e9ff6e3147c1eea9801365ed8bb8d39a4de0f3aeb7062c16105ce8bc736daadc relation_members_raw=109 relation_origins_registered=15 relation_origins_rejected_unary_after_shadowing=75 relation_origins_rejected_unreachable=39 relation_origins_seen=90 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=57 scalar_variables_skipped=58 storage_context_mismatch=27155 variables_considered=73
+INFO:Detectors:
+
+[MV-SI candidate 0470ca3b3d2efb358ee1] {_totalSupply, baseCached, fyTokenCached}
+ writer root       -> contracts/yieldspace/Pool.sol::Pool.sync()
+ writer effect     -> contracts/yieldspace/Pool.sol:188
+ written member    -> ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.baseCached')
+ potentially stale -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._totalSupply'), ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.fyTokenCached')
+ reader witnesses  -> 45
+ storage exposures -> 1
+[MV-SI candidate 0520699a156d76ba304f] {series, spotOracles}
+ writer root       -> contracts/Cauldron.sol::Cauldron.setSpotOracle(bytes6,bytes6,IOracle,uint32)
+ writer effect     -> contracts/Cauldron.sol:124
+ written member    -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.spotOracles')
+ potentially stale -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.series')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 0e3a976d316a692e5a98] {series, spotOracles}
+ writer root       -> contracts/Cauldron.sol::Cauldron.addSeries(bytes6,bytes6,IFYToken)
+ writer effect     -> contracts/Cauldron.sol:143
+ written member    -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.series')
+ potentially stale -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.spotOracles')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 10693b56cc28db8e01a0] {auctionInterval, auctions}
+ writer root       -> contracts/Cauldron.sol::Cauldron.grab(bytes12,address)
+ writer effect     -> contracts/Cauldron.sol:359
+ written member    -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.auctions')
+ potentially stale -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.auctionInterval')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 12fe0877d95d6a17c553] {_balanceOf, _totalSupply}
+ writer root       -> contracts/utils/token/ERC20.sol::ERC20.transfer(address,uint256)
+ writer effect     -> contracts/utils/token/ERC20.sol:118
+ written member    -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._balanceOf')
+ potentially stale -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._totalSupply')
+ reader witnesses  -> 102
+ storage exposures -> 6
+[MV-SI candidate 24f62f202295a70eaf64] {_totalSupply, baseCached, fyTokenCached}
+ writer root       -> contracts/yieldspace/Pool.sol::Pool.buyBase(address,uint128,uint128)
+ writer effect     -> contracts/yieldspace/Pool.sol:189
+ written member    -> ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.fyTokenCached')
+ potentially stale -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._totalSupply'), ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.baseCached')
+ reader witnesses  -> 45
+ storage exposures -> 1
+[MV-SI candidate 35036640565ce0770bd7] {_totalSupply, baseCached, fyTokenCached}
+ writer root       -> contracts/yieldspace/Pool.sol::Pool.buyFYToken(address,uint128,uint128)
+ writer effect     -> contracts/yieldspace/Pool.sol:189
+ written member    -> ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.fyTokenCached')
+ potentially stale -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._totalSupply'), ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.baseCached')
+ reader witnesses  -> 45
+ storage exposures -> 1
+[MV-SI candidate 3dd391b12f0097286a53] {_totalSupply, baseCached, fyTokenCached}
+ writer root       -> contracts/yieldspace/Pool.sol::Pool.sellBase(address,uint128)
+ writer effect     -> contracts/yieldspace/Pool.sol:188
+ written member    -> ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.baseCached')
+ potentially stale -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._totalSupply'), ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.fyTokenCached')
+ reader witnesses  -> 45
+ storage exposures -> 1
+[MV-SI candidate 4e7502df92c58b078bde] {auctionInterval, auctions}
+ writer root       -> contracts/Cauldron.sol::Cauldron.setAuctionInterval(uint32)
+ writer effect     -> contracts/Cauldron.sol:113
+ written member    -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.auctionInterval')
+ potentially stale -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.auctions')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 545d8413df423f307e66] {_totalSupply, baseCached, fyTokenCached}
+ writer root       -> contracts/yieldspace/Pool.sol::Pool.sellFYToken(address,uint128)
+ writer effect     -> contracts/yieldspace/Pool.sol:189
+ written member    -> ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.fyTokenCached')
+ potentially stale -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._totalSupply'), ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.baseCached')
+ reader witnesses  -> 45
+ storage exposures -> 1
+[MV-SI candidate 63ef4c5fc394a1ad49f3] {series, vaults}
+ writer root       -> contracts/Cauldron.sol::Cauldron.addSeries(bytes6,bytes6,IFYToken)
+ writer effect     -> contracts/Cauldron.sol:143
+ written member    -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.series')
+ potentially stale -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.vaults')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 6913e19f45bf657b9775] {auctionInterval, auctions}
+ writer root       -> contracts/Cauldron.sol::Cauldron.destroy(bytes12)
+ writer effect     -> contracts/Cauldron.sol:199
+ written member    -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.auctions')
+ potentially stale -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.auctionInterval')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7c036843824f43b0798f] {series, vaults}
+ writer root       -> contracts/Cauldron.sol::Cauldron.grab(bytes12,address)
+ writer effect     -> contracts/Cauldron.sol:241
+ written member    -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.vaults')
+ potentially stale -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.series')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 82b8d509b18da0437d80] {_totalSupply, baseCached, fyTokenCached}
+ writer root       -> contracts/yieldspace/Pool.sol::Pool.sync()
+ writer effect     -> contracts/yieldspace/Pool.sol:189
+ written member    -> ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.fyTokenCached')
+ potentially stale -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._totalSupply'), ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.baseCached')
+ reader witnesses  -> 45
+ storage exposures -> 1
+[MV-SI candidate 9e19df3239f8907c3078] {_totalSupply, baseCached, fyTokenCached}
+ writer root       -> contracts/yieldspace/Pool.sol::Pool.buyBase(address,uint128,uint128)
+ writer effect     -> contracts/yieldspace/Pool.sol:188
+ written member    -> ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.baseCached')
+ potentially stale -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._totalSupply'), ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.fyTokenCached')
+ reader witnesses  -> 45
+ storage exposures -> 1
+[MV-SI candidate 9e24037331fd722e7ceb] {series, vaults}
+ writer root       -> contracts/Cauldron.sol::Cauldron.destroy(bytes12)
+ writer effect     -> contracts/Cauldron.sol:200
+ written member    -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.vaults')
+ potentially stale -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.series')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate b7579079773b5e25debf] {_balanceOf, _totalSupply}
+ writer root       -> contracts/utils/token/ERC20.sol::ERC20.transferFrom(address,address,uint256)
+ writer effect     -> contracts/utils/token/ERC20.sol:118
+ written member    -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._balanceOf')
+ potentially stale -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._totalSupply')
+ reader witnesses  -> 102
+ storage exposures -> 6
+[MV-SI candidate bab74d8b5509375c7b38] {series, vaults}
+ writer root       -> contracts/Cauldron.sol::Cauldron.give(bytes12,address)
+ writer effect     -> contracts/Cauldron.sol:241
+ written member    -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.vaults')
+ potentially stale -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.series')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate c4b58996742c37001291] {_totalSupply, baseCached, fyTokenCached}
+ writer root       -> contracts/yieldspace/Pool.sol::Pool.sellBase(address,uint128)
+ writer effect     -> contracts/yieldspace/Pool.sol:189
+ written member    -> ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.fyTokenCached')
+ potentially stale -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._totalSupply'), ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.baseCached')
+ reader witnesses  -> 45
+ storage exposures -> 1
+[MV-SI candidate c73991fcd9c322e72303] {_balanceOf, _totalSupply}
+ writer root       -> contracts/utils/token/ERC20.sol::ERC20.transfer(address,uint256)
+ writer effect     -> contracts/utils/token/ERC20.sol:117
+ written member    -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._balanceOf')
+ potentially stale -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._totalSupply')
+ reader witnesses  -> 102
+ storage exposures -> 6
+[MV-SI candidate c74de6c09fcf7210c727] {_totalSupply, baseCached, fyTokenCached}
+ writer root       -> contracts/yieldspace/Pool.sol::Pool.buyFYToken(address,uint128,uint128)
+ writer effect     -> contracts/yieldspace/Pool.sol:188
+ written member    -> ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.baseCached')
+ potentially stale -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._totalSupply'), ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.fyTokenCached')
+ reader witnesses  -> 45
+ storage exposures -> 1
+[MV-SI candidate dff6408d81b32d35616e] {_balanceOf, _totalSupply}
+ writer root       -> contracts/utils/token/ERC20.sol::ERC20.transferFrom(address,address,uint256)
+ writer effect     -> contracts/utils/token/ERC20.sol:117
+ written member    -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._balanceOf')
+ potentially stale -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._totalSupply')
+ reader witnesses  -> 102
+ storage exposures -> 6
+[MV-SI candidate f0d70b0265b9e6b592fe] {series, vaults}
+ writer root       -> contracts/Cauldron.sol::Cauldron.build(address,bytes12,bytes6,bytes6)
+ writer effect     -> contracts/Cauldron.sol:187
+ written member    -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.vaults')
+ potentially stale -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.series')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate f13a2e7de715d63ceda7] {series, vaults}
+ writer root       -> contracts/Cauldron.sol::Cauldron.tweak(bytes12,bytes6,bytes6)
+ writer effect     -> contracts/Cauldron.sol:210
+ written member    -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.vaults')
+ potentially stale -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.series')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate f273bda8297f0ecf6312] {series, vaults}
+ writer root       -> contracts/Cauldron.sol::Cauldron.roll(bytes12,bytes6,int128)
+ writer effect     -> contracts/Cauldron.sol:210
+ written member    -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.vaults')
+ potentially stale -> ('SV', 'contracts/Cauldron.sol', 'Cauldron.series')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate fd0d09d5cc22a7ea170f] {_totalSupply, baseCached, fyTokenCached}
+ writer root       -> contracts/yieldspace/Pool.sol::Pool.sellFYToken(address,uint128)
+ writer effect     -> contracts/yieldspace/Pool.sol:188
+ written member    -> ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.baseCached')
+ potentially stale -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._totalSupply'), ('SV', 'contracts/yieldspace/Pool.sol', 'Pool.fyTokenCached')
+ reader witnesses  -> 45
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=4 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=9 vars=5
+[mvscan-stage] root-seeding-done eligible_exposures=2 seeded=2 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=01eb6c78a80670da8aab04b19b3c5d9eb77a8a316a8c7619b426789855fd6adf invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_origins_rejected_unreachable=3 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=5 storage_context_mismatch=0 variables_considered=5
+INFO:Slither:. analyzed (80 contracts with 1 detectors), 26 result(s) found

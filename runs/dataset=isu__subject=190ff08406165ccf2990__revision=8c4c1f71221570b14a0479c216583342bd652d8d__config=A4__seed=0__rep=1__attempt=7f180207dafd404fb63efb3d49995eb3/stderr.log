@@ -1,0 +1,183 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1878 vars=66
+[mvscan-stage] root-seeding-done eligible_exposures=98 seeded=61 multi_exposure_entry_blocks=25 collapsed_contextual_aliases=37 excluded_dependency=0 excluded_interface=42 excluded_library=0 excluded_abstract=24 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=010e309806fca1410b4b443b29076f7046906496fe6b728f77e0ce1e59450469 candidate_count=25 candidate_digest=d99c2fba708479eba1f331b206838dc83038ea17ef52c80f69669f286f3ceb34 context_instance_count=228 eligible_readers=19 eligible_writers=22 execution_context_digest=e71d275470609b97820433981366582bc34b2aeea8b2fd387663e5d57cee1a2a insensitive_readers_filtered=57 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=6 owner_context_pairs=576 owner_context_pairs_considered=1785 raw_block_pairs=77 reader_witness_count=576 relation_base_members_shadowed=0 relation_context_incompatible=311 relation_digest=e4438a49a60471b1c1ce19ed44c637a504981717a3fc2d6c01f69b04981cbd7a relation_members_raw=81 relation_origins_registered=6 relation_origins_rejected_unary_after_shadowing=66 relation_origins_rejected_unreachable=24 relation_origins_seen=72 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=3 scalar_variables_skipped=41 storage_context_mismatch=892 variables_considered=47
+INFO:Detectors:
+
+[MV-SI candidate 13f0d727f527e3b52fff] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:385
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 17a0a459b9fdc61a1608] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/QuestFactory.sol::QuestFactory.mintReceipt(string,bytes32,bytes)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:308
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 1aebd851e527dc9cf108] {_initialized, _initializing}
+ writer root       -> contracts/RabbitHoleReceipt.sol::RabbitHoleReceipt.initialize(address,address,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:95
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 2b558541cc5cb9650adf] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:385
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate 2eef7b0330a9b9824524] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:385
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate 319cd16b58db8793b426] {_initialized, _initializing}
+ writer root       -> contracts/QuestFactory.sol::QuestFactory.initialize(address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:91
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 35cd10b52261078c832a] {_operatorApprovals, _owners}
+ writer root       -> contracts/QuestFactory.sol::QuestFactory.mintReceipt(string,bytes32,bytes)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:308
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3a88c4eb4f260d6a937f] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:413
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners'), ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ reader witnesses  -> 66
+ storage exposures -> 2
+[MV-SI candidate 3ef0dd2d3113e277c4a6] {_operatorApprovals, _owners}
+ writer root       -> contracts/RabbitHoleReceipt.sol::RabbitHoleReceipt.mint(address,string)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:308
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 4dddd86e5d3e8d27551f] {_initialized, _initializing}
+ writer root       -> contracts/QuestFactory.sol::QuestFactory.initialize(address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:95
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 51d1286f030c7b8e53bd] {_initialized, _initializing}
+ writer root       -> contracts/RabbitHoleTickets.sol::RabbitHoleTickets.initialize(address,address,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:91
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 72b477d7777675cd6bfc] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.approve(address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:398
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ reader witnesses  -> 54
+ storage exposures -> 2
+[MV-SI candidate 7741b137bdb1c2915f1e] {_initialized, _initializing}
+ writer root       -> contracts/RabbitHoleReceipt.sol::RabbitHoleReceipt.initialize(address,address,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:89
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 9966506effd60065a1ff] {_initialized, _initializing}
+ writer root       -> contracts/RabbitHoleTickets.sol::RabbitHoleTickets.initialize(address,address,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:95
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 9d6bb1a4f4120dd854f6] {_initialized, _initializing}
+ writer root       -> contracts/QuestFactory.sol::QuestFactory.initialize(address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:89
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a22bfea93b17f104145b] {_initialized, _initializing}
+ writer root       -> contracts/RabbitHoleReceipt.sol::RabbitHoleReceipt.initialize(address,address,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:91
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b1c5ede3e94c0ef2c4ba] {_initialized, _initializing}
+ writer root       -> contracts/RabbitHoleTickets.sol::RabbitHoleTickets.initialize(address,address,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:89
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c7312ffcf94b18fc260c] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:385
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate cc0124c4770987d52681] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:374
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ reader witnesses  -> 54
+ storage exposures -> 2
+[MV-SI candidate d50476f2c8fae4ab6c6a] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:413
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate d6e438810eb50391b4db] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:385
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate e3b7415ff9f9cfaa5a33] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:374
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ reader witnesses  -> 54
+ storage exposures -> 2
+[MV-SI candidate e9a6afe798fe38fa56ea] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:374
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ reader witnesses  -> 54
+ storage exposures -> 2
+[MV-SI candidate ec79bf714dbae86a6e23] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/RabbitHoleReceipt.sol::RabbitHoleReceipt.mint(address,string)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:308
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate f9d124b6080d4e27c009] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:385
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (58 contracts with 1 detectors), 25 result(s) found

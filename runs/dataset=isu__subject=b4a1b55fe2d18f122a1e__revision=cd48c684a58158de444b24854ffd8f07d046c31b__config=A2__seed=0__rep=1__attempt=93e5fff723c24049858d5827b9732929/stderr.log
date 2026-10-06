@@ -1,0 +1,79 @@
+'/tmp/.svm/0.8.17/solc-0.8.17 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1674 vars=142
+[mvscan-stage] root-seeding-done eligible_exposures=76 seeded=59 multi_exposure_entry_blocks=12 collapsed_contextual_aliases=17 excluded_dependency=0 excluded_interface=34 excluded_library=0 excluded_abstract=14 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=2a5e46a935aacdc2ae9fc6598d1a89822279dddf91eba98d2b4d61d2d98793e1 candidate_count=10 candidate_digest=babd537fd5bbdd9a6b151e6f336be452c7ffee4b8194d4b6499653dce620ea4a context_instance_count=62 eligible_readers=19 eligible_writers=18 execution_context_digest=01e420972c4904223bf6cd5e2b9da57395d1b6aa447243deef6aaff711c8ee66 insensitive_readers_filtered=60 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=2 owner_context_pairs=112 owner_context_pairs_considered=1542 raw_block_pairs=59 reader_witness_count=112 relation_base_members_shadowed=21 relation_context_incompatible=614 relation_digest=ba53fc9ced83d06a2f285052110f6ac97a285e5ccb15375eefe396d2b81b2023 relation_members_raw=62 relation_origins_registered=6 relation_origins_rejected_unary_after_shadowing=27 relation_origins_seen=33 relation_unbound_key_templates=55 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=3 scalar_variables_skipped=45 storage_context_mismatch=814 variables_considered=51
+INFO:Detectors:
+
+[MV-SI candidate 03ea2eebf6e68e9f7e89] {_initialized, _initializing}
+ writer root       -> src/core/VaultManagerV2.sol::VaultManagerV2.setKeroseneManager(KerosineManager)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:89
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 11649938b722ec529ff4] {_initialized, _initializing}
+ writer root       -> src/core/VaultManagerV2.sol::VaultManagerV2.setKeroseneManager(KerosineManager)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:91
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 3e45ab85f5d358d2cdee] {duration, rewardRate}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:111
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.duration')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 47965464bd5744d055ef] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 2
+[MV-SI candidate 5b300c764a6d68e81828] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 2
+[MV-SI candidate 5d74476c2d770c9b5f99] {duration, rewardRate}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:114
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.duration')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 8858d829ee5eb20a752d] {_initialized, _initializing}
+ writer root       -> src/core/VaultManagerV2.sol::VaultManagerV2.setKeroseneManager(KerosineManager)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:95
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 91a19064a75825b60e46] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 2
+[MV-SI candidate 993e34b448fd7ef0fce2] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.approve(address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:393
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate fdb29f14423b29d3825e] {duration, rewardRate}
+ writer root       -> src/staking/Staking.sol::Staking.setRewardsDuration(uint256)
+ writer effect     -> src/staking/Staking.sol:103
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.duration')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate')
+ reader witnesses  -> 7
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (44 contracts with 1 detectors), 10 result(s) found

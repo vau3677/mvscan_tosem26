@@ -1,0 +1,706 @@
+'/tmp/.svm/0.6.12/solc-0.6.12 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: deps/BaseStrategy.sol:187:18: Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+        returns (uint256 balance)
+                 ^-------------^
+
+Warning: contracts/veCVXStrategy.sol:203:28: Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+    function setKeepReward(uint256 _setKeepReward) external {
+                           ^--------------------^
+
+Warning: contracts/veCVXStrategy.sol:302:10: Warning: Unused local variable.
+        (uint256 governancePerformanceFee, uint256 strategistPerformanceFee) =
+         ^------------------------------^
+
+Warning: contracts/veCVXStrategy.sol:302:44: Warning: Unused local variable.
+        (uint256 governancePerformanceFee, uint256 strategistPerformanceFee) =
+                                           ^------------------------------^
+
+Warning: contracts/veCVXStrategy.sol:400:57: Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+    function reinvest() external whenNotPaused returns (uint256 reinvested) {
+                                                        ^----------------^
+
+Warning: contracts/veCVXStrategy.sol:473:9: Warning: Unused local variable.
+        uint256 toWantRatio =
+        ^-----------------^
+
+Warning: contracts/deps/SettV3.sol:135:5: Warning: Function state mutability can be restricted to pure
+    function version() public view returns (string memory) {
+    ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning: deps/BaseStrategy.sol:101:5: Warning: Function state mutability can be restricted to pure
+    function baseStrategyVersion() public view returns (string memory) {
+    ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning: deps/BaseStrategy.sol:115:5: Warning: Function state mutability can be restricted to pure
+    function isTendable() public view virtual returns (bool) {
+    ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning: contracts/veCVXStrategy.sol:203:5: Warning: Function state mutability can be restricted to view
+    function setKeepReward(uint256 _setKeepReward) external {
+    ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning: contracts/veCVXStrategy.sol:319:5: Warning: Function state mutability can be restricted to view
+    function tend() external whenNotPaused {
+    ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning: contracts/locker/CvxLocker.sol:19:1: Warning: Contract code size exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+contract CvxLocker is ReentrancyGuard, Ownable {
+^ (Relevant source part starts here and spans across multiple lines).
+
+Warning: contracts/veCVXStrategy.sol:20:1: Warning: Contract code size exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+contract MyStrategy is BaseStrategy {
+^ (Relevant source part starts here and spans across multiple lines).
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1914 vars=122
+[mvscan-stage] root-seeding-done eligible_exposures=153 seeded=125 multi_exposure_entry_blocks=16 collapsed_contextual_aliases=28 excluded_dependency=0 excluded_interface=64 excluded_library=0 excluded_abstract=18 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=14e89ebc60fcadc8db1465fc1c354d2275c19b148b6d3134bcf5478c9ea3bbc8 candidate_count=92 candidate_digest=d2e3acfcc70f29e0996d9a2b353475e9d38eefd11355b4fa14023d44949868df context_instance_count=755 eligible_readers=97 eligible_writers=80 execution_context_digest=22d501ca24e6a0fbe605ba74e742512675aa1fea3cadd83ca15e7b7918396ce7 insensitive_readers_filtered=20 invalid_partial_write_filtered=0 must_full_relation_filtered=181 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=441 owner_context_pairs=779 owner_context_pairs_considered=4406 raw_block_pairs=645 reader_witness_count=779 relation_base_members_shadowed=9 relation_context_incompatible=0 relation_digest=002fb61495fb59d7df9eb334e9e0f367b45efaab84642b4cec72991140c5b2d7 relation_evidence_edges=450 relation_incompatible=246 relation_members_raw=103 relation_origins_registered=14 relation_origins_rejected_unary_after_shadowing=63 relation_origins_rejected_unreachable=13 relation_origins_seen=77 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=4 scalar_variables_skipped=86 storage_context_mismatch=3005 variables_considered=100
+INFO:Detectors:
+
+[MV-SI candidate 0619af08ea23b04b0ce4] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.kickExpiredLocks(address)
+ writer effect     -> contracts/locker/CvxLocker.sol:958
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 06950868daa66fd67c2e] {governance, keeper, strategist, vaults[$arg0]}
+ writer root       -> deps/BaseStrategy.sol::BaseStrategy.__BaseStrategy_init(address,address,address,address,address)
+ writer effect     -> deps/BaseStrategy.sol:70
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ potentially stale -> ('MS', 'contracts/deps/Controller.sol', 'Controller.vaults', '$arg0'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 0d7637ac002d91aa12a5] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.addReward(address,address,bool)
+ writer effect     -> contracts/locker/CvxLocker.sol:152
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 0ea18f95e12d16bb0e32] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.processExpiredLocks(bool,uint256,address)
+ writer effect     -> contracts/locker/CvxLocker.sol:958
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 0fa0591c7ad9e7f2a28d] {governance, keeper, strategist, vaults[$arg0]}
+ writer root       -> contracts/veCVXStrategy.sol::MyStrategy.initialize(address,address,address,address,address,address[3],uint256[3],address)
+ writer effect     -> deps/BaseStrategy.sol:72
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ potentially stale -> ('MS', 'contracts/deps/Controller.sol', 'Controller.vaults', '$arg0'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 145ec4aac623842a656c] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.kickExpiredLocks(address)
+ writer effect     -> contracts/locker/CvxLocker.sol:960
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 1a787a6433b4c16d249b] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.getReward(address)
+ writer effect     -> contracts/locker/CvxLocker.sol:958
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 1e420f4a93c43adcc5f9] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.notifyRewardAmount(address,uint256)
+ writer effect     -> contracts/locker/CvxLocker.sol:958
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 1f902486553590a71404] {_initialized, _initializing}
+ writer root       -> contracts/deps/Controller.sol::Controller.initialize(address,address,address,address)
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 21b5a07c9dae45179c11] {governance, keeper, strategist, vaults[$arg0]}
+ writer root       -> deps/BaseStrategy.sol::BaseStrategy.__BaseStrategy_init(address,address,address,address,address)
+ writer effect     -> deps/BaseStrategy.sol:72
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ potentially stale -> ('MS', 'contracts/deps/Controller.sol', 'Controller.vaults', '$arg0'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 229a8cbf1605dcfd798b] {_initialized, _initializing}
+ writer root       -> contracts/deps/SettV3.sol::SettV3.initialize(address,address,address,address,address,bool,string,string)
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 27d439ef6f722d1ae259] {governance, keeper, strategist, vaults[$arg0]}
+ writer root       -> deps/SettAccessControl.sol::SettAccessControl.setGovernance(address)
+ writer effect     -> deps/SettAccessControl.sol:53
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ potentially stale -> ('MS', 'contracts/deps/Controller.sol', 'Controller.vaults', '$arg0'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 28bf74fe37a6a161c30a] {governance, keeper, strategist, vaults[$arg0]}
+ writer root       -> contracts/deps/Controller.sol::Controller.setVault(address,address)
+ writer effect     -> contracts/deps/Controller.sol:124
+ written member    -> ('MS', 'contracts/deps/Controller.sol', 'Controller.vaults', '$arg0')
+ potentially stale -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 2af8f900a3bc448ef8d6] {governance, strategist}
+ writer root       -> deps/SettAccessControl.sol::SettAccessControl.setStrategist(address)
+ writer effect     -> deps/SettAccessControl.sol:39
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ potentially stale -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ reader witnesses  -> 35
+ storage exposures -> 3
+[MV-SI candidate 2ebb1121ba4c01cb9883] {devGovernance, governance}
+ writer root       -> contracts/deps/BadgerRegistry.sol::BadgerRegistry.setGovernance(address)
+ writer effect     -> contracts/deps/BadgerRegistry.sol:66
+ written member    -> ('SV', 'contracts/deps/BadgerRegistry.sol', 'BadgerRegistry.governance')
+ potentially stale -> ('SV', 'contracts/deps/BadgerRegistry.sol', 'BadgerRegistry.devGovernance')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 303661d5df92601c2064] {governance, strategist}
+ writer root       -> deps/BaseStrategy.sol::BaseStrategy.__BaseStrategy_init(address,address,address,address,address)
+ writer effect     -> deps/BaseStrategy.sol:71
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ potentially stale -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 35fe7758204f5aa6cab0] {_initialized, _initializing}
+ writer root       -> contracts/deps/SettV3.sol::SettV3.initialize(address,address,address,address,address,bool,string,string)
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:39
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 3670b12c9c13f1463646] {_initialized, _initializing}
+ writer root       -> contracts/deps/Controller.sol::Controller.initialize(address,address,address,address)
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:39
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 38b1367b8736e76132e3] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.notifyRewardAmount(address,uint256)
+ writer effect     -> contracts/locker/CvxLocker.sol:897
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 3a804194d8b6006b776b] {boostRate, nextBoostRate}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.checkpointEpoch()
+ writer effect     -> contracts/locker/CvxLocker.sol:557
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.boostRate')
+ potentially stale -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.nextBoostRate')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 3bb482db7ae04caba2ec] {_initialized, _initializing}
+ writer root       -> contracts/veCVXStrategy.sol::MyStrategy.initialize(address,address,address,address,address,address[3],uint256[3],address)
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:46
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 3c9ed83ad071ffa0469a] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.processExpiredLocks(bool,uint256,address)
+ writer effect     -> contracts/locker/CvxLocker.sol:960
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 3ce621452155934e4df7] {boostRate, nextBoostRate}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.kickExpiredLocks(address)
+ writer effect     -> contracts/locker/CvxLocker.sol:557
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.boostRate')
+ potentially stale -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.nextBoostRate')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 3f3d37f18c99269f400c] {maximumBoostPayment, nextMaximumBoostPayment}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.processExpiredLocks(bool,uint256,address)
+ writer effect     -> contracts/locker/CvxLocker.sol:560
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.maximumBoostPayment')
+ potentially stale -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.nextMaximumBoostPayment')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 43bb7f88dc45c99f3376] {maximumBoostPayment, nextMaximumBoostPayment}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.setBoost(uint256,uint256,address)
+ writer effect     -> contracts/locker/CvxLocker.sol:195
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.nextMaximumBoostPayment')
+ potentially stale -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.maximumBoostPayment')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 43df76b32f92b77fa7b9] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.processExpiredLocks(bool)
+ writer effect     -> contracts/locker/CvxLocker.sol:958
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 4419a4c61856ac28ee97] {boostRate, nextBoostRate}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.processExpiredLocks(bool)
+ writer effect     -> contracts/locker/CvxLocker.sol:557
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.boostRate')
+ potentially stale -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.nextBoostRate')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 447c593e9424cd852147] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.notifyRewardAmount(address,uint256)
+ writer effect     -> contracts/locker/CvxLocker.sol:904
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 46bd40ac06e53641e8e4] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.addReward(address,address,bool)
+ writer effect     -> contracts/locker/CvxLocker.sol:153
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 4973c91fe0e11d155045] {governance, keeper, strategist, vaults[$arg0]}
+ writer root       -> contracts/deps/Controller.sol::Controller.initialize(address,address,address,address)
+ writer effect     -> contracts/deps/Controller.sol:41
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ potentially stale -> ('MS', 'contracts/deps/Controller.sol', 'Controller.vaults', '$arg0'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 4c4b422a20014c7e9ecd] {governance, keeper, strategist, vaults[$arg0]}
+ writer root       -> contracts/deps/Controller.sol::Controller.initialize(address,address,address,address)
+ writer effect     -> contracts/deps/Controller.sol:42
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ potentially stale -> ('MS', 'contracts/deps/Controller.sol', 'Controller.vaults', '$arg0'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 4dd67ee2dc0c02a64024] {governance, keeper, strategist, vaults[$arg0]}
+ writer root       -> contracts/deps/SettV3.sol::SettV3.initialize(address,address,address,address,address,bool,string,string)
+ writer effect     -> contracts/deps/SettV3.sol:98
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ potentially stale -> ('MS', 'contracts/deps/Controller.sol', 'Controller.vaults', '$arg0'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 4f1202d71686e4e60664] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.getReward(address,bool)
+ writer effect     -> contracts/locker/CvxLocker.sol:958
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 522c75001d3fc5a678e6] {governance, keeper, strategist, vaults[$arg0]}
+ writer root       -> deps/BaseStrategy.sol::BaseStrategy.__BaseStrategy_init(address,address,address,address,address)
+ writer effect     -> deps/BaseStrategy.sol:71
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ potentially stale -> ('MS', 'contracts/deps/Controller.sol', 'Controller.vaults', '$arg0'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 55032197d01df3010479] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.notifyRewardAmount(address,uint256)
+ writer effect     -> contracts/locker/CvxLocker.sol:903
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 5899bf24c0732e567b8f] {_initialized, _initializing}
+ writer root       -> contracts/veCVXStrategy.sol::MyStrategy.initialize(address,address,address,address,address,address[3],uint256[3],address)
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:39
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 63ec692e061df03107e1] {governance, keeper, strategist, vaults[$arg0]}
+ writer root       -> contracts/deps/SettV3.sol::SettV3.initialize(address,address,address,address,address,bool,string,string)
+ writer effect     -> contracts/deps/SettV3.sol:100
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ potentially stale -> ('MS', 'contracts/deps/Controller.sol', 'Controller.vaults', '$arg0'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 64df5bda30d722df9e53] {governance, keeper}
+ writer root       -> deps/BaseStrategy.sol::BaseStrategy.__BaseStrategy_init(address,address,address,address,address)
+ writer effect     -> deps/BaseStrategy.sol:70
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ potentially stale -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 6514b157f0d78df6ccec] {_initialized, _initializing}
+ writer root       -> contracts/deps/MockToken.sol::MockToken.initialize(address[],uint256[])
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:46
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6885fc66834ad0089a81] {controller, governance, keeper}
+ writer root       -> deps/SettAccessControl.sol::SettAccessControl.setKeeper(address)
+ writer effect     -> deps/SettAccessControl.sol:46
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ potentially stale -> ('SV', 'deps/BaseStrategy.sol', 'BaseStrategy.controller'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ reader witnesses  -> 38
+ storage exposures -> 3
+[MV-SI candidate 696b2f13784c0064f8b3] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.addReward(address,address,bool)
+ writer effect     -> contracts/locker/CvxLocker.sol:151
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 71490721be696602144b] {controller, governance, keeper}
+ writer root       -> deps/BaseStrategy.sol::BaseStrategy.__BaseStrategy_init(address,address,address,address,address)
+ writer effect     -> deps/BaseStrategy.sol:70
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ potentially stale -> ('SV', 'deps/BaseStrategy.sol', 'BaseStrategy.controller'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 746434472f256451250f] {maximumBoostPayment, nextMaximumBoostPayment}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.checkpointEpoch()
+ writer effect     -> contracts/locker/CvxLocker.sol:560
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.maximumBoostPayment')
+ potentially stale -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.nextMaximumBoostPayment')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 7ea6b820f79042211fd0] {_initialized, _initializing}
+ writer root       -> contracts/deps/VipCappedGuestListWrapperUpgradeable.sol::VipCappedGuestListWrapperUpgradeable.initialize(address)
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:46
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7fa61899738eb2906dff] {governance, guardian}
+ writer root       -> deps/SettAccessControl.sol::SettAccessControl.setGovernance(address)
+ writer effect     -> deps/SettAccessControl.sol:53
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ potentially stale -> ('SV', 'contracts/deps/SettV3.sol', 'SettV3.guardian')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 83b24c0f774d43104689] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.notifyRewardAmount(address,uint256)
+ writer effect     -> contracts/locker/CvxLocker.sol:960
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 8a26cbf56330f00193e5] {_initialized, _initializing}
+ writer root       -> contracts/deps/SettV3.sol::SettV3.initialize(address,address,address,address,address,bool,string,string)
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:46
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 8b1624da4d63b5a710f4] {governance, guardian}
+ writer root       -> contracts/deps/SettV3.sol::SettV3.setGuardian(address)
+ writer effect     -> contracts/deps/SettV3.sol:251
+ written member    -> ('SV', 'contracts/deps/SettV3.sol', 'SettV3.guardian')
+ potentially stale -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 8b2a00caf9d2c3e3242f] {boostRate, nextBoostRate}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.setBoost(uint256,uint256,address)
+ writer effect     -> contracts/locker/CvxLocker.sol:196
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.nextBoostRate')
+ potentially stale -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.boostRate')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 8efd3e9e0d4cb8d72c45] {governance, keeper, strategist, vaults[$arg0]}
+ writer root       -> deps/SettAccessControl.sol::SettAccessControl.setStrategist(address)
+ writer effect     -> deps/SettAccessControl.sol:39
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ potentially stale -> ('MS', 'contracts/deps/Controller.sol', 'Controller.vaults', '$arg0'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ reader witnesses  -> 37
+ storage exposures -> 3
+[MV-SI candidate 8fb57f2aa54574bed8b1] {controller, governance, keeper}
+ writer root       -> deps/BaseStrategy.sol::BaseStrategy.__BaseStrategy_init(address,address,address,address,address)
+ writer effect     -> deps/BaseStrategy.sol:72
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ potentially stale -> ('SV', 'deps/BaseStrategy.sol', 'BaseStrategy.controller'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ reader witnesses  -> 17
+ storage exposures -> 1
+[MV-SI candidate 93911e3a73b8e3d469b8] {_initialized, _initializing}
+ writer root       -> contracts/deps/VipCappedGuestListWrapperUpgradeable.sol::VipCappedGuestListWrapperUpgradeable.initialize(address)
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:39
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 9c1bd51a2d0dc5618b26] {governance, keeper, strategist, vaults[$arg0]}
+ writer root       -> contracts/deps/Controller.sol::Controller.initialize(address,address,address,address)
+ writer effect     -> contracts/deps/Controller.sol:43
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ potentially stale -> ('MS', 'contracts/deps/Controller.sol', 'Controller.vaults', '$arg0'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate a0a2ba6161a68b0ba6cd] {boostRate, nextBoostRate}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.processExpiredLocks(bool,uint256,address)
+ writer effect     -> contracts/locker/CvxLocker.sol:557
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.boostRate')
+ potentially stale -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.nextBoostRate')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate a57b3747a7eb248881cc] {_initialized, _initializing}
+ writer root       -> contracts/veCVXStrategy.sol::MyStrategy.initialize(address,address,address,address,address,address[3],uint256[3],address)
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a7d51450b20b3952bbfa] {governance, guardian}
+ writer root       -> deps/BaseStrategy.sol::BaseStrategy.__BaseStrategy_init(address,address,address,address,address)
+ writer effect     -> deps/BaseStrategy.sol:74
+ written member    -> ('SV', 'deps/BaseStrategy.sol', 'BaseStrategy.guardian')
+ potentially stale -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate ab5f3ab0533355100dcf] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.notifyRewardAmount(address,uint256)
+ writer effect     -> contracts/locker/CvxLocker.sol:892
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate ad45b93c919a4d93cc28] {governance, keeper, strategist, vaults[$arg0]}
+ writer root       -> deps/SettAccessControl.sol::SettAccessControl.setKeeper(address)
+ writer effect     -> deps/SettAccessControl.sol:46
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ potentially stale -> ('MS', 'contracts/deps/Controller.sol', 'Controller.vaults', '$arg0'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ reader witnesses  -> 37
+ storage exposures -> 3
+[MV-SI candidate b86c35afa27856505ef5] {controller, governance, keeper}
+ writer root       -> contracts/deps/Controller.sol::Controller.initialize(address,address,address,address)
+ writer effect     -> contracts/deps/Controller.sol:41
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ potentially stale -> ('SV', 'deps/BaseStrategy.sol', 'BaseStrategy.controller'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b8d9dcc5564cfbfb3231] {_initialized, _initializing}
+ writer root       -> contracts/deps/MockToken.sol::MockToken.initialize(address[],uint256[])
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:39
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate bacc9682b991e9b7105e] {governance, keeper, strategist, vaults[$arg0]}
+ writer root       -> contracts/veCVXStrategy.sol::MyStrategy.initialize(address,address,address,address,address,address[3],uint256[3],address)
+ writer effect     -> deps/BaseStrategy.sol:70
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ potentially stale -> ('MS', 'contracts/deps/Controller.sol', 'Controller.vaults', '$arg0'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate bb6c57f0ffd779f2a027] {maximumBoostPayment, nextMaximumBoostPayment}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.kickExpiredLocks(address)
+ writer effect     -> contracts/locker/CvxLocker.sol:560
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.maximumBoostPayment')
+ potentially stale -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.nextMaximumBoostPayment')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate c0733352b606555fd6ee] {governance, guardian}
+ writer root       -> deps/BaseStrategy.sol::BaseStrategy.setGuardian(address)
+ writer effect     -> deps/BaseStrategy.sol:123
+ written member    -> ('SV', 'deps/BaseStrategy.sol', 'BaseStrategy.guardian')
+ potentially stale -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate c39930fa7182a8ccb087] {maximumBoostPayment, nextMaximumBoostPayment}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.lock(address,uint256,uint256)
+ writer effect     -> contracts/locker/CvxLocker.sol:560
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.maximumBoostPayment')
+ potentially stale -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.nextMaximumBoostPayment')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate c43594490c5028322b2f] {rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.getReward(address,bool)::LocalVariable::i_1], rewards[$arg0][@local::contracts/locker/CvxLocker.sol::CvxLocker.getReward(address,bool)::LocalVariable::_rewardsToken_1]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.getReward(address,bool)
+ writer effect     -> contracts/locker/CvxLocker.sol:870
+ written member    -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewards', '$arg0][@local::contracts/locker/CvxLocker.sol::CvxLocker.getReward(address,bool)::LocalVariable::_rewardsToken_1')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.getReward(address,bool)::LocalVariable::i_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c5969ad831aa34af56dc] {governance, keeper}
+ writer root       -> deps/SettAccessControl.sol::SettAccessControl.setKeeper(address)
+ writer effect     -> deps/SettAccessControl.sol:46
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ potentially stale -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ reader witnesses  -> 35
+ storage exposures -> 3
+[MV-SI candidate c70a8dd8a97c984a632e] {governance, strategist}
+ writer root       -> deps/SettAccessControl.sol::SettAccessControl.setGovernance(address)
+ writer effect     -> deps/SettAccessControl.sol:53
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ potentially stale -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate c83693de5c827a9327ba] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.getReward(address)
+ writer effect     -> contracts/locker/CvxLocker.sol:960
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate d0f7da00cdffa6cc0fd8] {controller, governance, keeper}
+ writer root       -> deps/BaseStrategy.sol::BaseStrategy.__BaseStrategy_init(address,address,address,address,address)
+ writer effect     -> deps/BaseStrategy.sol:73
+ written member    -> ('SV', 'deps/BaseStrategy.sol', 'BaseStrategy.controller')
+ potentially stale -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate d13fe78820b9631c6ed7] {_initialized, _initializing}
+ writer root       -> deps/BaseStrategy.sol::BaseStrategy.__BaseStrategy_init(address,address,address,address,address)
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate d4ec033d0dd767a5d9fc] {maximumBoostPayment, nextMaximumBoostPayment}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.processExpiredLocks(bool)
+ writer effect     -> contracts/locker/CvxLocker.sol:560
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.maximumBoostPayment')
+ potentially stale -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.nextMaximumBoostPayment')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate d6031decb4490653cb69] {_initialized, _initializing}
+ writer root       -> deps/BaseStrategy.sol::BaseStrategy.__BaseStrategy_init(address,address,address,address,address)
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:39
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate db89432e22e3245aa9ea] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.getReward(address,bool)
+ writer effect     -> contracts/locker/CvxLocker.sol:960
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate df24d1dfe7bd1681c49e] {controller, governance, keeper}
+ writer root       -> contracts/deps/SettV3.sol::SettV3.initialize(address,address,address,address,address,bool,string,string)
+ writer effect     -> contracts/deps/SettV3.sol:98
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ potentially stale -> ('SV', 'deps/BaseStrategy.sol', 'BaseStrategy.controller'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate df4fcd7ffec889d88abe] {_initialized, _initializing}
+ writer root       -> deps/BaseStrategy.sol::BaseStrategy.__BaseStrategy_init(address,address,address,address,address)
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:46
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e01f3e79ba1f130dbd8f] {boostRate, nextBoostRate}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.lock(address,uint256,uint256)
+ writer effect     -> contracts/locker/CvxLocker.sol:557
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.boostRate')
+ potentially stale -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.nextBoostRate')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate e3283a7c75cca61eeb68] {_initialized, _initializing}
+ writer root       -> contracts/deps/Controller.sol::Controller.initialize(address,address,address,address)
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:46
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e61c6d1b2c57fafa868f] {rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.getReward(address,bool)::LocalVariable::i_1], rewards[$arg0][@local::contracts/locker/CvxLocker.sol::CvxLocker.getReward(address,bool)::LocalVariable::_rewardsToken_1]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.getReward(address)
+ writer effect     -> contracts/locker/CvxLocker.sol:870
+ written member    -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewards', '$arg0][@local::contracts/locker/CvxLocker.sol::CvxLocker.getReward(address,bool)::LocalVariable::_rewardsToken_1')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.getReward(address,bool)::LocalVariable::i_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e7c41768a38df318bccf] {controller, governance, keeper}
+ writer root       -> deps/BaseStrategy.sol::BaseStrategy.setController(address)
+ writer effect     -> deps/BaseStrategy.sol:159
+ written member    -> ('SV', 'deps/BaseStrategy.sol', 'BaseStrategy.controller')
+ potentially stale -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate eb7677cd091252b6f1f5] {_initialized, _initializing}
+ writer root       -> contracts/deps/VipCappedGuestListWrapperUpgradeable.sol::VipCappedGuestListWrapperUpgradeable.initialize(address)
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate ecae5337b3e49747477f] {controller, governance, keeper}
+ writer root       -> contracts/deps/SettV3.sol::SettV3.initialize(address,address,address,address,address,bool,string,string)
+ writer effect     -> contracts/deps/SettV3.sol:100
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ potentially stale -> ('SV', 'deps/BaseStrategy.sol', 'BaseStrategy.controller'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate ee23fd0a476fecc30f90] {governance, keeper, strategist, vaults[$arg0]}
+ writer root       -> contracts/veCVXStrategy.sol::MyStrategy.initialize(address,address,address,address,address,address[3],uint256[3],address)
+ writer effect     -> deps/BaseStrategy.sol:71
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ potentially stale -> ('MS', 'contracts/deps/Controller.sol', 'Controller.vaults', '$arg0'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate ef18102d4ef2a2d59f1a] {governance, keeper, strategist, vaults[$arg0]}
+ writer root       -> contracts/deps/SettV3.sol::SettV3.initialize(address,address,address,address,address,bool,string,string)
+ writer effect     -> contracts/deps/SettV3.sol:99
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.strategist')
+ potentially stale -> ('MS', 'contracts/deps/Controller.sol', 'Controller.vaults', '$arg0'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate ef2b70ef04555962df8e] {controller, governance, keeper}
+ writer root       -> deps/SettAccessControl.sol::SettAccessControl.setGovernance(address)
+ writer effect     -> deps/SettAccessControl.sol:53
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ potentially stale -> ('SV', 'deps/BaseStrategy.sol', 'BaseStrategy.controller'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ reader witnesses  -> 10
+ storage exposures -> 3
+[MV-SI candidate f07bc0bb6aad67a6e901] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.processExpiredLocks(bool)
+ writer effect     -> contracts/locker/CvxLocker.sol:960
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate f1d33f2f0a821777f056] {governance, keeper}
+ writer root       -> deps/BaseStrategy.sol::BaseStrategy.__BaseStrategy_init(address,address,address,address,address)
+ writer effect     -> deps/BaseStrategy.sol:72
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ potentially stale -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate f77b790399bf145dd3b7] {_initialized, _initializing}
+ writer root       -> contracts/deps/MockToken.sol::MockToken.initialize(address[],uint256[])
+ writer effect     -> deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f9b689fa915abe9c0d3f] {controller, governance, keeper}
+ writer root       -> contracts/deps/Controller.sol::Controller.initialize(address,address,address,address)
+ writer effect     -> contracts/deps/Controller.sol:43
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ potentially stale -> ('SV', 'deps/BaseStrategy.sol', 'BaseStrategy.controller'), ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate fa6d1e42aab03d8e5808] {devGovernance, governance}
+ writer root       -> contracts/deps/BadgerRegistry.sol::BadgerRegistry.setDev(address)
+ writer effect     -> contracts/deps/BadgerRegistry.sol:74
+ written member    -> ('SV', 'contracts/deps/BadgerRegistry.sol', 'BadgerRegistry.devGovernance')
+ potentially stale -> ('SV', 'contracts/deps/BadgerRegistry.sol', 'BadgerRegistry.governance')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate fc1a6c665f57dff06c1b] {governance, keeper}
+ writer root       -> deps/SettAccessControl.sol::SettAccessControl.setGovernance(address)
+ writer effect     -> deps/SettAccessControl.sol:53
+ written member    -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.governance')
+ potentially stale -> ('SV', 'deps/SettAccessControl.sol', 'SettAccessControl.keeper')
+ reader witnesses  -> 7
+ storage exposures -> 3
+[MV-SI candidate fd792759e85cb4462a78] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.lock(address,uint256,uint256)
+ writer effect     -> contracts/locker/CvxLocker.sol:960
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate fe825211c302c7c53e17] {rewardData, rewardTokens[@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2]}
+ writer root       -> contracts/locker/CvxLocker.sol::CvxLocker.lock(address,uint256,uint256)
+ writer effect     -> contracts/locker/CvxLocker.sol:958
+ written member    -> ('SV', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardData')
+ potentially stale -> ('MS', 'contracts/locker/CvxLocker.sol', 'CvxLocker.rewardTokens', '@local::contracts/locker/CvxLocker.sol::CvxLocker.updateReward(address)::LocalVariable::i_2')
+ reader witnesses  -> 7
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (59 contracts with 1 detectors), 92 result(s) found

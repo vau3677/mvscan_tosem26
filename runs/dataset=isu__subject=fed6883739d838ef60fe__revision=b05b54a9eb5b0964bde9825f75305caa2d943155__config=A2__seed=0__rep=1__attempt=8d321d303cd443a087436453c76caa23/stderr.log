@@ -1,0 +1,709 @@
+'/tmp/.svm/0.8.13/solc-0.8.13 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1446 vars=160
+[mvscan-stage] root-seeding-done eligible_exposures=108 seeded=93 multi_exposure_entry_blocks=12 collapsed_contextual_aliases=15 excluded_dependency=0 excluded_interface=33 excluded_library=1 excluded_abstract=14 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=f459ac758ea54f4b99cfb5dc379ff460db7dc5a41ca5009902eed9020f1a940e candidate_count=100 candidate_digest=8e4e6200f8d28c54fd7c50bef0c8b5639f523f1a43214e065b435c5a9adc2f57 context_instance_count=1356 eligible_readers=300 eligible_writers=125 execution_context_digest=5991ff03ecd916ad011e12391fa84af2322add7f9ce6ce3c66430353701a29bb insensitive_readers_filtered=264 invalid_partial_write_filtered=0 must_full_relation_filtered=4 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=85 owner_context_pairs=2599 owner_context_pairs_considered=20810 raw_block_pairs=1436 reader_witness_count=2599 relation_base_members_shadowed=91 relation_context_incompatible=5204 relation_digest=6c361e00998e2c2108935d469eb3722fc82909524a7f9362a8d6dc6d967d54d8 relation_members_raw=278 relation_origins_registered=29 relation_origins_rejected_unary_after_shadowing=109 relation_origins_seen=138 relation_unbound_key_templates=284 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=57 scalar_variables_skipped=106 storage_context_mismatch=12918 variables_considered=135
+INFO:Detectors:
+
+[MV-SI candidate 0416a9747cab9b5406f9] {amountStaked[$arg0], roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/StakeAtRisk.sol::StakeAtRisk.setNewRound(uint256)
+ writer effect     -> src/StakeAtRisk.sol:82
+ written member    -> ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg0'), ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 0779b9ebcaa766f692db] {roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.setNewRound()
+ writer effect     -> src/StakeAtRisk.sol:82
+ written member    -> ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ potentially stale -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 09c43b4a2fa35aecd486] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 21
+ storage exposures -> 2
+[MV-SI candidate 0b0168fd448452b571d9] {amountStaked[$arg1], bpsLostPerLoss, roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/StakeAtRisk.sol::StakeAtRisk.setNewRound(uint256)
+ writer effect     -> src/StakeAtRisk.sol:82
+ written member    -> ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg1'), ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0'), ('SV', 'src/RankedBattle.sol', 'RankedBattle.bpsLostPerLoss')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 0b2d983d3d6944150651] {accumulatedPointsPerFighter[$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId], roundId, stakingFactor[$arg1]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.setNewRound()
+ writer effect     -> src/RankedBattle.sol:236
+ written member    -> ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.accumulatedPointsPerFighter', '$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId'), ('MS', 'src/RankedBattle.sol', 'RankedBattle.stakingFactor', '$arg1')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 168b594af25f0e8a285d] {amountStaked[$arg1], bpsLostPerLoss, roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/StakeAtRisk.sol:102
+ written member    -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg1'), ('SV', 'src/RankedBattle.sol', 'RankedBattle.bpsLostPerLoss'), ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate 193c44b0e94a18c85bc7] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 22068e09280eda242ca7] {_owners[$arg0], fighterFarmContractAddress}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('SV', 'src/AAMintPass.sol', 'AAMintPass.fighterFarmContractAddress')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 22f88e61598e38ea5a7f] {amountStaked[$arg1], bpsLostPerLoss, roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.setBpsLostPerLoss(uint256)
+ writer effect     -> src/RankedBattle.sol:228
+ written member    -> ('SV', 'src/RankedBattle.sol', 'RankedBattle.bpsLostPerLoss')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg1'), ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0'), ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate 28024f57156df158c568] {allowanceRemaining[$sender][$arg0], dailyAllowanceReplenishTime[$sender][$arg0]}
+ writer root       -> src/GameItems.sol::GameItems.mint(uint256,uint256)
+ writer effect     -> src/GameItems.sol:313
+ written member    -> ('MS', 'src/GameItems.sol', 'GameItems.allowanceRemaining', '$sender][$arg0')
+ potentially stale -> ('MS', 'src/GameItems.sol', 'GameItems.dailyAllowanceReplenishTime', '$sender][$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 29ca6e656014fa425727] {_owners[$arg0], fighterFarmContractAddress}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('SV', 'src/AAMintPass.sol', 'AAMintPass.fighterFarmContractAddress')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 30fba20dc12de86d636a] {accumulatedPointsPerFighter[$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId], roundId, stakingFactor[$arg1]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/RankedBattle.sol:434
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.stakingFactor', '$arg1')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.accumulatedPointsPerFighter', '$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId'), ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 33d95790df436a66b9c4] {numRoundsClaimed[$sender], roundId}
+ writer root       -> src/RankedBattle.sol::RankedBattle.setNewRound()
+ writer effect     -> src/RankedBattle.sol:236
+ written member    -> ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.numRoundsClaimed', '$sender')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 347b12ce0784b2df3282] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 35895a678fb594b30a7f] {accumulatedPointsPerFighter[$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId], roundId, stakingFactor[$arg1]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/RankedBattle.sol:466
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.accumulatedPointsPerFighter', '$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.stakingFactor', '$arg1'), ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate 386ceac92cf17bd43284] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:343
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 54
+ storage exposures -> 2
+[MV-SI candidate 39b821e70d4702c38f82] {accumulatedPointsPerFighter[$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId], roundId}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/RankedBattle.sol:485
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.accumulatedPointsPerFighter', '$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId')
+ potentially stale -> ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 3acc40db6b13fb8e4363] {amountStaked[$arg1], bpsLostPerLoss, roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/RankedBattle.sol:496
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg1')
+ potentially stale -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0'), ('SV', 'src/RankedBattle.sol', 'RankedBattle.bpsLostPerLoss'), ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 3b3810de19780c6dcac4] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.claimFighters(uint8[2],bytes,string[],string[])
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:285
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 3cba694960628d309880] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 410c882bdae6d9ee3a86] {roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg1]}
+ writer root       -> src/StakeAtRisk.sol::StakeAtRisk.updateAtRiskRecords(uint256,uint256,address)
+ writer effect     -> src/StakeAtRisk.sol:123
+ written member    -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg1')
+ potentially stale -> ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 425902c1afbc98f24f11] {roundId, totalAccumulatedPoints[@state::src/RankedBattle.sol::RankedBattle.roundId]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/RankedBattle.sol:487
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.totalAccumulatedPoints', '@state::src/RankedBattle.sol::RankedBattle.roundId')
+ potentially stale -> ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 42d44f9899cb4b86847b] {amountStaked[$arg1], bpsLostPerLoss, roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/RankedBattle.sol:462
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg1')
+ potentially stale -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0'), ('SV', 'src/RankedBattle.sol', 'RankedBattle.bpsLostPerLoss'), ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 4364f3fd1a14f64d8f71] {_calculatedStakingFactor[$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId], roundId}
+ writer root       -> src/RankedBattle.sol::RankedBattle.setNewRound()
+ writer effect     -> src/RankedBattle.sol:236
+ written member    -> ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle._calculatedStakingFactor', '$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 436a858159b574346522] {hasUnstaked[$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId], roundId}
+ writer root       -> src/RankedBattle.sol::RankedBattle.setNewRound()
+ writer effect     -> src/RankedBattle.sol:236
+ written member    -> ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.hasUnstaked', '$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 4437929c918913fc76a0] {_calculatedStakingFactor[$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId], roundId}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/RankedBattle.sol:435
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle._calculatedStakingFactor', '$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId')
+ potentially stale -> ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ reader witnesses  -> 17
+ storage exposures -> 1
+[MV-SI candidate 446bbedf9a5222c028c0] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.redeemMintPass(uint256[],uint8[],uint8[],string[],string[],string[])
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:285
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 446ffdfdfdea3e48acc8] {amountStaked[$arg1], bpsLostPerLoss, roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.stakeNRN(uint256,uint256)
+ writer effect     -> src/RankedBattle.sol:256
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg1')
+ potentially stale -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0'), ('SV', 'src/RankedBattle.sol', 'RankedBattle.bpsLostPerLoss'), ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 46ba090c17cfa3423fa8] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 28
+ storage exposures -> 2
+[MV-SI candidate 477d50955e4dc50cd7b1] {accumulatedPointsPerFighter[$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId], roundId, stakingFactor[$arg1]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/RankedBattle.sol:485
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.accumulatedPointsPerFighter', '$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.stakingFactor', '$arg1'), ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate 4896e7803e17c21eba0d] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 489c59c06c3822ce29b9] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 48b82a5f845b745bfcc0] {allowanceRemaining[$sender][$arg0], dailyAllowanceReplenishTime[$sender][$arg0]}
+ writer root       -> src/GameItems.sol::GameItems.mint(uint256,uint256)
+ writer effect     -> src/GameItems.sol:169
+ written member    -> ('MS', 'src/GameItems.sol', 'GameItems.allowanceRemaining', '$sender][$arg0')
+ potentially stale -> ('MS', 'src/GameItems.sol', 'GameItems.dailyAllowanceReplenishTime', '$sender][$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 4919d622cf92ac5e1a7a] {_calculatedStakingFactor[$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId], roundId}
+ writer root       -> src/RankedBattle.sol::RankedBattle.unstakeNRN(uint256,uint256)
+ writer effect     -> src/RankedBattle.sol:281
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle._calculatedStakingFactor', '$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId')
+ potentially stale -> ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ reader witnesses  -> 17
+ storage exposures -> 1
+[MV-SI candidate 4f0b1b2fce45070217fe] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 54
+ storage exposures -> 2
+[MV-SI candidate 50129a7a8e9584c0db72] {roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg1]}
+ writer root       -> src/StakeAtRisk.sol::StakeAtRisk.setNewRound(uint256)
+ writer effect     -> src/StakeAtRisk.sol:82
+ written member    -> ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ potentially stale -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg1')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 53530d684fc6ce849a36] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/AAMintPass.sol::AAMintPass.burn(uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 551d15f1784b87284172] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.approve(address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 98
+ storage exposures -> 3
+[MV-SI candidate 5d902ec01efda7631031] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 21
+ storage exposures -> 2
+[MV-SI candidate 626ebc1089201daebb02] {numRoundsClaimed[$sender], roundId}
+ writer root       -> src/RankedBattle.sol::RankedBattle.claimNRN()
+ writer effect     -> src/RankedBattle.sol:304
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.numRoundsClaimed', '$sender')
+ potentially stale -> ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 64ae882f6d72483fca4d] {accumulatedPointsPerFighter[$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId], roundId, stakingFactor[$arg1]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.stakeNRN(uint256,uint256)
+ writer effect     -> src/RankedBattle.sol:258
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.stakingFactor', '$arg1')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.accumulatedPointsPerFighter', '$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId'), ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 65f5d597df012db9878f] {roundId, totalAccumulatedPoints[@state::src/RankedBattle.sol::RankedBattle.roundId]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/RankedBattle.sol:468
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.totalAccumulatedPoints', '@state::src/RankedBattle.sol::RankedBattle.roundId')
+ potentially stale -> ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 65fbedc86229e8b6d258] {amountStaked[$arg0], roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/StakeAtRisk.sol:102
+ written member    -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg0'), ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 669822b6cd1c75b1f82d] {roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/StakeAtRisk.sol::StakeAtRisk.updateAtRiskRecords(uint256,uint256,address)
+ writer effect     -> src/StakeAtRisk.sol:123
+ written member    -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0')
+ potentially stale -> ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 6a1762765731175151cf] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 6ba961f5b6e6208aeb4f] {roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg1]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/StakeAtRisk.sol:123
+ written member    -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg1')
+ potentially stale -> ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 6f0f99c47dbddfe870e2] {maxRerollsAllowed[$arg1], numRerolls[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.reRoll(uint8,uint8)
+ writer effect     -> src/FighterFarm.sol:378
+ written member    -> ('MS', 'src/FighterFarm.sol', 'FighterFarm.numRerolls', '$arg0')
+ potentially stale -> ('MS', 'src/FighterFarm.sol', 'FighterFarm.maxRerollsAllowed', '$arg1')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6f32e68bd4ea35b37030] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 54
+ storage exposures -> 2
+[MV-SI candidate 7196c28b2fd2ae347e52] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 731481f047278c25a70b] {roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg1]}
+ writer root       -> src/StakeAtRisk.sol::StakeAtRisk.reclaimNRN(uint256,uint256,address)
+ writer effect     -> src/StakeAtRisk.sol:102
+ written member    -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg1')
+ potentially stale -> ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 74a84c43b807f2aa3c6f] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:343
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 789e992b53f91cc5c945] {roundId, totalAccumulatedPoints[@state::src/RankedBattle.sol::RankedBattle.roundId]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.setNewRound()
+ writer effect     -> src/RankedBattle.sol:236
+ written member    -> ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.totalAccumulatedPoints', '@state::src/RankedBattle.sol::RankedBattle.roundId')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 78c5b050ec472e52f3d4] {accumulatedPointsPerFighter[$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId], roundId}
+ writer root       -> src/RankedBattle.sol::RankedBattle.setNewRound()
+ writer effect     -> src/RankedBattle.sol:236
+ written member    -> ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.accumulatedPointsPerFighter', '$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 78fc095c57c01201e519] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:343
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 54
+ storage exposures -> 2
+[MV-SI candidate 79c7261326a213487dee] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate 7c13c48ccafde8b82276] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 98
+ storage exposures -> 3
+[MV-SI candidate 7dacabe8bf04769959f5] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:343
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 81e54e77c674969c1fb7] {roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg1]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.setNewRound()
+ writer effect     -> src/StakeAtRisk.sol:82
+ written member    -> ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ potentially stale -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg1')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 848a17d80435806d6938] {roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/StakeAtRisk.sol:102
+ written member    -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0')
+ potentially stale -> ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 85c8f95686f4edf8b443] {_owners[$arg0], fighterFarmContractAddress}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('SV', 'src/AAMintPass.sol', 'AAMintPass.fighterFarmContractAddress')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 924017e6593acc2c8c10] {hasUnstaked[$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId], roundId}
+ writer root       -> src/RankedBattle.sol::RankedBattle.unstakeNRN(uint256,uint256)
+ writer effect     -> src/RankedBattle.sol:282
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.hasUnstaked', '$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId')
+ potentially stale -> ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ reader witnesses  -> 17
+ storage exposures -> 1
+[MV-SI candidate 926d872a45408622a492] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate 9521a89e0e53b19ccbf6] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.updateFighterStaking(uint256,bool)
+ writer effect     -> src/FighterFarm.sol:270
+ written member    -> ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate 9671a093eb97ef053417] {accumulatedPointsPerFighter[$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId], roundId}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/RankedBattle.sol:466
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.accumulatedPointsPerFighter', '$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId')
+ potentially stale -> ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 993e34b448fd7ef0fce2] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.approve(address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 87
+ storage exposures -> 3
+[MV-SI candidate 9c960d817f148b00156c] {accumulatedPointsPerAddress[$sender][@local::src/RankedBattle.sol::RankedBattle.claimNRN()::LocalVariable::currentRound_2], numRoundsClaimed[$sender], rankedNrnDistribution[$arg0], totalAccumulatedPoints[@local::src/RankedBattle.sol::RankedBattle.claimNRN()::LocalVariable::currentRound_2]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.claimNRN()
+ writer effect     -> src/RankedBattle.sol:304
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.numRoundsClaimed', '$sender')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.accumulatedPointsPerAddress', '$sender][@local::src/RankedBattle.sol::RankedBattle.claimNRN()::LocalVariable::currentRound_2'), ('MS', 'src/RankedBattle.sol', 'RankedBattle.rankedNrnDistribution', '$arg0'), ('MS', 'src/RankedBattle.sol', 'RankedBattle.totalAccumulatedPoints', '@local::src/RankedBattle.sol::RankedBattle.claimNRN()::LocalVariable::currentRound_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 9f1a2a736f23291325ca] {_owners[$arg0], fighterFarmContractAddress}
+ writer root       -> src/AAMintPass.sol::AAMintPass.setFighterFarmAddress(address)
+ writer effect     -> src/AAMintPass.sol:81
+ written member    -> ('SV', 'src/AAMintPass.sol', 'AAMintPass.fighterFarmContractAddress')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 9fa239c0bcd4b6c828a6] {allowanceRemaining[$sender][$arg0], dailyAllowanceReplenishTime[$sender][$arg0]}
+ writer root       -> src/GameItems.sol::GameItems.mint(uint256,uint256)
+ writer effect     -> src/GameItems.sol:314
+ written member    -> ('MS', 'src/GameItems.sol', 'GameItems.dailyAllowanceReplenishTime', '$sender][$arg0')
+ potentially stale -> ('MS', 'src/GameItems.sol', 'GameItems.allowanceRemaining', '$sender][$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a01822401889b748b51b] {amountStaked[$arg1], bpsLostPerLoss, roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/StakeAtRisk.sol::StakeAtRisk.updateAtRiskRecords(uint256,uint256,address)
+ writer effect     -> src/StakeAtRisk.sol:123
+ written member    -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg1'), ('SV', 'src/RankedBattle.sol', 'RankedBattle.bpsLostPerLoss'), ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate a06fe5a148594327227c] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 54
+ storage exposures -> 2
+[MV-SI candidate a2848edab56b7c6375d3] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 87
+ storage exposures -> 3
+[MV-SI candidate a4f69c520d4a67d0632c] {roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/StakeAtRisk.sol:123
+ written member    -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0')
+ potentially stale -> ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate a513bd172f1ad86b99e0] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 30
+ storage exposures -> 3
+[MV-SI candidate a567842c0b1d54023afc] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.unstakeNRN(uint256,uint256)
+ writer effect     -> src/FighterFarm.sol:270
+ written member    -> ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate a6daf8d10ff95016a9b7] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.stakeNRN(uint256,uint256)
+ writer effect     -> src/FighterFarm.sol:270
+ written member    -> ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate a827826d2a05ee385f59] {maxRerollsAllowed[$arg1], numRerolls[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.incrementGeneration(uint8)
+ writer effect     -> src/FighterFarm.sol:132
+ written member    -> ('MS', 'src/FighterFarm.sol', 'FighterFarm.maxRerollsAllowed', '$arg1')
+ potentially stale -> ('MS', 'src/FighterFarm.sol', 'FighterFarm.numRerolls', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate aa1f04301c67c22046bc] {amountStaked[$arg0], roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.setNewRound()
+ writer effect     -> src/StakeAtRisk.sol:82
+ written member    -> ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg0'), ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate b5a6a0e62df32bafb0f2] {amountStaked[$arg0], roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/StakeAtRisk.sol:123
+ written member    -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg0'), ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate b75e1ad5f9cb044ed0fb] {amountStaked[$arg1], bpsLostPerLoss, roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.unstakeNRN(uint256,uint256)
+ writer effect     -> src/RankedBattle.sol:275
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg1')
+ potentially stale -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0'), ('SV', 'src/RankedBattle.sol', 'RankedBattle.bpsLostPerLoss'), ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate b784d69b8484efce9a08] {amountStaked[$arg1], bpsLostPerLoss, roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/StakeAtRisk.sol:123
+ written member    -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg1'), ('SV', 'src/RankedBattle.sol', 'RankedBattle.bpsLostPerLoss'), ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate b9b737f5bf36de47ce94] {amountStaked[$arg0], roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/StakeAtRisk.sol::StakeAtRisk.updateAtRiskRecords(uint256,uint256,address)
+ writer effect     -> src/StakeAtRisk.sol:123
+ written member    -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg0'), ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate ba066281fc972e159af0] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate bb8ff08e98ccedb6fd80] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:343
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 82
+ storage exposures -> 3
+[MV-SI candidate bc73c759bffc44e6f085] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate bde14cb58325d741dfba] {amountStaked[$arg1], bpsLostPerLoss, roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/StakeAtRisk.sol::StakeAtRisk.reclaimNRN(uint256,uint256,address)
+ writer effect     -> src/StakeAtRisk.sol:102
+ written member    -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg1'), ('SV', 'src/RankedBattle.sol', 'RankedBattle.bpsLostPerLoss'), ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate be7b20f60ae04f38d120] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 82
+ storage exposures -> 3
+[MV-SI candidate c4e2446725e111657d04] {_calculatedStakingFactor[$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId], roundId}
+ writer root       -> src/RankedBattle.sol::RankedBattle.stakeNRN(uint256,uint256)
+ writer effect     -> src/RankedBattle.sol:262
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle._calculatedStakingFactor', '$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId')
+ potentially stale -> ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ reader witnesses  -> 17
+ storage exposures -> 1
+[MV-SI candidate c55ccf5e7eef78d7e54f] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 28
+ storage exposures -> 2
+[MV-SI candidate c9a3b8279614a0364108] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.mintFromMergingPool(address,string,string,uint256[2])
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:285
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate d467d6e5714b258d7f79] {accumulatedPointsPerFighter[$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId], roundId, stakingFactor[$arg1]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.unstakeNRN(uint256,uint256)
+ writer effect     -> src/RankedBattle.sol:277
+ written member    -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.stakingFactor', '$arg1')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.accumulatedPointsPerFighter', '$arg1][@state::src/RankedBattle.sol::RankedBattle.roundId'), ('SV', 'src/RankedBattle.sol', 'RankedBattle.roundId')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate dba0aba589f685c23435] {amountStaked[$arg1], bpsLostPerLoss, roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.setNewRound()
+ writer effect     -> src/StakeAtRisk.sol:82
+ written member    -> ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg1'), ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0'), ('SV', 'src/RankedBattle.sol', 'RankedBattle.bpsLostPerLoss')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate dd151f7a1d965d771b42] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 60
+ storage exposures -> 3
+[MV-SI candidate df0a6ecbed26e3dfbc59] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate e4d4e9b81b0efb863612] {roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg1]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool)
+ writer effect     -> src/StakeAtRisk.sol:102
+ written member    -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg1')
+ potentially stale -> ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate e58ed83a8c9dd5aace16] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/AAMintPass.sol::AAMintPass.claimMintPass(uint8[2],bytes,string[])
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:285
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate f109f3e2f79a989567d3] {amountStaked[$arg0], roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/StakeAtRisk.sol::StakeAtRisk.reclaimNRN(uint256,uint256,address)
+ writer effect     -> src/StakeAtRisk.sol:102
+ written member    -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0')
+ potentially stale -> ('MS', 'src/RankedBattle.sol', 'RankedBattle.amountStaked', '$arg0'), ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate f18b33d30e5b874459cf] {roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/StakeAtRisk.sol::StakeAtRisk.setNewRound(uint256)
+ writer effect     -> src/StakeAtRisk.sol:82
+ written member    -> ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ potentially stale -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate f5232553e832f756b3f3] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> src/AAMintPass.sol::AAMintPass.burn(uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate fb2e9cc19cff843358ee] {_balances[$arg0], _operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 54
+ storage exposures -> 2
+[MV-SI candidate ff451f378372d9fddd00] {roundId, stakeAtRisk[@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0]}
+ writer root       -> src/StakeAtRisk.sol::StakeAtRisk.reclaimNRN(uint256,uint256,address)
+ writer effect     -> src/StakeAtRisk.sol:102
+ written member    -> ('MS', 'src/StakeAtRisk.sol', 'StakeAtRisk.stakeAtRisk', '@state::src/StakeAtRisk.sol::StakeAtRisk.roundId][$arg0')
+ potentially stale -> ('SV', 'src/StakeAtRisk.sol', 'StakeAtRisk.roundId')
+ reader witnesses  -> 11
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (33 contracts with 1 detectors), 100 result(s) found

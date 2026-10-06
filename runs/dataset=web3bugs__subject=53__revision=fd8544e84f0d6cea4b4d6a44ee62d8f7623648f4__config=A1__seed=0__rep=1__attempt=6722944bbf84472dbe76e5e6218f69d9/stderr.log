@@ -1,0 +1,163 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1321 vars=87
+[mvscan-stage] root-seeding-done eligible_exposures=111 seeded=86 multi_exposure_entry_blocks=13 collapsed_contextual_aliases=25 excluded_dependency=0 excluded_interface=46 excluded_library=0 excluded_abstract=16 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=f3dadbae9f262bee06a1d6f7fbe69742fd29c0d24db12b6d48bf0818aea105a9 candidate_count=21 candidate_digest=007d3c86a3a52d9052dec214781a1720ecb01bd4a93f624cb925e6285998d716 context_instance_count=177 eligible_readers=10 eligible_writers=11 execution_context_digest=90eee8b6da8ae711edeed87d38e159766133027f37db38759e4287c391ed30b2 insensitive_readers_filtered=29 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=177 owner_context_pairs_considered=292 raw_block_pairs=110 reader_witness_count=177 relation_base_members_shadowed=0 relation_context_incompatible=115 relation_digest=de1bb11807ba5970cd23a75d10574d126081d7e4fef38e6d5a54bf7240be3c09 relation_members_raw=29 relation_origins_registered=2 relation_origins_rejected_unary_after_shadowing=23 relation_origins_rejected_unreachable=16 relation_origins_seen=25 relation_unbound_key_templates=23 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=8 scalar_variables_skipped=50 storage_context_mismatch=0 variables_considered=52
+INFO:Detectors:
+
+[MV-SI candidate 24175a2f53d0718d636f] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/FeeSplitter.sol::FeeSplitter.updateShareholder(uint256,uint256)
+ writer effect     -> contracts/FeeSplitter.sol:173
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ reader witnesses  -> 17
+ storage exposures -> 1
+[MV-SI candidate 4135b65792550580f14c] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.sellTokensToNft(uint256,IERC20,uint256[],INestedFactory.Order[])
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 416bd6222285763e40d4] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/FeeSplitter.sol::FeeSplitter.setShareholders(address[],uint256[])
+ writer effect     -> contracts/FeeSplitter.sol:104
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 41b8a84cac8e8143345a] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.create(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 44def518932950264ca0] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/FeeSplitter.sol::FeeSplitter.sendFeesWithRoyalties(address,IERC20,uint256)
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 493547be05a67e2609f0] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/FeeSplitter.sol::FeeSplitter.setShareholders(address[],uint256[])
+ writer effect     -> contracts/FeeSplitter.sol:265
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ reader witnesses  -> 17
+ storage exposures -> 1
+[MV-SI candidate 49c2b886268c69bf869a] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/FeeSplitter.sol::FeeSplitter.sendFees(IERC20,uint256)
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 5cdf8cbe700f9b799df8] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.addTokens(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 6754e57d769b636c232a] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/FeeSplitter.sol::FeeSplitter.updateShareholder(uint256,uint256)
+ writer effect     -> contracts/FeeSplitter.sol:170
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 71417650704bdef9e697] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.swapTokenForTokens(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 8f4c730a5e454b75e226] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/mocks/DummyRouter.sol::DummyRouter.reentrancyAttackForDestroy(uint256)
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 907e13af2d21cb2785b9] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.destroy(uint256,IERC20,INestedFactory.Order[])
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 94e349067f7f28a68e21] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/FeeSplitter.sol::FeeSplitter.setRoyaltiesWeight(uint256)
+ writer effect     -> contracts/FeeSplitter.sol:95
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 9b07e218bd3dff140173] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/FeeSplitter.sol::FeeSplitter.setShareholders(address[],uint256[])
+ writer effect     -> contracts/FeeSplitter.sol:264
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate a852b50da5b6f79266c6] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/FeeSplitter.sol::FeeSplitter.setShareholders(address[],uint256[])
+ writer effect     -> contracts/FeeSplitter.sol:106
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate aac857e0c048d50fa202] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/mocks/DummyRouter.sol::DummyRouter.prepareAttack(address,IWETH,INestedFactory.Order[],INestedFactory.Order[])
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate bd750957bf2f009629b3] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.withdraw(uint256,uint256)
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate c4fd7fb5da5abb1c5c09] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/FeeSplitter.sol::FeeSplitter.setRoyaltiesWeight(uint256)
+ writer effect     -> contracts/FeeSplitter.sol:97
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ reader witnesses  -> 17
+ storage exposures -> 1
+[MV-SI candidate cb32d8b5aa816c551456] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.sellTokensToWallet(uint256,IERC20,uint256[],INestedFactory.Order[])
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate ef2ea5af6dc98695088f] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/FeeSplitter.sol::FeeSplitter.setRoyaltiesWeight(uint256)
+ writer effect     -> contracts/FeeSplitter.sol:96
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate f2cef6c2ac8caee3920c] {royaltiesWeight, shareholders, totalWeights}
+ writer root       -> contracts/FeeSplitter.sol::FeeSplitter.updateShareholder(uint256,uint256)
+ writer effect     -> contracts/FeeSplitter.sol:167
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.royaltiesWeight'), ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 5
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=8 vars=1
+[mvscan-stage] root-seeding-done eligible_exposures=1 seeded=1 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=ddbfd1375918aa6bda17865fad159f63a3c338d8871851b4a214f6573a509e2a invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=31 vars=8
+[mvscan-stage] root-seeding-done eligible_exposures=6 seeded=6 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4ad690d33e18b458ea2f4bafeffe121b523b0c45121010d84108e280766bec9e candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=83ada319037ef0f22719d1ad519a037f38667aa1f6ae6ed1593f6e64359e1a05 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=5 storage_context_mismatch=0 variables_considered=5
+INFO:Slither:. analyzed (48 contracts with 1 detectors), 21 result(s) found

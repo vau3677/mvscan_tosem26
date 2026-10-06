@@ -1,0 +1,71 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1533 vars=53
+[mvscan-stage] root-seeding-done eligible_exposures=60 seeded=56 multi_exposure_entry_blocks=3 collapsed_contextual_aliases=4 excluded_dependency=0 excluded_interface=49 excluded_library=0 excluded_abstract=3 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=9025de41cf4d429072b7c0dcd25ae5f129d418e89d317de339f55f077d4112ee candidate_count=9 candidate_digest=3b15fcd202d02439bf55bb14960e7827a190b12227bdd2fbbc60a297114a70d3 context_instance_count=41 eligible_readers=11 eligible_writers=15 execution_context_digest=8deb93cfc5a53e7162a1d5141bf15e53cd3186fcc3266689a215a4c6bd6cbee6 insensitive_readers_filtered=5 invalid_partial_write_filtered=1 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=2 owner_context_pairs=41 owner_context_pairs_considered=229 raw_block_pairs=48 reader_witness_count=41 relation_base_members_shadowed=0 relation_context_incompatible=185 relation_digest=75c7538a3e39b44b053b208b097a374eae4853cbd34e5a34d9cad178a36c09c7 relation_members_raw=18 relation_origins_registered=4 relation_origins_rejected_unary_after_shadowing=8 relation_origins_rejected_unreachable=64 relation_origins_seen=12 relation_unbound_key_templates=1 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=7 scalar_variables_skipped=32 storage_context_mismatch=0 variables_considered=36
+INFO:Detectors:
+
+[MV-SI candidate 0c3492a7e5586746f968] {_controllers, controllerFor, pauser}
+ writer root       -> contracts/factory/Factory.sol::Factory.initialize(ICollateral,IIncentivizer,IProduct,address)
+ writer effect     -> contracts/factory/Factory.sol:186
+ written member    -> ('SV', 'contracts/factory/Factory.sol', 'Factory.pauser')
+ potentially stale -> ('SV', 'contracts/factory/Factory.sol', 'Factory._controllers'), ('SV', 'contracts/factory/Factory.sol', 'Factory.controllerFor')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 12d324ff001f0cad7529] {minDelay, priceAtVersion, timestampAtVersion[@local::contracts/oracle/ChainlinkOracle.sol::ChainlinkOracle.sync()::TemporaryVariable::TMP_749]}
+ writer root       -> contracts/oracle/ChainlinkOracle.sol::ChainlinkOracle.sync()
+ writer effect     -> contracts/oracle/ChainlinkOracle.sol:67
+ written member    -> ('SV', 'contracts/oracle/ChainlinkOracle.sol', 'ChainlinkOracle.priceAtVersion')
+ potentially stale -> ('MS', 'contracts/oracle/ChainlinkOracle.sol', 'ChainlinkOracle.timestampAtVersion', '@local::contracts/oracle/ChainlinkOracle.sol::ChainlinkOracle.sync()::TemporaryVariable::TMP_749'), ('SV', 'contracts/oracle/ChainlinkOracle.sol', 'ChainlinkOracle.minDelay')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 24b07e7ef686249ad7b5] {minDelay, priceAtVersion, timestampAtVersion[@local::contracts/oracle/ChainlinkOracle.sol::ChainlinkOracle.sync()::TemporaryVariable::TMP_749]}
+ writer root       -> contracts/oracle/ChainlinkOracle.sol::ChainlinkOracle.updateMinDelay(uint256)
+ writer effect     -> contracts/oracle/ChainlinkOracle.sol:75
+ written member    -> ('SV', 'contracts/oracle/ChainlinkOracle.sol', 'ChainlinkOracle.minDelay')
+ potentially stale -> ('MS', 'contracts/oracle/ChainlinkOracle.sol', 'ChainlinkOracle.timestampAtVersion', '@local::contracts/oracle/ChainlinkOracle.sol::ChainlinkOracle.sync()::TemporaryVariable::TMP_749'), ('SV', 'contracts/oracle/ChainlinkOracle.sol', 'ChainlinkOracle.priceAtVersion')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 557a65fdbbf043731cff] {_controllers, controllerFor, pauser}
+ writer root       -> contracts/factory/Factory.sol::Factory.initialize(ICollateral,IIncentivizer,IProduct,address)
+ writer effect     -> contracts/factory/Factory.sol:87
+ written member    -> ('SV', 'contracts/factory/Factory.sol', 'Factory._controllers')
+ potentially stale -> ('SV', 'contracts/factory/Factory.sol', 'Factory.controllerFor'), ('SV', 'contracts/factory/Factory.sol', 'Factory.pauser')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 86bc68a79126f1c1d67b] {_controllers, controllerFor, pauser}
+ writer root       -> contracts/factory/Factory.sol::Factory.createController(address)
+ writer effect     -> contracts/factory/Factory.sol:85
+ written member    -> ('SV', 'contracts/factory/Factory.sol', 'Factory._controllers')
+ potentially stale -> ('SV', 'contracts/factory/Factory.sol', 'Factory.controllerFor'), ('SV', 'contracts/factory/Factory.sol', 'Factory.pauser')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a346d9b61ba170dc9e5d] {_controllers, controllerFor, pauser}
+ writer root       -> contracts/factory/Factory.sol::Factory.createController(address)
+ writer effect     -> contracts/factory/Factory.sol:87
+ written member    -> ('SV', 'contracts/factory/Factory.sol', 'Factory._controllers')
+ potentially stale -> ('SV', 'contracts/factory/Factory.sol', 'Factory.controllerFor'), ('SV', 'contracts/factory/Factory.sol', 'Factory.pauser')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate af53218a373853c372dc] {_controllers, controllerFor, pauser}
+ writer root       -> contracts/factory/Factory.sol::Factory.updatePauser(address)
+ writer effect     -> contracts/factory/Factory.sol:186
+ written member    -> ('SV', 'contracts/factory/Factory.sol', 'Factory.pauser')
+ potentially stale -> ('SV', 'contracts/factory/Factory.sol', 'Factory._controllers'), ('SV', 'contracts/factory/Factory.sol', 'Factory.controllerFor')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate b1107d60555b9ab1cb2a] {_controllers, controllerFor, pauser}
+ writer root       -> contracts/factory/Factory.sol::Factory.initialize(ICollateral,IIncentivizer,IProduct,address)
+ writer effect     -> contracts/factory/Factory.sol:85
+ written member    -> ('SV', 'contracts/factory/Factory.sol', 'Factory._controllers')
+ potentially stale -> ('SV', 'contracts/factory/Factory.sol', 'Factory.controllerFor'), ('SV', 'contracts/factory/Factory.sol', 'Factory.pauser')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b567f99ab7e17b4477c0] {minDelay, priceAtVersion, timestampAtVersion[@local::contracts/oracle/ChainlinkOracle.sol::ChainlinkOracle.sync()::TemporaryVariable::TMP_749]}
+ writer root       -> contracts/oracle/ChainlinkOracle.sol::ChainlinkOracle.sync()
+ writer effect     -> contracts/oracle/ChainlinkOracle.sol:55
+ written member    -> ('SV', 'contracts/oracle/ChainlinkOracle.sol', 'ChainlinkOracle.priceAtVersion')
+ potentially stale -> ('MS', 'contracts/oracle/ChainlinkOracle.sol', 'ChainlinkOracle.timestampAtVersion', '@local::contracts/oracle/ChainlinkOracle.sol::ChainlinkOracle.sync()::TemporaryVariable::TMP_749'), ('SV', 'contracts/oracle/ChainlinkOracle.sol', 'ChainlinkOracle.minDelay')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (46 contracts with 1 detectors), 9 result(s) found

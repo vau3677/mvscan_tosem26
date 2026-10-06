@@ -1,0 +1,96 @@
+'/tmp/.svm/0.7.6/solc-0.7.6 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Beebots.sol: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=356 vars=45
+[mvscan-stage] root-seeding-done eligible_exposures=16 seeded=16 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=6 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=858b8490bacc48837b0eca657f42db165df277f96508532a869580972cc8bdbc candidate_count=12 candidate_digest=8c09812a8ef4a9f0c16aa3c23231ddf88c9bb64a4e31fde68acc3d035a0992ad context_instance_count=99 eligible_readers=9 eligible_writers=4 execution_context_digest=51c55d4e194894758e0907718fa676c76e27c651ba30b20569d5f036fdf48683 insensitive_readers_filtered=2 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=99 owner_context_pairs_considered=99 raw_block_pairs=19 reader_witness_count=99 relation_base_members_shadowed=17 relation_context_incompatible=0 relation_digest=3affdc1499455f13b10f69a5967fe7c2a820e12c2cf1343471d481ba9010084a relation_evidence_edges=11 relation_incompatible=6 relation_members_raw=54 relation_origins_registered=4 relation_origins_rejected_unary_after_shadowing=27 relation_origins_rejected_unreachable=8 relation_origins_seen=31 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=2 scalar_variables_skipped=30 storage_context_mismatch=0 variables_considered=32
+INFO:Detectors:
+
+[MV-SI candidate 1048b46821620050040a] {indices[@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1], nonce, numTokens}
+ writer root       -> Beebots.sol::Beebots.devMint(uint256,address)
+ writer effect     -> Beebots.sol:323
+ written member    -> ('MS', 'Beebots.sol', 'Beebots.indices', '@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1')
+ potentially stale -> ('SV', 'Beebots.sol', 'Beebots.nonce'), ('SV', 'Beebots.sol', 'Beebots.numTokens')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 1d8adef1d9846bb3d331] {indices[@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1], nonce, numTokens}
+ writer root       -> Beebots.sol::Beebots.mintWithAlphaOrBeta(uint256)
+ writer effect     -> Beebots.sol:323
+ written member    -> ('MS', 'Beebots.sol', 'Beebots.indices', '@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1')
+ potentially stale -> ('SV', 'Beebots.sol', 'Beebots.nonce'), ('SV', 'Beebots.sol', 'Beebots.numTokens')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 211f5a79677789de543c] {indices[@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1], nonce, numTokens}
+ writer root       -> Beebots.sol::Beebots.mint()
+ writer effect     -> Beebots.sol:320
+ written member    -> ('MS', 'Beebots.sol', 'Beebots.indices', '@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1')
+ potentially stale -> ('SV', 'Beebots.sol', 'Beebots.nonce'), ('SV', 'Beebots.sol', 'Beebots.numTokens')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 27a642ef080d5d23a53f] {indices[@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1], nonce, numTokens}
+ writer root       -> Beebots.sol::Beebots.devMint(uint256,address)
+ writer effect     -> Beebots.sol:320
+ written member    -> ('MS', 'Beebots.sol', 'Beebots.indices', '@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1')
+ potentially stale -> ('SV', 'Beebots.sol', 'Beebots.nonce'), ('SV', 'Beebots.sol', 'Beebots.numTokens')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 32ce04f469c676f89cf6] {indices[@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1], nonce, numTokens}
+ writer root       -> Beebots.sol::Beebots.mintWithAlphaOrBeta(uint256)
+ writer effect     -> Beebots.sol:320
+ written member    -> ('MS', 'Beebots.sol', 'Beebots.indices', '@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1')
+ potentially stale -> ('SV', 'Beebots.sol', 'Beebots.nonce'), ('SV', 'Beebots.sol', 'Beebots.numTokens')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 3be3d3852840ddc974c6] {indices[@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1], nonce, numTokens}
+ writer root       -> Beebots.sol::Beebots.mintWithAlphaOrBeta(uint256)
+ writer effect     -> Beebots.sol:400
+ written member    -> ('SV', 'Beebots.sol', 'Beebots.numTokens')
+ potentially stale -> ('MS', 'Beebots.sol', 'Beebots.indices', '@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1'), ('SV', 'Beebots.sol', 'Beebots.nonce')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 745c31b014c6c09a0861] {indices[@local::Beebots.sol::Beebots.randomIndex()::TemporaryVariable::TMP_55], numTokens}
+ writer root       -> Beebots.sol::Beebots.devMint(uint256,address)
+ writer effect     -> Beebots.sol:400
+ written member    -> ('SV', 'Beebots.sol', 'Beebots.numTokens')
+ potentially stale -> ('MS', 'Beebots.sol', 'Beebots.indices', '@local::Beebots.sol::Beebots.randomIndex()::TemporaryVariable::TMP_55')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 89b5722cfe721e770c2a] {indices[@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1], nonce, numTokens}
+ writer root       -> Beebots.sol::Beebots.mint()
+ writer effect     -> Beebots.sol:323
+ written member    -> ('MS', 'Beebots.sol', 'Beebots.indices', '@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1')
+ potentially stale -> ('SV', 'Beebots.sol', 'Beebots.nonce'), ('SV', 'Beebots.sol', 'Beebots.numTokens')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 985dd7f3af88602898ad] {indices[@local::Beebots.sol::Beebots.randomIndex()::TemporaryVariable::TMP_55], numTokens}
+ writer root       -> Beebots.sol::Beebots.mint()
+ writer effect     -> Beebots.sol:400
+ written member    -> ('SV', 'Beebots.sol', 'Beebots.numTokens')
+ potentially stale -> ('MS', 'Beebots.sol', 'Beebots.indices', '@local::Beebots.sol::Beebots.randomIndex()::TemporaryVariable::TMP_55')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 9990dbdee87ae6d011f7] {indices[@local::Beebots.sol::Beebots.randomIndex()::TemporaryVariable::TMP_55], numTokens}
+ writer root       -> Beebots.sol::Beebots.mintWithAlphaOrBeta(uint256)
+ writer effect     -> Beebots.sol:400
+ written member    -> ('SV', 'Beebots.sol', 'Beebots.numTokens')
+ potentially stale -> ('MS', 'Beebots.sol', 'Beebots.indices', '@local::Beebots.sol::Beebots.randomIndex()::TemporaryVariable::TMP_55')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate c482bfb95012c7536c6b] {indices[@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1], nonce, numTokens}
+ writer root       -> Beebots.sol::Beebots.mint()
+ writer effect     -> Beebots.sol:400
+ written member    -> ('SV', 'Beebots.sol', 'Beebots.numTokens')
+ potentially stale -> ('MS', 'Beebots.sol', 'Beebots.indices', '@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1'), ('SV', 'Beebots.sol', 'Beebots.nonce')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate ce6c1bddd7386434f230] {indices[@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1], nonce, numTokens}
+ writer root       -> Beebots.sol::Beebots.devMint(uint256,address)
+ writer effect     -> Beebots.sol:400
+ written member    -> ('SV', 'Beebots.sol', 'Beebots.numTokens')
+ potentially stale -> ('MS', 'Beebots.sol', 'Beebots.indices', '@local::Beebots.sol::Beebots.randomIndex()::LocalVariable::index_1'), ('SV', 'Beebots.sol', 'Beebots.nonce')
+ reader witnesses  -> 6
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (6 contracts with 1 detectors), 12 result(s) found

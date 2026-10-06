@@ -1,0 +1,932 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=2590 vars=200
+[mvscan-stage] root-seeding-done eligible_exposures=236 seeded=142 multi_exposure_entry_blocks=77 collapsed_contextual_aliases=94 excluded_dependency=0 excluded_interface=67 excluded_library=0 excluded_abstract=11 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=bebb09d1b1a4bd440ed6bd0e95b898d70f580fd125cd0c8d91060eca3949e782 candidate_count=132 candidate_digest=cc73cf0c011aef62970909917c5362382784561fcb708a96fded4cd6da6b35e6 context_instance_count=3467 eligible_readers=106 eligible_writers=46 execution_context_digest=82e71cb7c82c088843cf1a378e859df044251cfbdee8f36fd64c63db5c26f2a9 insensitive_readers_filtered=34 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=4435 owner_context_pairs_considered=9548 raw_block_pairs=177 reader_witness_count=4435 relation_base_members_shadowed=68 relation_context_incompatible=0 relation_digest=585603a6bdd481002f87366f8a5558d0a806ad93680d1383feff37d8f19f0692 relation_evidence_edges=91 relation_incompatible=74 relation_members_raw=277 relation_origins_registered=39 relation_origins_rejected_unary_after_shadowing=123 relation_origins_rejected_unreachable=47 relation_origins_seen=162 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=13 scalar_variables_skipped=133 storage_context_mismatch=5113 variables_considered=160
+INFO:Detectors:
+
+[MV-SI candidate 0036091839ebf63b7a09] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.batchUpdateCollateralizedSlotOwnersAccruedETH(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:618
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ reader witnesses  -> 118
+ storage exposures -> 2
+[MV-SI candidate 0071059b7d5c0af51662] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.claimRewards(address,address[],bytes[][])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:63
+ written member    -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ reader witnesses  -> 30
+ storage exposures -> 2
+[MV-SI candidate 01b19b0238498a268d05] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.deRegisterKnotFromSyndicate(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:527
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ reader witnesses  -> 40
+ storage exposures -> 1
+[MV-SI candidate 02467ec5908f7b796f75] {smartWalletOfKnot[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.claimRewardsAsNodeRunner(address,bytes[])::ReferenceVariable::REF_524], smartWalletOfNodeRunner[$sender]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:447
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$sender')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfKnot', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.claimRewardsAsNodeRunner(address,bytes[])::ReferenceVariable::REF_524')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 082acb275bfe6ed3bfd1] {smartWalletOfNodeRunner[$sender], stakedKnotsOfSmartWallet[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentative(address)::LocalVariable::smartWallet_1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:447
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$sender')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.stakedKnotsOfSmartWallet', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentative(address)::LocalVariable::smartWallet_1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 08a33a3531b829a0dcdf] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.depositETHForStaking(bytes,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:85
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ potentially stale -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate 08e3d2c9006efa22b26b] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.deRegisterKnots(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:618
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ reader witnesses  -> 118
+ storage exposures -> 2
+[MV-SI candidate 093d252119b1bc2d2aeb] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.beforeTokenTransfer(address,address,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:85
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ potentially stale -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate 0abbc0b10c0a5a30ee44] {accruedEarningPerCollateralizedSlotOwnerOfKnot[@local::contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])::LocalVariable::_blsPubKey_1][$sender], claimedPerCollateralizedSlotOwnerOfKnot[@local::contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])::LocalVariable::_blsPubKey_1][$sender]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:318
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.claimedPerCollateralizedSlotOwnerOfKnot', '@local::contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])::LocalVariable::_blsPubKey_1][$sender')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accruedEarningPerCollateralizedSlotOwnerOfKnot', '@local::contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])::LocalVariable::_blsPubKey_1][$sender')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 0be85ffa52d88374fa2e] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.claimAsStaker(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate 0e85d0a01a1c5fc621eb] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.unstakeSyndicateSharesForRageQuit(address,bytes[],uint256[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 0e8da6294058b15796f8] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.updatePriorityStakingBlock(uint256)
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 36
+ storage exposures -> 2
+[MV-SI candidate 0ead26ffbf1777793d7c] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.updateCollateralizedSlotOwnersAccruedETH(bytes)
+ writer effect     -> contracts/syndicate/Syndicate.sol:527
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ reader witnesses  -> 67
+ storage exposures -> 2
+[MV-SI candidate 0ef8ecdac5cf112b37a2] {_initialized, _initializing}
+ writer root       -> contracts/smart-wallet/OwnableSmartWallet.sol::OwnableSmartWallet.initialize(address)
+ writer effect     -> @openzeppelin/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', '@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 10a9f947dd7fa370250e] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.deRegisterKnots(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate 13db468ee82074e6b1df] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate 18f4ace6214bc36561c4] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.beforeTokenTransfer(address,address,uint256)
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate 1a83c24b7a79ab2267b3] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.stake(bytes[],uint256[],address)
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 36
+ storage exposures -> 2
+[MV-SI candidate 1b7777a0f8e740a5952c] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.updateCollateralizedSlotOwnersAccruedETH(bytes)
+ writer effect     -> contracts/syndicate/Syndicate.sol:615
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ reader witnesses  -> 49
+ storage exposures -> 2
+[MV-SI candidate 1d12c024503608d7d657] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.registerKnotsToSyndicate(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate 2058b890978e246d1e80] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:615
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ reader witnesses  -> 49
+ storage exposures -> 2
+[MV-SI candidate 22162521ce7e7b1c1b3a] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimRewards(address,bytes[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:63
+ written member    -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ reader witnesses  -> 41
+ storage exposures -> 2
+[MV-SI candidate 24da7b32d57a69de2b09] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.batchDepositETHForStaking(address[],uint256[],bytes[][],uint256[][])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:63
+ written member    -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 2609ae633a6ab78f9ba9] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.beforeTokenTransfer(address,address,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 26d1ebc557d2d39cd707] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.updatePriorityStakingBlock(uint256)
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate 2cfb2a46a79b83c555a7] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.beforeTokenTransfer(address,address,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:65
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ reader witnesses  -> 24
+ storage exposures -> 2
+[MV-SI candidate 2d0fc0351a02846ea55f] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.deRegisterKnots(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 36
+ storage exposures -> 2
+[MV-SI candidate 2e0996b78a5d78c1a35a] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.updateCollateralizedSlotOwnersAccruedETH(bytes)
+ writer effect     -> contracts/syndicate/Syndicate.sol:618
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ reader witnesses  -> 118
+ storage exposures -> 2
+[MV-SI candidate 3551f6f1a843f09967d8] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:618
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ reader witnesses  -> 118
+ storage exposures -> 2
+[MV-SI candidate 3718217bf72dfa7a0244] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.depositETHForStaking(bytes,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:65
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ reader witnesses  -> 24
+ storage exposures -> 2
+[MV-SI candidate 38381d6ff111195b9f7b] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.updateAccumulatedETHPerLP()
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:85
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ potentially stale -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate 3b061e0ca132222584d3] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.deRegisterKnotFromSyndicate(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:618
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ reader witnesses  -> 86
+ storage exposures -> 1
+[MV-SI candidate 3b89435e626237da7dd7] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimFundsFromSyndicateForDistribution(bytes[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 34
+ storage exposures -> 2
+[MV-SI candidate 3cdb3ebf6523f4b5d8e5] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.beforeTokenTransfer(address,address,uint256)
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 3d3d2e55f6cb1a1562c3] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.batchDepositETHForStaking(bytes[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 34
+ storage exposures -> 2
+[MV-SI candidate 3f3b7ebf8d12dbd50206] {isPriorityStaker[$arg2], priorityStakingEndBlock}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.updatePriorityStakingBlock(uint256)
+ writer effect     -> contracts/syndicate/Syndicate.sol:170
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.priorityStakingEndBlock')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isPriorityStaker', '$arg2')
+ reader witnesses  -> 3
+ storage exposures -> 2
+[MV-SI candidate 428ea4c1a7f54b2afae5] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.batchDepositETHForStaking(address[],uint256[],bytes[][],uint256[][])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:65
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 42e0946ef8624467faf3] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimRewards(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 437e15efa856716f8f1f] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.unstake(address,address,bytes[],uint256[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 38
+ storage exposures -> 2
+[MV-SI candidate 46ca8b18ed5c4cc1264c] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.updateAccruedETHPerShares()
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 38
+ storage exposures -> 2
+[MV-SI candidate 479e84205bdd50910909] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.updateAccruedETHPerShares()
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 36
+ storage exposures -> 2
+[MV-SI candidate 483af1c7ee04d09411d5] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.restoreFreeFloatingSharesToSmartWalletForRageQuit(address,bytes[],uint256[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate 4ea961dcc49e940d631f] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimRewards(address,bytes[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 34
+ storage exposures -> 2
+[MV-SI candidate 4fb0cbaf5eeb9e9a3f5a] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.deRegisterKnotFromSyndicate(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:615
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 5041c689d1856f32bde2] {smartWalletOfKnot[$arg1], smartWalletOfNodeRunner[$sender]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:447
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$sender')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfKnot', '$arg1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 5231461662f9255e2044] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.restoreFreeFloatingSharesToSmartWalletForRageQuit(address,bytes[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:85
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ potentially stale -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 5598e8e307d1db89e98c] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.deRegisterKnotFromSyndicate(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate 571b9f78dcab23ab90f3] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.deRegisterKnots(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:615
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ reader witnesses  -> 49
+ storage exposures -> 2
+[MV-SI candidate 5766f7f2bdf8e90a9767] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.updateAccruedETHPerShares()
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate 590cda9d785aae1fd777] {_initialized, _initializing}
+ writer root       -> contracts/smart-wallet/OwnableSmartWallet.sol::OwnableSmartWallet.initialize(address)
+ writer effect     -> @openzeppelin/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', '@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 5e2780e7fce1518e61c9] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.beforeTokenTransfer(address,address,uint256)
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 6088b2dc204797210c7e] {bannedNodeRunners[$arg0], nodeRunnerOfSmartWallet}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateNodeRunnerOfSmartWallet(address,address,bool)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:367
+ written member    -> ('SV', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.nodeRunnerOfSmartWallet')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.bannedNodeRunners', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate 616e4e552529fc6d974e] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.restoreFreeFloatingSharesToSmartWalletForRageQuit(address,bytes[],uint256[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 632b3324b3456528f76c] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.deRegisterKnots(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 38
+ storage exposures -> 2
+[MV-SI candidate 63508f90377629e82057] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.mintDerivatives(bytes[],IDataStructures.ETH2DataReport[],IDataStructures.EIP712Signature[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate 646761dec95d2c7fa587] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.batchUpdateCollateralizedSlotOwnersAccruedETH(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:615
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ reader witnesses  -> 49
+ storage exposures -> 2
+[MV-SI candidate 66046c22cd00909fa59e] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.claimRewards(address,address[],bytes[][])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:65
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ reader witnesses  -> 17
+ storage exposures -> 2
+[MV-SI candidate 66efcacb5b60c1c3b146] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.beforeTokenTransfer(address,address,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:85
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ potentially stale -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 699c1f08b5bcb967b02d] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.restoreFreeFloatingSharesToSmartWalletForRageQuit(address,bytes[],uint256[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 6a0352975abfb6502454] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.deRegisterKnots(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:527
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ reader witnesses  -> 67
+ storage exposures -> 2
+[MV-SI candidate 6cc6624b7186435fb4cf] {MODULO, daoCommissionPercentage}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.updateDAORevenueCommission(uint256)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:953
+ written member    -> ('SV', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.daoCommissionPercentage')
+ potentially stale -> ('SV', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.MODULO')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate 6db6fe80e7201e03b348] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.stake(bytes[],uint256[],address)
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 38
+ storage exposures -> 2
+[MV-SI candidate 77cbe009ace46e2a32f8] {bannedNodeRunners[$arg0], nodeRunnerOfSmartWallet}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:448
+ written member    -> ('SV', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.nodeRunnerOfSmartWallet')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.bannedNodeRunners', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate 7896d8c2e3881561ab6d] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.unstakeSyndicateSharesForRageQuit(address,bytes[],uint256[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 7a4be5647b72c0cfe8fc] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.updateAccumulatedETHPerLP()
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 34
+ storage exposures -> 2
+[MV-SI candidate 7cfe7ad4814cba2f09f7] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimFundsFromSyndicateForDistribution(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate 7f546945f371681e1766] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.mintDerivatives(bytes[],IDataStructures.ETH2DataReport[],IDataStructures.EIP712Signature[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 8170fc0791c1ef238512] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.claimRewards(address,address[],bytes[][])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:85
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ potentially stale -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 81ff5a3f0a8c20f5db6e] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.unstake(address,address,bytes[],uint256[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate 848c3126984d5ce41859] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.burnLPTokensForETHByBLS(bytes[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:85
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ potentially stale -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate 8aa9b85a2bca9097e95b] {smartWalletOfNodeRunner[$sender], smartWalletRepresentative[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentative(address)::LocalVariable::smartWallet_1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:447
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$sender')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletRepresentative', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentative(address)::LocalVariable::smartWallet_1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 8cc2bad76f80f39b76c3] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimFundsFromSyndicateForDistribution(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 8de237c816fa10ba5515] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.stake(bytes[],uint256[],address)
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate 9020171036e6055bdf6d] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:379
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals', '$arg0][$arg1')
+ potentially stale -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners', '$arg0'), ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals', '$arg0')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 94c713cacb11895e83c5] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.batchDepositETHForStaking(bytes[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:65
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ reader witnesses  -> 24
+ storage exposures -> 2
+[MV-SI candidate 96ac1a8662d81d9ac52d] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.mintDerivatives(bytes[],IDataStructures.ETH2DataReport[],IDataStructures.EIP712Signature[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 96cf12084c6c863cbdab] {isPriorityStaker[$arg2], priorityStakingEndBlock}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.initialize(address,uint256,address[],bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:483
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.priorityStakingEndBlock')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isPriorityStaker', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 97233d1aac328704e545] {MODULO, daoCommissionPercentage}
+ writer root       -> contracts/testing/liquid-staking/MockLiquidStakingManager.sol::MockLiquidStakingManager.init(address,address,address,address,address,address,address,address,uint256,bool,string)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:953
+ written member    -> ('SV', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.daoCommissionPercentage')
+ potentially stale -> ('SV', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.MODULO')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 998796ed5c77c37dfbd7] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.unstake(address,address,bytes[],uint256[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 36
+ storage exposures -> 2
+[MV-SI candidate 9ae677f5fad40ac4e1d3] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.claimRewards(address,address[],bytes[][])
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate 9baf5b664f3b83e025a0] {isPriorityStaker[$arg2], priorityStakingEndBlock}
+ writer root       -> contracts/testing/syndicate/SyndicateMock.sol::SyndicateMock.initialize(address,uint256,address[],bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:483
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.priorityStakingEndBlock')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isPriorityStaker', '$arg2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 9dea233322047e943abb] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.restoreFreeFloatingSharesToSmartWalletForRageQuit(address,bytes[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 9f5c7159f86a3d636a9e] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.burnLPTokensForETH(LPToken[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 34
+ storage exposures -> 2
+[MV-SI candidate 9f8ba2153a064499334b] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.addPriorityStakers(address[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 36
+ storage exposures -> 2
+[MV-SI candidate 9fca49ae00c7c680a6dc] {_initialized, _initializing}
+ writer root       -> contracts/smart-wallet/OwnableSmartWallet.sol::OwnableSmartWallet.initialize(address)
+ writer effect     -> @openzeppelin/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', '@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a16829f1f08e32c0dabb] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.depositETHForStaking(bytes,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 34
+ storage exposures -> 2
+[MV-SI candidate a24eb6d6a252034e6f0b] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.batchDepositETHForStaking(address[],uint256[],bytes[][],uint256[][])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:85
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ potentially stale -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate a83c4b44b6ad51c3fb1b] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 38
+ storage exposures -> 2
+[MV-SI candidate a90b28af93094d5234a2] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.updateAccumulatedETHPerLP()
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:85
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ potentially stale -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a97ed97228c9be0464f7] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimRewards(address,bytes[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:85
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ potentially stale -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate a9e1b3f555d36208a450] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.updateAccumulatedETHPerLP()
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate ab442c04603536eac699] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.registerKnotsToSyndicate(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 38
+ storage exposures -> 2
+[MV-SI candidate adfe4aca8186322bd9a5] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.beforeTokenTransfer(address,address,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:63
+ written member    -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate afcbaa21344feb4c74f9] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimRewards(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate b0c3f6d46925f93d243e] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.batchDepositETHForStaking(bytes[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:85
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ potentially stale -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate b5971137269a4dacc838] {_operatorApprovals[$arg0][$arg1], _owners[$arg0]}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:379
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals', '$arg0][$arg1')
+ potentially stale -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 2
+[MV-SI candidate b5f21015bf1cbd169dce] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.burnLPTokensForETH(LPToken[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:85
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ potentially stale -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate b702c7f35f5ce6512d74] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.claimAsStaker(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 36
+ storage exposures -> 2
+[MV-SI candidate ba8bfb29a803f7b644c0] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.registerKnotsToSyndicate(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 36
+ storage exposures -> 2
+[MV-SI candidate bc0ddd5c631a3a2a4836] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimFundsFromSyndicateForDistribution(bytes[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:85
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ potentially stale -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate bf6de6ce74b1262759b4] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.addPriorityStakers(address[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 38
+ storage exposures -> 2
+[MV-SI candidate bf97294e755fde1885a2] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 36
+ storage exposures -> 2
+[MV-SI candidate bfdb77a2240435af6b79] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimFundsFromSyndicateForDistribution(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate c102b662cf92eb91c4d4] {smartWalletOfKnot[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.mintDerivatives(bytes[],IDataStructures.ETH2DataReport[],IDataStructures.EIP712Signature[])::ReferenceVariable::REF_584], stakedKnotsOfSmartWallet[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.mintDerivatives(bytes[],IDataStructures.ETH2DataReport[],IDataStructures.EIP712Signature[])::LocalVariable::smartWallet_1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.mintDerivatives(bytes[],IDataStructures.ETH2DataReport[],IDataStructures.EIP712Signature[])
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:615
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.stakedKnotsOfSmartWallet', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.mintDerivatives(bytes[],IDataStructures.ETH2DataReport[],IDataStructures.EIP712Signature[])::LocalVariable::smartWallet_1')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfKnot', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.mintDerivatives(bytes[],IDataStructures.ETH2DataReport[],IDataStructures.EIP712Signature[])::ReferenceVariable::REF_584')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate c10b4900cbccc50ba43e] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.claimRewards(address,address[],bytes[][])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate c2a77080aa8c467328c9] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.burnLPForETH(LPToken,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:85
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ potentially stale -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate c2f6e91e3134a1ba127c] {smartWalletOfNodeRunner[$sender], smartWalletRepresentative[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)::LocalVariable::smartWallet_3]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:447
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$sender')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletRepresentative', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)::LocalVariable::smartWallet_3')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate c3e6e4458618cb76c1f4] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.burnLPForETH(LPToken,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 34
+ storage exposures -> 2
+[MV-SI candidate c8b445158425db3f744f] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.claimAsStaker(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 38
+ storage exposures -> 2
+[MV-SI candidate cc77d31d800cf28b3371] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.burnLPTokensForETHByBLS(bytes[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 34
+ storage exposures -> 2
+[MV-SI candidate cccdb9af0da8d184ab13] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.unstakeSyndicateSharesForRageQuit(address,bytes[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 34
+ storage exposures -> 2
+[MV-SI candidate cde2db3c49cb344a4443] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.beforeTokenTransfer(address,address,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:63
+ written member    -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ reader witnesses  -> 41
+ storage exposures -> 2
+[MV-SI candidate cf65b5d8589e97c2b8fc] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.batchDepositETHForStaking(address[],uint256[],bytes[][],uint256[][])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate d2c177159294a9f6cff5] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.deRegisterKnotFromSyndicate(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate da33a0530d6149b896ff] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.claimRewards(address,address[],bytes[][])
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate dbbd7ae68130ea4881dd] {MODULO, daoCommissionPercentage}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.init(address,address,address,address,address,address,address,address,uint256,bool,string)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:953
+ written member    -> ('SV', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.daoCommissionPercentage')
+ potentially stale -> ('SV', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.MODULO')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate dbee0ad3c92ec1f6329e] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:527
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ reader witnesses  -> 67
+ storage exposures -> 2
+[MV-SI candidate e019e976acad025061b0] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.batchUpdateCollateralizedSlotOwnersAccruedETH(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:527
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ reader witnesses  -> 67
+ storage exposures -> 2
+[MV-SI candidate e7c44bcfd62b133ec34e] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.unstakeSyndicateSharesForRageQuit(address,bytes[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:85
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ potentially stale -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate eaeb28941b5260d22a3b] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.batchDepositETHForStaking(bytes[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:63
+ written member    -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ reader witnesses  -> 41
+ storage exposures -> 2
+[MV-SI candidate ed1772b1840be2197dd2] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.bringUnusedETHBackIntoGiantPool(address[],LPToken[][],uint256[][])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate edcf66d86c8ae5ba909e] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimRewards(address,bytes[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:65
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ reader witnesses  -> 24
+ storage exposures -> 2
+[MV-SI candidate f0d30e852a019f8123a1] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.addPriorityStakers(address[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate f1d8753731e0d3566361] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.deRegisterKnotFromSyndicate(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate f248c6caa6059b7c4cd5] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.beforeTokenTransfer(address,address,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:65
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate f47c8010e5f0315aef49] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimRewards(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate f7a24b125a57080a66cd] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.depositETHForStaking(bytes,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:63
+ written member    -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ reader witnesses  -> 41
+ storage exposures -> 2
+[MV-SI candidate f9202e04d489ba1369e2] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.unstakeSyndicateSharesForRageQuit(address,bytes[],uint256[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:185
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate fa1b724ee4ab2dce5611] {lastSeenETHPerFreeFloating, totalClaimed}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.updatePriorityStakingBlock(uint256)
+ writer effect     -> contracts/syndicate/Syndicate.sol:186
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastSeenETHPerFreeFloating')
+ potentially stale -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalClaimed')
+ reader witnesses  -> 38
+ storage exposures -> 2
+[MV-SI candidate fbef3b42894d6b248ba2] {accumulatedETHPerLPShare, claimed[$arg0][$arg1]}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.bringUnusedETHBackIntoGiantPool(address[],LPToken[][],uint256[][])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:85
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.accumulatedETHPerLPShare')
+ potentially stale -> ('MS', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.claimed', '$arg0][$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate fdf7ce81afc00f69f005] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.claimRewards(address,address[],bytes[][])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 25
+ storage exposures -> 2
+[MV-SI candidate fe84950a2e337093411b] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.beforeTokenTransfer(address,address,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 34
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (88 contracts with 1 detectors), 132 result(s) found

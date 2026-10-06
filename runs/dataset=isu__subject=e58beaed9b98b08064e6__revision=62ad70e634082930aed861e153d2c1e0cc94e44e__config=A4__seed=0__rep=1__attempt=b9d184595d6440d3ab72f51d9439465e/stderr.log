@@ -1,0 +1,793 @@
+'/tmp/.svm/0.8.24/solc-0.8.24 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=2928 vars=95
+[mvscan-stage] root-seeding-done eligible_exposures=99 seeded=65 multi_exposure_entry_blocks=16 collapsed_contextual_aliases=34 excluded_dependency=0 excluded_interface=127 excluded_library=0 excluded_abstract=14 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=e3e9099088163bbedf89c10c23d6ceab5ed42f84b038e24762344b56a74c6e91 candidate_count=112 candidate_digest=e1dac39699df23c892a73516da284414f2b0ffc0732df903004c8a26a96a6230 context_instance_count=1661 eligible_readers=91 eligible_writers=43 execution_context_digest=33da83ef99b82d7e5109ece610913335a049bcc8058526c3517c47fc608a71e2 insensitive_readers_filtered=24 invalid_partial_write_filtered=17 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=21 owner_context_pairs=1713 owner_context_pairs_considered=4624 raw_block_pairs=303 reader_witness_count=1713 relation_base_members_shadowed=0 relation_context_incompatible=1910 relation_digest=cf3d24fe7ace684433209149caba1dccfe616df77177ae44c05157d45ecef812 relation_members_raw=98 relation_origins_registered=14 relation_origins_rejected_unary_after_shadowing=69 relation_origins_rejected_unreachable=26 relation_origins_seen=83 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=8 scalar_variables_skipped=45 storage_context_mismatch=963 variables_considered=59
+INFO:Detectors:
+
+[MV-SI candidate 0318ac5c5d219f5a7224] {_owner, emergencyAdmin}
+ writer root       -> src/V3Vault.sol::V3Vault.setEmergencyAdmin(address)
+ writer effect     -> src/V3Vault.sol:871
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.emergencyAdmin')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/access/Ownable.sol', 'Ownable._owner')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 066906cac6bf616db614] {tokenOwner, transformApprovals}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool)
+ writer effect     -> src/V3Vault.sol:1313
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.tokenOwner')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformApprovals')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0ad0f643e2c089ebd1d6] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.mint(uint256,address)
+ writer effect     -> src/V3Vault.sol:1158
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 0c6f3a82f7b6f23074bf] {_owner, emergencyAdmin}
+ writer root       -> lib/openzeppelin-contracts/contracts/access/Ownable.sol::Ownable.renounceOwnership()
+ writer effect     -> lib/openzeppelin-contracts/contracts/access/Ownable.sol:80
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.emergencyAdmin')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0ccb963a7bc67a6f0207] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1304
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 0d98eab3b9bf403d0d0d] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.decreaseLiquidityAndCollect(IVault.DecreaseLiquidityAndCollectParams)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 0e020423ab2a42c515aa] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 13a290900179b3d9a2de] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.decreaseLiquidityAndCollect(IVault.DecreaseLiquidityAndCollectParams)
+ writer effect     -> src/V3Vault.sol:1157
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 142a57d9dd730f28a28f] {_totalSupply, globalLendLimit}
+ writer root       -> src/V3Vault.sol::V3Vault.deposit(uint256,address,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol:264
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.globalLendLimit')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 15c755bc340687d132a5] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.deposit(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:1158
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 1ad045a70b252d19abc4] {tokenOwner, transformedTokenId, transformerAllowList}
+ writer root       -> src/V3Vault.sol::V3Vault.transform(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:508
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.tokenOwner'), ('SV', 'src/V3Vault.sol', 'V3Vault.transformerAllowList')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 251dd3d1b246d359d21e] {tokenOwner, transformedTokenId, transformerAllowList}
+ writer root       -> src/V3Vault.sol::V3Vault.setTransformer(address,bool)
+ writer effect     -> src/V3Vault.sol:797
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformerAllowList')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.tokenOwner'), ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 28425ecf8ffa56182e18] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.borrow(uint256,uint256)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 29161b358b727e692775] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.borrow(uint256,uint256)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 2e53a5e0ebf3bed89388] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.deposit(uint256,address)
+ writer effect     -> src/V3Vault.sol:1158
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 2eb2b12bcab6d525a094] {tokenOwner, transformedTokenId, transformerAllowList}
+ writer root       -> src/V3Vault.sol::V3Vault.liquidate(IVault.LiquidateParams)
+ writer effect     -> src/V3Vault.sol:1313
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.tokenOwner')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId'), ('SV', 'src/V3Vault.sol', 'V3Vault.transformerAllowList')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 2f02a6b5382fa54abffc] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool)
+ writer effect     -> src/V3Vault.sol:1309
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 316cd701fb4bc57fa8c4] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool,bytes)
+ writer effect     -> src/V3Vault.sol:1308
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3261a11b176de94711df] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.setLimits(uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> src/V3Vault.sol:1158
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 34d81a68ea5748c1e6d8] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool,bytes)
+ writer effect     -> src/V3Vault.sol:1158
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 3ae2c4b70998e2155720] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool,bytes)
+ writer effect     -> src/V3Vault.sol:1311
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3b461885bfad52b12e0f] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1311
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3b9dd5eb1c3e66abad16] {_totalSupply, globalLendLimit}
+ writer root       -> src/V3Vault.sol::V3Vault.deposit(uint256,address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol:264
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.globalLendLimit')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3d75d1ff85206b90187b] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1309
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 3e791dccda64261949ad] {_totalSupply, globalLendLimit}
+ writer root       -> src/V3Vault.sol::V3Vault.setLimits(uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> src/V3Vault.sol:819
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.globalLendLimit')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 437b88002d457e62e5f0] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.deposit(uint256,address)
+ writer effect     -> src/V3Vault.sol:1157
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 4646fac1eef0bd10a8d2] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.deposit(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:1157
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 467c71d67a2cfa9d9efb] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.deposit(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 48f31b06469a437d59db] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.liquidate(IVault.LiquidateParams)
+ writer effect     -> src/V3Vault.sol:1304
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 4990b56b2c49875a01d1] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool,bytes)
+ writer effect     -> src/V3Vault.sol:1309
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 4a0ca44311d3e92c770c] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.withdraw(uint256,address,address)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 4bf0fe66b073209edf69] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool,bytes)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 4c3f643092100e474450] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.liquidate(IVault.LiquidateParams)
+ writer effect     -> src/V3Vault.sol:1308
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 4efdf1cf55d8f6a8f94e] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.setLimits(uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> src/V3Vault.sol:1157
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 5069a98540c04de04472] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.mint(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 56e06fe84528bdb27916] {tokenOwner, transformedTokenId, transformerAllowList}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:458
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.tokenOwner'), ('SV', 'src/V3Vault.sol', 'V3Vault.transformerAllowList')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 5705f83d52570a2f32ab] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.mint(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:1158
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 57a4f26e95976351154e] {transformedTokenId, transformerAllowList}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:458
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformerAllowList')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 5a4bd73f9a29d13be34c] {tokenOwner, transformApprovals}
+ writer root       -> src/V3Vault.sol::V3Vault.approveTransform(uint256,address,bool)
+ writer effect     -> src/V3Vault.sol:487
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformApprovals')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.tokenOwner')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 5a654f86d2505cf9e2ff] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.decreaseLiquidityAndCollect(IVault.DecreaseLiquidityAndCollectParams)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 5a94676f5eb1a4742eaa] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool)
+ writer effect     -> src/V3Vault.sol:1157
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 5ea8c2e02c045a5ffa7d] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.transform(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:1157
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 5f506bd1483ee11928f8] {transformedTokenId, transformerAllowList}
+ writer root       -> src/V3Vault.sol::V3Vault.transform(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:508
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformerAllowList')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 65028464ae6e98ecc464] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 664131e2d8fab0b73923] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.withdrawReserves(uint256,address)
+ writer effect     -> src/V3Vault.sol:1158
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 6a239df45f5dff3a4267] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool,bytes)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 6a9a73ebc15c119ad0d5] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool)
+ writer effect     -> src/V3Vault.sol:1308
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 7071513e1276b302fc5d] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.liquidate(IVault.LiquidateParams)
+ writer effect     -> src/V3Vault.sol:1311
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 70a310581a34d22824de] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.withdrawReserves(uint256,address)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 7186aaa596b71cd368c1] {_totalSupply, globalLendLimit}
+ writer root       -> src/V3Vault.sol::V3Vault.mint(uint256,address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol:264
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.globalLendLimit')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 7469f7b5c060ff4400e9] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.withdrawReserves(uint256,address)
+ writer effect     -> src/V3Vault.sol:1157
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 752c5e86eaa696f98bb9] {tokenOwner, transformedTokenId, transformerAllowList}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1300
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.tokenOwner')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId'), ('SV', 'src/V3Vault.sol', 'V3Vault.transformerAllowList')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 78e09064eaca300f54d6] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.mint(uint256,address)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 7b4f9a126dafbd0dd278] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1158
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 7c076cc3759430540e59] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.redeem(uint256,address,address)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 7cc0d6c70c881c23fc30] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.setLimits(uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 7d01e694399f634702aa] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.liquidate(IVault.LiquidateParams)
+ writer effect     -> src/V3Vault.sol:1157
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 807cdf49ecf39c4a5801] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.deposit(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 8172a220a37a20f1cc47] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.mint(uint256,address)
+ writer effect     -> src/V3Vault.sol:1157
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 81e45e99b99a922d230e] {_owner, emergencyAdmin}
+ writer root       -> lib/openzeppelin-contracts/contracts/access/Ownable.sol::Ownable.transferOwnership(address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/access/Ownable.sol:80
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', 'src/V3Oracle.sol', 'V3Oracle.emergencyAdmin')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 81f3e51f45f7b1633a6e] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.mint(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:1157
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 82cb43f00bdf57757283] {_totalSupply, globalLendLimit}
+ writer root       -> src/V3Vault.sol::V3Vault.withdraw(uint256,address,address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol:295
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.globalLendLimit')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 83193109a436fce85a50] {operators, vaults}
+ writer root       -> src/automators/Automator.sol::Automator.setVault(address,bool)
+ writer effect     -> src/automators/Automator.sol:81
+ written member    -> ('SV', 'src/automators/Automator.sol', 'Automator.vaults')
+ potentially stale -> ('SV', 'src/automators/Automator.sol', 'Automator.operators')
+ reader witnesses  -> 20
+ storage exposures -> 3
+[MV-SI candidate 836933c516d903908c21] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1308
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 836b62b649c0ccf79ea4] {tokenOwner, transformApprovals}
+ writer root       -> src/V3Vault.sol::V3Vault.liquidate(IVault.LiquidateParams)
+ writer effect     -> src/V3Vault.sol:1313
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.tokenOwner')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformApprovals')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 83afb239f10259429424] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.redeem(uint256,address,address)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 842fedabb23bb296c0b8] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.redeem(uint256,address,address)
+ writer effect     -> src/V3Vault.sol:1158
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 84d96ccafa68bdac6b61] {tokenOwner, transformApprovals}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1313
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.tokenOwner')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformApprovals')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 85d10621a993c7992d51] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.withdrawReserves(uint256,address)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 8ad2ba57604d186c01d3] {tokenOwner, transformApprovals}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool,bytes)
+ writer effect     -> src/V3Vault.sol:1313
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.tokenOwner')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformApprovals')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 8ce9867a2d3f1cd9bdcc] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.withdraw(uint256,address,address)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 8f3f5a9e42d998b8dfd4] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.mint(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 90ae555434e52bced6e5] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.deposit(uint256,address)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 91f2a67c688bda843b1d] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.decreaseLiquidityAndCollect(IVault.DecreaseLiquidityAndCollectParams)
+ writer effect     -> src/V3Vault.sol:1158
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 94222072a70ff4f121e7] {tokenOwner, transformedTokenId, transformerAllowList}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1313
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.tokenOwner')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId'), ('SV', 'src/V3Vault.sol', 'V3Vault.transformerAllowList')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 94e54b4cf67519327f9c] {tokenOwner, transformedTokenId, transformerAllowList}
+ writer root       -> src/V3Vault.sol::V3Vault.transform(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:542
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.tokenOwner'), ('SV', 'src/V3Vault.sol', 'V3Vault.transformerAllowList')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 967e31e99ff58f3f30d7] {tokenOwner, transformedTokenId, transformerAllowList}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool,bytes)
+ writer effect     -> src/V3Vault.sol:1313
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.tokenOwner')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId'), ('SV', 'src/V3Vault.sol', 'V3Vault.transformerAllowList')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 98174ffed210b706e268] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool)
+ writer effect     -> src/V3Vault.sol:1304
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 9c96c45d8dda9161369d] {_owner, emergencyAdmin}
+ writer root       -> lib/openzeppelin-contracts/contracts/access/Ownable.sol::Ownable.renounceOwnership()
+ writer effect     -> lib/openzeppelin-contracts/contracts/access/Ownable.sol:80
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', 'src/V3Oracle.sol', 'V3Oracle.emergencyAdmin')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 9f18bad2e62d3fa8f26e] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.redeem(uint256,address,address)
+ writer effect     -> src/V3Vault.sol:1157
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 9f2b277dc1913d682c41] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.mint(uint256,address)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 9f53803b2965a929971e] {operators, vaults}
+ writer root       -> src/automators/Automator.sol::Automator.setOperator(address,bool)
+ writer effect     -> src/automators/Automator.sol:71
+ written member    -> ('SV', 'src/automators/Automator.sol', 'Automator.operators')
+ potentially stale -> ('SV', 'src/automators/Automator.sol', 'Automator.vaults')
+ reader witnesses  -> 32
+ storage exposures -> 2
+[MV-SI candidate a1ae71ce05dae746e5d4] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate a3388167abc96e64f6ca] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.liquidate(IVault.LiquidateParams)
+ writer effect     -> src/V3Vault.sol:1309
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate aa104169976363ebb9a9] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.liquidate(IVault.LiquidateParams)
+ writer effect     -> src/V3Vault.sol:1158
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate abe480aef34f1fb2cabb] {tokenOwner, transformApprovals}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1300
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.tokenOwner')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformApprovals')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b5f0d73124d47cde7a73] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1157
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate b61c63af106eab65e498] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.liquidate(IVault.LiquidateParams)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate b61d94040dc29d995e85] {_owner, emergencyAdmin}
+ writer root       -> lib/openzeppelin-contracts/contracts/access/Ownable.sol::Ownable.transferOwnership(address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/access/Ownable.sol:80
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.emergencyAdmin')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b84ce648ebcf206ff403] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.liquidate(IVault.LiquidateParams)
+ writer effect     -> src/V3Vault.sol:1138
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate b89dca10c82d594d48d2] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool)
+ writer effect     -> src/V3Vault.sol:1311
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate bfc18a3be952af9a8761] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool,bytes)
+ writer effect     -> src/V3Vault.sol:1304
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c23e022b43c255a25f8e] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.setLimits(uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate c32b90a498d77347e14d] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.borrow(uint256,uint256)
+ writer effect     -> src/V3Vault.sol:1157
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate c7e299df6d1aada10243] {_owner, emergencyAdmin}
+ writer root       -> src/V3Oracle.sol::V3Oracle.setEmergencyAdmin(address)
+ writer effect     -> src/V3Oracle.sol:266
+ written member    -> ('SV', 'src/V3Oracle.sol', 'V3Oracle.emergencyAdmin')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/access/Ownable.sol', 'Ownable._owner')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c8b69405e1c01e48d18a] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.withdraw(uint256,address,address)
+ writer effect     -> src/V3Vault.sol:1157
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate cc836959b1fc219e02de] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.withdraw(uint256,address,address)
+ writer effect     -> src/V3Vault.sol:1158
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate cdf8cdf5729caf4d8c66] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool)
+ writer effect     -> src/V3Vault.sol:1158
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate cf0ce49852b225e3cb56] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate cfc78cf52c3ca92eee8f] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.transform(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate d92e48e1fa2033d57495] {transformedTokenId, transformerAllowList}
+ writer root       -> src/V3Vault.sol::V3Vault.transform(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:542
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformerAllowList')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e2fe0afd93081b54c7af] {_totalSupply, globalLendLimit}
+ writer root       -> src/V3Vault.sol::V3Vault.mint(uint256,address,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol:264
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.globalLendLimit')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e2ffedd39f136e08002c] {_totalSupply, globalLendLimit}
+ writer root       -> src/V3Vault.sol::V3Vault.redeem(uint256,address,address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol:295
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.globalLendLimit')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e742694f9cedc6f6f84e] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.transform(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate eaa28ab34a0c35b4b711] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.borrow(uint256,uint256)
+ writer effect     -> src/V3Vault.sol:1158
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate ebd98b072bc2bca9a988] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.liquidate(IVault.LiquidateParams)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate ec5352cd75d6a330166a] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.transform(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:1158
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate eda1e5c70ff2524f4601] {lastDebtExchangeRateX96, lastExchangeRateUpdate}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool,bytes)
+ writer effect     -> src/V3Vault.sol:1157
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastDebtExchangeRateX96')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate f275f55660382aa9dd36] {transformedTokenId, transformerAllowList}
+ writer root       -> src/V3Vault.sol::V3Vault.setTransformer(address,bool)
+ writer effect     -> src/V3Vault.sol:797
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformerAllowList')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate f39633410dbbee167f97] {ownedTokens, ownedTokensIndex}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1299
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate f59e47c8a04f37f73aed] {tokenOwner, transformedTokenId, transformerAllowList}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool)
+ writer effect     -> src/V3Vault.sol:1313
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.tokenOwner')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId'), ('SV', 'src/V3Vault.sol', 'V3Vault.transformerAllowList')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate f67c3896aa1947cad52e] {lastExchangeRateUpdate, lastLendExchangeRateX96}
+ writer root       -> src/V3Vault.sol::V3Vault.deposit(uint256,address)
+ writer effect     -> src/V3Vault.sol:1159
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastExchangeRateUpdate')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.lastLendExchangeRateX96')
+ reader witnesses  -> 15
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (63 contracts with 1 detectors), 112 result(s) found

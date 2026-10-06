@@ -1,0 +1,619 @@
+'/tmp/.svm/0.8.0/solc-0.8.0 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> contracts/InterestRateModel.sol:55:23:
+   |
+55 |   function systemRate(ILendingPair _pair, address _token) external pure returns(uint) {
+   |                       ^^^^^^^^^^^^^^^^^^
+
+
+Warning: Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> contracts/InterestRateModel.sol:55:43:
+   |
+55 |   function systemRate(ILendingPair _pair, address _token) external pure returns(uint) {
+   |                                           ^^^^^^^^^^^^^^
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=822 vars=63
+[mvscan-stage] root-seeding-done eligible_exposures=64 seeded=54 multi_exposure_entry_blocks=2 collapsed_contextual_aliases=10 excluded_dependency=0 excluded_interface=28 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=f4b6cb54ab197f2c4a9fd1fabc7a47b8d938180612456b97d5bab4f52312ac1f candidate_count=85 candidate_digest=d586b73a8903c647838b5604e879a3b1c2e220d2f67157902ccfdf4a62eb3262 context_instance_count=5928 eligible_readers=70 eligible_writers=26 execution_context_digest=3f6561c09de7bd4bb05415aa36d1c5f21ee86ebf35a4b4f9794dda9e1a937671 insensitive_readers_filtered=100 invalid_partial_write_filtered=0 must_full_relation_filtered=116 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=11856 owner_context_pairs_considered=15804 raw_block_pairs=278 reader_witness_count=11856 relation_base_members_shadowed=0 relation_context_incompatible=3832 relation_digest=d93ce3c0be6a331a97a8faeae0284aa0e5639e815c870ce2236390768a9196e8 relation_members_raw=54 relation_origins_registered=7 relation_origins_rejected_unary_after_shadowing=36 relation_origins_rejected_unreachable=24 relation_origins_seen=43 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=18 scalar_variables_skipped=40 storage_context_mismatch=0 variables_considered=47
+INFO:Detectors:
+
+[MV-SI candidate 00afabdb61d49e2118a3] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawAll(address)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate 01680e7d8291842d3a5e] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.depositRepayETH(address)
+ writer effect     -> contracts/LendingPair.sol:459
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 100
+ storage exposures -> 1
+[MV-SI candidate 025268b1be35d0a1a7f2] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repayAllETH(address)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate 04ecb8400a52f2bc0089] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdraw(address,uint256)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate 0b200f1e98f4f91e7e35] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawBorrow(address,uint256)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate 0fb7597f116b99b3bf8a] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.borrow(address,uint256)
+ writer effect     -> contracts/LendingPair.sol:395
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate 10fbfc6ac9c22fafbc30] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.deposit(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:395
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate 1b2d1ded577908077d93] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repayAllETH(address)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate 1c6bc7bc4d6bff3f9ccc] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.liquidateAccount(address,address,uint256,uint256)
+ writer effect     -> contracts/LendingPair.sol:382
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate 1fab8280fe60151f11eb] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repay(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:382
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate 221c67af51c3940006f0] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.borrow(address,uint256)
+ writer effect     -> contracts/LendingPair.sol:459
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 100
+ storage exposures -> 1
+[MV-SI candidate 225997e235215fee2901] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.depositRepay(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:382
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate 228738e027733d6bebee] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repayAllETH(address)
+ writer effect     -> contracts/LendingPair.sol:395
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate 274de415147e52ca8783] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.borrow(address,uint256)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate 2ef620ccec64442e038a] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.accrueAccount(address)
+ writer effect     -> contracts/LendingPair.sol:396
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate 2f45d6094a8914550ae8] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawBorrow(address,uint256)
+ writer effect     -> contracts/LendingPair.sol:395
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate 2f6837c28f49b69f827c] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.depositRepay(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:459
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 100
+ storage exposures -> 1
+[MV-SI candidate 2fa2a9c0c2c487329524] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawAllETH()
+ writer effect     -> contracts/LendingPair.sol:395
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate 30b21d453f7a9d9df623] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawAllETH()
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate 3120555728ade92e7577] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawAll(address)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate 33b0d8ca714115839f7c] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.depositRepayETH(address)
+ writer effect     -> contracts/LendingPair.sol:395
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate 3a80bd3210b4adae5e6b] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.depositRepay(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:382
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate 3a912a174cdec52e871c] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repay(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:396
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate 3aaa88377479c5e0bf45] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repay(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate 3d225f36fb456db8ca3c] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.liquidateAccount(address,address,uint256,uint256)
+ writer effect     -> contracts/LendingPair.sol:395
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate 3f93f189ecb9418bc3b0] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdraw(address,uint256)
+ writer effect     -> contracts/LendingPair.sol:459
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 100
+ storage exposures -> 1
+[MV-SI candidate 4b1d8468272083e72bf9] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.depositRepayETH(address)
+ writer effect     -> contracts/LendingPair.sol:382
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate 4b3a2ba2d46ac0021e5f] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repayAll(address,address)
+ writer effect     -> contracts/LendingPair.sol:382
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate 4ee16230f7692767247a] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.accrueAccount(address)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate 51864ddb006b39c6ae07] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdraw(address,uint256)
+ writer effect     -> contracts/LendingPair.sol:395
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate 54498e4e25f35974557c] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repayAllETH(address)
+ writer effect     -> contracts/LendingPair.sol:396
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate 5748c14625d226225cdb] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.depositRepay(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:396
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate 58b1bd3e95dc65e5d048] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repayAll(address,address)
+ writer effect     -> contracts/LendingPair.sol:382
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate 5e42773cc57fbb2cacc3] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.deposit(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:459
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 100
+ storage exposures -> 1
+[MV-SI candidate 5f881be752d4916dcb55] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.initialize(address,address,IERC20,IERC20)
+ writer effect     -> contracts/LendingPair.sol:68
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA')
+ reader witnesses  -> 204
+ storage exposures -> 1
+[MV-SI candidate 62312a722653dd841613] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.depositRepayETH(address)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate 668bcf37ac336926240e] {totalPoints, totalRewardPerBlock}
+ writer root       -> contracts/RewardDistribution.sol::RewardDistribution.setTotalRewardPerBlock(uint256)
+ writer effect     -> contracts/RewardDistribution.sol:133
+ written member    -> ('SV', 'contracts/RewardDistribution.sol', 'RewardDistribution.totalRewardPerBlock')
+ potentially stale -> ('SV', 'contracts/RewardDistribution.sol', 'RewardDistribution.totalPoints')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 684f7877cd3427c76f49] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.liquidateAccount(address,address,uint256,uint256)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate 690ff6f6b4d64f1452a1] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawBorrow(address,uint256)
+ writer effect     -> contracts/LendingPair.sol:459
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 100
+ storage exposures -> 1
+[MV-SI candidate 6bf007b8de21d8e00755] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.borrow(address,uint256)
+ writer effect     -> contracts/LendingPair.sol:396
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate 6ee1ea5034f7abaddd50] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.depositRepayETH(address)
+ writer effect     -> contracts/LendingPair.sol:382
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate 73a4efdf0b2e3d0d538c] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repayAllETH(address)
+ writer effect     -> contracts/LendingPair.sol:459
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 100
+ storage exposures -> 1
+[MV-SI candidate 79a703d538a1db581bf5] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.depositRepayETH(address)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate 7c327b9e896b3be9ff21] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawBorrowETH(uint256)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate 81d3eeacff3dd5e7f8f7] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.liquidateAccount(address,address,uint256,uint256)
+ writer effect     -> contracts/LendingPair.sol:382
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate 8220e6a29ebf73cd9403] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repay(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate 853469988523b5569e47] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repay(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:459
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 100
+ storage exposures -> 1
+[MV-SI candidate 872154f1dc3c92be25af] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.liquidateAccount(address,address,uint256,uint256)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate 87d51476e56ba009a30c] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawAllETH()
+ writer effect     -> contracts/LendingPair.sol:459
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 100
+ storage exposures -> 1
+[MV-SI candidate 87ea813339f52cbed8d4] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.accrueAccount(address)
+ writer effect     -> contracts/LendingPair.sol:395
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate 8a5a88aa7af7322b5ea1] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.deposit(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:396
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate 8bd6e6cc424ff69abb87] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawBorrow(address,uint256)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate 90fc9af54c2c6ed3a5dd] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repay(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:382
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate 93ee3909855904ed4cb0] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.initialize(address,address,IERC20,IERC20)
+ writer effect     -> contracts/LendingPair.sol:67
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate 94333148bc210eaf533f] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawBorrowETH(uint256)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate 95c7e6431573dacf4ca5] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repayAll(address,address)
+ writer effect     -> contracts/LendingPair.sol:459
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 100
+ storage exposures -> 1
+[MV-SI candidate 9d6a11d4bb3502c41e5b] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdraw(address,uint256)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate a149d7f2f9335e8b50fe] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.accrue()
+ writer effect     -> contracts/LendingPair.sol:459
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 100
+ storage exposures -> 1
+[MV-SI candidate a4710f52baa9777b1900] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawAll(address)
+ writer effect     -> contracts/LendingPair.sol:459
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 100
+ storage exposures -> 1
+[MV-SI candidate aa2a09fe65564e13c0a6] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.deposit(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate b204a421656a72020eb2] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.accrueAccount(address)
+ writer effect     -> contracts/LendingPair.sol:459
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 100
+ storage exposures -> 1
+[MV-SI candidate b335b5b21a0621c3af2c] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repayAllETH(address)
+ writer effect     -> contracts/LendingPair.sol:382
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate b38baa12b5d942e8a86e] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.depositRepay(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:395
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate b44db1cea2ab8318c2df] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawBorrow(address,uint256)
+ writer effect     -> contracts/LendingPair.sol:396
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate b5962d618f9ce4753116] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.liquidateAccount(address,address,uint256,uint256)
+ writer effect     -> contracts/LendingPair.sol:396
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate bc95b4ca75816d3fea03] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawBorrowETH(uint256)
+ writer effect     -> contracts/LendingPair.sol:395
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate befefb441cff9e6b3b1d] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repayAll(address,address)
+ writer effect     -> contracts/LendingPair.sol:396
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate c1112cfe1c0c36e26806] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdraw(address,uint256)
+ writer effect     -> contracts/LendingPair.sol:396
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate c4b436d07898f127fdf3] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.depositRepay(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate c85cf378e5f081e9ad71] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawAllETH()
+ writer effect     -> contracts/LendingPair.sol:396
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate c8c283745bc9ad303085] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.depositRepayETH(address)
+ writer effect     -> contracts/LendingPair.sol:396
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate d11a669533ae607c0328] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawBorrowETH(uint256)
+ writer effect     -> contracts/LendingPair.sol:396
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate d4e04e15481c6b9a8d4c] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.accrueAccount(address)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate df0559533e541eccdb10] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repayAll(address,address)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate df4c353a1b22138d1229] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repayAll(address,address)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate df56a9532e06bb37c3eb] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.deposit(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate e25f4a2add6acde8795f] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawBorrowETH(uint256)
+ writer effect     -> contracts/LendingPair.sol:459
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 100
+ storage exposures -> 1
+[MV-SI candidate e7d518ad77f614bc64a3] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repayAllETH(address)
+ writer effect     -> contracts/LendingPair.sol:382
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate ea5dd239211a09892f88] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawAll(address)
+ writer effect     -> contracts/LendingPair.sol:395
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate f0634ccf21185d8ae5d9] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.borrow(address,uint256)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1
+[MV-SI candidate f4f08f82250ab725dc57] {debtOf, tokenA, tokenB}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawAllETH()
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenA'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.tokenB')
+ reader witnesses  -> 200
+ storage exposures -> 1
+[MV-SI candidate f7aaf74274f7751f1de1] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repayAll(address,address)
+ writer effect     -> contracts/LendingPair.sol:395
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate f92c7489362abf366621] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.withdrawAll(address)
+ writer effect     -> contracts/LendingPair.sol:396
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate fcb24724d75dab86299b] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.repay(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:395
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ reader witnesses  -> 156
+ storage exposures -> 1
+[MV-SI candidate fec6927074d19ef01ccc] {accountInterestSnapshot, cumulativeInterestRate, debtOf}
+ writer root       -> contracts/LendingPair.sol::LendingPair.depositRepay(address,address,uint256)
+ writer effect     -> contracts/LendingPair.sol:377
+ written member    -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.debtOf')
+ potentially stale -> ('SV', 'contracts/LendingPair.sol', 'LendingPair.accountInterestSnapshot'), ('SV', 'contracts/LendingPair.sol', 'LendingPair.cumulativeInterestRate')
+ reader witnesses  -> 84
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (25 contracts with 1 detectors), 85 result(s) found

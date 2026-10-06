@@ -1,0 +1,35 @@
+'/tmp/.svm/0.8.25/solc-0.8.25 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+Traceback (most recent call last):
+  File "/usr/local/bin/slither", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/site-packages/slither/__main__.py", line 776, in main
+    main_impl(all_detector_classes=detectors, all_printer_classes=printers)
+  File "/usr/local/lib/python3.10/site-packages/slither/__main__.py", line 869, in main_impl
+    ) = process_single(filename, args, detector_classes, printer_classes)
+  File "/usr/local/lib/python3.10/site-packages/slither/__main__.py", line 87, in process_single
+    return _process(slither, detector_classes, printer_classes)
+  File "/usr/local/lib/python3.10/site-packages/slither/__main__.py", line 137, in _process
+    detector_resultss = slither.run_detectors()
+  File "/usr/local/lib/python3.10/site-packages/slither/slither.py", line 292, in run_detectors
+    results = [d.detect() for d in self._detectors]
+  File "/usr/local/lib/python3.10/site-packages/slither/slither.py", line 292, in <listcomp>
+    results = [d.detect() for d in self._detectors]
+  File "/usr/local/lib/python3.10/site-packages/slither/detectors/abstract_detector.py", line 203, in detect
+    for r in [output.data for output in self._detect()]:
+  File "/mnt/detector/mvscan_plugin/inconsistent_state.py", line 1051, in _detect
+    icfg = build_icfg(self.compilation_unit)
+  File "/mnt/detector/mvscan_plugin/inconsistent_state.py", line 548, in build_icfg
+    icfg.precompute_return_summaries(functions)
+  File "/mnt/detector/mvscan_plugin/utils/icfg.py", line 1375, in precompute_return_summaries
+    summaries = _compute_function_influence_summaries(functions, keep=None, target_resolver=self.resolve_call_functions)
+  File "/mnt/detector/mvscan_plugin/utils/icfg.py", line 1011, in _compute_function_influence_summaries
+    candidate = _analyze_function_influence(fn, keep, summaries, target_resolver=target_resolver)
+  File "/mnt/detector/mvscan_plugin/utils/icfg.py", line 854, in _analyze_function_influence
+    argument_origins = [_origins_for_operand(argt, bid, origins, reference_locations) for argt in arguments]
+  File "/mnt/detector/mvscan_plugin/utils/icfg.py", line 854, in <listcomp>
+    argument_origins = [_origins_for_operand(argt, bid, origins, reference_locations) for argt in arguments]
+  File "/mnt/detector/mvscan_plugin/utils/icfg.py", line 684, in _origins_for_operand
+    result = set(origins.get(operand, set()))
+TypeError: unhashable type: 'list'

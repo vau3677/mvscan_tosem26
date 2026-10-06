@@ -1,0 +1,29 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1463 vars=54
+[mvscan-stage] root-seeding-done eligible_exposures=48 seeded=38 multi_exposure_entry_blocks=10 collapsed_contextual_aliases=10 excluded_dependency=0 excluded_interface=37 excluded_library=0 excluded_abstract=2 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=c9ab6136fac35d502551b6ee3972874c54c2ac673a465b12f3982b96f7fa9cc5 candidate_count=3 candidate_digest=d08dfe29e1598c84e65421b0ca3f6340c0ff0141c25afc5c792a1fac6375abb5 context_instance_count=16 eligible_readers=13 eligible_writers=5 execution_context_digest=7a5c42eed604f8c88f094c15c6bcc3209fae8fbe0be794e3da95f25aef6f5f1d insensitive_readers_filtered=6 invalid_partial_write_filtered=0 must_full_relation_filtered=16 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=16 owner_context_pairs_considered=51 raw_block_pairs=36 reader_witness_count=16 relation_base_members_shadowed=7 relation_context_incompatible=19 relation_digest=b4ed6526fa42bd160f7ceca1246718692211dbff89c6880c25c04de2af69978d relation_members_raw=53 relation_origins_registered=2 relation_origins_rejected_unary_after_shadowing=42 relation_origins_seen=44 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=40 storage_context_mismatch=0 variables_considered=42
+INFO:Detectors:
+
+[MV-SI candidate 3a6a0976c937f0bcc990] {auctionStart, bondTimestamp}
+ writer root       -> contracts/Auction.sol::Auction.bondForRebalance()
+ writer effect     -> contracts/Auction.sol:58
+ written member    -> ('SV', 'contracts/Auction.sol', 'Auction.bondTimestamp')
+ potentially stale -> ('SV', 'contracts/Auction.sol', 'Auction.auctionStart')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 3da5d299416c7fc82444] {auctionStart, bondTimestamp}
+ writer root       -> contracts/Auction.sol::Auction.startAuction()
+ writer effect     -> contracts/Auction.sol:38
+ written member    -> ('SV', 'contracts/Auction.sol', 'Auction.auctionStart')
+ potentially stale -> ('SV', 'contracts/Auction.sol', 'Auction.bondTimestamp')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 92c3b6ef82294e3f6fbc] {auction, publisher}
+ writer root       -> contracts/Basket.sol::Basket.changePublisher(address)
+ writer effect     -> contracts/Basket.sol:139
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.publisher')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.auction')
+ reader witnesses  -> 12
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (22 contracts with 1 detectors), 3 result(s) found

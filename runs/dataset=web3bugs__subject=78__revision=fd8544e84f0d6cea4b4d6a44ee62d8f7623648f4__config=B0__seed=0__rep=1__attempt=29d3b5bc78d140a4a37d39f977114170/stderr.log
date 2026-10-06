@@ -1,0 +1,491 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=3419 vars=209
+[mvscan-stage] root-seeding-done eligible_exposures=292 seeded=194 multi_exposure_entry_blocks=29 collapsed_contextual_aliases=98 excluded_dependency=0 excluded_interface=75 excluded_library=6 excluded_abstract=87 missing_entry_point=1 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4e7e6a63b839c31e43ffa4010bb24d0b8de28b6c966ca6539d3877bfd5104bd9 candidate_count=69 candidate_digest=b9450ddd6742f75ea89925031cdc700c14ed070616afd9e101c7ba1a358518b1 context_instance_count=835 eligible_readers=165 eligible_writers=117 execution_context_digest=8116f7581ec51a92108009e3847d8f30bc001779d90aec69132a94f2653ad2f9 insensitive_readers_filtered=138 invalid_partial_write_filtered=37 must_full_relation_filtered=74 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=94 owner_context_pairs=1639 owner_context_pairs_considered=5590 raw_block_pairs=2192 reader_witness_count=1639 relation_base_members_shadowed=42 relation_context_incompatible=2705 relation_digest=6a1c128ed826a8c0dc1592d212722e308620ad37260494a9509257f68392b46b relation_members_raw=224 relation_origins_registered=17 relation_origins_rejected_unary_after_shadowing=146 relation_origins_rejected_unreachable=41 relation_origins_seen=163 relation_unbound_key_templates=9 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=36 scalar_variables_skipped=144 storage_context_mismatch=1041 variables_considered=161
+INFO:Detectors:
+
+[MV-SI candidate 05b91a18d1b08d251ba2] {VARS, latestFlanQuotes}
+ writer root       -> contracts/UniswapHelper.sol::UniswapHelper.setDAI(address)
+ writer effect     -> contracts/UniswapHelper.sol:101
+ written member    -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.VARS')
+ potentially stale -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.latestFlanQuotes')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 06f069aaef1ef719da5e] {VARS, latestFlanQuotes}
+ writer root       -> contracts/UniswapHelper.sol::UniswapHelper.stabilizeFlan(uint256)
+ writer effect     -> contracts/UniswapHelper.sol:260
+ written member    -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.latestFlanQuotes')
+ potentially stale -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.VARS')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate 073f51226e9ba097b973] {lachesis, validTokens[$arg0]}
+ writer root       -> contracts/testing/realBehodler/BehodlerLite.sol::BehodlerLite.setValidToken(address,bool,bool)
+ writer effect     -> contracts/testing/realBehodler/BehodlerLite.sol:352
+ written member    -> ('MS', 'contracts/testing/realBehodler/BehodlerLite.sol', 'BehodlerLite.validTokens', '$arg0')
+ potentially stale -> ('SV', 'contracts/testing/realBehodler/BehodlerLite.sol', 'BehodlerLite.lachesis')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 07e2248e1b204a65dc97] {crossingConfig, latestIndex[$arg0], tokenCrossingParameters}
+ writer root       -> contracts/Limbo.sol::Limbo.adjustSoul(address,uint256,int256,uint256)
+ writer effect     -> contracts/Limbo.sol:391
+ written member    -> ('SV', 'contracts/Limbo.sol', 'Limbo.tokenCrossingParameters')
+ potentially stale -> ('MS', 'contracts/Limbo.sol', 'Limbo.latestIndex', '$arg0'), ('SV', 'contracts/Limbo.sol', 'Limbo.crossingConfig')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 0a0583fe04ca90e880c4] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.makeProposal(address,address)
+ writer effect     -> contracts/DAO/LimboDAO.sol:162
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 0a1abbc58e85b434a4ab] {crossingConfig, latestIndex[$arg0], tokenCrossingParameters}
+ writer root       -> contracts/Limbo.sol::Limbo.configureCrossingConfig(address,address,address,address,uint256,uint256,uint16)
+ writer effect     -> contracts/Limbo.sol:352
+ written member    -> ('SV', 'contracts/Limbo.sol', 'Limbo.crossingConfig')
+ potentially stale -> ('MS', 'contracts/Limbo.sol', 'Limbo.latestIndex', '$arg0'), ('SV', 'contracts/Limbo.sol', 'Limbo.tokenCrossingParameters')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 0dfcfbbcdd370280f2b4] {VARS, latestFlanQuotes}
+ writer root       -> contracts/UniswapHelper.sol::UniswapHelper.generateFLNQuote()
+ writer effect     -> contracts/UniswapHelper.sol:140
+ written member    -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.latestFlanQuotes')
+ potentially stale -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.VARS')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate 1271b18bb07a7fe67687] {config, safetyParameters}
+ writer root       -> contracts/testing/realBehodler/BehodlerLite.sol::BehodlerLite.setSafetParameters(uint8,uint8)
+ writer effect     -> contracts/testing/realBehodler/BehodlerLite.sol:367
+ written member    -> ('SV', 'contracts/testing/realBehodler/BehodlerLite.sol', 'BehodlerLite.safetyParameters')
+ potentially stale -> ('SV', 'contracts/testing/realBehodler/BehodlerLite.sol', 'ScarcityLite.config')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 139e90eaddf1059cff31] {crossingConfig, latestIndex[$arg0], tokenCrossingParameters}
+ writer root       -> contracts/Limbo.sol::Limbo.configureSoul(address,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Limbo.sol:410
+ written member    -> ('MS', 'contracts/Limbo.sol', 'Limbo.latestIndex', '$arg0')
+ potentially stale -> ('SV', 'contracts/Limbo.sol', 'Limbo.crossingConfig'), ('SV', 'contracts/Limbo.sol', 'Limbo.tokenCrossingParameters')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 1a10a98022f2804edee7] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.makeProposal(address,address)
+ writer effect     -> contracts/DAO/LimboDAO.sol:133
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 1c5e25ae448dd8a79ea1] {crossingConfig, latestIndex[$arg0], tokenCrossingParameters}
+ writer root       -> contracts/Limbo.sol::Limbo.configureCrossingConfig(address,address,address,address,uint256,uint256,uint16)
+ writer effect     -> contracts/Limbo.sol:355
+ written member    -> ('SV', 'contracts/Limbo.sol', 'Limbo.crossingConfig')
+ potentially stale -> ('MS', 'contracts/Limbo.sol', 'Limbo.latestIndex', '$arg0'), ('SV', 'contracts/Limbo.sol', 'Limbo.tokenCrossingParameters')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 22a45ee7f7d4d5b8758b] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.makeProposal(address,address)
+ writer effect     -> contracts/DAO/LimboDAO.sol:257
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 28024a858a0b194bff5b] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.vote(address,int256)
+ writer effect     -> contracts/DAO/LimboDAO.sol:284
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 301b768271c12bac8408] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.makeProposal(address,address)
+ writer effect     -> contracts/DAO/LimboDAO.sol:158
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 312dee95829dcbba4c53] {VARS, latestFlanQuotes}
+ writer root       -> contracts/UniswapHelper.sol::UniswapHelper.generateFLNQuote()
+ writer effect     -> contracts/UniswapHelper.sol:144
+ written member    -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.latestFlanQuotes')
+ potentially stale -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.VARS')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate 38f70b9450530c171aa6] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.setProposalConfig(uint256,uint256,address)
+ writer effect     -> contracts/DAO/LimboDAO.sol:308
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ reader witnesses  -> 117
+ storage exposures -> 1
+[MV-SI candidate 409259a8270b93b60d1f] {VARS, latestFlanQuotes}
+ writer root       -> contracts/UniswapHelper.sol::UniswapHelper.configure(address,address,address,address,uint256,uint256,uint8,uint8)
+ writer effect     -> contracts/UniswapHelper.sol:129
+ written member    -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.VARS')
+ potentially stale -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.latestFlanQuotes')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 410a80c81ffb3dcb977a] {crossingConfig, latestIndex[$arg0], tokenCrossingParameters}
+ writer root       -> contracts/Limbo.sol::Limbo.configureCrossingConfig(address,address,address,address,uint256,uint256,uint16)
+ writer effect     -> contracts/Limbo.sol:353
+ written member    -> ('SV', 'contracts/Limbo.sol', 'Limbo.crossingConfig')
+ potentially stale -> ('MS', 'contracts/Limbo.sol', 'Limbo.latestIndex', '$arg0'), ('SV', 'contracts/Limbo.sol', 'Limbo.tokenCrossingParameters')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 480fa4b824063065f66e] {crossingConfig, latestIndex[$arg0], tokenCrossingParameters}
+ writer root       -> contracts/Limbo.sol::Limbo.configureSoul(address,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Limbo.sol:410
+ written member    -> ('MS', 'contracts/Limbo.sol', 'Limbo.latestIndex', '$arg0')
+ potentially stale -> ('SV', 'contracts/Limbo.sol', 'Limbo.crossingConfig'), ('SV', 'contracts/Limbo.sol', 'Limbo.tokenCrossingParameters')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 4c933cb3c23510723901] {_owner, mintAllowance[@local::contracts/Flan.sol::Flan.mint(address,uint256)::TemporaryVariable::TMP_1043]}
+ writer root       -> @openzeppelin/contracts/access/Ownable.sol::Ownable.transferOwnership(address)
+ writer effect     -> @openzeppelin/contracts/access/Ownable.sol:73
+ written member    -> ('SV', '@openzeppelin/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('MS', 'contracts/Flan.sol', 'Flan.mintAllowance', '@local::contracts/Flan.sol::Flan.mint(address,uint256)::TemporaryVariable::TMP_1043')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 58a67b8e4015e379a0b5] {VARS, latestFlanQuotes}
+ writer root       -> contracts/UniswapHelper.sol::UniswapHelper.configure(address,address,address,address,uint256,uint256,uint8,uint8)
+ writer effect     -> contracts/UniswapHelper.sol:130
+ written member    -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.VARS')
+ potentially stale -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.latestFlanQuotes')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 5a0442c6d64af98106d3] {crossingConfig, latestIndex[$arg0], tokenCrossingParameters}
+ writer root       -> contracts/Limbo.sol::Limbo.configureSoul(address,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Limbo.sol:419
+ written member    -> ('SV', 'contracts/Limbo.sol', 'Limbo.tokenCrossingParameters')
+ potentially stale -> ('MS', 'contracts/Limbo.sol', 'Limbo.latestIndex', '$arg0'), ('SV', 'contracts/Limbo.sol', 'Limbo.crossingConfig')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 5ed2ab5a286ee7b9e116] {crossingConfig, latestIndex[$arg0], tokenCrossingParameters}
+ writer root       -> contracts/Limbo.sol::Limbo.stake(address,uint256)
+ writer effect     -> contracts/Limbo.sol:472
+ written member    -> ('SV', 'contracts/Limbo.sol', 'Limbo.tokenCrossingParameters')
+ potentially stale -> ('MS', 'contracts/Limbo.sol', 'Limbo.latestIndex', '$arg0'), ('SV', 'contracts/Limbo.sol', 'Limbo.crossingConfig')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 67e6da06266f03338ef0] {_owner, mintAllowance[@local::contracts/Flan.sol::Flan.mint(address,uint256)::TemporaryVariable::TMP_1043]}
+ writer root       -> @openzeppelin/contracts/access/Ownable.sol::Ownable.renounceOwnership()
+ writer effect     -> @openzeppelin/contracts/access/Ownable.sol:73
+ written member    -> ('SV', '@openzeppelin/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('MS', 'contracts/Flan.sol', 'Flan.mintAllowance', '@local::contracts/Flan.sol::Flan.mint(address,uint256)::TemporaryVariable::TMP_1043')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 69ee58de9bd81c1ee5b2] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.makeProposal(address,address)
+ writer effect     -> contracts/DAO/LimboDAO.sol:256
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 6a01c4747f87b3ea58da] {config, safetyParameters}
+ writer root       -> contracts/testing/realBehodler/BehodlerLite.sol::ScarcityLite.configureScarcity(uint256,uint256,address)
+ writer effect     -> contracts/testing/realBehodler/BehodlerLite.sol:39
+ written member    -> ('SV', 'contracts/testing/realBehodler/BehodlerLite.sol', 'ScarcityLite.config')
+ potentially stale -> ('SV', 'contracts/testing/realBehodler/BehodlerLite.sol', 'BehodlerLite.safetyParameters')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 6a81c79804e776aef7a1] {VARS, latestFlanQuotes}
+ writer root       -> contracts/UniswapHelper.sol::UniswapHelper.configure(address,address,address,address,uint256,uint256,uint8,uint8)
+ writer effect     -> contracts/UniswapHelper.sol:134
+ written member    -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.VARS')
+ potentially stale -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.latestFlanQuotes')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 6ade35531d8a6ff27753] {VARS, latestFlanQuotes}
+ writer root       -> contracts/UniswapHelper.sol::UniswapHelper.configure(address,address,address,address,uint256,uint256,uint8,uint8)
+ writer effect     -> contracts/UniswapHelper.sol:126
+ written member    -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.VARS')
+ potentially stale -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.latestFlanQuotes')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 6d8ff562a4a6fd53d57d] {VARS, latestFlanQuotes}
+ writer root       -> contracts/UniswapHelper.sol::UniswapHelper.setFactory(address)
+ writer effect     -> contracts/UniswapHelper.sol:95
+ written member    -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.VARS')
+ potentially stale -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.latestFlanQuotes')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 6f18cede2064658e66f3] {latestIndex[$arg0], souls[$arg0][@local::contracts/Limbo.sol::Limbo.currentSoul(address)::ReferenceVariable::REF_735]}
+ writer root       -> contracts/Limbo.sol::Limbo.configureSoul(address,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Limbo.sol:410
+ written member    -> ('MS', 'contracts/Limbo.sol', 'Limbo.latestIndex', '$arg0')
+ potentially stale -> ('MS', 'contracts/Limbo.sol', 'Limbo.souls', '$arg0][@local::contracts/Limbo.sol::Limbo.currentSoul(address)::ReferenceVariable::REF_735')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 73555d3f39e9396a96b4] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.executeCurrentProposal()
+ writer effect     -> contracts/DAO/LimboDAO.sol:133
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 82df1e0c08c66c2d0518] {latestIndex[$arg0], souls[$arg0][@local::contracts/Limbo.sol::Limbo.currentSoul(address)::ReferenceVariable::REF_735]}
+ writer root       -> contracts/Limbo.sol::Limbo.configureSoul(address,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Limbo.sol:410
+ written member    -> ('MS', 'contracts/Limbo.sol', 'Limbo.latestIndex', '$arg0')
+ potentially stale -> ('MS', 'contracts/Limbo.sol', 'Limbo.souls', '$arg0][@local::contracts/Limbo.sol::Limbo.currentSoul(address)::ReferenceVariable::REF_735')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 843485325c3548ca2ba2] {config, safetyParameters}
+ writer root       -> contracts/testing/realBehodler/BehodlerLite.sol::ScarcityLite.configureScarcity(uint256,uint256,address)
+ writer effect     -> contracts/testing/realBehodler/BehodlerLite.sol:40
+ written member    -> ('SV', 'contracts/testing/realBehodler/BehodlerLite.sol', 'ScarcityLite.config')
+ potentially stale -> ('SV', 'contracts/testing/realBehodler/BehodlerLite.sol', 'BehodlerLite.safetyParameters')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 89138eb45a22cafaa3ed] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.seed(address,address,address,address,address,address,address,uint256,address[],address[])
+ writer effect     -> contracts/DAO/LimboDAO.sol:208
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ reader witnesses  -> 117
+ storage exposures -> 1
+[MV-SI candidate 8cab439edd2d5e075aa7] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.makeProposal(address,address)
+ writer effect     -> contracts/DAO/LimboDAO.sol:134
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 8dcf28669bbebaac66c0] {VARS, latestFlanQuotes}
+ writer root       -> contracts/UniswapHelper.sol::UniswapHelper.configure(address,address,address,address,uint256,uint256,uint8,uint8)
+ writer effect     -> contracts/UniswapHelper.sol:127
+ written member    -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.VARS')
+ potentially stale -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.latestFlanQuotes')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 8ddccc4f05d652b09d9f] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.makeProposal(address,address)
+ writer effect     -> contracts/DAO/LimboDAO.sol:130
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 958527f7dd63e03d41d7] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.vote(address,int256)
+ writer effect     -> contracts/DAO/LimboDAO.sol:290
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate a130c787c50650a76057] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.executeCurrentProposal()
+ writer effect     -> contracts/DAO/LimboDAO.sol:134
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate a2747e7bbc052bb1961e] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.makeProposal(address,address)
+ writer effect     -> contracts/DAO/LimboDAO.sol:260
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate a590738e9b98a77edf17] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.seed(address,address,address,address,address,address,address,uint256,address[],address[])
+ writer effect     -> contracts/DAO/LimboDAO.sol:209
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ reader witnesses  -> 117
+ storage exposures -> 1
+[MV-SI candidate a614bfe549314f5b0380] {VARS, latestFlanQuotes}
+ writer root       -> contracts/UniswapHelper.sol::UniswapHelper.configure(address,address,address,address,uint256,uint256,uint8,uint8)
+ writer effect     -> contracts/UniswapHelper.sol:131
+ written member    -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.VARS')
+ potentially stale -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.latestFlanQuotes')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a9275aea26fce64b2eb2] {crossingConfig, latestIndex[$arg0], tokenCrossingParameters}
+ writer root       -> contracts/Limbo.sol::Limbo.adjustSoul(address,uint256,int256,uint256)
+ writer effect     -> contracts/Limbo.sol:392
+ written member    -> ('SV', 'contracts/Limbo.sol', 'Limbo.tokenCrossingParameters')
+ potentially stale -> ('MS', 'contracts/Limbo.sol', 'Limbo.latestIndex', '$arg0'), ('SV', 'contracts/Limbo.sol', 'Limbo.crossingConfig')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate aa54a7104e9956168514] {VARS, latestFlanQuotes}
+ writer root       -> contracts/UniswapHelper.sol::UniswapHelper.configure(address,address,address,address,uint256,uint256,uint8,uint8)
+ writer effect     -> contracts/UniswapHelper.sol:125
+ written member    -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.VARS')
+ potentially stale -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.latestFlanQuotes')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate ad192957a9800be93bd7] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.seed(address,address,address,address,address,address,address,uint256,address[],address[])
+ writer effect     -> contracts/DAO/LimboDAO.sol:210
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ reader witnesses  -> 117
+ storage exposures -> 1
+[MV-SI candidate b0edcf69b82a5307d5af] {DAO, configured}
+ writer root       -> contracts/DAO/Governable.sol::Governable.endConfiguration()
+ writer effect     -> contracts/DAO/Governable.sol:26
+ written member    -> ('SV', 'contracts/DAO/Governable.sol', 'Governable.configured')
+ potentially stale -> ('SV', 'contracts/DAO/Governable.sol', 'Governable.DAO')
+ reader witnesses  -> 21
+ storage exposures -> 7
+[MV-SI candidate b1a1b75e4cc920eda935] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.makeProposal(address,address)
+ writer effect     -> contracts/DAO/LimboDAO.sol:132
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate b42cf2564e5beff93b48] {VARS, latestFlanQuotes}
+ writer root       -> contracts/UniswapHelper.sol::UniswapHelper.configure(address,address,address,address,uint256,uint256,uint8,uint8)
+ writer effect     -> contracts/UniswapHelper.sol:132
+ written member    -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.VARS')
+ potentially stale -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.latestFlanQuotes')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b8e2187425f0f92f0b63] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.makeProposal(address,address)
+ writer effect     -> contracts/DAO/LimboDAO.sol:131
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate be37ba087a2585d07fc9] {crossingConfig, latestIndex[$arg0], tokenCrossingParameters}
+ writer root       -> contracts/Limbo.sol::Limbo.configureCrossingConfig(address,address,address,address,uint256,uint256,uint16)
+ writer effect     -> contracts/Limbo.sol:349
+ written member    -> ('SV', 'contracts/Limbo.sol', 'Limbo.crossingConfig')
+ potentially stale -> ('MS', 'contracts/Limbo.sol', 'Limbo.latestIndex', '$arg0'), ('SV', 'contracts/Limbo.sol', 'Limbo.tokenCrossingParameters')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate c1e81269e408b28007cd] {lachesis, validTokens[$arg0]}
+ writer root       -> contracts/testing/realBehodler/BehodlerLite.sol::BehodlerLite.setLachesis(address)
+ writer effect     -> contracts/testing/realBehodler/BehodlerLite.sol:343
+ written member    -> ('SV', 'contracts/testing/realBehodler/BehodlerLite.sol', 'BehodlerLite.lachesis')
+ potentially stale -> ('MS', 'contracts/testing/realBehodler/BehodlerLite.sol', 'BehodlerLite.validTokens', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c8118d282c2096256d63] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.executeCurrentProposal()
+ writer effect     -> contracts/DAO/LimboDAO.sol:131
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate c85738139662e679256f] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.executeCurrentProposal()
+ writer effect     -> contracts/DAO/LimboDAO.sol:158
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate cbba33088d3e74d3f775] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.setProposalConfig(uint256,uint256,address)
+ writer effect     -> contracts/DAO/LimboDAO.sol:307
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ reader witnesses  -> 117
+ storage exposures -> 1
+[MV-SI candidate cd30f13799a217e895c0] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.setProposalConfig(uint256,uint256,address)
+ writer effect     -> contracts/DAO/LimboDAO.sol:306
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ reader witnesses  -> 117
+ storage exposures -> 1
+[MV-SI candidate d0e182f3af07b6e45b94] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.makeProposal(address,address)
+ writer effect     -> contracts/DAO/LimboDAO.sol:258
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate d7e6a0ce244211f236c0] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.executeCurrentProposal()
+ writer effect     -> contracts/DAO/LimboDAO.sol:132
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate e53621eb70f9333ff091] {VARS, latestFlanQuotes}
+ writer root       -> contracts/UniswapHelper.sol::UniswapHelper.stabilizeFlan(uint256)
+ writer effect     -> contracts/UniswapHelper.sol:259
+ written member    -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.latestFlanQuotes')
+ potentially stale -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.VARS')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate e591be6cd2ff35784ff0] {config, safetyParameters}
+ writer root       -> contracts/testing/realBehodler/BehodlerLite.sol::ScarcityLite.configureScarcity(uint256,uint256,address)
+ writer effect     -> contracts/testing/realBehodler/BehodlerLite.sol:38
+ written member    -> ('SV', 'contracts/testing/realBehodler/BehodlerLite.sol', 'ScarcityLite.config')
+ potentially stale -> ('SV', 'contracts/testing/realBehodler/BehodlerLite.sol', 'BehodlerLite.safetyParameters')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e734504649048f6afa12] {config, safetyParameters}
+ writer root       -> contracts/testing/realBehodler/BehodlerLite.sol::BehodlerLite.setSafetParameters(uint8,uint8)
+ writer effect     -> contracts/testing/realBehodler/BehodlerLite.sol:368
+ written member    -> ('SV', 'contracts/testing/realBehodler/BehodlerLite.sol', 'BehodlerLite.safetyParameters')
+ potentially stale -> ('SV', 'contracts/testing/realBehodler/BehodlerLite.sol', 'ScarcityLite.config')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate f0375359c70c8822284f] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.executeCurrentProposal()
+ writer effect     -> contracts/DAO/LimboDAO.sol:130
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate f35da2e7bd6b34cba4f9] {crossingConfig, latestIndex[$arg0], tokenCrossingParameters}
+ writer root       -> contracts/Limbo.sol::Limbo.configureCrossingConfig(address,address,address,address,uint256,uint256,uint16)
+ writer effect     -> contracts/Limbo.sol:348
+ written member    -> ('SV', 'contracts/Limbo.sol', 'Limbo.crossingConfig')
+ potentially stale -> ('MS', 'contracts/Limbo.sol', 'Limbo.latestIndex', '$arg0'), ('SV', 'contracts/Limbo.sol', 'Limbo.tokenCrossingParameters')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate f42e90648ecf82e68066] {VARS, latestFlanQuotes}
+ writer root       -> contracts/UniswapHelper.sol::UniswapHelper.configure(address,address,address,address,uint256,uint256,uint8,uint8)
+ writer effect     -> contracts/UniswapHelper.sol:132
+ written member    -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.VARS')
+ potentially stale -> ('SV', 'contracts/UniswapHelper.sol', 'UniswapHelper.latestFlanQuotes')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f4b60f3fbcacbd783fbe] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.makeProposal(address,address)
+ writer effect     -> contracts/DAO/LimboDAO.sol:259
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate f6eafb48fb525c8222b1] {crossingConfig, latestIndex[$arg0], tokenCrossingParameters}
+ writer root       -> contracts/Limbo.sol::Limbo.configureCrossingConfig(address,address,address,address,uint256,uint256,uint16)
+ writer effect     -> contracts/Limbo.sol:350
+ written member    -> ('SV', 'contracts/Limbo.sol', 'Limbo.crossingConfig')
+ potentially stale -> ('MS', 'contracts/Limbo.sol', 'Limbo.latestIndex', '$arg0'), ('SV', 'contracts/Limbo.sol', 'Limbo.tokenCrossingParameters')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate fa47824ebcb44f030e10] {crossingConfig, latestIndex[$arg0], tokenCrossingParameters}
+ writer root       -> contracts/Limbo.sol::Limbo.configureSoul(address,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Limbo.sol:416
+ written member    -> ('SV', 'contracts/Limbo.sol', 'Limbo.tokenCrossingParameters')
+ potentially stale -> ('MS', 'contracts/Limbo.sol', 'Limbo.latestIndex', '$arg0'), ('SV', 'contracts/Limbo.sol', 'Limbo.crossingConfig')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate fe10333188dbc82b5b67] {crossingConfig, latestIndex[$arg0], tokenCrossingParameters}
+ writer root       -> contracts/Limbo.sol::Limbo.configureCrossingConfig(address,address,address,address,uint256,uint256,uint16)
+ writer effect     -> contracts/Limbo.sol:351
+ written member    -> ('SV', 'contracts/Limbo.sol', 'Limbo.crossingConfig')
+ potentially stale -> ('MS', 'contracts/Limbo.sol', 'Limbo.latestIndex', '$arg0'), ('SV', 'contracts/Limbo.sol', 'Limbo.tokenCrossingParameters')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate ff3c7ffdedd20c4e71d3] {lachesis, validTokens[$arg0]}
+ writer root       -> contracts/testing/realBehodler/BehodlerLite.sol::LachesisLite.updateBehodler(address)
+ writer effect     -> contracts/testing/realBehodler/BehodlerLite.sol:352
+ written member    -> ('MS', 'contracts/testing/realBehodler/BehodlerLite.sol', 'BehodlerLite.validTokens', '$arg0')
+ potentially stale -> ('SV', 'contracts/testing/realBehodler/BehodlerLite.sol', 'BehodlerLite.lachesis')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate ff5b24e596c8a8c1a97b] {currentProposalState, proposalConfig}
+ writer root       -> contracts/DAO/LimboDAO.sol::LimboDAO.executeCurrentProposal()
+ writer effect     -> contracts/DAO/LimboDAO.sol:162
+ written member    -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.currentProposalState')
+ potentially stale -> ('SV', 'contracts/DAO/LimboDAO.sol', 'LimboDAO.proposalConfig')
+ reader witnesses  -> 24
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (128 contracts with 1 detectors), 69 result(s) found

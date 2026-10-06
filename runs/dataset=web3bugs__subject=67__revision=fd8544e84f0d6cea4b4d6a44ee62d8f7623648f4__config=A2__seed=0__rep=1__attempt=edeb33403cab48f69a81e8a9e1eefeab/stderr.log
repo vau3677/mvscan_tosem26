@@ -1,0 +1,96 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1611 vars=68
+[mvscan-stage] root-seeding-done eligible_exposures=98 seeded=52 multi_exposure_entry_blocks=27 collapsed_contextual_aliases=46 excluded_dependency=0 excluded_interface=42 excluded_library=0 excluded_abstract=9 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=6c46c1047e1816f0dadcf3b00c7907a0030a8f45445d87936bb29afae69aa13d candidate_count=12 candidate_digest=3853541e6085b16d93ebdee9aa90d592b41e2cfab2e12f025cf7df5a13bfab9f context_instance_count=136 eligible_readers=22 eligible_writers=16 execution_context_digest=80c67da1b6bc7850377d91834bdf14cf3e241da258254760d8c584b7ecaf62fb insensitive_readers_filtered=47 invalid_partial_write_filtered=0 must_full_relation_filtered=4 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=54 owner_context_pairs=264 owner_context_pairs_considered=8406 raw_block_pairs=78 reader_witness_count=264 relation_base_members_shadowed=21 relation_context_incompatible=2705 relation_digest=46f870ed13e9009a3b893f46b8d0f10a9aeddffe325c302fa12012049eab4c0f relation_members_raw=65 relation_origins_registered=5 relation_origins_rejected_unary_after_shadowing=32 relation_origins_seen=37 relation_unbound_key_templates=57 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=4 scalar_variables_skipped=37 storage_context_mismatch=5379 variables_considered=42
+INFO:Detectors:
+
+[MV-SI candidate 2e7dc0d958f9813c6287] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:353
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 46
+ storage exposures -> 3
+[MV-SI candidate 3fc2c0e1577569319c25] {isTrusted[$sender], vault}
+ writer root       -> @rari-capital/solmate/src/auth/Trust.sol::Trust.setIsTrusted(address,bool)
+ writer effect     -> @rari-capital/solmate/src/auth/Trust.sol:18
+ written member    -> ('MS', '@rari-capital/solmate/src/auth/Trust.sol', 'Trust.isTrusted', '$sender')
+ potentially stale -> ('SV', 'contracts/strategy/BaseStrategy.sol', 'BaseStrategy.vault')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 48fe04d60cd1e159bc50] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> contracts/vault/Depositors.sol::Depositors.burn(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:353
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 6ff41ab14d83fc796cbf] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:342
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 3
+[MV-SI candidate 7d919b43da712e5fe266] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:342
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 3
+[MV-SI candidate 8a02d06058b858082f2d] {convertedUst, pendingRedeems}
+ writer root       -> contracts/strategy/BaseStrategy.sol::BaseStrategy.initRedeemStable(uint256)
+ writer effect     -> contracts/strategy/BaseStrategy.sol:167
+ written member    -> ('SV', 'contracts/strategy/BaseStrategy.sol', 'BaseStrategy.pendingRedeems')
+ potentially stale -> ('SV', 'contracts/strategy/BaseStrategy.sol', 'BaseStrategy.convertedUst')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 8d09076b76630d070407] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:353
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 46
+ storage exposures -> 3
+[MV-SI candidate 996e6c3f53334d6eaa95] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.approve(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:353
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 46
+ storage exposures -> 3
+[MV-SI candidate e8be241c5bc1d097bfc2] {convertedUst, pendingRedeems}
+ writer root       -> contracts/strategy/BaseStrategy.sol::BaseStrategy.finishDepositStable(uint256)
+ writer effect     -> contracts/strategy/BaseStrategy.sol:146
+ written member    -> ('SV', 'contracts/strategy/BaseStrategy.sol', 'BaseStrategy.convertedUst')
+ potentially stale -> ('SV', 'contracts/strategy/BaseStrategy.sol', 'BaseStrategy.pendingRedeems')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e9c0ad501defc61947c5] {convertedUst, pendingRedeems}
+ writer root       -> contracts/strategy/BaseStrategy.sol::BaseStrategy.withdrawAllToVault()
+ writer effect     -> contracts/strategy/BaseStrategy.sol:167
+ written member    -> ('SV', 'contracts/strategy/BaseStrategy.sol', 'BaseStrategy.pendingRedeems')
+ potentially stale -> ('SV', 'contracts/strategy/BaseStrategy.sol', 'BaseStrategy.convertedUst')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f460ffda69345dd961c6] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:342
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 3
+[MV-SI candidate fc205c3bdc2bedaa5b58] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:353
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 46
+ storage exposures -> 3Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=0 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=2 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+INFO:Slither:. analyzed (41 contracts with 1 detectors), 12 result(s) found

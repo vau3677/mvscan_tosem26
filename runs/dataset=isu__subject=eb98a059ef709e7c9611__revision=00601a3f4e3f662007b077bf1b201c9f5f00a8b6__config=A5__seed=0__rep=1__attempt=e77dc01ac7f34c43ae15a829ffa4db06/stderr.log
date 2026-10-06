@@ -1,0 +1,444 @@
+'/tmp/.svm/0.8.19/solc-0.8.19 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: Visibility for constructor is ignored. If you want the contract to be non-deployable, making it "abstract" is sufficient.
+ --> contracts/uniswap_V3/libraries/Testing.sol:9:5:
+  |
+9 |     constructor () public {}
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=4133 vars=185
+[mvscan-stage] root-seeding-done eligible_exposures=173 seeded=119 multi_exposure_entry_blocks=15 collapsed_contextual_aliases=54 excluded_dependency=0 excluded_interface=140 excluded_library=0 excluded_abstract=36 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=c83e028ec801a1ad4e4fe7e792473222e33867645f2a0bd0153a6784570e1949 candidate_count=61 candidate_digest=f35b401453116358ba29436cf51cd7998fba6beea3e1121815b2882e56cf84dd context_instance_count=1153 eligible_readers=189 eligible_writers=56 execution_context_digest=2c6594e29abe316e5829ae14beadb8f80b52bdfc98c53d5668004822bac51a4a insensitive_readers_filtered=172 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=43 owner_context_pairs=2589 owner_context_pairs_considered=3219 raw_block_pairs=1095 reader_witness_count=2589 relation_base_members_shadowed=29 relation_context_incompatible=0 relation_digest=3aa07ea3c3adb6a465efc639824354524b1d786d1dcfc1ebd29a8f455566e83c relation_evidence_edges=485 relation_incompatible=609 relation_members_raw=140 relation_origins_registered=16 relation_origins_rejected_unary_after_shadowing=67 relation_origins_rejected_unreachable=72 relation_origins_seen=83 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=38 scalar_variables_skipped=98 storage_context_mismatch=587 variables_considered=114
+INFO:Detectors:
+
+[MV-SI candidate 04c3f554c9c03dc96bb2] {fundingRates[@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer], latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.payFunding()
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:603
+ written member    -> ('MS', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingRates', '@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 0587d9bc521af0ab1e31] {fundingRates[@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer], latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.updateFundingPaymentPointer()
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:493
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('MS', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingRates', '@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 10183fbb483e1b08f237] {fundingDuration, genesis, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.updateFundingPaymentPointer()
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:493
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate 1288b8ab731c0d8297cb] {fundingDuration, genesis, lastUpdateTime, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.purchase(uint256,address)
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:493
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.lastUpdateTime')
+ reader witnesses  -> 129
+ storage exposures -> 1
+[MV-SI candidate 1473e06f3eb1a4e3652e] {fundingRates[@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer], latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.purchase(uint256,address)
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:603
+ written member    -> ('MS', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingRates', '@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 177745de2f287ad5b4fb] {fundingRates[@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer], latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.settle(uint256[])
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:493
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('MS', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingRates', '@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 18c01db62a8751cc8f4b] {fundingRates[@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer], latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.updateFunding()
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:493
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('MS', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingRates', '@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 18e1a290d75eee3588cb] {fundingDuration, genesis, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.settle(uint256[])
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:493
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate 19576ccca6d37e92d53a] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.settle(uint256[])
+ writer effect     -> contracts/core/RdpxV2Core.sol:780
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 1de14986f7c6b0902ecc] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.bondWithDelegate(address,uint256[],uint256[],uint256)
+ writer effect     -> contracts/core/RdpxV2Core.sol:570
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 21e793618efc46cd0506] {fundingRates[@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer], latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.calculateFunding(uint256[])
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:493
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('MS', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingRates', '@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 26170c957b8d72e97096] {fundingRates[@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer], latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.payFunding()
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:610
+ written member    -> ('MS', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingRates', '@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 28f99debd44c2dbe11d5] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.bond(uint256,uint256,address)
+ writer effect     -> contracts/core/RdpxV2Core.sol:650
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 2a319480650be7125daf] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.bond(uint256,uint256,address)
+ writer effect     -> contracts/core/RdpxV2Core.sol:486
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 2be2e62ce1d18d075b69] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.bond(uint256,uint256,address)
+ writer effect     -> contracts/core/RdpxV2Core.sol:570
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 2bf0942f3944bcbc525a] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.upperDepeg(uint256,uint256)
+ writer effect     -> contracts/core/RdpxV2Core.sol:1067
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 384f4aa59f5c05bf1ec8] {fundingDuration, genesis, lastUpdateTime, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.purchase(uint256,address)
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:508
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.lastUpdateTime')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 126
+ storage exposures -> 1
+[MV-SI candidate 3ddf69990c65ac6baaaf] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.removeAssetFromtokenReserves(string)
+ writer effect     -> contracts/core/RdpxV2Core.sol:283
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 4a8f92e616d95359a084] {fundingDuration, genesis, lastUpdateTime, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.calculateFunding(uint256[])
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:493
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.lastUpdateTime')
+ reader witnesses  -> 129
+ storage exposures -> 1
+[MV-SI candidate 4f672a0a6ee09839abe2] {fundingDuration, genesis, lastUpdateTime, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.updateFunding()
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:493
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.lastUpdateTime')
+ reader witnesses  -> 129
+ storage exposures -> 1
+[MV-SI candidate 51c36b67a9baff52887a] {fundingDuration, genesis, lastUpdateTime, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.updateFunding()
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:471
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.lastUpdateTime')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 126
+ storage exposures -> 1
+[MV-SI candidate 523f008c27405c5b8c74] {_activeCollateral, _totalCollateral}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVaultLP.sol::PerpetualAtlanticVaultLP.unlockLiquidity(uint256)
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVaultLP.sol:186
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVaultLP.sol', 'PerpetualAtlanticVaultLP._activeCollateral')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVaultLP.sol', 'PerpetualAtlanticVaultLP._totalCollateral')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 55b4fe27c0c5bdd88910] {fundingDuration, genesis, lastUpdateTime, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.settle(uint256[])
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:508
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.lastUpdateTime')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 126
+ storage exposures -> 1
+[MV-SI candidate 59f43cb5a05b1696ac02] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.addAssetTotokenReserves(address,string)
+ writer effect     -> contracts/core/RdpxV2Core.sol:258
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 5ae39c54fbea5b5522a1] {fundingDuration, genesis, lastUpdateTime, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.updateFundingPaymentPointer()
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:471
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.lastUpdateTime')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 126
+ storage exposures -> 1
+[MV-SI candidate 5c064c20fefbde23ce22] {_activeCollateral, _totalCollateral}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVaultLP.sol::PerpetualAtlanticVaultLP.redeem(uint256,address,address)
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVaultLP.sol:291
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVaultLP.sol', 'PerpetualAtlanticVaultLP._totalCollateral')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVaultLP.sol', 'PerpetualAtlanticVaultLP._activeCollateral')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 6168485d93aa853c89a9] {_activeCollateral, _totalCollateral}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVaultLP.sol::PerpetualAtlanticVaultLP.lockCollateral(uint256)
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVaultLP.sol:181
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVaultLP.sol', 'PerpetualAtlanticVaultLP._activeCollateral')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVaultLP.sol', 'PerpetualAtlanticVaultLP._totalCollateral')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 6491b229aba14c1da2b9] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:378
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 111
+ storage exposures -> 4
+[MV-SI candidate 6bcede4b63f8fc395b11] {fundingDuration, genesis, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.updateFundingDuration(uint256)
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:240
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate 74b371ee6091e2ef2109] {fundingRates[@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer], latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.purchase(uint256,address)
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:610
+ written member    -> ('MS', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingRates', '@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 77213b0c82198bcf8271] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.addAssetTotokenReserves(address,string)
+ writer effect     -> contracts/core/RdpxV2Core.sol:246
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 7c153a2bb58b030c9cd9] {fundingDuration, genesis, lastUpdateTime, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.settle(uint256[])
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:471
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.lastUpdateTime')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 126
+ storage exposures -> 1
+[MV-SI candidate 7d314afa460d02817160] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.bondWithDelegate(address,uint256[],uint256[],uint256)
+ writer effect     -> contracts/core/RdpxV2Core.sol:486
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 7ff72f495ed8fbf7bc38] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.settle(uint256[])
+ writer effect     -> contracts/core/RdpxV2Core.sol:779
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 80b1aa27beff030ee4f9] {_activeCollateral, _totalCollateral}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVaultLP.sol::PerpetualAtlanticVaultLP.addProceeds(uint256)
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVaultLP.sol:195
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVaultLP.sol', 'PerpetualAtlanticVaultLP._totalCollateral')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVaultLP.sol', 'PerpetualAtlanticVaultLP._activeCollateral')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 8ccda9903f01a3afa07c] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.lowerDepeg(uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/core/RdpxV2Core.sol:1106
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 8e1ce0b619883f9f530b] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.sync()
+ writer effect     -> contracts/core/RdpxV2Core.sol:1004
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 961f59d10d8b3c4ac9b0] {fundingRates[@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer], latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.purchase(uint256,address)
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:493
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('MS', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingRates', '@state::contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 993adf416d0d4cf101e3] {_activeCollateral, _totalCollateral}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVaultLP.sol::PerpetualAtlanticVaultLP.subtractLoss(uint256)
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVaultLP.sol:204
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVaultLP.sol', 'PerpetualAtlanticVaultLP._totalCollateral')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVaultLP.sol', 'PerpetualAtlanticVaultLP._activeCollateral')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 9991dba7db38cc6d9ca8] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.bond(uint256,uint256,address)
+ writer effect     -> contracts/core/RdpxV2Core.sol:916
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 99a74edd4969bdb566cf] {fundingDuration, genesis, lastUpdateTime, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.updateFundingPaymentPointer()
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:493
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.lastUpdateTime')
+ reader witnesses  -> 129
+ storage exposures -> 1
+[MV-SI candidate a268f2e130858f654aea] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.bondWithDelegate(address,uint256[],uint256[],uint256)
+ writer effect     -> contracts/core/RdpxV2Core.sol:681
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate a97508a5d37a3c7f2993] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.provideFunding()
+ writer effect     -> contracts/core/RdpxV2Core.sol:803
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate aa9657b1474adbcf888c] {fundingDuration, genesis, lastUpdateTime, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.calculateFunding(uint256[])
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:471
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.lastUpdateTime')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 126
+ storage exposures -> 1
+[MV-SI candidate abd890c7f2d42dce75f6] {fundingDuration, genesis, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.purchase(uint256,address)
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:493
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate b6d1c0b262650ff0ffaf] {accounts[@local::contracts/faucet/Faucet.sol::Faucet.mint()::LocalVariable::sender_1], timeout}
+ writer root       -> contracts/faucet/Faucet.sol::Faucet.setTimeout(uint256)
+ writer effect     -> contracts/faucet/Faucet.sol:27
+ written member    -> ('SV', 'contracts/faucet/Faucet.sol', 'Faucet.timeout')
+ potentially stale -> ('MS', 'contracts/faucet/Faucet.sol', 'Faucet.accounts', '@local::contracts/faucet/Faucet.sol::Faucet.mint()::LocalVariable::sender_1')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate bbdaf52608cf5bd3e821] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.lowerDepeg(uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/core/RdpxV2Core.sol:1110
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate bcfe6d26d4abd3cfedc0] {_activeCollateral, _totalCollateral}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVaultLP.sol::PerpetualAtlanticVaultLP.deposit(uint256,address)
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVaultLP.sol:132
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVaultLP.sol', 'PerpetualAtlanticVaultLP._totalCollateral')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVaultLP.sol', 'PerpetualAtlanticVaultLP._activeCollateral')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate cf7a474d66082730dbb9] {fundingDuration, genesis, lastUpdateTime, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.updateFunding()
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:508
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.lastUpdateTime')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 126
+ storage exposures -> 1
+[MV-SI candidate d12304c845ade22a70f9] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.sync()
+ writer effect     -> contracts/core/RdpxV2Core.sol:996
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate d20186fe9bf6c87bcd6b] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.bondWithDelegate(address,uint256[],uint256[],uint256)
+ writer effect     -> contracts/core/RdpxV2Core.sol:650
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate e4312aea65ae63fe0014] {fundingDuration, genesis, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.updateFunding()
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:493
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate e55f11141bdffd4f238b] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.addAssetTotokenReserves(address,string)
+ writer effect     -> contracts/core/RdpxV2Core.sol:261
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate e9c976787c67b674020e] {fundingDuration, genesis, lastUpdateTime, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.updateFundingDuration(uint256)
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:240
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.lastUpdateTime'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 171
+ storage exposures -> 1
+[MV-SI candidate efdd1577fd786c4b1eb0] {fundingDuration, genesis, lastUpdateTime, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.purchase(uint256,address)
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:471
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.lastUpdateTime')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ reader witnesses  -> 126
+ storage exposures -> 1
+[MV-SI candidate f346b0df415112e79c7a] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.bond(uint256,uint256,address)
+ writer effect     -> contracts/core/RdpxV2Core.sol:681
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate f59ec0df32e4d6e08491] {_operatorApprovals[$arg0][$arg1], _owners[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:378
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 4
+[MV-SI candidate f679cdb1e2a957c0d6eb] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.bondWithDelegate(address,uint256[],uint256[],uint256)
+ writer effect     -> contracts/core/RdpxV2Core.sol:711
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate f9ca0cfa24464bca281d] {fundingDuration, genesis, lastUpdateTime, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.settle(uint256[])
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:493
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.lastUpdateTime')
+ reader witnesses  -> 129
+ storage exposures -> 1
+[MV-SI candidate fdcf2e8a7bc6778cbc7e] {reserveAsset, weth}
+ writer root       -> contracts/core/RdpxV2Core.sol::RdpxV2Core.removeAssetFromtokenReserves(string)
+ writer effect     -> contracts/core/RdpxV2Core.sol:286
+ written member    -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.reserveAsset')
+ potentially stale -> ('SV', 'contracts/core/RdpxV2Core.sol', 'RdpxV2Core.weth')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate fdf8e2f982d958dc6436] {fundingDuration, genesis, latestFundingPaymentPointer}
+ writer root       -> contracts/perp-vault/PerpetualAtlanticVault.sol::PerpetualAtlanticVault.calculateFunding(uint256[])
+ writer effect     -> contracts/perp-vault/PerpetualAtlanticVault.sol:493
+ written member    -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.latestFundingPaymentPointer')
+ potentially stale -> ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.fundingDuration'), ('SV', 'contracts/perp-vault/PerpetualAtlanticVault.sol', 'PerpetualAtlanticVault.genesis')
+ reader witnesses  -> 36
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (97 contracts with 1 detectors), 61 result(s) found

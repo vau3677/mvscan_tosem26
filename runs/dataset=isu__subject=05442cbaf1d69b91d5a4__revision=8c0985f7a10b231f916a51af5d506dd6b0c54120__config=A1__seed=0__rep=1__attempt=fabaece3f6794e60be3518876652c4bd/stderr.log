@@ -1,0 +1,38 @@
+'forge clean' running (wd: /workspace)
+'forge config --json' running
+'forge build --build-info --skip ./test/** ./script/** --force' running (wd: /workspace)
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=6022 vars=114
+[mvscan-stage] root-seeding-done eligible_exposures=88 seeded=74 multi_exposure_entry_blocks=7 collapsed_contextual_aliases=14 excluded_dependency=40 excluded_interface=48 excluded_library=0 excluded_abstract=7 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=0cfceecb967ea031a5ef6debe7f2afb2942af809c78688e752dcf0d32178b31e candidate_count=4 candidate_digest=f1fbe664cbf80f26f7d0112be65eca4fcd17496ecd0b33af311f3ee4c2c9748b context_instance_count=4 eligible_readers=1 eligible_writers=4 execution_context_digest=78c9f4f7b523fea5b0dc064b09a597a51fe61f5657887ccb4733e6c2ed9937f1 insensitive_readers_filtered=2 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=4 owner_context_pairs_considered=4 raw_block_pairs=4 reader_witness_count=4 relation_base_members_shadowed=0 relation_context_incompatible=0 relation_digest=1825863c02687d05f4c79e35856d91917616747fa99a410dab35c6777cce467e relation_members_raw=8 relation_origins_registered=1 relation_origins_rejected_unary_after_shadowing=4 relation_origins_rejected_unreachable=42 relation_origins_seen=5 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=73 storage_context_mismatch=0 variables_considered=74
+INFO:Detectors:
+
+[MV-SI candidate 1c71af07cd88d99f4e2b] {artistReward, curateReward, referralReward, verifierReward}
+ writer root       -> src/reward/PhiRewards.sol::PhiRewards.updateReferralReward(uint256)
+ writer effect     -> src/reward/PhiRewards.sol:47
+ written member    -> ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.referralReward')
+ potentially stale -> ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.artistReward'), ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.curateReward'), ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.verifierReward')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 25cd3b2616d9fe550dd2] {artistReward, curateReward, referralReward, verifierReward}
+ writer root       -> src/reward/PhiRewards.sol::PhiRewards.updateArtistReward(uint256)
+ writer effect     -> src/reward/PhiRewards.sol:40
+ written member    -> ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.artistReward')
+ potentially stale -> ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.curateReward'), ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.referralReward'), ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.verifierReward')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 3df35e4eabc4ffdc4618] {artistReward, curateReward, referralReward, verifierReward}
+ writer root       -> src/reward/PhiRewards.sol::PhiRewards.updateCurateReward(uint256)
+ writer effect     -> src/reward/PhiRewards.sol:61
+ written member    -> ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.curateReward')
+ potentially stale -> ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.artistReward'), ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.referralReward'), ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.verifierReward')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6d7603dfe3ba030c67aa] {artistReward, curateReward, referralReward, verifierReward}
+ writer root       -> src/reward/PhiRewards.sol::PhiRewards.updateVerifierReward(uint256)
+ writer effect     -> src/reward/PhiRewards.sol:54
+ written member    -> ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.verifierReward')
+ potentially stale -> ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.artistReward'), ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.curateReward'), ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.referralReward')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (67 contracts with 1 detectors), 4 result(s) found

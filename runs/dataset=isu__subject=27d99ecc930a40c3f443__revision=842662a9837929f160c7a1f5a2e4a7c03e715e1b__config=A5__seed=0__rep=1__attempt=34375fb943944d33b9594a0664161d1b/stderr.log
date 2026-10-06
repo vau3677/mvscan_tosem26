@@ -1,0 +1,136 @@
+'/tmp/.svm/0.8.9/solc-0.8.9 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: Contract code size exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/dex-v2/pool/VaderPoolV2.sol:26:1:
+   |
+26 | contract VaderPoolV2 is IVaderPoolV2, BasePoolV2, Ownable {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/dex/pool/VaderPoolFactory.sol:22:1:
+   |
+22 | contract VaderPoolFactory is IVaderPoolFactory, ProtocolConstants, Ownable {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/mocks/MockUniswapV2Router.sol:14:1:
+   |
+14 | contract MockUniswapV2Router is IUniswapV2Router02 {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=3727 vars=232
+[mvscan-stage] root-seeding-done eligible_exposures=285 seeded=160 multi_exposure_entry_blocks=52 collapsed_contextual_aliases=125 excluded_dependency=0 excluded_interface=150 excluded_library=0 excluded_abstract=23 missing_entry_point=2 missing_entry_block=0
+[mvscan-pairs] call_target_digest=351a2e418eda4273ddeb3ed4e53ebb4e81e95e744fc05c68af5a02ad88474ec5 candidate_count=15 candidate_digest=d6f3bdab18394296a06698d5bc2d310ca06736cba32639db2f4ad2b57c73f831 context_instance_count=29 eligible_readers=52 eligible_writers=28 execution_context_digest=f5b90d23098084dadc70dd5a62de1ce1be70f364bf7f5425ecd1b498038eb26c insensitive_readers_filtered=70 invalid_partial_write_filtered=0 must_full_relation_filtered=171 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=89 owner_context_pairs=29 owner_context_pairs_considered=599 raw_block_pairs=128 reader_witness_count=29 relation_base_members_shadowed=25 relation_context_incompatible=0 relation_digest=61a35ef91a6e4b88b0540c4d3300809f99c67fbfb7a0e2bd82a5eb6bf6874836 relation_evidence_edges=73 relation_incompatible=48 relation_members_raw=187 relation_origins_registered=18 relation_origins_rejected_unary_after_shadowing=122 relation_origins_rejected_unreachable=25 relation_origins_seen=140 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=9 scalar_variables_skipped=134 storage_context_mismatch=310 variables_considered=149
+INFO:Detectors:
+
+[MV-SI candidate 0752feef897c9b915897] {_totalSupply, maxSupply}
+ writer root       -> contracts/tokens/Vader.sol::Vader.burn(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC20/ERC20.sol:284
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'contracts/tokens/Vader.sol', 'Vader.maxSupply')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0c9c6e3ba43ef87df07e] {balanceOf[@local::contracts/external/UniswapV2Pair.sol::UniswapV2Pair.burn(address)::TemporaryVariable::TMP_2716], totalSupply}
+ writer root       -> contracts/external/UniswapV2Pair.sol::UniswapV2Pair.mint(address)
+ writer effect     -> contracts/external/UniswapV2ERC20.sol:40
+ written member    -> ('SV', 'contracts/external/UniswapV2ERC20.sol', 'UniswapV2ERC20.totalSupply')
+ potentially stale -> ('MS', 'contracts/external/UniswapV2ERC20.sol', 'UniswapV2ERC20.balanceOf', '@local::contracts/external/UniswapV2Pair.sol::UniswapV2Pair.burn(address)::TemporaryVariable::TMP_2716')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 158b7cbe74c74c9423b5] {_owner, nativeAsset}
+ writer root       -> @openzeppelin/contracts/access/Ownable.sol::Ownable.transferOwnership(address)
+ writer effect     -> @openzeppelin/contracts/access/Ownable.sol:68
+ written member    -> ('SV', '@openzeppelin/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', 'contracts/dex/pool/VaderPoolFactory.sol', 'VaderPoolFactory.nativeAsset')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 259d5e095a8474890b64] {balanceOf[@local::contracts/external/UniswapV2Pair.sol::UniswapV2Pair.burn(address)::TemporaryVariable::TMP_2716], totalSupply}
+ writer root       -> contracts/external/UniswapV2Pair.sol::UniswapV2Pair.burn(address)
+ writer effect     -> contracts/external/UniswapV2ERC20.sol:47
+ written member    -> ('SV', 'contracts/external/UniswapV2ERC20.sol', 'UniswapV2ERC20.totalSupply')
+ potentially stale -> ('MS', 'contracts/external/UniswapV2ERC20.sol', 'UniswapV2ERC20.balanceOf', '@local::contracts/external/UniswapV2Pair.sol::UniswapV2Pair.burn(address)::TemporaryVariable::TMP_2716')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 29a79d42b0a755510f15] {_totalSupply, maxSupply}
+ writer root       -> contracts/tokens/Vader.sol::Vader.adjustMaxSupply(uint256)
+ writer effect     -> contracts/tokens/Vader.sol:179
+ written member    -> ('SV', 'contracts/tokens/Vader.sol', 'Vader.maxSupply')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 2ca96523cf1069892582] {_owner, guardian}
+ writer root       -> @openzeppelin/contracts/access/Ownable.sol::Ownable.renounceOwnership()
+ writer effect     -> @openzeppelin/contracts/access/Ownable.sol:68
+ written member    -> ('SV', '@openzeppelin/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', 'contracts/tokens/USDV.sol', 'USDV.guardian')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 581eb6d704080afca702] {_owner, guardian}
+ writer root       -> contracts/tokens/USDV.sol::USDV.setGuardian(address)
+ writer effect     -> contracts/tokens/USDV.sol:195
+ written member    -> ('SV', 'contracts/tokens/USDV.sol', 'USDV.guardian')
+ potentially stale -> ('SV', '@openzeppelin/contracts/access/Ownable.sol', 'Ownable._owner')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 633b7de3c07584c3c557] {cycleMints, dailyLimit}
+ writer root       -> contracts/tokens/USDV.sol::USDV.setDailyLimit(uint256)
+ writer effect     -> contracts/tokens/USDV.sol:190
+ written member    -> ('SV', 'contracts/tokens/USDV.sol', 'USDV.dailyLimit')
+ potentially stale -> ('SV', 'contracts/tokens/USDV.sol', 'USDV.cycleMints')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 657b2e8f6a292421bf47] {balanceOf[@local::contracts/external/UniswapV2Pair.sol::UniswapV2Pair.burn(address)::TemporaryVariable::TMP_2716], totalSupply}
+ writer root       -> contracts/external/UniswapV2Pair.sol::UniswapV2Pair.burn(address)
+ writer effect     -> contracts/external/UniswapV2ERC20.sol:40
+ written member    -> ('SV', 'contracts/external/UniswapV2ERC20.sol', 'UniswapV2ERC20.totalSupply')
+ potentially stale -> ('MS', 'contracts/external/UniswapV2ERC20.sol', 'UniswapV2ERC20.balanceOf', '@local::contracts/external/UniswapV2Pair.sol::UniswapV2Pair.burn(address)::TemporaryVariable::TMP_2716')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 92012d6a3fbcbc35ff74] {_owner, nativeAsset}
+ writer root       -> @openzeppelin/contracts/access/Ownable.sol::Ownable.renounceOwnership()
+ writer effect     -> @openzeppelin/contracts/access/Ownable.sol:68
+ written member    -> ('SV', '@openzeppelin/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', 'contracts/dex/pool/VaderPoolFactory.sol', 'VaderPoolFactory.nativeAsset')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 98e17b750fd7a3ef1e63] {_owner, guardian}
+ writer root       -> @openzeppelin/contracts/access/Ownable.sol::Ownable.transferOwnership(address)
+ writer effect     -> @openzeppelin/contracts/access/Ownable.sol:68
+ written member    -> ('SV', '@openzeppelin/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', 'contracts/tokens/USDV.sol', 'USDV.guardian')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b7ade8b71564e0f123f3] {_totalSupply, maxSupply}
+ writer root       -> contracts/tokens/Vader.sol::Vader.setComponents(IConverter,ILinearVesting,address[],uint192[])
+ writer effect     -> @openzeppelin/contracts/token/ERC20/ERC20.sol:256
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'contracts/tokens/Vader.sol', 'Vader.maxSupply')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate bc88a4a04caf8fd264ab] {_totalSupply, maxSupply}
+ writer root       -> contracts/tokens/Vader.sol::Vader.mint(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC20/ERC20.sol:256
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'contracts/tokens/Vader.sol', 'Vader.maxSupply')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d6f92ee128e968d3bed6] {cycleMints, dailyLimit}
+ writer root       -> contracts/tokens/USDV.sol::USDV.mint(uint256)
+ writer effect     -> contracts/tokens/USDV.sol:82
+ written member    -> ('SV', 'contracts/tokens/USDV.sol', 'USDV.cycleMints')
+ potentially stale -> ('SV', 'contracts/tokens/USDV.sol', 'USDV.dailyLimit')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f7635159574249c6a18a] {cycleMints, dailyLimit}
+ writer root       -> contracts/tokens/USDV.sol::USDV.mint(uint256)
+ writer effect     -> contracts/tokens/USDV.sol:80
+ written member    -> ('SV', 'contracts/tokens/USDV.sol', 'USDV.cycleMints')
+ potentially stale -> ('SV', 'contracts/tokens/USDV.sol', 'USDV.dailyLimit')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (110 contracts with 1 detectors), 15 result(s) found

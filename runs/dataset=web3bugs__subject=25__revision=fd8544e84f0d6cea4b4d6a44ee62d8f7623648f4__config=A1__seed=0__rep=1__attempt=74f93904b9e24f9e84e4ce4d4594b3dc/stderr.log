@@ -1,0 +1,44 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+ERROR:ContractSolcParsing:Impossible to generate IR for Ladle._pour (contracts/Ladle.sol#211-235):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for Ladle.roll (contracts/Ladle.sol#326-361):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for ERC20Rewards._updateRewardsPerToken (contracts/utils/token/ERC20Rewards.sol#102-122):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for ERC20Rewards._updateUserRewards (contracts/utils/token/ERC20Rewards.sol#126-137):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for Pool._mintInternal (contracts/yieldspace/Pool.sol#246-313):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for Strategy._updateRewardsPerToken (contracts/utils/token/ERC20Rewards.sol#102-122):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for Strategy._updateUserRewards (contracts/utils/token/ERC20Rewards.sol#126-137):
+ 'NoneType' object has no attribute 'parameters'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=3183 vars=125
+[mvscan-stage] root-seeding-done eligible_exposures=259 seeded=129 multi_exposure_entry_blocks=14 collapsed_contextual_aliases=130 excluded_dependency=0 excluded_interface=89 excluded_library=0 excluded_abstract=4 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=3e3963a0967f3e45596ab8f5d9476f5100101b66584263dac31c52e9d5e20eb7 candidate_count=2 candidate_digest=c97e081f15300cb8cc7ddead70464c3e9fa318c918e0bebfc849652e2eb24055 context_instance_count=4 eligible_readers=32 eligible_writers=24 execution_context_digest=96364f0252e92b4da8f70555fefc0ba9dd4b7b41dee98f8e56f3338b0e5e6c44 insensitive_readers_filtered=48 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=16 owner_context_pairs_considered=5392 raw_block_pairs=192 reader_witness_count=16 relation_base_members_shadowed=0 relation_context_incompatible=1384 relation_digest=07c3a975a0d1cf429b1705916b713cb871dd39adc6de85b6698f326397b9c254 relation_members_raw=25 relation_origins_registered=4 relation_origins_rejected_unary_after_shadowing=17 relation_origins_rejected_unreachable=25 relation_origins_seen=21 relation_unbound_key_templates=52 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=8 scalar_variables_skipped=79 storage_context_mismatch=3992 variables_considered=83
+INFO:Detectors:
+
+[MV-SI candidate 036c64aae149724d94aa] {_balanceOf[@local::contracts/yieldspace/Pool.sol::Pool._burnInternal(address,bool,uint256,uint256)::TemporaryVariable::TMP_3022], _totalSupply}
+ writer root       -> contracts/yieldspace/Pool.sol::Pool.burnForBase(address,uint256)
+ writer effect     -> contracts/utils/token/ERC20.sol:191
+ written member    -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('MS', 'contracts/utils/token/ERC20.sol', 'ERC20._balanceOf', '@local::contracts/yieldspace/Pool.sol::Pool._burnInternal(address,bool,uint256,uint256)::TemporaryVariable::TMP_3022')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate f467600d716f2faee3d0] {_balanceOf[@local::contracts/yieldspace/Pool.sol::Pool._burnInternal(address,bool,uint256,uint256)::TemporaryVariable::TMP_3022], _totalSupply}
+ writer root       -> contracts/yieldspace/Pool.sol::Pool.burn(address,uint256,uint256)
+ writer effect     -> contracts/utils/token/ERC20.sol:191
+ written member    -> ('SV', 'contracts/utils/token/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('MS', 'contracts/utils/token/ERC20.sol', 'ERC20._balanceOf', '@local::contracts/yieldspace/Pool.sol::Pool._burnInternal(address,bool,uint256,uint256)::TemporaryVariable::TMP_3022')
+ reader witnesses  -> 8
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=0 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=4 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+INFO:Slither:. analyzed (76 contracts with 1 detectors), 2 result(s) found

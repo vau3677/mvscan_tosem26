@@ -1,0 +1,1337 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=986 vars=78
+[mvscan-stage] root-seeding-done eligible_exposures=63 seeded=55 multi_exposure_entry_blocks=8 collapsed_contextual_aliases=8 excluded_dependency=0 excluded_interface=42 excluded_library=0 excluded_abstract=14 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=97d2c26933cfd775fbf78d29347571254e40d1c153bdd2867f0db15862ee28f6 candidate_count=50 candidate_digest=a0a9b5a10be5026968c8fa9689274b941a538495492d5a4a7a6cdd6566ae4e05 context_instance_count=752 eligible_readers=38 eligible_writers=38 execution_context_digest=084bf522a61ee33a9049593f1afdcf21648eaa1a80b9b18968a362c36d4437ed insensitive_readers_filtered=176 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=1964 owner_context_pairs_considered=6442 raw_block_pairs=182 reader_witness_count=1964 relation_base_members_shadowed=0 relation_context_incompatible=1262 relation_digest=76c4b52a815b7a43729c8b9769ca68f8a83f7fd82d9fb54b433740a01494e4ba relation_members_raw=81 relation_origins_registered=8 relation_origins_rejected_unary_after_shadowing=59 relation_origins_rejected_unreachable=28 relation_origins_seen=67 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=8 scalar_variables_skipped=54 storage_context_mismatch=3216 variables_considered=62
+INFO:Detectors:
+
+[MV-SI candidate 00b6c9c755ab989043ca] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::NTCitizenDeploy.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1021
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 0628b5982487e0b3aea5] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:811
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners'), ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 93
+ storage exposures -> 2
+[MV-SI candidate 0d4fcb5b34c3ffcf60c0] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:1028
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 99
+ storage exposures -> 2
+[MV-SI candidate 1d19113ecd2145323a86] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::NTOuterCitizenDeploy.createCitizen(uint256,uint256,uint256,bool,string)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:1028
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 51
+ storage exposures -> 1
+[MV-SI candidate 1fb1a8c20d40642baf05] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1021
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 2046997e9275a8628e87] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:1017
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 54
+ storage exposures -> 2
+[MV-SI candidate 258c76b9bcddea9e7c18] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:815
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 93
+ storage exposures -> 2
+[MV-SI candidate 298a04f9240bc878fa31] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::NTCitizenDeploy.createCitizen(uint256,uint256,uint256,uint256,bool,string)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:966
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 2d9f09f6dd7fc0db304a] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::NTCitizenDeploy.disassembleCitizen(uint256)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:990
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 2eb6ed665dca3424e6df] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::NTCitizenDeploy.createCitizen(uint256,uint256,uint256,uint256,bool,string)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1032
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 51
+ storage exposures -> 1
+[MV-SI candidate 35c59aaac2b6be1fb85a] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::NTOuterCitizenDeploy.disassembleCitizen(uint256)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:1017
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 3a4b0b3e15fb4af212a7] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::NTCitizenDeploy.disassembleCitizen(uint256)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:990
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 40f9fd701153d2b2adf6] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1032
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 51
+ storage exposures -> 1
+[MV-SI candidate 45b30a387c9dc6f41341] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1021
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 54
+ storage exposures -> 2
+[MV-SI candidate 48b433bd753ea6179ddf] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:811
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 23
+ storage exposures -> 2
+[MV-SI candidate 4a8fcc4a681b325a7a1d] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:1028
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 99
+ storage exposures -> 2
+[MV-SI candidate 4b0bb391f861fce8ac36] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:1017
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate 4b493d3ced4b2938579c] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::ERC721.approve(address,uint256)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:1028
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 99
+ storage exposures -> 2
+[MV-SI candidate 4bcba93e4d227c6b38d1] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::NTCitizenDeploy.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1032
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 56f22002c41e47c5972f] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:1017
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 54
+ storage exposures -> 2
+[MV-SI candidate 57fa0de75a4632d23367] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1021
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate 65a3f95a2112f8cffc61] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1032
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 99
+ storage exposures -> 2
+[MV-SI candidate 66d3be75ed05a47fc415] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::NTCitizenDeploy.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1032
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 72a944251217a3ea3289] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::NTOuterCitizenDeploy.disassembleCitizen(uint256)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:1017
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate 73e3e9c757a1fbe6bee6] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::NTOuterCitizenDeploy.disassembleCitizen(uint256)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:986
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 762911c86b0527345187] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::NTOuterCitizenDeploy.disassembleCitizen(uint256)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:986
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 7caff1cd5cf54b5e4d95] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::NTOuterCitizenDeploy.createCitizen(uint256,uint256,uint256,bool,string)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:962
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 7dd7c695eff59a0b6f01] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1021
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate 89170b4a7b7f89be1fff] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::ERC721.approve(address,uint256)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1032
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 99
+ storage exposures -> 2
+[MV-SI candidate 8e2fd54dac12b370cbf0] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::NTCitizenDeploy.createCitizen(uint256,uint256,uint256,uint256,bool,string)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1021
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 9b9950c3aa0a00e08782] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::NTCitizenDeploy.createCitizen(uint256,uint256,uint256,uint256,bool,string)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:966
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate a10ac04f206dc879b2a8] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1021
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate a14a1eca12c3eebe88e2] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:1017
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate a90e073d70a34cb44ed0] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1032
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 51
+ storage exposures -> 1
+[MV-SI candidate afe7b05e9f1475eb14c0] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::NTCitizenDeploy.disassembleCitizen(uint256)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1032
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 99
+ storage exposures -> 2
+[MV-SI candidate b0c89c2b4fb23b65f0ff] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::NTCitizenDeploy.disassembleCitizen(uint256)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1021
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate b531a1763888631f6c65] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:1017
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 54
+ storage exposures -> 2
+[MV-SI candidate b66bc63cd4a15e898bc6] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::NTOuterCitizenDeploy.createCitizen(uint256,uint256,uint256,bool,string)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:1017
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate bb21357c292598f3fd96] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::NTOuterCitizenDeploy.createCitizen(uint256,uint256,uint256,bool,string)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:1017
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate bf590d5c968d0b5847d8] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::NTCitizenDeploy.disassembleCitizen(uint256)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1021
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c29898305f8f9bc305b6] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::NTCitizenDeploy.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1021
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate cbcef9d30cd24da9033b] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::NTCitizenDeploy.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1021
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate d65d91680b1ad80c8bef] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::NTCitizenDeploy.createCitizen(uint256,uint256,uint256,uint256,bool,string)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1021
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate db0f30b994fa2f0e7dc9] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:1017
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate eb11f4e4c2853974f21a] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::NTOuterCitizenDeploy.disassembleCitizen(uint256)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:1028
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 99
+ storage exposures -> 2
+[MV-SI candidate ec5a9e9879917f76c535] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:815
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 23
+ storage exposures -> 2
+[MV-SI candidate f0aa54347f2f05d4c9cc] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1021
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate f1c9a72d84dc571e1819] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTCitizenDeploy.sol::NTCitizenDeploy.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTCitizenDeploy.sol:1021
+ written member    -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate f6535f81a43e7a710a29] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:1028
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 99
+ storage exposures -> 2
+[MV-SI candidate f86a39294e2fc973d76a] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterCitizenDeploy.sol::NTOuterCitizenDeploy.createCitizen(uint256,uint256,uint256,bool,string)
+ writer effect     -> contracts/s2/NTOuterCitizenDeploy.sol:962
+ written member    -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterCitizenDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=4137 vars=275
+[mvscan-stage] root-seeding-done eligible_exposures=232 seeded=170 multi_exposure_entry_blocks=49 collapsed_contextual_aliases=62 excluded_dependency=0 excluded_interface=132 excluded_library=0 excluded_abstract=57 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=012b11a3da93b54f8b82aa9045ee89fff5fa479cc3ec34a9d0d6a84b21789c15 candidate_count=139 candidate_digest=060ba34539d92a1a2fb095f0146429f6a486409373d8a2f1ae8cb97c99340af3 context_instance_count=1770 eligible_readers=115 eligible_writers=114 execution_context_digest=e770a19ffb1693fbc07a8e78b8d9dd7fd02229890238b2ab8dd4ec15dd547801 insensitive_readers_filtered=385 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=16 owner_context_pairs=4462 owner_context_pairs_considered=15616 raw_block_pairs=414 reader_witness_count=4462 relation_base_members_shadowed=0 relation_context_incompatible=3276 relation_digest=7cdf320bf028bc3630351b5ede0be650f7bbea99bb149076747fa7ed9afe3ecb relation_members_raw=290 relation_origins_registered=34 relation_origins_rejected_unary_after_shadowing=201 relation_origins_rejected_unreachable=71 relation_origins_seen=235 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=1 scalar_variables_skipped=157 storage_context_mismatch=7862 variables_considered=191
+INFO:Detectors:
+
+[MV-SI candidate 0586d7fcb95e1b8f0c8e] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTItems.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/NTItems.sol:1012
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate 06849cc07d01df7b4108] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:795
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners'), ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 72
+ storage exposures -> 2
+[MV-SI candidate 08006ace83abcdf53eeb] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTLandDeploy.sol::NTLandDeploy.buyLand()
+ writer effect     -> contracts/s1/NTLandDeploy.sol:946
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 0a9f94b5dbbb0515a3c4] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/vaultBox.sol::ERC721.approve(address,uint256)
+ writer effect     -> contracts/s1/vaultBox.sol:1009
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate 0ad097f6e6730b881232] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/vaultBox.sol::vaultBox.whitelistClaim(uint256,uint256,bytes32[])
+ writer effect     -> contracts/s1/vaultBox.sol:943
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 0c89ff087caf8c2e79b7] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1002
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 0e3a040852086047416e] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1013
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._owners')
+ reader witnesses  -> 72
+ storage exposures -> 2
+[MV-SI candidate 0f68c9f275349a6548de] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1002
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 10fbde635fe3a7bcc42c] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:1012
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate 13cd97e2dd0ab267623c] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:1001
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 15a0bd387b8b2b55c5bd] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/vaultBox.sol::vaultBox.claim(uint256)
+ writer effect     -> contracts/s1/vaultBox.sol:943
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 174ecd4e9127db1e40da] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTLandDeploy.sol::NTLandDeploy.landClaim(uint256,uint256,uint256,uint256,uint256,bytes32[])
+ writer effect     -> contracts/s1/NTLandDeploy.sol:946
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 19c0e0bc1d97955d1283] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::ERC721.approve(address,uint256)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1013
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._owners')
+ reader witnesses  -> 72
+ storage exposures -> 2
+[MV-SI candidate 1b82b4f4fb2904aaaedb] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTItems.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTItems.sol:1001
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 1e360410b0dc2ed2519e] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2Items.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s2/NTS2Items.sol:1001
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 1e484d1c93a231474449] {_owner, permissions}
+ writer root       -> @openzeppelin/contracts/access/Ownable.sol::Ownable.renounceOwnership()
+ writer effect     -> @openzeppelin/contracts/access/Ownable.sol:80
+ written member    -> ('SV', '@openzeppelin/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', 'contracts/access/PermitControl.sol', 'PermitControl.permissions')
+ reader witnesses  -> 11
+ storage exposures -> 2
+[MV-SI candidate 1ebb3620eabd70e13d9f] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:1001
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 200fd3676d3745c97dc9] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/vaultBox.sol::vaultBox.claim(uint256)
+ writer effect     -> contracts/s1/vaultBox.sol:943
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 20c84848ee90bfe1f847] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.ownerClaim(uint256)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:947
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 217e5d2b3bba87e68fae] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1002
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 224eba61c4b2295a6906] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.ownerClaim(uint256)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:947
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 234123340f8ac2537612] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTS2Items.sol::NTS2Items.emergencyClaim(uint256,uint256)
+ writer effect     -> contracts/s2/NTS2Items.sol:946
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 276d6066821ec43ee295] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTLandDeploy.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s1/NTLandDeploy.sol:795
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate 28a636eb7e1458c2873b] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/beckLoot.sol::beckLoot.handClaim(address,uint256)
+ writer effect     -> contracts/s1/beckLoot.sol:943
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 29c2bf4f258fa45d5f3c] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1002
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 2af7ce47723677137695] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1002
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 2b9430eaca651d78d959] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTLandDeploy.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTLandDeploy.sol:1001
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 2bcda0bf620e0535ae0c] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:1001
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 2c127804edd8f08b88f0] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTLandDeploy.sol::NTLandDeploy.emergencyClaim(uint256,uint256)
+ writer effect     -> contracts/s1/NTLandDeploy.sol:946
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3204e57fd1b2d82f78f5] {beginBurn, timeToBurn}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.changeTimeToBurn(uint256)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1335
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.timeToBurn')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.beginBurn')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 324e6fb84378d090be0e] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2Items.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTS2Items.sol:1001
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 353361437e9350832748] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTItems.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTItems.sol:1001
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 3745c5e7a41fc0735214] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2Items.sol::NTS2Items.identityClaim(uint256,uint256,uint256,bytes32[])
+ writer effect     -> contracts/s2/NTS2Items.sol:946
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 37d54c9ec83c573ded96] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/beckLoot.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/beckLoot.sol:998
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 3862167b94f8b40991a0] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTItems.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTItems.sol:1001
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTItems.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 39336d075dc2ae651812] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/vaultBox.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s1/vaultBox.sol:792
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners'), ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 72
+ storage exposures -> 2
+[MV-SI candidate 3a0ecdb96101e43b8d14] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTItems.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/NTItems.sol:1001
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 3ba77d3085ae02d071d2] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTS2Items.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTS2Items.sol:1001
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 3d2725f4ef0dd78d3703] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2Items.sol::NTS2Items.buyItems()
+ writer effect     -> contracts/s2/NTS2Items.sol:946
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 425779c310b800414ada] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTItems.sol::ERC721.approve(address,uint256)
+ writer effect     -> contracts/s1/NTItems.sol:1012
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate 4367ded9e3d8c8c97dc7] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTS2Items.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTS2Items.sol:1001
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 43b388f2b37c90211009] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTS2Items.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s2/NTS2Items.sol:795
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate 493ab2cf9167cb5c038c] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::NTS2LandDeploy.landClaim(uint256,uint256,uint256,bytes32[])
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:946
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 4b76ca3f2d2447c49a6d] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/vaultBox.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/vaultBox.sol:998
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 4c7aea99323510d12930] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/beckLoot.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/beckLoot.sol:1009
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ reader witnesses  -> 81
+ storage exposures -> 2
+[MV-SI candidate 4da2ab5c5715aafbd600] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/beckLoot.sol::beckLoot.riddleClaim(address,uint256)
+ writer effect     -> contracts/s1/beckLoot.sol:943
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 4e22fee3354fb7d6a6e2] {bytesBurned, mostBytesBurned}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.burnBytes(uint256)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1510
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.mostBytesBurned')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.bytesBurned')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 4fc89775c475bd147228] {_owner, permissions}
+ writer root       -> @openzeppelin/contracts/access/Ownable.sol::Ownable.transferOwnership(address)
+ writer effect     -> @openzeppelin/contracts/access/Ownable.sol:80
+ written member    -> ('SV', '@openzeppelin/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', 'contracts/access/PermitControl.sol', 'PermitControl.permissions')
+ reader witnesses  -> 11
+ storage exposures -> 2
+[MV-SI candidate 55dc581721debbbe2bc2] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTItems.sol::NTItems.emergencyClaim(uint256,uint256)
+ writer effect     -> contracts/s1/NTItems.sol:946
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTItems.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 582b834cb8a67d991902] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1013
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._owners')
+ reader witnesses  -> 72
+ storage exposures -> 2
+[MV-SI candidate 58475efa72bf2fe3a12b] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2Items.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s2/NTS2Items.sol:795
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners'), ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 72
+ storage exposures -> 2
+[MV-SI candidate 5873b459d1e6f0e9956a] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTLandDeploy.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/NTLandDeploy.sol:1012
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate 5c4fe08d6a7dc03a1115] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/vaultBox.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/vaultBox.sol:1009
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate 5c900197d0298b8a087f] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/beckLoot.sol::beckLoot.whitelistClaim(uint256,uint256,bytes32[])
+ writer effect     -> contracts/s1/beckLoot.sol:943
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 5eced7efb9019ef887b4] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTS2Items.sol::NTS2Items.identityClaim(uint256,uint256,uint256,bytes32[])
+ writer effect     -> contracts/s2/NTS2Items.sol:946
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 5eeb5fcc2130a5961afc] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTLandDeploy.sol::ERC721.approve(address,uint256)
+ writer effect     -> contracts/s1/NTLandDeploy.sol:1012
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate 60b853ae1accfb6c3a61] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/beckLoot.sol::beckLoot.ownerClaim(uint256)
+ writer effect     -> contracts/s1/beckLoot.sol:943
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 658dd9bd76ca5b45ed3b] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/vaultBox.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/vaultBox.sol:998
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 68b1f8ccca98f92f0110] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTLandDeploy.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTLandDeploy.sol:1001
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 6adea18f80fe7d62e8af] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/vaultBox.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/vaultBox.sol:998
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 6c51855628495b0b5745] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTItems.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s1/NTItems.sol:795
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate 7113dd696145e27e4743] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2Items.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTS2Items.sol:1001
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 72679112751bcf27a429] {beginReserve, earlyReservePeriod}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.setSaleActive()
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1287
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.beginReserve')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.earlyReservePeriod')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7baf0a6097704b418509] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/beckLoot.sol::beckLoot.ownerClaim(uint256)
+ writer effect     -> contracts/s1/beckLoot.sol:943
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 8001c6a3bb145811c2c6] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTItems.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/NTItems.sol:1001
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTItems.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 830460a9c274edddf3d5] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/vaultBox.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/vaultBox.sol:998
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 840fad83b8b29a68956d] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:796
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._owners'), ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 66
+ storage exposures -> 2
+[MV-SI candidate 880892a1e3a80664424f] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/vaultBox.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s1/vaultBox.sol:792
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate 8893f3ca41a8fc276f6e] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTLandDeploy.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/NTLandDeploy.sol:1001
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 88f07c85544515158f96] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/beckLoot.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/beckLoot.sol:998
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 8a6375cd7512cdfc8b09] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/beckLoot.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s1/beckLoot.sol:792
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ reader witnesses  -> 19
+ storage exposures -> 2
+[MV-SI candidate 8a9881bffc9c951033bf] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/beckLoot.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/beckLoot.sol:998
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 8b79dc6d37bd10040513] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/beckLoot.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s1/beckLoot.sol:792
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners'), ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 75
+ storage exposures -> 2
+[MV-SI candidate 8c8f418178d7c65a1bba] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTLandDeploy.sol::NTLandDeploy.buyLand()
+ writer effect     -> contracts/s1/NTLandDeploy.sol:946
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 9621315b6033f08db8dd] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::NTS2LandDeploy.landClaim(uint256,uint256,uint256,bytes32[])
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:946
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 99a31cc067cc86962a8d] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::NTS2LandDeploy.buyLand()
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:946
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 9a272098edb2789fb8c9] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2Items.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTS2Items.sol:1012
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate 9aea2d30500960872409] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTItems.sol::NTItems.buyItems()
+ writer effect     -> contracts/s1/NTItems.sol:946
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate a0820d34570a67da2a4b] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTS2Items.sol::NTS2Items.buyItems()
+ writer effect     -> contracts/s2/NTS2Items.sol:946
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate a3b8af59bceb12754431] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::NTS2LandDeploy.buyLand()
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:946
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate a4d2621021bb1e468e57] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTItems.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTItems.sol:1012
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate a503566aa0cec8e2cac5] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/vaultBox.sol::vaultBox.holderClaim(uint256)
+ writer effect     -> contracts/s1/vaultBox.sol:943
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate a79fafb70deea9561acb] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTLandDeploy.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTLandDeploy.sol:1012
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate a80c930418015c5d9bd9] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/beckLoot.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/beckLoot.sol:998
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate a8f612a06f0427a7a158] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:1001
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate abe480d4a51c316a0cb9] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::NTS2LandDeploy.emergencyClaim(uint256,uint256)
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:946
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate ad2fcabaa7ac5a8996d3] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/vaultBox.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/vaultBox.sol:1009
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate af072b6e0cc47e7cd885] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/beckLoot.sol::beckLoot.riddleClaim(address,uint256)
+ writer effect     -> contracts/s1/beckLoot.sol:943
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate b095206c6f0bdd3f33c9] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTLandDeploy.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/NTLandDeploy.sol:1001
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate b25ece7b409ef2fdbbad] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.whitelistClaim(uint256,uint256,bytes32[])
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:947
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate b290396f46caab2d5ec4] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTLandDeploy.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTLandDeploy.sol:1001
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate b4a78e10879ddc01175e] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/beckLoot.sol::beckLoot.claim(uint256)
+ writer effect     -> contracts/s1/beckLoot.sol:943
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate b6153dbf64043c50e7ee] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/beckLoot.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/beckLoot.sol:1009
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ reader witnesses  -> 81
+ storage exposures -> 2
+[MV-SI candidate b61c86674bc1157c3fa3] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/vaultBox.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/vaultBox.sol:998
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate b9edddaa59c03b90cd1a] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/vaultBox.sol::vaultBox.ownerClaim(uint256)
+ writer effect     -> contracts/s1/vaultBox.sol:943
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate be928f93a473efbb4d9a] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/vaultBox.sol::vaultBox.ownerClaim(uint256)
+ writer effect     -> contracts/s1/vaultBox.sol:943
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate bfc116685b4064499fa2] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/beckLoot.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/beckLoot.sol:1009
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ reader witnesses  -> 81
+ storage exposures -> 2
+[MV-SI candidate c196b87c27eea37a762b] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:1001
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate c24343320a9e9a885f5d] {beginBurn, timeToBurn}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.startBurn()
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1329
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.beginBurn')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.timeToBurn')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c259ea0d6c7b0bb7dc52] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::ERC721.approve(address,uint256)
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:1012
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate c347aed2a38485c1f9fe] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::NTS2LandDeploy.emergencyClaim(uint256,uint256)
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:946
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate c3a3ec46c95ba4d3894c] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/beckLoot.sol::beckLoot.handClaim(address,uint256)
+ writer effect     -> contracts/s1/beckLoot.sol:943
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate c4f954b6364b4d05f701] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTItems.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s1/NTItems.sol:795
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners'), ('SV', 'contracts/s1/NTItems.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 72
+ storage exposures -> 2
+[MV-SI candidate c6eba8b676c07749390b] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:796
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._owners')
+ reader witnesses  -> 16
+ storage exposures -> 2
+[MV-SI candidate c90efaf9f113fc68684d] {_owner, permissions}
+ writer root       -> contracts/access/PermitControl.sol::PermitControl.setPermit(address,bytes32,bytes32,uint256)
+ writer effect     -> contracts/access/PermitControl.sol:151
+ written member    -> ('SV', 'contracts/access/PermitControl.sol', 'PermitControl.permissions')
+ potentially stale -> ('SV', '@openzeppelin/contracts/access/Ownable.sol', 'Ownable._owner')
+ reader witnesses  -> 11
+ storage exposures -> 2
+[MV-SI candidate c9792dd625f2ba6e9c38] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTLandDeploy.sol::NTLandDeploy.landClaim(uint256,uint256,uint256,uint256,uint256,bytes32[])
+ writer effect     -> contracts/s1/NTLandDeploy.sol:946
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate ce2f1b63686f602f9c83] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTItems.sol::NTItems.boxClaim(uint256,uint256,uint256,bytes32[])
+ writer effect     -> contracts/s1/NTItems.sol:946
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate cededb1a9f5c7357205a] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:795
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate cf9ac2e59dc48cb737f3] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2Items.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s2/NTS2Items.sol:1012
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate d3ed4530f9368f00cced] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/beckLoot.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/beckLoot.sol:998
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate d6179ab6466786d323dc] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2Items.sol::ERC721.approve(address,uint256)
+ writer effect     -> contracts/s2/NTS2Items.sol:1012
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate d6e353670a27ddb9294f] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTLandDeploy.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTLandDeploy.sol:1012
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate d7b8ee4ecda4dfbf653c] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTItems.sol::NTItems.boxClaim(uint256,uint256,uint256,bytes32[])
+ writer effect     -> contracts/s1/NTItems.sol:946
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTItems.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate d951150bbfc3b824db80] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTItems.sol::NTItems.buyItems()
+ writer effect     -> contracts/s1/NTItems.sol:946
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTItems.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate d9580bed33bca04a42af] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTS2Items.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s2/NTS2Items.sol:1001
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate da0e1e27a693444c488f] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/vaultBox.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/s1/vaultBox.sol:1009
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate db54a77cdce0703ec13b] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:1012
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate dcd0982be31207fc4bd3] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/vaultBox.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/vaultBox.sol:998
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate dd41d4332df2b97c7c03] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTItems.sol::NTItems.emergencyClaim(uint256,uint256)
+ writer effect     -> contracts/s1/NTItems.sol:946
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate df808a72da3ed121e787] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTLandDeploy.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/s1/NTLandDeploy.sol:795
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners'), ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 72
+ storage exposures -> 2
+[MV-SI candidate e01100348e0749918119] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTItems.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTItems.sol:1001
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTItems.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate e685bee1e4f7a436af5c] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1013
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._owners')
+ reader witnesses  -> 72
+ storage exposures -> 2
+[MV-SI candidate e770a4471e2cf4975a3d] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1002
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate e78efb708f12f70557d2] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2Items.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTS2Items.sol:1012
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate e8357d725a4cfd7c6ee1] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/vaultBox.sol::vaultBox.holderClaim(uint256)
+ writer effect     -> contracts/s1/vaultBox.sol:943
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e935f417ed78b03c4b2a] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/NTLandDeploy.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTLandDeploy.sol:1001
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate eaffd2fe12a82e7976b4] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTItems.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/NTItems.sol:1012
+ written member    -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/NTItems.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTItems.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate f0ebee5a1892fef2e7e1] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.whitelistClaim(uint256,uint256,bytes32[])
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:947
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTOuterIdentity.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate f1509cf9ed45ed83fdeb] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/vaultBox.sol::vaultBox.whitelistClaim(uint256,uint256,bytes32[])
+ writer effect     -> contracts/s1/vaultBox.sol:943
+ written member    -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/vaultBox.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate f307d6c22b4d269358d9] {maxTokens, totalMembersInBytesAuction}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.reserveIdentity()
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1484
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.totalMembersInBytesAuction')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.maxTokens')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate fa90f906258a9281ecdb] {_operatorApprovals, _owners}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:1001
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate fbd817437ade7e22d53a] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/NTLandDeploy.sol::NTLandDeploy.emergencyClaim(uint256,uint256)
+ writer effect     -> contracts/s1/NTLandDeploy.sol:946
+ written member    -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/NTLandDeploy.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate fbdb6da88602493843fe] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/beckLoot.sol::ERC721.approve(address,uint256)
+ writer effect     -> contracts/s1/beckLoot.sol:1009
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ reader witnesses  -> 81
+ storage exposures -> 2
+[MV-SI candidate fbf412b79e50c2993e00] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2LandDeploy.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s2/NTS2LandDeploy.sol:1012
+ written member    -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2LandDeploy.sol', 'ERC721._owners')
+ reader witnesses  -> 78
+ storage exposures -> 2
+[MV-SI candidate fc9a6f464666e7a01510] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/beckLoot.sol::beckLoot.claim(uint256)
+ writer effect     -> contracts/s1/beckLoot.sol:943
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate fd03ba0cfb07a620e753] {bytesBurned, mostBytesBurned}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.burnBytes(uint256)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1506
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.bytesBurned')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.mostBytesBurned')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate fef5e908c53aeff10a9b] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s2/NTS2Items.sol::NTS2Items.emergencyClaim(uint256,uint256)
+ writer effect     -> contracts/s2/NTS2Items.sol:946
+ written member    -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s2/NTS2Items.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate ffe894d68bb0fdc0fca6] {_operatorApprovals, _owners}
+ writer root       -> contracts/s1/beckLoot.sol::beckLoot.whitelistClaim(uint256,uint256,bytes32[])
+ writer effect     -> contracts/s1/beckLoot.sol:943
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate fff38cbad1a01906fd0f] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/s1/beckLoot.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/s1/beckLoot.sol:998
+ written member    -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/s1/beckLoot.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (169 contracts with 1 detectors), 189 result(s) found

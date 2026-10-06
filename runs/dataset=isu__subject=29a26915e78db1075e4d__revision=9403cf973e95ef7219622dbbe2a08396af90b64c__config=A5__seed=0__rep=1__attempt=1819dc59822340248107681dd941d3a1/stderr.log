@@ -1,0 +1,30 @@
+'/tmp/.svm/0.8.17/solc-0.8.17 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=3907 vars=48
+[mvscan-stage] root-seeding-done eligible_exposures=25 seeded=20 multi_exposure_entry_blocks=5 collapsed_contextual_aliases=5 excluded_dependency=0 excluded_interface=25 excluded_library=0 excluded_abstract=6 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=95f95643f212f033f5851da3bdbe9eb008db878fa12e37ba53d0c828e5edbf5f candidate_count=3 candidate_digest=92fc2861f0f2569a7ae42b4f7450d35b99db4dbdb1713af7b8db0af9c3f63039 context_instance_count=4 eligible_readers=11 eligible_writers=11 execution_context_digest=a45314c2486b5cdfee3d6dfa2e1c2401c5a3f73369ce75641dcaf5a873e60a2c insensitive_readers_filtered=10 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=24 owner_context_pairs=4 owner_context_pairs_considered=28 raw_block_pairs=41 reader_witness_count=4 relation_base_members_shadowed=3 relation_context_incompatible=0 relation_digest=06ebe69c85b70a7be5185a5890314f636b467598659b005c0fca7b4a5c424129 relation_evidence_edges=28 relation_incompatible=13 relation_members_raw=41 relation_origins_registered=3 relation_origins_rejected_unary_after_shadowing=28 relation_origins_rejected_unreachable=47 relation_origins_seen=31 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=15 storage_context_mismatch=0 variables_considered=18
+INFO:Detectors:
+
+[MV-SI candidate 0d20a46157550bf42fd5] {_initialized, _initializing}
+ writer root       -> src/Well.sol::Well.init(string,string)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f42fb7c6920a55bddcf7] {_initialized, _initializing}
+ writer root       -> src/Well.sol::Well.init(string,string)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ff70ad311d13e9ce3b82] {_initialized, _initializing}
+ writer root       -> src/Well.sol::Well.init(string,string)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (48 contracts with 1 detectors), 3 result(s) found

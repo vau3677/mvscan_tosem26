@@ -1,0 +1,337 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=980 vars=77
+[mvscan-stage] root-seeding-done eligible_exposures=51 seeded=41 multi_exposure_entry_blocks=2 collapsed_contextual_aliases=10 excluded_dependency=0 excluded_interface=22 excluded_library=0 excluded_abstract=2 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=173c873dd8c9584cd3f77ba07dd383d093a0af7eeb174621ee575a59c14d075f candidate_count=47 candidate_digest=e20c64159880d5823dd2638be12c5debfb6cfeba913c6df6f5b94312a4b7fa07 context_instance_count=1749 eligible_readers=29 eligible_writers=21 execution_context_digest=6ed92a2a68f84e2b167a55167e340eb4623d84d0e5214acb293285c0a87aa2da insensitive_readers_filtered=11 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=30 owner_context_pairs=1749 owner_context_pairs_considered=2036 raw_block_pairs=307 reader_witness_count=1749 relation_base_members_shadowed=0 relation_context_incompatible=257 relation_digest=29249bea03a7f5fc5ccd9e695dd591b7c3c4b67dcc72af63130b8a4a55708b74 relation_members_raw=18 relation_origins_registered=2 relation_origins_rejected_unary_after_shadowing=5 relation_origins_rejected_unreachable=5 relation_origins_seen=7 relation_unbound_key_templates=7 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=5 scalar_variables_skipped=47 storage_context_mismatch=0 variables_considered=49
+INFO:Detectors:
+
+[MV-SI candidate 0144b7ff1562e2b27a00] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.getReward()
+ writer effect     -> contracts/StakingRewards.sol:120
+ written member    -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 43
+ storage exposures -> 1
+[MV-SI candidate 096e89a8d0e222c80adb] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.withdraw(uint256)
+ writer effect     -> contracts/StakingRewards.sol:203
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate 09a8417c446fefbf3dcf] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.withdraw(uint256)
+ writer effect     -> contracts/StakingRewards.sol:202
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 12006bbbd9e3ad850d5e] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.withdraw(uint256)
+ writer effect     -> contracts/StakingRewards.sol:109
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 35
+ storage exposures -> 1
+[MV-SI candidate 1fba8d53755266ad4460] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.stake(uint256)
+ writer effect     -> contracts/StakingRewards.sol:202
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 2262b09ca6ac6aa27e22] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.exit()
+ writer effect     -> contracts/StakingRewards.sol:203
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 43
+ storage exposures -> 1
+[MV-SI candidate 22cfc5bbc49594c12450] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.notifyRewardAmount(uint256)
+ writer effect     -> contracts/StakingRewards.sol:202
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 2356eed16fe7a6cac3d1] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.notifyRewardAmount(uint256)
+ writer effect     -> contracts/StakingRewards.sol:143
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored')
+ reader witnesses  -> 37
+ storage exposures -> 1
+[MV-SI candidate 240712a0933c0b4fa378] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.stake(uint256)
+ writer effect     -> contracts/StakingRewards.sol:202
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate 274647e8fcd8c0c7885c] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.withdraw(uint256)
+ writer effect     -> contracts/StakingRewards.sol:109
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 30f0d3008ba39fa5dc8e] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.stake(uint256)
+ writer effect     -> contracts/StakingRewards.sol:205
+ written member    -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 43
+ storage exposures -> 1
+[MV-SI candidate 4dfd640553c67a8ab202] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.notifyRewardAmount(uint256)
+ writer effect     -> contracts/StakingRewards.sol:202
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate 50c4f8db0673723bc668] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.notifyRewardAmount(uint256)
+ writer effect     -> contracts/StakingRewards.sol:147
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored')
+ reader witnesses  -> 41
+ storage exposures -> 1
+[MV-SI candidate 55bbc1b6ced053d67afc] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.exit()
+ writer effect     -> contracts/StakingRewards.sol:120
+ written member    -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 43
+ storage exposures -> 1
+[MV-SI candidate 5f7577e31127bc0e7d63] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.withdraw(uint256)
+ writer effect     -> contracts/StakingRewards.sol:202
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate 60bf71cc2f161ce5ec53] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.notifyRewardAmount(uint256)
+ writer effect     -> contracts/StakingRewards.sol:160
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 43
+ storage exposures -> 1
+[MV-SI candidate 6a945b07c934ee39e8a9] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.notifyRewardAmount(uint256)
+ writer effect     -> contracts/StakingRewards.sol:161
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 7531f9eaa63fa5cd616d] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.exit()
+ writer effect     -> contracts/StakingRewards.sol:203
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate 76ef61fb124e0fede8c0] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.getReward()
+ writer effect     -> contracts/StakingRewards.sol:205
+ written member    -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 43
+ storage exposures -> 1
+[MV-SI candidate 780fedc68fda7c9d53d6] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.stake(uint256)
+ writer effect     -> contracts/StakingRewards.sol:203
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 43
+ storage exposures -> 1
+[MV-SI candidate 7f4d36af97d9c9736e4d] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.withdraw(uint256)
+ writer effect     -> contracts/StakingRewards.sol:206
+ written member    -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate 80f179776d5ea31f0f39] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.exit()
+ writer effect     -> contracts/StakingRewards.sol:110
+ written member    -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 43
+ storage exposures -> 1
+[MV-SI candidate 85f97743e96d877c89b8] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.exit()
+ writer effect     -> contracts/StakingRewards.sol:202
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate 9473b3b563c3b6b764c4] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.stake(uint256)
+ writer effect     -> contracts/StakingRewards.sol:206
+ written member    -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate 9ecb80f5cc4910723e97] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.withdraw(uint256)
+ writer effect     -> contracts/StakingRewards.sol:203
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 43
+ storage exposures -> 1
+[MV-SI candidate a1b65237c78fe43f1d13] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.exit()
+ writer effect     -> contracts/StakingRewards.sol:109
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate a933b2e6c408b56dc852] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.notifyRewardAmount(uint256)
+ writer effect     -> contracts/StakingRewards.sol:203
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate a9dec5f2e46c053106e4] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.stake(uint256)
+ writer effect     -> contracts/StakingRewards.sol:203
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate ad60be85a62fc0dd65ad] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.exit()
+ writer effect     -> contracts/StakingRewards.sol:109
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 35
+ storage exposures -> 1
+[MV-SI candidate aeb4ff5539d73ad010db] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.getReward()
+ writer effect     -> contracts/StakingRewards.sol:202
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate b06df0287a4aa24a5d18] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.getReward()
+ writer effect     -> contracts/StakingRewards.sol:203
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate b09dc856daff0ecaf6be] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.getReward()
+ writer effect     -> contracts/StakingRewards.sol:203
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 43
+ storage exposures -> 1
+[MV-SI candidate b908c0e526f6fbd181fc] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.exit()
+ writer effect     -> contracts/StakingRewards.sol:206
+ written member    -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate bda14f42f61729bba3fc] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.exit()
+ writer effect     -> contracts/StakingRewards.sol:205
+ written member    -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 43
+ storage exposures -> 1
+[MV-SI candidate bf53bad08239b038d364] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.notifyRewardAmount(uint256)
+ writer effect     -> contracts/StakingRewards.sol:160
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate c03a5cbe26f554723049] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.notifyRewardAmount(uint256)
+ writer effect     -> contracts/StakingRewards.sol:203
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 43
+ storage exposures -> 1
+[MV-SI candidate c16731554e927ecb9e8d] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.withdraw(uint256)
+ writer effect     -> contracts/StakingRewards.sol:110
+ written member    -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 43
+ storage exposures -> 1
+[MV-SI candidate c2e43c938e37bb0a1289] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.getReward()
+ writer effect     -> contracts/StakingRewards.sol:202
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate c75340e6634a52493850] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.stake(uint256)
+ writer effect     -> contracts/StakingRewards.sol:96
+ written member    -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 43
+ storage exposures -> 1
+[MV-SI candidate c8cd6f75bca9480ae3e4] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.notifyRewardAmount(uint256)
+ writer effect     -> contracts/StakingRewards.sol:147
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored')
+ reader witnesses  -> 37
+ storage exposures -> 1
+[MV-SI candidate cc1fb90e690bb201e057] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.stake(uint256)
+ writer effect     -> contracts/StakingRewards.sol:95
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate db47a9ba06d0f79964c3] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.getReward()
+ writer effect     -> contracts/StakingRewards.sol:206
+ written member    -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate db697d65c061885c540d] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.notifyRewardAmount(uint256)
+ writer effect     -> contracts/StakingRewards.sol:143
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored')
+ reader witnesses  -> 41
+ storage exposures -> 1
+[MV-SI candidate dca634b95e3b602f2af5] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.exit()
+ writer effect     -> contracts/StakingRewards.sol:202
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate e622879e31e0bf741dab] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.withdraw(uint256)
+ writer effect     -> contracts/StakingRewards.sol:205
+ written member    -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 43
+ storage exposures -> 1
+[MV-SI candidate ec8eb65e6e37482983c0] {_balances[$arg0], _totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.stake(uint256)
+ writer effect     -> contracts/StakingRewards.sol:95
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply')
+ potentially stale -> ('MS', 'contracts/StakingRewards.sol', 'StakingRewards._balances', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.rewards', '$arg0'), ('MS', 'contracts/StakingRewards.sol', 'StakingRewards.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 35
+ storage exposures -> 1
+[MV-SI candidate f5ed6426ff7dc9604aac] {_totalSupply, lastUpdateTime, periodFinish, rewardPerTokenStored, rewardRate}
+ writer root       -> contracts/StakingRewards.sol::StakingRewards.notifyRewardAmount(uint256)
+ writer effect     -> contracts/StakingRewards.sol:161
+ written member    -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.periodFinish')
+ potentially stale -> ('SV', 'contracts/StakingRewards.sol', 'StakingRewards._totalSupply'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.lastUpdateTime'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardPerTokenStored'), ('SV', 'contracts/StakingRewards.sol', 'StakingRewards.rewardRate')
+ reader witnesses  -> 25
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (27 contracts with 1 detectors), 47 result(s) found

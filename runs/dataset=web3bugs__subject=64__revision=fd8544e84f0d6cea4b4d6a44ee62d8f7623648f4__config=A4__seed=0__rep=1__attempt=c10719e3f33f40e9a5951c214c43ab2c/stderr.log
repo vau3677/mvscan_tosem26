@@ -1,0 +1,316 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=2154 vars=92
+[mvscan-stage] root-seeding-done eligible_exposures=237 seeded=98 multi_exposure_entry_blocks=54 collapsed_contextual_aliases=139 excluded_dependency=0 excluded_interface=88 excluded_library=0 excluded_abstract=35 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=95782e8d568b2604e1979a9c3b08b3429a28015e891dc545f9e398c23a56c17d candidate_count=44 candidate_digest=908a0b4720eaea55cd7d7b99377e4aa59910bd472cb970bdf8cda1532bd16d5a context_instance_count=377 eligible_readers=64 eligible_writers=55 execution_context_digest=8e31087ab45e6258dbc214b01dfb0c73ad242291e9fca0a19ccebf72ded50dc6 insensitive_readers_filtered=87 invalid_partial_write_filtered=0 must_full_relation_filtered=52 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=49 owner_context_pairs=825 owner_context_pairs_considered=6449 raw_block_pairs=335 reader_witness_count=825 relation_base_members_shadowed=0 relation_context_incompatible=1024 relation_digest=cfe947e2dd9a83f30c013a74eeeb390fe69aa0abbe90461643f1517b297d0d52 relation_members_raw=90 relation_origins_registered=13 relation_origins_rejected_unary_after_shadowing=61 relation_origins_rejected_unreachable=72 relation_origins_seen=74 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=13 scalar_variables_skipped=47 storage_context_mismatch=4499 variables_considered=60
+INFO:Detectors:
+
+[MV-SI candidate 0ac6a1618afe3cda82f9] {reserveAccumulators, withdrawAccumulator}
+ writer root       -> contracts/Reserve.sol::Reserve.withdrawTo(address,uint256)
+ writer effect     -> contracts/Reserve.sol:228
+ written member    -> ('SV', 'contracts/Reserve.sol', 'Reserve.reserveAccumulators')
+ potentially stale -> ('SV', 'contracts/Reserve.sol', 'Reserve.withdrawAccumulator')
+ reader witnesses  -> 7
+ storage exposures -> 2
+[MV-SI candidate 0e3898f5aed5290177c7] {rngRequest, rngTimeout}
+ writer root       -> contracts/DrawBeacon.sol::DrawBeacon.startDraw()
+ writer effect     -> contracts/DrawBeacon.sol:319
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngRequest')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngTimeout')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 10d45380de5d07c9c9bf] {_manager, _owner}
+ writer root       -> @pooltogether/owner-manager-contracts/contracts/Manageable.sol::Manageable.setManager(address)
+ writer effect     -> @pooltogether/owner-manager-contracts/contracts/Manageable.sol:66
+ written member    -> ('SV', '@pooltogether/owner-manager-contracts/contracts/Manageable.sol', 'Manageable._manager')
+ potentially stale -> ('SV', '@pooltogether/owner-manager-contracts/contracts/Ownable.sol', 'Ownable._owner')
+ reader witnesses  -> 8
+ storage exposures -> 5
+[MV-SI candidate 13589f195ea7eca99d18] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 14e7e8ad48d9bd2d21d4] {reserveAccumulators, withdrawAccumulator}
+ writer root       -> contracts/Reserve.sol::Reserve.withdrawTo(address,uint256)
+ writer effect     -> contracts/Reserve.sol:110
+ written member    -> ('SV', 'contracts/Reserve.sol', 'Reserve.withdrawAccumulator')
+ potentially stale -> ('SV', 'contracts/Reserve.sol', 'Reserve.reserveAccumulators')
+ reader witnesses  -> 5
+ storage exposures -> 2
+[MV-SI candidate 1a5d056507bf5ce6dfd5] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 75
+ storage exposures -> 2
+[MV-SI candidate 1d74632b99893d2827e1] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/test/ERC721Mintable.sol::ERC721Mintable.mint(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:289
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 243bfd1677bb4c98a8aa] {reserveAccumulators, withdrawAccumulator}
+ writer root       -> contracts/Reserve.sol::Reserve.checkpoint()
+ writer effect     -> contracts/Reserve.sol:228
+ written member    -> ('SV', 'contracts/Reserve.sol', 'Reserve.reserveAccumulators')
+ potentially stale -> ('SV', 'contracts/Reserve.sol', 'Reserve.withdrawAccumulator')
+ reader witnesses  -> 7
+ storage exposures -> 2
+[MV-SI candidate 263c271e727cc49d2fa8] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:138
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 17
+ storage exposures -> 2
+[MV-SI candidate 2646a21eb56161454906] {beaconPeriodSeconds, beaconPeriodStartedAt}
+ writer root       -> contracts/DrawBeacon.sol::DrawBeacon.setBeaconPeriodSeconds(uint32)
+ writer effect     -> contracts/DrawBeacon.sol:458
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.beaconPeriodSeconds')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.beaconPeriodStartedAt')
+ reader witnesses  -> 16
+ storage exposures -> 2
+[MV-SI candidate 2af4da71cf9ff1037d3c] {_operatorApprovals, _owners}
+ writer root       -> contracts/test/ERC721Mintable.sol::ERC721Mintable.mint(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:289
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 31220545fb330da18c49] {reserveAccumulators, withdrawAccumulator}
+ writer root       -> contracts/test/ReserveHarness.sol::ReserveHarness.setObservationsAt(ObservationLib.Observation[])
+ writer effect     -> contracts/test/ReserveHarness.sol:13
+ written member    -> ('SV', 'contracts/Reserve.sol', 'Reserve.reserveAccumulators')
+ potentially stale -> ('SV', 'contracts/Reserve.sol', 'Reserve.withdrawAccumulator')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 33381e43c73430c8e2b5] {rngRequest, rngTimeout}
+ writer root       -> contracts/DrawBeacon.sol::DrawBeacon.startDraw()
+ writer effect     -> contracts/DrawBeacon.sol:320
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngRequest')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngTimeout')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 3394150c022c36c7f456] {_manager, _owner}
+ writer root       -> @pooltogether/owner-manager-contracts/contracts/Ownable.sol::Ownable.renounceOwnership()
+ writer effect     -> @pooltogether/owner-manager-contracts/contracts/Ownable.sol:108
+ written member    -> ('SV', '@pooltogether/owner-manager-contracts/contracts/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', '@pooltogether/owner-manager-contracts/contracts/Manageable.sol', 'Manageable._manager')
+ reader witnesses  -> 5
+ storage exposures -> 5
+[MV-SI candidate 3cef31d48c10d54a4d55] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 529267533782f159bd96] {rngRequest, rngTimeout}
+ writer root       -> contracts/DrawBeacon.sol::DrawBeacon.startDraw()
+ writer effect     -> contracts/DrawBeacon.sol:321
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngRequest')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngTimeout')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 532ce1912a78e1870b00] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 75
+ storage exposures -> 2
+[MV-SI candidate 55f096bd63a331b6d6b6] {_balances, _totalSupply}
+ writer root       -> @pooltogether/yield-source-interface/contracts/test/ERC20Mintable.sol::ERC20Mintable.masterTransfer(address,address,uint256)
+ writer effect     -> @pooltogether/yield-source-interface/contracts/test/ERC20.sol:254
+ written member    -> ('SV', '@pooltogether/yield-source-interface/contracts/test/ERC20.sol', 'ERC20._balances')
+ potentially stale -> ('SV', '@pooltogether/yield-source-interface/contracts/test/ERC20.sol', 'ERC20._totalSupply')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 57a7c43baddf816dfcbf] {reserveAccumulators, withdrawAccumulator}
+ writer root       -> contracts/Reserve.sol::Reserve.withdrawTo(address,uint256)
+ writer effect     -> contracts/Reserve.sol:216
+ written member    -> ('SV', 'contracts/Reserve.sol', 'Reserve.reserveAccumulators')
+ potentially stale -> ('SV', 'contracts/Reserve.sol', 'Reserve.withdrawAccumulator')
+ reader witnesses  -> 7
+ storage exposures -> 2
+[MV-SI candidate 62eeb8cecedaa6d03fa3] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 68012ef6954744bdde06] {_balances, _totalSupply}
+ writer root       -> @pooltogether/yield-source-interface/contracts/test/ERC20Mintable.sol::ERC20Mintable.masterTransfer(address,address,uint256)
+ writer effect     -> @pooltogether/yield-source-interface/contracts/test/ERC20.sol:256
+ written member    -> ('SV', '@pooltogether/yield-source-interface/contracts/test/ERC20.sol', 'ERC20._balances')
+ potentially stale -> ('SV', '@pooltogether/yield-source-interface/contracts/test/ERC20.sol', 'ERC20._totalSupply')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 6fee5c060bb7586ae05f] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 798a2ca530110bb7caff] {rngRequest, rngTimeout}
+ writer root       -> contracts/test/DrawBeaconHarness.sol::DrawBeaconHarness.setRngRequest(uint32,uint32)
+ writer effect     -> contracts/test/DrawBeaconHarness.sol:41
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngRequest')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngTimeout')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 7a0756c8def809d685b0] {_balances, _totalSupply}
+ writer root       -> @pooltogether/yield-source-interface/contracts/test/ERC20.sol::ERC20.transfer(address,uint256)
+ writer effect     -> @pooltogether/yield-source-interface/contracts/test/ERC20.sol:254
+ written member    -> ('SV', '@pooltogether/yield-source-interface/contracts/test/ERC20.sol', 'ERC20._balances')
+ potentially stale -> ('SV', '@pooltogether/yield-source-interface/contracts/test/ERC20.sol', 'ERC20._totalSupply')
+ reader witnesses  -> 5
+ storage exposures -> 2
+[MV-SI candidate 7ac8dab264f2564be620] {beaconPeriodSeconds, beaconPeriodStartedAt}
+ writer root       -> contracts/DrawBeacon.sol::DrawBeacon.completeDraw()
+ writer effect     -> contracts/DrawBeacon.sol:242
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.beaconPeriodStartedAt')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.beaconPeriodSeconds')
+ reader witnesses  -> 16
+ storage exposures -> 2
+[MV-SI candidate 7b5227d796eecd83b351] {_balances, _totalSupply}
+ writer root       -> @pooltogether/yield-source-interface/contracts/test/ERC20.sol::ERC20.transferFrom(address,address,uint256)
+ writer effect     -> @pooltogether/yield-source-interface/contracts/test/ERC20.sol:254
+ written member    -> ('SV', '@pooltogether/yield-source-interface/contracts/test/ERC20.sol', 'ERC20._balances')
+ potentially stale -> ('SV', '@pooltogether/yield-source-interface/contracts/test/ERC20.sol', 'ERC20._totalSupply')
+ reader witnesses  -> 5
+ storage exposures -> 2
+[MV-SI candidate 88218b6b46543e7fc7db] {_balances, _totalSupply}
+ writer root       -> @pooltogether/yield-source-interface/contracts/test/ERC20.sol::ERC20.transferFrom(address,address,uint256)
+ writer effect     -> @pooltogether/yield-source-interface/contracts/test/ERC20.sol:256
+ written member    -> ('SV', '@pooltogether/yield-source-interface/contracts/test/ERC20.sol', 'ERC20._balances')
+ potentially stale -> ('SV', '@pooltogether/yield-source-interface/contracts/test/ERC20.sol', 'ERC20._totalSupply')
+ reader witnesses  -> 5
+ storage exposures -> 2
+[MV-SI candidate 921ab8c4efab9a310216] {_operatorApprovals, _owners}
+ writer root       -> contracts/test/ERC721Mintable.sol::ERC721Mintable.burn(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:313
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 94d8cea442779bb0b7e1] {rngRequest, rngTimeout}
+ writer root       -> contracts/DrawBeacon.sol::DrawBeacon.cancelDraw()
+ writer effect     -> contracts/DrawBeacon.sol:213
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngRequest')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngTimeout')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 9cd1e2337ee8f30547d8] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 75
+ storage exposures -> 2
+[MV-SI candidate a088126e1c68d85df937] {reserveAccumulators, withdrawAccumulator}
+ writer root       -> contracts/Reserve.sol::Reserve.checkpoint()
+ writer effect     -> contracts/Reserve.sol:216
+ written member    -> ('SV', 'contracts/Reserve.sol', 'Reserve.reserveAccumulators')
+ potentially stale -> ('SV', 'contracts/Reserve.sol', 'Reserve.withdrawAccumulator')
+ reader witnesses  -> 7
+ storage exposures -> 2
+[MV-SI candidate b0cf3708e93fb6bf7a39] {reserveAccumulators, withdrawAccumulator}
+ writer root       -> contracts/test/ReserveHarness.sol::ReserveHarness.doubleCheckpoint(ERC20Mintable,uint256)
+ writer effect     -> contracts/Reserve.sol:216
+ written member    -> ('SV', 'contracts/Reserve.sol', 'Reserve.reserveAccumulators')
+ potentially stale -> ('SV', 'contracts/Reserve.sol', 'Reserve.withdrawAccumulator')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate b14c4669dee33ba39bfd] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.approve(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 75
+ storage exposures -> 2
+[MV-SI candidate b3edd266674708ece7a5] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate cb821b6a57db78aabf9d] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:138
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 69
+ storage exposures -> 2
+[MV-SI candidate d7bb01464d16552da82b] {_balances, _totalSupply}
+ writer root       -> @pooltogether/yield-source-interface/contracts/test/ERC20.sol::ERC20.transfer(address,uint256)
+ writer effect     -> @pooltogether/yield-source-interface/contracts/test/ERC20.sol:256
+ written member    -> ('SV', '@pooltogether/yield-source-interface/contracts/test/ERC20.sol', 'ERC20._balances')
+ potentially stale -> ('SV', '@pooltogether/yield-source-interface/contracts/test/ERC20.sol', 'ERC20._totalSupply')
+ reader witnesses  -> 5
+ storage exposures -> 2
+[MV-SI candidate e01eeb51b0b74c2f1166] {_manager, _owner}
+ writer root       -> @pooltogether/owner-manager-contracts/contracts/Ownable.sol::Ownable.claimOwnership()
+ writer effect     -> @pooltogether/owner-manager-contracts/contracts/Ownable.sol:108
+ written member    -> ('SV', '@pooltogether/owner-manager-contracts/contracts/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', '@pooltogether/owner-manager-contracts/contracts/Manageable.sol', 'Manageable._manager')
+ reader witnesses  -> 5
+ storage exposures -> 5
+[MV-SI candidate e214b8144d8bc8566846] {reserveAccumulators, withdrawAccumulator}
+ writer root       -> contracts/test/ReserveHarness.sol::ReserveHarness.doubleCheckpoint(ERC20Mintable,uint256)
+ writer effect     -> contracts/Reserve.sol:228
+ written member    -> ('SV', 'contracts/Reserve.sol', 'Reserve.reserveAccumulators')
+ potentially stale -> ('SV', 'contracts/Reserve.sol', 'Reserve.withdrawAccumulator')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e277b30f614b48163cda] {rngRequest, rngTimeout}
+ writer root       -> contracts/DrawBeacon.sol::DrawBeacon.completeDraw()
+ writer effect     -> contracts/DrawBeacon.sol:246
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngRequest')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngTimeout')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate e48909e651df97fcc1ca] {rngRequest, rngTimeout}
+ writer root       -> contracts/test/DrawBeaconHarness.sol::DrawBeaconHarness.setRngRequest(uint32,uint32)
+ writer effect     -> contracts/test/DrawBeaconHarness.sol:40
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngRequest')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngTimeout')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e5aba90aa7bf588dd8ed] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/test/ERC721Mintable.sol::ERC721Mintable.burn(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate e5e76938eb2d774481bc] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/test/ERC721Mintable.sol::ERC721Mintable.burn(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:313
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate e77e21b5ba0c9c96b1f3] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate eb14b0092b51b8c2a6c8] {rngRequest, rngTimeout}
+ writer root       -> contracts/DrawBeacon.sol::DrawBeacon.setRngTimeout(uint32)
+ writer effect     -> contracts/DrawBeacon.sol:469
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngTimeout')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngRequest')
+ reader witnesses  -> 52
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (80 contracts with 1 detectors), 44 result(s) found

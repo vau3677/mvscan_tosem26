@@ -1,0 +1,171 @@
+'/tmp/.svm/0.8.16/solc-0.8.16 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: Contract code size is 35203 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:14:1:
+   |
+14 | contract VRFCoordinatorV2 is
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1105 vars=65
+[mvscan-stage] root-seeding-done eligible_exposures=45 seeded=34 multi_exposure_entry_blocks=9 collapsed_contextual_aliases=11 excluded_dependency=0 excluded_interface=38 excluded_library=0 excluded_abstract=10 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=9cfba9af113e44f75e62e87402da40e6aca53947bdcf26ba4030f71b1330ae9f candidate_count=22 candidate_digest=ccf7fbdfe5457608225704256cf4a042db45b8beba55dd8f07811d8839749610 context_instance_count=123 eligible_readers=31 eligible_writers=27 execution_context_digest=a82feaf3e03898a44da9fa039ac0f591a9150798f0faa6d11426cd2361160a0a insensitive_readers_filtered=18 invalid_partial_write_filtered=0 must_full_relation_filtered=15 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=123 owner_context_pairs_considered=465 raw_block_pairs=260 reader_witness_count=123 relation_base_members_shadowed=1 relation_context_incompatible=309 relation_digest=b554a1efa18ec4e160fdc23a59d11a10cef5ac11c471c8971888415c3c901646 relation_members_raw=61 relation_origins_registered=4 relation_origins_rejected_unary_after_shadowing=50 relation_origins_seen=54 relation_unbound_key_templates=3 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=11 scalar_variables_skipped=32 storage_context_mismatch=18 variables_considered=36
+INFO:Detectors:
+
+[MV-SI candidate 07c7f8391e6c00d0f299] {s_consumers, s_provingKeyHashes, s_requestCommitments[@local::node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.pendingRequestExists(uint64)::LocalVariableInitFromTuple::reqId_1]}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.registerProvingKey(address,uint256[2])
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:187
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_provingKeyHashes')
+ potentially stale -> ('MS', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_requestCommitments', '@local::node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.pendingRequestExists(uint64)::LocalVariableInitFromTuple::reqId_1'), ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_consumers')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0d8a0b20db702bfd4857] {s_config, s_fallbackWeiPerUnitLink, s_subscriptions}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.fulfillRandomWords(VRF.Proof,VRFCoordinatorV2.RequestCommitment)
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:580
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_subscriptions')
+ potentially stale -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_config'), ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_fallbackWeiPerUnitLink')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 38e41c3451fb2d36c5ea] {s_consumers, s_provingKeyHashes, s_requestCommitments[@local::node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.pendingRequestExists(uint64)::LocalVariableInitFromTuple::reqId_1]}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.deregisterProvingKey(uint256[2])
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:207
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_provingKeyHashes')
+ potentially stale -> ('MS', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_requestCommitments', '@local::node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.pendingRequestExists(uint64)::LocalVariableInitFromTuple::reqId_1'), ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_consumers')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 51d254eda1e8b3f92e5c] {s_config, s_fallbackWeiPerUnitLink, s_subscriptions}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.setConfig(uint16,uint32,uint32,uint32,int256,VRFCoordinatorV2.FeeConfig)
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:248
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_config')
+ potentially stale -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_fallbackWeiPerUnitLink'), ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_subscriptions')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 5bcc456739a613494b98] {_initialized, _initializing}
+ writer root       -> src/VRFNFTRandomDraw.sol::VRFNFTRandomDraw.initialize(address,IVRFNFTRandomDraw.Settings)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:95
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 5e17fea55dfadc682e1d] {s_config, s_fallbackWeiPerUnitLink, s_subscriptions}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.onTokenTransfer(address,uint256,bytes)
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:673
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_subscriptions')
+ potentially stale -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_config'), ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_fallbackWeiPerUnitLink')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 65187f50f8a75d3d0749] {_initialized, _initializing}
+ writer root       -> src/VRFNFTRandomDraw.sol::VRFNFTRandomDraw.initialize(address,IVRFNFTRandomDraw.Settings)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:91
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7ad51944779f786bbbbc] {s_config, s_fallbackWeiPerUnitLink, s_subscriptions}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.fulfillRandomWords(VRF.Proof,VRFCoordinatorV2.RequestCommitment)
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:576
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_config')
+ potentially stale -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_fallbackWeiPerUnitLink'), ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_subscriptions')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 9011fafa972fb5520783] {s_consumers, s_provingKeyHashes, s_requestCommitments[@local::node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.pendingRequestExists(uint64)::LocalVariableInitFromTuple::reqId_1]}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.cancelSubscription(uint64,address)
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:837
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_provingKeyHashes')
+ potentially stale -> ('MS', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_requestCommitments', '@local::node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.pendingRequestExists(uint64)::LocalVariableInitFromTuple::reqId_1'), ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_consumers')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a2fc240c1d10f390e743] {_initialized, _initializing}
+ writer root       -> src/VRFNFTRandomDraw.sol::VRFNFTRandomDraw.initialize(address,IVRFNFTRandomDraw.Settings)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:89
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate adb54705de08b3eac597] {s_config, s_fallbackWeiPerUnitLink, s_subscriptions}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.setConfig(uint16,uint32,uint32,uint32,int256,VRFCoordinatorV2.FeeConfig)
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:256
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_fallbackWeiPerUnitLink')
+ potentially stale -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_config'), ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_subscriptions')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate afdc24445ac5022ad658] {s_consumers, s_provingKeyHashes, s_requestCommitments[@local::node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.pendingRequestExists(uint64)::LocalVariableInitFromTuple::reqId_1]}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.deregisterProvingKey(uint256[2])
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:204
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_provingKeyHashes')
+ potentially stale -> ('MS', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_requestCommitments', '@local::node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.pendingRequestExists(uint64)::LocalVariableInitFromTuple::reqId_1'), ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_consumers')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c4d9888ada0847dc233a] {_initialized, _initializing}
+ writer root       -> src/VRFNFTRandomDrawFactory.sol::VRFNFTRandomDrawFactory.initialize(address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:89
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate cd4d834d472fe47e75ef] {s_config, s_fallbackWeiPerUnitLink, s_subscriptions}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.fulfillRandomWords(VRF.Proof,VRFCoordinatorV2.RequestCommitment)
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:597
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_subscriptions')
+ potentially stale -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_config'), ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_fallbackWeiPerUnitLink')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate ce55d3fe938f31f22b21] {s_config, s_fallbackWeiPerUnitLink}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.fulfillRandomWords(VRF.Proof,VRFCoordinatorV2.RequestCommitment)
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:574
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_config')
+ potentially stale -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_fallbackWeiPerUnitLink')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d2137d402ecc2e6f71e2] {s_consumers, s_provingKeyHashes, s_requestCommitments[@local::node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.pendingRequestExists(uint64)::LocalVariableInitFromTuple::reqId_1]}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.deregisterProvingKey(uint256[2])
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:202
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_provingKeyHashes')
+ potentially stale -> ('MS', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_requestCommitments', '@local::node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.pendingRequestExists(uint64)::LocalVariableInitFromTuple::reqId_1'), ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_consumers')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e792eae30ba44264e482] {s_config, s_fallbackWeiPerUnitLink, s_subscriptions}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.ownerCancelSubscription(uint64)
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:821
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_subscriptions')
+ potentially stale -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_config'), ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_fallbackWeiPerUnitLink')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate f3a718021658a1090510] {_initialized, _initializing}
+ writer root       -> src/VRFNFTRandomDrawFactory.sol::VRFNFTRandomDrawFactory.initialize(address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:91
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f7f75defb0bd35388b42] {s_config, s_fallbackWeiPerUnitLink, s_subscriptions}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.fulfillRandomWords(VRF.Proof,VRFCoordinatorV2.RequestCommitment)
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:574
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_config')
+ potentially stale -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_fallbackWeiPerUnitLink'), ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_subscriptions')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate f86b709a92498d71ce89] {s_config, s_fallbackWeiPerUnitLink}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.fulfillRandomWords(VRF.Proof,VRFCoordinatorV2.RequestCommitment)
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:576
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_config')
+ potentially stale -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_fallbackWeiPerUnitLink')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate fde1e88c86629cdae70c] {s_config, s_fallbackWeiPerUnitLink, s_subscriptions}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.cancelSubscription(uint64,address)
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:821
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_subscriptions')
+ potentially stale -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_config'), ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_fallbackWeiPerUnitLink')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate fe44d5c28a967be4a502] {_initialized, _initializing}
+ writer root       -> src/VRFNFTRandomDrawFactory.sol::VRFNFTRandomDrawFactory.initialize(address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:95
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (38 contracts with 1 detectors), 22 result(s) found

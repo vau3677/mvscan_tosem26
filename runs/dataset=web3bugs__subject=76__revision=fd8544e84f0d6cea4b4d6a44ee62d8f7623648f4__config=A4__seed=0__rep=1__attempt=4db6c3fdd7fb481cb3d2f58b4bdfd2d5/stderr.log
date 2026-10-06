@@ -1,0 +1,1217 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=2064 vars=132
+[mvscan-stage] root-seeding-done eligible_exposures=252 seeded=131 multi_exposure_entry_blocks=60 collapsed_contextual_aliases=121 excluded_dependency=0 excluded_interface=150 excluded_library=0 excluded_abstract=29 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=bd1f0f3e6cfe51649bba64c409dbf17da5b59c024017b9a4e77e8990233a41ad candidate_count=171 candidate_digest=20097c50d162db983a722e9e7b220819afeb9d2a10b71d906e3b17a7ece78a95 context_instance_count=12642 eligible_readers=274 eligible_writers=190 execution_context_digest=f81290e62bc9b7d10ee322eea2c494d1ef8cfe62840a1e5f67e6a39d9d3a0df5 insensitive_readers_filtered=214 invalid_partial_write_filtered=0 must_full_relation_filtered=2193 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=400 owner_context_pairs=37345 owner_context_pairs_considered=123262 raw_block_pairs=2245 reader_witness_count=37345 relation_base_members_shadowed=0 relation_context_incompatible=17030 relation_digest=ed2b92539583972a2332f1cc77dd07f6bdf11719d8cf4dad43680ae88b843cea relation_members_raw=175 relation_origins_registered=27 relation_origins_rejected_unary_after_shadowing=102 relation_origins_rejected_unreachable=44 relation_origins_seen=129 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=84 scalar_variables_skipped=63 storage_context_mismatch=66294 variables_considered=90
+INFO:Detectors:
+
+[MV-SI candidate 003fbd803431c3fcaa11] {allPremiumsPerSecToStakers, nonStakersPercentage}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremium(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:270
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.allPremiumsPerSecToStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage')
+ reader witnesses  -> 24
+ storage exposures -> 2
+[MV-SI candidate 00beb7734e9dfd8a7181] {_operatorApprovals, _owners}
+ writer root       -> contracts/Sherlock.sol::Sherlock.initialStake(uint256,uint256,address)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:289
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 037f268e5a24e5c4d4a0] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:244
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ reader witnesses  -> 880
+ storage exposures -> 2
+[MV-SI candidate 0753e7c06fcfc133a688] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate 0b1d8a6110326eeb432b] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:627
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 0d06f01894c0bb6744d2] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/Sherlock.sol::Sherlock.initialStake(uint256,uint256,address)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:289
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 0d6aeed74708d8029fa7] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.withdrawActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:799
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 506
+ storage exposures -> 2
+[MV-SI candidate 13589f195ea7eca99d18] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 16
+ storage exposures -> 4
+[MV-SI candidate 1555894b07518ffda761] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 506
+ storage exposures -> 2
+[MV-SI candidate 17f60fc4e268c8930eff] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremium(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 506
+ storage exposures -> 2
+[MV-SI candidate 18e54e09331ecf5f39e5] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:329
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate 19455fff26a4d9324c59] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:391
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 506
+ storage exposures -> 2
+[MV-SI candidate 1a5d056507bf5ce6dfd5] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 174
+ storage exposures -> 4
+[MV-SI candidate 1ddded21142cd4a45627] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 1e2139316ea9156501d5] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.nonStakersClaim(bytes32,uint256,address)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 1056
+ storage exposures -> 2
+[MV-SI candidate 1e563ee6f21d251b4fff] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremiums(bytes32[],uint256[])
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:356
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate 1e92d7b2c9f853b1af9e] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:244
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage')
+ reader witnesses  -> 143
+ storage exposures -> 2
+[MV-SI candidate 1f31025fa772e28a7aef] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremium(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:329
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate 1f8ca7755d3a3c168f45] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolAdd(bytes32,address,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 506
+ storage exposures -> 2
+[MV-SI candidate 217ab7fada919e9262b0] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 109
+ storage exposures -> 2
+[MV-SI candidate 263c271e727cc49d2fa8] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:138
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 42
+ storage exposures -> 4
+[MV-SI candidate 265f536a6c470b3e1c53] {lockupEnd_, stakeShares}
+ writer root       -> contracts/Sherlock.sol::Sherlock.ownerRestake(uint256,uint256)
+ writer effect     -> contracts/Sherlock.sol:415
+ written member    -> ('SV', 'contracts/Sherlock.sol', 'Sherlock.lockupEnd_')
+ potentially stale -> ('SV', 'contracts/Sherlock.sol', 'Sherlock.stakeShares')
+ reader witnesses  -> 12
+ storage exposures -> 2
+[MV-SI candidate 280123eb3f9782489491] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremium(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 159
+ storage exposures -> 2
+[MV-SI candidate 28856f1da22bc9769132] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.depositToActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:769
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 506
+ storage exposures -> 2
+[MV-SI candidate 29f109652c341aea4144] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:329
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate 2ae0b8c3a5e6a08ea9cb] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:402
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 1056
+ storage exposures -> 2
+[MV-SI candidate 2da3debedc84f4c64dbf] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.claimPremiumsForStakers()
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:480
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate 2e74b7ef536aa6dfd42c] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolAdd(bytes32,address,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:333
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate 316a5d8a9b8a574c2e4c] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:401
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 141
+ storage exposures -> 2
+[MV-SI candidate 33aec46923d4379f5300] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/Sherlock.sol::Sherlock.redeemNFT(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:313
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 357a1ead21d84a85ab6c] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremiums(bytes32[],uint256[])
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:333
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate 383144e360165011abbb] {_paused, sherDistributionManager}
+ writer root       -> contracts/Sherlock.sol::Sherlock.updateSherDistributionManager(ISherDistributionManager)
+ writer effect     -> contracts/Sherlock.sol:218
+ written member    -> ('SV', 'contracts/Sherlock.sol', 'Sherlock.sherDistributionManager')
+ potentially stale -> ('SV', '@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 28
+ storage exposures -> 2
+[MV-SI candidate 3c4379e1029c362410d1] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 159
+ storage exposures -> 2
+[MV-SI candidate 3c971ceb1c138abca082] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:627
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 506
+ storage exposures -> 2
+[MV-SI candidate 3cef31d48c10d54a4d55] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 16
+ storage exposures -> 4
+[MV-SI candidate 3f3545dd4daeeeb67080] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremiums(bytes32[],uint256[])
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 506
+ storage exposures -> 2
+[MV-SI candidate 3f6ede1cc095262e26e1] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:244
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ reader witnesses  -> 880
+ storage exposures -> 2
+[MV-SI candidate 3f8bdf6f6f3c5419e38b] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate 4178e70153bd0f2030cd] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:401
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 141
+ storage exposures -> 2
+[MV-SI candidate 43bc74c0d5765bd3abd3] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolUpdate(bytes32,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 159
+ storage exposures -> 2
+[MV-SI candidate 4682c29e96930dd8011c] {_paused, sherDistributionManager}
+ writer root       -> contracts/Sherlock.sol::Sherlock.unpause()
+ writer effect     -> @openzeppelin/contracts/security/Pausable.sol:87
+ written member    -> ('SV', '@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ potentially stale -> ('SV', 'contracts/Sherlock.sol', 'Sherlock.sherDistributionManager')
+ reader witnesses  -> 52
+ storage exposures -> 2
+[MV-SI candidate 48ffe8b338f8b39b9df9] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:391
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 109
+ storage exposures -> 2
+[MV-SI candidate 49a12860318c81f72e7d] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:391
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 506
+ storage exposures -> 2
+[MV-SI candidate 4b9ab44ccb2ca6abbce9] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 1056
+ storage exposures -> 2
+[MV-SI candidate 4de3d30fdd6cff68e50f] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.withdrawActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:356
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate 4f86272433f9029c4da3] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolUpdate(bytes32,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:329
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate 516db0a62b81c17ddfb4] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.withdrawActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 5195953285af866b2163] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.nonStakersClaim(bytes32,uint256,address)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:329
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate 519df64d41789b82066c] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremiums(bytes32[],uint256[])
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 109
+ storage exposures -> 2
+[MV-SI candidate 532ce1912a78e1870b00] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 174
+ storage exposures -> 4
+[MV-SI candidate 579863acbd21803fdc8e] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.withdrawActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 506
+ storage exposures -> 2
+[MV-SI candidate 5a8a3ee780441a231f2d] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:681
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 5b2e14bf460fde9a6810] {allPremiumsPerSecToStakers, lastAccountedGlobal, lastClaimablePremiumsForStakers}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.nonStakersClaim(bytes32,uint256,address)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:333
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.allPremiumsPerSecToStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedGlobal')
+ reader witnesses  -> 46
+ storage exposures -> 2
+[MV-SI candidate 5c8ea7c3bbdddbac6a7c] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.withdrawActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 1056
+ storage exposures -> 2
+[MV-SI candidate 5eca466816f0e39ea58b] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolUpdate(bytes32,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 626d468edd01a821093b] {_paused, sherDistributionManager}
+ writer root       -> contracts/Sherlock.sol::Sherlock.pause()
+ writer effect     -> @openzeppelin/contracts/security/Pausable.sol:75
+ written member    -> ('SV', '@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ potentially stale -> ('SV', 'contracts/Sherlock.sol', 'Sherlock.sherDistributionManager')
+ reader witnesses  -> 52
+ storage exposures -> 2
+[MV-SI candidate 627b19de5da2281bd27a] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 62eeb8cecedaa6d03fa3] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 84
+ storage exposures -> 4
+[MV-SI candidate 635a65cfa71e78b02963] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.withdrawActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate 647c0eb55138a4e8b923] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:244
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage')
+ reader witnesses  -> 143
+ storage exposures -> 2
+[MV-SI candidate 65a74ba2644c9a920d76] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.withdrawActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:333
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate 66132cb37467a4581bb4] {allPremiumsPerSecToStakers, lastAccountedGlobal, lastClaimablePremiumsForStakers}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.withdrawActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:356
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.allPremiumsPerSecToStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedGlobal')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 66fed79d546b4603f8e6] {allPremiumsPerSecToStakers, lastAccountedGlobal, lastClaimablePremiumsForStakers}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.nonStakersClaim(bytes32,uint256,address)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:359
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedGlobal')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.allPremiumsPerSecToStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ reader witnesses  -> 82
+ storage exposures -> 2
+[MV-SI candidate 6780715014a4d88c384f] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:402
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 159
+ storage exposures -> 2
+[MV-SI candidate 67f8d42478290a86b0c3] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremium(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate 697034f0913beb65ecdb] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremium(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 69e12b4c77607e221640] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolAdd(bytes32,address,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 1056
+ storage exposures -> 2
+[MV-SI candidate 6b329248add186e6237c] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:333
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate 6ca1cae6ced70c1fa072] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolAdd(bytes32,address,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 159
+ storage exposures -> 2
+[MV-SI candidate 6e98bdf047ed59838b96] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolUpdate(bytes32,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 506
+ storage exposures -> 2
+[MV-SI candidate 6fee5c060bb7586ae05f] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 84
+ storage exposures -> 4
+[MV-SI candidate 7190ee0b060b6a9c0d3e] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:391
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 722da5840fe1c3760836] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.withdrawActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 159
+ storage exposures -> 2
+[MV-SI candidate 7299fdcdfc2068c61ae6] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.depositToActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:769
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 109
+ storage exposures -> 2
+[MV-SI candidate 75e9401b7bd76661b374] {activeBalances, minActiveBalance}
+ writer root       -> contracts/test/SherlockProtocolManagerTest.sol::SherlockProtocolManagerTest.privatesetMinActiveBalance(uint256)
+ writer effect     -> contracts/test/SherlockProtocolManagerTest.sol:20
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 79ac37c4704b843ea22a] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolUpdate(bytes32,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 109
+ storage exposures -> 2
+[MV-SI candidate 7b7572ed3f855096ac63] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.nonStakersClaim(bytes32,uint256,address)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:333
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate 7d77d01e20d12cba69d5] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 109
+ storage exposures -> 2
+[MV-SI candidate 7ddf675ae16062683ba5] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:402
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate 836fc483c2618774750a] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolAdd(bytes32,address,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:587
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 141
+ storage exposures -> 2
+[MV-SI candidate 83b3d3da75893f6fc303] {allPremiumsPerSecToStakers, lastAccountedGlobal, lastClaimablePremiumsForStakers}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.claimPremiumsForStakers()
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:481
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedGlobal')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.allPremiumsPerSecToStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ reader witnesses  -> 82
+ storage exposures -> 2
+[MV-SI candidate 83ea86d4e8c4709ea070] {allPremiumsPerSecToStakers, lastAccountedGlobal, lastClaimablePremiumsForStakers}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.withdrawActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:359
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedGlobal')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.allPremiumsPerSecToStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ reader witnesses  -> 82
+ storage exposures -> 2
+[MV-SI candidate 84a067291a6c21fff9b6] {allPremiumsPerSecToStakers, lastAccountedGlobal, lastClaimablePremiumsForStakers}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.withdrawActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:333
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.allPremiumsPerSecToStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedGlobal')
+ reader witnesses  -> 46
+ storage exposures -> 2
+[MV-SI candidate 851b9e023c805c37a096] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 506
+ storage exposures -> 2
+[MV-SI candidate 859a2ded173256367e56] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolAdd(bytes32,address,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate 8849d434c200cc252ef6] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 8a93a37aac685032fb73] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.withdrawActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:799
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 109
+ storage exposures -> 2
+[MV-SI candidate 8b3067b591b47e926474] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:244
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ reader witnesses  -> 48
+ storage exposures -> 2
+[MV-SI candidate 8d2cadd08fcb54be538c] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:402
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate 8d7f8ee34282b6293af4] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolUpdate(bytes32,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:356
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate 8e45534e82b7e4490ad5] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:391
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 506
+ storage exposures -> 2
+[MV-SI candidate 8e60870704679bf30c44] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolAdd(bytes32,address,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 109
+ storage exposures -> 2
+[MV-SI candidate 8eff5c5975c48f745a78] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:244
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ reader witnesses  -> 48
+ storage exposures -> 2
+[MV-SI candidate 9290f5035a33d2d5cf18] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:402
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 159
+ storage exposures -> 2
+[MV-SI candidate 93084ede8173160299e1] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:681
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 109
+ storage exposures -> 2
+[MV-SI candidate 93b91324070d4a731c5e] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.nonStakersClaim(bytes32,uint256,address)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 9647a15ffbc616811466] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremium(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:244
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ reader witnesses  -> 48
+ storage exposures -> 2
+[MV-SI candidate 966683d63e30d7aedd72] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:402
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 1056
+ storage exposures -> 2
+[MV-SI candidate 96f213335ae34b832e59] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.withdrawActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:799
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 972faf9cc5af02879912] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 159
+ storage exposures -> 2
+[MV-SI candidate 97c4991388a060d5920b] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:402
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 1056
+ storage exposures -> 2
+[MV-SI candidate 9cd1e2337ee8f30547d8] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 174
+ storage exposures -> 4
+[MV-SI candidate 9dade5ac766901042598] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:333
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate a0e436016609e5c15b87] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremiums(bytes32[],uint256[])
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 1056
+ storage exposures -> 2
+[MV-SI candidate a40c62e33a7dacb8edfa] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolAdd(bytes32,address,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate a50d02a9c0257110ad66] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremiums(bytes32[],uint256[])
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 159
+ storage exposures -> 2
+[MV-SI candidate a6a21da9db2ce851f22c] {allPremiumsPerSecToStakers, lastAccountedGlobal, lastClaimablePremiumsForStakers}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.nonStakersClaim(bytes32,uint256,address)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:356
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.allPremiumsPerSecToStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedGlobal')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate a89a3e24073d27a9d81e] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 1056
+ storage exposures -> 2
+[MV-SI candidate ab29025579ac43187a42] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremium(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 109
+ storage exposures -> 2
+[MV-SI candidate acd3602de6588d8f9e62] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 1056
+ storage exposures -> 2
+[MV-SI candidate af508c0b1223f12991a5] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:391
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate b129978ea1462e7010f3] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.withdrawActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:329
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate b14c4669dee33ba39bfd] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.approve(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 174
+ storage exposures -> 4
+[MV-SI candidate b22092c4ce1086d78057] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate b3edd266674708ece7a5] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 84
+ storage exposures -> 4
+[MV-SI candidate b45e0a6d3c3b176ad438] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setMinActiveBalance(uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:426
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ reader witnesses  -> 56
+ storage exposures -> 2
+[MV-SI candidate b699d5193f27523ffb95] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:402
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 159
+ storage exposures -> 2
+[MV-SI candidate b7a2a3911852bcdfbc8b] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 159
+ storage exposures -> 2
+[MV-SI candidate bb152ad772a1d1a5b773] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.nonStakersClaim(bytes32,uint256,address)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 159
+ storage exposures -> 2
+[MV-SI candidate bb21e2c349f34b70e548] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremium(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:356
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate bbc2b8c526400c6301a8] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolUpdate(bytes32,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:587
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 141
+ storage exposures -> 2
+[MV-SI candidate bdc7bbe4183539938e8c] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremiums(bytes32[],uint256[])
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:329
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate be6bbe1b00bfe014662e] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.nonStakersClaim(bytes32,uint256,address)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate c17d9c7d7648fce6bbec] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/Sherlock.sol::Sherlock.redeemNFT(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 108
+ storage exposures -> 2
+[MV-SI candidate c34c9ca87bec492e1444] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:244
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage')
+ reader witnesses  -> 143
+ storage exposures -> 2
+[MV-SI candidate c54b1140027434756c64] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:356
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate c720e6aa641747ab572d] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:401
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 141
+ storage exposures -> 2
+[MV-SI candidate c798e0e9aef1f198f6af] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:244
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ reader witnesses  -> 880
+ storage exposures -> 2
+[MV-SI candidate c969dc92c4f90d18ac9d] {_paused, sherDistributionManager}
+ writer root       -> contracts/Sherlock.sol::Sherlock.removeSherDistributionManager()
+ writer effect     -> contracts/Sherlock.sol:230
+ written member    -> ('SV', 'contracts/Sherlock.sol', 'Sherlock.sherDistributionManager')
+ potentially stale -> ('SV', '@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 28
+ storage exposures -> 2
+[MV-SI candidate cb821b6a57db78aabf9d] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:138
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 162
+ storage exposures -> 4
+[MV-SI candidate cca9fc65346e6296056a] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:356
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate cce8a91e298cb522ca76] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:391
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate cfae8cb3009020292b9f] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremiums(bytes32[],uint256[])
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:244
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ reader witnesses  -> 48
+ storage exposures -> 2
+[MV-SI candidate d04dc198782c1be85161] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:244
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ reader witnesses  -> 48
+ storage exposures -> 2
+[MV-SI candidate d19f2a44beb124eab4c0] {allPremiumsPerSecToStakers, lastAccountedGlobal, lastClaimablePremiumsForStakers}
+ writer root       -> contracts/test/SherlockProtocolManagerTest.sol::SherlockProtocolManagerTest.privateSettleTotalDebt()
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:359
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedGlobal')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.allPremiumsPerSecToStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate d1a369e2b7aff17cd182] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolUpdate(bytes32,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:333
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate d3e6003ac8c85fd6618e] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/test/SherlockProtocolManagerTest.sol::SherlockProtocolManagerTest.privateSettleTotalDebt()
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:356
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 63
+ storage exposures -> 1
+[MV-SI candidate d4284cc62c6d57f5a83e] {allPremiumsPerSecToStakers, lastAccountedGlobal, lastClaimablePremiumsForStakers}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.claimPremiumsForStakers()
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:480
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.allPremiumsPerSecToStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedGlobal')
+ reader witnesses  -> 46
+ storage exposures -> 2
+[MV-SI candidate d6b7049c670094c5dce1] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolAdd(bytes32,address,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:356
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate d6eb460cccbcacb3c291] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 109
+ storage exposures -> 2
+[MV-SI candidate db12a1943313b55e80fa] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:356
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate dd709534e49acff5ab3d] {allPremiumsPerSecToStakers, lastAccountedGlobal, lastClaimablePremiumsForStakers}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.withdrawActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:329
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.allPremiumsPerSecToStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedGlobal')
+ reader witnesses  -> 46
+ storage exposures -> 2
+[MV-SI candidate dd851cf6e789434718ae] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:391
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 109
+ storage exposures -> 2
+[MV-SI candidate de3224b059d91b87f590] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremium(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:244
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage')
+ reader witnesses  -> 143
+ storage exposures -> 2
+[MV-SI candidate de6974919640d186797c] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.nonStakersClaim(bytes32,uint256,address)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 506
+ storage exposures -> 2
+[MV-SI candidate e03fc4ea55a6a8c5efad] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.depositToActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:769
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate e17aaba305bb573b0c7f] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:402
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate e34ea22b5ce766e89890] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:333
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate e44c27f76e8b93d6fbdf] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.nonStakersClaim(bytes32,uint256,address)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 109
+ storage exposures -> 2
+[MV-SI candidate e6bd7e7132e5cd08af65] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveBySecondsOfCoverage(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:681
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 506
+ storage exposures -> 2
+[MV-SI candidate e77e21b5ba0c9c96b1f3] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 16
+ storage exposures -> 4
+[MV-SI candidate e7bd6b0dc25d76ad8d6c] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolRemove(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:391
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 109
+ storage exposures -> 2
+[MV-SI candidate e7cf204b4007d871b8e4] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremiums(bytes32[],uint256[])
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:244
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage')
+ reader witnesses  -> 143
+ storage exposures -> 2
+[MV-SI candidate e80408964348db690415] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolUpdate(bytes32,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 1056
+ storage exposures -> 2
+[MV-SI candidate e8f086e470e7a65d69da] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.nonStakersClaim(bytes32,uint256,address)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:356
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate e903bdd8822d9865452f] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremium(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 1056
+ storage exposures -> 2
+[MV-SI candidate e99617e28e0a65b03bec] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremium(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:244
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ reader witnesses  -> 880
+ storage exposures -> 2
+[MV-SI candidate ea71ec8c8ab2a8d86ef1] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremium(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:333
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate ee0f3ce2e26e68aba310] {allPremiumsPerSecToStakers, lastAccountedGlobal, lastClaimablePremiumsForStakers}
+ writer root       -> contracts/test/SherlockProtocolManagerTest.sol::SherlockProtocolManagerTest.privateSettleTotalDebt()
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:356
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.allPremiumsPerSecToStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedGlobal')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate efe1f961f8b822dc1f0a] {allPremiumsPerSecToStakers, nonStakersPercentage}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremiums(bytes32[],uint256[])
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:750
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.allPremiumsPerSecToStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage')
+ reader witnesses  -> 24
+ storage exposures -> 2
+[MV-SI candidate efff612afcd61bc13e67] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:329
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate f1e479ad00e4e8ebfaf5] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolAdd(bytes32,address,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:329
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate f4e60b926d3645a68f1b] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremiums(bytes32[],uint256[])
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:244
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ reader witnesses  -> 880
+ storage exposures -> 2
+[MV-SI candidate f5cf315e5de2c85ec0ef] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.withdrawActiveBalance(bytes32,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 109
+ storage exposures -> 2
+[MV-SI candidate f81d12b181bb7b958192] {allPremiumsPerSecToStakers, lastAccountedGlobal, lastClaimablePremiumsForStakers}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.nonStakersClaim(bytes32,uint256,address)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:329
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.allPremiumsPerSecToStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedGlobal')
+ reader witnesses  -> 46
+ storage exposures -> 2
+[MV-SI candidate f91797fa598f37af0396] {_operatorApprovals, _owners}
+ writer root       -> contracts/Sherlock.sol::Sherlock.redeemNFT(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:313
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate f97b5dcac517707831c6] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremiums(bytes32[],uint256[])
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate fb3c20616bab52315891] {lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.protocolUpdate(bytes32,bytes32,uint256,uint256)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:350
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 80
+ storage exposures -> 2
+[MV-SI candidate fbc60dbf10e179cd7531] {activeBalances, lastAccountedEachProtocol, lastClaimablePremiumsForStakers, nonStakersPercentage, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:627
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastClaimablePremiumsForStakers'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.nonStakersPercentage'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 109
+ storage exposures -> 2
+[MV-SI candidate fd71720d00e6fb2d7fbb] {activeBalances, minActiveBalance}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.setProtocolPremiums(bytes32[],uint256[])
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.minActiveBalance')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate ff0fe685a8844266255c] {activeBalances, lastAccountedEachProtocol, premiums_}
+ writer root       -> contracts/managers/SherlockProtocolManager.sol::SherlockProtocolManager.forceRemoveByActiveBalance(bytes32)
+ writer effect     -> contracts/managers/SherlockProtocolManager.sol:345
+ written member    -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.activeBalances')
+ potentially stale -> ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.lastAccountedEachProtocol'), ('SV', 'contracts/managers/SherlockProtocolManager.sol', 'SherlockProtocolManager.premiums_')
+ reader witnesses  -> 506
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=0 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=14 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=0 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=1 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=2 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=1 seeded=1 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=48951e9f6127861edeb10776491853130645153f42e8ca22663797ae1a56007c invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+INFO:Slither:. analyzed (70 contracts with 1 detectors), 171 result(s) found

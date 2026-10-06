@@ -1,0 +1,106 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1489 vars=53
+[mvscan-stage] root-seeding-done eligible_exposures=48 seeded=38 multi_exposure_entry_blocks=10 collapsed_contextual_aliases=10 excluded_dependency=0 excluded_interface=37 excluded_library=0 excluded_abstract=2 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=803ec478b6b0377786d30f2f9ebabae5baba736050b2130c3c0bdd51602e5823 candidate_count=14 candidate_digest=829695c91d8aaf8ae26c6526f93a97018e4645cf83cfceb9ed80464857dc09eb context_instance_count=93 eligible_readers=19 eligible_writers=14 execution_context_digest=846601cb0d4e9f41bb8054210510d3f85ca222c05c7baa05d4960097c9601a95 insensitive_readers_filtered=10 invalid_partial_write_filtered=0 must_full_relation_filtered=37 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=93 owner_context_pairs_considered=210 raw_block_pairs=90 reader_witness_count=93 relation_base_members_shadowed=0 relation_context_incompatible=80 relation_digest=49303fce62ba5daacc298ba0863a6382400960a669ea990ef942ac623fdef23a relation_members_raw=51 relation_origins_registered=3 relation_origins_rejected_unary_after_shadowing=45 relation_origins_rejected_unreachable=15 relation_origins_seen=48 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=3 scalar_variables_skipped=38 storage_context_mismatch=0 variables_considered=41
+INFO:Detectors:
+
+[MV-SI candidate 4459503fa366cd557dd3] {ibRatio, weights}
+ writer root       -> contracts/Basket.sol::Basket.mintTo(uint256,address)
+ writer effect     -> contracts/Basket.sol:257
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.weights')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 4ae3f8a7832340a99fa8] {ibRatio, weights}
+ writer root       -> contracts/Basket.sol::Basket.updateIBRatio(uint256)
+ writer effect     -> contracts/Basket.sol:235
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.weights')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 4fcf4791f51f17b0775e] {ibRatio, weights}
+ writer root       -> contracts/Basket.sol::Basket.mintTo(uint256,address)
+ writer effect     -> contracts/Basket.sol:139
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.weights')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 5a84d9942a06634225d2] {ibRatio, weights}
+ writer root       -> contracts/Basket.sol::Basket.burn(uint256)
+ writer effect     -> contracts/Basket.sol:139
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.weights')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 82e9b389bf7bf3243550] {ibRatio, weights}
+ writer root       -> contracts/Basket.sol::Basket.burn(uint256)
+ writer effect     -> contracts/Basket.sol:250
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.weights')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 8349ab85befb6693828a] {ibRatio, weights}
+ writer root       -> contracts/Basket.sol::Basket.auctionBurn(uint256)
+ writer effect     -> contracts/Basket.sol:139
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.weights')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 8e1a517158a054f36ebb] {auctionStart, bondBlock}
+ writer root       -> contracts/Auction.sol::Auction.startAuction()
+ writer effect     -> contracts/Auction.sol:39
+ written member    -> ('SV', 'contracts/Auction.sol', 'Auction.auctionStart')
+ potentially stale -> ('SV', 'contracts/Auction.sol', 'Auction.bondBlock')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 8e77dfbf51d78f23382f] {ibRatio, weights}
+ writer root       -> contracts/Basket.sol::Basket.setNewWeights()
+ writer effect     -> contracts/Basket.sol:216
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.weights')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 95a53f0f9b2181cc2857] {ibRatio, weights}
+ writer root       -> contracts/Basket.sol::Basket.auctionBurn(uint256)
+ writer effect     -> contracts/Basket.sol:118
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.weights')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate a0b49e4ff503b23bda90] {ibRatio, weights}
+ writer root       -> contracts/Basket.sol::Basket.mint(uint256)
+ writer effect     -> contracts/Basket.sol:257
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.weights')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate accca7646f8eb3f9adfd] {auctionStart, bondBlock}
+ writer root       -> contracts/Auction.sol::Auction.bondForRebalance()
+ writer effect     -> contracts/Auction.sol:61
+ written member    -> ('SV', 'contracts/Auction.sol', 'Auction.bondBlock')
+ potentially stale -> ('SV', 'contracts/Auction.sol', 'Auction.auctionStart')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate dc30f5b302790544283d] {auction, publisher}
+ writer root       -> contracts/Basket.sol::Basket.changePublisher(address)
+ writer effect     -> contracts/Basket.sol:152
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.publisher')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.auction')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate e5b193c234417c224d61] {ibRatio, weights}
+ writer root       -> contracts/Basket.sol::Basket.setNewWeights()
+ writer effect     -> contracts/Basket.sol:243
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.weights')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate eae0935c35fdd6ed8f77] {ibRatio, weights}
+ writer root       -> contracts/Basket.sol::Basket.mint(uint256)
+ writer effect     -> contracts/Basket.sol:139
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.weights')
+ reader witnesses  -> 7
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (23 contracts with 1 detectors), 14 result(s) found

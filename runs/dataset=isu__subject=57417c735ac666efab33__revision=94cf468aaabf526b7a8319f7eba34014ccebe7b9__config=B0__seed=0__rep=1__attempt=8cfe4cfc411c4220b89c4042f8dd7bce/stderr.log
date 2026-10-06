@@ -1,0 +1,1178 @@
+'/tmp/.svm/0.8.25/solc-0.8.25 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=4428 vars=290
+[mvscan-stage] root-seeding-done eligible_exposures=208 seeded=173 multi_exposure_entry_blocks=17 collapsed_contextual_aliases=35 excluded_dependency=0 excluded_interface=163 excluded_library=0 excluded_abstract=60 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=882eed6eb999ad32101a05b42b5ce0148648da72457a063c620103277587cfd2 candidate_count=167 candidate_digest=db160f6ebf7f50590323f19a681605b7336d096a594bf275731f4f464a7bc31d context_instance_count=641 eligible_readers=337 eligible_writers=216 execution_context_digest=0a681715c3987ddb04a94d531d982309c5a9520afa78c5a7db0c954c0268b93d insensitive_readers_filtered=185 invalid_partial_write_filtered=0 must_full_relation_filtered=50 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=12 owner_context_pairs=745 owner_context_pairs_considered=6634 raw_block_pairs=2796 reader_witness_count=745 relation_base_members_shadowed=42 relation_context_incompatible=2859 relation_digest=3e07fccc4d0f793f45c6c03b1530af7f2f427caa62ace2c55228e90da8e59768 relation_members_raw=300 relation_origins_registered=39 relation_origins_rejected_unary_after_shadowing=177 relation_origins_rejected_unreachable=52 relation_origins_seen=216 relation_unbound_key_templates=135 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=98 scalar_variables_skipped=242 storage_context_mismatch=2968 variables_considered=281
+INFO:Detectors:
+
+[MV-SI candidate 003ea45ea7d9ba3dbde2] {configuredTokenContracts[@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1], lockedTokens}
+ writer root       -> src/managers/LockManager.sol::LockManager.lockOnBehalf(address,uint256,address)
+ writer effect     -> src/managers/LockManager.sol:371
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.lockedTokens')
+ potentially stale -> ('MS', 'src/managers/LockManager.sol', 'LockManager.configuredTokenContracts', '@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 06ea8b3ba6193246550f] {USDB, WETH}
+ writer root       -> src/managers/SnuggeryManager.sol::SnuggeryManager.initialize(address)
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 070e783aea64590a3ede] {_pointsExcess[@local::src/managers/ClaimManager.sol::ClaimManager._claimPoints(address)::LocalVariable::currentPeriodId_1], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.newPeriod()
+ writer effect     -> src/managers/ClaimManager.sol:108
+ written member    -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ potentially stale -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._pointsExcess', '@local::src/managers/ClaimManager.sol::ClaimManager._claimPoints(address)::LocalVariable::currentPeriodId_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 09490801538e52383047] {DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.disapproveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:240
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 0da676e89e6a3b060cc6] {USDB, WETH}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.initialize(address)
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 0dde29303b24330a7f6f] {USDB, WETH}
+ writer root       -> src/managers/SnuggeryManager.sol::SnuggeryManager.initialize(address)
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 0e5502ae94f15c0cd04d] {lockdrop, playerSettings}
+ writer root       -> src/managers/LockManager.sol::LockManager.lock(address,uint256)
+ writer effect     -> src/managers/LockManager.sol:393
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.playerSettings')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.lockdrop')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 0f3ea81edd2805c9cec4] {USDB, WETH}
+ writer root       -> src/managers/BonusManager.sol::BonusManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0fc7811df24f81a729b4] {USDB, _userLockedAmounts}
+ writer root       -> src/managers/MigrationManager.sol::MigrationManager.loadMigrationSnapshot(address[],IMigrationManager.MigrationSnapshotData[])
+ writer effect     -> src/managers/MigrationManager.sol:115
+ written member    -> ('SV', 'src/managers/MigrationManager.sol', 'MigrationManager._userLockedAmounts')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 0fdd658fce75c49f8ae0] {players, sprayProposals}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.execSprayProposal(address)
+ writer effect     -> src/managers/AccountManager.sol:221
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.sprayProposals')
+ potentially stale -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 107a076affd3506cdad3] {APPROVE_THRESHOLD, DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:166
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD'), ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 10d4735cf2b0521dab7d] {DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:166
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 1177a0c5872b7f82219d] {mainAccounts[$arg0], players}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.forceHarvest(address)
+ writer effect     -> src/managers/AccountManager.sol:448
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ potentially stale -> ('MS', 'src/managers/AccountManager.sol', 'AccountManager.mainAccounts', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 1907a1e4e80433c1595d] {lockdrop, playerSettings}
+ writer root       -> src/managers/LockManager.sol::LockManager.setLockDuration(uint256)
+ writer effect     -> src/managers/LockManager.sol:252
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.playerSettings')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.lockdrop')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 1921ae104877eab3e25c] {primordialLevels[@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5078], primordialLevels[@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5080], primordials}
+ writer root       -> src/managers/PrimordialManager.sol::PrimordialManager.hatchPrimordialToMunchable()
+ writer effect     -> src/managers/PrimordialManager.sol:146
+ written member    -> ('SV', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordials')
+ potentially stale -> ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5078'), ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5080')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 195c8f77e5511346df94] {DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.setUSDThresholds(uint8,uint8)
+ writer effect     -> src/managers/LockManager.sol:136
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate 1a3120fe16a630a21076] {mainAccounts[$arg0], players}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.rewardSpray(address,uint256)
+ writer effect     -> src/managers/AccountManager.sol:273
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ potentially stale -> ('MS', 'src/managers/AccountManager.sol', 'AccountManager.mainAccounts', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 1bed39cb452e7c1892f3] {USDB, WETH}
+ writer root       -> src/managers/BonusManager.sol::BonusManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 1dd05b684595b71a9259] {APPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.disapproveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:240
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 1e75f4b13d9132742964] {USDB, _userLockedAmounts}
+ writer root       -> src/managers/MigrationManager.sol::MigrationManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/MigrationManager.sol', 'MigrationManager._userLockedAmounts')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 1ed70d53d3c5667fce0a] {configuredTokenContracts[@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1], lockedTokens}
+ writer root       -> src/managers/LockManager.sol::LockManager.lock(address,uint256)
+ writer effect     -> src/managers/LockManager.sol:371
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.lockedTokens')
+ potentially stale -> ('MS', 'src/managers/LockManager.sol', 'LockManager.configuredTokenContracts', '@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 205be9b2b395539296e8] {DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:169
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 2161e4f90163d5839143] {APPROVE_THRESHOLD, DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.disapproveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:234
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD'), ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 21791deca92138efffb1] {configuredTokenContracts[@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1], lockedTokens}
+ writer root       -> src/managers/LockManager.sol::LockManager.lock(address,uint256)
+ writer effect     -> src/managers/LockManager.sol:387
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.lockedTokens')
+ potentially stale -> ('MS', 'src/managers/LockManager.sol', 'LockManager.configuredTokenContracts', '@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 21e5a15b85a27e0fb86f] {players, sprayProposals}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.forceHarvest(address)
+ writer effect     -> src/managers/AccountManager.sol:448
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ potentially stale -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.sprayProposals')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 24569290334e0fa6125e] {_lastClaimPeriod[$arg0], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.forceClaimPoints(address)
+ writer effect     -> src/managers/ClaimManager.sol:241
+ written member    -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ potentially stale -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._lastClaimPeriod', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 29269393e2a9759eca39] {_userLockedAmounts, discountFactor}
+ writer root       -> src/managers/MigrationManager.sol::MigrationManager.configUpdated()
+ writer effect     -> src/managers/MigrationManager.sol:74
+ written member    -> ('SV', 'src/managers/MigrationManager.sol', 'MigrationManager.discountFactor')
+ potentially stale -> ('SV', 'src/managers/MigrationManager.sol', 'MigrationManager._userLockedAmounts')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 2bbc918f87827e9a6fd4] {APPROVE_THRESHOLD, DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.approveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:202
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD'), ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 2f88af05e8209d5d4b90] {_pointsExcess[@local::src/managers/ClaimManager.sol::ClaimManager._claimPoints(address)::LocalVariable::currentPeriodId_1], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.newPeriod()
+ writer effect     -> src/managers/ClaimManager.sol:98
+ written member    -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ potentially stale -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._pointsExcess', '@local::src/managers/ClaimManager.sol::ClaimManager._claimPoints(address)::LocalVariable::currentPeriodId_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 2f8d98dee698ddf751ad] {USDB, WETH}
+ writer root       -> src/managers/LandManager.sol::LandManager.initialize(address)
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 3197e826a294a09d793b] {APPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.approveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:519
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 31d1ca3dd1fdcf6dc004] {APPROVE_THRESHOLD, DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.setUSDThresholds(uint8,uint8)
+ writer effect     -> src/managers/LockManager.sol:136
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD'), ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate 3244a99367c850a88069] {USDB, WETH}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.initialize(address)
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 33455c9e96d39033e1d7] {primordialLevels[@const::0], primordials}
+ writer root       -> src/managers/PrimordialManager.sol::PrimordialManager.hatchPrimordialToMunchable()
+ writer effect     -> src/managers/PrimordialManager.sol:146
+ written member    -> ('SV', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordials')
+ potentially stale -> ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@const::0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 33760db227464c0b71b3] {APPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.setUSDThresholds(uint8,uint8)
+ writer effect     -> src/managers/LockManager.sol:135
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate 3571dcef672799d70b01] {players, sprayProposals}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.removeSprayProposal(address)
+ writer effect     -> src/managers/AccountManager.sol:257
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.sprayProposals')
+ potentially stale -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 3726900db8857139755c] {_usdProposalId, usdUpdateProposal[$sender]}
+ writer root       -> src/managers/LockManager.sol::LockManager.approveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:201
+ written member    -> ('MS', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal', '$sender')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager._usdProposalId')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 38f066dac51ed6ffd6e7] {DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.approveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:202
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 3a691acd215231fe824f] {USDB, WETH}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 3ab869169c4c2b7f6eea] {USDB, WETH}
+ writer root       -> src/managers/LandManager.sol::LandManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 3b33da9d5b9e90f7dffe] {primordialLevels[@const::0], primordials}
+ writer root       -> src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)
+ writer effect     -> src/managers/PrimordialManager.sol:112
+ written member    -> ('SV', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordials')
+ potentially stale -> ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@const::0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 3d940eac6dc01f7bd2ad] {players, sprayProposals}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.execSprayProposal(address)
+ writer effect     -> src/managers/AccountManager.sol:237
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.sprayProposals')
+ potentially stale -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 3de66c6283ae48ae2880] {_pointsExcess[@local::src/managers/ClaimManager.sol::ClaimManager._claimPoints(address)::LocalVariable::currentPeriodId_1], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.newPeriod()
+ writer effect     -> src/managers/ClaimManager.sol:109
+ written member    -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ potentially stale -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._pointsExcess', '@local::src/managers/ClaimManager.sol::ClaimManager._claimPoints(address)::LocalVariable::currentPeriodId_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 3eabf2b598cdfa2f4d7c] {lockdrop, playerSettings}
+ writer root       -> src/managers/LockManager.sol::LockManager.lockOnBehalf(address,uint256,address)
+ writer effect     -> src/managers/LockManager.sol:393
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.playerSettings')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.lockdrop')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 40a75df8ba4e2d0078c9] {primordialLevels[@const::0], primordials}
+ writer root       -> src/managers/PrimordialManager.sol::PrimordialManager.claimPrimordial()
+ writer effect     -> src/managers/PrimordialManager.sol:68
+ written member    -> ('SV', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordials')
+ potentially stale -> ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@const::0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 42c68539d925499f0473] {APPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.approveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:202
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 42ce6044539f1f61af52] {APPROVE_THRESHOLD, DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.disapproveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:240
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD'), ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 46758873261493865d4a] {mainAccounts[$arg0], players}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.addSubAccount(address)
+ writer effect     -> src/managers/AccountManager.sol:311
+ written member    -> ('MS', 'src/managers/AccountManager.sol', 'AccountManager.mainAccounts', '$arg0')
+ potentially stale -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 4b4e2dbdc1a745ae7c8d] {primordialLevels[@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5078], primordialLevels[@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5080], primordials}
+ writer root       -> src/managers/PrimordialManager.sol::PrimordialManager.claimPrimordial()
+ writer effect     -> src/managers/PrimordialManager.sol:68
+ written member    -> ('SV', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordials')
+ potentially stale -> ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5078'), ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5080')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 4f9cea7634f0546ced1f] {mintProbabilities[@local::src/overlords/NFTOverlord.sol::NFTOverlord._calculateRaritySpecies(bytes,MunchablesCommonLib.Rarity)::LocalVariable::randomIndex_3], realmLookup}
+ writer root       -> src/overlords/NFTOverlord.sol::NFTOverlord.revealFromPrimordial(uint256,bytes)
+ writer effect     -> src/overlords/NFTOverlord.sol:423
+ written member    -> ('SV', 'src/overlords/NFTOverlord.sol', 'NFTOverlord.realmLookup')
+ potentially stale -> ('MS', 'src/overlords/NFTOverlord.sol', 'NFTOverlord.mintProbabilities', '@local::src/overlords/NFTOverlord.sol::NFTOverlord._calculateRaritySpecies(bytes,MunchablesCommonLib.Rarity)::LocalVariable::randomIndex_3')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 5483618000473f2fbb9e] {primordialLevels[@const::0], primordials}
+ writer root       -> src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)
+ writer effect     -> src/managers/PrimordialManager.sol:93
+ written member    -> ('SV', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordials')
+ potentially stale -> ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@const::0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 5737483cd18702f5d474] {players, sprayProposals}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.spraySchnibblesPropose(address[],uint256[])
+ writer effect     -> src/managers/AccountManager.sol:186
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.sprayProposals')
+ potentially stale -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 576e4c05272ad1068762] {APPROVE_THRESHOLD, DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:171
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD'), ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 5c54a82ea4679df8dff4] {USDB, WETH}
+ writer root       -> src/overlords/NFTOverlord.sol::NFTOverlord.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 5cd82bfe34959ae2319d] {players, sprayProposals}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.execSprayProposal(address)
+ writer effect     -> src/managers/AccountManager.sol:229
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ potentially stale -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.sprayProposals')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 5d3b68664435bbb37b3c] {DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:171
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 605e9a8fb0bcfccf01a2] {players, sprayProposals}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.spraySchnibblesPropose(address[],uint256[])
+ writer effect     -> src/managers/AccountManager.sol:197
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.sprayProposals')
+ potentially stale -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 631e383eedc2384caeee] {players, sprayProposals}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.spraySchnibblesPropose(address[],uint256[])
+ writer effect     -> src/managers/AccountManager.sol:193
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.sprayProposals')
+ potentially stale -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 64fb7038e9b3f6b70071] {PRICE_PER_PLOT, munchablesStaked[@local::src/managers/LandManager.sol::LandManager._farmPlots(address)::LocalVariableInitFromTuple::mainAccount_1], toilerState[@local::src/managers/LandManager.sol::LandManager._farmPlots(address)::LocalVariable::tokenId_1]}
+ writer root       -> src/managers/LandManager.sol::LandManager.initialize(address)
+ writer effect     -> src/managers/LandManager.sol:77
+ written member    -> ('SV', 'src/managers/LandManager.sol', 'LandManager.PRICE_PER_PLOT')
+ potentially stale -> ('MS', 'src/managers/LandManager.sol', 'LandManager.munchablesStaked', '@local::src/managers/LandManager.sol::LandManager._farmPlots(address)::LocalVariableInitFromTuple::mainAccount_1'), ('MS', 'src/managers/LandManager.sol', 'LandManager.toilerState', '@local::src/managers/LandManager.sol::LandManager._farmPlots(address)::LocalVariable::tokenId_1')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 668702a145f15d06d65e] {APPROVE_THRESHOLD, DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:161
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD'), ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 6cab6799f95c449326bd] {APPROVE_THRESHOLD, DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:168
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD'), ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 6ce43e1d893d0065091a] {MAX_REVEAL_QUEUE, revealQueue[@local::src/overlords/NFTOverlord.sol::NFTOverlord.startReveal()::LocalVariableInitFromTuple::_mainAccount_1]}
+ writer root       -> src/overlords/NFTOverlord.sol::NFTOverlord.startReveal()
+ writer effect     -> src/overlords/NFTOverlord.sol:86
+ written member    -> ('MS', 'src/overlords/NFTOverlord.sol', 'NFTOverlord.revealQueue', '@local::src/overlords/NFTOverlord.sol::NFTOverlord.startReveal()::LocalVariableInitFromTuple::_mainAccount_1')
+ potentially stale -> ('SV', 'src/overlords/NFTOverlord.sol', 'NFTOverlord.MAX_REVEAL_QUEUE')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 70346f30b1122f145437] {DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:168
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 71007d839cb22f454cae] {USDB, WETH}
+ writer root       -> src/managers/PrimordialManager.sol::PrimordialManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 72b396bc5d3b8d8b8274] {USDB, WETH}
+ writer root       -> src/managers/SnuggeryManager.sol::SnuggeryManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 76ffd8efa4dd0bf52c68] {USDB, WETH}
+ writer root       -> src/managers/PrimordialManager.sol::PrimordialManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 790111117fb4bc0375ff] {USDB, WETH}
+ writer root       -> src/managers/NFTAttributeManagerV1.sol::NFTAttributesManagerV1.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7ac96848bb2ee7846c9f] {mainAccounts[$arg0], players}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.harvest()
+ writer effect     -> src/managers/AccountManager.sol:448
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ potentially stale -> ('MS', 'src/managers/AccountManager.sol', 'AccountManager.mainAccounts', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 7edf9eb4a96d1674d9a8] {mintProbabilities[@local::src/overlords/NFTOverlord.sol::NFTOverlord._calculateRaritySpecies(bytes,MunchablesCommonLib.Rarity)::LocalVariable::randomIndex_3], realmLookup}
+ writer root       -> src/overlords/NFTOverlord.sol::NFTOverlord.reveal(uint256,bytes)
+ writer effect     -> src/overlords/NFTOverlord.sol:423
+ written member    -> ('SV', 'src/overlords/NFTOverlord.sol', 'NFTOverlord.realmLookup')
+ potentially stale -> ('MS', 'src/overlords/NFTOverlord.sol', 'NFTOverlord.mintProbabilities', '@local::src/overlords/NFTOverlord.sol::NFTOverlord._calculateRaritySpecies(bytes,MunchablesCommonLib.Rarity)::LocalVariable::randomIndex_3')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 7fc3a0dbd67db540ba57] {players, sprayProposals}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.rewardSpray(address,uint256)
+ writer effect     -> src/managers/AccountManager.sol:273
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ potentially stale -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.sprayProposals')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 805c9735bb8892e76d63] {_usdProposalId, usdUpdateProposal[$sender]}
+ writer root       -> src/managers/LockManager.sol::LockManager.disapproveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:235
+ written member    -> ('MS', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal', '$sender')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager._usdProposalId')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 87a96009b93277f66b9d] {_lastClaimPeriod[$arg0], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.forceClaimPoints(address)
+ writer effect     -> src/managers/ClaimManager.sol:253
+ written member    -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._lastClaimPeriod', '$arg0')
+ potentially stale -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 8941a1595e8126d0dbf3] {DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:161
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 8cae61011e119b97fa07] {configuredTokenContracts[@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1], lockedTokens}
+ writer root       -> src/managers/LockManager.sol::LockManager.lockOnBehalf(address,uint256,address)
+ writer effect     -> src/managers/LockManager.sol:387
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.lockedTokens')
+ potentially stale -> ('MS', 'src/managers/LockManager.sol', 'LockManager.configuredTokenContracts', '@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 8cf7f81a1d1da22d2d70] {USDB, WETH}
+ writer root       -> src/tokens/MunchNFT.sol::MunchNFT.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 8d955befaffbe2bfb12f] {WETH, _userLockedAmounts}
+ writer root       -> src/managers/MigrationManager.sol::MigrationManager.loadMigrationSnapshot(address[],IMigrationManager.MigrationSnapshotData[])
+ writer effect     -> src/managers/MigrationManager.sol:109
+ written member    -> ('SV', 'src/managers/MigrationManager.sol', 'MigrationManager._userLockedAmounts')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 9027d31c10bac6ac102c] {_lastClaimPeriod[$arg0], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.newPeriod()
+ writer effect     -> src/managers/ClaimManager.sol:109
+ written member    -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ potentially stale -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._lastClaimPeriod', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 92c0cba1472d438ee307] {configuredTokenContracts[@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1], lockedTokens}
+ writer root       -> src/managers/LockManager.sol::LockManager.lockOnBehalf(address,uint256,address)
+ writer effect     -> src/managers/LockManager.sol:386
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.lockedTokens')
+ potentially stale -> ('MS', 'src/managers/LockManager.sol', 'LockManager.configuredTokenContracts', '@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 964c4282802543e9660f] {USDB, _userLockedAmounts}
+ writer root       -> src/managers/MigrationManager.sol::MigrationManager.loadMigrationSnapshot(address[],IMigrationManager.MigrationSnapshotData[])
+ writer effect     -> src/managers/MigrationManager.sol:111
+ written member    -> ('SV', 'src/managers/MigrationManager.sol', 'MigrationManager._userLockedAmounts')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 97a25eb7f919d56a5b6e] {_pointsExcess[@local::src/managers/ClaimManager.sol::ClaimManager._claimPoints(address)::LocalVariable::currentPeriodId_1], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.newPeriod()
+ writer effect     -> src/managers/ClaimManager.sol:107
+ written member    -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ potentially stale -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._pointsExcess', '@local::src/managers/ClaimManager.sol::ClaimManager._claimPoints(address)::LocalVariable::currentPeriodId_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 97d17e315af6f07f46a5] {USDB, WETH}
+ writer root       -> src/tokens/MunchToken.sol::MunchToken.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 984b86dec50b8986cc50] {APPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:167
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 9a2ec11a73ceba523237] {configuredTokenContracts[@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1], lockedTokens}
+ writer root       -> src/managers/LockManager.sol::LockManager.unlock(address,uint256)
+ writer effect     -> src/managers/LockManager.sol:422
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.lockedTokens')
+ potentially stale -> ('MS', 'src/managers/LockManager.sol', 'LockManager.configuredTokenContracts', '@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 9a68dabe296c2d8e8283] {_lastClaimPeriod[$arg0], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.forceClaimPoints(address)
+ writer effect     -> src/managers/ClaimManager.sol:239
+ written member    -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._lastClaimPeriod', '$arg0')
+ potentially stale -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 9aa1b2f5a584c06ac2f4] {_userLockedAmounts, discountFactor}
+ writer root       -> src/managers/MigrationManager.sol::MigrationManager.loadMigrationSnapshot(address[],IMigrationManager.MigrationSnapshotData[])
+ writer effect     -> src/managers/MigrationManager.sol:115
+ written member    -> ('SV', 'src/managers/MigrationManager.sol', 'MigrationManager._userLockedAmounts')
+ potentially stale -> ('SV', 'src/managers/MigrationManager.sol', 'MigrationManager.discountFactor')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 9b98ca0f8b34d6edec2c] {players, sprayProposals}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.forceHarvest(address)
+ writer effect     -> src/managers/AccountManager.sol:447
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ potentially stale -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.sprayProposals')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 9c5c270e1d5b276ddb43] {players, sprayProposals}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.harvest()
+ writer effect     -> src/managers/AccountManager.sol:448
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ potentially stale -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.sprayProposals')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 9d5cdb3878717b0d690a] {USDB, WETH}
+ writer root       -> src/managers/NFTAttributeManagerV1.sol::NFTAttributesManagerV1.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a05cbf8b657408cedb3a] {_pointsExcess[@local::src/managers/ClaimManager.sol::ClaimManager._claimPoints(address)::LocalVariable::currentPeriodId_1], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.forceClaimPoints(address)
+ writer effect     -> src/managers/ClaimManager.sol:241
+ written member    -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ potentially stale -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._pointsExcess', '@local::src/managers/ClaimManager.sol::ClaimManager._claimPoints(address)::LocalVariable::currentPeriodId_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a1ffb3a3add1f48305c9] {USDB, WETH}
+ writer root       -> src/managers/RewardsManager.sol::RewardsManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate a252182ff7a228506847] {mainAccounts[$arg0], players}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.removeSpray(address,uint256)
+ writer effect     -> src/managers/AccountManager.sol:290
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ potentially stale -> ('MS', 'src/managers/AccountManager.sol', 'AccountManager.mainAccounts', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate a2db931087a69f2a0bed] {APPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:161
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a2ef5ffd949c6341dd2f] {mainAccounts, subAccounts[$arg0][@local::src/managers/AccountManager.sol::AccountManager._removeSubAccount(address,address)::LocalVariable::i_2]}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.register(MunchablesCommonLib.Realm,address)
+ writer effect     -> src/managers/AccountManager.sol:332
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.mainAccounts')
+ potentially stale -> ('MS', 'src/managers/AccountManager.sol', 'AccountManager.subAccounts', '$arg0][@local::src/managers/AccountManager.sol::AccountManager._removeSubAccount(address,address)::LocalVariable::i_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a379afd546eb921c4683] {_lastClaimPeriod[$arg0], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.newPeriod()
+ writer effect     -> src/managers/ClaimManager.sol:107
+ written member    -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ potentially stale -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._lastClaimPeriod', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a646f560e607e9edaf52] {configuredTokenContracts[@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1], lockedTokens}
+ writer root       -> src/managers/LockManager.sol::LockManager.lock(address,uint256)
+ writer effect     -> src/managers/LockManager.sol:386
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.lockedTokens')
+ potentially stale -> ('MS', 'src/managers/LockManager.sol', 'LockManager.configuredTokenContracts', '@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a65c61170e3297687d07] {USDB, WETH}
+ writer root       -> src/tokens/MunchToken.sol::MunchToken.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a6a03047c46b953861dd] {mainAccounts[$arg0], players[@local::src/managers/AccountManager.sol::AccountManager.getPlayer(address)::LocalVariable::_caller_1]}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.addSubAccount(address)
+ writer effect     -> src/managers/AccountManager.sol:311
+ written member    -> ('MS', 'src/managers/AccountManager.sol', 'AccountManager.mainAccounts', '$arg0')
+ potentially stale -> ('MS', 'src/managers/AccountManager.sol', 'AccountManager.players', '@local::src/managers/AccountManager.sol::AccountManager.getPlayer(address)::LocalVariable::_caller_1')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a7170b126c1cf26f1589] {_lastClaimPeriod[$arg0], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.newPeriod()
+ writer effect     -> src/managers/ClaimManager.sol:108
+ written member    -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ potentially stale -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._lastClaimPeriod', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a96bfec06d2f4b5489b7] {APPROVE_THRESHOLD, DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.approveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:519
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD'), ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate ab1f082de8c952dde3f5] {USDB, WETH}
+ writer root       -> src/tokens/MunchNFT.sol::MunchNFT.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ac327644b4487853af62] {DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:167
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate ad9cc1d9cf9dc0bb3363] {APPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:169
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate ae7bd9c799fecd8fefe9] {MAX_REVEAL_QUEUE, revealQueue[@local::src/overlords/NFTOverlord.sol::NFTOverlord.mintFromPrimordial(address)::LocalVariableInitFromTuple::_player_1]}
+ writer root       -> src/overlords/NFTOverlord.sol::NFTOverlord.configUpdated()
+ writer effect     -> src/overlords/NFTOverlord.sol:53
+ written member    -> ('SV', 'src/overlords/NFTOverlord.sol', 'NFTOverlord.MAX_REVEAL_QUEUE')
+ potentially stale -> ('MS', 'src/overlords/NFTOverlord.sol', 'NFTOverlord.revealQueue', '@local::src/overlords/NFTOverlord.sol::NFTOverlord.mintFromPrimordial(address)::LocalVariableInitFromTuple::_player_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b39d681e3473637a84f7] {primordialLevels[@const::0], primordials}
+ writer root       -> src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)
+ writer effect     -> src/managers/PrimordialManager.sol:117
+ written member    -> ('SV', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordials')
+ potentially stale -> ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@const::0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b3ddda213fcecdd2b1c0] {APPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:166
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b3e8abc07f7c301b5372] {configuredTokenContracts[@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1], lockedTokens}
+ writer root       -> src/managers/LockManager.sol::LockManager.unlock(address,uint256)
+ writer effect     -> src/managers/LockManager.sol:423
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.lockedTokens')
+ potentially stale -> ('MS', 'src/managers/LockManager.sol', 'LockManager.configuredTokenContracts', '@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b41b69399e479051192a] {lockdrop, playerSettings}
+ writer root       -> src/managers/LockManager.sol::LockManager.configureLockdrop(ILockManager.Lockdrop)
+ writer effect     -> src/managers/LockManager.sol:109
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.lockdrop')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.playerSettings')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate b4f3d369c38d8d5b40de] {USDB, WETH}
+ writer root       -> src/managers/LandManager.sol::LandManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b54fd8b6b9780233de6b] {configuredTokenContracts[@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1], lockedTokens}
+ writer root       -> src/managers/LockManager.sol::LockManager.setLockDuration(uint256)
+ writer effect     -> src/managers/LockManager.sol:268
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.lockedTokens')
+ potentially stale -> ('MS', 'src/managers/LockManager.sol', 'LockManager.configuredTokenContracts', '@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b7d0d502d711c7406bda] {APPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:171
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b829a2e35bdadc153380] {USDB, WETH}
+ writer root       -> src/overlords/NFTOverlord.sol::NFTOverlord.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate bc9607ae683ec013b303] {_pointsExcess[@local::src/managers/ClaimManager.sol::ClaimManager._claimPoints(address)::LocalVariable::currentPeriodId_1], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.newPeriod()
+ writer effect     -> src/managers/ClaimManager.sol:105
+ written member    -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ potentially stale -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._pointsExcess', '@local::src/managers/ClaimManager.sol::ClaimManager._claimPoints(address)::LocalVariable::currentPeriodId_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate bd21e332e22713ec29cd] {mainAccounts[$arg0], players}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.execSprayProposal(address)
+ writer effect     -> src/managers/AccountManager.sol:229
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ potentially stale -> ('MS', 'src/managers/AccountManager.sol', 'AccountManager.mainAccounts', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate bddfc224f0c3bddf67c8] {USDB, WETH}
+ writer root       -> src/managers/MigrationManager.sol::MigrationManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c0505aecddfd865b4a57] {USDB, WETH}
+ writer root       -> src/managers/SnuggeryManager.sol::SnuggeryManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c293ba776d6b0a3bce63] {mainAccounts[$arg0], players}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.forceHarvest(address)
+ writer effect     -> src/managers/AccountManager.sol:447
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ potentially stale -> ('MS', 'src/managers/AccountManager.sol', 'AccountManager.mainAccounts', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate c4ebd69141ada5204fc6] {players, sprayProposals}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.removeSpray(address,uint256)
+ writer effect     -> src/managers/AccountManager.sol:290
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ potentially stale -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.sprayProposals')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate c5168d2c842e95457dde] {configuredTokenContracts[@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1], lockedTokens}
+ writer root       -> src/managers/LockManager.sol::LockManager.lock(address,uint256)
+ writer effect     -> src/managers/LockManager.sol:388
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.lockedTokens')
+ potentially stale -> ('MS', 'src/managers/LockManager.sol', 'LockManager.configuredTokenContracts', '@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c7aa8a623c4c41fc18f0] {plotOccupied, toilerState[$arg0]}
+ writer root       -> src/managers/LandManager.sol::LandManager.stakeMunchable(address,uint256,uint256)
+ writer effect     -> src/managers/LandManager.sol:162
+ written member    -> ('MS', 'src/managers/LandManager.sol', 'LandManager.toilerState', '$arg0')
+ potentially stale -> ('SV', 'src/managers/LandManager.sol', 'LandManager.plotOccupied')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c96bd3f93b7943e2d20d] {WETH, _userLockedAmounts}
+ writer root       -> src/managers/MigrationManager.sol::MigrationManager.loadMigrationSnapshot(address[],IMigrationManager.MigrationSnapshotData[])
+ writer effect     -> src/managers/MigrationManager.sol:111
+ written member    -> ('SV', 'src/managers/MigrationManager.sol', 'MigrationManager._userLockedAmounts')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c9778bca6ff3bacc33d7] {APPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.disapproveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:234
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c983aee5c90c8a18529d] {USDB, WETH}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c9a5cbd06c2e7d588e7b] {MAX_REVEAL_QUEUE, revealQueue[@local::src/overlords/NFTOverlord.sol::NFTOverlord.mintFromPrimordial(address)::LocalVariableInitFromTuple::_player_1]}
+ writer root       -> src/overlords/NFTOverlord.sol::NFTOverlord.mintFromPrimordial(address)
+ writer effect     -> src/overlords/NFTOverlord.sol:145
+ written member    -> ('MS', 'src/overlords/NFTOverlord.sol', 'NFTOverlord.revealQueue', '@local::src/overlords/NFTOverlord.sol::NFTOverlord.mintFromPrimordial(address)::LocalVariableInitFromTuple::_player_1')
+ potentially stale -> ('SV', 'src/overlords/NFTOverlord.sol', 'NFTOverlord.MAX_REVEAL_QUEUE')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate ca53f84dd9ade58639da] {APPROVE_THRESHOLD, DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.approveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:533
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD'), ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate cc4675b0e1744f3bf740] {APPROVE_THRESHOLD, DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:167
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD'), ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate cdd7b36a62eececd783e] {configuredTokens, usdUpdateProposal[@local::src/managers/LockManager.sol::LockManager._execUSDPriceUpdate()::LocalVariable::i_1]}
+ writer root       -> src/managers/LockManager.sol::LockManager.approveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:523
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.configuredTokens')
+ potentially stale -> ('MS', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal', '@local::src/managers/LockManager.sol::LockManager._execUSDPriceUpdate()::LocalVariable::i_1')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate cf940b195fd5f7c76f4d] {USDB, WETH}
+ writer root       -> src/managers/LockManager.sol::LockManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d0e6853aa64dbaf8d2b5] {USDB, WETH}
+ writer root       -> src/managers/RewardsManager.sol::RewardsManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate d15558b3f507a2b778e7] {WETH, _userLockedAmounts}
+ writer root       -> src/managers/MigrationManager.sol::MigrationManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/MigrationManager.sol', 'MigrationManager._userLockedAmounts')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate d2a0de7dff88fbf7bf74] {primordialLevels[@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5078], primordialLevels[@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5080], primordials}
+ writer root       -> src/managers/PrimordialManager.sol::PrimordialManager.claimPrimordial()
+ writer effect     -> src/managers/PrimordialManager.sol:69
+ written member    -> ('SV', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordials')
+ potentially stale -> ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5078'), ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5080')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d34bd922697f8f1bd7c3] {primordialLevels[@const::0], primordials}
+ writer root       -> src/managers/PrimordialManager.sol::PrimordialManager.claimPrimordial()
+ writer effect     -> src/managers/PrimordialManager.sol:69
+ written member    -> ('SV', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordials')
+ potentially stale -> ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@const::0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate d385430de094dfa99f62] {primordialLevels[@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5078], primordialLevels[@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5080], primordials}
+ writer root       -> src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)
+ writer effect     -> src/managers/PrimordialManager.sol:93
+ written member    -> ('SV', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordials')
+ potentially stale -> ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5078'), ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5080')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d46f333c0627c4753aa4] {_lastClaimPeriod[$arg0], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.newPeriod()
+ writer effect     -> src/managers/ClaimManager.sol:106
+ written member    -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ potentially stale -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._lastClaimPeriod', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d57814b2ace78fa63092] {USDB, WETH}
+ writer root       -> src/managers/LockManager.sol::LockManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d698add4a5593bbaf249] {USDB, _userLockedAmounts}
+ writer root       -> src/managers/MigrationManager.sol::MigrationManager.loadMigrationSnapshot(address[],IMigrationManager.MigrationSnapshotData[])
+ writer effect     -> src/managers/MigrationManager.sol:109
+ written member    -> ('SV', 'src/managers/MigrationManager.sol', 'MigrationManager._userLockedAmounts')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate d7ebff95cfcebceeb11a] {_lastClaimPeriod[$arg0], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.newPeriod()
+ writer effect     -> src/managers/ClaimManager.sol:105
+ written member    -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ potentially stale -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._lastClaimPeriod', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d847ed9c80a3d34a8c13] {primordialLevels[@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5078], primordialLevels[@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5080], primordials}
+ writer root       -> src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)
+ writer effect     -> src/managers/PrimordialManager.sol:117
+ written member    -> ('SV', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordials')
+ potentially stale -> ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5078'), ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5080')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d98492bcb39c1405543a] {USDB, WETH}
+ writer root       -> src/managers/MunchadexManager.sol::MunchadexManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate de7d07ce1e63f9eb4d1d] {USDB, WETH}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate de8036d3ee369d80e58a] {_userLockedAmounts, discountFactor}
+ writer root       -> src/managers/MigrationManager.sol::MigrationManager.loadMigrationSnapshot(address[],IMigrationManager.MigrationSnapshotData[])
+ writer effect     -> src/managers/MigrationManager.sol:111
+ written member    -> ('SV', 'src/managers/MigrationManager.sol', 'MigrationManager._userLockedAmounts')
+ potentially stale -> ('SV', 'src/managers/MigrationManager.sol', 'MigrationManager.discountFactor')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate df925407a1338fc06896] {PRICE_PER_PLOT, munchablesStaked[@local::src/managers/LandManager.sol::LandManager._farmPlots(address)::LocalVariableInitFromTuple::mainAccount_1], toilerState[@local::src/managers/LandManager.sol::LandManager._farmPlots(address)::LocalVariable::tokenId_1]}
+ writer root       -> src/managers/LandManager.sol::LandManager.configUpdated()
+ writer effect     -> src/managers/LandManager.sol:77
+ written member    -> ('SV', 'src/managers/LandManager.sol', 'LandManager.PRICE_PER_PLOT')
+ potentially stale -> ('MS', 'src/managers/LandManager.sol', 'LandManager.munchablesStaked', '@local::src/managers/LandManager.sol::LandManager._farmPlots(address)::LocalVariableInitFromTuple::mainAccount_1'), ('MS', 'src/managers/LandManager.sol', 'LandManager.toilerState', '@local::src/managers/LandManager.sol::LandManager._farmPlots(address)::LocalVariable::tokenId_1')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate e426b82203673d21ece9] {_pointsExcess[@local::src/managers/ClaimManager.sol::ClaimManager._claimPoints(address)::LocalVariable::currentPeriodId_1], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.claimPoints()
+ writer effect     -> src/managers/ClaimManager.sol:241
+ written member    -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ potentially stale -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._pointsExcess', '@local::src/managers/ClaimManager.sol::ClaimManager._claimPoints(address)::LocalVariable::currentPeriodId_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e7405c98b9d0ee677b02] {_pointsExcess[@local::src/managers/ClaimManager.sol::ClaimManager._claimPoints(address)::LocalVariable::currentPeriodId_1], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.newPeriod()
+ writer effect     -> src/managers/ClaimManager.sol:106
+ written member    -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ potentially stale -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._pointsExcess', '@local::src/managers/ClaimManager.sol::ClaimManager._claimPoints(address)::LocalVariable::currentPeriodId_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e7b8c54b0d5d34f51c0b] {configuredTokenContracts[@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1], lockedTokens}
+ writer root       -> src/managers/LockManager.sol::LockManager.lockOnBehalf(address,uint256,address)
+ writer effect     -> src/managers/LockManager.sol:388
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.lockedTokens')
+ potentially stale -> ('MS', 'src/managers/LockManager.sol', 'LockManager.configuredTokenContracts', '@local::src/managers/LockManager.sol::LockManager.setLockDuration(uint256)::LocalVariable::i_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e8a7e70c92639af50432] {players, sprayProposals}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.harvest()
+ writer effect     -> src/managers/AccountManager.sol:447
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ potentially stale -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.sprayProposals')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate eab6bb25bfa715160d3e] {mainAccounts, subAccounts[$arg0][@local::src/managers/AccountManager.sol::AccountManager._removeSubAccount(address,address)::LocalVariable::i_2]}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.removeSubAccount(address)
+ writer effect     -> src/managers/AccountManager.sol:332
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.mainAccounts')
+ potentially stale -> ('MS', 'src/managers/AccountManager.sol', 'AccountManager.subAccounts', '$arg0][@local::src/managers/AccountManager.sol::AccountManager._removeSubAccount(address,address)::LocalVariable::i_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate eb7e3a33816b864225bd] {APPROVE_THRESHOLD, DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:169
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD'), ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate ef1890996515bf43e96b] {APPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.proposeUSDPrice(uint256,address[])
+ writer effect     -> src/managers/LockManager.sol:168
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f0b63528ff7b4a636764] {WETH, _userLockedAmounts}
+ writer root       -> src/managers/MigrationManager.sol::MigrationManager.loadMigrationSnapshot(address[],IMigrationManager.MigrationSnapshotData[])
+ writer effect     -> src/managers/MigrationManager.sol:115
+ written member    -> ('SV', 'src/managers/MigrationManager.sol', 'MigrationManager._userLockedAmounts')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate f1936c707400d14bcec7] {USDB, WETH}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f21d6e4c21b02535994f] {_lastClaimPeriod[$arg0], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.claimPoints()
+ writer effect     -> src/managers/ClaimManager.sol:241
+ written member    -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ potentially stale -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._lastClaimPeriod', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f30653eae2f6b6b1e624] {primordialLevels[@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5078], primordialLevels[@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5080], primordials}
+ writer root       -> src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)
+ writer effect     -> src/managers/PrimordialManager.sol:112
+ written member    -> ('SV', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordials')
+ potentially stale -> ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5078'), ('MS', 'src/managers/PrimordialManager.sol', 'PrimordialManager.primordialLevels', '@local::src/managers/PrimordialManager.sol::PrimordialManager.feedPrimordial(uint256)::TemporaryVariable::TMP_5080')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f31a546e9b4c716ef755] {DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.disapproveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:234
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f5f27bd7769252c02232] {USDB, WETH}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.initialize(address)
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f612fabf0d3a71cbcdde] {_userLockedAmounts, discountFactor}
+ writer root       -> src/managers/MigrationManager.sol::MigrationManager.loadMigrationSnapshot(address[],IMigrationManager.MigrationSnapshotData[])
+ writer effect     -> src/managers/MigrationManager.sol:109
+ written member    -> ('SV', 'src/managers/MigrationManager.sol', 'MigrationManager._userLockedAmounts')
+ potentially stale -> ('SV', 'src/managers/MigrationManager.sol', 'MigrationManager.discountFactor')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate f76dfa5868480dfa1324] {MAX_REVEAL_QUEUE, revealQueue[@local::src/overlords/NFTOverlord.sol::NFTOverlord.startReveal()::LocalVariableInitFromTuple::_mainAccount_1]}
+ writer root       -> src/overlords/NFTOverlord.sol::NFTOverlord.configUpdated()
+ writer effect     -> src/overlords/NFTOverlord.sol:53
+ written member    -> ('SV', 'src/overlords/NFTOverlord.sol', 'NFTOverlord.MAX_REVEAL_QUEUE')
+ potentially stale -> ('MS', 'src/overlords/NFTOverlord.sol', 'NFTOverlord.revealQueue', '@local::src/overlords/NFTOverlord.sol::NFTOverlord.startReveal()::LocalVariableInitFromTuple::_mainAccount_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f7980887372332570382] {_lastClaimPeriod[$arg0], currentPeriod}
+ writer root       -> src/managers/ClaimManager.sol::ClaimManager.newPeriod()
+ writer effect     -> src/managers/ClaimManager.sol:98
+ written member    -> ('SV', 'src/managers/ClaimManager.sol', 'ClaimManager.currentPeriod')
+ potentially stale -> ('MS', 'src/managers/ClaimManager.sol', 'ClaimManager._lastClaimPeriod', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f83bea5e8613bed86fc8] {USDB, WETH}
+ writer root       -> src/managers/MigrationManager.sol::MigrationManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate fa6117ac01634acbd369] {DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.approveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:519
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate fa870af5697a498f3b05] {mainAccounts[$arg0], players}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.harvest()
+ writer effect     -> src/managers/AccountManager.sol:447
+ written member    -> ('SV', 'src/managers/AccountManager.sol', 'AccountManager.players')
+ potentially stale -> ('MS', 'src/managers/AccountManager.sol', 'AccountManager.mainAccounts', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate fb988912109dfa38e8ff] {APPROVE_THRESHOLD, DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.setUSDThresholds(uint8,uint8)
+ writer effect     -> src/managers/LockManager.sol:135
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD'), ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate fbb5ed84ae173422f085] {USDB, WETH}
+ writer root       -> src/managers/AccountManager.sol::AccountManager.initialize(address)
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate fc9b58c7b24b93b8b82f] {APPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.approveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:533
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.APPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate fddd8da7383cd8e3e51d] {USDB, WETH}
+ writer root       -> src/managers/MunchadexManager.sol::MunchadexManager.configUpdated()
+ writer effect     -> src/managers/BaseBlastManager.sol:71
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate fe6748efbcc449bd7d0c] {USDB, WETH}
+ writer root       -> src/managers/LandManager.sol::LandManager.initialize(address)
+ writer effect     -> src/managers/BaseBlastManager.sol:77
+ written member    -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.WETH')
+ potentially stale -> ('SV', 'src/managers/BaseBlastManager.sol', 'BaseBlastManager.USDB')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate fe7350c3f37dd5aee109] {DISAPPROVE_THRESHOLD, usdUpdateProposal}
+ writer root       -> src/managers/LockManager.sol::LockManager.approveUSDPrice(uint256)
+ writer effect     -> src/managers/LockManager.sol:533
+ written member    -> ('SV', 'src/managers/LockManager.sol', 'LockManager.usdUpdateProposal')
+ potentially stale -> ('SV', 'src/managers/LockManager.sol', 'LockManager.DISAPPROVE_THRESHOLD')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate ff2709b0a91cf5a0839a] {mintProbabilities[@local::src/overlords/NFTOverlord.sol::NFTOverlord._calculateRaritySpecies(bytes,MunchablesCommonLib.Rarity)::LocalVariable::randomIndex_3], realmLookup}
+ writer root       -> src/overlords/NFTOverlord.sol::NFTOverlord.configUpdated()
+ writer effect     -> src/overlords/NFTOverlord.sol:537
+ written member    -> ('SV', 'src/overlords/NFTOverlord.sol', 'NFTOverlord.realmLookup')
+ potentially stale -> ('MS', 'src/overlords/NFTOverlord.sol', 'NFTOverlord.mintProbabilities', '@local::src/overlords/NFTOverlord.sol::NFTOverlord._calculateRaritySpecies(bytes,MunchablesCommonLib.Rarity)::LocalVariable::randomIndex_3')
+ reader witnesses  -> 2
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (108 contracts with 1 detectors), 167 result(s) found

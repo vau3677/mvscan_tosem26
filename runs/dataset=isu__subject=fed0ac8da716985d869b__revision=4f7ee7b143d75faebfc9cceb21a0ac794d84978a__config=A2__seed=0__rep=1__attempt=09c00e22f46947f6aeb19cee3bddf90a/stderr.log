@@ -1,0 +1,1464 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=4106 vars=242
+[mvscan-stage] root-seeding-done eligible_exposures=320 seeded=197 multi_exposure_entry_blocks=48 collapsed_contextual_aliases=123 excluded_dependency=0 excluded_interface=84 excluded_library=0 excluded_abstract=144 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=801f7e5b8442930c47742cf75908ea00f5c79f1eb432bcd6235417a256f191dd candidate_count=208 candidate_digest=55004b4617a5e14a3c5fdbb3e9a4be035ad3f2a8a47ebdd3d81e53c9e598e49b context_instance_count=1774 eligible_readers=185 eligible_writers=183 execution_context_digest=b1816da3256229361be1783da7ea8892d69647127bd8b5bb32232a7c23cd33d0 insensitive_readers_filtered=226 invalid_partial_write_filtered=0 must_full_relation_filtered=6 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=8720 owner_context_pairs=1971 owner_context_pairs_considered=34064 raw_block_pairs=1514 reader_witness_count=1971 relation_base_members_shadowed=79 relation_context_incompatible=2509 relation_digest=e91da8bcf3b912d6b9775495167483e383179243da7f2e04c98d1162287a59fb relation_members_raw=252 relation_origins_registered=28 relation_origins_rejected_unary_after_shadowing=105 relation_origins_seen=133 relation_unbound_key_templates=301 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=55 scalar_variables_skipped=143 storage_context_mismatch=20858 variables_considered=171
+INFO:Detectors:
+
+[MV-SI candidate 024c6c93205c3ded2c56] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:202
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 05cb19e90a0b5579db10] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 07ab992b7b75f0f3e0ac] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:165
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 07daeb5ebac467f805e4] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 090311934c37ed521ece] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/LybraStETHVault.sol::LybraStETHDepositVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:266
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 090d2e2962022515a6ce] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:202
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 091664dc0250904f7273] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:266
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 0d2db83dbe177c2b6952] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.reStake()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:145
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 0f825e0604d2e6c1f314] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0fc5672cffd03b67453e] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 107e8aa7761b92c28503] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/LybraRETHVault.sol:32
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 10bd478d79e190359868] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 10d0088dc52f44045dcd] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:297
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 114f6440137ed5071d14] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.superLiquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:284
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 122439a348445f6ae2f0] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 12b68549a94a3043c689] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 1458ebaeeeece739c143] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.withdraw(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:102
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 14e50f3cc20b1f4aa00e] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 15fe300b29d97bc9f46c] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 16771eb62d512141daa1] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:202
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 17ff30b7ed20d0af11b0] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.reStake()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:144
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate 1950d80a7813b940f220] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 1a962d7558af9d886f4d] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:297
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 1bf8ec726b8ea6225770] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 1d0506f384b5cc8675a3] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 1da91d9edb858caf705a] {poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:266
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 1e074fb7d790b842f485] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 1ed001d4a7d7827d6462] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 1fa85cfc71b756bbe4fd] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:64
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 3
+[MV-SI candidate 21b8bab983f5448102a0] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.superLiquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:297
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 21f4d28ea3fc77496a20] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 223e55204c104a965c71] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:166
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 23d7b6a9da78fd402983] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 3
+[MV-SI candidate 2508d2b7b74dd0457cd5] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 254e9ab747d3d65b6ab6] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 3
+[MV-SI candidate 25d0bf6ab439c7ac6e65] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/LybraWstETHVault.sol:39
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 26b5bbba46cd7006b8f0] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:296
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 27580fcfc1930bb629cb] {poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.superLiquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:201
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 27b94dc44f522bd5b6ce] {oracleFee, protocolFeeConfig, relayerFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setRelayerPrice(uint128,uint128,uint128,uint64,uint64)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:330
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.relayerFeeConfig')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee'), ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 27bf6a7a208007e33a1c] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraStETHVault.sol::LybraStETHDepositVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:262
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.depositedAsset', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 2bde27eec2b609a34cbd] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:262
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.depositedAsset', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 310ddb5745d8a9f78874] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 32aa27b1e61a6bae1935] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 35aa1b8a92bd0a283468] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 35f0b6edbc8058974e70] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.withdraw(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:214
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 3cd478f6c859cfe96749] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 3eb9293dd0ddc77ed471] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:202
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 3ef089540dded617bb61] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 3fb274d64a9bbf771377] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 414ab790ef16b850983a] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 42a564e1c3ff9f4ef4ee] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:202
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 42ba6c6fa649ef986187] {poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:284
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 44627d1a64faf3e41902] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:78
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 45b92c57c5def403dcaf] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:198
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 4671383827b7149176c8] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:202
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 46b5131dfe87a0191a9e] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/LybraWbETHVault.sol:25
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 473e6b9c60752d81486c] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.reStake()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:145
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 48299b73a2dda6d1dbce] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:198
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 4a0187c9016c22cd3c31] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:282
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.depositedAsset', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 4b39270afca99fccb133] {time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unstake(uint256)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:95
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ reader witnesses  -> 17
+ storage exposures -> 1
+[MV-SI candidate 4cb173b93854495c897f] {poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:284
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 4ce1cb3c499a56e8b0a5] {poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:284
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 52526f54e5f3210d935a] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:262
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.depositedAsset', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 53c0cf33a77f26bfeb2d] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 54cd23a556fae3c17369] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 3
+[MV-SI candidate 5700c201f86d7d78510e] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 57f19be0c0232904ddf1] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unstake(uint256)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:96
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 5a90c6e58e94216d5093] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 5aaca771d0865285bf54] {poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/LybraStETHVault.sol::LybraStETHDepositVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:266
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 5ace37c276a83d957523] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/LybraWstETHVault.sol:39
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 5ae1e63448a768d15d24] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 5c4b4e2ca1a0523fa8a1] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.withdraw(address)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:105
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ reader witnesses  -> 17
+ storage exposures -> 1
+[MV-SI candidate 5d46406676c1a7402bbd] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 5fab58ae82193f9dc198] {time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unlockPrematurely()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:121
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 63f02245d391d3d1a7fa] {poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:241
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 6519a5d30a8a4fb99000] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 6525aaf8e11bcf0a7218] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 3
+[MV-SI candidate 65871e128e75edda81c6] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:202
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 662649ccfb35ace5a977] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.withdraw(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:214
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 668813862986f7b97c7b] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 668940a4db074129c93d] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/LybraStETHVault.sol::LybraStETHDepositVault.excessIncomeDistribution(uint256)
+ writer effect     -> contracts/lybra/pools/LybraStETHVault.sol:92
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 674e240beff874f0e9b5] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 67cd0c4346c4bbb7c87e] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 3
+[MV-SI candidate 684cc53b2ce41f809650] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.withdraw(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:103
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 6c6156d759107c58a922] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:198
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 6d14a99663f9dfab5566] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.withdraw(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:214
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 3
+[MV-SI candidate 6d49a8b860b43412d190] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraStETHVault.sol::LybraStETHDepositVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/LybraStETHVault.sol:44
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 700122736c37760f67eb] {poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:266
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 700f1ff62243530ce999] {time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unlockPrematurely()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:120
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ reader witnesses  -> 17
+ storage exposures -> 1
+[MV-SI candidate 70752e5113d0a2d5c329] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 70b33d463759257f886d] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 71236daf7580590ffc17] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:198
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 72470635a9c3f5b4c160] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:297
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 74a3f8c49e128ac1da28] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:202
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 753fb2bcc7a167df4c8f] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:241
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 7654cc7a44604f5ffee0] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 789365f7d744839c099f] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:136
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 3
+[MV-SI candidate 790424e321f6d3627726] {time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.reStake()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:145
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 79bbe7af8686eac10463] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:266
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 7a45f1d4c348f9c1bfd1] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 7fec825bb1d90ac5167b] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 85d220c516559e4a8ff9] {oracleFee, protocolFeeConfig, relayerFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setRelayerPrice(uint128,uint128,uint128,uint64,uint64)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:332
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.relayerFeeConfig')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee'), ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 877ed51a11097947a192] {oracleFee, protocolFeeConfig, relayerFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setRelayerPrice(uint128,uint128,uint128,uint64,uint64)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:334
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.relayerFeeConfig')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee'), ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 87951f35f52c1cb386be] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 882d2588a33d018f22e7] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:198
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 88dd30519faf491ae9fc] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/LybraWstETHVault.sol:39
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 88fbc98cf1b1f003946c] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:136
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 897cb3c1c3f7a15de950] {_totalSupply, maxSupply}
+ writer root       -> contracts/lybra/token/esLBR.sol::esLBR.mint(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC20/ERC20.sol:256
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'contracts/lybra/token/esLBR.sol', 'esLBR.maxSupply')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 898c0071f26bb8357ceb] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 8ade8ebd00cb270801ca] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 8b8724cb65e0cc8f860d] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unlockPrematurely()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:121
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 8d769e6c6841e289b596] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:284
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 8e67d61f1f08a4eb7406] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:198
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 8faaf98ee02d7f294de0] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:296
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 90fa7b8bc255d36979b8] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 910a6021f0f9651f0771] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/LybraWbETHVault.sol:25
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 92aba2f29a00b5829780] {time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unstake(uint256)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:96
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 9515b9a8df66525f598d] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 967f66cb2acd385ae7f1] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unstake(uint256)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:95
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate 96d04c3e46159a3d302e] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 96e046815c12cd71f87d] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:284
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 97eb82b55bbb1152cf60] {oracleFee, protocolFeeConfig, relayerFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setProtocolFee(uint256,uint256)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:339
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee'), ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.relayerFeeConfig')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 98f6e473b3714ac77f89] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:64
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 9994d13b0ccfd76e25b4] {esLBRLockSettings[$arg0], userLockStatus[$sender]}
+ writer root       -> contracts/lybra/miner/esLBRBoost.sol::esLBRBoost.setLockStatus(uint256)
+ writer effect     -> contracts/lybra/miner/esLBRBoost.sol:44
+ written member    -> ('MS', 'contracts/lybra/miner/esLBRBoost.sol', 'esLBRBoost.userLockStatus', '$sender')
+ potentially stale -> ('MS', 'contracts/lybra/miner/esLBRBoost.sol', 'esLBRBoost.esLBRLockSettings', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 99e2c2f9224f5a5a8056] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 9a0f70bc5593ee00c578] {time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.reStake()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:144
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ reader witnesses  -> 17
+ storage exposures -> 1
+[MV-SI candidate 9a59b16c8db44c7de9f5] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:202
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 9b9dcf68555f641bd500] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/LybraRETHVault.sol:32
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 9bf93d70df106cfeb193] {poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:78
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 9dfe801a49854199a22d] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:296
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 9fc4e630acf25481da4c] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:165
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 9ff39968a7d8245c55b3] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/LybraRETHVault.sol:32
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate a086c1e3848aa8932718] {oracleFee, protocolFeeConfig, relayerFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setOracleFee(uint256)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:343
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig'), ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.relayerFeeConfig')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate a201ff67cb4b41afc1c5] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unstake(uint256)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:105
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ reader witnesses  -> 17
+ storage exposures -> 1
+[MV-SI candidate a2ef219e6c3a3a941904] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate a51ee883ddd92e77a369] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate a5e0c283ca694e580cd4] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate a5f80c77cf50e4d8e045] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:240
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate a8d0161c03044d806653] {_totalSupply, maxSupply}
+ writer root       -> contracts/lybra/token/esLBR.sol::esLBR.burn(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC20/ERC20.sol:287
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'contracts/lybra/token/esLBR.sol', 'esLBR.maxSupply')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a8da36b8f0af2df186c2] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/LybraStETHVault.sol::LybraStETHDepositVault.excessIncomeDistribution(uint256)
+ writer effect     -> contracts/lybra/pools/LybraStETHVault.sol:88
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate ae0470f4152c6a1c9ef0] {poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/LybraStETHVault.sol::LybraStETHDepositVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/LybraStETHVault.sol:43
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate af03d3c5728c7db3de09] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate b04e9021b7c41128a24c] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate b3ceeeda86e8825b0e24] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.superLiquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:282
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.depositedAsset', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b460221e317139f0f149] {oracleFee, protocolFeeConfig, relayerFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setRelayerPrice(uint128,uint128,uint128,uint64,uint64)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:333
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.relayerFeeConfig')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee'), ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate b5dc12c2c64d7ea3e099] {_totalSupply, maxSupply}
+ writer root       -> contracts/lybra/token/LBR.sol::LBR.burn(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC20/ERC20.sol:287
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'contracts/lybra/token/LBR.sol', 'LBR.maxSupply')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b76d965a860c7c4ec90c] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate b8ad5f824ef17324273f] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate b93921573ead914b69a5] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:64
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate ba56387d3ae1f307657d] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.superLiquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:202
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate bad75c7ee4dd8bb01525] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:282
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.depositedAsset', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate bbaa03c373767f45f780] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate bc14f9a593b39a3cb2a6] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate bca5f73db117690e30ff] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:296
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate c07a160d4f8c8982ba31] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate c0962fb49ace0b934c0c] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unstake(uint256)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:96
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate c1d7187837e7d3392b10] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c4c32d52643ce5635e88] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate c5ff21910a62636bfa0d] {oracleFee, protocolFeeConfig, relayerFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setRelayerPrice(uint128,uint128,uint128,uint64,uint64)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:331
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.relayerFeeConfig')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee'), ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c71569a571df2b5b2305] {poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.superLiquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:284
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c89d47cfaf3f1fccd114] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate c95e8139da74b380f10f] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate cdfa293230aabf546fc1] {_totalSupply, maxSupply}
+ writer root       -> contracts/lybra/token/LBR.sol::LBR.mint(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC20/ERC20.sol:256
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'contracts/lybra/token/LBR.sol', 'LBR.maxSupply')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d177e9c26d681a803db2] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unlockPrematurely()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:121
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate d1cd430460e5801a34a4] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate d2a2475afe27c7df006c] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/LybraStETHVault.sol::LybraStETHDepositVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:296
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate d31bd163abd627202f9e] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:297
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate d33061f71bbfca5f31a2] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate d3a42c2aea8e0a313c22] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate d3e68c140faf472769d2] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:297
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate d578531c41a01aa9444e] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate d78a6f6bb51ebcc3b793] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.withdraw(address)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:105
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate d87782c97095c01e31a1] {poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.withdraw(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:102
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate d8b56943c9c425c07729] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:296
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate d955b247379a0e0edf91] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate dd045a54fd5d1ba2cea6] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate de8a8ed2e1ba392d9940] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/LybraStETHVault.sol::LybraStETHDepositVault.setLidoRebaseTime(uint256)
+ writer effect     -> contracts/lybra/pools/LybraStETHVault.sol:27
+ written member    -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate e3132c3b4b5b2fa91d13] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e612e0e6f905f145a9c8] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:165
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 3
+[MV-SI candidate e791b795d6ce666ca982] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e7de3d6e642a80fad324] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate e9322f14923212d42c05] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate ebbf9c15c994b4079beb] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate ec242ca719f90893ada3] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.superLiquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:296
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate ed3d4c5a599afe8ac598] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/LybraWbETHVault.sol:25
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate ed86feefc590274dec08] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unlockPrematurely()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:120
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate edcbf09ba5db0f72a088] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unstake(uint256)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:105
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate ee4b59fcbe17cd17ba5e] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate ee4d7f8678d2b0fd1467] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:282
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.depositedAsset', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f161cbeb0f5028bd015f] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:165
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate f2ccc0ccea8ef31e8439] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:198
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate f2de16f2e5cac808b73b] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate f3928b1b7ade2575066e] {poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:165
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate f427b4ef00c786c75b99] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate f453686619cc2e872a4b] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate f48fd1d62fc2d602f562] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate f4a4e9bb42a560d926b2] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/LybraStETHVault.sol::LybraStETHDepositVault.excessIncomeDistribution(uint256)
+ writer effect     -> contracts/lybra/pools/LybraStETHVault.sol:82
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate f6db6d3af87b87340037] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:79
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.depositedAsset', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate f7ae2cf342a2b3143660] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:198
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate f85f5afbf30f6a2107f0] {borrowed[$arg0], depositedAsset[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f998adac10d4fda841ce] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:284
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate fb0b36eb2332923fe134] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:198
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate fbfe6c6b72cad044aae8] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/LybraStETHVault.sol::LybraStETHDepositVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/LybraStETHVault.sol:43
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate fd059202d5a14a46545f] {borrowed[$arg0], depositedAsset[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate fdfdea4ad984c508eeea] {oracleFee, protocolFeeConfig, relayerFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setProtocolFee(uint256,uint256)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:338
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee'), ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.relayerFeeConfig')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate ff855bdb2186d84f3bdf] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.superLiquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:201
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate ffa7031a9bdb48f53c55] {borrowed[$arg0], depositedAsset[$arg1], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:136
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.depositedAsset', '$arg1')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate ffe38a57a5c79d654641] {feeStored, lastReportTime, lidoRebaseTime, poolTotalEUSDCirculation, totalDepositedAsset}
+ writer root       -> contracts/lybra/pools/LybraStETHVault.sol::LybraStETHDepositVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:297
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/LybraStETHVault.sol', 'LybraStETHDepositVault.lidoRebaseTime'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.feeStored'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation'), ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.totalDepositedAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (120 contracts with 1 detectors), 208 result(s) found

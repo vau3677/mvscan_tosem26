@@ -1,0 +1,150 @@
+'/tmp/.svm/0.8.7/solc-0.8.7 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+ERROR:ContractSolcParsing:Missing function Variable not found: LBFactory__QuoteAssetNotWhitelisted(IERC20) (context LBFactory src/LBFactory.sol#20-611 (1 - 2))
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=2402 vars=58
+[mvscan-stage] root-seeding-done eligible_exposures=39 seeded=36 multi_exposure_entry_blocks=3 collapsed_contextual_aliases=3 excluded_dependency=0 excluded_interface=102 excluded_library=0 excluded_abstract=0 missing_entry_point=15 missing_entry_block=0
+[mvscan-pairs] call_target_digest=3db75fdf04a92e127e4bddd06ea809d4d3ce6fee78085803ad8d730a214b24ca candidate_count=20 candidate_digest=a811e88ee4976a51a7c78e2a25743d3f09d232b8327a83864f9da615649aee1c context_instance_count=104 eligible_readers=29 eligible_writers=26 execution_context_digest=6eede5eab21a0c352bb11a1228e55e62ee2ebb19efb3e2b088c16b8d320e9108 insensitive_readers_filtered=33 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=28 owner_context_pairs=124 owner_context_pairs_considered=340 raw_block_pairs=243 reader_witness_count=124 relation_base_members_shadowed=0 relation_context_incompatible=182 relation_digest=58c035ad56b5a3daf58854a07bcc6494710df3f355838e1d2ebda84a532f0e49 relation_members_raw=37 relation_origins_registered=4 relation_origins_rejected_unary_after_shadowing=29 relation_origins_rejected_unreachable=10 relation_origins_seen=33 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=13 scalar_variables_skipped=14 storage_context_mismatch=6 variables_considered=18
+INFO:Detectors:
+
+[MV-SI candidate 044384fd6465d6105121] {_bins, _totalSupplies}
+ writer root       -> src/LBPair.sol::LBPair.burn(uint256[],uint256[],address)
+ writer effect     -> src/LBToken.sol:241
+ written member    -> ('SV', 'src/LBToken.sol', 'LBToken._totalSupplies')
+ potentially stale -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 0c1041dc600c56c93cbe] {_bins, _totalSupplies}
+ writer root       -> src/LBPair.sol::LBPair.swap(bool,address)
+ writer effect     -> src/LBPair.sol:339
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ potentially stale -> ('SV', 'src/LBToken.sol', 'LBToken._totalSupplies')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 261309af64947e12961a] {_bins, _totalSupplies}
+ writer root       -> src/LBPair.sol::LBPair.flashLoan(address,uint256,uint256,bytes)
+ writer effect     -> src/LBPair.sol:453
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ potentially stale -> ('SV', 'src/LBToken.sol', 'LBToken._totalSupplies')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 29180e49fb33c000c202] {_bins, _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.flashLoan(address,uint256,uint256,bytes)
+ writer effect     -> src/LBPair.sol:453
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ potentially stale -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 2dff8f840d6c18c57a6e] {_bins, _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.initialize(IERC20,IERC20,uint24,uint16,bytes32)
+ writer effect     -> src/LBPair.sol:926
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3ace666f91c4f6f79eaf] {_bins, _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.mint(uint256[],uint256[],uint256[],address)
+ writer effect     -> src/LBPair.sol:593
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 5941b4f3aee82e97ad6b] {_bins, _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.collectFees(address,uint256[])
+ writer effect     -> src/LBPair.sol:717
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 5bd2c0e63eca14ca515e] {_bins, _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.swap(bool,address)
+ writer effect     -> src/LBPair.sol:339
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ potentially stale -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 8c46b1b67ac394084c31] {_bins, _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.flashLoan(address,uint256,uint256,bytes)
+ writer effect     -> src/LBPair.sol:452
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ potentially stale -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 8d7ce6a32df5ef17c4a6] {_bins, _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.mint(uint256[],uint256[],uint256[],address)
+ writer effect     -> src/LBPair.sol:578
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ potentially stale -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 9270c70199439b639777] {_bins, _totalSupplies}
+ writer root       -> src/LBPair.sol::LBPair.mint(uint256[],uint256[],uint256[],address)
+ writer effect     -> src/LBPair.sol:578
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ potentially stale -> ('SV', 'src/LBToken.sol', 'LBToken._totalSupplies')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 950d95838d7651db56b2] {_bins, _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.initialize(IERC20,IERC20,uint24,uint16,bytes32)
+ writer effect     -> src/LBPair.sol:120
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 9d44dc121a587e3d9416] {_bins, _totalSupplies}
+ writer root       -> src/LBPair.sol::LBPair.mint(uint256[],uint256[],uint256[],address)
+ writer effect     -> src/LBToken.sol:211
+ written member    -> ('SV', 'src/LBToken.sol', 'LBToken._totalSupplies')
+ potentially stale -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate aa6bf66b74dfc5ff875c] {_bins, _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.burn(uint256[],uint256[],address)
+ writer effect     -> src/LBPair.sol:670
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate b00686d1b9d1296c4255] {_bins, _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.collectFees(address,uint256[])
+ writer effect     -> src/LBPair.sol:720
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate d6bc39fc2f586c4b3c6d] {_bins, _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.initialize(IERC20,IERC20,uint24,uint16,bytes32)
+ writer effect     -> src/LBPair.sol:119
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate d77d0a70a7eb52dee4ea] {_bins, _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.burn(uint256[],uint256[],address)
+ writer effect     -> src/LBPair.sol:671
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate d905e3f606537f0db58d] {_bins, _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.swap(bool,address)
+ writer effect     -> src/LBPair.sol:404
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate dcfebc82f8c935d0cf7e] {_bins, _totalSupplies}
+ writer root       -> src/LBPair.sol::LBPair.flashLoan(address,uint256,uint256,bytes)
+ writer effect     -> src/LBPair.sol:452
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ potentially stale -> ('SV', 'src/LBToken.sol', 'LBToken._totalSupplies')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate f631b66c8eb8f2fa343f] {_bins, _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.increaseOracleLength(uint16)
+ writer effect     -> src/LBPair.sol:926
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('SV', 'src/LBPair.sol', 'LBPair._bins')
+ reader witnesses  -> 4
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (39 contracts with 1 detectors), 20 result(s) found

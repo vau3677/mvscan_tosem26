@@ -1,0 +1,24 @@
+'/tmp/.svm/0.8.12/solc-0.8.12 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: Source file does not specify required compiler version! Consider adding "pragma solidity ^0.8.12;"
+--> node_modules/base64-sol/base64.sol
+
+
+
+ERROR:ContractSolcParsing:Missing params '_msgSender()' contracts/NFTLoanTicket.sol#10-42 (1 - 0)
+ERROR:ContractSolcParsing:Missing params 'balanceOf(address)' contracts/BorrowTicket.sol#8-18 (1 - 0)
+ERROR:ContractSolcParsing:Missing params 'balanceOf(address)' contracts/LendTicket.sol#9-51 (1 - 0)
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1066 vars=62
+[mvscan-stage] root-seeding-done eligible_exposures=36 seeded=24 multi_exposure_entry_blocks=11 collapsed_contextual_aliases=12 excluded_dependency=0 excluded_interface=30 excluded_library=0 excluded_abstract=11 missing_entry_point=16 missing_entry_block=0
+[mvscan-pairs] call_target_digest=498bd017920680058c2975f5f3375cb9407375d635c7d39aeb1bbf4705edd5d7 candidate_count=1 candidate_digest=21b8a8c07bdc763d16c0f7775d0bcfaf93d9bdf429afff9446db9def8221faa6 context_instance_count=1 eligible_readers=16 eligible_writers=16 execution_context_digest=1491fdb4d8a3263a9b7bb5ce98d4f45d52e871cf85677084ec5908e29877b877 insensitive_readers_filtered=37 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=187 owner_context_pairs=1 owner_context_pairs_considered=1541 raw_block_pairs=53 reader_witness_count=1 relation_base_members_shadowed=17 relation_context_incompatible=460 relation_digest=246c64e0c0e3601ed437999b40b691ecda6902c3a74e6cba4cafe350ffdbc447 relation_members_raw=44 relation_origins_registered=5 relation_origins_rejected_unary_after_shadowing=15 relation_origins_seen=20 relation_unbound_key_templates=62 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=19 storage_context_mismatch=893 variables_considered=24
+INFO:Detectors:
+
+[MV-SI candidate 7dd27b9cad370d7ff1fa] {getApproved[$arg2], isApprovedForAll[$arg0][$sender]}
+ writer root       -> node_modules/@rari-capital/solmate/src/tokens/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> node_modules/@rari-capital/solmate/src/tokens/ERC721.sol:64
+ written member    -> ('MS', 'node_modules/@rari-capital/solmate/src/tokens/ERC721.sol', 'ERC721.isApprovedForAll', '$arg0][$sender')
+ potentially stale -> ('MS', 'node_modules/@rari-capital/solmate/src/tokens/ERC721.sol', 'ERC721.getApproved', '$arg2')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (36 contracts with 1 detectors), 1 result(s) found

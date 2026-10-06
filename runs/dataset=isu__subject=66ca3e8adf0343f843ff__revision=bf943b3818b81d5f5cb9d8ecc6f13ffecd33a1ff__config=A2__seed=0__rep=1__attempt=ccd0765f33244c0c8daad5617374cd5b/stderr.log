@@ -1,0 +1,89 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=427 vars=17
+[mvscan-stage] root-seeding-done eligible_exposures=52 seeded=26 multi_exposure_entry_blocks=16 collapsed_contextual_aliases=26 excluded_dependency=0 excluded_interface=6 excluded_library=0 excluded_abstract=5 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=ddabcdffb7bbb13d2154609ca7aca1997c60985f8ecb9814670576c784e32533 candidate_count=11 candidate_digest=f41cf3f99238e0efb1620372f05d422d137ec8dca49340b1d96fb003c4507cb3 context_instance_count=48 eligible_readers=4 eligible_writers=7 execution_context_digest=5f951b6349890622aaa2915627226d95b20f17b489d0e4ae2b462284bfd5b61e insensitive_readers_filtered=5 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=6 owner_context_pairs=48 owner_context_pairs_considered=256 raw_block_pairs=14 reader_witness_count=48 relation_base_members_shadowed=0 relation_context_incompatible=74 relation_digest=485f8e74157bb25794f87c7fa5b213a769cd630752c95c919a014f138a35d60a relation_members_raw=12 relation_origins_registered=2 relation_origins_rejected_unary_after_shadowing=8 relation_origins_seen=10 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=14 storage_context_mismatch=128 variables_considered=16
+INFO:Detectors:
+
+[MV-SI candidate 013808cc55c90dacf043] {_initialized, _initializing}
+ writer root       -> contracts/SwappableYieldSource.sol::SwappableYieldSource.freeze()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 3bf8358140d53380e9bb] {_assetManager, _owner}
+ writer root       -> @openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol::OwnableUpgradeable.renounceOwnership()
+ writer effect     -> @openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:62
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol', 'OwnableUpgradeable._owner')
+ potentially stale -> ('SV', 'contracts/access/AssetManager.sol', 'AssetManager._assetManager')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 401bf06eb5f599761df6] {_initialized, _initializing}
+ writer root       -> contracts/SwappableYieldSource.sol::SwappableYieldSource.initialize(IYieldSource,uint8,string,string,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 56c21b656fd0750f292d] {_initialized, _initializing}
+ writer root       -> contracts/SwappableYieldSource.sol::SwappableYieldSource.initialize(IYieldSource,uint8,string,string,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate a1dcde850cb87929c27a] {_initialized, _initializing}
+ writer root       -> contracts/SwappableYieldSource.sol::SwappableYieldSource.freeze()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate b33423214bdb541ed9a5] {_assetManager, _owner}
+ writer root       -> contracts/access/AssetManager.sol::AssetManager.setAssetManager(address)
+ writer effect     -> contracts/access/AssetManager.sol:57
+ written member    -> ('SV', 'contracts/access/AssetManager.sol', 'AssetManager._assetManager')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol', 'OwnableUpgradeable._owner')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate d1edd6cb481c1331c365] {_initialized, _initializing}
+ writer root       -> contracts/SwappableYieldSource.sol::SwappableYieldSource.initialize(IYieldSource,uint8,string,string,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate df0329d208a61ed4618f] {_initialized, _initializing}
+ writer root       -> contracts/SwappableYieldSource.sol::SwappableYieldSource.freeze()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate e3b9bdca31c6aa41d47c] {_assetManager, _owner}
+ writer root       -> contracts/SwappableYieldSource.sol::SwappableYieldSource.initialize(IYieldSource,uint8,string,string,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:72
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol', 'OwnableUpgradeable._owner')
+ potentially stale -> ('SV', 'contracts/access/AssetManager.sol', 'AssetManager._assetManager')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate f3b5311054b22ffa1abd] {_assetManager, _owner}
+ writer root       -> @openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol::OwnableUpgradeable.transferOwnership(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:72
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol', 'OwnableUpgradeable._owner')
+ potentially stale -> ('SV', 'contracts/access/AssetManager.sol', 'AssetManager._assetManager')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate fe04e94ec83832698bcb] {_assetManager, _owner}
+ writer root       -> contracts/SwappableYieldSource.sol::SwappableYieldSource.initialize(IYieldSource,uint8,string,string,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:34
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol', 'OwnableUpgradeable._owner')
+ potentially stale -> ('SV', 'contracts/access/AssetManager.sol', 'AssetManager._assetManager')
+ reader witnesses  -> 2
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=62 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=2 seeded=2 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=d3e005b9701d9d03f7686a31fef9e5625ba82152669e61abda74a1d28443190a candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=49dcbc618a2b1596e078754d1a1b9d922ab12bd2511624ca5308381cdac434bb invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+INFO:Slither:. analyzed (18 contracts with 1 detectors), 11 result(s) found

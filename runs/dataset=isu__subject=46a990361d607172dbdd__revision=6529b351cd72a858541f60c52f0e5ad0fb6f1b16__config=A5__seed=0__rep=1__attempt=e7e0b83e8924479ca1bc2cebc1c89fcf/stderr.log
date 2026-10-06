@@ -1,0 +1,71 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=801 vars=48
+[mvscan-stage] root-seeding-done eligible_exposures=42 seeded=26 multi_exposure_entry_blocks=16 collapsed_contextual_aliases=16 excluded_dependency=0 excluded_interface=6 excluded_library=0 excluded_abstract=4 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=c6369b9dc8747863cc2f01d6b3e6ec2cf18be198a29b8d389385329f4621ff60 candidate_count=9 candidate_digest=f91378726ebe4f383261a7adf3f9c7b75f01ee232f8824ffe7eb31178d29696a context_instance_count=42 eligible_readers=17 eligible_writers=8 execution_context_digest=baf53da2bb530fc0d58a1d1613e8d5f59eafed3de593ea4c9fbf49c2e7102cf2 insensitive_readers_filtered=10 invalid_partial_write_filtered=0 must_full_relation_filtered=4 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=42 owner_context_pairs_considered=56 raw_block_pairs=34 reader_witness_count=42 relation_base_members_shadowed=2 relation_context_incompatible=0 relation_digest=726dbd6168c8df7a33a0d98094a92221a5a483607b40b6a4603893472fee94a5 relation_evidence_edges=7 relation_incompatible=26 relation_members_raw=38 relation_origins_registered=4 relation_origins_rejected_unary_after_shadowing=28 relation_origins_rejected_unreachable=5 relation_origins_seen=32 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=1 scalar_variables_skipped=31 storage_context_mismatch=10 variables_considered=35
+INFO:Detectors:
+
+[MV-SI candidate 0b1685e7a2faf5da9a8f] {currentSlashRound, totalSlashed[@local::contracts/IdentityStaking.sol::IdentityStaking.lockAndBurn()::LocalVariable::roundToBurn_1]}
+ writer root       -> contracts/IdentityStaking.sol::IdentityStaking.initialize(address,address,address,address[],address[])
+ writer effect     -> contracts/IdentityStaking.sol:200
+ written member    -> ('SV', 'contracts/IdentityStaking.sol', 'IdentityStaking.currentSlashRound')
+ potentially stale -> ('MS', 'contracts/IdentityStaking.sol', 'IdentityStaking.totalSlashed', '@local::contracts/IdentityStaking.sol::IdentityStaking.lockAndBurn()::LocalVariable::roundToBurn_1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 18a3905d6d89f5e0b253] {delegates, numCheckpoints[$arg1]}
+ writer root       -> contracts/test_mocks/GTC.sol::GTC.delegateOnDist(address,address)
+ writer effect     -> contracts/test_mocks/GTC.sol:330
+ written member    -> ('SV', 'contracts/test_mocks/GTC.sol', 'GTC.delegates')
+ potentially stale -> ('MS', 'contracts/test_mocks/GTC.sol', 'GTC.numCheckpoints', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 86f7297fa4f22820a4b9] {currentSlashRound, totalSlashed[@local::contracts/IdentityStaking.sol::IdentityStaking.lockAndBurn()::LocalVariable::roundToBurn_1]}
+ writer root       -> contracts/IdentityStaking.sol::IdentityStaking.lockAndBurn()
+ writer effect     -> contracts/IdentityStaking.sol:515
+ written member    -> ('SV', 'contracts/IdentityStaking.sol', 'IdentityStaking.currentSlashRound')
+ potentially stale -> ('MS', 'contracts/IdentityStaking.sol', 'IdentityStaking.totalSlashed', '@local::contracts/IdentityStaking.sol::IdentityStaking.lockAndBurn()::LocalVariable::roundToBurn_1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 8c733f1bf1300fb1b04a] {delegates, numCheckpoints[$arg0]}
+ writer root       -> contracts/test_mocks/GTC.sol::GTC.delegate(address)
+ writer effect     -> contracts/test_mocks/GTC.sol:330
+ written member    -> ('SV', 'contracts/test_mocks/GTC.sol', 'GTC.delegates')
+ potentially stale -> ('MS', 'contracts/test_mocks/GTC.sol', 'GTC.numCheckpoints', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 9f09bd3821c2da28c5cb] {delegates, numCheckpoints[$arg0]}
+ writer root       -> contracts/test_mocks/GTC.sol::GTC.delegateOnDist(address,address)
+ writer effect     -> contracts/test_mocks/GTC.sol:330
+ written member    -> ('SV', 'contracts/test_mocks/GTC.sol', 'GTC.delegates')
+ potentially stale -> ('MS', 'contracts/test_mocks/GTC.sol', 'GTC.numCheckpoints', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate a51129e627ceae27d0dc] {delegates, numCheckpoints[$arg0]}
+ writer root       -> contracts/test_mocks/GTC.sol::GTC.delegateBySig(address,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/test_mocks/GTC.sol:330
+ written member    -> ('SV', 'contracts/test_mocks/GTC.sol', 'GTC.delegates')
+ potentially stale -> ('MS', 'contracts/test_mocks/GTC.sol', 'GTC.numCheckpoints', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c56ac6fda7b4dd7582e3] {burnRoundMinimumDuration, lastBurnTimestamp}
+ writer root       -> contracts/IdentityStaking.sol::IdentityStaking.lockAndBurn()
+ writer effect     -> contracts/IdentityStaking.sol:516
+ written member    -> ('SV', 'contracts/IdentityStaking.sol', 'IdentityStaking.lastBurnTimestamp')
+ potentially stale -> ('SV', 'contracts/IdentityStaking.sol', 'IdentityStaking.burnRoundMinimumDuration')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate e8502199f9d7589ce4a5] {delegates, numCheckpoints[$arg1]}
+ writer root       -> contracts/test_mocks/GTC.sol::GTC.delegate(address)
+ writer effect     -> contracts/test_mocks/GTC.sol:330
+ written member    -> ('SV', 'contracts/test_mocks/GTC.sol', 'GTC.delegates')
+ potentially stale -> ('MS', 'contracts/test_mocks/GTC.sol', 'GTC.numCheckpoints', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate eeaac1e929e4e98fb0fe] {delegates, numCheckpoints[$arg1]}
+ writer root       -> contracts/test_mocks/GTC.sol::GTC.delegateBySig(address,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/test_mocks/GTC.sol:330
+ written member    -> ('SV', 'contracts/test_mocks/GTC.sol', 'GTC.delegates')
+ potentially stale -> ('MS', 'contracts/test_mocks/GTC.sol', 'GTC.numCheckpoints', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (19 contracts with 1 detectors), 9 result(s) found

@@ -1,0 +1,29 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=801 vars=48
+[mvscan-stage] root-seeding-done eligible_exposures=42 seeded=26 multi_exposure_entry_blocks=16 collapsed_contextual_aliases=16 excluded_dependency=0 excluded_interface=6 excluded_library=0 excluded_abstract=4 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=c6369b9dc8747863cc2f01d6b3e6ec2cf18be198a29b8d389385329f4621ff60 candidate_count=3 candidate_digest=11c3b58750000a7941804b8670d12dff3ec5b06e89aad9eb2fa37920e0c820d6 context_instance_count=6 eligible_readers=17 eligible_writers=12 execution_context_digest=c3bdc5372a5eb24224295bea80f8473833a30c0cbd56c8d488862875a3472795 insensitive_readers_filtered=13 invalid_partial_write_filtered=0 must_full_relation_filtered=4 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=6 owner_context_pairs_considered=460 raw_block_pairs=77 reader_witness_count=6 relation_base_members_shadowed=2 relation_context_incompatible=310 relation_digest=12ec01c1b8691b4eb56ec786a6b2650d1e45ba82b248ac868e1a4e9103e1a947 relation_members_raw=38 relation_origins_registered=4 relation_origins_rejected_unary_after_shadowing=28 relation_origins_rejected_unreachable=5 relation_origins_seen=32 relation_unbound_key_templates=9 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=3 scalar_variables_skipped=31 storage_context_mismatch=140 variables_considered=35
+INFO:Detectors:
+
+[MV-SI candidate 0b1685e7a2faf5da9a8f] {currentSlashRound, totalSlashed[@local::contracts/IdentityStaking.sol::IdentityStaking.lockAndBurn()::LocalVariable::roundToBurn_1]}
+ writer root       -> contracts/IdentityStaking.sol::IdentityStaking.initialize(address,address,address,address[],address[])
+ writer effect     -> contracts/IdentityStaking.sol:200
+ written member    -> ('SV', 'contracts/IdentityStaking.sol', 'IdentityStaking.currentSlashRound')
+ potentially stale -> ('MS', 'contracts/IdentityStaking.sol', 'IdentityStaking.totalSlashed', '@local::contracts/IdentityStaking.sol::IdentityStaking.lockAndBurn()::LocalVariable::roundToBurn_1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 86f7297fa4f22820a4b9] {currentSlashRound, totalSlashed[@local::contracts/IdentityStaking.sol::IdentityStaking.lockAndBurn()::LocalVariable::roundToBurn_1]}
+ writer root       -> contracts/IdentityStaking.sol::IdentityStaking.lockAndBurn()
+ writer effect     -> contracts/IdentityStaking.sol:515
+ written member    -> ('SV', 'contracts/IdentityStaking.sol', 'IdentityStaking.currentSlashRound')
+ potentially stale -> ('MS', 'contracts/IdentityStaking.sol', 'IdentityStaking.totalSlashed', '@local::contracts/IdentityStaking.sol::IdentityStaking.lockAndBurn()::LocalVariable::roundToBurn_1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate c56ac6fda7b4dd7582e3] {burnRoundMinimumDuration, lastBurnTimestamp}
+ writer root       -> contracts/IdentityStaking.sol::IdentityStaking.lockAndBurn()
+ writer effect     -> contracts/IdentityStaking.sol:516
+ written member    -> ('SV', 'contracts/IdentityStaking.sol', 'IdentityStaking.lastBurnTimestamp')
+ potentially stale -> ('SV', 'contracts/IdentityStaking.sol', 'IdentityStaking.burnRoundMinimumDuration')
+ reader witnesses  -> 2
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (19 contracts with 1 detectors), 3 result(s) found

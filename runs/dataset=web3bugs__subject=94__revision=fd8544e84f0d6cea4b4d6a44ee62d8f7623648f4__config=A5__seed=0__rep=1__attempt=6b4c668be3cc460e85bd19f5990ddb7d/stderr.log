@@ -1,0 +1,50 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+ERROR:ContractSolcParsing:Impossible to generate IR for FNDNFTMarket.constructor (contracts/mixins/NFTMarketCreators.sol#35-40):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for FNDNFTMarket._getCreatorPaymentInfo (contracts/mixins/NFTMarketCreators.sol#49-251):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for NFTMarketBuyPrice.constructor (contracts/mixins/NFTMarketCreators.sol#35-40):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for NFTMarketBuyPrice._getCreatorPaymentInfo (contracts/mixins/NFTMarketCreators.sol#49-251):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for NFTMarketFees.constructor (contracts/mixins/NFTMarketCreators.sol#35-40):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for NFTMarketFees._getCreatorPaymentInfo (contracts/mixins/NFTMarketCreators.sol#49-251):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for NFTMarketOffer.constructor (contracts/mixins/NFTMarketCreators.sol#35-40):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for NFTMarketOffer._getCreatorPaymentInfo (contracts/mixins/NFTMarketCreators.sol#49-251):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for NFTMarketPrivateSale.constructor (contracts/mixins/NFTMarketCreators.sol#35-40):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for NFTMarketPrivateSale._getCreatorPaymentInfo (contracts/mixins/NFTMarketCreators.sol#49-251):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for NFTMarketReserveAuction.constructor (contracts/mixins/NFTMarketCreators.sol#35-40):
+ 'NoneType' object has no attribute 'parameters'
+ERROR:ContractSolcParsing:Impossible to generate IR for NFTMarketReserveAuction._getCreatorPaymentInfo (contracts/mixins/NFTMarketCreators.sol#49-251):
+ 'NoneType' object has no attribute 'parameters'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1777 vars=66
+[mvscan-stage] root-seeding-done eligible_exposures=61 seeded=56 multi_exposure_entry_blocks=5 collapsed_contextual_aliases=5 excluded_dependency=0 excluded_interface=18 excluded_library=0 excluded_abstract=47 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=2fa718c03fdd879ac333e92a2c5b63e30da1224e5186949eabc4b180a493d573 candidate_count=2 candidate_digest=da28e3994c400ecb4684606847814fc0e10c4d0fea363cdc53796697cf7889f7 context_instance_count=36 eligible_readers=231 eligible_writers=14 execution_context_digest=3c3a16c21e4f7fdb2a217867183f8e4d43506a498bda45d0748efd07bf2af224 insensitive_readers_filtered=9 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=319 owner_context_pairs=57 owner_context_pairs_considered=433 raw_block_pairs=242 reader_witness_count=57 relation_base_members_shadowed=12 relation_context_incompatible=0 relation_digest=9802e9867869099b9d5a8cdf6ee56bf039ae141c860c950140901d7729ae1314 relation_evidence_edges=218 relation_incompatible=24 relation_members_raw=90 relation_origins_registered=14 relation_origins_rejected_unary_after_shadowing=32 relation_origins_rejected_unreachable=20 relation_origins_seen=46 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=26 storage_context_mismatch=57 variables_considered=40
+INFO:Detectors:
+
+[MV-SI candidate 6491b229aba14c1da2b9] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:374
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate f59ec0df32e4d6e08491] {_operatorApprovals[$arg0][$arg1], _owners[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:374
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=0 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+INFO:Slither:. analyzed (54 contracts with 1 detectors), 2 result(s) found

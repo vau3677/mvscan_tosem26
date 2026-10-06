@@ -1,0 +1,651 @@
+'/tmp/.svm/0.8.19/solc-0.8.19 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> contracts/interfaces/common/IMulticall.sol
+
+
+Warning: Warning: Contract code size is 34888 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/core/InitCore.sol:28:1:
+   |
+28 | contract InitCore is IInitCore, Multicall, ReentrancyGuardUpgradeable, UnderACM {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 31823 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/core/PosManager.sol:19:1:
+   |
+19 | contract PosManager is IPosManager, UnderACM, ERC721EnumerableUpgradeable, ERC721HolderUpgradeable {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=3230 vars=190
+[mvscan-stage] root-seeding-done eligible_exposures=120 seeded=105 multi_exposure_entry_blocks=13 collapsed_contextual_aliases=15 excluded_dependency=0 excluded_interface=166 excluded_library=0 excluded_abstract=21 missing_entry_point=4 missing_entry_block=0
+[mvscan-pairs] call_target_digest=05d2b5f009dbec28845915f8df9c87f526f77178500bc8f1bcfce01532cb03f5 candidate_count=89 candidate_digest=acb15d50397eab069f9df16bd8e041fa64f09f68097e30dab437e7c1f9e0a805 context_instance_count=1200 eligible_readers=38 eligible_writers=44 execution_context_digest=3871292dcc8de6c632a8205a62a210dd933b38ce573b31ba95b48a484d4fc989 insensitive_readers_filtered=84 invalid_partial_write_filtered=0 must_full_relation_filtered=103 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=145 owner_context_pairs=1548 owner_context_pairs_considered=4524 raw_block_pairs=202 reader_witness_count=1548 relation_base_members_shadowed=0 relation_context_incompatible=1107 relation_digest=54320280721c85f97e6e7a5b84c0515daec80cdbde73c781072b27dad206b37b relation_members_raw=72 relation_origins_registered=10 relation_origins_rejected_unary_after_shadowing=48 relation_origins_rejected_unreachable=37 relation_origins_seen=58 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=7 scalar_variables_skipped=61 storage_context_mismatch=1621 variables_considered=71
+INFO:Detectors:
+
+[MV-SI candidate 030a192af3407b1c3c33] {_initialized, _initializing}
+ writer root       -> contracts/risk_manager/RiskManager.sol::RiskManager.initialize()
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0358c29f9ad86f586368] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.syncCash()
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 077d3aeb13ef20ed85cc] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.toSharesCurrent(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 0813899600f1e5f249bc] {_initialized, _initializing}
+ writer root       -> contracts/hook/MoneyMarketHook.sol::MoneyMarketHook.initialize()
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0bfbdb1030c7a1445e15] {_initialized, _initializing}
+ writer root       -> contracts/core/Config.sol::Config.initialize()
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0c032f3ba573ab5f4b72] {_initialized, _initializing}
+ writer root       -> contracts/core/LiqIncentiveCalculator.sol::LiqIncentiveCalculator.initialize(uint256)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0f299eff38f2c703962c] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.debtAmtToShareCurrent(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 11ccfd5ae55783e56b2c] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.mint(address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 11ea85aa8809fc1d5368] {_operatorApprovals, _owners}
+ writer root       -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.setApprovalForAll(address,bool)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol:383
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ reader witnesses  -> 12
+ storage exposures -> 2
+[MV-SI candidate 11f5a7c72b029bd4f75c] {_initialized, _initializing}
+ writer root       -> contracts/core/PosManager.sol::PosManager.initialize(string,string,address,uint8)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 173ce1f4532ce137d4e9] {initPosIds, lastPosIds}
+ writer root       -> contracts/hook/MoneyMarketHook.sol::MoneyMarketHook.execute(IMoneyMarketHook.OperationParams)
+ writer effect     -> contracts/hook/MoneyMarketHook.sol:85
+ written member    -> ('SV', 'contracts/hook/MoneyMarketHook.sol', 'MoneyMarketHook.lastPosIds')
+ potentially stale -> ('SV', 'contracts/hook/MoneyMarketHook.sol', 'MoneyMarketHook.initPosIds')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 1a016eb2098189ab9479] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.initialize(address,string,string,address,uint256,address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:87
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 1aee321a85285a062ba3] {_operatorApprovals, _owners}
+ writer root       -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol:359
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 20102936096bc8faa4c4] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.borrow(address,uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 379ea46f5dc2398b136c] {_operatorApprovals, _owners}
+ writer root       -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol:359
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 3b896cacddd46dea65b3] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.transferFrom(address,address,uint256)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol:348
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate 3dd1b8dc9a9bbe8dde4f] {_initialized, _initializing}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.initialize(address,string,string,address,uint256,address)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 4000d206c58a4b36a600] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.repay(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:143
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 42b6c20de029444307ca] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.setIrm(address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 42f577c128100c0956f7] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.debtShareToAmtCurrent(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:167
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 42f7e25fabf685cff366] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.repay(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 50e5f4d617a25bcdcb1f] {_initialized, _initializing}
+ writer root       -> contracts/core/InitCore.sol::InitCore.initialize(address,address,address,address)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 583f8a33a31c24c6868d] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.burn(address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:118
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 5a293da06186fbe11795] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.accrueInterest()
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 5e35769a0dbe4ab72d93] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.burn(address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 5fffe966dd437cd8215a] {_initialized, _initializing}
+ writer root       -> contracts/oracle/InitOracle.sol::InitOracle.initialize()
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 603e19f53f854e43ff6e] {_initialized, _initializing}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.initialize(address,string,string,address,uint256,address)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 624e278838f3988069a7] {_initialized, _initializing}
+ writer root       -> contracts/oracle/PythOracleReader.sol::PythOracleReader.initialize(address)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6303c90b9a2105180c6c] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.syncCash()
+ writer effect     -> contracts/lending_pool/LendingPool.sol:167
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 63bc00cf32f316dcddc2] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol:359
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate 648c4e22a8c49eec4fe0] {_initialized, _initializing}
+ writer root       -> contracts/core/PosManager.sol::PosManager.initialize(string,string,address,uint8)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6b767c594311eb07197a] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.setReserveFactor_e18(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:167
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 78a0fd836afa2ce4282f] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.toSharesCurrent(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 78acefb1cca0efc412fc] {_initialized, _initializing}
+ writer root       -> contracts/core/LiqIncentiveCalculator.sol::LiqIncentiveCalculator.initialize(uint256)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7a1dc547cbc7dd504e31] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.toSharesCurrent(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:167
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 7da376018b204b152b4c] {_initialized, _initializing}
+ writer root       -> contracts/oracle/InitOracle.sol::InitOracle.initialize()
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7f9e57d1db4b234b694b] {_operatorApprovals, _owners}
+ writer root       -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.transferFrom(address,address,uint256)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol:359
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 81c3e59d6271ad97c0a4] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.setIrm(address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:167
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 83ccb930ed75e5701f39] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.burn(address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 84e563fd7d6f8247fe02] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol:348
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate 8b7bdbdec66494d72c2d] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.debtShareToAmtCurrent(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 8f02f32120f99c38ac27] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.borrow(address,uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:167
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 94dedff3942dce6a82cc] {_initialized, _initializing}
+ writer root       -> contracts/oracle/Api3OracleReader.sol::Api3OracleReader.initialize(address)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 95e648c7027e02445c76] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol:359
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate 992c09145028f9f7cef1] {initPosIds, lastPosIds}
+ writer root       -> contracts/hook/MoneyMarketHook.sol::MoneyMarketHook.execute(IMoneyMarketHook.OperationParams)
+ writer effect     -> contracts/hook/MoneyMarketHook.sol:87
+ written member    -> ('SV', 'contracts/hook/MoneyMarketHook.sol', 'MoneyMarketHook.initPosIds')
+ potentially stale -> ('SV', 'contracts/hook/MoneyMarketHook.sol', 'MoneyMarketHook.lastPosIds')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 9aeffa22b77b435401c4] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol:348
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate 9c0b07f21f15d11b459d] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.accrueInterest()
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate a0d844e5fc42af35760c] {_initialized, _initializing}
+ writer root       -> contracts/oracle/InitOracle.sol::InitOracle.initialize()
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a86067b4b0011793a709] {_initialized, _initializing}
+ writer root       -> contracts/core/Config.sol::Config.initialize()
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate aa284328298c62b2defb] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.transferFrom(address,address,uint256)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol:359
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate aa664b54e34d6f172d95] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.toAmtCurrent(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate acd3c383a2d2456ed4ce] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.burn(address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:167
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate ad4fdd0d45db78635dbc] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.setReserveFactor_e18(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate aede2bb609249853405f] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.borrow(address,uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:130
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate b0613d19a644af9242d3] {_initialized, _initializing}
+ writer root       -> contracts/hook/MoneyMarketHook.sol::MoneyMarketHook.initialize()
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b401fa6600036af7360a] {_initialized, _initializing}
+ writer root       -> contracts/core/InitCore.sol::InitCore.initialize(address,address,address,address)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b47bc4d7b3a53a820a92] {_initialized, _initializing}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.initialize(address,string,string,address,uint256,address)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b4b78645b93c0438d38b] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.mint(address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:167
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate b555b8aaaae0b9cbf385] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.initialize(address,string,string,address,uint256,address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:88
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate b8175b3d04a5baa9cf30] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.setReserveFactor_e18(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate bdfa563a5d9fe582cbcb] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.toAmtCurrent(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate bf39ca9eb85360a62b87] {_initialized, _initializing}
+ writer root       -> contracts/core/PosManager.sol::PosManager.initialize(string,string,address,uint8)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c24ab0c73097820691d2] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.mint(address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:107
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate c29d42872399e4405a45] {_initialized, _initializing}
+ writer root       -> contracts/core/LiqIncentiveCalculator.sol::LiqIncentiveCalculator.initialize(uint256)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c3c4e4f0c603d697249a] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.setIrm(address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate c426ccbd2fb169218b42] {_operatorApprovals, _owners}
+ writer root       -> contracts/core/PosManager.sol::PosManager.createPos(address,uint16,address)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol:286
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c4ff3e3845553e302ec7] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.approve(address,uint256)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol:372
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate c51c166d4cca4236158d] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.syncCash()
+ writer effect     -> contracts/lending_pool/LendingPool.sol:151
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate c60aa1f89be75182cd0e] {_initialized, _initializing}
+ writer root       -> contracts/core/InitCore.sol::InitCore.initialize(address,address,address,address)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate cc3429030cdbd0458b7a] {_initialized, _initializing}
+ writer root       -> contracts/oracle/PythOracleReader.sol::PythOracleReader.initialize(address)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d447ac2ec6f6a0afe38c] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.repay(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:167
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate d477f947137c8cd2975f] {_initialized, _initializing}
+ writer root       -> contracts/hook/MoneyMarketHook.sol::MoneyMarketHook.initialize()
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d5e9f2c2c4602e19e90a] {_initialized, _initializing}
+ writer root       -> contracts/oracle/Api3OracleReader.sol::Api3OracleReader.initialize(address)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d9397eed81f0626b0131] {_initialized, _initializing}
+ writer root       -> contracts/oracle/PythOracleReader.sol::PythOracleReader.initialize(address)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate db9e696e9a7e032fab69] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.debtAmtToShareCurrent(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate dc45dd7a4c4d9b9abce5] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.accrueInterest()
+ writer effect     -> contracts/lending_pool/LendingPool.sol:167
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate de1700c8a8d13b4b2525] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.mint(address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate e0f1dc372a24f8cc77db] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.repay(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:143
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate e134e6d1d463c9629cf5] {_initialized, _initializing}
+ writer root       -> contracts/risk_manager/RiskManager.sol::RiskManager.initialize()
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e343997a41bb5e4ae65b] {_initialized, _initializing}
+ writer root       -> contracts/oracle/Api3OracleReader.sol::Api3OracleReader.initialize(address)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ecf38eba786dcd93ad1a] {_initialized, _initializing}
+ writer root       -> contracts/risk_manager/RiskManager.sol::RiskManager.initialize()
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ed2114d995090ae4d981] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.debtAmtToShareCurrent(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:167
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate f0277aaa1a18e281ab93] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.syncCash()
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate f156d595d7859f19188b] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/core/PosManager.sol::PosManager.createPos(address,uint16,address)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol:286
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals'), ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate f45087c16fc9672245ac] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.setReserveFactor_e18(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:240
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate f46df8db860e6e346427] {_initialized, _initializing}
+ writer root       -> contracts/core/Config.sol::Config.initialize()
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f6efb1cd058c36e13069] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.setApprovalForAll(address,bool)
+ writer effect     -> contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol:383
+ written member    -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners'), ('SV', 'contracts/.cache/OpenZeppelin-Upgradeable/v4.9.3/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals')
+ reader witnesses  -> 72
+ storage exposures -> 2
+[MV-SI candidate f84897cc7d26863ccf6f] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.debtShareToAmtCurrent(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate fe6cd22783aff3c3d337] {lastAccruedTime, reserveFactor_e18, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.toAmtCurrent(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:167
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.lastAccruedTime')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.reserveFactor_e18'), ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 27
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (92 contracts with 1 detectors), 89 result(s) found

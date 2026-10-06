@@ -1,0 +1,261 @@
+'/tmp/.svm/0.8.24/solc-0.8.24 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=2928 vars=106
+[mvscan-stage] root-seeding-done eligible_exposures=99 seeded=65 multi_exposure_entry_blocks=16 collapsed_contextual_aliases=34 excluded_dependency=0 excluded_interface=127 excluded_library=0 excluded_abstract=14 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=e3e9099088163bbedf89c10c23d6ceab5ed42f84b038e24762344b56a74c6e91 candidate_count=36 candidate_digest=676d914d8f8862e41f031b127757df0a8c2fb43c0832b474dd301a2d10c487e4 context_instance_count=127 eligible_readers=66 eligible_writers=36 execution_context_digest=2f03b04cf7bde55e8fe347efea974dbb855e088699e795ac8afe65c759f3108b insensitive_readers_filtered=39 invalid_partial_write_filtered=24 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=21 owner_context_pairs=167 owner_context_pairs_considered=1775 raw_block_pairs=218 reader_witness_count=167 relation_base_members_shadowed=40 relation_context_incompatible=648 relation_digest=d03b5bd74565b5ab53de4f53ae4f4dc8c099be1df12c21b9f677f541d9083145 relation_members_raw=129 relation_origins_registered=12 relation_origins_rejected_unary_after_shadowing=64 relation_origins_seen=76 relation_unbound_key_templates=46 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=6 scalar_variables_skipped=56 storage_context_mismatch=915 variables_considered=68
+INFO:Detectors:
+
+[MV-SI candidate 019e96fbf8b96cc96d43] {tokenOwner[$arg0], transformedTokenId, transformerAllowList[$sender]}
+ writer root       -> src/V3Vault.sol::V3Vault.transform(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:508
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.tokenOwner', '$arg0'), ('MS', 'src/V3Vault.sol', 'V3Vault.transformerAllowList', '$sender')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 0318ac5c5d219f5a7224] {_owner, emergencyAdmin}
+ writer root       -> src/V3Vault.sol::V3Vault.setEmergencyAdmin(address)
+ writer effect     -> src/V3Vault.sol:871
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.emergencyAdmin')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/access/Ownable.sol', 'Ownable._owner')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 0c6f3a82f7b6f23074bf] {_owner, emergencyAdmin}
+ writer root       -> lib/openzeppelin-contracts/contracts/access/Ownable.sol::Ownable.renounceOwnership()
+ writer effect     -> lib/openzeppelin-contracts/contracts/access/Ownable.sol:80
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.emergencyAdmin')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 142a57d9dd730f28a28f] {_totalSupply, globalLendLimit}
+ writer root       -> src/V3Vault.sol::V3Vault.deposit(uint256,address,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol:264
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.globalLendLimit')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 143ddbdec10c1a21c2b9] {tokenOwner[$arg0], transformedTokenId, transformerAllowList[$sender]}
+ writer root       -> src/V3Vault.sol::V3Vault.setTransformer(address,bool)
+ writer effect     -> src/V3Vault.sol:797
+ written member    -> ('MS', 'src/V3Vault.sol', 'V3Vault.transformerAllowList', '$sender')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.tokenOwner', '$arg0'), ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 17a623e77e90cf899412] {ownedTokens, ownedTokensIndex[$arg1]}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool,bytes)
+ writer effect     -> src/V3Vault.sol:1311
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex', '$arg1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 2b16715292849b29d970] {operators[$sender], vaults[$arg1]}
+ writer root       -> src/automators/Automator.sol::Automator.setOperator(address,bool)
+ writer effect     -> src/automators/Automator.sol:71
+ written member    -> ('MS', 'src/automators/Automator.sol', 'Automator.operators', '$sender')
+ potentially stale -> ('MS', 'src/automators/Automator.sol', 'Automator.vaults', '$arg1')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate 2d725bea930964b9fe9c] {ownedTokens, ownedTokensIndex[$arg1]}
+ writer root       -> src/V3Vault.sol::V3Vault.liquidate(IVault.LiquidateParams)
+ writer effect     -> src/V3Vault.sol:1311
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex', '$arg1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 3b4f7882d858483e9040] {ownedTokens, ownedTokensIndex[$arg1]}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool)
+ writer effect     -> src/V3Vault.sol:1304
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex', '$arg1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 3b9dd5eb1c3e66abad16] {_totalSupply, globalLendLimit}
+ writer root       -> src/V3Vault.sol::V3Vault.deposit(uint256,address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol:264
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.globalLendLimit')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3e791dccda64261949ad] {_totalSupply, globalLendLimit}
+ writer root       -> src/V3Vault.sol::V3Vault.setLimits(uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> src/V3Vault.sol:819
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.globalLendLimit')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 4624f949276d7b76cc7a] {transformedTokenId, transformerAllowList[$sender]}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:458
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.transformerAllowList', '$sender')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 526f1536e8462809f687] {operators[$sender], vaults[$sender]}
+ writer root       -> src/automators/Automator.sol::Automator.setOperator(address,bool)
+ writer effect     -> src/automators/Automator.sol:71
+ written member    -> ('MS', 'src/automators/Automator.sol', 'Automator.operators', '$sender')
+ potentially stale -> ('MS', 'src/automators/Automator.sol', 'Automator.vaults', '$sender')
+ reader witnesses  -> 10
+ storage exposures -> 2
+[MV-SI candidate 57743741f9a14b589ac2] {ownedTokens, ownedTokensIndex[$arg1]}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1311
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex', '$arg1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 6801f2cff06081cf15a7] {transformedTokenId, transformerAllowList[$sender]}
+ writer root       -> src/V3Vault.sol::V3Vault.setTransformer(address,bool)
+ writer effect     -> src/V3Vault.sol:797
+ written member    -> ('MS', 'src/V3Vault.sol', 'V3Vault.transformerAllowList', '$sender')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 7186aaa596b71cd368c1] {_totalSupply, globalLendLimit}
+ writer root       -> src/V3Vault.sol::V3Vault.mint(uint256,address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol:264
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.globalLendLimit')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 81e45e99b99a922d230e] {_owner, emergencyAdmin}
+ writer root       -> lib/openzeppelin-contracts/contracts/access/Ownable.sol::Ownable.transferOwnership(address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/access/Ownable.sol:80
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', 'src/V3Oracle.sol', 'V3Oracle.emergencyAdmin')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 82789bb57810370c8952] {transformedTokenId, transformerAllowList[$sender]}
+ writer root       -> src/V3Vault.sol::V3Vault.transform(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:508
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.transformerAllowList', '$sender')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 82c4e876b14db6eb475d] {ownedTokens, ownedTokensIndex[$arg1]}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool)
+ writer effect     -> src/V3Vault.sol:1311
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex', '$arg1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 82cb43f00bdf57757283] {_totalSupply, globalLendLimit}
+ writer root       -> src/V3Vault.sol::V3Vault.withdraw(uint256,address,address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol:295
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.globalLendLimit')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 88c3c399dc95179e3ee3] {transformedTokenId, transformerAllowList[$sender]}
+ writer root       -> src/V3Vault.sol::V3Vault.transform(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:542
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.transformerAllowList', '$sender')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 99b36dd2c9521af6f371] {ownedTokens, ownedTokensIndex[$arg1]}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1304
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex', '$arg1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 9c96c45d8dda9161369d] {_owner, emergencyAdmin}
+ writer root       -> lib/openzeppelin-contracts/contracts/access/Ownable.sol::Ownable.renounceOwnership()
+ writer effect     -> lib/openzeppelin-contracts/contracts/access/Ownable.sol:80
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', 'src/V3Oracle.sol', 'V3Oracle.emergencyAdmin')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a0c410b785da428c9e8e] {tokenOwner[$arg0], transformApprovals[@local::src/V3Vault.sol::V3Vault.transform(uint256,address,bytes)::LocalVariable::loanOwner_1][$arg0][$sender]}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1300
+ written member    -> ('MS', 'src/V3Vault.sol', 'V3Vault.tokenOwner', '$arg0')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.transformApprovals', '@local::src/V3Vault.sol::V3Vault.transform(uint256,address,bytes)::LocalVariable::loanOwner_1][$arg0][$sender')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a0e38ac3f3ae652756cb] {ownedTokens, ownedTokensIndex[$arg1]}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1299
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex', '$arg1')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate a6b725bc3d973f6a40f4] {operators[$sender], vaults[$arg1]}
+ writer root       -> src/automators/Automator.sol::Automator.setVault(address,bool)
+ writer effect     -> src/automators/Automator.sol:81
+ written member    -> ('MS', 'src/automators/Automator.sol', 'Automator.vaults', '$arg1')
+ potentially stale -> ('MS', 'src/automators/Automator.sol', 'Automator.operators', '$sender')
+ reader witnesses  -> 10
+ storage exposures -> 3
+[MV-SI candidate b61d94040dc29d995e85] {_owner, emergencyAdmin}
+ writer root       -> lib/openzeppelin-contracts/contracts/access/Ownable.sol::Ownable.transferOwnership(address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/access/Ownable.sol:80
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.emergencyAdmin')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b6c659649c4f354df9f2] {operators[$sender], vaults[$sender]}
+ writer root       -> src/automators/Automator.sol::Automator.setVault(address,bool)
+ writer effect     -> src/automators/Automator.sol:81
+ written member    -> ('MS', 'src/automators/Automator.sol', 'Automator.vaults', '$sender')
+ potentially stale -> ('MS', 'src/automators/Automator.sol', 'Automator.operators', '$sender')
+ reader witnesses  -> 10
+ storage exposures -> 3
+[MV-SI candidate c353239b81dfda36ca3f] {ownedTokens, ownedTokensIndex[$arg1]}
+ writer root       -> src/V3Vault.sol::V3Vault.liquidate(IVault.LiquidateParams)
+ writer effect     -> src/V3Vault.sol:1304
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex', '$arg1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c7e299df6d1aada10243] {_owner, emergencyAdmin}
+ writer root       -> src/V3Oracle.sol::V3Oracle.setEmergencyAdmin(address)
+ writer effect     -> src/V3Oracle.sol:266
+ written member    -> ('SV', 'src/V3Oracle.sol', 'V3Oracle.emergencyAdmin')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/access/Ownable.sol', 'Ownable._owner')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate df7755f08d99f5ea9ee6] {tokenOwner[$arg0], transformedTokenId, transformerAllowList[$sender]}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:458
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.tokenOwner', '$arg0'), ('MS', 'src/V3Vault.sol', 'V3Vault.transformerAllowList', '$sender')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e2fe0afd93081b54c7af] {_totalSupply, globalLendLimit}
+ writer root       -> src/V3Vault.sol::V3Vault.mint(uint256,address,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol:264
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.globalLendLimit')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e2ffedd39f136e08002c] {_totalSupply, globalLendLimit}
+ writer root       -> src/V3Vault.sol::V3Vault.redeem(uint256,address,address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol:295
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol', 'ERC20._totalSupply')
+ potentially stale -> ('SV', 'src/V3Vault.sol', 'V3Vault.globalLendLimit')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e56f337ec64107dd8569] {ownedTokens, ownedTokensIndex[$arg1]}
+ writer root       -> src/V3Vault.sol::V3Vault.repay(uint256,uint256,bool,bytes)
+ writer effect     -> src/V3Vault.sol:1304
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.ownedTokens')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.ownedTokensIndex', '$arg1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate ee3de23696c746deccd5] {tokenOwner[$arg0], transformedTokenId, transformerAllowList[$sender]}
+ writer root       -> src/V3Vault.sol::V3Vault.transform(uint256,address,bytes)
+ writer effect     -> src/V3Vault.sol:542
+ written member    -> ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.tokenOwner', '$arg0'), ('MS', 'src/V3Vault.sol', 'V3Vault.transformerAllowList', '$sender')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate ff3774b7d081e4c5424e] {tokenOwner[$arg0], transformedTokenId, transformerAllowList[$sender]}
+ writer root       -> src/V3Vault.sol::V3Vault.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/V3Vault.sol:1300
+ written member    -> ('MS', 'src/V3Vault.sol', 'V3Vault.tokenOwner', '$arg0')
+ potentially stale -> ('MS', 'src/V3Vault.sol', 'V3Vault.transformerAllowList', '$sender'), ('SV', 'src/V3Vault.sol', 'V3Vault.transformedTokenId')
+ reader witnesses  -> 14
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (63 contracts with 1 detectors), 36 result(s) found

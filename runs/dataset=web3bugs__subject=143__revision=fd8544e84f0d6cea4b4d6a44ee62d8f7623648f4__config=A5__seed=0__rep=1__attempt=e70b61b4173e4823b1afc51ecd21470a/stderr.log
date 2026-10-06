@@ -1,0 +1,36 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=4461 vars=283
+[mvscan-stage] root-seeding-done eligible_exposures=147 seeded=111 multi_exposure_entry_blocks=24 collapsed_contextual_aliases=36 excluded_dependency=0 excluded_interface=122 excluded_library=0 excluded_abstract=31 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=a8904838f24f4c1d5660f08e5cb5bdab446a92a02ae72354953048b4219d1065 candidate_count=4 candidate_digest=616057d765c90243be5d945f03527a3069a6ca70582203d69de14442049bcaeb context_instance_count=50 eligible_readers=18 eligible_writers=6 execution_context_digest=154e5cb51e42d9408291ffdb7da45098c6b75cc4ec5fd773fd2e1b64fe83ba80 insensitive_readers_filtered=32 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=8 owner_context_pairs=83 owner_context_pairs_considered=211 raw_block_pairs=18 reader_witness_count=83 relation_base_members_shadowed=50 relation_context_incompatible=0 relation_digest=b3a391063c37b29cee9de90b803c4b9a2223fcfd394889b21f2de7dd0fcc1253 relation_evidence_edges=13 relation_incompatible=5 relation_members_raw=190 relation_origins_registered=12 relation_origins_rejected_unary_after_shadowing=113 relation_origins_rejected_unreachable=39 relation_origins_seen=125 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=168 storage_context_mismatch=120 variables_considered=175
+INFO:Detectors:
+
+[MV-SI candidate 17cf685f446a545dbe99] {fee, isFeelessAddress[$sender]}
+ writer root       -> contracts/system_tests/TestDistributeHeldFee.sol::TestDistributeHeldFee.testHeldFeeReimburse(uint256,uint16,uint256)
+ writer effect     -> contracts/abstract/JBPayoutRedemptionPaymentTerminal.sol:627
+ written member    -> ('SV', 'contracts/abstract/JBPayoutRedemptionPaymentTerminal.sol', 'JBPayoutRedemptionPaymentTerminal.fee')
+ potentially stale -> ('MS', 'contracts/abstract/JBPayoutRedemptionPaymentTerminal.sol', 'JBPayoutRedemptionPaymentTerminal.isFeelessAddress', '$sender')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate 1895ed2b946422feebe6] {_primaryTerminalOf, _terminalsOf[$arg0][@local::contracts/JBDirectory.sol::JBDirectory.isTerminalOf(uint256,IJBPaymentTerminal)::LocalVariable::_i_1]}
+ writer root       -> contracts/JBDirectory.sol::JBDirectory.setPrimaryTerminalOf(uint256,address,IJBPaymentTerminal)
+ writer effect     -> contracts/JBDirectory.sol:313
+ written member    -> ('SV', 'contracts/JBDirectory.sol', 'JBDirectory._primaryTerminalOf')
+ potentially stale -> ('MS', 'contracts/JBDirectory.sol', 'JBDirectory._terminalsOf', '$arg0][@local::contracts/JBDirectory.sol::JBDirectory.isTerminalOf(uint256,IJBPaymentTerminal)::LocalVariable::_i_1')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6491b229aba14c1da2b9] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:374
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 44
+ storage exposures -> 2
+[MV-SI candidate f59ec0df32e4d6e08491] {_operatorApprovals[$arg0][$arg1], _owners[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:374
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 16
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (105 contracts with 1 detectors), 4 result(s) found

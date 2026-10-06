@@ -1,0 +1,436 @@
+'/tmp/.svm/0.8.17/solc-0.8.17 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1674 vars=121
+[mvscan-stage] root-seeding-done eligible_exposures=76 seeded=59 multi_exposure_entry_blocks=12 collapsed_contextual_aliases=17 excluded_dependency=0 excluded_interface=34 excluded_library=0 excluded_abstract=14 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=2a5e46a935aacdc2ae9fc6598d1a89822279dddf91eba98d2b4d61d2d98793e1 candidate_count=61 candidate_digest=befffc485ab65631bf36675a2fed58cf86247b79e149a4c2d1d91232845ab0e2 context_instance_count=1299 eligible_readers=51 eligible_writers=46 execution_context_digest=9b1097061d92eac8475868fe2904482f5e834188584194f760e97ff6db0b0881 insensitive_readers_filtered=85 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=2 owner_context_pairs=1847 owner_context_pairs_considered=4060 raw_block_pairs=378 reader_witness_count=1847 relation_base_members_shadowed=0 relation_context_incompatible=651 relation_digest=636c09896fbc6dba1ff802fb7c19aa3cefa07f0aa04eea6ad39e1f98313767b8 relation_members_raw=73 relation_origins_registered=9 relation_origins_rejected_unary_after_shadowing=43 relation_origins_rejected_unreachable=10 relation_origins_seen=52 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=13 scalar_variables_skipped=34 storage_context_mismatch=1560 variables_considered=43
+INFO:Detectors:
+
+[MV-SI candidate 03ea2eebf6e68e9f7e89] {_initialized, _initializing}
+ writer root       -> src/core/VaultManagerV2.sol::VaultManagerV2.setKeroseneManager(KerosineManager)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:89
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0668762a0c8ba6c93918] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.withdraw(uint256)
+ writer effect     -> src/staking/Staking.sol:47
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewards')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 0b765dba97d15b8bb453] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:48
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 0c0c19282397f4e60e7b] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.withdraw(uint256)
+ writer effect     -> src/staking/Staking.sol:48
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 0ceaf5489c16a4f5af6e] {_operatorApprovals, _owners}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 11649938b722ec529ff4] {_initialized, _initializing}
+ writer root       -> src/core/VaultManagerV2.sol::VaultManagerV2.setKeroseneManager(KerosineManager)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:91
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 233a8d531f491ef00a6f] {finishAt, rewardPerTokenStored, rewardRate, totalSupply, updatedAt}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:44
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply')
+ reader witnesses  -> 23
+ storage exposures -> 1
+[MV-SI candidate 24ef9069587296097217] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:369
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 114
+ storage exposures -> 2
+[MV-SI candidate 2b44f5bef5888815e4e2] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate 31a0cf72a8fc9c082a71] {finishAt, rewardPerTokenStored, rewardRate, totalSupply, updatedAt}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:124
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply')
+ reader witnesses  -> 23
+ storage exposures -> 1
+[MV-SI candidate 34d0a431b2a5144aa2e6] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.stake(uint256)
+ writer effect     -> src/staking/Staking.sol:47
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewards')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 3ce08126832fe56367c8] {finishAt, rewardPerTokenStored, rewardRate, totalSupply, updatedAt}
+ writer root       -> src/staking/Staking.sol::Staking.withdraw(uint256)
+ writer effect     -> src/staking/Staking.sol:44
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply')
+ reader witnesses  -> 23
+ storage exposures -> 1
+[MV-SI candidate 3e45ab85f5d358d2cdee] {duration, rewardRate}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:111
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.duration')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 48cfeb4880cd1127a06c] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:408
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners'), ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 126
+ storage exposures -> 2
+[MV-SI candidate 4b1a2985fd33deffeed1] {_operatorApprovals, _owners}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 4e59fef708b62a80b464] {_operatorApprovals, _owners}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 4f24d98b23e5ca159d85] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.withdraw(uint256)
+ writer effect     -> src/staking/Staking.sol:80
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 54129d72be0f6ba8fcca] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:44
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 580de61e0490b7e1d082] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.getReward()
+ writer effect     -> src/staking/Staking.sol:95
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewards')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 5c25f18e567e9b1c51a3] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> src/core/DNft.sol::DNft.mintNft(address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 5d74476c2d770c9b5f99] {duration, rewardRate}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:114
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.duration')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 5e2657e7155c005c0ad7] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:369
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 114
+ storage exposures -> 2
+[MV-SI candidate 5fdbb9f7df9f25df7811] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:47
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewards')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 64c3989a4609dc9e11ab] {_operatorApprovals, _owners}
+ writer root       -> src/core/DNft.sol::DNft.mintInsiderNft(address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 749542193cabee145748] {finishAt, rewardPerTokenStored, rewardRate, totalSupply, updatedAt}
+ writer root       -> src/staking/Staking.sol::Staking.withdraw(uint256)
+ writer effect     -> src/staking/Staking.sol:80
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ reader witnesses  -> 17
+ storage exposures -> 1
+[MV-SI candidate 782d8e84e4d50ad68b20] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:123
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 7dde6ac9921b064a81b2] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.stake(uint256)
+ writer effect     -> src/staking/Staking.sol:44
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 7eb1ac43eb5c8af0465b] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:114
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 839dd31cb843e59ad9e4] {_operatorApprovals, _owners}
+ writer root       -> src/core/DNft.sol::DNft.mintNft(address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 83f888dcc8692f10b39d] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.approve(address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:393
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 114
+ storage exposures -> 2
+[MV-SI candidate 84e35958b5bc5416e9ed] {finishAt, rewardPerTokenStored, rewardRate, totalSupply, updatedAt}
+ writer root       -> src/staking/Staking.sol::Staking.getReward()
+ writer effect     -> src/staking/Staking.sol:44
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply')
+ reader witnesses  -> 23
+ storage exposures -> 1
+[MV-SI candidate 84e8254e9defc9f111f9] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate 878969068de506489bcb] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.getReward()
+ writer effect     -> src/staking/Staking.sol:43
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate 8858d829ee5eb20a752d] {_initialized, _initializing}
+ writer root       -> src/core/VaultManagerV2.sol::VaultManagerV2.setKeroseneManager(KerosineManager)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:95
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 8af9eb7c322aac459e77] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.stake(uint256)
+ writer effect     -> src/staking/Staking.sol:48
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 8e4a91c3b08de8233072] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.withdraw(uint256)
+ writer effect     -> src/staking/Staking.sol:44
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 964f39c257b82b8ce2b3] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.stake(uint256)
+ writer effect     -> src/staking/Staking.sol:72
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 97559a27bbfeac420ff5] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:369
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 114
+ storage exposures -> 2
+[MV-SI candidate a28366d68cb5ff413946] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:43
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate a3297956070bebabf942] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.getReward()
+ writer effect     -> src/staking/Staking.sol:47
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewards')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate a46ca16745a2478b7540] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.withdraw(uint256)
+ writer effect     -> src/staking/Staking.sol:43
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate a818f67d304a0ff5e970] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.getReward()
+ writer effect     -> src/staking/Staking.sol:44
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate b1d559081b7a95876797] {finishAt, rewardPerTokenStored, rewardRate, totalSupply, updatedAt}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:123
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate b795c41cee3bd1940b9e] {finishAt, rewardPerTokenStored, rewardRate, totalSupply, updatedAt}
+ writer root       -> src/staking/Staking.sol::Staking.getReward()
+ writer effect     -> src/staking/Staking.sol:43
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate c80aebef8a6c42336b4a] {finishAt, rewardPerTokenStored, rewardRate, totalSupply, updatedAt}
+ writer root       -> src/staking/Staking.sol::Staking.stake(uint256)
+ writer effect     -> src/staking/Staking.sol:73
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ reader witnesses  -> 17
+ storage exposures -> 1
+[MV-SI candidate c93598e0c8d368d7e506] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.stake(uint256)
+ writer effect     -> src/staking/Staking.sol:73
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate d16276f3cf8fc7255580] {finishAt, rewardPerTokenStored, rewardRate, totalSupply, updatedAt}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:43
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate d25971d5a943b803d47e] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate da09ad498dfb4c65bbc1] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:124
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate da6e72928820f114ff0b] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> src/core/DNft.sol::DNft.mintInsiderNft(address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate e0e3615d01081969feb2] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.withdraw(uint256)
+ writer effect     -> src/staking/Staking.sol:79
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate e2531213ccce698b7570] {finishAt, rewardPerTokenStored, rewardRate, totalSupply, updatedAt}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:111
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate e2bd71093a43f12ce959] {finishAt, rewardPerTokenStored, rewardRate, totalSupply, updatedAt}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:114
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate e88294cd793100428e4b] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.stake(uint256)
+ writer effect     -> src/staking/Staking.sol:43
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate ec8cb86b839012ac1afb] {finishAt, rewardPerTokenStored, rewardRate, totalSupply, updatedAt}
+ writer root       -> src/staking/Staking.sol::Staking.withdraw(uint256)
+ writer effect     -> src/staking/Staking.sol:43
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate f1fa1807307394eb49df] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.notifyRewardAmount(uint256)
+ writer effect     -> src/staking/Staking.sol:111
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt'), ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate f2fd6cffaf449fb3bedd] {finishAt, rewardPerTokenStored, rewardRate, totalSupply, updatedAt}
+ writer root       -> src/staking/Staking.sol::Staking.stake(uint256)
+ writer effect     -> src/staking/Staking.sol:44
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply')
+ reader witnesses  -> 23
+ storage exposures -> 1
+[MV-SI candidate f40659019666227ee5cc] {balanceOf, finishAt, rewardPerTokenStored, rewardRate, rewards, totalSupply, updatedAt, userRewardPerTokenPaid}
+ writer root       -> src/staking/Staking.sol::Staking.getReward()
+ writer effect     -> src/staking/Staking.sol:48
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.userRewardPerTokenPaid')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.balanceOf'), ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.rewards'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate fdb29f14423b29d3825e] {duration, rewardRate}
+ writer root       -> src/staking/Staking.sol::Staking.setRewardsDuration(uint256)
+ writer effect     -> src/staking/Staking.sol:103
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.duration')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate ff212ab35f4cbdbc2c00] {finishAt, rewardPerTokenStored, rewardRate, totalSupply, updatedAt}
+ writer root       -> src/staking/Staking.sol::Staking.stake(uint256)
+ writer effect     -> src/staking/Staking.sol:43
+ written member    -> ('SV', 'src/staking/Staking.sol', 'Staking.rewardPerTokenStored')
+ potentially stale -> ('SV', 'src/staking/Staking.sol', 'Staking.finishAt'), ('SV', 'src/staking/Staking.sol', 'Staking.rewardRate'), ('SV', 'src/staking/Staking.sol', 'Staking.totalSupply'), ('SV', 'src/staking/Staking.sol', 'Staking.updatedAt')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate ff502bba4a96d430b247] {_operatorApprovals, _owners}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:408
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 30
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (44 contracts with 1 detectors), 61 result(s) found

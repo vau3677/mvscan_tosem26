@@ -1,0 +1,31 @@
+'/tmp/.svm/0.8.16/solc-0.8.16 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: Contract code size is 35203 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:14:1:
+   |
+14 | contract VRFCoordinatorV2 is
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1105 vars=65
+[mvscan-stage] root-seeding-done eligible_exposures=45 seeded=34 multi_exposure_entry_blocks=9 collapsed_contextual_aliases=11 excluded_dependency=0 excluded_interface=38 excluded_library=0 excluded_abstract=10 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=9cfba9af113e44f75e62e87402da40e6aca53947bdcf26ba4030f71b1330ae9f candidate_count=2 candidate_digest=edb7a1110a8681284490a689ee2fbffaa2a72cdddf49e21b9e95c71668312a5c context_instance_count=2 eligible_readers=27 eligible_writers=24 execution_context_digest=a82feaf3e03898a44da9fa039ac0f591a9150798f0faa6d11426cd2361160a0a insensitive_readers_filtered=10 invalid_partial_write_filtered=0 must_full_relation_filtered=15 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=2 owner_context_pairs_considered=304 raw_block_pairs=240 reader_witness_count=2 relation_base_members_shadowed=0 relation_context_incompatible=287 relation_digest=d2bab3c58c9d715e490fe2c37c551613dc8ce0d72c2242d3cf70393134f52251 relation_members_raw=9 relation_origins_registered=3 relation_origins_rejected_unary_after_shadowing=3 relation_origins_rejected_unreachable=33 relation_origins_seen=6 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=14 scalar_variables_skipped=32 storage_context_mismatch=0 variables_considered=35
+INFO:Detectors:
+
+[MV-SI candidate ce55d3fe938f31f22b21] {s_config, s_fallbackWeiPerUnitLink}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.fulfillRandomWords(VRF.Proof,VRFCoordinatorV2.RequestCommitment)
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:574
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_config')
+ potentially stale -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_fallbackWeiPerUnitLink')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f86b709a92498d71ce89] {s_config, s_fallbackWeiPerUnitLink}
+ writer root       -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol::VRFCoordinatorV2.fulfillRandomWords(VRF.Proof,VRFCoordinatorV2.RequestCommitment)
+ writer effect     -> node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol:576
+ written member    -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_config')
+ potentially stale -> ('SV', 'node_modules/@chainlink/contracts/src/v0.8/VRFCoordinatorV2.sol', 'VRFCoordinatorV2.s_fallbackWeiPerUnitLink')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (38 contracts with 1 detectors), 2 result(s) found

@@ -1,0 +1,1010 @@
+'/tmp/.svm/0.8.0/solc-0.8.0 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> contracts/UniswapStyleLib.sol
+
+
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> interfaces/IWETH.sol
+
+
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> libraries/UniswapStyleLib.sol
+
+
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> node_modules/@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol
+
+
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> node_modules/@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1996 vars=104
+[mvscan-stage] root-seeding-done eligible_exposures=123 seeded=94 multi_exposure_entry_blocks=5 collapsed_contextual_aliases=29 excluded_dependency=0 excluded_interface=25 excluded_library=0 excluded_abstract=67 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=b01378dff2eca13aa93970dc42cc8571c476b03de21edeb775c30cbad2371760 candidate_count=140 candidate_digest=57cca93e5301a5d2251db49f153bbb998cf3f16babece80f30f96538041cefe4 context_instance_count=1900 eligible_readers=272 eligible_writers=153 execution_context_digest=39a1421e7a13d56c582a94bcd61eda9dd58b4912d8487dfcd6603054cd518494 insensitive_readers_filtered=176 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=3126 owner_context_pairs=3630 owner_context_pairs_considered=14294 raw_block_pairs=1834 reader_witness_count=3630 relation_base_members_shadowed=0 relation_context_incompatible=5634 relation_digest=aef3738044b2b687f0b9ed33bd033f19272d40103230ab14b4c8138786ea45cb relation_members_raw=176 relation_origins_registered=25 relation_origins_rejected_unary_after_shadowing=97 relation_origins_rejected_unreachable=8 relation_origins_seen=122 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=84 scalar_variables_skipped=70 storage_context_mismatch=1904 variables_considered=95
+INFO:Detectors:
+
+[MV-SI candidate 00cdbeae221e81985211] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.setTokenCap(address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:32
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 00f47da27638b3f7666b] {tokenCaps, totalLong}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerBorrow(address,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:112
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 02e7bb6751c461279fc5] {currentMaintenanceStaker, maintenanceDelegateTo}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 06b3c3c28716c51c878a] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.withdrawStake(uint256)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.failureThreshold'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 086d60f41484fbc33169] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.isAuthorizedStaker(address)
+ writer effect     -> contracts/Admin.sol:145
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate 09478bc25ff1963f17f1] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.disburseLiqStakeAttacks(address[])
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 09727efbbf5c2d51d014] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 09b8a1b8460fc18cdd53] {maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.setMaintenanceStakePerBlock(uint256)
+ writer effect     -> contracts/Admin.sol:56
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 0c0aa4e1ed529d765f4b] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.removeDelegate(address,address)
+ writer effect     -> contracts/Admin.sol:200
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.failureThreshold'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate 0ed05193025993168e36] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.failureThreshold'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 0f8c67763e4140d95582] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.failureThreshold'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 10f799c5ad943ef1fb06] {maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.disburseLiqStakeAttacks(address[])
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 13
+ storage exposures -> 1
+[MV-SI candidate 1163c8a1b0ed4195eada] {tokenCaps, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerOvercollateralizedBorrow(address,address,uint256,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:111
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 1394db8d28d45b2b7d48] {maxRuntime, minRuntime}
+ writer root       -> contracts/BondLending.sol::BondLending.setMaxRuntime(uint256)
+ writer effect     -> contracts/BondLending.sol:230
+ written member    -> ('SV', 'contracts/BondLending.sol', 'BondLending.maxRuntime')
+ potentially stale -> ('SV', 'contracts/BondLending.sol', 'BondLending.minRuntime')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 14ffebaa08929c2c9eeb] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.penalizeMaintenanceStake(address,uint256,address)
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 1597b237253da17064c9] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.depositMaintenanceStake(uint256)
+ writer effect     -> contracts/Admin.sol:62
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 164f25129f2f9fc020fb] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.isAuthorizedStaker(address)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.failureThreshold'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 1d930cbd85e263722a51] {currentMaintenanceStaker, maintenanceDelegateTo}
+ writer root       -> contracts/Admin.sol::Admin.isAuthorizedStaker(address)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 1df93e98df52a32e1afd] {tokenCaps, totalShort}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/CrossMarginAccounts.sol:318
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 1f149a05af9d9eff5e33] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.withdrawStake(uint256)
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 1f176ad0ce775dd78d0c] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerTradeAndBorrow(address,address,address,uint256,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:203
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 2041b305338d7aa421b0] {maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.disburseLiqStakeAttacks(address[])
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 13
+ storage exposures -> 1
+[MV-SI candidate 209042c73c7185b9994f] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 209dd3fa7a31428bf8c2] {tokenCaps, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerTradeAndBorrow(address,address,address,uint256,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:216
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 221952825de532759cac] {currentMaintenanceStaker, maintenanceDelegateTo}
+ writer root       -> contracts/Admin.sol::Admin.withdrawStake(uint256)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 2391943e8b482a9485bd] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.depositMaintenanceStake(uint256)
+ writer effect     -> contracts/Admin.sol:145
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate 23e6fbcf7e261b9f9d45] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.depositMaintenanceStake(uint256)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 23f9874a2e074f2a0485] {tokenCaps, totalLong}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.setTokenCap(address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:32
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 264654ff90ad05d51832] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 272fe6a68af499d2cfea] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.disburseLiqStakeAttacks(address[])
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 278f63073092d6906791] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.failureThreshold'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 281fe6100f4532d37f4b] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.getUpdatedCurrentStaker()
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.failureThreshold'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 29875272ffeebe036768] {maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 13
+ storage exposures -> 1
+[MV-SI candidate 2e99f693a956a8673558] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/CrossMarginAccounts.sol:325
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 31cd3764db0729c281e0] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerTradeAndBorrow(address,address,address,uint256,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:204
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 32694e0ad827583b1ab3] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.getUpdatedCurrentStaker()
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 348481c2800f40d752ca] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.addDelegate(address,address)
+ writer effect     -> contracts/Admin.sol:190
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.failureThreshold'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate 3741a0a87931649475ae] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.isAuthorizedStaker(address)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.failureThreshold'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 39ce22bd4faddf1e2c02] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.isAuthorizedStaker(address)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.failureThreshold'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 4193212903d45ce38ba5] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerDeposit(address,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:70
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 43370f9f91c7fc10b537] {currentMaintenanceStaker, maintenanceDelegateTo}
+ writer root       -> contracts/Admin.sol::Admin.withdrawStake(uint256)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 43af84bfa07cc2d25d92] {currentMaintenanceStaker, maintenanceDelegateTo}
+ writer root       -> contracts/Admin.sol::Admin.isAuthorizedStaker(address)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 43b137f95d4f59f3a3cc] {currentMaintenanceStaker, maintenanceDelegateTo}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 45512f5846a9f70f9112] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.depositMaintenanceStake(uint256)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.failureThreshold'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 496131cddd50723cc0e4] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.getUpdatedCurrentStaker()
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 4ce326c1d98acf89f220] {maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.withdrawStake(uint256)
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 13
+ storage exposures -> 1
+[MV-SI candidate 4e43cc5195a1eb73f60f] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/CrossMarginAccounts.sol:318
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 51a70b8b3cdeab33fd79] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 51e8be548e38f67e55d4] {tokenCaps, totalLong}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerDeposit(address,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:85
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 52042730d79a8e057b99] {tokenCaps, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.setTokenCap(address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:32
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 539674269b9d51af227e] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.getUpdatedCurrentStaker()
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 55a40b0e5b96a8cd78e8] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 57a28ebdb090fe2afd58] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.isAuthorizedStaker(address)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 57e910d00df4f80f3c56] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerLiquidation(address)
+ writer effect     -> contracts/CrossMarginAccounts.sol:325
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 5ec254ee18b394b6ab6e] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerOvercollateralizedBorrow(address,address,uint256,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:146
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 61f195c08b9e9edf03dd] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerDeposit(address,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:85
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 64a7531e1c89376d7e20] {tokenCaps, totalLong}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerLiquidation(address)
+ writer effect     -> contracts/CrossMarginAccounts.sol:325
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 65970e5c2697e80fc5d0] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.withdrawStake(uint256)
+ writer effect     -> contracts/Admin.sol:145
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate 65fb56183f48e5187084] {currentMaintenanceStaker, maintenanceDelegateTo}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 6825d189ab28bbc7c8ab] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 68b71750bfae54fdd820] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.removeDelegate(address,address)
+ writer effect     -> contracts/Admin.sol:200
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.failureThreshold'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate 6b13eb9927b5f8d4fc8b] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.depositStake(uint256)
+ writer effect     -> contracts/Admin.sol:62
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 6d50ae4f3b6d6cca58c5] {currentMaintenanceStaker, maintenanceDelegateTo}
+ writer root       -> contracts/Admin.sol::Admin.getUpdatedCurrentStaker()
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 6ff50a8b441ca1569454] {currentMaintenanceStaker, maintenanceDelegateTo}
+ writer root       -> contracts/Admin.sol::Admin.addDelegate(address,address)
+ writer effect     -> contracts/Admin.sol:190
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate 70d8450d736f1940a463] {maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 13
+ storage exposures -> 1
+[MV-SI candidate 725586fc4d32ffeec5a1] {tokenCaps, totalLong}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerOvercollateralizedBorrow(address,address,uint256,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:85
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 728f839e44685c5aa8bf] {maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.depositMaintenanceStake(uint256)
+ writer effect     -> contracts/Admin.sol:62
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 13
+ storage exposures -> 1
+[MV-SI candidate 7310a3d6b481b0d4c567] {tokenCaps, totalLong}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/CrossMarginAccounts.sol:325
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 74ee3befe15bfbfad8b7] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.getUpdatedCurrentStaker()
+ writer effect     -> contracts/Admin.sol:145
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate 7b374a68074f695a44c9] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 7c05b8156a949f9b639d] {maxRuntime, minRuntime}
+ writer root       -> contracts/BondLending.sol::BondLending.setMinRuntime(uint256)
+ writer effect     -> contracts/BondLending.sol:221
+ written member    -> ('SV', 'contracts/BondLending.sol', 'BondLending.minRuntime')
+ potentially stale -> ('SV', 'contracts/BondLending.sol', 'BondLending.maxRuntime')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7f0fe03f45c853f529b5] {currentMaintenanceStaker, maintenanceDelegateTo}
+ writer root       -> contracts/Admin.sol::Admin.removeDelegate(address,address)
+ writer effect     -> contracts/Admin.sol:200
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate 7f2453ab9ecb55859419] {tokenCaps, totalLong}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerTradeAndBorrow(address,address,address,uint256,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:203
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 7f4fdf79f773727126e4] {UPDATE_MAX_PEG_AMOUNT, UPDATE_MIN_PEG_AMOUNT}
+ writer root       -> contracts/PriceAware.sol::PriceAware.setUpdateMinPegAmount(uint256)
+ writer effect     -> contracts/PriceAware.sol:56
+ written member    -> ('SV', 'contracts/PriceAware.sol', 'PriceAware.UPDATE_MIN_PEG_AMOUNT')
+ potentially stale -> ('SV', 'contracts/PriceAware.sol', 'PriceAware.UPDATE_MAX_PEG_AMOUNT')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 82169cf4334a6538d570] {maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.depositStake(uint256)
+ writer effect     -> contracts/Admin.sol:62
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 13
+ storage exposures -> 1
+[MV-SI candidate 848131f0d47ac09fbcd6] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.failureThreshold'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 84f28797c92d232d34cf] {tokenCaps, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerDeposit(address,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:70
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 884b93105cee4ce80278] {tokenCaps, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerBorrow(address,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:111
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 8950f4327b49967440cf] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.failureThreshold'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 89c1939942175db48d27] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.depositMaintenanceStake(uint256)
+ writer effect     -> contracts/Admin.sol:62
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 8a89e3af6038226c245d] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.withdrawStake(uint256)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 8b9ba90c7f6d00deac49] {maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.penalizeMaintenanceStake(address,uint256,address)
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 13
+ storage exposures -> 1
+[MV-SI candidate 8bad9abb318d775c24f9] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.depositStake(uint256)
+ writer effect     -> contracts/Admin.sol:62
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 8c9aacfbd57ae1cc0af2] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.addDelegate(address,address)
+ writer effect     -> contracts/Admin.sol:190
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.failureThreshold'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate 8df89f5ef806b5b35dbc] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.isAuthorizedStaker(address)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 8f82817214f558712f4d] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerWithdrawal(address,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:146
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 9327a1a50e2399278567] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.setMaintenanceStakePerBlock(uint256)
+ writer effect     -> contracts/Admin.sol:56
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 945acc92a6374fa7f19d] {tokenCaps, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerLiquidation(address)
+ writer effect     -> contracts/CrossMarginAccounts.sol:318
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 94746057ba4c82572ee7] {currentMaintenanceStaker, maintenanceDelegateTo}
+ writer root       -> contracts/Admin.sol::Admin.depositMaintenanceStake(uint256)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 9486c3c636af980429eb] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 96d41a1fe38a73352212] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerOvercollateralizedBorrow(address,address,uint256,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:111
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 97b24d39ac0ef45600c9] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.penalizeMaintenanceStake(address,uint256,address)
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 9954e65ada50f231ff60] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.depositMaintenanceStake(uint256)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.failureThreshold'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 9ef0b2ba0cef0c0bea26] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate a0ebfe12ddeb0452304e] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.withdrawStake(uint256)
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate a154380e7695804ebfcb] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.disburseLiqStakeAttacks(address[])
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate a372aaee0e3e47fce2b0] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.depositMaintenanceStake(uint256)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate a6a6ac0973dc36458975] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerBorrow(address,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:111
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate aaeb95712c0151e27913] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate ad6858e449285cba3e1e] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.getUpdatedCurrentStaker()
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.failureThreshold'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate ae82f10da4da7487786b] {currentMaintenanceStaker, maintenanceDelegateTo}
+ writer root       -> contracts/Admin.sol::Admin.getUpdatedCurrentStaker()
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate af06b17f34ef8ae04e3c] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.depositMaintenanceStake(uint256)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate b0e0f3901c2399df970b] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerTradeAndBorrow(address,address,address,uint256,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:201
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate b78a1dc1acdd0b892d7f] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.isAuthorizedStaker(address)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate b8a89fd93eddd9b8f730] {tokenCaps, totalLong}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerOvercollateralizedBorrow(address,address,uint256,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:112
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate bc48b7b2d441ad91d2a0] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.getUpdatedCurrentStaker()
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.failureThreshold'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate c03ee8f503234274a6b8] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerBorrow(address,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:112
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate c1d5314c9fee516373a9] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerLiquidation(address)
+ writer effect     -> contracts/CrossMarginAccounts.sol:318
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate c44ca3b1c4541458dfdb] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.depositMaintenanceStake(uint256)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.failureThreshold'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate c5642b47a09e4fffd773] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate c581526b7f2e4b5fbe1b] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerTradeAndBorrow(address,address,address,uint256,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:216
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate c5bf2eeb6791cf22d508] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.depositMaintenanceStake(uint256)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.failureThreshold'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate c761127e1aab3ed5c797] {UPDATE_MAX_PEG_AMOUNT, UPDATE_MIN_PEG_AMOUNT}
+ writer root       -> contracts/PriceAware.sol::PriceAware.setUpdateMaxPegAmount(uint256)
+ writer effect     -> contracts/PriceAware.sol:52
+ written member    -> ('SV', 'contracts/PriceAware.sol', 'PriceAware.UPDATE_MAX_PEG_AMOUNT')
+ potentially stale -> ('SV', 'contracts/PriceAware.sol', 'PriceAware.UPDATE_MIN_PEG_AMOUNT')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate c824e64d084c41bfd538] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.failureThreshold'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate cd7785837598af3d9db5] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.withdrawStake(uint256)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate cd7b521073bdf146e640] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.depositMaintenanceStake(uint256)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate ce9cec029cd5c0dfbd16] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.failureThreshold'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate ceb07cb2f39115a97d49] {tokenCaps, totalLong}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerOvercollateralizedBorrow(address,address,uint256,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:146
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate d0145d1ccf1687b07dbe] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.disburseLiqStakeAttacks(address[])
+ writer effect     -> contracts/Admin.sol:83
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate d1d057263787fac57d13] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.withdrawStake(uint256)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.failureThreshold'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate d25b844aeb1b1f62ce98] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerOvercollateralizedBorrow(address,address,uint256,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:112
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate d5a086ff1aebb9ce0243] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.setMaintenanceStakePerBlock(uint256)
+ writer effect     -> contracts/Admin.sol:56
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate dd2613dcdecb2baf5392] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.withdrawStake(uint256)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate dea664751c4e7ab8cf1b] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:145
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate e61143d9da7d4f4ffec9] {tokenCaps, totalLong, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerOvercollateralizedBorrow(address,address,uint256,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:85
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps'), ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate e796aa0eec671efc48ae] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.withdrawStake(uint256)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.failureThreshold'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate e8c54731eac6b051235f] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.getUpdatedCurrentStaker()
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate e9dd313d5904d871b3c7] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate eba084fd3ad8c0943ea8] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.withdrawStake(uint256)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate ecc5462e8b69f53f423f] {currentMaintenanceStaker, maintenanceDelegateTo}
+ writer root       -> contracts/Admin.sol::Admin.depositMaintenanceStake(uint256)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate f0ed4ea9e1beed1ed1ef] {currentMaintenanceStaker, maintenanceDelegateTo}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate f157781ae260bbe11594] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.withdrawStake(uint256)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.failureThreshold'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate f3084a99c705ef4da155] {tokenCaps, totalShort}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerTradeAndBorrow(address,address,address,uint256,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:201
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalShort')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate f482884f14eda649ee8c] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.getUpdatedCurrentStaker()
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.failureThreshold'), ('SV', 'contracts/IsolatedMarginLiquidation.sol', 'IsolatedMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate f4e2cf42cebdc31ff73f] {currentMaintenanceStaker, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/Admin.sol::Admin.isAuthorizedStaker(address)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate f5759053078b32c973a1] {tokenCaps, totalLong}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerTradeAndBorrow(address,address,address,uint256,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:204
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate f7ec3a1a1afd58be6254] {tokenCaps, totalLong}
+ writer root       -> contracts/CrossMarginTrading.sol::CrossMarginTrading.registerWithdrawal(address,address,uint256)
+ writer effect     -> contracts/CrossMarginTrading.sol:146
+ written member    -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.totalLong')
+ potentially stale -> ('SV', 'contracts/CrossMarginAccounts.sol', 'CrossMarginAccounts.tokenCaps')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate fb96021c6cde4a813817] {currentMaintenanceStaker, currentMaintenanceStakerStartBlock, maintenanceStakePerBlock, stakes}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:145
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStakerStartBlock')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker'), ('SV', 'contracts/Admin.sol', 'Admin.maintenanceStakePerBlock'), ('SV', 'contracts/Admin.sol', 'Admin.stakes')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate fdd8e75f4a946d0c4fac] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/Admin.sol::Admin.isAuthorizedStaker(address)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.failureThreshold'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate fe4ef932773c3614cf7b] {avgLiquidationPerCall, currentMaintenanceStaker, failureThreshold, maintenanceDelegateTo, maintenanceFailures}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('SV', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.avgLiquidationPerCall'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.failureThreshold'), ('SV', 'contracts/CrossMarginLiquidation.sol', 'CrossMarginLiquidation.maintenanceFailures')
+ reader witnesses  -> 9
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (29 contracts with 1 detectors), 140 result(s) found

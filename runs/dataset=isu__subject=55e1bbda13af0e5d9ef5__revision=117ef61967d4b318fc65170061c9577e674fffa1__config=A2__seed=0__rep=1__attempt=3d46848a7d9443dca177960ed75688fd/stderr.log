@@ -1,0 +1,198 @@
+'/tmp/.svm/0.8.25/solc-0.8.25 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=5668 vars=301
+[mvscan-stage] root-seeding-done eligible_exposures=160 seeded=127 multi_exposure_entry_blocks=12 collapsed_contextual_aliases=33 excluded_dependency=0 excluded_interface=304 excluded_library=0 excluded_abstract=22 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=b0387e54f7331ae4b504cfcdcff2df1d593accd237864df8daa016e04bba1e53 candidate_count=27 candidate_digest=486f33e758f72912d70eb6ffe0b1cb380adeff9c437d7e997eb85400262a750f context_instance_count=38 eligible_readers=8 eligible_writers=9 execution_context_digest=639da3edc5087a925b18aeb52a1aaafed3e599906ea69aa25ab2be58dc9eaf09 insensitive_readers_filtered=1 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=38 owner_context_pairs_considered=432 raw_block_pairs=24 reader_witness_count=38 relation_base_members_shadowed=6 relation_context_incompatible=43 relation_digest=6808c8a0222b5d8b4017f1ae39063515b85e4c28e0800683b3c665f68b82702f relation_members_raw=39 relation_origins_registered=3 relation_origins_rejected_unary_after_shadowing=27 relation_origins_seen=30 relation_unbound_key_templates=1 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=50 storage_context_mismatch=351 variables_considered=53
+INFO:Detectors:
+
+[MV-SI candidate 0cbf4cc7d22243f3f804] {_initialized, _initializing}
+ writer root       -> src/PriceOracle.sol::PriceOracle.initialize(address,address,uint256,address,uint256)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0e681008ea44f4a31333] {_initialized, _initializing}
+ writer root       -> src/yield/YieldRegistry.sol::YieldRegistry.initialize(address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 304df7709cce41e493f5] {_initialized, _initializing}
+ writer root       -> src/yield/YieldAccount.sol::YieldAccount.initialize(address,address)
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 318a2d543b311857db3f] {_initialized, _initializing}
+ writer root       -> src/AddressProvider.sol::AddressProvider.initialize()
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 32fef3bf018f6cdf1eeb] {_initialized, _initializing}
+ writer root       -> src/ACLManager.sol::ACLManager.initialize(address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 4283632a60f5b6c0fa3d] {_initialized, _initializing}
+ writer root       -> src/ACLManager.sol::ACLManager.initialize(address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 42d4a68fb5ac0d8d51cd] {_initialized, _initializing}
+ writer root       -> src/yield/YieldRegistry.sol::YieldRegistry.createYieldAccount(address)
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 4dbf40b57b094f1dd6e4] {_initialized, _initializing}
+ writer root       -> src/AddressProvider.sol::AddressProvider.initialize()
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 51289da4bad56d043470] {_initialized, _initializing}
+ writer root       -> src/yield/YieldAccount.sol::YieldAccount.initialize(address,address)
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 63cd51355f027e4ee4a5] {_initialized, _initializing}
+ writer root       -> src/yield/sdai/YieldSavingsDai.sol::YieldSavingsDai.initialize(address,address,address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 6601afc8c520ec3421cc] {_initialized, _initializing}
+ writer root       -> src/yield/etherfi/YieldEthStakingEtherfi.sol::YieldEthStakingEtherfi.initialize(address,address,address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 66495a286938abfb3b12] {_initialized, _initializing}
+ writer root       -> src/yield/YieldRegistry.sol::YieldRegistry.initialize(address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 7635bfa8ca497b06a805] {_initialized, _initializing}
+ writer root       -> src/ACLManager.sol::ACLManager.initialize(address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 76698939c979c2054231] {_initialized, _initializing}
+ writer root       -> src/yield/YieldAccount.sol::YieldAccount.initialize(address,address)
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 879e6e60fb68bfcf832b] {_initialized, _initializing}
+ writer root       -> src/yield/lido/YieldEthStakingLido.sol::YieldEthStakingLido.initialize(address,address,address,address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 899a8dba0cb051bad086] {_initialized, _initializing}
+ writer root       -> src/PriceOracle.sol::PriceOracle.initialize(address,address,uint256,address,uint256)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 9dc15e125565a2acf1c0] {_initialized, _initializing}
+ writer root       -> src/yield/lido/YieldEthStakingLido.sol::YieldEthStakingLido.initialize(address,address,address,address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a007b78045e9c721b3c9] {_initialized, _initializing}
+ writer root       -> src/yield/lido/YieldEthStakingLido.sol::YieldEthStakingLido.initialize(address,address,address,address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a4da536a41a7662ab817] {_initialized, _initializing}
+ writer root       -> src/yield/etherfi/YieldEthStakingEtherfi.sol::YieldEthStakingEtherfi.initialize(address,address,address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ae3b4bf630728fe70a45] {_initialized, _initializing}
+ writer root       -> src/yield/YieldRegistry.sol::YieldRegistry.createYieldAccount(address)
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c0f143e7f6dc05032430] {_initialized, _initializing}
+ writer root       -> src/yield/YieldRegistry.sol::YieldRegistry.createYieldAccount(address)
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate cd4eabd2ee3779ecf375] {_initialized, _initializing}
+ writer root       -> src/AddressProvider.sol::AddressProvider.initialize()
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate dbacc16a4b132b9d0f9e] {_initialized, _initializing}
+ writer root       -> src/PriceOracle.sol::PriceOracle.initialize(address,address,uint256,address,uint256)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate dbce346a8a8a31c71f73] {_initialized, _initializing}
+ writer root       -> src/yield/YieldRegistry.sol::YieldRegistry.initialize(address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate dd093ff7ec7f67d8ae55] {_initialized, _initializing}
+ writer root       -> src/yield/etherfi/YieldEthStakingEtherfi.sol::YieldEthStakingEtherfi.initialize(address,address,address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e6984b82de2dbd29fcb7] {_initialized, _initializing}
+ writer root       -> src/yield/sdai/YieldSavingsDai.sol::YieldSavingsDai.initialize(address,address,address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f831190158c48da93e7f] {_initialized, _initializing}
+ writer root       -> src/yield/sdai/YieldSavingsDai.sol::YieldSavingsDai.initialize(address,address,address)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (117 contracts with 1 detectors), 27 result(s) found

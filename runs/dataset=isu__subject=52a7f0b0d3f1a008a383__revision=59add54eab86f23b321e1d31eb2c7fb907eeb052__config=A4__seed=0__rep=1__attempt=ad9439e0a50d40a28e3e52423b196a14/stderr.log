@@ -1,0 +1,583 @@
+'/tmp/.svm/0.8.17/solc-0.8.17 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=803 vars=39
+[mvscan-stage] root-seeding-done eligible_exposures=19 seeded=19 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=3dd5766d6ccda8117369cc0e560974759de3bf9581c724ea336b94d3991116bc candidate_count=82 candidate_digest=aa6f7cc1bb6fcfa52b6fad41df6a87a207c0b1462ff8affe5306c2536165fa1b context_instance_count=643 eligible_readers=49 eligible_writers=58 execution_context_digest=b9ca786e6b810a21d90f6945d4c1c7985429cb2a825f07df13a80d944c27f93c insensitive_readers_filtered=37 invalid_partial_write_filtered=0 must_full_relation_filtered=514 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=44 owner_context_pairs=712 owner_context_pairs_considered=2980 raw_block_pairs=505 reader_witness_count=712 relation_base_members_shadowed=0 relation_context_incompatible=1224 relation_digest=8d34f188035e846d4b74489b06108d7cd99412f8318b54abae1b57899a7d7433 relation_members_raw=70 relation_origins_registered=8 relation_origins_rejected_unary_after_shadowing=51 relation_origins_rejected_unreachable=4 relation_origins_seen=59 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=16 scalar_variables_skipped=24 storage_context_mismatch=486 variables_considered=32
+INFO:Detectors:
+
+[MV-SI candidate 02af11360b7eba6c1562] {points_sum, points_weight}
+ writer root       -> src/GaugeController.sol::GaugeController.checkpoint_gauge(address)
+ writer effect     -> src/GaugeController.sol:81
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 076ae84c7701cdd1bbea] {points_sum, points_weight}
+ writer root       -> src/GaugeController.sol::GaugeController.gauge_relative_weight_write(address,uint256)
+ writer effect     -> src/GaugeController.sol:107
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate 087f6c9fe087d386a791] {points_weight, time_weight}
+ writer root       -> src/GaugeController.sol::GaugeController.checkpoint_gauge(address)
+ writer effect     -> src/GaugeController.sol:107
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_weight')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 088d085429b5933c74ac] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:258
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 08e9191bae051cbb2ef5] {userPointEpoch, userPointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.delegate(address)
+ writer effect     -> src/VotingEscrow.sol:143
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointHistory')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointEpoch')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 0a46aeeea7b4f8f77021] {userPointEpoch, userPointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.createLock(uint256)
+ writer effect     -> src/VotingEscrow.sol:143
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointHistory')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointEpoch')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 0e8f493c823d98a0dea6] {userPointEpoch, userPointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.createLock(uint256)
+ writer effect     -> src/VotingEscrow.sol:146
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointEpoch')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointHistory')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 1635f7ffc7cb258aee2d] {globalEpoch, pointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.delegate(address)
+ writer effect     -> src/VotingEscrow.sol:216
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.pointHistory')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.globalEpoch')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 19d646b511dceb2754fb] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/LendingLedger.sol::LendingLedger.sync_ledger(address,int256)
+ writer effect     -> src/LendingLedger.sol:72
+ written member    -> ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 1cff81b84800a0b3c607] {userPointEpoch, userPointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.checkpoint()
+ writer effect     -> src/VotingEscrow.sol:149
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointHistory')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointEpoch')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 20225b51d3ef6674e7a9] {points_sum, time_sum}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:82
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 253a4880fffd0888d9dc] {userPointEpoch, userPointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.delegate(address)
+ writer effect     -> src/VotingEscrow.sol:149
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointHistory')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointEpoch')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 25a63e6f71d57ebb743a] {globalEpoch, pointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.delegate(address)
+ writer effect     -> src/VotingEscrow.sol:237
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.pointHistory')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.globalEpoch')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 2721a7ee2d606cc6260d] {points_sum, points_weight}
+ writer root       -> src/LendingLedger.sol::LendingLedger.claim(address,uint256,uint256)
+ writer effect     -> src/GaugeController.sol:81
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 2c4000070303ce0c23e8] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.change_gauge_weight(address,uint256)
+ writer effect     -> src/GaugeController.sol:81
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 3469e39a0d08732ccd69] {points_weight, time_weight}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:108
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 42604aed4e795159e22c] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/LendingLedger.sol::LendingLedger.sync_ledger(address,int256)
+ writer effect     -> src/LendingLedger.sol:142
+ written member    -> ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 4308bfe7b196dbe0d56e] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:261
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 4453d3b016a0025a5269] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:107
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 49898b8f4abcdef3a333] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.remove_gauge(address)
+ writer effect     -> src/GaugeController.sol:81
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 4cec705be8a983f2a60c] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.remove_gauge(address)
+ writer effect     -> src/GaugeController.sol:107
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 4d60157cc9135f448b10] {points_sum, time_sum}
+ writer root       -> src/GaugeController.sol::GaugeController.gauge_relative_weight_write(address,uint256)
+ writer effect     -> src/GaugeController.sol:81
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_sum')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 4ede7ec43aeffd24f09f] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:81
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 4f9f59a6cafe9641f08f] {points_weight, time_weight}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:107
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_weight')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 513694e8ea376bf50651] {points_sum, points_weight}
+ writer root       -> src/GaugeController.sol::GaugeController.checkpoint()
+ writer effect     -> src/GaugeController.sol:81
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 53c5de8f31857800c1a7] {points_sum, points_weight}
+ writer root       -> src/LendingLedger.sol::LendingLedger.claim(address,uint256,uint256)
+ writer effect     -> src/GaugeController.sol:107
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate 580e1e254c4a52758d35] {userPointEpoch, userPointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.increaseAmount(uint256)
+ writer effect     -> src/VotingEscrow.sol:146
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointEpoch')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointHistory')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 588329e4386d85390ce3] {points_sum, time_sum}
+ writer root       -> src/GaugeController.sol::GaugeController.checkpoint()
+ writer effect     -> src/GaugeController.sol:82
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 5a27cbc02a43fe87dcac] {globalEpoch, pointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.delegate(address)
+ writer effect     -> src/VotingEscrow.sol:220
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.globalEpoch')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.pointHistory')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 62cd5a3febb3884b0c7c] {points_sum, time_sum}
+ writer root       -> src/GaugeController.sol::GaugeController.checkpoint_gauge(address)
+ writer effect     -> src/GaugeController.sol:82
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 668643b3a1ef552d3b96] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/LendingLedger.sol::LendingLedger.claim(address,uint256,uint256)
+ writer effect     -> src/GaugeController.sol:81
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 6a2f19b8b3099aa69c4c] {points_sum, time_sum}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:261
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_sum')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 6bfe0b79fb3b8e314a79] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.remove_gauge(address)
+ writer effect     -> src/GaugeController.sol:193
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 6cecc37cc4824336ef02] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:252
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 6ddbaf3c5916ffbb4dc5] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/LendingLedger.sol::LendingLedger.checkpoint_market(address,uint256)
+ writer effect     -> src/LendingLedger.sol:93
+ written member    -> ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 74d10b3e42e0df7921b8] {points_sum, time_sum}
+ writer root       -> src/GaugeController.sol::GaugeController.checkpoint_gauge(address)
+ writer effect     -> src/GaugeController.sol:81
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_sum')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 756b1907c99a4e7f9414] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.change_gauge_weight(address,uint256)
+ writer effect     -> src/GaugeController.sol:193
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 75f027bd919ae5a5bb38] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/LendingLedger.sol::LendingLedger.claim(address,uint256,uint256)
+ writer effect     -> src/LendingLedger.sol:72
+ written member    -> ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 7766f43ec3f69479debc] {points_sum, time_sum}
+ writer root       -> src/GaugeController.sol::GaugeController.gauge_relative_weight_write(address,uint256)
+ writer effect     -> src/GaugeController.sol:82
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 7a32fc56e289224bedeb] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.checkpoint_gauge(address)
+ writer effect     -> src/GaugeController.sol:107
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 7ccdf9fb95916fde4a6d] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.gauge_relative_weight_write(address,uint256)
+ writer effect     -> src/GaugeController.sol:107
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 815dfbe57b752531062a] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/LendingLedger.sol::LendingLedger.setRewards(uint256,uint256,uint248)
+ writer effect     -> src/LendingLedger.sol:197
+ written member    -> ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 81a0a5b993efc177ed6f] {points_sum, points_weight}
+ writer root       -> src/GaugeController.sol::GaugeController.checkpoint_gauge(address)
+ writer effect     -> src/GaugeController.sol:107
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate 87ad71e4eaddd522c71b] {points_sum, time_sum}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:81
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_sum')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 897b5894251e3da658a0] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/LendingLedger.sol::LendingLedger.sync_ledger(address,int256)
+ writer effect     -> src/LendingLedger.sol:137
+ written member    -> ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 8b8ff5453c6c8b188b60] {userPointEpoch, userPointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.increaseAmount(uint256)
+ writer effect     -> src/VotingEscrow.sol:149
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointHistory')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointEpoch')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 8c80c4f3de784c15db75] {points_weight, time_weight}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:260
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_weight')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 8dd66ecd301f9be4fe22] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.gauge_relative_weight_write(address,uint256)
+ writer effect     -> src/GaugeController.sol:81
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 8f6cd5ed3e6b2cef1d7c] {userPointEpoch, userPointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.increaseAmount(uint256)
+ writer effect     -> src/VotingEscrow.sol:143
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointHistory')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointEpoch')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate a4a8cfcb37f620898ed9] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.checkpoint_gauge(address)
+ writer effect     -> src/GaugeController.sol:81
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate a519445a7628e455c890] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.change_gauge_weight(address,uint256)
+ writer effect     -> src/GaugeController.sol:107
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate a545547414da52e829f0] {points_sum, time_sum}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:253
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_sum')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate a5c49518f8f2a479b0c9] {userPointEpoch, userPointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.delegate(address)
+ writer effect     -> src/VotingEscrow.sol:146
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointEpoch')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointHistory')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a940b17c931c7126d961] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.remove_gauge(address)
+ writer effect     -> src/GaugeController.sol:197
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate a9932c3eca69bdc233e2] {points_weight, time_weight}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:255
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_weight')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate aa0ee78414134d177b98] {points_weight, time_weight}
+ writer root       -> src/LendingLedger.sol::LendingLedger.claim(address,uint256,uint256)
+ writer effect     -> src/GaugeController.sol:108
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate aab62a431674e7abee7c] {points_sum, time_sum}
+ writer root       -> src/GaugeController.sol::GaugeController.checkpoint()
+ writer effect     -> src/GaugeController.sol:81
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_sum')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate b0aa44a1a3fd28c983d7] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/LendingLedger.sol::LendingLedger.claim(address,uint256,uint256)
+ writer effect     -> src/GaugeController.sol:107
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate b5604ff0f9f7b004716c] {userPointEpoch, userPointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.createLock(uint256)
+ writer effect     -> src/VotingEscrow.sol:149
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointHistory')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointEpoch')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate b5955eaf7f3f68a88970] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/LendingLedger.sol::LendingLedger.setRewards(uint256,uint256,uint248)
+ writer effect     -> src/LendingLedger.sol:196
+ written member    -> ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate b7c7b35fa7746d39836c] {points_sum, time_sum}
+ writer root       -> src/LendingLedger.sol::LendingLedger.claim(address,uint256,uint256)
+ writer effect     -> src/GaugeController.sol:82
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate baafd745c27bde124573] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/LendingLedger.sol::LendingLedger.sync_ledger(address,int256)
+ writer effect     -> src/LendingLedger.sol:93
+ written member    -> ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate be76267a909fe5c2071b] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/LendingLedger.sol::LendingLedger.claim(address,uint256,uint256)
+ writer effect     -> src/LendingLedger.sol:93
+ written member    -> ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate bea651132bdd9ae573f2] {points_weight, time_weight}
+ writer root       -> src/LendingLedger.sol::LendingLedger.claim(address,uint256,uint256)
+ writer effect     -> src/GaugeController.sol:107
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_weight')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c4502ffe309cace46923] {userPointEpoch, userPointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.checkpoint()
+ writer effect     -> src/VotingEscrow.sol:146
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointEpoch')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointHistory')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c6853ec31714fde8e084] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.change_gauge_weight(address,uint256)
+ writer effect     -> src/GaugeController.sol:197
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate c8509da3ca2194434bdf] {points_sum, points_weight}
+ writer root       -> src/GaugeController.sol::GaugeController.gauge_relative_weight_write(address,uint256)
+ writer effect     -> src/GaugeController.sol:81
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate c9e0a9d7b6bc95cd636f] {points_sum, time_sum}
+ writer root       -> src/LendingLedger.sol::LendingLedger.claim(address,uint256,uint256)
+ writer effect     -> src/GaugeController.sol:81
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_sum')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate cce6e0c007d250f646e3] {points_weight, time_weight}
+ writer root       -> src/GaugeController.sol::GaugeController.gauge_relative_weight_write(address,uint256)
+ writer effect     -> src/GaugeController.sol:107
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_weight')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate cdd9d2c1bde3dbad56ff] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.checkpoint()
+ writer effect     -> src/GaugeController.sol:81
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate d3042876364cd0cba0a1] {points_weight, time_weight}
+ writer root       -> src/GaugeController.sol::GaugeController.checkpoint_gauge(address)
+ writer effect     -> src/GaugeController.sol:108
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate dda5bd35a0dd18e44e99] {points_weight, time_weight}
+ writer root       -> src/GaugeController.sol::GaugeController.gauge_relative_weight_write(address,uint256)
+ writer effect     -> src/GaugeController.sol:108
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate e132131516b00a6f15c2] {userPointEpoch, userPointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.checkpoint()
+ writer effect     -> src/VotingEscrow.sol:143
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointHistory')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointEpoch')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate e452ae17940b61947f17] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:253
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate e47472801d70a28ef786] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/LendingLedger.sol::LendingLedger.checkpoint_lender(address,address,uint256)
+ writer effect     -> src/LendingLedger.sol:72
+ written member    -> ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate e977249920a34750eb89] {userPointEpoch, userPointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.withdraw()
+ writer effect     -> src/VotingEscrow.sol:143
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointHistory')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointEpoch')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate ea0281964b1e9bb30c42] {points_weight, time_weight}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:252
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_weight')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate eae7fb6a83cb98dca231] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:260
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate ee1b41333390d54d8cb6] {points_sum, time_sum}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:258
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.time_sum')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate ee5d58546f05adbc1ad5] {userPointEpoch, userPointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.withdraw()
+ writer effect     -> src/VotingEscrow.sol:149
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointHistory')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointEpoch')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate efc1e4b16d89149f1a65] {userPointEpoch, userPointHistory}
+ writer root       -> src/VotingEscrow.sol::VotingEscrow.withdraw()
+ writer effect     -> src/VotingEscrow.sol:146
+ written member    -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointEpoch')
+ potentially stale -> ('SV', 'src/VotingEscrow.sol', 'VotingEscrow.userPointHistory')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate fbf4b673ffb69a83f1f0] {lendingMarketBalances, lendingMarketTotalBalance, points_sum, points_weight, rewardInformation}
+ writer root       -> src/GaugeController.sol::GaugeController.vote_for_gauge_weights(address,uint256)
+ writer effect     -> src/GaugeController.sol:255
+ written member    -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_weight')
+ potentially stale -> ('SV', 'src/GaugeController.sol', 'GaugeController.points_sum'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketBalances'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.lendingMarketTotalBalance'), ('SV', 'src/LendingLedger.sol', 'LendingLedger.rewardInformation')
+ reader witnesses  -> 11
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (5 contracts with 1 detectors), 82 result(s) found

@@ -1,0 +1,918 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=7224 vars=499
+[mvscan-stage] root-seeding-done eligible_exposures=407 seeded=291 multi_exposure_entry_blocks=63 collapsed_contextual_aliases=116 excluded_dependency=0 excluded_interface=64 excluded_library=0 excluded_abstract=194 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=99629390afffc4fc983e74358af76469868886027a7f5b9f8978ebc41878d302 candidate_count=130 candidate_digest=61853a080d5e265d86db15991d0b3566098944d9f442418565967a0d8ba44345 context_instance_count=448 eligible_readers=171 eligible_writers=109 execution_context_digest=5793f8fd1a3780c1ab21e31693a22af3949b13f59d250ed2d62ae4807793903b insensitive_readers_filtered=39 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=1239 owner_context_pairs=480 owner_context_pairs_considered=2951 raw_block_pairs=840 reader_witness_count=480 relation_base_members_shadowed=165 relation_context_incompatible=0 relation_digest=f4175112af58d831fbf44f363258a5d67317df92582116ada6058b053f7f067c relation_evidence_edges=509 relation_incompatible=376 relation_members_raw=631 relation_origins_registered=37 relation_origins_rejected_unary_after_shadowing=385 relation_origins_rejected_unreachable=151 relation_origins_seen=422 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=58 scalar_variables_skipped=337 storage_context_mismatch=1232 variables_considered=368
+INFO:Detectors:
+
+[MV-SI candidate 00f345b1e45a4e7dd896] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistry.sol::ServiceRegistry.registerAgents(address,uint256,address[],uint32[])
+ writer effect     -> contracts/ServiceRegistry.sol:459
+ written member    -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 02cef32b6017fd0d9989] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1680
+ written member    -> ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2'), ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 050e5fa71dcfefb7ced7] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryProxy.create(address,bytes32,uint32[],AgentParams[],uint32)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1138
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 083326e8c0857a726dae] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistryL2.sol::ServiceRegistryL2.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/ServiceRegistryL2.sol:320
+ written member    -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 09542a34dee35b839cf9] {availableRewards, setServiceIds}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.checkpointAndClaim(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:470
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.setServiceIds')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 0c36503b7ef391756a6e] {availableRewards, livenessPeriod, tsCheckpoint}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.checkpointAndClaim(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:661
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.livenessPeriod'), ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.tsCheckpoint')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 0f5372d40a63c6a576a7] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.terminate(address,uint256)
+ writer effect     -> contracts/scribble/ServiceRegistryAnnotated.sol:691
+ written member    -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 1315f6eaf75d7376a8ba] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistryL2-flatten.sol:887
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 154f15b9448504fdc49c] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryProxyGeneric.deploy(address,uint256,address,bytes)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1749
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 1891cd21c76983c5392e] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1138
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 1a7f6972da6e49fbc05d] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryProxyGeneric.unbond(address,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1680
+ written member    -> ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2'), ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 218e584cb05d86746249] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryProxy.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1276
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 2290da5a352ee41c72bf] {availableRewards, setServiceIds}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.checkpoint()
+ writer effect     -> contracts/staking/StakingBase.sol:472
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.setServiceIds')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 22ce7157531e62a4d26b] {availableRewards, setServiceIds}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.checkpointAndClaim(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:538
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.setServiceIds')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 23fe33f7a0ea4b4c02e4] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistry.sol::ServiceRegistry.terminate(address,uint256)
+ writer effect     -> contracts/ServiceRegistry.sol:641
+ written member    -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 24ff3ce4c090b7fabc5c] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistryL2.sol::ServiceRegistryL2.terminate(address,uint256)
+ writer effect     -> contracts/ServiceRegistryL2.sol:628
+ written member    -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 250e129db49e1002a02b] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistry.sol::ServiceRegistry.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/ServiceRegistry.sol:189
+ written member    -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 275ba35dcb4e981ceb4c] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.registerAgents(address,uint256,address[],uint32[])
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1413
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 2765c1666a82ea77e66f] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.create(address,bytes32,uint32[],AgentParams[],uint32)
+ writer effect     -> contracts/flatten/ServiceRegistryL2-flatten.sol:747
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 27a91f70b17cf8b04b30] {mapAgentInstanceOperators[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.slash(address[],uint96[],uint256)::ReferenceVariable::REF_2413], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.slash(address[],uint96[],uint256)::LocalVariable::operatorService_2]}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryProxyGeneric.slash(address[],uint96[],uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1540
+ written member    -> ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.slash(address[],uint96[],uint256)::LocalVariable::operatorService_2')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapAgentInstanceOperators', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.slash(address[],uint96[],uint256)::ReferenceVariable::REF_2413')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 2ccf136df131009d70ca] {availableRewards, minStakingDuration}
+ writer root       -> contracts/staking/StakingNativeToken.sol::StakingNativeToken.initialize(StakingBase.StakingParams)
+ writer effect     -> contracts/staking/StakingBase.sol:350
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.minStakingDuration')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 2cf530d81c2492a1da15] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryProxy.deploy(address,uint256,address,bytes)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1749
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 2e8e1375d405a50f7bc8] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1276
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 2f73afd6fc1ca4bf7d0e] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryProxyGeneric.terminate(address,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1590
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 376626ca95af7d93aed4] {mapOperatorAndServiceIdAgentInstances[@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)
+ writer effect     -> contracts/scribble/ServiceRegistryAnnotated.sol:790
+ written member    -> ('MS', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)::LocalVariable::operatorService_2')
+ potentially stale -> ('MS', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapOperatorAndServiceIdAgentInstances', '@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)::LocalVariable::operatorService_2'), ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3a79a75bde3f24130d1c] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1138
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 3c20d034716f7f052999] {availableRewards, setServiceIds}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.unstake(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:858
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.setServiceIds')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 3c4d78d4392e430d449f] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1138
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 3f6083fb15491723c482] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistryL2.sol::ServiceRegistryL2.create(address,bytes32,uint32[],AgentParams[],uint32)
+ writer effect     -> contracts/ServiceRegistryL2.sol:180
+ written member    -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 42de39f929468f0a6f23] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.deploy(address,uint256,address,bytes)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1749
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 438523f0a01fb7f6c2f6] {availableRewards, livenessPeriod, tsCheckpoint}
+ writer root       -> contracts/staking/StakingToken.sol::StakingToken.deposit(uint256)
+ writer effect     -> contracts/staking/StakingToken.sol:122
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.livenessPeriod'), ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.tsCheckpoint')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 45d7abbf74f7df02a2eb] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryProxy.create(address,bytes32,uint32[],AgentParams[],uint32)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1138
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 4a8c1f0fbc6d62202d22] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistryL2.sol::ServiceRegistryL2.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/ServiceRegistryL2.sol:180
+ written member    -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 51fa7391beba43700c18] {mapOperatorAndServiceIdAgentInstances[@local::contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)
+ writer effect     -> contracts/ServiceRegistry.sol:731
+ written member    -> ('MS', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)::LocalVariable::operatorService_2')
+ potentially stale -> ('MS', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapOperatorAndServiceIdAgentInstances', '@local::contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)::LocalVariable::operatorService_2'), ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 554c9e59eff20b7d337c] {availableRewards, setServiceIds}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.checkpoint()
+ writer effect     -> contracts/staking/StakingBase.sol:470
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.setServiceIds')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 5693cbaf2f9f93d12b89] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistryL2-flatten.sol:887
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 588f21d5b7554c7c434b] {availableRewards, livenessPeriod, tsCheckpoint}
+ writer root       -> contracts/staking/StakingToken.sol::StakingToken.initialize(StakingBase.StakingParams,address,address)
+ writer effect     -> contracts/staking/StakingBase.sol:320
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.livenessPeriod')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards'), ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.tsCheckpoint')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 59278fa5a4d687bc8977] {availableRewards, livenessPeriod, tsCheckpoint}
+ writer root       -> contracts/staking/StakingNativeToken.sol::StakingNativeToken.receive()
+ writer effect     -> contracts/staking/StakingNativeToken.sol:46
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.livenessPeriod'), ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.tsCheckpoint')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 5b43c0f745815e69ddfa] {availableRewards, livenessPeriod, tsCheckpoint}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.checkpoint()
+ writer effect     -> contracts/staking/StakingBase.sol:703
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.tsCheckpoint')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards'), ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.livenessPeriod')
+ reader witnesses  -> 6
+ storage exposures -> 2
+[MV-SI candidate 5c03ecbd11beaeb47ecf] {mapAgentInstanceOperators[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.slash(address[],uint96[],uint256)::ReferenceVariable::REF_3069], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.slash(address[],uint96[],uint256)::LocalVariable::operatorService_2]}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.slash(address[],uint96[],uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1540
+ written member    -> ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.slash(address[],uint96[],uint256)::LocalVariable::operatorService_2')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapAgentInstanceOperators', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.slash(address[],uint96[],uint256)::ReferenceVariable::REF_3069')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 5df053562cbb117c7a55] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.terminate(address,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1590
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 60712144d5fdfca30bd7] {availableRewards, maxInactivityDuration}
+ writer root       -> contracts/staking/StakingNativeToken.sol::StakingNativeToken.initialize(StakingBase.StakingParams)
+ writer effect     -> contracts/staking/StakingBase.sol:353
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.maxInactivityDuration')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 644f55f66154dbbcfa61] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.create(address,bytes32,uint32[],AgentParams[],uint32)
+ writer effect     -> contracts/scribble/ServiceRegistryAnnotated.sol:189
+ written member    -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 648b076635eab3efd962] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.create(address,bytes32,uint32[],AgentParams[],uint32)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1138
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 6490e0d9ee0181e4905f] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.create(address,bytes32,uint32[],AgentParams[],uint32)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1138
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 64fb9e3f3fa21552f2e6] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryProxy.registerAgents(address,uint256,address[],uint32[])
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1408
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 68eb9917cd80ea89b395] {mapOperatorAndServiceIdAgentInstances[@local::contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistry.sol::ServiceRegistry.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/ServiceRegistry.sol:189
+ written member    -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapOperatorAndServiceIdAgentInstances', '@local::contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 6ad8787ea0f7452814d6] {availableRewards, livenessPeriod, tsCheckpoint}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.unstake(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:703
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.tsCheckpoint')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards'), ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.livenessPeriod')
+ reader witnesses  -> 6
+ storage exposures -> 2
+[MV-SI candidate 6b157742f1f1c32ff64e] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistryL2.sol::ServiceRegistryL2.registerAgents(address,uint256,address[],uint32[])
+ writer effect     -> contracts/ServiceRegistryL2.sol:452
+ written member    -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6cf779165474e1c6b474] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.terminate(address,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistryL2-flatten.sol:1195
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 6d94314695e8bc11d73a] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistry.sol::ServiceRegistry.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/ServiceRegistry.sol:327
+ written member    -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 7298f02a3f74e45c94bc] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryProxyGeneric.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1276
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 7524d012b26eb6bedb10] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryProxyGeneric.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1138
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 78bed22bdee8b773852a] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistry.sol::ServiceRegistry.registerAgents(address,uint256,address[],uint32[])
+ writer effect     -> contracts/ServiceRegistry.sol:464
+ written member    -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 798281676a84ab679cce] {availableRewards, livenessPeriod, tsCheckpoint}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.unstake(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:661
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.livenessPeriod'), ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.tsCheckpoint')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 7c3e870d73ce6b5f2c98] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.registerAgents(address,uint256,address[],uint32[])
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1408
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 7f90374ab24531a27968] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1138
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 8005e2056b0b25986135] {mapOperatorAndServiceIdAgentInstances[@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/scribble/ServiceRegistryAnnotated.sol:189
+ written member    -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapOperatorAndServiceIdAgentInstances', '@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 82893689df7c673cc4e1] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.registerAgents(address,uint256,address[],uint32[])
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1413
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 834ee1d4646331bf1dec] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryProxy.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1276
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 834f42b8b7eba09ce350] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1276
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 8b543b4f6f94ba2a6cb3] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1680
+ written member    -> ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2'), ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 8be6c7bb01a06f5e7684] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.create(address,bytes32,uint32[],AgentParams[],uint32)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1138
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 8ebc759dc76b421d9737] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/scribble/ServiceRegistryAnnotated.sol:189
+ written member    -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 8f7c563ce6f5cc5eae03] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.deploy(address,uint256,address,bytes)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1749
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 93479663d45e90429aa2] {availableRewards, livenessPeriod, tsCheckpoint}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.claim(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:703
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.tsCheckpoint')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards'), ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.livenessPeriod')
+ reader witnesses  -> 6
+ storage exposures -> 2
+[MV-SI candidate 942c8f70477681025818] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.terminate(address,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1590
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 95723e2f2cbca4f79118] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryProxyGeneric.create(address,bytes32,uint32[],AgentParams[],uint32)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1138
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 95b5f0d6a24defa87c72] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryProxy.terminate(address,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1590
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 999325bcb3e709d90278] {mapOperatorAndServiceIdAgentInstances[@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistryL2.sol::ServiceRegistryL2.create(address,bytes32,uint32[],AgentParams[],uint32)
+ writer effect     -> contracts/ServiceRegistryL2.sol:180
+ written member    -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapOperatorAndServiceIdAgentInstances', '@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 999d63a8639d1bc362d3] {mapAgentInstanceOperators[@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.slash(address[],uint96[],uint256)::ReferenceVariable::REF_3878], mapOperatorAndServiceIdOperatorBalances[@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.slash(address[],uint96[],uint256)::LocalVariable::operatorService_2]}
+ writer root       -> contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.slash(address[],uint96[],uint256)
+ writer effect     -> contracts/scribble/ServiceRegistryAnnotated.sol:634
+ written member    -> ('MS', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.slash(address[],uint96[],uint256)::LocalVariable::operatorService_2')
+ potentially stale -> ('MS', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapAgentInstanceOperators', '@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.slash(address[],uint96[],uint256)::ReferenceVariable::REF_3878')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 9a0a53c6daeb35e7e4cf] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistryL2.sol::ServiceRegistryL2.registerAgents(address,uint256,address[],uint32[])
+ writer effect     -> contracts/ServiceRegistryL2.sol:457
+ written member    -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 9ab4f99fcf723323bc3f] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistry.sol::ServiceRegistry.deploy(address,uint256,address,bytes)
+ writer effect     -> contracts/ServiceRegistry.sol:800
+ written member    -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 9da243fd889f55f6aefa] {mapOperatorAndServiceIdAgentInstances[@local::contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistry.sol::ServiceRegistry.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/ServiceRegistry.sol:327
+ written member    -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapOperatorAndServiceIdAgentInstances', '@local::contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 9dd603260319e858a9ed] {mapAgentInstanceOperators[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.slash(address[],uint96[],uint256)::ReferenceVariable::REF_2413], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.slash(address[],uint96[],uint256)::LocalVariable::operatorService_2]}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.slash(address[],uint96[],uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1540
+ written member    -> ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.slash(address[],uint96[],uint256)::LocalVariable::operatorService_2')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapAgentInstanceOperators', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.slash(address[],uint96[],uint256)::ReferenceVariable::REF_2413')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a1ef83f15a10204aa257] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.deploy(address,uint256,address,bytes)
+ writer effect     -> contracts/flatten/ServiceRegistryL2-flatten.sol:1354
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a516f7d275486e9d4ce4] {mapOperatorAndServiceIdAgentInstances[@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistryL2.sol::ServiceRegistryL2.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/ServiceRegistryL2.sol:320
+ written member    -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapOperatorAndServiceIdAgentInstances', '@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate a5d7ca2605756d6092d1] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistryL2-flatten.sol:1285
+ written member    -> ('MS', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)::LocalVariable::operatorService_2')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)::LocalVariable::operatorService_2'), ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate a5e1215094c23b4eb6cc] {availableRewards, setServiceIds}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.claim(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:472
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.setServiceIds')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate a5f8830e4f5c10307e98] {availableRewards, setServiceIds}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.unstake(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:538
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.setServiceIds')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate a97feb1cda31aabbd149] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryProxyGeneric.registerAgents(address,uint256,address[],uint32[])
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1408
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b099d615292f4f44d318] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryProxy.registerAgents(address,uint256,address[],uint32[])
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1413
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate b0d9354b2cd8dcc0ef4a] {availableRewards, livenessPeriod, tsCheckpoint}
+ writer root       -> contracts/staking/StakingNativeToken.sol::StakingNativeToken.initialize(StakingBase.StakingParams)
+ writer effect     -> contracts/staking/StakingBase.sol:360
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.tsCheckpoint')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards'), ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.livenessPeriod')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate b182794c6347d459193c] {availableRewards, maxInactivityDuration}
+ writer root       -> contracts/staking/StakingToken.sol::StakingToken.initialize(StakingBase.StakingParams,address,address)
+ writer effect     -> contracts/staking/StakingBase.sol:353
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.maxInactivityDuration')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b499d6fd8de93776ef4d] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.registerAgents(address,uint256,address[],uint32[])
+ writer effect     -> contracts/flatten/ServiceRegistryL2-flatten.sol:1024
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b526e777489b090b993a] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.registerAgents(address,uint256,address[],uint32[])
+ writer effect     -> contracts/scribble/ServiceRegistryAnnotated.sol:493
+ written member    -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b53772d3562f44fff8ab] {mapOperatorAndServiceIdAgentInstances[@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistryL2.sol::ServiceRegistryL2.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/ServiceRegistryL2.sol:180
+ written member    -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapOperatorAndServiceIdAgentInstances', '@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate b586d601f12a401c31e6] {availableRewards, livenessPeriod, tsCheckpoint}
+ writer root       -> contracts/staking/StakingToken.sol::StakingToken.initialize(StakingBase.StakingParams,address,address)
+ writer effect     -> contracts/staking/StakingBase.sol:360
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.tsCheckpoint')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards'), ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.livenessPeriod')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate b5c35cb1c265ccbc8592] {mapOperatorAndServiceIdAgentInstances[@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)
+ writer effect     -> contracts/ServiceRegistryL2.sol:718
+ written member    -> ('MS', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)::LocalVariable::operatorService_2')
+ potentially stale -> ('MS', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapOperatorAndServiceIdAgentInstances', '@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.unbond(address,uint256)::LocalVariable::operatorService_2'), ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate ba631c4c79112c7449f7] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryProxy.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1138
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate bb00a6a2740cb65d5db1] {availableRewards, setServiceIds}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.claim(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:470
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.setServiceIds')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate bca35306fc97d9a17d09] {availableRewards, setServiceIds}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.stake(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:733
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.setServiceIds')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate bd6e9064e4b6972e398d] {availableRewards, setServiceIds}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.checkpoint()
+ writer effect     -> contracts/staking/StakingBase.sol:538
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.setServiceIds')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate c2250d46c98544a60037] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1276
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c3a24aca5f409b00d922] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistry.sol::ServiceRegistry.create(address,bytes32,uint32[],AgentParams[],uint32)
+ writer effect     -> contracts/ServiceRegistry.sol:189
+ written member    -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate c445145b7a1397331ad5] {mapAgentInstanceOperators[@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.slash(address[],uint96[],uint256)::ReferenceVariable::REF_895], mapOperatorAndServiceIdOperatorBalances[@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.slash(address[],uint96[],uint256)::LocalVariable::operatorService_2]}
+ writer root       -> contracts/ServiceRegistryL2.sol::ServiceRegistryL2.slash(address[],uint96[],uint256)
+ writer effect     -> contracts/ServiceRegistryL2.sol:580
+ written member    -> ('MS', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.slash(address[],uint96[],uint256)::LocalVariable::operatorService_2')
+ potentially stale -> ('MS', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapAgentInstanceOperators', '@local::contracts/ServiceRegistryL2.sol::ServiceRegistryL2.slash(address[],uint96[],uint256)::ReferenceVariable::REF_895')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c4e9a72e0c87928982a6] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryProxyGeneric.create(address,bytes32,uint32[],AgentParams[],uint32)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1138
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c5bf39969af64cc1583b] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistryL2.sol::ServiceRegistryL2.deploy(address,uint256,address,bytes)
+ writer effect     -> contracts/ServiceRegistryL2.sol:787
+ written member    -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/ServiceRegistryL2.sol', 'ServiceRegistryL2.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c60fd4550b1f48dc2f4e] {mapOperatorAndServiceIdAgentInstances[@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/scribble/ServiceRegistryAnnotated.sol:342
+ written member    -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapOperatorAndServiceIdAgentInstances', '@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate c694fb154e1d53c176fc] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryProxy.unbond(address,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1680
+ written member    -> ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2'), ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate c8c1678ccbccdb8e0d5f] {availableRewards, setServiceIds}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.stake(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:794
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.setServiceIds')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate c956ad72b814c67036d8] {availableRewards, setServiceIds}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.claim(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:538
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.setServiceIds')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate ca711363cf45907a0743] {mapAgentInstanceOperators[@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.slash(address[],uint96[],uint256)::ReferenceVariable::REF_3429], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.slash(address[],uint96[],uint256)::LocalVariable::operatorService_2]}
+ writer root       -> contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.slash(address[],uint96[],uint256)
+ writer effect     -> contracts/flatten/ServiceRegistryL2-flatten.sol:1147
+ written member    -> ('MS', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.slash(address[],uint96[],uint256)::LocalVariable::operatorService_2')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapAgentInstanceOperators', '@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.slash(address[],uint96[],uint256)::ReferenceVariable::REF_3429')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ca7a75376e96717df2fc] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryProxyGeneric.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1276
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate cbadfd3d85af5e9307a2] {availableRewards, livenessPeriod, tsCheckpoint}
+ writer root       -> contracts/staking/StakingNativeToken.sol::StakingNativeToken.initialize(StakingBase.StakingParams)
+ writer effect     -> contracts/staking/StakingBase.sol:320
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.livenessPeriod')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards'), ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.tsCheckpoint')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d07b50614956d0d75a31] {mapAgentInstanceOperators[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.slash(address[],uint96[],uint256)::ReferenceVariable::REF_3069], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.slash(address[],uint96[],uint256)::LocalVariable::operatorService_2]}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryProxy.slash(address[],uint96[],uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1540
+ written member    -> ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.slash(address[],uint96[],uint256)::LocalVariable::operatorService_2')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapAgentInstanceOperators', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.slash(address[],uint96[],uint256)::ReferenceVariable::REF_3069')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate d218a589851360d78d6c] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistryL2-flatten.sol:747
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate d2feae0a709e45a48afc] {mapAgentInstanceOperators[@local::contracts/ServiceRegistry.sol::ServiceRegistry.slash(address[],uint96[],uint256)::ReferenceVariable::REF_637], mapOperatorAndServiceIdOperatorBalances[@local::contracts/ServiceRegistry.sol::ServiceRegistry.slash(address[],uint96[],uint256)::LocalVariable::operatorService_2]}
+ writer root       -> contracts/ServiceRegistry.sol::ServiceRegistry.slash(address[],uint96[],uint256)
+ writer effect     -> contracts/ServiceRegistry.sol:591
+ written member    -> ('MS', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/ServiceRegistry.sol::ServiceRegistry.slash(address[],uint96[],uint256)::LocalVariable::operatorService_2')
+ potentially stale -> ('MS', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapAgentInstanceOperators', '@local::contracts/ServiceRegistry.sol::ServiceRegistry.slash(address[],uint96[],uint256)::ReferenceVariable::REF_637')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d368f261f59c1f7e1be5] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.registerAgents(address,uint256,address[],uint32[])
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1408
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate d41c6eab5aba167896a1] {availableRewards, minStakingDuration}
+ writer root       -> contracts/staking/StakingToken.sol::StakingToken.initialize(StakingBase.StakingParams,address,address)
+ writer effect     -> contracts/staking/StakingBase.sol:350
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.minStakingDuration')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d4fb9db0aed7335a44e3] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryProxy.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten.sol:1138
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/flatten/ServiceRegistry-flatten.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate d6912e95c7c4537e893d] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryProxyGeneric.registerAgents(address,uint256,address[],uint32[])
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1413
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate da3e0407c9335fb74956] {availableRewards, livenessPeriod, tsCheckpoint}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.checkpoint()
+ writer effect     -> contracts/staking/StakingBase.sol:661
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.livenessPeriod'), ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.tsCheckpoint')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate ddf7c2b1067549d4d2b4] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.registerAgents(address,uint256,address[],uint32[])
+ writer effect     -> contracts/flatten/ServiceRegistryL2-flatten.sol:1019
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate de7d4845ae87f47eafea] {availableRewards, livenessPeriod, tsCheckpoint}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.claim(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:661
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.livenessPeriod'), ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.tsCheckpoint')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate e0e845857bf7cd7ecdb4] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1276
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate e3600c93613d1898293f] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.deploy(address,uint256,address,bytes)
+ writer effect     -> contracts/scribble/ServiceRegistryAnnotated.sol:859
+ written member    -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e49734e54e34890007d9] {mapOperatorAndServiceIdAgentInstances[@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.create(address,bytes32,uint32[],AgentParams[],uint32)
+ writer effect     -> contracts/scribble/ServiceRegistryAnnotated.sol:189
+ written member    -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapOperatorAndServiceIdAgentInstances', '@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate e50d41cff38123cb62c5] {availableRewards, livenessPeriod, tsCheckpoint}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.checkpointAndClaim(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:703
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.tsCheckpoint')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards'), ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.livenessPeriod')
+ reader witnesses  -> 6
+ storage exposures -> 2
+[MV-SI candidate e5bf954f42467b5b2b3f] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/scribble/ServiceRegistryAnnotated.sol:342
+ written member    -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate ea714f4905496ad8f563] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.create(address,bytes32,uint32[],AgentParams[],uint32)
+ writer effect     -> contracts/flatten/ServiceRegistryL2-flatten.sol:747
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate ee30d02cda407e4c137b] {availableRewards, setServiceIds}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.unstake(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:470
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.setServiceIds')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate eeb7c9f72ba8c143d23f] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistryL2-flatten.sol:747
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/flatten/ServiceRegistryL2-flatten.sol', 'ServiceRegistryL2F.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistryL2-flatten.sol::ServiceRegistryL2F.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate f1d723fae8021c859be3] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryProxyGeneric.update(address,bytes32,uint32[],AgentParams[],uint32,uint256)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1138
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentInstances')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate f3915773aa336fa7f48f] {availableRewards, setServiceIds}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.unstake(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:859
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.setServiceIds')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate f3b288fa535a21ad386b] {availableRewards, setServiceIds}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.unstake(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:472
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.setServiceIds')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate f5c96cc87f24ad95c8e3] {mapOperatorAndServiceIdAgentInstances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.create(address,bytes32,uint32[],AgentParams[],uint32)
+ writer effect     -> contracts/flatten/ServiceRegistry-flatten-generic.sol:1138
+ written member    -> ('SV', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdAgentInstances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/flatten/ServiceRegistry-flatten-generic.sol', 'ServiceRegistryF.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/flatten/ServiceRegistry-flatten-generic.sol::ServiceRegistryF.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate f626e99ef4fcd6364545] {mapServiceAndAgentIdAgentInstances, mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/scribble/ServiceRegistryAnnotated.sol::ServiceRegistryAnnotated.registerAgents(address,uint256,address[],uint32[])
+ writer effect     -> contracts/scribble/ServiceRegistryAnnotated.sol:488
+ written member    -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentInstances')
+ potentially stale -> ('SV', 'contracts/scribble/ServiceRegistryAnnotated.sol', 'ServiceRegistryAnnotated.mapServiceAndAgentIdAgentParams')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f80a3f83973e5264b699] {mapOperatorAndServiceIdAgentInstances[@local::contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)::LocalVariable::operatorService_2], mapOperatorAndServiceIdOperatorBalances[@local::contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)::LocalVariable::operatorService_2], mapServiceAndAgentIdAgentParams}
+ writer root       -> contracts/ServiceRegistry.sol::ServiceRegistry.create(address,bytes32,uint32[],AgentParams[],uint32)
+ writer effect     -> contracts/ServiceRegistry.sol:189
+ written member    -> ('SV', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapServiceAndAgentIdAgentParams')
+ potentially stale -> ('MS', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapOperatorAndServiceIdAgentInstances', '@local::contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)::LocalVariable::operatorService_2'), ('MS', 'contracts/ServiceRegistry.sol', 'ServiceRegistry.mapOperatorAndServiceIdOperatorBalances', '@local::contracts/ServiceRegistry.sol::ServiceRegistry.unbond(address,uint256)::LocalVariable::operatorService_2')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate f83802776b3d38264e29] {availableRewards, setServiceIds}
+ writer root       -> contracts/staking/StakingBase.sol::StakingBase.checkpointAndClaim(uint256)
+ writer effect     -> contracts/staking/StakingBase.sol:472
+ written member    -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.setServiceIds')
+ potentially stale -> ('SV', 'contracts/staking/StakingBase.sol', 'StakingBase.availableRewards')
+ reader witnesses  -> 4
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (155 contracts with 1 detectors), 130 result(s) found

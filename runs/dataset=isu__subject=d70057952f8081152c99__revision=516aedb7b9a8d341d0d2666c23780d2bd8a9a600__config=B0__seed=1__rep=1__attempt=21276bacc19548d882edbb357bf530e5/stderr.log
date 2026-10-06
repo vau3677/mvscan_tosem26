@@ -1,0 +1,211 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1649 vars=36
+[mvscan-stage] root-seeding-done eligible_exposures=53 seeded=39 multi_exposure_entry_blocks=7 collapsed_contextual_aliases=14 excluded_dependency=0 excluded_interface=6 excluded_library=0 excluded_abstract=2 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=67d790ccdf695fbeb2f85676f1d0d61b322b599648e9d6f2ffe95f9b3b9a8a8a candidate_count=29 candidate_digest=307be0afe41678496c506b77e5628ef972bd1ecf3fbb06342cfac4c4033e9890 context_instance_count=209 eligible_readers=45 eligible_writers=31 execution_context_digest=c0fd16a29aa4464395eb5e5e8119518b77188d5e7c8cd92b6ee2a320e7451479 insensitive_readers_filtered=31 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=209 owner_context_pairs_considered=1357 raw_block_pairs=356 reader_witness_count=209 relation_base_members_shadowed=15 relation_context_incompatible=1148 relation_digest=68d0896e615e615853b6df86cd6883390044c256a279ae492f1d57f422220546 relation_members_raw=69 relation_origins_registered=4 relation_origins_rejected_unary_after_shadowing=46 relation_origins_rejected_unreachable=9 relation_origins_seen=50 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=2 scalar_variables_skipped=26 storage_context_mismatch=0 variables_considered=30
+INFO:Detectors:
+
+[MV-SI candidate 04757748929baea3529a] {externalCurvesTokens, symbolToSubject[$arg2]}
+ writer root       -> contracts/Curves.sol::Curves.withdraw(address,uint256)
+ writer effect     -> contracts/Curves.sol:355
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.externalCurvesTokens')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.symbolToSubject', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 0a2f043025ef3b840d68] {feeRedistributor, feesEconomics}
+ writer root       -> contracts/Curves.sol::Curves.setFeeRedistributor(address)
+ writer effect     -> contracts/Curves.sol:114
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.feeRedistributor')
+ potentially stale -> ('SV', 'contracts/Curves.sol', 'Curves.feesEconomics')
+ reader witnesses  -> 45
+ storage exposures -> 1
+[MV-SI candidate 12d4f042dfc7f1e6e292] {feeRedistributor, feesEconomics}
+ writer root       -> contracts/Curves.sol::Curves.setExternalFeePercent(uint256,uint256,uint256)
+ writer effect     -> contracts/Curves.sol:151
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.feesEconomics')
+ potentially stale -> ('SV', 'contracts/Curves.sol', 'Curves.feeRedistributor')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 1c9af2a5c94bb99c5260] {externalCurvesTokens, symbolToSubject[$arg2]}
+ writer root       -> contracts/Curves.sol::Curves.mint(address)
+ writer effect     -> contracts/Curves.sol:355
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.externalCurvesTokens')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.symbolToSubject', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 23921db8ffeb9c1b427e] {presalesBuys[$arg0][$sender], presalesMeta}
+ writer root       -> contracts/Curves.sol::Curves.buyCurvesTokenWhitelisted(address,uint256,bytes32[])
+ writer effect     -> contracts/Curves.sol:414
+ written member    -> ('MS', 'contracts/Curves.sol', 'Curves.presalesBuys', '$arg0][$sender')
+ potentially stale -> ('SV', 'contracts/Curves.sol', 'Curves.presalesMeta')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 29b9250f5491b35b891b] {presalesBuys[$arg0][$sender], presalesMeta}
+ writer root       -> contracts/Curves.sol::Curves.buyCurvesTokenForPresale(address,uint256,uint256,bytes32,uint256)
+ writer effect     -> contracts/Curves.sol:387
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.presalesMeta')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.presalesBuys', '$arg0][$sender')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 3b31962bfc8f0dfa730a] {externalCurvesTokens, symbolToSubject[$arg2]}
+ writer root       -> contracts/Curves.sol::Curves.withdraw(address,uint256)
+ writer effect     -> contracts/Curves.sol:477
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.externalCurvesTokens')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.symbolToSubject', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 44d05676bfb869927f65] {feeRedistributor, feesEconomics}
+ writer root       -> contracts/Curves.sol::Curves.setMaxFeePercent(uint256)
+ writer effect     -> contracts/Curves.sol:125
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.feesEconomics')
+ potentially stale -> ('SV', 'contracts/Curves.sol', 'Curves.feeRedistributor')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 44eed43d36c24b0f67ce] {externalCurvesTokens, symbolToSubject[$arg2]}
+ writer root       -> contracts/Curves.sol::Curves.withdraw(address,uint256)
+ writer effect     -> contracts/Curves.sol:354
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.externalCurvesTokens')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.symbolToSubject', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 48e62acb8afb97ae92a2] {externalCurvesTokens, symbolToSubject[$arg2]}
+ writer root       -> contracts/Curves.sol::Curves.buyCurvesTokenWithName(address,uint256,string,string)
+ writer effect     -> contracts/Curves.sol:354
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.externalCurvesTokens')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.symbolToSubject', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 57712bf8ded024662755] {presalesBuys[$arg0][$sender], presalesMeta}
+ writer root       -> contracts/Curves.sol::Curves.buyCurvesTokenForPresale(address,uint256,uint256,bytes32,uint256)
+ writer effect     -> contracts/Curves.sol:389
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.presalesMeta')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.presalesBuys', '$arg0][$sender')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 5cfb09b28ed7e468731c] {externalCurvesTokens, symbolToSubject[$arg2]}
+ writer root       -> contracts/Curves.sol::Curves.setNameAndSymbol(address,string,string)
+ writer effect     -> contracts/Curves.sol:435
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.externalCurvesTokens')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.symbolToSubject', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 64b98d196dee183bc01a] {externalCurvesTokens, symbolToSubject[$arg2]}
+ writer root       -> contracts/Curves.sol::Curves.buyCurvesTokenWithName(address,uint256,string,string)
+ writer effect     -> contracts/Curves.sol:356
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.externalCurvesTokens')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.symbolToSubject', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 7224124b30889fa6ddd3] {externalCurvesTokens, symbolToSubject[$arg2]}
+ writer root       -> contracts/Curves.sol::Curves.setNameAndSymbol(address,string,string)
+ writer effect     -> contracts/Curves.sol:436
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.externalCurvesTokens')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.symbolToSubject', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 7469c4161b2786620313] {externalCurvesTokens, symbolToSubject[$arg2]}
+ writer root       -> contracts/Curves.sol::Curves.buyCurvesTokenWithName(address,uint256,string,string)
+ writer effect     -> contracts/Curves.sol:358
+ written member    -> ('MS', 'contracts/Curves.sol', 'Curves.symbolToSubject', '$arg2')
+ potentially stale -> ('SV', 'contracts/Curves.sol', 'Curves.externalCurvesTokens')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 76a6fd3e0c9d9d90d46e] {externalCurvesTokens, symbolToSubject[$arg2]}
+ writer root       -> contracts/Curves.sol::Curves.mint(address)
+ writer effect     -> contracts/Curves.sol:356
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.externalCurvesTokens')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.symbolToSubject', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 85fd97629dd01890cf9d] {feeRedistributor, feesEconomics}
+ writer root       -> contracts/Curves.sol::Curves.setProtocolFeePercent(uint256,address)
+ writer effect     -> contracts/Curves.sol:137
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.feesEconomics')
+ potentially stale -> ('SV', 'contracts/Curves.sol', 'Curves.feeRedistributor')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 95bde4260dfb2c71edf1] {externalCurvesTokens, symbolToSubject[$arg2]}
+ writer root       -> contracts/Curves.sol::Curves.mint(address)
+ writer effect     -> contracts/Curves.sol:447
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.externalCurvesTokens')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.symbolToSubject', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 968964f56488610f94ca] {externalCurvesTokens, symbolToSubject[$arg2]}
+ writer root       -> contracts/Curves.sol::Curves.withdraw(address,uint256)
+ writer effect     -> contracts/Curves.sol:356
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.externalCurvesTokens')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.symbolToSubject', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 997c9ab8120521971f80] {externalCurvesTokens, symbolToSubject[$arg2]}
+ writer root       -> contracts/Curves.sol::Curves.withdraw(address,uint256)
+ writer effect     -> contracts/Curves.sol:476
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.externalCurvesTokens')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.symbolToSubject', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 9f065809564f88ed90fc] {feeRedistributor, feesEconomics}
+ writer root       -> contracts/Curves.sol::Curves.setProtocolFeePercent(uint256,address)
+ writer effect     -> contracts/Curves.sol:138
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.feesEconomics')
+ potentially stale -> ('SV', 'contracts/Curves.sol', 'Curves.feeRedistributor')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate aa6482dc7ae5172a0467] {feeRedistributor, feesEconomics}
+ writer root       -> contracts/Curves.sol::Curves.setExternalFeePercent(uint256,uint256,uint256)
+ writer effect     -> contracts/Curves.sol:152
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.feesEconomics')
+ potentially stale -> ('SV', 'contracts/Curves.sol', 'Curves.feeRedistributor')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate b23df9a0850fd0db8f17] {presalesBuys[$arg0][$sender], presalesMeta}
+ writer root       -> contracts/Curves.sol::Curves.setWhitelist(bytes32)
+ writer effect     -> contracts/Curves.sol:399
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.presalesMeta')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.presalesBuys', '$arg0][$sender')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c294bca696ae50073ab5] {feeRedistributor, feesEconomics}
+ writer root       -> contracts/Curves.sol::Curves.setExternalFeePercent(uint256,uint256,uint256)
+ writer effect     -> contracts/Curves.sol:150
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.feesEconomics')
+ potentially stale -> ('SV', 'contracts/Curves.sol', 'Curves.feeRedistributor')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate d87ef5ee286660b90613] {externalCurvesTokens, symbolToSubject[$arg2]}
+ writer root       -> contracts/Curves.sol::Curves.buyCurvesTokenWithName(address,uint256,string,string)
+ writer effect     -> contracts/Curves.sol:355
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.externalCurvesTokens')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.symbolToSubject', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate dcd847cab720edd3f434] {externalCurvesTokens, symbolToSubject[$arg2]}
+ writer root       -> contracts/Curves.sol::Curves.mint(address)
+ writer effect     -> contracts/Curves.sol:446
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.externalCurvesTokens')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.symbolToSubject', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate efd987e2261c951d06e2] {presalesBuys[$arg0][$sender], presalesMeta}
+ writer root       -> contracts/Curves.sol::Curves.buyCurvesTokenForPresale(address,uint256,uint256,bytes32,uint256)
+ writer effect     -> contracts/Curves.sol:389
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.presalesMeta')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.presalesBuys', '$arg0][$sender')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f0b8bdfc547d861135b6] {externalCurvesTokens, symbolToSubject[$arg2]}
+ writer root       -> contracts/Curves.sol::Curves.mint(address)
+ writer effect     -> contracts/Curves.sol:354
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.externalCurvesTokens')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.symbolToSubject', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate fad582243846fe0c9ec3] {presalesBuys[$arg0][$sender], presalesMeta}
+ writer root       -> contracts/Curves.sol::Curves.buyCurvesTokenForPresale(address,uint256,uint256,bytes32,uint256)
+ writer effect     -> contracts/Curves.sol:388
+ written member    -> ('SV', 'contracts/Curves.sol', 'Curves.presalesMeta')
+ potentially stale -> ('MS', 'contracts/Curves.sol', 'Curves.presalesBuys', '$arg0][$sender')
+ reader witnesses  -> 2
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (18 contracts with 1 detectors), 29 result(s) found

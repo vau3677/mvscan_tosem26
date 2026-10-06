@@ -1,0 +1,412 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1189 vars=74
+[mvscan-stage] root-seeding-done eligible_exposures=63 seeded=54 multi_exposure_entry_blocks=9 collapsed_contextual_aliases=9 excluded_dependency=0 excluded_interface=30 excluded_library=0 excluded_abstract=19 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=1c8ac11bb4e904915b30da3fdc7ba39609ed0a5667ada67e362166d576e93252 candidate_count=48 candidate_digest=63076d0b6fff697639ec5543759b438c322cae0cdccd04a550dfe87b089907d7 context_instance_count=961 eligible_readers=94 eligible_writers=89 execution_context_digest=1f00974418d22540c91d5481d9bee74b64313c2e2a68e65c48e5dd2451c9b7e0 insensitive_readers_filtered=109 invalid_partial_write_filtered=0 must_full_relation_filtered=602 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=30 owner_context_pairs=1267 owner_context_pairs_considered=3491 raw_block_pairs=1586 reader_witness_count=1267 relation_base_members_shadowed=0 relation_context_incompatible=1592 relation_digest=0b81434c7cefb789e967a8fa4e5b3ccfcfdc96a46d99b90b8b9eaa08ab5b0322 relation_members_raw=33 relation_origins_registered=7 relation_origins_rejected_unary_after_shadowing=14 relation_origins_rejected_unreachable=15 relation_origins_seen=21 relation_unbound_key_templates=12 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=26 scalar_variables_skipped=60 storage_context_mismatch=0 variables_considered=67
+INFO:Detectors:
+
+[MV-SI candidate 0279281ee1e216876049] {nftTypeValueETH[@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1], nftValueETH[$arg0], settings}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.setInsurancePurchaseRate(NFTVault.Rate)
+ writer effect     -> contracts/vaults/NFTVault.sol:305
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftTypeValueETH', '@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1'), ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftValueETH', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 069cf86a2bc6b505d2db] {positions, totalDebtAmount, totalDebtPortion}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.borrow(uint256,uint256,bool)
+ writer effect     -> contracts/vaults/NFTVault.sol:729
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.positions')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtPortion')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate 06c92d63dda434cae607] {nftTypeValueETH[@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1], nftValueETH[$arg0], settings}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.setBorrowAmountCap(uint256)
+ writer effect     -> contracts/vaults/NFTVault.sol:207
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftTypeValueETH', '@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1'), ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftValueETH', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 0721221e044ca5b1cd0d] {positions, totalDebtAmount, totalDebtPortion}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.borrow(uint256,uint256,bool)
+ writer effect     -> contracts/vaults/NFTVault.sol:197
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.positions'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtPortion')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate 0c0f71e7d8037c8349b8] {positions, totalDebtAmount, totalDebtPortion}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.closePosition(uint256)
+ writer effect     -> contracts/vaults/NFTVault.sol:197
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.positions'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtPortion')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate 12ef57ef71ceff0993cd] {nftTypeValueETH[@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1], nftValueETH[$arg0], settings}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.finalizePendingNFTValueETH(uint256)
+ writer effect     -> contracts/vaults/NFTVault.sol:378
+ written member    -> ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftValueETH', '$arg0')
+ potentially stale -> ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftTypeValueETH', '@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 15d1c2931b0a8618c7f2] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.collect()
+ writer effect     -> contracts/vaults/NFTVault.sol:197
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 17753de7f6c60a7e0df5] {nftTypeValueETH[@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1], nftValueETH[$arg0], settings}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.initialize(IStableCoin,IERC721Upgradeable,IAggregatorV3Interface,IAggregatorV3Interface,IAggregatorV3Interface,IAggregatorV3Interface,NFTVault.NFTCategoryInitializer[],IJPEGLock,NFTVault.VaultSettings)
+ writer effect     -> contracts/vaults/NFTVault.sol:178
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftTypeValueETH', '@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1'), ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftValueETH', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 1b4a276129e2e81354e9] {nftTypeValueETH[@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1], nftValueETH[$arg0], settings}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.setDebtInterestApr(NFTVault.Rate)
+ writer effect     -> contracts/vaults/NFTVault.sol:217
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftTypeValueETH', '@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1'), ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftValueETH', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 1d77e2f173737646d062] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.liquidate(uint256)
+ writer effect     -> contracts/vaults/NFTVault.sol:195
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 221b8e5a8e2f799e0de4] {positions, totalDebtAmount, totalDebtPortion}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.borrow(uint256,uint256,bool)
+ writer effect     -> contracts/vaults/NFTVault.sol:745
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.positions'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtPortion')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate 34745fc1105defff8200] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.borrow(uint256,uint256,bool)
+ writer effect     -> contracts/vaults/NFTVault.sol:195
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 384f6fcc6028f27e631b] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.setDebtInterestApr(NFTVault.Rate)
+ writer effect     -> contracts/vaults/NFTVault.sol:217
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 41453c3db6a146ba6725] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.accrue()
+ writer effect     -> contracts/vaults/NFTVault.sol:197
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 5a288e3af8ee9cb4ce9f] {positions, totalDebtAmount, totalDebtPortion}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.collect()
+ writer effect     -> contracts/vaults/NFTVault.sol:197
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.positions'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtPortion')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate 5be4424275f758a70eed] {_collateralUnit, creditLimitRate}
+ writer root       -> contracts/vaults/FungibleAssetVaultForDAO.sol::FungibleAssetVaultForDAO.setCreditLimitRate(FungibleAssetVaultForDAO.Rate)
+ writer effect     -> contracts/vaults/FungibleAssetVaultForDAO.sol:99
+ written member    -> ('SV', 'contracts/vaults/FungibleAssetVaultForDAO.sol', 'FungibleAssetVaultForDAO.creditLimitRate')
+ potentially stale -> ('SV', 'contracts/vaults/FungibleAssetVaultForDAO.sol', 'FungibleAssetVaultForDAO._collateralUnit')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 62730c0397c771720492] {nftTypeValueETH[@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1], nftValueETH[$arg0]}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.finalizePendingNFTValueETH(uint256)
+ writer effect     -> contracts/vaults/NFTVault.sol:378
+ written member    -> ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftValueETH', '$arg0')
+ potentially stale -> ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftTypeValueETH', '@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 66a98791923c4af3fd89] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.liquidate(uint256)
+ writer effect     -> contracts/vaults/NFTVault.sol:855
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 67328679667dd93ca49e] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.setCreditLimitRate(NFTVault.Rate)
+ writer effect     -> contracts/vaults/NFTVault.sol:242
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 69b7e6fd40ca763bb724] {positions, totalDebtAmount, totalDebtPortion}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.borrow(uint256,uint256,bool)
+ writer effect     -> contracts/vaults/NFTVault.sol:736
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtPortion')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.positions'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 58
+ storage exposures -> 1
+[MV-SI candidate 6c4658eebfdda1374864] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.setOrganizationFeeRate(NFTVault.Rate)
+ writer effect     -> contracts/vaults/NFTVault.sol:295
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 73649e9a264955b8abf8] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.setLiquidationLimitRate(NFTVault.Rate)
+ writer effect     -> contracts/vaults/NFTVault.sol:257
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 741e8099112395990f8c] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.borrow(uint256,uint256,bool)
+ writer effect     -> contracts/vaults/NFTVault.sol:745
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 78f1ade876bc6bf2f487] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.setValueIncreaseLockRate(NFTVault.Rate)
+ writer effect     -> contracts/vaults/NFTVault.sol:227
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 7b35cd26a87c744dfa9f] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.initialize(IStableCoin,IERC721Upgradeable,IAggregatorV3Interface,IAggregatorV3Interface,IAggregatorV3Interface,IAggregatorV3Interface,NFTVault.NFTCategoryInitializer[],IJPEGLock,NFTVault.VaultSettings)
+ writer effect     -> contracts/vaults/NFTVault.sol:178
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 7f8d4273e6d3f4d3fd02] {nftTypeValueETH[@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1], nftValueETH[$arg0], settings}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.setInsuranceLiquidationPenaltyRate(NFTVault.Rate)
+ writer effect     -> contracts/vaults/NFTVault.sol:314
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftTypeValueETH', '@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1'), ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftValueETH', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 846a8986e89387fca6cd] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.borrow(uint256,uint256,bool)
+ writer effect     -> contracts/vaults/NFTVault.sol:197
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 89f2af66427b97f0167b] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.repay(uint256,uint256)
+ writer effect     -> contracts/vaults/NFTVault.sol:195
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 8be383891ee17717fb7a] {nftTypeValueETH[@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1], nftValueETH[$arg0], settings}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.setOrganizationFeeRate(NFTVault.Rate)
+ writer effect     -> contracts/vaults/NFTVault.sol:295
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftTypeValueETH', '@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1'), ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftValueETH', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 91cf69823b39b04dceb8] {positions, totalDebtAmount, totalDebtPortion}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.claimExpiredInsuranceNFT(uint256)
+ writer effect     -> contracts/vaults/NFTVault.sol:935
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.positions')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtPortion')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate a58edca663966e4e9123] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.liquidate(uint256)
+ writer effect     -> contracts/vaults/NFTVault.sol:197
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate a6170b007e9581eee9cc] {positions, totalDebtAmount, totalDebtPortion}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.borrow(uint256,uint256,bool)
+ writer effect     -> contracts/vaults/NFTVault.sol:729
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.positions')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtPortion')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate a8cdd50a03bb5580c0b6] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.accrue()
+ writer effect     -> contracts/vaults/NFTVault.sol:195
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate afa49c6f0b8812f22a6e] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.setInsuranceLiquidationPenaltyRate(NFTVault.Rate)
+ writer effect     -> contracts/vaults/NFTVault.sol:314
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate b4598241b5c39741fa04] {positions, totalDebtAmount, totalDebtPortion}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.borrow(uint256,uint256,bool)
+ writer effect     -> contracts/vaults/NFTVault.sol:741
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtPortion')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.positions'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 58
+ storage exposures -> 1
+[MV-SI candidate ba0d555831178cfa4117] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.repay(uint256,uint256)
+ writer effect     -> contracts/vaults/NFTVault.sol:197
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate ba6509917dad38efdeba] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.setBorrowAmountCap(uint256)
+ writer effect     -> contracts/vaults/NFTVault.sol:207
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate bb600e0150a087d3f1c0] {nftTypeValueETH[@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1], nftValueETH[$arg0], settings}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.setValueIncreaseLockRate(NFTVault.Rate)
+ writer effect     -> contracts/vaults/NFTVault.sol:227
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftTypeValueETH', '@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1'), ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftValueETH', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate c25dcdd26041c30ff6c0] {positions, totalDebtAmount, totalDebtPortion}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.accrue()
+ writer effect     -> contracts/vaults/NFTVault.sol:197
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.positions'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtPortion')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate cc85f678f7f07157f30d] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.repay(uint256,uint256)
+ writer effect     -> contracts/vaults/NFTVault.sol:791
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate d13c4a0e37682733dc09] {nftTypeValueETH[@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1], nftValueETH[$arg0], settings}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.setLiquidationLimitRate(NFTVault.Rate)
+ writer effect     -> contracts/vaults/NFTVault.sol:257
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftTypeValueETH', '@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1'), ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftValueETH', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate d4d9e6fdde19b23ce409] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.collect()
+ writer effect     -> contracts/vaults/NFTVault.sol:195
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate d989e24a5c88dca8fc9b] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.closePosition(uint256)
+ writer effect     -> contracts/vaults/NFTVault.sol:195
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate da1034239cdf5567ff35] {positions, totalDebtAmount, totalDebtPortion}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.closePosition(uint256)
+ writer effect     -> contracts/vaults/NFTVault.sol:809
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.positions')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtPortion')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate dc80f1bb0dfaeaa381d3] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.closePosition(uint256)
+ writer effect     -> contracts/vaults/NFTVault.sol:197
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate ea60653d2f5e0d23fd16] {positions, totalDebtAmount, totalDebtPortion}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.repurchase(uint256)
+ writer effect     -> contracts/vaults/NFTVault.sol:907
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.positions')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtPortion')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate ec8a0d1bba6b29e258dc] {nftTypeValueETH[@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1], nftValueETH[$arg0], settings}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.setCreditLimitRate(NFTVault.Rate)
+ writer effect     -> contracts/vaults/NFTVault.sol:242
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftTypeValueETH', '@local::contracts/vaults/NFTVault.sol::NFTVault._getNFTValueETH(uint256)::LocalVariable::nftType_1'), ('MS', 'contracts/vaults/NFTVault.sol', 'NFTVault.nftValueETH', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate f464b2619df6ccdd9139] {settings, totalDebtAccruedAt, totalDebtAmount}
+ writer root       -> contracts/vaults/NFTVault.sol::NFTVault.setInsurancePurchaseRate(NFTVault.Rate)
+ writer effect     -> contracts/vaults/NFTVault.sol:305
+ written member    -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.settings')
+ potentially stale -> ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAccruedAt'), ('SV', 'contracts/vaults/NFTVault.sol', 'NFTVault.totalDebtAmount')
+ reader witnesses  -> 30
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1433 vars=97
+[mvscan-stage] root-seeding-done eligible_exposures=145 seeded=88 multi_exposure_entry_blocks=22 collapsed_contextual_aliases=57 excluded_dependency=0 excluded_interface=55 excluded_library=0 excluded_abstract=34 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=2657585bb0ce1b70a201caa93216ba0e459a5e5c0bc2a40d6ba8e64757fef6bf candidate_count=6 candidate_digest=02ef2162d385b2db8a937637e0fc7050c61f564aa10d1142b33ec8ae76ab81b9 context_instance_count=40 eligible_readers=7 eligible_writers=9 execution_context_digest=12dcd520c6c561a793572c4070ad9c198cee54693d8bf545b465786cbddcc61b insensitive_readers_filtered=31 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=22 owner_context_pairs=40 owner_context_pairs_considered=114 raw_block_pairs=29 reader_witness_count=40 relation_base_members_shadowed=0 relation_context_incompatible=16 relation_digest=625fec6438193c59424afec4d05d263d7d9e664ea5b925b42634d56b956193aa relation_members_raw=24 relation_origins_registered=3 relation_origins_rejected_unary_after_shadowing=16 relation_origins_rejected_unreachable=12 relation_origins_seen=19 relation_unbound_key_templates=37 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=3 scalar_variables_skipped=48 storage_context_mismatch=36 variables_considered=51
+INFO:Detectors:
+
+[MV-SI candidate 4e4049d54a864d33ceb8] {accRewardPerShare, previousBalance, totalStaked}
+ writer root       -> contracts/farming/yVaultLPFarming.sol::YVaultLPFarming.withdraw(uint256)
+ writer effect     -> contracts/farming/yVaultLPFarming.sol:162
+ written member    -> ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.accRewardPerShare'), ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.previousBalance')
+ potentially stale -> ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.totalStaked')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 698b4b3acfb98de7c034] {accRewardPerShare, previousBalance, totalStaked}
+ writer root       -> contracts/farming/yVaultLPFarming.sol::YVaultLPFarming.claim()
+ writer effect     -> contracts/farming/yVaultLPFarming.sol:144
+ written member    -> ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.previousBalance')
+ potentially stale -> ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.accRewardPerShare'), ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.totalStaked')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 6b9564f776b74f8ed2aa] {accRewardPerShare, previousBalance, totalStaked}
+ writer root       -> contracts/farming/yVaultLPFarming.sol::YVaultLPFarming.claim()
+ writer effect     -> contracts/farming/yVaultLPFarming.sol:162
+ written member    -> ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.accRewardPerShare'), ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.previousBalance')
+ potentially stale -> ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.totalStaked')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate a151d3e544a68a756b9b] {accRewardPerShare, previousBalance, totalStaked}
+ writer root       -> contracts/farming/yVaultLPFarming.sol::YVaultLPFarming.deposit(uint256)
+ writer effect     -> contracts/farming/yVaultLPFarming.sol:162
+ written member    -> ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.accRewardPerShare'), ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.previousBalance')
+ potentially stale -> ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.totalStaked')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate ab1453572f787e50ec5d] {accRewardPerShare, previousBalance, totalStaked}
+ writer root       -> contracts/farming/yVaultLPFarming.sol::YVaultLPFarming.deposit(uint256)
+ writer effect     -> contracts/farming/yVaultLPFarming.sol:109
+ written member    -> ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.totalStaked')
+ potentially stale -> ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.accRewardPerShare'), ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.previousBalance')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate ce2491c7c6edaa25dcda] {accRewardPerShare, previousBalance, totalStaked}
+ writer root       -> contracts/farming/yVaultLPFarming.sol::YVaultLPFarming.withdraw(uint256)
+ writer effect     -> contracts/farming/yVaultLPFarming.sol:125
+ written member    -> ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.totalStaked')
+ potentially stale -> ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.accRewardPerShare'), ('SV', 'contracts/farming/yVaultLPFarming.sol', 'YVaultLPFarming.previousBalance')
+ reader witnesses  -> 7
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=0 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=1 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=0 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=3 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=0 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=10 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=206 vars=26
+[mvscan-stage] root-seeding-done eligible_exposures=13 seeded=13 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=69320852d212b749865d2f0d8259935dfc557f0fe91bd2c61b17e40306b639ca candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=c4d60a08fc509ed8e793ed1961e507e981eb4e41840c17d09cbc0143c2320f01 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=18 storage_context_mismatch=0 variables_considered=18
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=41 vars=5
+[mvscan-stage] root-seeding-done eligible_exposures=5 seeded=5 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=afc942ed8630206cc10f8c88643b48dc551e82f0cae1f87cca8ee63bc51d44cd candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=725d382a4a0f65c5a202af5d0f959517caba30e0b74319c4b194891074ea22de invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_origins_rejected_unreachable=5 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=5 storage_context_mismatch=0 variables_considered=5
+INFO:Slither:. analyzed (100 contracts with 1 detectors), 54 result(s) found

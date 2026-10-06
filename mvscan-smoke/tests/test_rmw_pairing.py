@@ -43,6 +43,7 @@ def test_read_modify_write_block_can_pair_with_other_reader(monkeypatch):
     graph = FakeICFG(var, writer, reader)
     graph.read_event_is_sensitive = (lambda _bid, _var: True)
 
+    monkeypatch.setattr(icfg_module, "INCLUDE_SCALAR_WITNESSES", True)
     monkeypatch.setattr(icfg_module, "NOOP_WRITE_FILTER", False)
     monkeypatch.setattr(icfg_module, "REQUIRE_SAME_SLOT_KEY", False)
 
@@ -62,6 +63,7 @@ def test_identical_static_block_pair_is_skipped(monkeypatch):
     graph = FakeICFG(var, block, block)
     graph.read_event_is_sensitive = (lambda _bid, _var: True)
 
+    monkeypatch.setattr(icfg_module, "INCLUDE_SCALAR_WITNESSES", True)
     monkeypatch.setattr(icfg_module, "NOOP_WRITE_FILTER", False)
     monkeypatch.setattr(icfg_module, "REQUIRE_SAME_SLOT_KEY", False)
 

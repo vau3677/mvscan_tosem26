@@ -1,0 +1,2072 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=768 vars=20
+[mvscan-stage] root-seeding-done eligible_exposures=24 seeded=21 multi_exposure_entry_blocks=3 collapsed_contextual_aliases=3 excluded_dependency=0 excluded_interface=53 excluded_library=0 excluded_abstract=2 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=38910aec2df33b20d145eb50ce35677a21bb5c6faf9f5489570244c18888fe85 candidate_count=5 candidate_digest=b203ad9ecac435e43123b191be2371fdca983410e4021759af589facd9864f9c context_instance_count=11 eligible_readers=2 eligible_writers=5 execution_context_digest=4f16129c60df60cdcb21b709067d3a5507c2d55b62a4adb90df481c793aed567 insensitive_readers_filtered=5 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=11 owner_context_pairs_considered=25 raw_block_pairs=10 reader_witness_count=11 relation_base_members_shadowed=0 relation_context_incompatible=14 relation_digest=b520a5c3fd74d6bea6e65228e8988ecb599959279ff7fa4dd4c44b77129013a3 relation_members_raw=11 relation_origins_registered=1 relation_origins_rejected_unary_after_shadowing=9 relation_origins_rejected_unreachable=1 relation_origins_seen=10 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=13 storage_context_mismatch=0 variables_considered=14
+INFO:Detectors:
+
+[MV-SI candidate 0e4b368b72580a4e501d] {closeFees, maxWinPercent}
+ writer root       -> contracts/Trading.sol::Trading.setFees(bool,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Trading.sol:961
+ written member    -> ('SV', 'contracts/Trading.sol', 'Trading.closeFees')
+ potentially stale -> ('SV', 'contracts/Trading.sol', 'Trading.maxWinPercent')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 48efffe3a7686850cc8c] {closeFees, maxWinPercent}
+ writer root       -> contracts/Trading.sol::Trading.setFees(bool,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Trading.sol:964
+ written member    -> ('SV', 'contracts/Trading.sol', 'Trading.closeFees')
+ potentially stale -> ('SV', 'contracts/Trading.sol', 'Trading.maxWinPercent')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 6063465242e13af1a5be] {closeFees, maxWinPercent}
+ writer root       -> contracts/Trading.sol::Trading.setFees(bool,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Trading.sol:962
+ written member    -> ('SV', 'contracts/Trading.sol', 'Trading.closeFees')
+ potentially stale -> ('SV', 'contracts/Trading.sol', 'Trading.maxWinPercent')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c024399155c94bf65a28] {closeFees, maxWinPercent}
+ writer root       -> contracts/Trading.sol::Trading.setFees(bool,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Trading.sol:963
+ written member    -> ('SV', 'contracts/Trading.sol', 'Trading.closeFees')
+ potentially stale -> ('SV', 'contracts/Trading.sol', 'Trading.maxWinPercent')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c1f1313de742067aa06e] {closeFees, maxWinPercent}
+ writer root       -> contracts/Trading.sol::Trading.setMaxWinPercent(uint256)
+ writer effect     -> contracts/Trading.sol:932
+ written member    -> ('SV', 'contracts/Trading.sol', 'Trading.maxWinPercent')
+ potentially stale -> ('SV', 'contracts/Trading.sol', 'Trading.closeFees')
+ reader witnesses  -> 3
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=3199 vars=167
+[mvscan-stage] root-seeding-done eligible_exposures=255 seeded=172 multi_exposure_entry_blocks=33 collapsed_contextual_aliases=83 excluded_dependency=0 excluded_interface=106 excluded_library=0 excluded_abstract=18 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=fb141c009b08d736647327abfc7d196a902bd3133c02a4fe664501b5cda41071 candidate_count=289 candidate_digest=ebdd593a29e41a9b9c9a131d13740eced5427081f0aa6c4ead63e4d4c37bcd64 context_instance_count=4838 eligible_readers=323 eligible_writers=248 execution_context_digest=f6aedf28c6ba29ae5d6344c356266749e9e48ff571b7c66a47a1a16e563f4f85 insensitive_readers_filtered=256 invalid_partial_write_filtered=46 must_full_relation_filtered=137 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=90 owner_context_pairs=7928 owner_context_pairs_considered=65915 raw_block_pairs=4222 reader_witness_count=7928 relation_base_members_shadowed=0 relation_context_incompatible=10484 relation_digest=ed1d745f139951a451e5b5217e732b91ba6164038c548c42d846a988cfbb41e0 relation_members_raw=196 relation_origins_registered=24 relation_origins_rejected_unary_after_shadowing=135 relation_origins_rejected_unreachable=43 relation_origins_seen=159 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=106 scalar_variables_skipped=111 storage_context_mismatch=47230 variables_considered=135
+INFO:Detectors:
+
+[MV-SI candidate 00e4894492824e754b72] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.mintMany(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 0275831d9d38f5e39c3e] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.modifySl(uint256,uint256)
+ writer effect     -> contracts/Position.sol:253
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 02f90288670366f4d1d4] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:335
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 034ff6e79a5bc6e6edf3] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 26
+ storage exposures -> 5
+[MV-SI candidate 041de1bbcee54ffa3400] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.retryMessage(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 062ba308bae637d9458c] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 06a9f934ffd3185c7a7d] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFT.sol::GovNFT.nonblockingLzReceive(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 06fc9903cfaf58505343] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.mint()
+ writer effect     -> contracts/GovNFT.sol:54
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt')
+ reader witnesses  -> 51
+ storage exposures -> 1
+[MV-SI candidate 0729e96a324057048579] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.mintMany(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 0851062ce71b4f5f7550] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:143
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 0911da2d741de0ac0547] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged._bridgeMint(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 0a89b9de35b422af349b] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.addToPosition(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:211
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 0b7816369b5dcb3cd0a4] {assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.retryMessage(uint16,bytes,uint64,bytes)
+ writer effect     -> contracts/GovNFTBridged.sol:267
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 0be2e38c4f8858628bf1] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/BondNFT.sol::BondNFT.release(uint256,address)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:330
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 0c76ddc2807128859054] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.addAsset(address)
+ writer effect     -> contracts/GovNFTBridged.sol:254
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged._allowedAsset'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 0d558ede19fd578ec25a] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.reducePosition(uint256,uint256)
+ writer effect     -> contracts/Position.sol:231
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 0f0b0da3716411fc7ba0] {_operatorApprovals, _owners}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged._bridgeMint(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 0f76a4f9bf31bdeff18d] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:145
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 109ad28b2c456f1605f6] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:369
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 1262dafe863c6d4c2206] {assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.nonblockingLzReceive(uint16,bytes,uint64,bytes)
+ writer effect     -> contracts/GovNFTBridged.sol:267
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 12d72a589bb19fb31790] {_idToBond, epoch}
+ writer root       -> contracts/BondNFT.sol::BondNFT.extendLock(uint256,address,uint256,uint256,address)
+ writer effect     -> contracts/BondNFT.sol:118
+ written member    -> ('SV', 'contracts/BondNFT.sol', 'BondNFT._idToBond')
+ potentially stale -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.epoch')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 134a591c49176276d91b] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.addAsset(address)
+ writer effect     -> contracts/GovNFTBridged.sol:253
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged._allowedAsset')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 135c4cbb70a2444b6237] {assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> contracts/GovNFTBridged.sol:267
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 13e9c456b926685641ff] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> contracts/GovNFT.sol:81
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt')
+ reader witnesses  -> 53
+ storage exposures -> 1
+[MV-SI candidate 14a32c34ef11674a6162] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:140
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 1506bf8b1913de3d9bbf] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:140
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 162751c13912b870becd] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFT.sol::GovNFT._bridgeMint(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 16beda4a2a89f5a88206] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.updateFunding(uint256,address,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:122
+ written member    -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position._trades'), ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 40
+ storage exposures -> 1
+[MV-SI candidate 16fc6a7f8cb93c894398] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:377
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 17664966334e995bcebe] {_operatorApprovals, _owners}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 195b793d28efcaef2aa0] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 197381ffe2567e09dad5] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.modifyMargin(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:199
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 1afd3b7b8ea8369e0269] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 1f3f3ca2689ef6e6cf73] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.retryMessage(uint16,bytes,uint64,bytes)
+ writer effect     -> contracts/GovNFT.sol:316
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFT.sol', 'GovNFT._allowedAsset'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 1f6f2ad019a6fff36640] {assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged._bridgeMint(address,uint256)
+ writer effect     -> contracts/GovNFTBridged.sol:267
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 1f89842d6f473f3c81f8] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.distribute(address,uint256)
+ writer effect     -> contracts/GovNFTBridged.sol:241
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 1fc8c17f9d038a93c840] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.setAccInterest(uint256)
+ writer effect     -> contracts/Position.sol:221
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 201b249baea4fc6516bc] {_operatorApprovals, _owners}
+ writer root       -> contracts/Position.sol::Position.burn(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:337
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 2174137b28c7c3c59632] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.nonblockingLzReceive(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 223d1162a056fb491e5a] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> contracts/GovNFT.sol:80
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate 22dfa700ef754ee7347a] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:146
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 22f1de4df2af4ad8e94e] {_operatorApprovals, _owners}
+ writer root       -> contracts/BondNFT.sol::BondNFT.createLock(address,uint256,uint256,address)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 2518cf3db18a09bfb64e] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:138
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 26b0b24295872e6adcbc] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.reducePosition(uint256,uint256)
+ writer effect     -> contracts/Position.sol:232
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 272ddb9e63e0fac4d9aa] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.distribute(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol:46
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT._allowedAsset'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 23
+ storage exposures -> 1
+[MV-SI candidate 27b613585c82f3e27540] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.reducePosition(uint256,uint256)
+ writer effect     -> contracts/Position.sol:231
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 287e0617d6e8f82d1972] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 29b7b37bb139dfafa31f] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.burn(uint256)
+ writer effect     -> contracts/Position.sol:279
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 2bb6d905364b3ca8905d] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/Position.sol::Position.burn(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:337
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate 2bc0cd8a0c658995ca7b] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.burn(uint256)
+ writer effect     -> contracts/Position.sol:279
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 2f270dcd7b1a7fa1ffab] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.executeLimitOrder(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:174
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 30a01d38f81e6c94fc9a] {allowedAsset, totalShares}
+ writer root       -> contracts/BondNFT.sol::BondNFT.createLock(address,uint256,uint256,address)
+ writer effect     -> contracts/BondNFT.sol:68
+ written member    -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.totalShares')
+ potentially stale -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.allowedAsset')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 30abf5f08b6d76d3bbb9] {_operatorApprovals, _owners}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 30db4dfb07b27b2cff4f] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.mint()
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 30db9db64b6f5af52ddb] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:142
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 316201a9219248d22822] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.mintMany(uint256)
+ writer effect     -> contracts/GovNFT.sol:316
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFT.sol', 'GovNFT._allowedAsset'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 317b7512cf8389f489e0] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 3334dfec7abf61c8011b] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:141
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 344eb127956a376d7a8f] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 36aaf40339dbaaedfb58] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 36c78c4db343fb5e5a6f] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.reducePosition(uint256,uint256)
+ writer effect     -> contracts/Position.sol:232
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 373824f911186ecac0d6] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.addAsset(address)
+ writer effect     -> contracts/GovNFT.sol:303
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFT.sol', 'GovNFT._allowedAsset'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 3767ba1ccf4910e3e6e5] {_operatorApprovals, _owners}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.retryMessage(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 3782d8e76abdc7f18860] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/BondNFT.sol::BondNFT.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:369
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 379d8a438a7e5e6ab6ee] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:377
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 38d9d4db332546dd2c62] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:139
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 39204adb1c0159f74a64] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:369
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 228
+ storage exposures -> 5
+[MV-SI candidate 397d080a66dc6e7c2d88] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT._bridgeMint(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 39dd8b108a85b3573982] {_operatorApprovals, _owners}
+ writer root       -> contracts/GovNFT.sol::GovNFT.mint()
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 3a9742af95247157132f] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.nonblockingLzReceive(uint16,bytes,uint64,bytes)
+ writer effect     -> contracts/GovNFTBridged.sol:52
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate 3ae28f39dd72a9b15cf4] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT._bridgeMint(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:300
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 3bbb9e24915cdc62eff5] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:378
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 3c7c08e65a952c3dd3a4] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferMany(address,uint256[])
+ writer effect     -> contracts/GovNFT.sol:98
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt')
+ reader witnesses  -> 53
+ storage exposures -> 1
+[MV-SI candidate 3d147505a462bbe05b35] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.executeLimitOrder(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:175
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 3e768dfe1bf21ece74a2] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> contracts/GovNFTBridged.sol:267
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged._allowedAsset'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 3eab8bbf7e3113b94c15] {assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.distribute(address,uint256)
+ writer effect     -> contracts/GovNFT.sol:288
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 3eef776d84a4d6968bcb] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.distribute(address,uint256)
+ writer effect     -> contracts/GovNFTBridged.sol:239
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged._allowedAsset'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 3f0cda5d0b652a57802a] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.nonblockingLzReceive(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 3ff8c50401e6c8f8b7be] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 207
+ storage exposures -> 5
+[MV-SI candidate 416851702b678d0823f3] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.nonblockingLzReceive(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 42a0e02ad9812f270091] {_operatorApprovals, _owners}
+ writer root       -> contracts/BondNFT.sol::BondNFT.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 432d2f2511d913772dcd] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT._bridgeMint(address,uint256)
+ writer effect     -> contracts/GovNFT.sol:316
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFT.sol', 'GovNFT._allowedAsset'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 43989c1427a84817645b] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferMany(address,uint256[])
+ writer effect     -> contracts/GovNFTBridged.sol:76
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt')
+ reader witnesses  -> 45
+ storage exposures -> 1
+[MV-SI candidate 46313b24c8cad554af22] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 26
+ storage exposures -> 5
+[MV-SI candidate 46734fee95ffa52480b7] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 33
+ storage exposures -> 1
+[MV-SI candidate 46c2b119337d4d5aa8e5] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:141
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 46ec7e31a63994e9a43b] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/BondNFT.sol::BondNFT.release(uint256,address)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:337
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 482fbc750551f85f9524] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.addToPosition(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:210
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 49890daf3fe4b893e201] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.addToPosition(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:210
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 498cde910b5b4595aa15] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 207
+ storage exposures -> 5
+[MV-SI candidate 4a36d51ce52a9060a91c] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:377
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 4c25e428672c8b57ff4f] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.retryMessage(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:300
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 4cb4b1621b4cb1e658e9] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:369
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate 4dcd3d6bc7d461c050ad] {_idToBond, epoch}
+ writer root       -> contracts/BondNFT.sol::BondNFT.extendLock(uint256,address,uint256,uint256,address)
+ writer effect     -> contracts/BondNFT.sol:116
+ written member    -> ('SV', 'contracts/BondNFT.sol', 'BondNFT._idToBond')
+ potentially stale -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.epoch')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 4eab152de8e9485a99e0] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:378
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 4ec9f0ccc5257f5c108b] {_operatorApprovals, _owners}
+ writer root       -> contracts/GovNFT.sol::GovNFT.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:337
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 4f815ef31fc54b1e0e81] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:138
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 50f1430508be83ef23cb] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:138
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 51a321b9e1bb4b2af07e] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:146
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 5272adef8c25486692cb] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.setAllowedAsset(address,bool)
+ writer effect     -> contracts/GovNFTBridged.sol:259
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged._allowedAsset')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 52a9454271abd5506c36] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.retryMessage(uint16,bytes,uint64,bytes)
+ writer effect     -> contracts/GovNFTBridged.sol:52
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate 534a657e5596f84ce1f9] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:137
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 5354cc55e3dc99fa1d74] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:378
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 535d649e8aca71ab9d96] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.retryMessage(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 542ffe6f354d72a47c88] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/Position.sol::Position.burn(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:330
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate 546b4dc60ab3d11c5580] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:335
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 54cb73db3e3af8a819b0] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:377
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 5500d10ae545ce6d89ca] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.addToPosition(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:210
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 55a7331c3b3d3cd259c9] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.claim(address)
+ writer effect     -> contracts/GovNFTBridged.sol:234
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt')
+ reader witnesses  -> 45
+ storage exposures -> 1
+[MV-SI candidate 56614396314eea91b009] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.approveMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:393
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 57cab62b89e9a1a1d573] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.modifyMargin(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:199
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 589fae8ba6d3d02e2954] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:137
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 5902fe0dd24bb3e5e295] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferMany(address,uint256[])
+ writer effect     -> contracts/GovNFTBridged.sol:75
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 5b0058b0c95ccd4e0abf] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged._bridgeMint(address,uint256)
+ writer effect     -> contracts/GovNFTBridged.sol:267
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged._allowedAsset'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 5cf6c3f323bbebed0df7] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:369
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 5d6f5eda09d87499ba42] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.addToPosition(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:211
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 5e26be068e41316d9bf2] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:377
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 5e7e2e3002b767c4d35d] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.modifyMargin(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:198
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 5f0cb8e1197a1a959120] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:377
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 5fe4deeacdc977ad5b2d] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.nonblockingLzReceive(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:300
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 600978d0f219f3a2d01e] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 60a950094f5fa6490412] {_idToBond, epoch}
+ writer root       -> contracts/BondNFT.sol::BondNFT.extendLock(uint256,address,uint256,uint256,address)
+ writer effect     -> contracts/BondNFT.sol:121
+ written member    -> ('SV', 'contracts/BondNFT.sol', 'BondNFT._idToBond')
+ potentially stale -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.epoch')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 60b90790c7ac7db656da] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:144
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 631ddff17cadf9d99c0c] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:137
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 64d0de810d83839ae250] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 65d3bd10ae3ee0a675e4] {allowedAsset, totalShares}
+ writer root       -> contracts/BondNFT.sol::BondNFT.addAsset(address)
+ writer effect     -> contracts/BondNFT.sol:353
+ written member    -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.allowedAsset')
+ potentially stale -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.totalShares')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 66b4c4a15a242e10f5f2] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.nonblockingLzReceive(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 674f78532f7abc0c8425] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> contracts/GovNFTBridged.sol:62
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt')
+ reader witnesses  -> 45
+ storage exposures -> 1
+[MV-SI candidate 67dd8507230670a25f5e] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferMany(address,uint256[])
+ writer effect     -> contracts/GovNFTBridged.sol:267
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged._allowedAsset'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 6904160787b791d20f9b] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.updateFunding(uint256,address,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:121
+ written member    -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 693c49c6d49447c66cf6] {_operatorApprovals, _owners}
+ writer root       -> contracts/BondNFT.sol::BondNFT.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 6bd269a93c05fe93f7dc] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferMany(address,uint256[])
+ writer effect     -> contracts/GovNFT.sol:316
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFT.sol', 'GovNFT._allowedAsset'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 6c9be04267992bd3d7f4] {_idToBond, epoch}
+ writer root       -> contracts/BondNFT.sol::BondNFT.extendLock(uint256,address,uint256,uint256,address)
+ writer effect     -> contracts/BondNFT.sol:120
+ written member    -> ('SV', 'contracts/BondNFT.sol', 'BondNFT._idToBond')
+ potentially stale -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.epoch')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 6ce000dbf31ad99f8bb2] {assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.mintMany(uint256)
+ writer effect     -> contracts/GovNFT.sol:316
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 6db396ea5d7164ad4f3e] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/BondNFT.sol::BondNFT.createLock(address,uint256,uint256,address)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 6e1cd2ef4e7ff68612c9] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:143
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 6f7f3302a6a22933bd8a] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.addAsset(address)
+ writer effect     -> contracts/GovNFTBridged.sol:252
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged._allowedAsset'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 70d4afab1f8132d50c20] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.mintMany(uint256)
+ writer effect     -> contracts/GovNFT.sol:54
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt')
+ reader witnesses  -> 51
+ storage exposures -> 1
+[MV-SI candidate 7323fff3faa554483907] {_idToBond, epoch}
+ writer root       -> contracts/BondNFT.sol::BondNFT.release(uint256,address)
+ writer effect     -> contracts/BondNFT.sol:319
+ written member    -> ('SV', 'contracts/BondNFT.sol', 'BondNFT._idToBond')
+ potentially stale -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.epoch')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 75276e20f80891758911] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:378
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 776cca2332e7bdb0000b] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.reducePosition(uint256,uint256)
+ writer effect     -> contracts/Position.sol:231
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 77fab7efdeda4d8f59bc] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:378
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 7870716b8d19968490a4] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> contracts/GovNFT.sol:79
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate 78b63f8334a19f027713] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.modifyMargin(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:198
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 7a2dce78b3c33782eee9] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.mint()
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:300
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 7a534e1ca84af2fde521] {_operatorApprovals, _owners}
+ writer root       -> contracts/GovNFT.sol::GovNFT.nonblockingLzReceive(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 7aa97774147c3b859bf7] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.nonblockingLzReceive(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:300
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 7d2c3d91df90f1d3b288] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.modifyTp(uint256,uint256)
+ writer effect     -> contracts/Position.sol:243
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 7dae0ec7d115e83deac1] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.executeLimitOrder(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:174
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 7efe3621a3113994c1ab] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.reducePosition(uint256,uint256)
+ writer effect     -> contracts/Position.sol:232
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 7fd80793b946354e4e8d] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.setAccInterest(uint256)
+ writer effect     -> contracts/Position.sol:221
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 812f50b3d142cb5b82a7] {_operatorApprovals, _owners}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:337
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 8246602d7ef7e0d235fa] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:369
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 228
+ storage exposures -> 5
+[MV-SI candidate 8263f9c560005120f0b8] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.retryMessage(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:300
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 84662af99cdce6f567fa] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 84daa28d3bdabc763cfa] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged._bridgeMint(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:300
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 8588987195300316f49f] {allowedAsset, totalShares}
+ writer root       -> contracts/BondNFT.sol::BondNFT.setAllowedAsset(address,bool)
+ writer effect     -> contracts/BondNFT.sol:359
+ written member    -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.allowedAsset')
+ potentially stale -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.totalShares')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 8a4b93bcd35cee00cfd6] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/BondNFT.sol::BondNFT.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:369
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 8bdb5082c105b48d4b65] {allowedAsset, totalShares}
+ writer root       -> contracts/BondNFT.sol::BondNFT.release(uint256,address)
+ writer effect     -> contracts/BondNFT.sol:150
+ written member    -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.totalShares')
+ potentially stale -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.allowedAsset')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 8c44df9da1aabeb7086a] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferMany(address,uint256[])
+ writer effect     -> contracts/GovNFT.sol:97
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate 8c4f60d62b9f2a43db5c] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 8d574c76d173dd4b6d1e] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:330
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 8dc0a2e4a31c89204901] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:378
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 8e1449b13d32122640a2] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.updateFunding(uint256,address,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:121
+ written member    -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position._trades'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 40
+ storage exposures -> 1
+[MV-SI candidate 8e64ae288d403f9d210a] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:142
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 8f6457c0ce529aace8db] {_operatorApprovals, _owners}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 916379a5d42848fee64b] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFT.sol::GovNFT.retryMessage(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 91d82e1efc2f6d5fd4c1] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 921a540c96fdb1cc355f] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT._bridgeMint(address,uint256)
+ writer effect     -> contracts/GovNFT.sol:68
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt')
+ reader witnesses  -> 50
+ storage exposures -> 1
+[MV-SI candidate 927c816a79c2ed8a1f3e] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 93773a4a8caea5659957] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 9415ecdf9df220ed1994] {_idToBond, epoch}
+ writer root       -> contracts/BondNFT.sol::BondNFT.createLock(address,uint256,uint256,address)
+ writer effect     -> contracts/BondNFT.sol:82
+ written member    -> ('SV', 'contracts/BondNFT.sol', 'BondNFT._idToBond')
+ potentially stale -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.epoch')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 946f23d11e0a52a82044] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:377
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 955e2628400ce3166bb5] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/BondNFT.sol::BondNFT.approveMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:393
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 960ca1f7b7209fdbe57a] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.executeLimitOrder(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:175
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 960efac7eefefad98a4c] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/BondNFT.sol::BondNFT.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 964c25d528f2193fbdde] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.nonblockingLzReceive(uint16,bytes,uint64,bytes)
+ writer effect     -> contracts/GovNFTBridged.sol:267
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged._allowedAsset'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 964cf0412bc3a48ec8ab] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.modifyTp(uint256,uint256)
+ writer effect     -> contracts/Position.sol:243
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 96f19230819a80654c56] {allowedAsset, totalShares}
+ writer root       -> contracts/BondNFT.sol::BondNFT.extendLock(uint256,address,uint256,uint256,address)
+ writer effect     -> contracts/BondNFT.sol:115
+ written member    -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.totalShares')
+ potentially stale -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.allowedAsset')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 99639ee86905531ed6c0] {assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> contracts/GovNFT.sol:316
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 99a497c06e7fa8e64b37] {_idToBond, epoch}
+ writer root       -> contracts/BondNFT.sol::BondNFT.distribute(address,uint256)
+ writer effect     -> contracts/BondNFT.sol:221
+ written member    -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.epoch')
+ potentially stale -> ('SV', 'contracts/BondNFT.sol', 'BondNFT._idToBond')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 99da53fe92df96f54be3] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferMany(address,uint256[])
+ writer effect     -> contracts/GovNFTBridged.sol:77
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 9a91ea2128aadcaaf557] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 9bd500f91cc3b4777d62] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged._bridgeMint(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 9c592e50b4cdf163d9e9] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.nonblockingLzReceive(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 9f31a558085195d5c56b] {_operatorApprovals, _owners}
+ writer root       -> contracts/GovNFT.sol::GovNFT.retryMessage(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 9fe933ad5f7452902a63] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate a097855b7501cdf49550] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.mintMany(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:300
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate a131738c16046a92dd35] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.addAsset(address)
+ writer effect     -> contracts/GovNFT.sol:304
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT._allowedAsset')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate a193ce9d63ea939586f8] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.claim(address)
+ writer effect     -> contracts/GovNFT.sol:278
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt')
+ reader witnesses  -> 53
+ storage exposures -> 1
+[MV-SI candidate a1ef1eb7e07ebb24a8e2] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.mint()
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate a1f14775388a17c8054c] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.modifyMargin(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:199
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate a2c651a686b0793f3bc8] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:145
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate a4ba2fcde89e9011e6e0] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.executeLimitOrder(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:174
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate a5b8d59ef19961de4148] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.retryMessage(uint16,bytes,uint64,bytes)
+ writer effect     -> contracts/GovNFTBridged.sol:267
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged._allowedAsset'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate a5dc6eed3da4d6c9c9e8] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.mint()
+ writer effect     -> contracts/GovNFT.sol:316
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFT.sol', 'GovNFT._allowedAsset'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate a61e12eb54ff968c8474] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferMany(address,uint256[])
+ writer effect     -> contracts/GovNFT.sol:99
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate a6ba966c56edb446658e] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.retryMessage(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate a84c0b88db0783198bd1] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.executeLimitOrder(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:173
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate a8911542fb72e8d4addb] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.burn(uint256)
+ writer effect     -> contracts/Position.sol:279
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate a8b47014078464cedcd3] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFT.sol::GovNFT.mintMany(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate aa9cf5a3f67e887fb2b1] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT._bridgeMint(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate aa9f796c14b1e0d63652] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate aab91adba7844fa06d5d] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.modifySl(uint256,uint256)
+ writer effect     -> contracts/Position.sol:253
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate abe50d56aad4ee1d04e3] {_operatorApprovals, _owners}
+ writer root       -> contracts/GovNFT.sol::GovNFT.mintMany(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate ac4f31a864f3442acd43] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.executeLimitOrder(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:175
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate ace160fa61ccf22d12aa] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.setAllowedAsset(address,bool)
+ writer effect     -> contracts/GovNFT.sol:308
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT._allowedAsset')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate ae193fc15721d0f7302b] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged._bridgeMint(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate ae5d99846f48da2a3085] {_operatorApprovals, _owners}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.nonblockingLzReceive(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate ae918e34d872a0a0fcb5] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> contracts/GovNFTBridged.sol:60
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate b14c4669dee33ba39bfd] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.approve(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:393
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 228
+ storage exposures -> 5
+[MV-SI candidate b15d1f02eb97c9a1adb7] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:369
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 228
+ storage exposures -> 5
+[MV-SI candidate b23b61026cd09a25294e] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFT.sol::GovNFT.approveMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:393
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate b264318bdca5978d78b0] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.updateFunding(uint256,address,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:122
+ written member    -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate b3934b35d02b5ba19cfe] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:378
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate b4b1341671f673dc5a2e] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFT.sol::GovNFT.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:330
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate b605f27d6c58c7ae21ea] {_operatorApprovals, _owners}
+ writer root       -> contracts/BondNFT.sol::BondNFT.release(uint256,address)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:337
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate b6ea27a7cc2923bdd038] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.modifyTp(uint256,uint256)
+ writer effect     -> contracts/Position.sol:243
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate b7a24e8698c856ea285a] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate b7e4fcc7089a687e7411] {_operatorApprovals, _owners}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate b8a923ef6fb331606277] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.distribute(address,uint256)
+ writer effect     -> contracts/GovNFT.sol:290
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate b94cef5185de17b922c3] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:144
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate ba20396bf525309dc21f] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:369
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate ba6e7cb762d9515f01f6] {assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferMany(address,uint256[])
+ writer effect     -> contracts/GovNFT.sol:316
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate baa1f3b42b088dc94314] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.addAsset(address)
+ writer effect     -> contracts/GovNFTBridged.sol:255
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged._allowedAsset')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate bad0d89ed0766e0b9455] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate bba3188b6b28aa60561b] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:143
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate bc9780990f51a6fae0a8] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.retryMessage(uint16,bytes,uint64,bytes)
+ writer effect     -> contracts/GovNFT.sol:68
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt')
+ reader witnesses  -> 50
+ storage exposures -> 1
+[MV-SI candidate bcf1923bcc8a941e6fbf] {_operatorApprovals, _owners}
+ writer root       -> contracts/GovNFT.sol::GovNFT._bridgeMint(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate bcff2d302517e1d357ce] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.distribute(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol:46
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged._allowedAsset'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate bd333213099ecb82c4db] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:141
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate bdccb1b45e8a30f055de] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:377
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate bdf15e0d18955ea02f43] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFT.sol::GovNFT.mint()
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:303
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate be0aca04a255ec2ae56a] {_idToBond, epoch}
+ writer root       -> contracts/BondNFT.sol::BondNFT.extendLock(uint256,address,uint256,uint256,address)
+ writer effect     -> contracts/BondNFT.sol:119
+ written member    -> ('SV', 'contracts/BondNFT.sol', 'BondNFT._idToBond')
+ potentially stale -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.epoch')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate bec40a3b06304213d999] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.retryMessage(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate c08f26094b69b77c02ec] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate c178f091338c282e3e3c] {assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.mint()
+ writer effect     -> contracts/GovNFT.sol:316
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c1c3edd3b4dc4cefbfbd] {assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.nonblockingLzReceive(uint16,bytes,uint64,bytes)
+ writer effect     -> contracts/GovNFT.sol:316
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c2834cf87ba0eccca4c6] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.executeLimitOrder(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:173
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate c441a06b6e47456d47a3] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.addAsset(address)
+ writer effect     -> contracts/GovNFT.sol:302
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFT.sol', 'GovNFT._allowedAsset')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c54b7b1b56d93fb301a4] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFT.sol::GovNFT.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:337
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate c711e9cc46b76586499d] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.distribute(address,uint256)
+ writer effect     -> contracts/GovNFT.sol:288
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFT.sol', 'GovNFT._allowedAsset'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c8ad757bc1230851512b] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:144
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate c9208cb6a15e12814de3] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> contracts/GovNFT.sol:316
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFT.sol', 'GovNFT._allowedAsset'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate cb1e532b8515a5dff606] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:139
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate cb9f2d10efd457cc0511] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate cc7c0ac006aa4f599821] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:378
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate ccd68a9c1c98e863ae7d] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate cd7a0025ae39d0253421] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate cee6a6b732ac9f47fd18] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:408
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 279
+ storage exposures -> 5
+[MV-SI candidate cf97260d3ef4e237de06] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:377
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate d2abb2c03c85a30d097d] {assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.retryMessage(uint16,bytes,uint64,bytes)
+ writer effect     -> contracts/GovNFT.sol:316
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate d35e67390f7c4fad734e] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:378
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate d364065a303af9fbb7d3] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferMany(address,uint256[])
+ writer effect     -> contracts/GovNFTBridged.sol:74
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate d45c51384a3181c4b692] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferMany(address,uint256[])
+ writer effect     -> contracts/GovNFT.sol:96
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate d49dfcbcc9d5a779fec4] {_idToBond, epoch}
+ writer root       -> contracts/BondNFT.sol::BondNFT.addAsset(address)
+ writer effect     -> contracts/BondNFT.sol:354
+ written member    -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.epoch')
+ potentially stale -> ('SV', 'contracts/BondNFT.sol', 'BondNFT._idToBond')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate d5816dff5cf191a12513] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.nonblockingLzReceive(uint16,bytes,uint64,bytes)
+ writer effect     -> contracts/GovNFT.sol:68
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt')
+ reader witnesses  -> 50
+ storage exposures -> 1
+[MV-SI candidate d62b2d940722fa59f548] {assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferMany(address,uint256[])
+ writer effect     -> contracts/GovNFTBridged.sol:267
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate d6fc996296aa3e7b4264] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:337
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate d80f9e3724dec17d8686] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:142
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate d85b7b2a8f5e51cb20d1] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.executeLimitOrder(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:173
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate d8de9a147d64b2b30af0] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/BondNFT.sol::BondNFT.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate d9c7be9793dec1178c29] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:378
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate db6185a236afad92955d] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 26
+ storage exposures -> 5
+[MV-SI candidate e245963e27617237de92] {_operatorApprovals, _owners}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate e3228b642dc37c78f885] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate e3cd1d73754faf446db0] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.modifySl(uint256,uint256)
+ writer effect     -> contracts/Position.sol:253
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate e5c4a6dfe86485708898] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate e5f3bb5baf8b514ca0fc] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferFromMany(address,address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate eaab4648a5258f83ce7e] {assets, assetsIndex}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.distribute(address,uint256)
+ writer effect     -> contracts/GovNFTBridged.sol:239
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assets')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.assetsIndex')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ebd21fb7668016d2d9f1] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.addToPosition(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:211
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate ecad8114a2f06c3a59f7] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.safeTransferMany(address,uint256[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:478
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate ecc1b1e3efc430efe4d7] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.modifyMargin(uint256,uint256,uint256)
+ writer effect     -> contracts/Position.sol:198
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate efbcb5b758c53984f536] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:145
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate f093560c616b297dbea9] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:139
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate f11bc9b27e182251a0d6] {assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT._bridgeMint(address,uint256)
+ writer effect     -> contracts/GovNFT.sol:316
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f4f1f4720106ed44eeca] {_trades, longOi}
+ writer root       -> contracts/Position.sol::Position.setAccInterest(uint256)
+ writer effect     -> contracts/Position.sol:221
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate f4f82842c4f1fee05e72] {_idToBond, epoch}
+ writer root       -> contracts/BondNFT.sol::BondNFT.extendLock(uint256,address,uint256,uint256,address)
+ writer effect     -> contracts/BondNFT.sol:117
+ written member    -> ('SV', 'contracts/BondNFT.sol', 'BondNFT._idToBond')
+ potentially stale -> ('SV', 'contracts/BondNFT.sol', 'BondNFT.epoch')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate f5342554e2fe9a8e3acf] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFT.sol::GovNFT.retryMessage(uint16,bytes,uint64,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.accRewardsPerNFT'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userDebt'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.userPaid')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate f66f2cf796c1d43b18a3] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:377
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate f84d9a980ab817501c5b] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged.crossChain(uint16,bytes,address,uint256[])
+ writer effect     -> contracts/GovNFTBridged.sol:61
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate fbe06b000dd5a0034225] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:475
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances')
+ potentially stale -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate fc5274fc2480a51a2ac7] {_balances, accRewardsPerNFT, userDebt, userPaid}
+ writer root       -> contracts/GovNFTBridged.sol::GovNFTBridged._bridgeMint(address,uint256)
+ writer effect     -> contracts/GovNFTBridged.sol:52
+ written member    -> ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userPaid')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._balances'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.accRewardsPerNFT'), ('SV', 'contracts/GovNFTBridged.sol', 'GovNFTBridged.userDebt')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate fc758eb871901ccef24e] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.addAsset(address)
+ writer effect     -> contracts/GovNFT.sol:301
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFT.sol', 'GovNFT._allowedAsset'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate fc7db5c1a0df99d4467a] {_allTokens, _allowedAsset, assets, assetsIndex}
+ writer root       -> contracts/GovNFT.sol::GovNFT.nonblockingLzReceive(uint16,bytes,uint64,bytes)
+ writer effect     -> contracts/GovNFT.sol:316
+ written member    -> ('SV', 'contracts/GovNFT.sol', 'GovNFT.assets')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol', 'ERC721Enumerable._allTokens'), ('SV', 'contracts/GovNFT.sol', 'GovNFT._allowedAsset'), ('SV', 'contracts/GovNFT.sol', 'GovNFT.assetsIndex')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate fcc78b4910a2a1f2c7af] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:380
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 207
+ storage exposures -> 5
+[MV-SI candidate fd886fbd3095a9d9e124] {_trades, longOi, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:140
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.longOi'), ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate fe9be613f9aad8057d18] {_trades, shortOi}
+ writer root       -> contracts/Position.sol::Position.mint(IPosition.MintTrade)
+ writer effect     -> contracts/Position.sol:146
+ written member    -> ('SV', 'contracts/Position.sol', 'Position._trades')
+ potentially stale -> ('SV', 'contracts/Position.sol', 'Position.shortOi')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate ff38b3a4281d9234e9a8] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:408
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 50
+ storage exposures -> 5Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (96 contracts with 1 detectors), 294 result(s) found

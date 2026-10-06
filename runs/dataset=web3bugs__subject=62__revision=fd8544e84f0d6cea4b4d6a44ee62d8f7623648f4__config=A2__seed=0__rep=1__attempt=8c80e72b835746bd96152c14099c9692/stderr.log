@@ -1,0 +1,416 @@
+'forge clean' running (wd: /workspace)
+'forge config --json' running
+'forge build --build-info --skip ./test/** ./script/** --force' running (wd: /workspace)
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1640 vars=85
+[mvscan-stage] root-seeding-done eligible_exposures=185 seeded=76 multi_exposure_entry_blocks=30 collapsed_contextual_aliases=109 excluded_dependency=4 excluded_interface=11 excluded_library=0 excluded_abstract=30 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=991b94e0f9d7da4bd4d502fba2bca6f67449cd32455ff1ab20af86a9b5ff9051 candidate_count=58 candidate_digest=f71e804c5c6f46df25f5990b42725c0e5b7d069bb67f29833f454cdb5a3c61de context_instance_count=3416 eligible_readers=12 eligible_writers=8 execution_context_digest=6cdabff52ad7deeb1c769bf8a38a82d16d3a74da55802932815616866a22cd05 insensitive_readers_filtered=6 invalid_partial_write_filtered=0 must_full_relation_filtered=704 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=2 owner_context_pairs=3416 owner_context_pairs_considered=7406 raw_block_pairs=52 reader_witness_count=3416 relation_base_members_shadowed=12 relation_context_incompatible=3284 relation_digest=9bf7d74b9e83604dfe071ea30af1f0503d3db475d8a9a1814ad6eca9d90b9e4c relation_members_raw=47 relation_origins_registered=3 relation_origins_rejected_unary_after_shadowing=29 relation_origins_seen=32 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=4 scalar_variables_skipped=46 storage_context_mismatch=0 variables_considered=49
+INFO:Detectors:
+
+[MV-SI candidate 1a53668d002c5628dafd] {lastUpdate, unstreamed}
+ writer root       -> src/test/utils/LockeTest.sol::User.doWithdraw(Stream,uint112)
+ writer effect     -> src/Locke.sol:241
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 1e1c655ce80f28681ed1] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_flashloan()
+ writer effect     -> src/Locke.sol:247
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 231752bae1608d34fd9a] {lastUpdate, unstreamed}
+ writer root       -> src/Locke.sol::Stream.exit()
+ writer effect     -> src/Locke.sol:241
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 2317d1053954f08efff1] {lastUpdate, unstreamed}
+ writer root       -> src/Locke.sol::Stream.stake(uint112)
+ writer effect     -> src/Locke.sol:438
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 24f35e391c3a4e90c52f] {lastUpdate, unstreamed}
+ writer root       -> src/Locke.sol::Stream.exit()
+ writer effect     -> src/Locke.sol:247
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 2d4b69b73d44af67e07b] {lastUpdate, unstreamed}
+ writer root       -> src/test/utils/LockeTest.sol::User.doClaimReward(Stream)
+ writer effect     -> src/Locke.sol:567
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 301645fea4780aafea64] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_creatorClaimTokens()
+ writer effect     -> src/Locke.sol:241
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 32f3a468301c2861e230] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_stake()
+ writer effect     -> src/Locke.sol:241
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 345bd17de7f8e9fa4eaf] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_claimDeposit()
+ writer effect     -> src/Locke.sol:438
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 34d459b70f2be7d6ea08] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_claimDeposit()
+ writer effect     -> src/Locke.sol:241
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 3a4302517a052d75f2d3] {lastUpdate, unstreamed}
+ writer root       -> src/test/utils/LockeTest.sol::User.doExit(Stream)
+ writer effect     -> src/Locke.sol:247
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 3a6c4f7723389e2d7a4e] {lastUpdate, unstreamed}
+ writer root       -> src/test/utils/LockeTest.sol::User.doStake(Stream,address,uint112)
+ writer effect     -> src/Locke.sol:238
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 3b6ed6076e004b7398d9] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_recoverTokens()
+ writer effect     -> src/Locke.sol:213
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 3ca79d962906d19d2851] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_arbitraryCall()
+ writer effect     -> src/Locke.sol:438
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 4300407e8bb4e22fdb2d] {lastUpdate, unstreamed}
+ writer root       -> src/Locke.sol::Stream.stake(uint112)
+ writer effect     -> src/Locke.sol:241
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 4c94dfe543e7b9dffda6] {lastUpdate, unstreamed}
+ writer root       -> src/Locke.sol::Stream.stake(uint112)
+ writer effect     -> src/Locke.sol:238
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 4fec5baa5ab83b6fdd6e] {lastUpdate, unstreamed}
+ writer root       -> src/Locke.sol::Stream.withdraw(uint112)
+ writer effect     -> src/Locke.sol:241
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 507654862e46ba3eedb2] {lastUpdate, unstreamed}
+ writer root       -> src/Locke.sol::Stream.claimReward()
+ writer effect     -> src/Locke.sol:567
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 52f233b93687a1fe9ad7] {lastUpdate, unstreamed}
+ writer root       -> src/test/utils/LockeTest.sol::User.doExit(Stream)
+ writer effect     -> src/Locke.sol:238
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 539ef3d5cd832db105bb] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_recoverTokens()
+ writer effect     -> src/Locke.sol:247
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 5d3bc607dc333006bac7] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_stake()
+ writer effect     -> src/Locke.sol:438
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 6338860ec10a5578f38c] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_recoverTokens()
+ writer effect     -> src/Locke.sol:238
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 66f504a208d2fb56ac85] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_recoverTokens()
+ writer effect     -> src/Locke.sol:241
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 67ba0cb0f0ba08bf064f] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_creatorClaimTokens()
+ writer effect     -> src/Locke.sol:238
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 718eb82dab535af84a66] {lastUpdate, unstreamed}
+ writer root       -> src/test/utils/LockeTest.sol::User.doWithdraw(Stream,uint112)
+ writer effect     -> src/Locke.sol:247
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 72df678a8b42e703a12c] {lastUpdate, unstreamed}
+ writer root       -> src/Locke.sol::Stream.withdraw(uint112)
+ writer effect     -> src/Locke.sol:238
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 798e68b08fb84b155d56] {lastUpdate, unstreamed}
+ writer root       -> src/Locke.sol::Stream.withdraw(uint112)
+ writer effect     -> src/Locke.sol:247
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 7cb4bc23d7006b445cb2] {lastUpdate, unstreamed}
+ writer root       -> src/test/utils/LockeTest.sol::User.doExit(Stream)
+ writer effect     -> src/Locke.sol:241
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 88ac453d0124bcf55e79] {lastUpdate, unstreamed}
+ writer root       -> src/test/utils/LockeTest.sol::User.doExit(Stream)
+ writer effect     -> src/Locke.sol:213
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 8d0f24c98e9f53e51e24] {lastUpdate, unstreamed}
+ writer root       -> src/test/utils/LockeTest.sol::User.doWithdraw(Stream,uint112)
+ writer effect     -> src/Locke.sol:213
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 9006484c13d0619d30c5] {lastUpdate, unstreamed}
+ writer root       -> src/test/utils/LockeTest.sol::User.doStake(Stream,address,uint112)
+ writer effect     -> src/Locke.sol:247
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 9178e8985d23c30ea2b8] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_arbitraryCall()
+ writer effect     -> src/Locke.sol:247
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 92d3ef6060e4f619d36b] {lastUpdate, unstreamed}
+ writer root       -> src/test/utils/LockeTest.sol::User.doWithdraw(Stream,uint112)
+ writer effect     -> src/Locke.sol:238
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 93ff2cf86974f49626fa] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_claimDeposit()
+ writer effect     -> src/Locke.sol:238
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 97080ec3063278bccbad] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_recoverTokens()
+ writer effect     -> src/Locke.sol:438
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 991b42d2a46155a67c40] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_stake()
+ writer effect     -> src/Locke.sol:247
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 9e4461a7e21169a236d8] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_creatorClaimTokens()
+ writer effect     -> src/Locke.sol:247
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate a1828cdf7c1718f36f0f] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_creatorClaimTokens()
+ writer effect     -> src/Locke.sol:213
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate a7fe66c9c2840b7c9485] {lastUpdate, unstreamed}
+ writer root       -> src/Locke.sol::Stream.exit()
+ writer effect     -> src/Locke.sol:213
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate b3ab121b8cf2a1bd1946] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_claimDeposit()
+ writer effect     -> src/Locke.sol:247
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate bead738a6be9e2a97a3a] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_flashloan()
+ writer effect     -> src/Locke.sol:438
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate c00a89df3ae6e36fdbb7] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_arbitraryCall()
+ writer effect     -> src/Locke.sol:241
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate c054d5b303c62d773d5f] {lastUpdate, unstreamed}
+ writer root       -> src/test/utils/LockeTest.sol::User.doStake(Stream,address,uint112)
+ writer effect     -> src/Locke.sol:241
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate c13a0e483827b5be9277] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_arbitraryCall()
+ writer effect     -> src/Locke.sol:238
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate c3f088a318be70491c0a] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_creatorClaimTokens()
+ writer effect     -> src/Locke.sol:438
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate c519b3c7497d7746b1a3] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_stake()
+ writer effect     -> src/Locke.sol:238
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate c8169d2823ed3f544628] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_claimDeposit()
+ writer effect     -> src/Locke.sol:213
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate ca5c8e3d190f15a7df20] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_flashloan()
+ writer effect     -> src/Locke.sol:238
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate ce0066b0d93b2c261385] {lastUpdate, unstreamed}
+ writer root       -> src/test/utils/LockeTest.sol::User.doStake(Stream,address,uint112)
+ writer effect     -> src/Locke.sol:213
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate ce317ecf203a12af694c] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_flashloan()
+ writer effect     -> src/Locke.sol:241
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate d15abb7f5c1731659e1b] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_stake()
+ writer effect     -> src/Locke.sol:213
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate d7475e7395d0d586d83a] {lastUpdate, unstreamed}
+ writer root       -> src/test/utils/LockeTest.sol::User.doStake(Stream,address,uint112)
+ writer effect     -> src/Locke.sol:438
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate e564d71f3248f2704502] {lastUpdate, unstreamed}
+ writer root       -> src/Locke.sol::Stream.stake(uint112)
+ writer effect     -> src/Locke.sol:213
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate eda96b847ac42ae835ca] {lastUpdate, unstreamed}
+ writer root       -> src/Locke.sol::Stream.stake(uint112)
+ writer effect     -> src/Locke.sol:247
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate ee1f21a44cedb25553c5] {lastUpdate, unstreamed}
+ writer root       -> src/Locke.sol::Stream.withdraw(uint112)
+ writer effect     -> src/Locke.sol:213
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate f137b0738aca016dc99d] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_flashloan()
+ writer effect     -> src/Locke.sol:213
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate f246e6b11798339f310e] {lastUpdate, unstreamed}
+ writer root       -> src/Locke.sol::Stream.exit()
+ writer effect     -> src/Locke.sol:238
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate f73a435cbcb190965a30] {lastUpdate, unstreamed}
+ writer root       -> src/test/Locke.t.sol::StreamTest.test_arbitraryCall()
+ writer effect     -> src/Locke.sol:213
+ written member    -> ('SV', 'src/Locke.sol', 'Stream.lastUpdate')
+ potentially stale -> ('SV', 'src/Locke.sol', 'Stream.unstreamed')
+ reader witnesses  -> 52
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (21 contracts with 1 detectors), 58 result(s) found

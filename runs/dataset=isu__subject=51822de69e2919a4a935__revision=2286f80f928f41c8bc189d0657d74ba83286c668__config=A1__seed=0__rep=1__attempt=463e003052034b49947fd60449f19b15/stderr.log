@@ -1,0 +1,351 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=3914 vars=213
+[mvscan-stage] root-seeding-done eligible_exposures=468 seeded=161 multi_exposure_entry_blocks=67 collapsed_contextual_aliases=307 excluded_dependency=0 excluded_interface=139 excluded_library=0 excluded_abstract=93 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=595e1411ba92319af3ace8627d0950ee5c8575915cb3915ce759101ffafea46a candidate_count=49 candidate_digest=33cc5c25d16c0eb583f460552e22f79eea2bb3f9b64b5f7455a28bb381ee896b context_instance_count=646 eligible_readers=80 eligible_writers=58 execution_context_digest=4a2fd2f8caea80f39545cacfa92f9a5ee7799c0af086936fc397370ae10cdf9e insensitive_readers_filtered=96 invalid_partial_write_filtered=0 must_full_relation_filtered=36 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=63 owner_context_pairs=667 owner_context_pairs_considered=9292 raw_block_pairs=909 reader_witness_count=667 relation_base_members_shadowed=0 relation_context_incompatible=2013 relation_digest=b2bd0fda5ddfcff5771b586223da9ee88d4fcde41c55180882d48a642b2f2f69 relation_members_raw=42 relation_origins_registered=6 relation_origins_rejected_unary_after_shadowing=26 relation_origins_rejected_unreachable=22 relation_origins_seen=32 relation_unbound_key_templates=15 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=18 scalar_variables_skipped=134 storage_context_mismatch=6513 variables_considered=140
+INFO:Detectors:
+
+[MV-SI candidate 06f7f41bd4666ce1877f] {debtRateAgainstEthMarket, debtStartPoint, maxDebtRate, minDebtRate, totalBorrow}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.liquidate(address[],uint256[],ISwapper,bytes)
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:823
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.totalBorrow')
+ potentially stale -> ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtRateAgainstEthMarket'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtStartPoint'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.maxDebtRate'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.minDebtRate')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 0a70aaf4bd5b4b370b11] {exchangeRate, userBorrowPart[$arg0]}
+ writer root       -> contracts/markets/singularity/SGLLeverage.sol::SGLLeverage.sellCollateral(address,uint256,uint256,ISwapper,bytes)
+ writer effect     -> contracts/markets/Market.sol:345
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.exchangeRate')
+ potentially stale -> ('MS', 'contracts/markets/Market.sol', 'Market.userBorrowPart', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 0f0a9760f9d2ae0a8dad] {assets, ids[$arg0][$arg1][$arg2][$arg3]}
+ writer root       -> tapioca-sdk/dist/contracts/YieldBox/contracts/NativeTokenFactory.sol::NativeTokenFactory.createToken(string,string,uint8,string)
+ writer effect     -> tapioca-sdk/dist/contracts/YieldBox/contracts/NativeTokenFactory.sol:92
+ written member    -> ('SV', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.assets')
+ potentially stale -> ('MS', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.ids', '$arg0][$arg1][$arg2][$arg3')
+ reader witnesses  -> 3
+ storage exposures -> 2
+[MV-SI candidate 1217a280f9323fdb4031] {debtRateAgainstEthMarket, debtStartPoint, maxDebtRate, minDebtRate, totalBorrow}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.init(bytes)
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:160
+ written member    -> ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.minDebtRate')
+ potentially stale -> ('SV', 'contracts/markets/Market.sol', 'Market.totalBorrow'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtRateAgainstEthMarket'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtStartPoint'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.maxDebtRate')
+ reader witnesses  -> 40
+ storage exposures -> 1
+[MV-SI candidate 17112aaee738329cb6fa] {exchangeRate, userBorrowPart[$arg0]}
+ writer root       -> contracts/markets/singularity/SGLCollateral.sol::SGLCollateral.removeCollateral(address,address,uint256)
+ writer effect     -> contracts/markets/Market.sol:345
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.exchangeRate')
+ potentially stale -> ('MS', 'contracts/markets/Market.sol', 'Market.userBorrowPart', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 1d17b9eba26ab0925874] {assets, ids[$arg0][$arg1][$arg2][$arg3]}
+ writer root       -> tapioca-sdk/dist/contracts/YieldBox/contracts/YieldBox.sol::YieldBox.deposit(TokenType,address,IStrategy,uint256,address,address,uint256,uint256)
+ writer effect     -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol:67
+ written member    -> ('MS', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.ids', '$arg0][$arg1][$arg2][$arg3')
+ potentially stale -> ('SV', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.assets')
+ reader witnesses  -> 53
+ storage exposures -> 1
+[MV-SI candidate 22f4bce5fef8d8bfc6cc] {exchangeRate, userBorrowPart[$arg0]}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.removeCollateral(address,address,uint256)
+ writer effect     -> contracts/markets/Market.sol:345
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.exchangeRate')
+ potentially stale -> ('MS', 'contracts/markets/Market.sol', 'Market.userBorrowPart', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 28377c164b806b2e0883] {assets, ids[$arg0][$arg1][$arg2][$arg3]}
+ writer root       -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol::AssetRegister.setApprovalForAsset(address,uint256,bool)
+ writer effect     -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol:38
+ written member    -> ('SV', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.assets')
+ potentially stale -> ('MS', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.ids', '$arg0][$arg1][$arg2][$arg3')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 3632706d6642c87040e3] {debtRateAgainstEthMarket, debtStartPoint, maxDebtRate, minDebtRate, totalBorrow}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.accrue()
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:537
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.totalBorrow')
+ potentially stale -> ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtRateAgainstEthMarket'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtStartPoint'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.maxDebtRate'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.minDebtRate')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 3b8ab77dcbcaefd888f9] {exchangeRate, userBorrowPart[$arg0]}
+ writer root       -> contracts/markets/singularity/SGLBorrow.sol::SGLBorrow.borrow(address,address,uint256)
+ writer effect     -> contracts/markets/Market.sol:345
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.exchangeRate')
+ potentially stale -> ('MS', 'contracts/markets/Market.sol', 'Market.userBorrowPart', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 3dcd0ad70c6d4ac8c63d] {debtRateAgainstEthMarket, debtStartPoint, maxDebtRate, minDebtRate, totalBorrow}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.setBigBangConfig(uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:484
+ written member    -> ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.maxDebtRate')
+ potentially stale -> ('SV', 'contracts/markets/Market.sol', 'Market.totalBorrow'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtRateAgainstEthMarket'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtStartPoint'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.minDebtRate')
+ reader witnesses  -> 37
+ storage exposures -> 1
+[MV-SI candidate 43f3799f53fe39ebbf9d] {exchangeRate, userBorrowPart[$arg0]}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.init(bytes)
+ writer effect     -> contracts/markets/Market.sol:345
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.exchangeRate')
+ potentially stale -> ('MS', 'contracts/markets/Market.sol', 'Market.userBorrowPart', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 50e9cc0b04b8d06cdecb] {exchangeRate, userBorrowPart[$arg0]}
+ writer root       -> contracts/markets/singularity/SGLBorrow.sol::SGLBorrow.repay(address,address,bool,uint256)
+ writer effect     -> contracts/markets/Market.sol:345
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.exchangeRate')
+ potentially stale -> ('MS', 'contracts/markets/Market.sol', 'Market.userBorrowPart', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 549c0d94dfcf924d76da] {assets, ids[$arg0][$arg1][$arg2][$arg3]}
+ writer root       -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol::AssetRegister.registerAsset(TokenType,address,IStrategy,uint256)
+ writer effect     -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol:67
+ written member    -> ('MS', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.ids', '$arg0][$arg1][$arg2][$arg3')
+ potentially stale -> ('SV', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.assets')
+ reader witnesses  -> 66
+ storage exposures -> 3
+[MV-SI candidate 5f26adc22b2396652fb3] {debtRateAgainstEthMarket, debtStartPoint, maxDebtRate, minDebtRate, totalBorrow}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.setBigBangConfig(uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:492
+ written member    -> ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtRateAgainstEthMarket')
+ potentially stale -> ('SV', 'contracts/markets/Market.sol', 'Market.totalBorrow'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtStartPoint'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.maxDebtRate'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.minDebtRate')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate 5fcf1db752061817343c] {assets, ids[$arg0][$arg1][$arg2][$arg3]}
+ writer root       -> contracts/Penrose.sol::Penrose.setUsdoToken(address)
+ writer effect     -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol:65
+ written member    -> ('SV', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.assets')
+ potentially stale -> ('MS', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.ids', '$arg0][$arg1][$arg2][$arg3')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 650b68d1343bb0904e99] {debtRateAgainstEthMarket, debtStartPoint, maxDebtRate, minDebtRate, totalBorrow}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.liquidate(address[],uint256[],ISwapper,bytes)
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:822
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.totalBorrow')
+ potentially stale -> ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtRateAgainstEthMarket'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtStartPoint'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.maxDebtRate'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.minDebtRate')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 66909c6a8a717a6bae7e] {exchangeRate, userBorrowPart[$arg0]}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.buyCollateral(address,uint256,uint256,uint256,ISwapper,bytes)
+ writer effect     -> contracts/markets/Market.sol:345
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.exchangeRate')
+ potentially stale -> ('MS', 'contracts/markets/Market.sol', 'Market.userBorrowPart', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 69e2cb70f3330d80a5b8] {assets, ids[$arg0][$arg1][$arg2][$arg3]}
+ writer root       -> tapioca-sdk/dist/contracts/YieldBox/contracts/YieldBox.sol::YieldBox.setApprovalForAsset(address,uint256,bool)
+ writer effect     -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol:38
+ written member    -> ('SV', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.assets')
+ potentially stale -> ('MS', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.ids', '$arg0][$arg1][$arg2][$arg3')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 7250bc3499f14b5e92f8] {assets, ids[$arg0][$arg1][$arg2][$arg3]}
+ writer root       -> contracts/Penrose.sol::Penrose.setUsdoToken(address)
+ writer effect     -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol:66
+ written member    -> ('SV', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.assets')
+ potentially stale -> ('MS', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.ids', '$arg0][$arg1][$arg2][$arg3')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7732fbefba53a9423c0f] {assets, ids[$arg0][$arg1][$arg2][$arg3]}
+ writer root       -> tapioca-sdk/dist/contracts/YieldBox/contracts/YieldBox.sol::YieldBox.deposit(TokenType,address,IStrategy,uint256,address,address,uint256,uint256)
+ writer effect     -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol:65
+ written member    -> ('SV', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.assets')
+ potentially stale -> ('MS', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.ids', '$arg0][$arg1][$arg2][$arg3')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 7b4e49f2455533262d4d] {assets, ids[$arg0][$arg1][$arg2][$arg3]}
+ writer root       -> tapioca-sdk/dist/contracts/YieldBox/contracts/NativeTokenFactory.sol::NativeTokenFactory.createToken(string,string,uint8,string)
+ writer effect     -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol:65
+ written member    -> ('SV', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.assets')
+ potentially stale -> ('MS', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.ids', '$arg0][$arg1][$arg2][$arg3')
+ reader witnesses  -> 3
+ storage exposures -> 2
+[MV-SI candidate 7b5eb993aca9b9066a80] {collateralizationRate, liquidationMultiplier}
+ writer root       -> contracts/markets/Market.sol::Market.setMarketConfig(uint256,IOracle,bytes,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/markets/Market.sol:238
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.collateralizationRate')
+ potentially stale -> ('SV', 'contracts/markets/Market.sol', 'Market.liquidationMultiplier')
+ reader witnesses  -> 5
+ storage exposures -> 2
+[MV-SI candidate 7f6f9568e97985e829a5] {assets, ids[$arg0][$arg1][$arg2][$arg3]}
+ writer root       -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol::AssetRegister.registerAsset(TokenType,address,IStrategy,uint256)
+ writer effect     -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol:65
+ written member    -> ('SV', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.assets')
+ potentially stale -> ('MS', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.ids', '$arg0][$arg1][$arg2][$arg3')
+ reader witnesses  -> 4
+ storage exposures -> 3
+[MV-SI candidate 8b850acab0b29d5c7c1d] {assets, ids[$arg0][$arg1][$arg2][$arg3]}
+ writer root       -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol::AssetRegister.registerAsset(TokenType,address,IStrategy,uint256)
+ writer effect     -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol:66
+ written member    -> ('SV', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.assets')
+ potentially stale -> ('MS', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.ids', '$arg0][$arg1][$arg2][$arg3')
+ reader witnesses  -> 4
+ storage exposures -> 3
+[MV-SI candidate 8c349977659d7ab2807d] {exchangeRate, userBorrowPart[$arg0]}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.sellCollateral(address,uint256,uint256,ISwapper,bytes)
+ writer effect     -> contracts/markets/Market.sol:345
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.exchangeRate')
+ potentially stale -> ('MS', 'contracts/markets/Market.sol', 'Market.userBorrowPart', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 91e6346704980d86cc0f] {exchangeRate, userBorrowPart[$arg0]}
+ writer root       -> contracts/markets/singularity/SGLLeverage.sol::SGLLeverage.multiHopBuyCollateral(address,uint256,uint256,IUSDOBase.ILeverageSwapData,IUSDOBase.ILeverageLZData,IUSDOBase.ILeverageExternalContractsData)
+ writer effect     -> contracts/markets/Market.sol:345
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.exchangeRate')
+ potentially stale -> ('MS', 'contracts/markets/Market.sol', 'Market.userBorrowPart', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 929b8f16faafad87f0d6] {debtRateAgainstEthMarket, debtStartPoint, maxDebtRate, minDebtRate, totalBorrow}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.init(bytes)
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:158
+ written member    -> ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtRateAgainstEthMarket')
+ potentially stale -> ('SV', 'contracts/markets/Market.sol', 'Market.totalBorrow'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtStartPoint'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.maxDebtRate'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.minDebtRate')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate 948358531b3d524a6362] {exchangeRate, userBorrowPart[$arg0]}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.liquidate(address[],uint256[],ISwapper,bytes)
+ writer effect     -> contracts/markets/Market.sol:345
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.exchangeRate')
+ potentially stale -> ('MS', 'contracts/markets/Market.sol', 'Market.userBorrowPart', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 9583dd7d772b61696aa0] {debtRateAgainstEthMarket, debtStartPoint, maxDebtRate, minDebtRate, totalBorrow}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.buyCollateral(address,uint256,uint256,uint256,ISwapper,bytes)
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:749
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.totalBorrow')
+ potentially stale -> ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtRateAgainstEthMarket'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtStartPoint'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.maxDebtRate'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.minDebtRate')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 9fe0c1ed8d9be81cae3b] {exchangeRate, userBorrowPart[$arg0]}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.repay(address,address,bool,uint256)
+ writer effect     -> contracts/markets/Market.sol:345
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.exchangeRate')
+ potentially stale -> ('MS', 'contracts/markets/Market.sol', 'Market.userBorrowPart', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate a1e87bd3baf8652485ff] {exchangeRate, userBorrowPart[$arg0]}
+ writer root       -> contracts/markets/singularity/SGLLeverage.sol::SGLLeverage.buyCollateral(address,uint256,uint256,uint256,ISwapper,bytes)
+ writer effect     -> contracts/markets/Market.sol:345
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.exchangeRate')
+ potentially stale -> ('MS', 'contracts/markets/Market.sol', 'Market.userBorrowPart', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate a3717353dc96022220ef] {debtRateAgainstEthMarket, debtStartPoint, maxDebtRate, minDebtRate, totalBorrow}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.repay(address,address,bool,uint256)
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:537
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.totalBorrow')
+ potentially stale -> ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtRateAgainstEthMarket'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtStartPoint'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.maxDebtRate'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.minDebtRate')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate a5b45cdd817481d67916] {exchangeRate, userBorrowPart[$arg0]}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.borrow(address,address,uint256)
+ writer effect     -> contracts/markets/Market.sol:345
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.exchangeRate')
+ potentially stale -> ('MS', 'contracts/markets/Market.sol', 'Market.userBorrowPart', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate a8419452ffc7525195c6] {assets, ids[$arg0][$arg1][$arg2][$arg3]}
+ writer root       -> tapioca-sdk/dist/contracts/YieldBox/contracts/YieldBox.sol::YieldBox.depositETH(IStrategy,address,uint256)
+ writer effect     -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol:65
+ written member    -> ('SV', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.assets')
+ potentially stale -> ('MS', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.ids', '$arg0][$arg1][$arg2][$arg3')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate aeabf99fd54e65b7fa06] {debtRateAgainstEthMarket, debtStartPoint, maxDebtRate, minDebtRate, totalBorrow}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.setBigBangConfig(uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:478
+ written member    -> ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.minDebtRate')
+ potentially stale -> ('SV', 'contracts/markets/Market.sol', 'Market.totalBorrow'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtRateAgainstEthMarket'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtStartPoint'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.maxDebtRate')
+ reader witnesses  -> 40
+ storage exposures -> 1
+[MV-SI candidate bf88dd0b48b0ef3fef81] {assets, ids[$arg0][$arg1][$arg2][$arg3]}
+ writer root       -> tapioca-sdk/dist/contracts/YieldBox/contracts/YieldBox.sol::YieldBox.depositETH(IStrategy,address,uint256)
+ writer effect     -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol:66
+ written member    -> ('SV', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.assets')
+ potentially stale -> ('MS', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.ids', '$arg0][$arg1][$arg2][$arg3')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c0eb62616f0f5e5d320d] {debtRateAgainstEthMarket, debtStartPoint, maxDebtRate, minDebtRate, totalBorrow}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.init(bytes)
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:161
+ written member    -> ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtStartPoint')
+ potentially stale -> ('SV', 'contracts/markets/Market.sol', 'Market.totalBorrow'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtRateAgainstEthMarket'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.maxDebtRate'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.minDebtRate')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate c2887bbad6df74c7188c] {debtRateAgainstEthMarket, debtStartPoint, maxDebtRate, minDebtRate, totalBorrow}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.repay(address,address,bool,uint256)
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:726
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.totalBorrow')
+ potentially stale -> ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtRateAgainstEthMarket'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtStartPoint'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.maxDebtRate'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.minDebtRate')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate ca8b543246f1057d54fa] {debtRateAgainstEthMarket, debtStartPoint, maxDebtRate, minDebtRate, totalBorrow}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.init(bytes)
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:159
+ written member    -> ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.maxDebtRate')
+ potentially stale -> ('SV', 'contracts/markets/Market.sol', 'Market.totalBorrow'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtRateAgainstEthMarket'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtStartPoint'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.minDebtRate')
+ reader witnesses  -> 37
+ storage exposures -> 1
+[MV-SI candidate cbc307dcaa3923a5146e] {collateralizationRate, liquidationMultiplier}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.setBigBangConfig(uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:504
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.liquidationMultiplier')
+ potentially stale -> ('SV', 'contracts/markets/Market.sol', 'Market.collateralizationRate')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate d7cf2f13f4e6c267a16f] {debtRateAgainstEthMarket, debtStartPoint, maxDebtRate, minDebtRate, totalBorrow}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.sellCollateral(address,uint256,uint256,ISwapper,bytes)
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:726
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.totalBorrow')
+ potentially stale -> ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtRateAgainstEthMarket'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtStartPoint'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.maxDebtRate'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.minDebtRate')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate d9360d356cfb3de12eff] {assets, ids[$arg0][$arg1][$arg2][$arg3]}
+ writer root       -> tapioca-sdk/dist/contracts/YieldBox/contracts/NativeTokenFactory.sol::NativeTokenFactory.createToken(string,string,uint8,string)
+ writer effect     -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol:66
+ written member    -> ('SV', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.assets')
+ potentially stale -> ('MS', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.ids', '$arg0][$arg1][$arg2][$arg3')
+ reader witnesses  -> 3
+ storage exposures -> 2
+[MV-SI candidate e483448fbf44c32ff9cb] {debtRateAgainstEthMarket, debtStartPoint, maxDebtRate, minDebtRate, totalBorrow}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.liquidate(address[],uint256[],ISwapper,bytes)
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:537
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.totalBorrow')
+ potentially stale -> ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtRateAgainstEthMarket'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtStartPoint'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.maxDebtRate'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.minDebtRate')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate e4db75bd499b89d731b4] {assets, ids[$arg0][$arg1][$arg2][$arg3]}
+ writer root       -> tapioca-sdk/dist/contracts/YieldBox/contracts/YieldBox.sol::YieldBox.deposit(TokenType,address,IStrategy,uint256,address,address,uint256,uint256)
+ writer effect     -> tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol:66
+ written member    -> ('SV', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.assets')
+ potentially stale -> ('MS', 'tapioca-sdk/dist/contracts/YieldBox/contracts/AssetRegister.sol', 'AssetRegister.ids', '$arg0][$arg1][$arg2][$arg3')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate ea674fc8eb228baaa5a6] {debtRateAgainstEthMarket, debtStartPoint, maxDebtRate, minDebtRate, totalBorrow}
+ writer root       -> contracts/markets/bigBang/BigBang.sol::BigBang.borrow(address,address,uint256)
+ writer effect     -> contracts/markets/bigBang/BigBang.sol:749
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.totalBorrow')
+ potentially stale -> ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtRateAgainstEthMarket'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.debtStartPoint'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.maxDebtRate'), ('SV', 'contracts/markets/bigBang/BigBang.sol', 'BigBang.minDebtRate')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate efa740dd46aaaa5d4ea4] {exchangeRate, userBorrowPart[$arg0]}
+ writer root       -> contracts/markets/Market.sol::Market.updateExchangeRate()
+ writer effect     -> contracts/markets/Market.sol:345
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.exchangeRate')
+ potentially stale -> ('MS', 'contracts/markets/Market.sol', 'Market.userBorrowPart', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 4
+[MV-SI candidate f9f0102ed5007f333fab] {exchangeRate, userBorrowPart[$arg0]}
+ writer root       -> contracts/markets/singularity/SGLLeverage.sol::SGLLeverage.multiHopSellCollateral(address,uint256,IUSDOBase.ILeverageSwapData,IUSDOBase.ILeverageLZData,IUSDOBase.ILeverageExternalContractsData)
+ writer effect     -> contracts/markets/Market.sol:345
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.exchangeRate')
+ potentially stale -> ('MS', 'contracts/markets/Market.sol', 'Market.userBorrowPart', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate fe57fc5ff223d13c5cef] {EXCHANGE_RATE_PRECISION, collateralizationRate}
+ writer root       -> contracts/markets/Market.sol::Market.setMarketConfig(uint256,IOracle,bytes,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/markets/Market.sol:238
+ written member    -> ('SV', 'contracts/markets/Market.sol', 'Market.collateralizationRate')
+ potentially stale -> ('SV', 'contracts/markets/Market.sol', 'Market.EXCHANGE_RATE_PRECISION')
+ reader witnesses  -> 19
+ storage exposures -> 5Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (113 contracts with 1 detectors), 49 result(s) found

@@ -1,0 +1,750 @@
+'forge clean' running (wd: /workspace)
+'forge config --json' running
+'forge build --build-info --skip ./test/** ./scripts/** --force' running (wd: /workspace)
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1179 vars=93
+[mvscan-stage] root-seeding-done eligible_exposures=12 seeded=9 multi_exposure_entry_blocks=3 collapsed_contextual_aliases=3 excluded_dependency=23 excluded_interface=60 excluded_library=0 excluded_abstract=2 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=6952d30a7fb02577e3c30a1e0234e3bf71df05794418585378feeb68152da9bf candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=603abaa30c09bc9d908fef7fe0b49f52202152091ba372656882789dfdb0608c invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_base_members_shadowed=3 relation_context_incompatible=0 relation_digest=1b50425dfc1c8d3b44d19f2c93345c17278545e16e2cdf07f0233e36b683ca57 relation_members_raw=7 relation_origins_registered=1 relation_origins_rejected_unary_after_shadowing=2 relation_origins_rejected_unreachable=30 relation_origins_seen=3 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=7 storage_context_mismatch=0 variables_considered=7
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=10264 vars=520
+[mvscan-stage] root-seeding-done eligible_exposures=328 seeded=239 multi_exposure_entry_blocks=61 collapsed_contextual_aliases=89 excluded_dependency=130 excluded_interface=46 excluded_library=0 excluded_abstract=18 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=90173805f9f9319920c2fc1c8d3d2d38d7c67cea2d10f33589d2494e0450f96a candidate_count=104 candidate_digest=5dd6d4bf24cc992081b0c48d7423d265bc3bba10ca44f3e0cf0938df4d168686 context_instance_count=524 eligible_readers=81 eligible_writers=56 execution_context_digest=77c6137846b51482e20d7563ad337f33ef23ae1e867784c2d677d61b4bea11b9 insensitive_readers_filtered=53 invalid_partial_write_filtered=0 must_full_relation_filtered=10 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=63 owner_context_pairs=565 owner_context_pairs_considered=1783 raw_block_pairs=361 reader_witness_count=565 relation_base_members_shadowed=64 relation_context_incompatible=0 relation_digest=7e93c4b0f778207461cc9361fee7ff1553680aab2d790a95ab0e551b5f2526bb relation_evidence_edges=206 relation_incompatible=164 relation_members_raw=308 relation_origins_registered=27 relation_origins_rejected_unary_after_shadowing=177 relation_origins_rejected_unreachable=126 relation_origins_seen=204 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=17 scalar_variables_skipped=203 storage_context_mismatch=1145 variables_considered=223
+INFO:Detectors:
+
+[MV-SI candidate 0412a2140dd6cc44ba3b] {_initialized, _initializing}
+ writer root       -> src/periphery/op-nft/Optimist.sol::Optimist.initialize(string,string)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0bdd630e48e4b3120d0a] {_initialized, _initializing}
+ writer root       -> src/L1/L1ERC721Bridge.sol::L1ERC721Bridge.initialize(CrossDomainMessenger,SuperchainConfig)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0d909fafd5aa653bfecf] {_initialized, _initializing}
+ writer root       -> src/L1/OptimismPortal2.sol::OptimismPortal2.initialize(DisputeGameFactory,SystemConfig,SuperchainConfig,GameType)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 126107a1667a4eff57d0] {_initialized, _initializing}
+ writer root       -> src/L1/SuperchainConfig.sol::SuperchainConfig.initialize(address,bool)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 15c52ab1e60d5bc559cc] {_initialized, _initializing}
+ writer root       -> src/dispute/AnchorStateRegistry.sol::AnchorStateRegistry.initialize(AnchorStateRegistry.StartingAnchorRoot[])
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 15ded815bbca27007cf2] {_initialized, _initializing}
+ writer root       -> src/L2/L2CrossDomainMessenger.sol::L2CrossDomainMessenger.initialize(CrossDomainMessenger)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 17310b0a7573644bc0af] {balances[$sender], bondSize}
+ writer root       -> src/L1/DataAvailabilityChallenge.sol::DataAvailabilityChallenge.challenge(uint256,bytes)
+ writer effect     -> src/L1/DataAvailabilityChallenge.sol:186
+ written member    -> ('MS', 'src/L1/DataAvailabilityChallenge.sol', 'DataAvailabilityChallenge.balances', '$sender')
+ potentially stale -> ('SV', 'src/L1/DataAvailabilityChallenge.sol', 'DataAvailabilityChallenge.bondSize')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 1d61779da49cb9257e68] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> src/universal/OptimismMintableERC721.sol::OptimismMintableERC721.setApprovalForAll(address,bool)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:373
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 1e76fb2e89f4c78b3bdc] {_delay, _queuedAt[@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1]}
+ writer root       -> src/L1/DelayedVetoable.sol::DelayedVetoable.initiator()
+ writer effect     -> src/L1/DelayedVetoable.sol:146
+ written member    -> ('MS', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._queuedAt', '@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1')
+ potentially stale -> ('SV', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._delay')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 1f148f6bdcc18b96bbee] {_delay, _queuedAt[@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1]}
+ writer root       -> src/L1/DelayedVetoable.sol::DelayedVetoable.delay()
+ writer effect     -> src/L1/DelayedVetoable.sol:146
+ written member    -> ('MS', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._queuedAt', '@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1')
+ potentially stale -> ('SV', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._delay')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 225e5d8a9929d1758d8f] {_initialized, _initializing}
+ writer root       -> src/periphery/op-nft/Optimist.sol::Optimist.initialize(string,string)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 227f4f478594f6dae3b1] {messenger, otherBridge, xDomainMsgSender}
+ writer root       -> src/L1/L1StandardBridge.sol::L1StandardBridge.initialize(CrossDomainMessenger,SuperchainConfig,SystemConfig)
+ writer effect     -> src/universal/StandardBridge.sol:126
+ written member    -> ('SV', 'src/universal/StandardBridge.sol', 'StandardBridge.otherBridge')
+ potentially stale -> ('SV', 'src/universal/CrossDomainMessenger.sol', 'CrossDomainMessenger.xDomainMsgSender'), ('SV', 'src/universal/StandardBridge.sol', 'StandardBridge.messenger')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 26134d8b1e97da4b7207] {_initialized, _initializing}
+ writer root       -> src/L2/L2CrossDomainMessenger.sol::L2CrossDomainMessenger.initialize(CrossDomainMessenger)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 2779f2c975d5ef6cf19e] {_initialized, _initializing}
+ writer root       -> src/periphery/op-nft/OptimistInviter.sol::OptimistInviter.initialize(string)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 29f413028e096afe8911] {_delay, _queuedAt[@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1]}
+ writer root       -> src/L1/DelayedVetoable.sol::DelayedVetoable.fallback()
+ writer effect     -> src/L1/DelayedVetoable.sol:146
+ written member    -> ('MS', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._queuedAt', '@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1')
+ potentially stale -> ('SV', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._delay')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 2a448fff5bb217d8c990] {_delay, _queuedAt[@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1]}
+ writer root       -> src/L1/DelayedVetoable.sol::DelayedVetoable.vetoer()
+ writer effect     -> src/L1/DelayedVetoable.sol:146
+ written member    -> ('MS', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._queuedAt', '@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1')
+ potentially stale -> ('SV', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._delay')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 2cd4d149f59b5214526d] {l2Outputs, startingBlockNumber, submissionInterval}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.deleteL2Outputs(uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:175
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.startingBlockNumber'), ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.submissionInterval')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 2d1b142ea0dc608273e7] {_initialized, _initializing}
+ writer root       -> src/L1/DataAvailabilityChallenge.sol::DataAvailabilityChallenge.initialize(address,uint256,uint256,uint256,uint256)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 323dbebd31b98a0086e5] {messenger, otherBridge, xDomainMsgSender}
+ writer root       -> src/L2/L2ERC721Bridge.sol::L2ERC721Bridge.initialize(address)
+ writer effect     -> src/universal/ERC721Bridge.sol:79
+ written member    -> ('SV', 'src/universal/ERC721Bridge.sol', 'ERC721Bridge.messenger')
+ potentially stale -> ('SV', 'src/universal/CrossDomainMessenger.sol', 'CrossDomainMessenger.xDomainMsgSender'), ('SV', 'src/universal/ERC721Bridge.sol', 'ERC721Bridge.otherBridge')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 326c32657dc8e51ddf07] {_delay, _queuedAt[@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1]}
+ writer root       -> src/L1/DelayedVetoable.sol::DelayedVetoable.target()
+ writer effect     -> src/L1/DelayedVetoable.sol:146
+ written member    -> ('MS', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._queuedAt', '@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1')
+ potentially stale -> ('SV', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._delay')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 3704adcfa1071c216cd5] {l2Outputs, startingBlockNumber, submissionInterval}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.proposeL2Output(bytes32,uint256,bytes32,uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:228
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.startingBlockNumber'), ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.submissionInterval')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 3ad6b70707d2601f872b] {_initialized, _initializing}
+ writer root       -> src/dispute/weth/DelayedWETH.sol::DelayedWETH.initialize(address,SuperchainConfig)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 47d4aacd1d2e4b513425] {l2Outputs, startingBlockNumber, submissionInterval}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.initialize(uint256,uint256,uint256,uint256,address,address,uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:106
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.startingBlockNumber')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs'), ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.submissionInterval')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 4c73ac707607e6b96773] {_initialized, _initializing}
+ writer root       -> src/L1/OptimismPortal.sol::OptimismPortal.initialize(L2OutputOracle,SystemConfig,SuperchainConfig)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 51517c287d1e2958275d] {balances[$sender], bondSize}
+ writer root       -> src/L1/DataAvailabilityChallenge.sol::DataAvailabilityChallenge.initialize(address,uint256,uint256,uint256,uint256)
+ writer effect     -> src/L1/DataAvailabilityChallenge.sol:164
+ written member    -> ('SV', 'src/L1/DataAvailabilityChallenge.sol', 'DataAvailabilityChallenge.bondSize')
+ potentially stale -> ('MS', 'src/L1/DataAvailabilityChallenge.sol', 'DataAvailabilityChallenge.balances', '$sender')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 52bda19242bf83940a37] {resolutionCheckpoints[$arg0], resolvedSubgames[@local::src/dispute/FaultDisputeGame.sol::FaultDisputeGame.resolveClaim(uint256,uint256)::LocalVariable::challengeIndex_1]}
+ writer root       -> src/dispute/FaultDisputeGame.sol::FaultDisputeGame.resolveClaim(uint256,uint256)
+ writer effect     -> src/dispute/FaultDisputeGame.sol:632
+ written member    -> ('MS', 'src/dispute/FaultDisputeGame.sol', 'FaultDisputeGame.resolutionCheckpoints', '$arg0')
+ potentially stale -> ('MS', 'src/dispute/FaultDisputeGame.sol', 'FaultDisputeGame.resolvedSubgames', '@local::src/dispute/FaultDisputeGame.sol::FaultDisputeGame.resolveClaim(uint256,uint256)::LocalVariable::challengeIndex_1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 53899a6c0e7a9695362b] {_initialized, _initializing}
+ writer root       -> src/L1/ProtocolVersions.sol::ProtocolVersions.initialize(address,ProtocolVersion,ProtocolVersion)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 5414280b6c87cb445f81] {_initialized, _initializing}
+ writer root       -> src/L1/SystemConfig.sol::SystemConfig.initialize(address,uint32,uint32,bytes32,uint64,address,ResourceMetering.ResourceConfig,address,SystemConfig.Addresses)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 574ad68eac887fd17765] {_initialized, _initializing}
+ writer root       -> src/L1/L1CrossDomainMessenger.sol::L1CrossDomainMessenger.initialize(SuperchainConfig,OptimismPortal,SystemConfig)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 5769b680326282e3f5f9] {_initialized, _initializing}
+ writer root       -> src/L1/L1ERC721Bridge.sol::L1ERC721Bridge.initialize(CrossDomainMessenger,SuperchainConfig)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 5ab69342da605a0f34bc] {finalizationPeriodSeconds, l2Outputs}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.proposeL2Output(bytes32,uint256,bytes32,uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:293
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.finalizationPeriodSeconds')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 5cee72b0c7b96fcf3672] {finalizationPeriodSeconds, l2Outputs}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.proposeL2Output(bytes32,uint256,bytes32,uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:228
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.finalizationPeriodSeconds')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 5ee997a92fdff24d909e] {_initialized, _initializing}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.initialize(uint256,uint256,uint256,uint256,address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 5f3f3efe509c2836f0c9] {finalizationPeriodSeconds, l2Outputs}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.deleteL2Outputs(uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:293
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.finalizationPeriodSeconds')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 6174def6e9e1862af69c] {_initialized, _initializing}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.initialize(uint256,uint256,uint256,uint256,address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6190a3cae1ae2511ab1f] {_initialized, _initializing}
+ writer root       -> src/L1/L1StandardBridge.sol::L1StandardBridge.initialize(CrossDomainMessenger,SuperchainConfig,SystemConfig)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6b1fbdd859e30af1245a] {_initialized, _initializing}
+ writer root       -> src/L1/SystemConfig.sol::SystemConfig.initialize(address,uint32,uint32,bytes32,uint64,address,ResourceMetering.ResourceConfig,address,SystemConfig.Addresses)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 4
+ storage exposures -> 2
+[MV-SI candidate 6c622b66cda5289989c2] {messenger, otherBridge, xDomainMsgSender}
+ writer root       -> src/L1/L1ERC721Bridge.sol::L1ERC721Bridge.initialize(CrossDomainMessenger,SuperchainConfig)
+ writer effect     -> src/universal/ERC721Bridge.sol:79
+ written member    -> ('SV', 'src/universal/ERC721Bridge.sol', 'ERC721Bridge.messenger')
+ potentially stale -> ('SV', 'src/universal/CrossDomainMessenger.sol', 'CrossDomainMessenger.xDomainMsgSender'), ('SV', 'src/universal/ERC721Bridge.sol', 'ERC721Bridge.otherBridge')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6de0677ac92f3f0c84c8] {messenger, otherBridge, xDomainMsgSender}
+ writer root       -> src/L2/L2StandardBridge.sol::L2StandardBridge.initialize(StandardBridge)
+ writer effect     -> src/universal/StandardBridge.sol:125
+ written member    -> ('SV', 'src/universal/StandardBridge.sol', 'StandardBridge.messenger')
+ potentially stale -> ('SV', 'src/universal/CrossDomainMessenger.sol', 'CrossDomainMessenger.xDomainMsgSender'), ('SV', 'src/universal/StandardBridge.sol', 'StandardBridge.otherBridge')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 6e59500ad4617bf10d73] {_initialized, _initializing}
+ writer root       -> src/L1/L1StandardBridge.sol::L1StandardBridge.initialize(CrossDomainMessenger,SuperchainConfig,SystemConfig)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 771285a059bfdcc25492] {_initialized, _initializing}
+ writer root       -> src/L2/L2ERC721Bridge.sol::L2ERC721Bridge.initialize(address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 788aef1d908afc5300e6] {_initialized, _initializing}
+ writer root       -> src/L1/L1CrossDomainMessenger.sol::L1CrossDomainMessenger.initialize(SuperchainConfig,OptimismPortal,SystemConfig)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7bad3e5d9c4e33d29e21] {balances[$sender], bondSize}
+ writer root       -> src/L1/DataAvailabilityChallenge.sol::DataAvailabilityChallenge.setBondSize(uint256)
+ writer effect     -> src/L1/DataAvailabilityChallenge.sol:164
+ written member    -> ('SV', 'src/L1/DataAvailabilityChallenge.sol', 'DataAvailabilityChallenge.bondSize')
+ potentially stale -> ('MS', 'src/L1/DataAvailabilityChallenge.sol', 'DataAvailabilityChallenge.balances', '$sender')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 7e10710deff10c154dfa] {messenger, otherBridge, xDomainMsgSender}
+ writer root       -> src/L1/L1StandardBridge.sol::L1StandardBridge.initialize(CrossDomainMessenger,SuperchainConfig,SystemConfig)
+ writer effect     -> src/universal/StandardBridge.sol:125
+ written member    -> ('SV', 'src/universal/StandardBridge.sol', 'StandardBridge.messenger')
+ potentially stale -> ('SV', 'src/universal/CrossDomainMessenger.sol', 'CrossDomainMessenger.xDomainMsgSender'), ('SV', 'src/universal/StandardBridge.sol', 'StandardBridge.otherBridge')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 83b7f6f75653d30edb7a] {_initialized, _initializing}
+ writer root       -> src/L1/L1ERC721Bridge.sol::L1ERC721Bridge.initialize(CrossDomainMessenger,SuperchainConfig)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 8eca4e2d849e4c962d39] {_delay, _queuedAt[@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1]}
+ writer root       -> src/L1/DelayedVetoable.sol::DelayedVetoable.queuedAt(bytes32)
+ writer effect     -> src/L1/DelayedVetoable.sol:146
+ written member    -> ('MS', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._queuedAt', '@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1')
+ potentially stale -> ('SV', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._delay')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 8f7757821b13d6dd62fc] {balances[$sender], bondSize}
+ writer root       -> src/L1/DataAvailabilityChallenge.sol::DataAvailabilityChallenge.deposit()
+ writer effect     -> src/L1/DataAvailabilityChallenge.sol:186
+ written member    -> ('MS', 'src/L1/DataAvailabilityChallenge.sol', 'DataAvailabilityChallenge.balances', '$sender')
+ potentially stale -> ('SV', 'src/L1/DataAvailabilityChallenge.sol', 'DataAvailabilityChallenge.bondSize')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 96557e1e156e36d26f94] {_operatorApprovals[$arg0][$arg1], _owners[$arg0]}
+ writer root       -> src/universal/OptimismMintableERC721.sol::OptimismMintableERC721.setApprovalForAll(address,bool)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:373
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 97e943d68e63210b9c72] {_initialized, _initializing}
+ writer root       -> src/dispute/AnchorStateRegistry.sol::AnchorStateRegistry.initialize(AnchorStateRegistry.StartingAnchorRoot[])
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 992fbd7833cdb1152f71] {messenger, otherBridge, xDomainMsgSender}
+ writer root       -> src/L1/L1ERC721Bridge.sol::L1ERC721Bridge.initialize(CrossDomainMessenger,SuperchainConfig)
+ writer effect     -> src/universal/ERC721Bridge.sol:80
+ written member    -> ('SV', 'src/universal/ERC721Bridge.sol', 'ERC721Bridge.otherBridge')
+ potentially stale -> ('SV', 'src/universal/CrossDomainMessenger.sol', 'CrossDomainMessenger.xDomainMsgSender'), ('SV', 'src/universal/ERC721Bridge.sol', 'ERC721Bridge.messenger')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 9aca3466210fbc5c0068] {l2Outputs, startingBlockNumber, submissionInterval}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.initialize(uint256,uint256,uint256,uint256,address,address,uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:104
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.submissionInterval')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs'), ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.startingBlockNumber')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 9d13a9d218e80000e19a] {balances[$sender], bondSize}
+ writer root       -> src/L1/DataAvailabilityChallenge.sol::DataAvailabilityChallenge.receive()
+ writer effect     -> src/L1/DataAvailabilityChallenge.sol:186
+ written member    -> ('MS', 'src/L1/DataAvailabilityChallenge.sol', 'DataAvailabilityChallenge.balances', '$sender')
+ potentially stale -> ('SV', 'src/L1/DataAvailabilityChallenge.sol', 'DataAvailabilityChallenge.bondSize')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 9e29429d19f4eab52bf2] {_initialized, _initializing}
+ writer root       -> src/L2/L2ERC721Bridge.sol::L2ERC721Bridge.initialize(address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 9f936ca33564c28e4b0b] {_delay, _queuedAt[@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1]}
+ writer root       -> src/L1/DelayedVetoable.sol::DelayedVetoable.target()
+ writer effect     -> src/L1/DelayedVetoable.sol:133
+ written member    -> ('SV', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._delay')
+ potentially stale -> ('MS', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._queuedAt', '@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate a2a94f6c8b71c68a0cbf] {_initialized, _initializing}
+ writer root       -> src/L2/L2StandardBridge.sol::L2StandardBridge.initialize(StandardBridge)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a458859733f18e17f784] {_initialized, _initializing}
+ writer root       -> src/L1/OptimismPortal2.sol::OptimismPortal2.initialize(DisputeGameFactory,SystemConfig,SuperchainConfig,GameType)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a4feefa26a0dabe81cd3] {_initialized, _initializing}
+ writer root       -> src/dispute/DisputeGameFactory.sol::DisputeGameFactory.initialize(address)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a693446c1ee8b3e2cc30] {_initialized, _initializing}
+ writer root       -> src/L1/SystemConfig.sol::SystemConfig.initialize(address,uint32,uint32,bytes32,uint64,address,ResourceMetering.ResourceConfig,address,SystemConfig.Addresses)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate ab84638af66f9d6d940f] {_delay, _queuedAt[@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1]}
+ writer root       -> src/L1/DelayedVetoable.sol::DelayedVetoable.initiator()
+ writer effect     -> src/L1/DelayedVetoable.sol:133
+ written member    -> ('SV', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._delay')
+ potentially stale -> ('MS', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._queuedAt', '@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate ae099979d6310727e73e] {_initialized, _initializing}
+ writer root       -> src/dispute/weth/DelayedWETH.sol::DelayedWETH.initialize(address,SuperchainConfig)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate af3c66f05d2dcca50e3c] {_initialized, _initializing}
+ writer root       -> src/L2/L2StandardBridge.sol::L2StandardBridge.initialize(StandardBridge)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b265320df7b73ae9ade6] {_initialized, _initializing}
+ writer root       -> src/L1/ProtocolVersions.sol::ProtocolVersions.initialize(address,ProtocolVersion,ProtocolVersion)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b2a11cf4c696af8f157e] {finalizationPeriodSeconds, l2Outputs}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.proposeL2Output(bytes32,uint256,bytes32,uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:301
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.finalizationPeriodSeconds')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b2a447e1ab931addfb12] {_initialized, _initializing}
+ writer root       -> src/dispute/weth/DelayedWETH.sol::DelayedWETH.initialize(address,SuperchainConfig)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b44261e8e7b922c79bc1] {_initialized, _initializing}
+ writer root       -> src/periphery/op-nft/Optimist.sol::Optimist.initialize(string,string)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b4df0d6ab970de8524d5] {_initialized, _initializing}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.initialize(uint256,uint256,uint256,uint256,address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b54f6aa60746e8b795f0] {_initialized, _initializing}
+ writer root       -> src/universal/OptimismMintableERC20Factory.sol::OptimismMintableERC20Factory.initialize(address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b6d501450c4c6644695e] {_initialized, _initializing}
+ writer root       -> src/L1/DataAvailabilityChallenge.sol::DataAvailabilityChallenge.initialize(address,uint256,uint256,uint256,uint256)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b73e91a2575e050c7f80] {finalizationPeriodSeconds, l2Outputs}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.proposeL2Output(bytes32,uint256,bytes32,uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:301
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.finalizationPeriodSeconds')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b77fa7a40e1f1177ee72] {_initialized, _initializing}
+ writer root       -> src/L2/L2StandardBridge.sol::L2StandardBridge.initialize(StandardBridge)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b903a99d4798da523a54] {_initialized, _initializing}
+ writer root       -> src/L2/L2ERC721Bridge.sol::L2ERC721Bridge.initialize(address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate bdc2c57a0c2a739df915] {messenger, otherBridge, xDomainMsgSender}
+ writer root       -> src/L2/L2ERC721Bridge.sol::L2ERC721Bridge.initialize(address)
+ writer effect     -> src/universal/ERC721Bridge.sol:80
+ written member    -> ('SV', 'src/universal/ERC721Bridge.sol', 'ERC721Bridge.otherBridge')
+ potentially stale -> ('SV', 'src/universal/CrossDomainMessenger.sol', 'CrossDomainMessenger.xDomainMsgSender'), ('SV', 'src/universal/ERC721Bridge.sol', 'ERC721Bridge.messenger')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate bfe1669b9960f91b5dc0] {_initialized, _initializing}
+ writer root       -> src/L1/L1CrossDomainMessenger.sol::L1CrossDomainMessenger.initialize(SuperchainConfig,OptimismPortal,SystemConfig)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c169df8b88d190d48059] {_delay, _queuedAt[@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1]}
+ writer root       -> src/L1/DelayedVetoable.sol::DelayedVetoable.vetoer()
+ writer effect     -> src/L1/DelayedVetoable.sol:133
+ written member    -> ('SV', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._delay')
+ potentially stale -> ('MS', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._queuedAt', '@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate c1903dd56c57748682d8] {finalizationPeriodSeconds, l2Outputs}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.initialize(uint256,uint256,uint256,uint256,address,address,uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:110
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.finalizationPeriodSeconds')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate c340913be9ade94face5] {_initialized, _initializing}
+ writer root       -> src/L1/SuperchainConfig.sol::SuperchainConfig.initialize(address,bool)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c39fd99f256a5167aa65] {_initialized, _initializing}
+ writer root       -> src/L1/OptimismPortal2.sol::OptimismPortal2.initialize(DisputeGameFactory,SystemConfig,SuperchainConfig,GameType)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c72f156971825e81327a] {balances[$sender], bondSize}
+ writer root       -> src/L1/DataAvailabilityChallenge.sol::DataAvailabilityChallenge.withdraw()
+ writer effect     -> src/L1/DataAvailabilityChallenge.sol:196
+ written member    -> ('MS', 'src/L1/DataAvailabilityChallenge.sol', 'DataAvailabilityChallenge.balances', '$sender')
+ potentially stale -> ('SV', 'src/L1/DataAvailabilityChallenge.sol', 'DataAvailabilityChallenge.bondSize')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate c895b96c565ceb0dc3f1] {balances[$sender], bondSize}
+ writer root       -> src/L1/DataAvailabilityChallenge.sol::DataAvailabilityChallenge.challenge(uint256,bytes)
+ writer effect     -> src/L1/DataAvailabilityChallenge.sol:317
+ written member    -> ('MS', 'src/L1/DataAvailabilityChallenge.sol', 'DataAvailabilityChallenge.balances', '$sender')
+ potentially stale -> ('SV', 'src/L1/DataAvailabilityChallenge.sol', 'DataAvailabilityChallenge.bondSize')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c94bc59f946d3e705652] {_initialized, _initializing}
+ writer root       -> src/universal/OptimismMintableERC20Factory.sol::OptimismMintableERC20Factory.initialize(address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c9940163ab3bc9543afe] {_initialized, _initializing}
+ writer root       -> src/periphery/op-nft/OptimistInviter.sol::OptimistInviter.initialize(string)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate cbde7a4929772a5a6b3a] {_initialized, _initializing}
+ writer root       -> src/L1/ProtocolVersions.sol::ProtocolVersions.initialize(address,ProtocolVersion,ProtocolVersion)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate cddce6c7fa39e313bd18] {finalizationPeriodSeconds, l2Outputs}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.deleteL2Outputs(uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:175
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.finalizationPeriodSeconds')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate ce757a7c7a5ae29e8561] {_delay, _queuedAt[@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1]}
+ writer root       -> src/L1/DelayedVetoable.sol::DelayedVetoable.delay()
+ writer effect     -> src/L1/DelayedVetoable.sol:133
+ written member    -> ('SV', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._delay')
+ potentially stale -> ('MS', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._queuedAt', '@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate d0e3f4a91eba9d4274f7] {_initialized, _initializing}
+ writer root       -> src/L2/L2CrossDomainMessenger.sol::L2CrossDomainMessenger.initialize(CrossDomainMessenger)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d1893096511a315dce88] {_initialized, _initializing}
+ writer root       -> src/L1/OptimismPortal.sol::OptimismPortal.initialize(L2OutputOracle,SystemConfig,SuperchainConfig)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate d26c0d234af0ec89c6a3] {l2Outputs, startingBlockNumber, submissionInterval}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.proposeL2Output(bytes32,uint256,bytes32,uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:301
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.startingBlockNumber'), ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.submissionInterval')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate d8af280c111d7a1b7973] {_initialized, _initializing}
+ writer root       -> src/L1/L1StandardBridge.sol::L1StandardBridge.initialize(CrossDomainMessenger,SuperchainConfig,SystemConfig)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate dcae147646bf46e5aa5f] {messenger, otherBridge, xDomainMsgSender}
+ writer root       -> src/L2/L2StandardBridge.sol::L2StandardBridge.initialize(StandardBridge)
+ writer effect     -> src/universal/StandardBridge.sol:126
+ written member    -> ('SV', 'src/universal/StandardBridge.sol', 'StandardBridge.otherBridge')
+ potentially stale -> ('SV', 'src/universal/CrossDomainMessenger.sol', 'CrossDomainMessenger.xDomainMsgSender'), ('SV', 'src/universal/StandardBridge.sol', 'StandardBridge.messenger')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate e4ef2f0364396e304a8c] {_initialized, _initializing}
+ writer root       -> src/dispute/DisputeGameFactory.sol::DisputeGameFactory.initialize(address)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e564dcecdf7a9dc1db22] {finalizationPeriodSeconds, l2Outputs}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.deleteL2Outputs(uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:161
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.finalizationPeriodSeconds')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate ea21ec1ce7b93732f43a] {l2Outputs, startingBlockNumber, submissionInterval}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.proposeL2Output(bytes32,uint256,bytes32,uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:301
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.startingBlockNumber'), ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.submissionInterval')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate ea811a2df70d7f2934b3] {_initialized, _initializing}
+ writer root       -> src/periphery/op-nft/OptimistInviter.sol::OptimistInviter.initialize(string)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate ecf99af9d8bc5684a09a] {_delay, _queuedAt[@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1]}
+ writer root       -> src/L1/DelayedVetoable.sol::DelayedVetoable.fallback()
+ writer effect     -> src/L1/DelayedVetoable.sol:133
+ written member    -> ('SV', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._delay')
+ potentially stale -> ('MS', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._queuedAt', '@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate ed544c0207082a8c47af] {l2Outputs, startingBlockNumber, submissionInterval}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.deleteL2Outputs(uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:161
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.startingBlockNumber'), ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.submissionInterval')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate ed793e5015d7df21e941] {_initialized, _initializing}
+ writer root       -> src/universal/OptimismMintableERC20Factory.sol::OptimismMintableERC20Factory.initialize(address)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f3484bc37695ce9fe5b3] {_initialized, _initializing}
+ writer root       -> src/L1/OptimismPortal.sol::OptimismPortal.initialize(L2OutputOracle,SystemConfig,SuperchainConfig)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate f351f22a2c0ffdaf1a14] {_initialized, _initializing}
+ writer root       -> src/L1/DataAvailabilityChallenge.sol::DataAvailabilityChallenge.initialize(address,uint256,uint256,uint256,uint256)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f4a7d3a40b422acdf404] {_initialized, _initializing}
+ writer root       -> src/dispute/DisputeGameFactory.sol::DisputeGameFactory.initialize(address)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate fa74fe0a3379f2f67f9e] {l2Outputs, startingBlockNumber, submissionInterval}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.deleteL2Outputs(uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:293
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.startingBlockNumber'), ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.submissionInterval')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate fbe010a30f9f28ee4b77] {l2Outputs, startingBlockNumber, submissionInterval}
+ writer root       -> src/L1/L2OutputOracle.sol::L2OutputOracle.proposeL2Output(bytes32,uint256,bytes32,uint256)
+ writer effect     -> src/L1/L2OutputOracle.sol:293
+ written member    -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.l2Outputs')
+ potentially stale -> ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.startingBlockNumber'), ('SV', 'src/L1/L2OutputOracle.sol', 'L2OutputOracle.submissionInterval')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate fdf21e5cd6b0cea9ca37] {_delay, _queuedAt[@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1]}
+ writer root       -> src/L1/DelayedVetoable.sol::DelayedVetoable.queuedAt(bytes32)
+ writer effect     -> src/L1/DelayedVetoable.sol:133
+ written member    -> ('SV', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._delay')
+ potentially stale -> ('MS', 'src/L1/DelayedVetoable.sol', 'DelayedVetoable._queuedAt', '@local::src/L1/DelayedVetoable.sol::DelayedVetoable._handleCall()::LocalVariable::callHash_1')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate fecdf844d2d30a6f6d04] {_initialized, _initializing}
+ writer root       -> src/L1/SuperchainConfig.sol::SuperchainConfig.initialize(address,bool)
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ffab1a3c6bacb5583cc1] {_initialized, _initializing}
+ writer root       -> src/dispute/AnchorStateRegistry.sol::AnchorStateRegistry.initialize(AnchorStateRegistry.StartingAnchorRoot[])
+ writer effect     -> lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=802 vars=47
+[mvscan-stage] root-seeding-done eligible_exposures=14 seeded=14 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=17 excluded_library=0 excluded_abstract=6 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=fe2bd624c0672892fae7ddb8d0e38fcebc521c408135d3bd26d2c6d9d3d0d944 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=1362d52fa8f8fb50411a86da57f6fe9c520d73d7b7b5b71498a82f51c8bccb71 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_base_members_shadowed=2 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_members_raw=8 relation_origins_rejected_unary_after_shadowing=6 relation_origins_rejected_unreachable=11 relation_origins_seen=6 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=8 storage_context_mismatch=0 variables_considered=8
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=471 vars=38
+[mvscan-stage] root-seeding-done eligible_exposures=3 seeded=3 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=3 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=8fd6e4a00a451d4ae5dcf9acf214f86cc0d57c5db54f7812081ff9edfffa5b1b candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=8af6a7848684249eef06a53c7b3bb85939397260dff729e9136983d7bd88191a invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_base_members_shadowed=1 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_members_raw=2 relation_origins_rejected_unary_after_shadowing=1 relation_origins_rejected_unreachable=4 relation_origins_seen=1 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=2 storage_context_mismatch=0 variables_considered=2
+INFO:Slither:. analyzed (290 contracts with 1 detectors), 104 result(s) found

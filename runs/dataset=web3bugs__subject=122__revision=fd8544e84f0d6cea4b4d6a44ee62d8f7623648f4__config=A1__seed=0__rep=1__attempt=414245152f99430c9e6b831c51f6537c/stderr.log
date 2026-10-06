@@ -1,0 +1,15 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=4579 vars=239
+[mvscan-stage] root-seeding-done eligible_exposures=756 seeded=361 multi_exposure_entry_blocks=93 collapsed_contextual_aliases=395 excluded_dependency=0 excluded_interface=94 excluded_library=0 excluded_abstract=306 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=7556159d950cb63086cdc5caa76f683194ee90d655bfa1ca307110a265ae8a08 candidate_count=1 candidate_digest=13566a71e9ba0845f0975aaa13597abe274549e115cd593891221b47953d3c4c context_instance_count=1 eligible_readers=4 eligible_writers=6 execution_context_digest=aa38b486a3f04cbc209c67790fcf552b53eb178b5caf83c988090f2245ef1621 insensitive_readers_filtered=25 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=1 owner_context_pairs_considered=146 raw_block_pairs=14 reader_witness_count=1 relation_base_members_shadowed=0 relation_context_incompatible=49 relation_digest=ba232541b4b2a3ebd693d4e3ccd91a4d65a46ef2078752d19ef4480430009eda relation_members_raw=46 relation_origins_registered=4 relation_origins_rejected_unary_after_shadowing=36 relation_origins_rejected_unreachable=99 relation_origins_seen=40 relation_unbound_key_templates=43 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=123 storage_context_mismatch=96 variables_considered=126
+INFO:Detectors:
+
+[MV-SI candidate 95a6562964d5748ab5d7] {_baseURI, _tokenURIs[$arg0]}
+ writer root       -> contracts/mocks/ERC1155URIStorageMock.sol::ERC1155URIStorageMock.setBaseURI(string)
+ writer effect     -> contracts/token/ERC1155/extensions/ERC1155URIStorage.sol:60
+ written member    -> ('SV', 'contracts/token/ERC1155/extensions/ERC1155URIStorage.sol', 'ERC1155URIStorage._baseURI')
+ potentially stale -> ('MS', 'contracts/token/ERC1155/extensions/ERC1155URIStorage.sol', 'ERC1155URIStorage._tokenURIs', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (286 contracts with 1 detectors), 1 result(s) found

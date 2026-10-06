@@ -1,0 +1,1897 @@
+'forge clean' running (wd: /workspace)
+'forge config --json' running
+Warning: Found unknown `optimizerSteps` config for profile `default` defined in foundry.toml.
+'forge build --build-info --skip ./foundry_test/** ./script/** --force' running (wd: /workspace)
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1205 vars=23
+[mvscan-stage] root-seeding-done eligible_exposures=12 seeded=12 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=27 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=e394ef458fac5c3b24c64230af37ce5db5ae0b8baff896900eb2992816078150 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=de2c01a1bae119595e38f1dc7ea4aae5a4ed7547cd7ae75086de9eebea118abf invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_base_members_shadowed=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_members_raw=25 relation_origins_rejected_unary_after_shadowing=25 relation_origins_seen=25 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=9 storage_context_mismatch=0 variables_considered=9
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=10888 vars=535
+[mvscan-stage] root-seeding-done eligible_exposures=821 seeded=426 multi_exposure_entry_blocks=121 collapsed_contextual_aliases=395 excluded_dependency=0 excluded_interface=396 excluded_library=41 excluded_abstract=77 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=7fd1964564159bf652cca511ca9b27bdc4ea1d38bff494f47b361c908a1caa12 candidate_count=124 candidate_digest=2e1b4bfc0ae813ac81d67071c58f9fd43d35909659219af2db4a5fc1cc587c1e context_instance_count=1417 eligible_readers=150 eligible_writers=119 execution_context_digest=c9dbc0787a2aad00cb425917252e4d169e0af32fef54d8a159440a69896f8f62 insensitive_readers_filtered=177 invalid_partial_write_filtered=33 must_full_relation_filtered=74 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=565 owner_context_pairs=3800 owner_context_pairs_considered=29725 raw_block_pairs=809 reader_witness_count=3800 relation_base_members_shadowed=0 relation_context_incompatible=4092 relation_digest=0711ecf9ab810c5abb85a42dd16ed1e99ef34e49847414f8642a8382c7552c85 relation_members_raw=243 relation_origins_registered=26 relation_origins_rejected_unary_after_shadowing=186 relation_origins_rejected_unreachable=234 relation_origins_seen=212 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=27 scalar_variables_skipped=134 storage_context_mismatch=21161 variables_considered=160
+INFO:Detectors:
+
+[MV-SI candidate 029cd86821b3327a8871] {feederPositionMap, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.removeFeeder(address)
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:333
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feederPositionMap')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 08a01a47b5fd273a8dff] {initializing, lastInitializedRevision}
+ writer root       -> contracts/mocks/upgradeability/MockInitializableImplementation.sol::MockReentrantInitializableImple.initialize(uint256)
+ writer effect     -> contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol:48
+ written member    -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.initializing')
+ potentially stale -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.lastInitializedRevision')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0d50282095e9b3b940f6] {feederPositionMap, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.addFeeders(address[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:313
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feederPositionMap')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 0e7f2482c8152ca83462] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/dependencies/openzeppelin/contracts/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:436
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 328
+ storage exposures -> 4
+[MV-SI candidate 12541dd7d6996a4fcbeb] {initializing, lastInitializedRevision}
+ writer root       -> contracts/mocks/upgradeability/MockInitializableImplementation.sol::MockReentrantInitializableImple.initialize(uint256)
+ writer effect     -> contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol:42
+ written member    -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.lastInitializedRevision')
+ potentially stale -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 12aeef63d84bc786450b] {bakcToMain, mainToBakc}
+ writer root       -> contracts/protocol/tokenization/NTokenBAYC.sol::NTokenBAYC.depositBAKC(ApeCoinStaking.PairNftWithAmount[])
+ writer effect     -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol:873
+ written member    -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.mainToBakc')
+ potentially stale -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.bakcToMain')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate 12bc27258ee95fe3267d] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/WrappedPunk/WPunk.sol::WPunk.burn(uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:387
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 137f289f8ba2d7394535] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/AirdropMintableERC721.sol::AirdropMintableERC721.mint(uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:361
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 13d9448972199c12b9a5] {_initialized, _initializing}
+ writer root       -> contracts/dependencies/x2y2/contracts/X2Y2_r1.sol::X2Y2R1.initialize(uint256,address)
+ writer effect     -> contracts/dependencies/openzeppelin/upgradeability/Initializable.sol:85
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 148d1b6a71fff545cd23] {feederPositionMap, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.addFeeders(address[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:311
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feederPositionMap')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 15525b7231a1d41ed04a] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/MintableERC721.sol::MintableERC721.mint(address)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:361
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 15d8dff7d6164203e654] {_operatorApprovals, _owners}
+ writer root       -> contracts/dependencies/openzeppelin/contracts/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:423
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 18
+ storage exposures -> 4
+[MV-SI candidate 1926d54296b3812ad897] {_initialized, _initializing}
+ writer root       -> contracts/dependencies/x2y2/contracts/X2Y2_r1.sol::X2Y2R1.initialize(uint256,address)
+ writer effect     -> contracts/dependencies/openzeppelin/upgradeability/Initializable.sol:91
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 1ea896170cfd9f10a893] {feederPositionMap, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.removeFeeder(address)
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:335
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feederPositionMap')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 223dab4a8d92594a49b0] {punkIndexToAddress, punksOfferedForSale}
+ writer root       -> contracts/mocks/tokens/CryptoPunksMarket.sol::CryptoPunksMarket.punkNoLongerForSale(uint256)
+ writer effect     -> contracts/mocks/tokens/CryptoPunksMarket.sol:178
+ written member    -> ('SV', 'contracts/mocks/tokens/CryptoPunksMarket.sol', 'CryptoPunksMarket.punksOfferedForSale')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CryptoPunksMarket.sol', 'CryptoPunksMarket.punkIndexToAddress')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 22efe9fd4d77746213fe] {_initialized, _initializing}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.initialize(address,address[],address[])
+ writer effect     -> contracts/dependencies/openzeppelin/upgradeability/Initializable.sol:85
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 25fd1dfc380ebcc8ba28] {_operatorApprovals, _owners}
+ writer root       -> contracts/dependencies/openzeppelin/contracts/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:451
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 64
+ storage exposures -> 4
+[MV-SI candidate 260959e75bf9ca22e797] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/dependencies/openzeppelin/contracts/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:436
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 328
+ storage exposures -> 4
+[MV-SI candidate 2713302f4d93822de732] {bakcToMain, mainToBakc}
+ writer root       -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol::ApeCoinStaking.withdrawBAKC(ApeCoinStaking.PairNftWithAmount[],ApeCoinStaking.PairNftWithAmount[])
+ writer effect     -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol:985
+ written member    -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.mainToBakc')
+ potentially stale -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.bakcToMain')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate 278465cc6364bc05718f] {assetPriceMap, config}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.setPrice(address,uint256)
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:380
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.assetPriceMap')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 2aca735068f4c1ab7f01] {initializing, lastInitializedRevision}
+ writer root       -> contracts/protocol/pool/PoolConfigurator.sol::PoolConfigurator.initialize(IPoolAddressesProvider)
+ writer effect     -> contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol:41
+ written member    -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.initializing')
+ potentially stale -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.lastInitializedRevision')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 2bc242f9ffa708042c4a] {config, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.setPrice(address,uint256)
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:409
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 2d178512dd670f9da59d] {_isUserOrderNonceExecutedOrCancelled, userMinOrderNonce}
+ writer root       -> contracts/dependencies/looksrare/contracts/LooksRareExchange.sol::LooksRareExchange.matchAskWithTakerBid(OrderTypes.TakerOrder,OrderTypes.MakerOrder)
+ writer effect     -> contracts/dependencies/looksrare/contracts/LooksRareExchange.sol:267
+ written member    -> ('SV', 'contracts/dependencies/looksrare/contracts/LooksRareExchange.sol', 'LooksRareExchange._isUserOrderNonceExecutedOrCancelled')
+ potentially stale -> ('SV', 'contracts/dependencies/looksrare/contracts/LooksRareExchange.sol', 'LooksRareExchange.userMinOrderNonce')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 2e04389e3cf02e36f921] {punkIndexToAddress, punksOfferedForSale}
+ writer root       -> contracts/mocks/tokens/CryptoPunksMarket.sol::CryptoPunksMarket.setInitialOwners(address[],uint256[])
+ writer effect     -> contracts/mocks/tokens/CryptoPunksMarket.sol:102
+ written member    -> ('SV', 'contracts/mocks/tokens/CryptoPunksMarket.sol', 'CryptoPunksMarket.punkIndexToAddress')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CryptoPunksMarket.sol', 'CryptoPunksMarket.punksOfferedForSale')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 2f4eab3c0f3e0425491b] {MAX_APES, REVEAL_TIMESTAMP, startingIndexBlock}
+ writer root       -> contracts/mocks/tokens/BAYC.sol::BoredApeYachtClub.emergencySetStartingIndexBlock()
+ writer effect     -> contracts/mocks/tokens/BAYC.sol:2363
+ written member    -> ('SV', 'contracts/mocks/tokens/BAYC.sol', 'BoredApeYachtClub.startingIndexBlock')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/BAYC.sol', 'BoredApeYachtClub.MAX_APES'), ('SV', 'contracts/mocks/tokens/BAYC.sol', 'BoredApeYachtClub.REVEAL_TIMESTAMP')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 309f1e8643ba7f2ea08a] {punkIndexToAddress, punksOfferedForSale}
+ writer root       -> contracts/mocks/tokens/CryptoPunksMarket.sol::CryptoPunksMarket.getPunk(uint256)
+ writer effect     -> contracts/mocks/tokens/CryptoPunksMarket.sol:134
+ written member    -> ('SV', 'contracts/mocks/tokens/CryptoPunksMarket.sol', 'CryptoPunksMarket.punkIndexToAddress')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CryptoPunksMarket.sol', 'CryptoPunksMarket.punksOfferedForSale')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 32e9c50e9e9562b88b22] {bakcToMain, mainToBakc}
+ writer root       -> contracts/protocol/tokenization/NTokenBAYC.sol::NTokenBAYC.withdrawBAKC(ApeCoinStaking.PairNftWithAmount[],address)
+ writer effect     -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol:986
+ written member    -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.bakcToMain')
+ potentially stale -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.mainToBakc')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate 332922453cbe7b76425f] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/WrappedPunk/WPunk.sol::WPunk.mint(uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:361
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 355a2cc72bdc704a4251] {cryptoPunks, tokenInfo}
+ writer root       -> contracts/mocks/tokens/MockTokenFaucet.sol::MockTokenFaucet.removeERC20(address[])
+ writer effect     -> contracts/mocks/tokens/MockTokenFaucet.sol:91
+ written member    -> ('SV', 'contracts/mocks/tokens/MockTokenFaucet.sol', 'MockTokenFaucet.tokenInfo')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MockTokenFaucet.sol', 'MockTokenFaucet.cryptoPunks')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 35aef20064e2f894fe74] {initializing, lastInitializedRevision}
+ writer root       -> contracts/mocks/upgradeability/MockInitializableImplementation.sol::MockInitializableFromConstructorImple.initialize(uint256)
+ writer effect     -> contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol:42
+ written member    -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.lastInitializedRevision')
+ potentially stale -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 377c6436b5455a7ae280] {initializing, lastInitializedRevision}
+ writer root       -> contracts/mocks/upgradeability/MockInitializableImplementation.sol::MockInitializableImple.initialize(uint256,string,uint256[])
+ writer effect     -> contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol:41
+ written member    -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.initializing')
+ potentially stale -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.lastInitializedRevision')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 3d4cf248aa39b011e6bf] {initializing, lastInitializedRevision}
+ writer root       -> contracts/mocks/upgradeability/MockInitializableImplementation.sol::MockInitializableImpleV2.initialize(uint256,string,uint256[])
+ writer effect     -> contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol:41
+ written member    -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.initializing')
+ potentially stale -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.lastInitializedRevision')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 40cb1de2dc752c3f2531] {_initialized, _initializing}
+ writer root       -> contracts/dependencies/x2y2/contracts/X2Y2_r1.sol::X2Y2R1.initialize(uint256,address)
+ writer effect     -> contracts/dependencies/openzeppelin/upgradeability/Initializable.sol:87
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 41ab6b800c689d7cd810] {_initialized, _initializing}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.initialize(address,address[],address[])
+ writer effect     -> contracts/dependencies/openzeppelin/upgradeability/Initializable.sol:87
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 420bd108a2b01ed01d35] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tests/MockAirdropProject.sol::MockAirdropProject.claimAirdrop(uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:423
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate 42e748ee8f41e2eff838] {punkIndexToAddress, punksOfferedForSale}
+ writer root       -> contracts/mocks/tokens/CryptoPunksMarket.sol::CryptoPunksMarket.setInitialOwner(address,uint256)
+ writer effect     -> contracts/mocks/tokens/CryptoPunksMarket.sol:102
+ written member    -> ('SV', 'contracts/mocks/tokens/CryptoPunksMarket.sol', 'CryptoPunksMarket.punkIndexToAddress')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CryptoPunksMarket.sol', 'CryptoPunksMarket.punksOfferedForSale')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 4611d4245dbdf90eebc4] {bakcToMain, mainToBakc}
+ writer root       -> contracts/protocol/tokenization/NTokenApeStaking.sol::NTokenApeStaking.burn(address,address,uint256[])
+ writer effect     -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol:986
+ written member    -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.bakcToMain')
+ potentially stale -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.mainToBakc')
+ reader witnesses  -> 78
+ storage exposures -> 1
+[MV-SI candidate 4b256ad38a62f4b98b2b] {config, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.removeFeeder(address)
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:333
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 5156b19e72985fe25ab0] {config, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.setConfig(uint128,uint128)
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:346
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 52d939860a525bef50b2] {assetPriceMap, config}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.setConfig(uint128,uint128)
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:347
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.assetPriceMap')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 55babe43b4749e18e81f] {assetPriceMap, config}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.setMultiplePrices(address[],uint256[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:378
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.assetPriceMap')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 58b33c94fad4fcb88a47] {_initialized, _initializing}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.initialize(address,address[],address[])
+ writer effect     -> contracts/dependencies/openzeppelin/upgradeability/Initializable.sol:91
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 5e4a35d0c4d0726297ae] {initializing, lastInitializedRevision}
+ writer root       -> contracts/protocol/pool/PoolConfigurator.sol::PoolConfigurator.initialize(IPoolAddressesProvider)
+ writer effect     -> contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol:42
+ written member    -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.lastInitializedRevision')
+ potentially stale -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 64bd12d36059eb6747bf] {cryptoPunks, tokenInfo}
+ writer root       -> contracts/mocks/tokens/MockTokenFaucet.sol::MockTokenFaucet.addERC20(MockTokenFaucet.Token[])
+ writer effect     -> contracts/mocks/tokens/MockTokenFaucet.sol:82
+ written member    -> ('SV', 'contracts/mocks/tokens/MockTokenFaucet.sol', 'MockTokenFaucet.tokenInfo')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MockTokenFaucet.sol', 'MockTokenFaucet.cryptoPunks')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 658977e092d95b2c2a4a] {config, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.initialize(address,address[],address[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:347
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 6621434fc4e73671f6b5] {bakcToMain, mainToBakc}
+ writer root       -> contracts/protocol/tokenization/NTokenApeStaking.sol::NTokenApeStaking.unstakePositionAndRepay(uint256,address)
+ writer effect     -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol:986
+ written member    -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.bakcToMain')
+ potentially stale -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.mainToBakc')
+ reader witnesses  -> 78
+ storage exposures -> 1
+[MV-SI candidate 665febc4470179d5caab] {punkIndexToAddress, punksOfferedForSale}
+ writer root       -> contracts/mocks/tokens/CryptoPunksMarket.sol::CryptoPunksMarket.offerPunkForSaleToAddress(uint256,uint256,address)
+ writer effect     -> contracts/mocks/tokens/CryptoPunksMarket.sol:222
+ written member    -> ('SV', 'contracts/mocks/tokens/CryptoPunksMarket.sol', 'CryptoPunksMarket.punksOfferedForSale')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CryptoPunksMarket.sol', 'CryptoPunksMarket.punkIndexToAddress')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 6da08d0a0571fa81e3df] {initializing, lastInitializedRevision}
+ writer root       -> contracts/protocol/pool/PoolConfigurator.sol::PoolConfigurator.initialize(IPoolAddressesProvider)
+ writer effect     -> contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol:48
+ written member    -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.initializing')
+ potentially stale -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.lastInitializedRevision')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6e93bac4a00a0f881428] {bakcToMain, mainToBakc}
+ writer root       -> contracts/protocol/tokenization/NTokenMAYC.sol::NTokenMAYC.depositBAKC(ApeCoinStaking.PairNftWithAmount[])
+ writer effect     -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol:873
+ written member    -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.mainToBakc')
+ potentially stale -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.bakcToMain')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate 6eb3937e0c915f357cba] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/dependencies/openzeppelin/contracts/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:423
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 128
+ storage exposures -> 4
+[MV-SI candidate 6eb8fb8929e4137ec70b] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/dependencies/openzeppelin/contracts/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:423
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 128
+ storage exposures -> 4
+[MV-SI candidate 711a0e33d4b1afd33186] {feederPositionMap, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.removeFeeder(address)
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:332
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feederPositionMap')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 7160f8b507e52d6067e9] {bakcToMain, mainToBakc}
+ writer root       -> contracts/protocol/tokenization/NTokenMAYC.sol::NTokenMAYC.withdrawBAKC(ApeCoinStaking.PairNftWithAmount[],address)
+ writer effect     -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol:985
+ written member    -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.mainToBakc')
+ potentially stale -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.bakcToMain')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate 7239ed16b300c887956d] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/AirdropMintableERC721.sol::AirdropMintableERC721.mint(uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:361
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 73d1cfc4f0ca55d61011] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tests/MockAirdropProject.sol::MockAirdropProject.claimAirdrop(uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:361
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 7473decabecb2c622579] {assetPriceMap, config}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.removeAsset(address)
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:302
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.assetPriceMap')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 7883a8cc0bdfced68451] {assetPriceMap, config}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.initialize(address,address[],address[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:346
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.assetPriceMap')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 7b1ba1bc8d901855c798] {_isUserOrderNonceExecutedOrCancelled, userMinOrderNonce}
+ writer root       -> contracts/dependencies/looksrare/contracts/LooksRareExchange.sol::LooksRareExchange.matchBidWithTakerAsk(OrderTypes.TakerOrder,OrderTypes.MakerOrder)
+ writer effect     -> contracts/dependencies/looksrare/contracts/LooksRareExchange.sol:321
+ written member    -> ('SV', 'contracts/dependencies/looksrare/contracts/LooksRareExchange.sol', 'LooksRareExchange._isUserOrderNonceExecutedOrCancelled')
+ potentially stale -> ('SV', 'contracts/dependencies/looksrare/contracts/LooksRareExchange.sol', 'LooksRareExchange.userMinOrderNonce')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 7b5d2f6d2888bc31be3c] {DOMAIN_SEPARATOR, _nonces}
+ writer root       -> contracts/mocks/tokens/MintableERC20.sol::MintableERC20.permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/mocks/tokens/MintableERC20.sol:77
+ written member    -> ('SV', 'contracts/mocks/tokens/MintableERC20.sol', 'MintableERC20._nonces')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MintableERC20.sol', 'MintableERC20.DOMAIN_SEPARATOR')
+ reader witnesses  -> 3
+ storage exposures -> 3
+[MV-SI candidate 7c7bac30ef6cd294783d] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/MintableERC721.sol::MintableERC721.mint(uint256,address)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:361
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 7f4f07e6bf3806124265] {initializing, lastInitializedRevision}
+ writer root       -> contracts/mocks/upgradeability/MockInitializableImplementation.sol::MockInitializableImpleV2.initialize(uint256,string,uint256[])
+ writer effect     -> contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol:48
+ written member    -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.initializing')
+ potentially stale -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.lastInitializedRevision')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 8004174875c668d67c0a] {bakcToMain, mainToBakc}
+ writer root       -> contracts/protocol/tokenization/NTokenBAYC.sol::NTokenBAYC.depositBAKC(ApeCoinStaking.PairNftWithAmount[])
+ writer effect     -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol:874
+ written member    -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.bakcToMain')
+ potentially stale -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.mainToBakc')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate 844d1e005fcf97149b34] {config, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.setMultiplePrices(address[],uint256[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:409
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 87b11114497a8cba8656] {feederPositionMap, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.initialize(address,address[],address[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:313
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feederPositionMap')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 892b0d1d84a82832119a] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/dependencies/openzeppelin/contracts/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:436
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 328
+ storage exposures -> 4
+[MV-SI candidate 8a4454aaecfc777d6ece] {assetPriceMap, config}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.setConfig(uint128,uint128)
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:346
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.assetPriceMap')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 8b8d60f891233ebdf61d] {punkIndexToAddress, punksOfferedForSale}
+ writer root       -> contracts/mocks/tokens/CryptoPunksMarket.sol::CryptoPunksMarket.transferPunk(address,uint256)
+ writer effect     -> contracts/mocks/tokens/CryptoPunksMarket.sol:153
+ written member    -> ('SV', 'contracts/mocks/tokens/CryptoPunksMarket.sol', 'CryptoPunksMarket.punkIndexToAddress')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CryptoPunksMarket.sol', 'CryptoPunksMarket.punksOfferedForSale')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 8d711d914c1f829ca602] {_initialized, _initializing}
+ writer root       -> contracts/ui/WPunkGateway.sol::WPunkGateway.initialize()
+ writer effect     -> contracts/dependencies/openzeppelin/upgradeability/Initializable.sol:85
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 8ed7a584715e00789648] {assetPriceMap, config}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.setMultiplePrices(address[],uint256[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:380
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.assetPriceMap')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 8f51bcf9aa0c64aabf53] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/dependencies/openzeppelin/contracts/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:423
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 128
+ storage exposures -> 4
+[MV-SI candidate 91367a6e65d2e5e79fc3] {_initialized, _initializing}
+ writer root       -> contracts/ui/WPunkGateway.sol::WPunkGateway.initialize()
+ writer effect     -> contracts/dependencies/openzeppelin/upgradeability/Initializable.sol:87
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 93e0aded3d622f087ad3] {initializing, lastInitializedRevision}
+ writer root       -> contracts/mocks/upgradeability/MockInitializableImplementation.sol::MockInitializableImple.initialize(uint256,string,uint256[])
+ writer effect     -> contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol:42
+ written member    -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.lastInitializedRevision')
+ potentially stale -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 94c6aa07d192cc42030b] {assetPriceMap, config}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.setPrice(address,uint256)
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:379
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.assetPriceMap')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 99539f8e88b752dc2977] {_isUserOrderNonceExecutedOrCancelled, userMinOrderNonce}
+ writer root       -> contracts/dependencies/looksrare/contracts/LooksRareExchange.sol::LooksRareExchange.matchAskWithTakerBidUsingETHAndWETH(OrderTypes.TakerOrder,OrderTypes.MakerOrder)
+ writer effect     -> contracts/dependencies/looksrare/contracts/LooksRareExchange.sol:215
+ written member    -> ('SV', 'contracts/dependencies/looksrare/contracts/LooksRareExchange.sol', 'LooksRareExchange._isUserOrderNonceExecutedOrCancelled')
+ potentially stale -> ('SV', 'contracts/dependencies/looksrare/contracts/LooksRareExchange.sol', 'LooksRareExchange.userMinOrderNonce')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 999a9bb98de8c485417e] {MAX_APES, REVEAL_TIMESTAMP, startingIndexBlock}
+ writer root       -> contracts/mocks/tokens/BAYC.sol::BoredApeYachtClub.mintApe(uint256)
+ writer effect     -> contracts/mocks/tokens/BAYC.sol:2320
+ written member    -> ('SV', 'contracts/mocks/tokens/BAYC.sol', 'BoredApeYachtClub.startingIndexBlock')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/BAYC.sol', 'BoredApeYachtClub.MAX_APES'), ('SV', 'contracts/mocks/tokens/BAYC.sol', 'BoredApeYachtClub.REVEAL_TIMESTAMP')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 9bdc50d9c55f8bed52f6] {bakcToMain, mainToBakc}
+ writer root       -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol::ApeCoinStaking.depositBAKC(ApeCoinStaking.PairNftWithAmount[],ApeCoinStaking.PairNftWithAmount[])
+ writer effect     -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol:874
+ written member    -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.bakcToMain')
+ potentially stale -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.mainToBakc')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate a5dc5049c5739aa07914] {MAX_APES, REVEAL_TIMESTAMP, startingIndexBlock}
+ writer root       -> contracts/mocks/tokens/BAYC.sol::BoredApeYachtClub.setRevealTimestamp(uint256)
+ writer effect     -> contracts/mocks/tokens/BAYC.sol:2268
+ written member    -> ('SV', 'contracts/mocks/tokens/BAYC.sol', 'BoredApeYachtClub.REVEAL_TIMESTAMP')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/BAYC.sol', 'BoredApeYachtClub.MAX_APES'), ('SV', 'contracts/mocks/tokens/BAYC.sol', 'BoredApeYachtClub.startingIndexBlock')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate a73499475d744a97b8ab] {punkIndexToAddress, punksOfferedForSale}
+ writer root       -> contracts/mocks/tokens/CryptoPunksMarket.sol::CryptoPunksMarket.offerPunkForSale(uint256,uint256)
+ writer effect     -> contracts/mocks/tokens/CryptoPunksMarket.sol:199
+ written member    -> ('SV', 'contracts/mocks/tokens/CryptoPunksMarket.sol', 'CryptoPunksMarket.punksOfferedForSale')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CryptoPunksMarket.sol', 'CryptoPunksMarket.punkIndexToAddress')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate a8f8427917091780a1ac] {bakcToMain, mainToBakc}
+ writer root       -> contracts/protocol/tokenization/NTokenApeStaking.sol::NTokenApeStaking.unstakePositionAndRepay(uint256,address)
+ writer effect     -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol:985
+ written member    -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.mainToBakc')
+ potentially stale -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.bakcToMain')
+ reader witnesses  -> 78
+ storage exposures -> 1
+[MV-SI candidate ac0d90f06e18d336dff7] {_operatorApprovals, _owners}
+ writer root       -> contracts/dependencies/openzeppelin/contracts/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:423
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 18
+ storage exposures -> 4
+[MV-SI candidate adbd3fe81d026e756078] {_initialized, _initializing}
+ writer root       -> contracts/ui/WPunkGateway.sol::WPunkGateway.initialize()
+ writer effect     -> contracts/dependencies/openzeppelin/upgradeability/Initializable.sol:91
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate afd86237be99dfc4c0cb] {config, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.setConfig(uint128,uint128)
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:347
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate b2b76747af745a10b014] {cryptoPunks, tokenInfo}
+ writer root       -> contracts/mocks/tokens/MockTokenFaucet.sol::MockTokenFaucet.removeERC721(address[])
+ writer effect     -> contracts/mocks/tokens/MockTokenFaucet.sol:112
+ written member    -> ('SV', 'contracts/mocks/tokens/MockTokenFaucet.sol', 'MockTokenFaucet.tokenInfo')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MockTokenFaucet.sol', 'MockTokenFaucet.cryptoPunks')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate b3776af490a96ec2aa49] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/WrappedPunk/WPunk.sol::WPunk.burn(uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:436
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate b4a0260c5ab873f4dd57] {assetPriceMap, config}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.initialize(address,address[],address[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:347
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.assetPriceMap')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate ba31bf31bcce70c95bee] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/MintableERC721.sol::MintableERC721.mint(uint256,address)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:361
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate bbcbbbf5ecc3a859522c] {config, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.initialize(address,address[],address[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:346
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate bc233b043fa2ddad8c35] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/WrappedPunk/WPunk.sol::WPunk.burn(uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:387
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate bc5c2ca33880f2b6d7c1] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/dependencies/openzeppelin/contracts/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:451
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 312
+ storage exposures -> 4
+[MV-SI candidate bdd84b7ca52e675aaf0a] {bakcToMain, mainToBakc}
+ writer root       -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol::ApeCoinStaking.withdrawBAKC(ApeCoinStaking.PairNftWithAmount[],ApeCoinStaking.PairNftWithAmount[])
+ writer effect     -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol:986
+ written member    -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.bakcToMain')
+ potentially stale -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.mainToBakc')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate c1b79eebaa03e5449b01] {bakcToMain, mainToBakc}
+ writer root       -> contracts/protocol/tokenization/NTokenBAYC.sol::NTokenBAYC.withdrawBAKC(ApeCoinStaking.PairNftWithAmount[],address)
+ writer effect     -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol:985
+ written member    -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.mainToBakc')
+ potentially stale -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.bakcToMain')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate c336873ee3b8aa74a93b] {initializing, lastInitializedRevision}
+ writer root       -> contracts/mocks/upgradeability/MockInitializableImplementation.sol::MockInitializableImpleV2.initialize(uint256,string,uint256[])
+ writer effect     -> contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol:42
+ written member    -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.lastInitializedRevision')
+ potentially stale -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c3a91ba2de14bc7dc380] {bakcToMain, mainToBakc}
+ writer root       -> contracts/protocol/tokenization/NTokenApeStaking.sol::NTokenApeStaking.burn(address,address,uint256[])
+ writer effect     -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol:985
+ written member    -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.mainToBakc')
+ potentially stale -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.bakcToMain')
+ reader witnesses  -> 78
+ storage exposures -> 1
+[MV-SI candidate c6680dea7d6e3b85e7ca] {config, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.addFeeders(address[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:312
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c6686fd8068be0b8e94c] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tests/MockAirdropProject.sol::MockAirdropProject.claimAirdrop(uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:361
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c9eda21d403a59ab402a] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/dependencies/openzeppelin/contracts/ERC721.sol::ERC721.approve(address,uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:436
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 328
+ storage exposures -> 4
+[MV-SI candidate cadd946dd55034a6fdc4] {initializing, lastInitializedRevision}
+ writer root       -> contracts/mocks/upgradeability/MockInitializableImplementation.sol::MockInitializableFromConstructorImple.initialize(uint256)
+ writer effect     -> contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol:48
+ written member    -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.initializing')
+ potentially stale -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.lastInitializedRevision')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d11973287bf07e820b49] {feederPositionMap, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.setMultiplePrices(address[],uint256[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:409
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feederPositionMap')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate d2acb661acc0ac46e648] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/MintableERC721.sol::MintableERC721.mint(address)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:361
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate d2d5efadfe666499fee4] {config, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.removeFeeder(address)
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:332
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate d5b44b430de73fb8a6c0] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/WrappedPunk/WPunk.sol::WPunk.mint(uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:361
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate d73cc30b0401035170b8] {_operatorApprovals, _owners}
+ writer root       -> contracts/dependencies/openzeppelin/contracts/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:423
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 18
+ storage exposures -> 4
+[MV-SI candidate d7aef4f80382316044c7] {punkIndexToAddress, punksOfferedForSale}
+ writer root       -> contracts/mocks/tokens/CryptoPunksMarket.sol::CryptoPunksMarket.transferPunk(address,uint256)
+ writer effect     -> contracts/mocks/tokens/CryptoPunksMarket.sol:178
+ written member    -> ('SV', 'contracts/mocks/tokens/CryptoPunksMarket.sol', 'CryptoPunksMarket.punksOfferedForSale')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CryptoPunksMarket.sol', 'CryptoPunksMarket.punkIndexToAddress')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate d8531ef44678bf1438f9] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tests/MockAirdropProject.sol::MockAirdropProject.claimAirdrop(uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:423
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate d8be03c7cacad0def926] {feederPositionMap, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.initialize(address,address[],address[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:311
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feederPositionMap')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate d9d0e547d7c7045d5bce] {assetPriceMap, config}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.setMultiplePrices(address[],uint256[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:379
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.assetPriceMap')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate dc4c00a29cc5ef1029cb] {feederPositionMap, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.setPrice(address,uint256)
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:409
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feederPositionMap')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate dc53ed3ad86dff2143f6] {initializing, lastInitializedRevision}
+ writer root       -> contracts/mocks/upgradeability/MockInitializableImplementation.sol::MockInitializableImple.initialize(uint256,string,uint256[])
+ writer effect     -> contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol:48
+ written member    -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.initializing')
+ potentially stale -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.lastInitializedRevision')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate dc5cbb8a0122849b85b8] {config, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.initialize(address,address[],address[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:311
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate de915c6b6a648e946f1a] {_initialized, _initializing}
+ writer root       -> contracts/ui/WETHGateway.sol::WETHGateway.initialize()
+ writer effect     -> contracts/dependencies/openzeppelin/upgradeability/Initializable.sol:87
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e094ba00b54b41b6fce0] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tests/MockAirdropProject.sol::MockAirdropProject.claimAirdrop(uint256)
+ writer effect     -> contracts/dependencies/openzeppelin/contracts/ERC721.sol:436
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/dependencies/openzeppelin/contracts/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 160
+ storage exposures -> 1
+[MV-SI candidate e0fcd96c6a6f853c0694] {_initialized, _initializing}
+ writer root       -> contracts/ui/WETHGateway.sol::WETHGateway.initialize()
+ writer effect     -> contracts/dependencies/openzeppelin/upgradeability/Initializable.sol:91
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e18327275bde8c2f359f] {bakcToMain, mainToBakc}
+ writer root       -> contracts/protocol/tokenization/NTokenMAYC.sol::NTokenMAYC.withdrawBAKC(ApeCoinStaking.PairNftWithAmount[],address)
+ writer effect     -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol:986
+ written member    -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.bakcToMain')
+ potentially stale -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.mainToBakc')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate e6ad6b4d125c56c8055c] {_initialized, _initializing}
+ writer root       -> contracts/ui/WETHGateway.sol::WETHGateway.initialize()
+ writer effect     -> contracts/dependencies/openzeppelin/upgradeability/Initializable.sol:85
+ written member    -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'contracts/dependencies/openzeppelin/upgradeability/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e710fc843326c51b7ce6] {cryptoPunks, tokenInfo}
+ writer root       -> contracts/mocks/tokens/MockTokenFaucet.sol::MockTokenFaucet.addERC721(MockTokenFaucet.Token[])
+ writer effect     -> contracts/mocks/tokens/MockTokenFaucet.sol:98
+ written member    -> ('SV', 'contracts/mocks/tokens/MockTokenFaucet.sol', 'MockTokenFaucet.tokenInfo')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MockTokenFaucet.sol', 'MockTokenFaucet.cryptoPunks')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate e7a99da1bf41c118b94a] {assetPriceMap, config}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.setPrice(address,uint256)
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:378
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.assetPriceMap')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e958d3e311cd6d6a8b5e] {config, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.addFeeders(address[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:311
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate ead0a7ac9702d6737bf5] {_isUserOrderNonceExecutedOrCancelled, userMinOrderNonce}
+ writer root       -> contracts/dependencies/looksrare/contracts/LooksRareExchange.sol::LooksRareExchange.cancelAllOrdersForSender(uint256)
+ writer effect     -> contracts/dependencies/looksrare/contracts/LooksRareExchange.sol:161
+ written member    -> ('SV', 'contracts/dependencies/looksrare/contracts/LooksRareExchange.sol', 'LooksRareExchange.userMinOrderNonce')
+ potentially stale -> ('SV', 'contracts/dependencies/looksrare/contracts/LooksRareExchange.sol', 'LooksRareExchange._isUserOrderNonceExecutedOrCancelled')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate edc50aefde89419570b2] {_isUserOrderNonceExecutedOrCancelled, userMinOrderNonce}
+ writer root       -> contracts/dependencies/looksrare/contracts/LooksRareExchange.sol::LooksRareExchange.cancelMultipleMakerOrders(uint256[])
+ writer effect     -> contracts/dependencies/looksrare/contracts/LooksRareExchange.sol:175
+ written member    -> ('SV', 'contracts/dependencies/looksrare/contracts/LooksRareExchange.sol', 'LooksRareExchange._isUserOrderNonceExecutedOrCancelled')
+ potentially stale -> ('SV', 'contracts/dependencies/looksrare/contracts/LooksRareExchange.sol', 'LooksRareExchange.userMinOrderNonce')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate eeee0de30adaab0fe7c2] {config, feeders}
+ writer root       -> contracts/misc/NFTFloorOracle.sol::NFTFloorOracle.initialize(address,address[],address[])
+ writer effect     -> contracts/misc/NFTFloorOracle.sol:312
+ written member    -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.feeders')
+ potentially stale -> ('SV', 'contracts/misc/NFTFloorOracle.sol', 'NFTFloorOracle.config')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate f051d5e72a87828fd52a] {bakcToMain, mainToBakc}
+ writer root       -> contracts/protocol/tokenization/NTokenMAYC.sol::NTokenMAYC.depositBAKC(ApeCoinStaking.PairNftWithAmount[])
+ writer effect     -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol:874
+ written member    -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.bakcToMain')
+ potentially stale -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.mainToBakc')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate faef16cec60ed9df59ff] {bakcToMain, mainToBakc}
+ writer root       -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol::ApeCoinStaking.depositBAKC(ApeCoinStaking.PairNftWithAmount[],ApeCoinStaking.PairNftWithAmount[])
+ writer effect     -> contracts/dependencies/yoga-labs/ApeCoinStaking.sol:873
+ written member    -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.mainToBakc')
+ potentially stale -> ('SV', 'contracts/dependencies/yoga-labs/ApeCoinStaking.sol', 'ApeCoinStaking.bakcToMain')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate fcdb61633c92eb2dd092] {initializing, lastInitializedRevision}
+ writer root       -> contracts/mocks/upgradeability/MockInitializableImplementation.sol::MockReentrantInitializableImple.initialize(uint256)
+ writer effect     -> contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol:41
+ written member    -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.initializing')
+ potentially stale -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.lastInitializedRevision')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ff5c16825442cac9e8e0] {initializing, lastInitializedRevision}
+ writer root       -> contracts/mocks/upgradeability/MockInitializableImplementation.sol::MockInitializableFromConstructorImple.initialize(uint256)
+ writer effect     -> contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol:41
+ written member    -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.initializing')
+ potentially stale -> ('SV', 'contracts/protocol/libraries/paraspace-upgradeability/VersionedInitializable.sol', 'VersionedInitializable.lastInitializedRevision')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=7750 vars=275
+[mvscan-stage] root-seeding-done eligible_exposures=201 seeded=154 multi_exposure_entry_blocks=37 collapsed_contextual_aliases=47 excluded_dependency=10 excluded_interface=190 excluded_library=0 excluded_abstract=51 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=105af488bf00d041bdf0728bf6fe8ad9c2bc6c80ef05dcfdad6480eaf1b95e52 candidate_count=144 candidate_digest=1cedf35dfa94832f180d18bd2a7076651039a9dc6060e413b86ba4cf624fbd94 context_instance_count=1632 eligible_readers=227 eligible_writers=132 execution_context_digest=97fa5553894904d25dfc9c5eefac97f646b3c779bf617a4b4940b05107a93fef insensitive_readers_filtered=258 invalid_partial_write_filtered=0 must_full_relation_filtered=642 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=1530 owner_context_pairs=2758 owner_context_pairs_considered=16736 raw_block_pairs=729 reader_witness_count=2758 relation_base_members_shadowed=0 relation_context_incompatible=4578 relation_digest=bdd3e4c91f770c694a5a1d37e7fe8397fb331f3de0ec9110d0d5eb5d792d9393 relation_members_raw=284 relation_origins_registered=41 relation_origins_rejected_unary_after_shadowing=183 relation_origins_rejected_unreachable=111 relation_origins_seen=224 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=14 scalar_variables_skipped=106 storage_context_mismatch=7228 variables_considered=147
+INFO:Detectors:
+
+[MV-SI candidate 02c05cc6a220dd788765] {_operatorApprovals, _ownerships, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/dependencies/ERC721A.sol::ERC721A.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:1032
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._operatorApprovals'), ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 04b6c7fd01cf9dd812f5] {idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 0566f51c6fe9fd665a75] {idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.mint()
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 0777e68fe77f5f6f8065] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/Land.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/mocks/tokens/Land.sol:183
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._owners')
+ reader witnesses  -> 16
+ storage exposures -> 2
+[MV-SI candidate 08ee01adfde60ecc058e] {_burnCounter, _currentIndex, collectionSize}
+ writer root       -> contracts/mocks/tokens/Moonbirds.sol::Moonbirds.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Moonbirds.sol:1456
+ written member    -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._currentIndex')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._burnCounter'), ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'Moonbirds.collectionSize')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 0a4d5dc839c494dbc838] {idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 0a8cc621e322f0186da1] {idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.acceptTrade(address,address,uint256,uint256[],uint256,uint256[],uint256,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:529
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 0a91feba338a016ff1ed] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/DOODLES.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/DOODLES.sol:1486
+ written member    -> ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._owners')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 0cfedaa7d4e77fc4f734] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/DOODLES.sol::ERC721.approve(address,uint256)
+ writer effect     -> contracts/mocks/tokens/DOODLES.sol:1486
+ written member    -> ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._owners')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 0e7458d994224881e79d] {idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:529
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 106dda77821075729da3] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::MutantApeYachtClub.mutateApeWithSerum(uint256,uint256)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:770
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 1327afea30b0088e1ea4] {_ownerships, nextOwnerToExplicitlySet}
+ writer root       -> contracts/mocks/tokens/Azuki.sol::Azuki.mint(address)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:948
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.nextOwnerToExplicitlySet')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 13b5d169ebe69c2efbbe] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/Land.sol::Land.mint(address)
+ writer effect     -> contracts/mocks/tokens/Land.sol:359
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 16441138ba4ca4eb59cc] {_currentIndex, _packedOwnerships}
+ writer root       -> contracts/mocks/tokens/Moonbirds.sol::ERC721A.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/Moonbirds.sol:1618
+ written member    -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._packedOwnerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._currentIndex')
+ reader witnesses  -> 66
+ storage exposures -> 3
+[MV-SI candidate 185f4aabb4d63cf95ec5] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/CloneX.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/CloneX.sol:430
+ written member    -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._owners')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 1896b60ce112216cf2cd] {_allTokens, collectionSize}
+ writer root       -> contracts/mocks/tokens/CloneX.sol::CloneX.mint(address)
+ writer effect     -> contracts/mocks/tokens/CloneX.sol:557
+ written member    -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721Enumerable._allTokens')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'CloneX.collectionSize')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 1b2199cbe77a5295bd21] {_ownerships, nextOwnerToExplicitlySet}
+ writer root       -> contracts/mocks/tokens/dependencies/ERC721A.sol::ERC721A.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:1011
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.nextOwnerToExplicitlySet')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 1ec1b7e9fac3a536bb34] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.mint(address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 20c3d3cf272d7dd1b2df] {_owner, _pauser}
+ writer root       -> contracts/dependencies/seaport/contracts/zones/PausableZoneController.sol::PausableZoneController.assignPauser(address)
+ writer effect     -> contracts/dependencies/seaport/contracts/zones/PausableZoneController.sol:329
+ written member    -> ('SV', 'contracts/dependencies/seaport/contracts/zones/PausableZoneController.sol', 'PausableZoneController._pauser')
+ potentially stale -> ('SV', 'contracts/dependencies/seaport/contracts/zones/PausableZoneController.sol', 'PausableZoneController._owner')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 234505a6818e4a52c24a] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/DOODLES.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/mocks/tokens/DOODLES.sol:1501
+ written member    -> ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._owners'), ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 23bb5bee306c7cc39436] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.devMint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 249c80671e33286c69e4] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::MutantApeYachtClub.mutateApeWithSerum(uint256,uint256)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:770
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 293df288ad41de62f0bd] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:529
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 2a72e20538d24cbea20a] {_ownerships, nextOwnerToExplicitlySet}
+ writer root       -> contracts/mocks/tokens/Azuki.sol::Azuki.auctionMint(uint256)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:948
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.nextOwnerToExplicitlySet')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 2c543a27642093bde4d1] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/Land.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Land.sol:428
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._owners')
+ reader witnesses  -> 72
+ storage exposures -> 2
+[MV-SI candidate 2fa80d9d1a3fb36d0767] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/CloneX.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/mocks/tokens/CloneX.sol:185
+ written member    -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._owners'), ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 34d95bd583e3fe7b9d11] {_allTokens, collectionSize}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::MutantApeYachtClub.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:973
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721Enumerable._allTokens')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'MutantApeYachtClub.collectionSize')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 390b250d557121ec0cd9] {_operatorApprovals, _ownerships}
+ writer root       -> contracts/mocks/tokens/dependencies/ERC721A.sol::ERC721A.setApprovalForAll(address,bool)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:849
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 3b1b05d5a29865902f4b] {idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:529
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3b41c1a9f38e129cab6b] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.acceptTrade(address,address,uint256,uint256[],uint256,uint256[],uint256,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:572
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 35
+ storage exposures -> 1
+[MV-SI candidate 472973a52d4cfb4639a1] {indices, numTokens}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:410
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.indices')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.numTokens')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 47a24d4f0c6b706b2fb5] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.acceptTrade(address,address,uint256,uint256[],uint256,uint256[],uint256,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:529
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 48d24d05f8ed3f81806b] {indices, numTokens}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.devMint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:413
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.indices')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.numTokens')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 495a2cb2027231768a1f] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::MutantApeYachtClub.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:770
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 4c6ba235701aff2dc468] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:572
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 35
+ storage exposures -> 1
+[MV-SI candidate 4d5f2f2a79edc34d3048] {_currentIndex, _packedOwnerships}
+ writer root       -> contracts/mocks/tokens/Moonbirds.sol::Moonbirds.safeTransferWhileNesting(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Moonbirds.sol:1618
+ written member    -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._packedOwnerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._currentIndex')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate 4dcf9b35914cadb7649b] {_currentIndex, _packedOwnerships}
+ writer root       -> contracts/mocks/tokens/Moonbirds.sol::ERC721A.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Moonbirds.sol:1618
+ written member    -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._packedOwnerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._currentIndex')
+ reader witnesses  -> 66
+ storage exposures -> 3
+[MV-SI candidate 4f93a903612a40b13d3b] {_ownerships, nextOwnerToExplicitlySet}
+ writer root       -> contracts/mocks/tokens/dependencies/ERC721A.sol::ERC721A.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:1004
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.nextOwnerToExplicitlySet')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 500da7b0b5a54df39cc0] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.mint()
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 511ce9ca98e535879472] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:572
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 35
+ storage exposures -> 1
+[MV-SI candidate 5318af49b5f6a8990481] {_operatorApprovals, _ownerships, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/dependencies/ERC721A.sol::ERC721A.approve(address,uint256)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:1032
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._operatorApprovals'), ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 5400681ea260cf4bf19e] {idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.mint(address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 5423724541341752d065] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:828
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 55458b41a1c49de5896b] {indices, nonce, numTokens}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.devMint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:415
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.nonce')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.indices'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.numTokens')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 56d903ba29a9a3c0eb74] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/Land.sol::Land.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Land.sol:359
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 5738220ea0d4601a495d] {indices, nonce, numTokens}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:508
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.numTokens')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.indices'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.nonce')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate 57d4fc41f35f58cf04aa] {_currentIndex, _packedOwnerships}
+ writer root       -> contracts/mocks/tokens/Moonbirds.sol::Moonbirds.safeTransferWhileNesting(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Moonbirds.sol:1632
+ written member    -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._packedOwnerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._currentIndex')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate 583aea7c32a52dea0d19] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/DOODLES.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/DOODLES.sol:1486
+ written member    -> ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._owners')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 5920d68ab41297f4fa00] {_ownerships, nextOwnerToExplicitlySet}
+ writer root       -> contracts/mocks/tokens/Azuki.sol::Azuki.setOwnersExplicit(uint256)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:1059
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.nextOwnerToExplicitlySet')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 5e63a71f19a55656cb6f] {indices, numTokens}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.devMint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:508
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.numTokens')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.indices')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 5e7905a4de8f2df11539] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:839
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ reader witnesses  -> 75
+ storage exposures -> 2
+[MV-SI candidate 5ead906708da655e0ce7] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.acceptTrade(address,address,uint256,uint256[],uint256,uint256[],uint256,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 633f2cba236fb4bdc6c1] {_allTokens, collectionSize}
+ writer root       -> contracts/mocks/tokens/Land.sol::Land.setCollectionSize(uint256)
+ writer effect     -> contracts/mocks/tokens/Land.sol:1233
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'Land.collectionSize')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721Enumerable._allTokens')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 654c5264b663fa3f680d] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:828
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate 66017e4c26a3c6201dc0] {_ownerships, nextOwnerToExplicitlySet}
+ writer root       -> contracts/mocks/tokens/Azuki.sol::Azuki.allowlistMint()
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:948
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.nextOwnerToExplicitlySet')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 699641ddb9b3b9ef9373] {_ownerships, nextOwnerToExplicitlySet}
+ writer root       -> contracts/mocks/tokens/Azuki.sol::Azuki.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:948
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.nextOwnerToExplicitlySet')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 69bd6bb8860bd0fe5e60] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:839
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ reader witnesses  -> 75
+ storage exposures -> 2
+[MV-SI candidate 6a332a97c595d631bef2] {indices, nonce, numTokens}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:410
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.indices')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.nonce'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.numTokens')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate 6b96e5bb73944fead5dd] {idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 6bf5eeb038142bbfb326] {_allTokens, collectionSize}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::MutantApeYachtClub.mint(address)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:973
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721Enumerable._allTokens')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'MutantApeYachtClub.collectionSize')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 6f4f009ed6c55cf09d8a] {_ownerships, nextOwnerToExplicitlySet}
+ writer root       -> contracts/mocks/tokens/Azuki.sol::Azuki.devMint(uint256)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:948
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.nextOwnerToExplicitlySet')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 710085310874c98890a0] {indices, numTokens}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:508
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.numTokens')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.indices')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 7196bec8250af3a1f27c] {currentIndex, overrideCollectionSize}
+ writer root       -> contracts/mocks/tokens/Azuki.sol::Azuki.allowlistMint()
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:961
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.currentIndex')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Azuki.sol', 'Azuki.overrideCollectionSize')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 7333f69c074b40118b3c] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:572
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 35
+ storage exposures -> 1
+[MV-SI candidate 75163c3f8189ee42ffe3] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:828
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 7886eaadb9e0f23a93e4] {_operatorApprovals, _ownerships, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/dependencies/ERC721A.sol::ERC721A.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:1032
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._operatorApprovals'), ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 7a6bae38161ff62067a8] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 7cbb06b8395732efafce] {indices, numTokens}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.devMint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:410
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.indices')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.numTokens')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 81be5f2e58f2c4e25717] {idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.devMint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 83a1a72dde2c6f2a4419] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 85080a63d10c1c85865f] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/Land.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/Land.sol:428
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._owners')
+ reader witnesses  -> 72
+ storage exposures -> 2
+[MV-SI candidate 85b8b96c37f3069b0c02] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/CloneX.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/mocks/tokens/CloneX.sol:185
+ written member    -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._owners')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 86af68263a5b417cb0a5] {indices, numTokens}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:413
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.indices')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.numTokens')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 86c05cfb3df9ab4dfbd9] {_ownerships, nextOwnerToExplicitlySet}
+ writer root       -> contracts/mocks/tokens/dependencies/ERC721A.sol::ERC721A.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:1004
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.nextOwnerToExplicitlySet')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 86e52e7d99c154b806d2] {_allTokens, collectionSize}
+ writer root       -> contracts/mocks/tokens/Land.sol::Land.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Land.sol:559
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721Enumerable._allTokens')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'Land.collectionSize')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 87c9e4243f152231d51e] {currentIndex, overrideCollectionSize}
+ writer root       -> contracts/mocks/tokens/Azuki.sol::Azuki.mint(address)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:961
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.currentIndex')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Azuki.sol', 'Azuki.overrideCollectionSize')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 87f0530af1dcc0f97870] {idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.mintWithPunkOrGlyph(uint256)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 8ac9a04b255aa2415372] {_ownerships, nextOwnerToExplicitlySet}
+ writer root       -> contracts/mocks/tokens/Azuki.sol::Azuki.setOwnersExplicit(uint256)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:1053
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.nextOwnerToExplicitlySet')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 8b04e67214fb5aef0091] {_operatorApprovals, _ownerships, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/dependencies/ERC721A.sol::ERC721A.setApprovalForAll(address,bool)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:849
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships'), ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._tokenApprovals')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 8b9e674cf92b43616820] {_burnCounter, _currentIndex, collectionSize}
+ writer root       -> contracts/mocks/tokens/Moonbirds.sol::Moonbirds.mint(address)
+ writer effect     -> contracts/mocks/tokens/Moonbirds.sol:1456
+ written member    -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._currentIndex')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._burnCounter'), ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'Moonbirds.collectionSize')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 8be94fbc044cd12590cf] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/DOODLES.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/DOODLES.sol:1486
+ written member    -> ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._owners')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 8c0ecf04892900aea574] {currentIndex, overrideCollectionSize}
+ writer root       -> contracts/mocks/tokens/Azuki.sol::Azuki.devMint(uint256)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:961
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.currentIndex')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Azuki.sol', 'Azuki.overrideCollectionSize')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 8de0e768ebd296ea93f2] {indices, nonce, numTokens}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.devMint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:413
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.indices')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.nonce'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.numTokens')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate 8ecb4a6306e38d3f0f34] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:529
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 91e241010edf035d27d1] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 92ba7878adbefc2490b8] {currentIndex, overrideCollectionSize}
+ writer root       -> contracts/mocks/tokens/Azuki.sol::Azuki.publicSaleMint(uint256,uint256)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:961
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.currentIndex')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Azuki.sol', 'Azuki.overrideCollectionSize')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 9400fdfe50130b7f8a28] {idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.setApprovalForAll(address,bool)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:335
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 9471a615f688ffc5af43] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:839
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ reader witnesses  -> 75
+ storage exposures -> 2
+[MV-SI candidate 94d342fdb1ca36529361] {_currentIndex, _packedOwnerships}
+ writer root       -> contracts/mocks/tokens/Moonbirds.sol::ERC721A.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Moonbirds.sol:1618
+ written member    -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._packedOwnerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._currentIndex')
+ reader witnesses  -> 66
+ storage exposures -> 3
+[MV-SI candidate 9be527dedce427a77e1e] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/DOODLES.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/mocks/tokens/DOODLES.sol:1501
+ written member    -> ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/DOODLES.sol', 'ERC721._owners')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 9f37347e2a8ccdece331] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::MutantApeYachtClub.mint(address)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:770
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate a605b15fa233086fb13a] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.setApprovalForAll(address,bool)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:335
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate a7455f58b64ca025569a] {_burnCounter, _currentIndex}
+ writer root       -> contracts/mocks/tokens/Moonbirds.sol::Moonbirds.mint(address)
+ writer effect     -> contracts/mocks/tokens/Moonbirds.sol:1456
+ written member    -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._currentIndex')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._burnCounter')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a7b51eb3a3fb9f24a81f] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate a7ce22845e1ae13df00c] {_ownerships, nextOwnerToExplicitlySet}
+ writer root       -> contracts/mocks/tokens/dependencies/ERC721A.sol::ERC721A.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:1011
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.nextOwnerToExplicitlySet')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate aa66f8fada29574b0a3c] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:828
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate ad9cfaa4ea1396ba3e3d] {indices, nonce, numTokens}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:413
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.indices')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.nonce'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.numTokens')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate b2cef2cfb8502e6ad886] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::MutantApeYachtClub.mint(address)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:770
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate b31dd303ae6bf9b137fc] {_ownerships, nextOwnerToExplicitlySet}
+ writer root       -> contracts/mocks/tokens/dependencies/ERC721A.sol::ERC721A.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:1004
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.nextOwnerToExplicitlySet')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b39ce27f9905d0f5e595] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:828
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate b57a547ee5f8f8dcda35] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/Land.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/Land.sol:417
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate b61e938042f0250243c9] {currentIndex, overrideCollectionSize}
+ writer root       -> contracts/mocks/tokens/Azuki.sol::Azuki.auctionMint(uint256)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:961
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.currentIndex')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Azuki.sol', 'Azuki.overrideCollectionSize')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate b9735ff29a04641f79b7] {_allTokens, collectionSize}
+ writer root       -> contracts/mocks/tokens/CloneX.sol::CloneX.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/CloneX.sol:557
+ written member    -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721Enumerable._allTokens')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'CloneX.collectionSize')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate b9b10347cb90fd88edad] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/CloneX.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/CloneX.sol:430
+ written member    -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._owners')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate ba1d48f6e4ef668266c8] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:529
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate ba98919c728bd2c3e6b3] {currentIndex, overrideCollectionSize}
+ writer root       -> contracts/mocks/tokens/Azuki.sol::Azuki.setCollectionSize(uint256)
+ writer effect     -> contracts/mocks/tokens/Azuki.sol:381
+ written member    -> ('SV', 'contracts/mocks/tokens/Azuki.sol', 'Azuki.overrideCollectionSize')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.currentIndex')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate bdc1ccaab58db2403200] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:594
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ reader witnesses  -> 17
+ storage exposures -> 2
+[MV-SI candidate c0be5283ece8e812dd52] {_allTokens, collectionSize}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::MutantApeYachtClub.setCollectionSize(uint256)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:1757
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'MutantApeYachtClub.collectionSize')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721Enumerable._allTokens')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c1a149702c90a44a220f] {indices, nonce, numTokens}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.devMint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:508
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.numTokens')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.indices'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.nonce')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate c2c2b93e35f63c879d9a] {currentIndex, overrideCollectionSize}
+ writer root       -> contracts/mocks/tokens/Azuki.sol::Azuki.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:961
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.currentIndex')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Azuki.sol', 'Azuki.overrideCollectionSize')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c33d0db6cdcb43a506e4] {_allTokens, collectionSize}
+ writer root       -> contracts/mocks/tokens/Land.sol::Land.mint(address)
+ writer effect     -> contracts/mocks/tokens/Land.sol:559
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721Enumerable._allTokens')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'Land.collectionSize')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c6f7df6dd27abfaa0564] {_owner, _pauser}
+ writer root       -> contracts/dependencies/seaport/contracts/zones/PausableZoneController.sol::PausableZoneController.acceptOwnership()
+ writer effect     -> contracts/dependencies/seaport/contracts/zones/PausableZoneController.sol:310
+ written member    -> ('SV', 'contracts/dependencies/seaport/contracts/zones/PausableZoneController.sol', 'PausableZoneController._owner')
+ potentially stale -> ('SV', 'contracts/dependencies/seaport/contracts/zones/PausableZoneController.sol', 'PausableZoneController._pauser')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c7dbed5be724b39fbe5c] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/Land.sol::ERC721.approve(address,uint256)
+ writer effect     -> contracts/mocks/tokens/Land.sol:428
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._owners')
+ reader witnesses  -> 72
+ storage exposures -> 2
+[MV-SI candidate c93b959e45f14b2d7bbf] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/Land.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Land.sol:428
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._owners')
+ reader witnesses  -> 72
+ storage exposures -> 2
+[MV-SI candidate cc9daa13235fac2774ab] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/Land.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Land.sol:417
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate cca5a1d923717854359d] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/Land.sol::Land.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Land.sol:359
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate cd977ff3f92a11ab65c0] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::ERC721.approve(address,uint256)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:839
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ reader witnesses  -> 75
+ storage exposures -> 2
+[MV-SI candidate ce5e79051947627ff9ed] {indices, nonce, numTokens}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.devMint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:410
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.indices')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.nonce'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.numTokens')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate d0476430fb0c576b9079] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.mintWithPunkOrGlyph(uint256)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate d368b3da514b86a478b1] {_allTokens, collectionSize}
+ writer root       -> contracts/mocks/tokens/CloneX.sol::CloneX.setCollectionSize(uint256)
+ writer effect     -> contracts/mocks/tokens/CloneX.sol:1041
+ written member    -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'CloneX.collectionSize')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721Enumerable._allTokens')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate d3c58418c99ad0082753] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/Land.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/Land.sol:417
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate d4232d88b966f4161262] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:594
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners'), ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 69
+ storage exposures -> 2
+[MV-SI candidate d46ea13caafabdb16561] {_burnCounter, _currentIndex}
+ writer root       -> contracts/mocks/tokens/Moonbirds.sol::Moonbirds.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Moonbirds.sol:1456
+ written member    -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._currentIndex')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._burnCounter')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate d57fd367219eddf13047] {idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate d84c5a312c7884253aad] {_currentIndex, _packedOwnerships}
+ writer root       -> contracts/mocks/tokens/Moonbirds.sol::ERC721A.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/Moonbirds.sol:1632
+ written member    -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._packedOwnerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._currentIndex')
+ reader witnesses  -> 66
+ storage exposures -> 3
+[MV-SI candidate dba75b6ab086e12b83a1] {idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:529
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate dcf13d13f3e2374bd581] {indices, nonce, numTokens}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:415
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.nonce')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.indices'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.numTokens')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate e30891317eb9ef4d4786] {idToApproval, idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.approve(address,uint256)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:327
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToApproval')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner'), ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 35
+ storage exposures -> 1
+[MV-SI candidate e34fa496c2c984c45509] {_burnCounter, _currentIndex, collectionSize}
+ writer root       -> contracts/mocks/tokens/Moonbirds.sol::Moonbirds.setCollectionSize(uint256)
+ writer effect     -> contracts/mocks/tokens/Moonbirds.sol:3429
+ written member    -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'Moonbirds.collectionSize')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._burnCounter'), ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._currentIndex')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate e7676b2989e7842c4962] {_ownerships, nextOwnerToExplicitlySet}
+ writer root       -> contracts/mocks/tokens/dependencies/ERC721A.sol::ERC721A.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:1011
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.nextOwnerToExplicitlySet')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e83ca04536f7689e0f84] {_currentIndex, _packedOwnerships}
+ writer root       -> contracts/mocks/tokens/Moonbirds.sol::ERC721A.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Moonbirds.sol:1632
+ written member    -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._packedOwnerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._currentIndex')
+ reader witnesses  -> 66
+ storage exposures -> 3
+[MV-SI candidate e89ce443b02ac27bdb6b] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/Land.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/mocks/tokens/Land.sol:183
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._owners'), ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 66
+ storage exposures -> 2
+[MV-SI candidate e9e2dc5114fbb4fb66c4] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/Land.sol::Land.mint(address)
+ writer effect     -> contracts/mocks/tokens/Land.sol:359
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate eca1fe7a9074f000dfaf] {idToOwner, ownerToOperators}
+ writer root       -> contracts/mocks/tokens/Meebits.sol::Meebits.acceptTrade(address,address,uint256,uint256[],uint256,uint256[],uint256,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/Meebits.sol:521
+ written member    -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.idToOwner')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Meebits.sol', 'Meebits.ownerToOperators')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate ee01164c8b4b8153838e] {_operatorApprovals, _ownerships, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/dependencies/ERC721A.sol::ERC721A.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:1032
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._operatorApprovals'), ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate ef675157a394380a7f91] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::MutantApeYachtClub.mint(uint256,address)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:770
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate efa98e120159898585fa] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/MAYC.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/MAYC.sol:828
+ written member    -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/MAYC.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate f11700cc202c5862c329] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/Land.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Land.sol:417
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate f28481cbcdd4a917e4b9] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/Land.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Land.sol:417
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 42
+ storage exposures -> 2
+[MV-SI candidate f46f965f73170a6e0a3f] {_currentIndex, _packedOwnerships}
+ writer root       -> contracts/mocks/tokens/Moonbirds.sol::ERC721A.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Moonbirds.sol:1632
+ written member    -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._packedOwnerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Moonbirds.sol', 'ERC721A._currentIndex')
+ reader witnesses  -> 66
+ storage exposures -> 3
+[MV-SI candidate fae90f3e66d4b633fd09] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/CloneX.sol::ERC721.approve(address,uint256)
+ writer effect     -> contracts/mocks/tokens/CloneX.sol:430
+ written member    -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._owners')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate fbaf9d5c87e15d279b2d] {_ownerships, nextOwnerToExplicitlySet}
+ writer root       -> contracts/mocks/tokens/Azuki.sol::Azuki.publicSaleMint(uint256,uint256)
+ writer effect     -> contracts/mocks/tokens/dependencies/ERC721A.sol:948
+ written member    -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A._ownerships')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/dependencies/ERC721A.sol', 'ERC721A.nextOwnerToExplicitlySet')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate fd0851d8dc555bb30754] {_operatorApprovals, _owners}
+ writer root       -> contracts/mocks/tokens/Land.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/Land.sol:417
+ written member    -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._owners')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/Land.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate ff522d4e0806364b0ad6] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/tokens/CloneX.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/tokens/CloneX.sol:430
+ written member    -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/mocks/tokens/CloneX.sol', 'ERC721._owners')
+ reader witnesses  -> 9
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (558 contracts with 1 detectors), 268 result(s) found

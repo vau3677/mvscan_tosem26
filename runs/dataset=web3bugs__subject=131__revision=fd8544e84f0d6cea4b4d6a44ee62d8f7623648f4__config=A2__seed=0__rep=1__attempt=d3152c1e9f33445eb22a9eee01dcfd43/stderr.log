@@ -1,0 +1,360 @@
+'/tmp/.svm/0.8.10/solc-0.8.10 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: This declaration shadows an existing declaration.
+   --> contracts/strategies/ConvexStrategyBase.sol:287:9:
+    |
+287 |         address _swapperRouter = address(_swapperRouter);
+    |         ^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> contracts/strategies/ConvexStrategyBase.sol:41:5:
+   |
+41 |     ISwapperRouter internal immutable _swapperRouter; // Swapper Router, used for swapping tokens
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Warning: Unused try/catch parameter. Remove or comment out the variable name to silence this warning.
+  --> contracts/oracles/ChainlinkOracleProvider.sol:58:13:
+   |
+58 |             uint256 startedAt,
+   |             ^^^^^^^^^^^^^^^^^
+
+
+
+ERROR:ContractSolcParsing:Impossible to generate IR for AmmConvexGauge.getCvxMintAmount (contracts/utils/CvxMintAmount.sol#16-36):
+ 'NoneType' object has no attribute 'parameters'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=5368 vars=452
+[mvscan-stage] root-seeding-done eligible_exposures=400 seeded=301 multi_exposure_entry_blocks=97 collapsed_contextual_aliases=99 excluded_dependency=0 excluded_interface=374 excluded_library=1 excluded_abstract=186 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=ea41a0686961a517d94ad9f25b86111f57e6355021df501d8ea04425ce82f6ab candidate_count=47 candidate_digest=df587ef47ae07b992abf84562741aeb3f8017f0194b3e864f2c4af33df89b50a context_instance_count=247 eligible_readers=77 eligible_writers=39 execution_context_digest=4953e1097f835ff579f2b591a12ab1ce5c852bf0bc7bd9bb826da6b1c21b65ee insensitive_readers_filtered=77 invalid_partial_write_filtered=0 must_full_relation_filtered=76 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=388 owner_context_pairs=259 owner_context_pairs_considered=8034 raw_block_pairs=248 reader_witness_count=259 relation_base_members_shadowed=66 relation_context_incompatible=1297 relation_digest=b012e3eeaa1dedfb1dc510857b589af2fe846fa7d906a5b864dc6e66e859615e relation_members_raw=250 relation_origins_registered=14 relation_origins_rejected_unary_after_shadowing=155 relation_origins_seen=169 relation_unbound_key_templates=67 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=13 scalar_variables_skipped=149 storage_context_mismatch=6014 variables_considered=163
+INFO:Detectors:
+
+[MV-SI candidate 071bd247c0b6e04d6114] {epoch, keeperRecords}
+ writer root       -> contracts/tokenomics/KeeperGauge.sol::KeeperGauge.kill()
+ writer effect     -> contracts/tokenomics/KeeperGauge.sol:59
+ written member    -> ('SV', 'contracts/tokenomics/KeeperGauge.sol', 'KeeperGauge.epoch')
+ potentially stale -> ('SV', 'contracts/tokenomics/KeeperGauge.sol', 'KeeperGauge.keeperRecords')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 0a8a660e9b90bde324a8] {lastMigrationEvent, lastUpdated[$arg0]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.claimFees()
+ writer effect     -> contracts/BkdLocker.sol:333
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.lastUpdated', '$arg0')
+ potentially stale -> ('SV', 'contracts/BkdLocker.sol', 'BkdLocker.lastMigrationEvent')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 0a8c3cb5beb2c9da8cfb] {totalAvailableToNow, totalMintedToNow}
+ writer root       -> contracts/tokenomics/Minter.sol::Minter.executeInflationRateUpdate()
+ writer effect     -> contracts/tokenomics/Minter.sol:188
+ written member    -> ('SV', 'contracts/tokenomics/Minter.sol', 'Minter.totalAvailableToNow')
+ potentially stale -> ('SV', 'contracts/tokenomics/Minter.sol', 'Minter.totalMintedToNow')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 0c656366fdc1d2864e57] {lastMigrationEvent, lastUpdated[$arg0]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.migrate(address)
+ writer effect     -> contracts/BkdLocker.sol:73
+ written member    -> ('SV', 'contracts/BkdLocker.sol', 'BkdLocker.lastMigrationEvent')
+ potentially stale -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.lastUpdated', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 0f54f54ba5588b5aeac5] {epoch, keeperRecords}
+ writer root       -> contracts/tokenomics/KeeperGauge.sol::KeeperGauge.reportFees(address,uint256,address)
+ writer effect     -> contracts/tokenomics/KeeperGauge.sol:84
+ written member    -> ('SV', 'contracts/tokenomics/KeeperGauge.sol', 'KeeperGauge.keeperRecords')
+ potentially stale -> ('SV', 'contracts/tokenomics/KeeperGauge.sol', 'KeeperGauge.epoch')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 1089ebf890a8050bc2d8] {epoch, keeperRecords}
+ writer root       -> contracts/tokenomics/KeeperGauge.sol::KeeperGauge.claimRewards(address,uint256)
+ writer effect     -> contracts/tokenomics/KeeperGauge.sol:139
+ written member    -> ('SV', 'contracts/tokenomics/KeeperGauge.sol', 'KeeperGauge.keeperRecords')
+ potentially stale -> ('SV', 'contracts/tokenomics/KeeperGauge.sol', 'KeeperGauge.epoch')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 1294f29a444a80e4233e] {pendingUInts256[@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._KEEPER_FEE_FRACTION_KEY], pendingUInts256[@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._TREASURY_FEE_FRACTION_KEY]}
+ writer root       -> contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler.resetKeeperFee()
+ writer effect     -> contracts/utils/Preparable.sol:88
+ written member    -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.pendingUInts256', '@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._KEEPER_FEE_FRACTION_KEY')
+ potentially stale -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.pendingUInts256', '@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._TREASURY_FEE_FRACTION_KEY')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 1ea0dfd9c7f8ab892e32] {totalAvailableToNow, totalMintedToNow}
+ writer root       -> contracts/tokenomics/Minter.sol::Minter.mint(address,uint256)
+ writer effect     -> contracts/tokenomics/Minter.sol:188
+ written member    -> ('SV', 'contracts/tokenomics/Minter.sol', 'Minter.totalAvailableToNow')
+ potentially stale -> ('SV', 'contracts/tokenomics/Minter.sol', 'Minter.totalMintedToNow')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 1f9d808653ab68511702] {totalAvailableToNow, totalMintedToNow}
+ writer root       -> contracts/tokenomics/Minter.sol::Minter.mint(address,uint256)
+ writer effect     -> contracts/tokenomics/Minter.sol:218
+ written member    -> ('SV', 'contracts/tokenomics/Minter.sol', 'Minter.totalAvailableToNow')
+ potentially stale -> ('SV', 'contracts/tokenomics/Minter.sol', 'Minter.totalMintedToNow')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 21c59aaee3b3111f5490] {totalAvailableToNow, totalMintedToNow}
+ writer root       -> contracts/tokenomics/InflationManager.sol::InflationManager.mintRewards(address,uint256)
+ writer effect     -> contracts/tokenomics/Minter.sol:218
+ written member    -> ('SV', 'contracts/tokenomics/Minter.sol', 'Minter.totalAvailableToNow')
+ potentially stale -> ('SV', 'contracts/tokenomics/Minter.sol', 'Minter.totalMintedToNow')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 2701394c7e36a7d25d8a] {balances[$sender], totalStashed[$sender]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.lockFor(address,uint256)
+ writer effect     -> contracts/BkdLocker.sol:335
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.balances', '$sender')
+ potentially stale -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.totalStashed', '$sender')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 2a39bb88defa3b25b61d] {pendingUInts256[@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._KEEPER_FEE_FRACTION_KEY], pendingUInts256[@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._TREASURY_FEE_FRACTION_KEY]}
+ writer root       -> contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler.prepareKeeperFee(uint256)
+ writer effect     -> contracts/utils/Preparable.sol:45
+ written member    -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.pendingUInts256', '@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._KEEPER_FEE_FRACTION_KEY')
+ potentially stale -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.pendingUInts256', '@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._TREASURY_FEE_FRACTION_KEY')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 2ae12c4bfa60e9034149] {balances[$sender], totalStashed[$sender]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.lock(uint256)
+ writer effect     -> contracts/BkdLocker.sol:335
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.balances', '$sender')
+ potentially stale -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.totalStashed', '$sender')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 2f5c4c79ba5a1f888da3] {lastMigrationEvent, lastUpdated[$arg0]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.executeUnlocks()
+ writer effect     -> contracts/BkdLocker.sol:333
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.lastUpdated', '$arg0')
+ potentially stale -> ('SV', 'contracts/BkdLocker.sol', 'BkdLocker.lastMigrationEvent')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 3457a923abe997e8313d] {admin, fundAdmin}
+ writer root       -> contracts/tokenomics/VestedEscrow.sol::VestedEscrow.setAdmin(address)
+ writer effect     -> contracts/tokenomics/VestedEscrow.sol:71
+ written member    -> ('SV', 'contracts/tokenomics/VestedEscrow.sol', 'VestedEscrow.admin')
+ potentially stale -> ('SV', 'contracts/tokenomics/VestedEscrow.sol', 'VestedEscrow.fundAdmin')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 3575e44a5c6c22e88d4b] {boostFactors[$arg0], currentUInts256[@state::contracts/BkdLocker.sol::BkdLocker._MAX_BOOST]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.lockFor(address,uint256)
+ writer effect     -> contracts/BkdLocker.sol:334
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.boostFactors', '$arg0')
+ potentially stale -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.currentUInts256', '@state::contracts/BkdLocker.sol::BkdLocker._MAX_BOOST')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 396aab59874df679bc5f] {epoch, keeperRecords}
+ writer root       -> contracts/tokenomics/KeeperGauge.sol::KeeperGauge.claimRewards(address)
+ writer effect     -> contracts/tokenomics/KeeperGauge.sol:139
+ written member    -> ('SV', 'contracts/tokenomics/KeeperGauge.sol', 'KeeperGauge.keeperRecords')
+ potentially stale -> ('SV', 'contracts/tokenomics/KeeperGauge.sol', 'KeeperGauge.epoch')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 3d61a17cf7d05f5f8de6] {boostFactors[$arg0], currentUInts256[@state::contracts/BkdLocker.sol::BkdLocker._MAX_BOOST]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.initialize(uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/utils/Preparable.sol:149
+ written member    -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.currentUInts256', '@state::contracts/BkdLocker.sol::BkdLocker._MAX_BOOST')
+ potentially stale -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.boostFactors', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 3ec399987a36b9170440] {boostFactors[$arg0], currentUInts256[@state::contracts/BkdLocker.sol::BkdLocker._MAX_BOOST]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.lock(uint256)
+ writer effect     -> contracts/BkdLocker.sol:334
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.boostFactors', '$arg0')
+ potentially stale -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.currentUInts256', '@state::contracts/BkdLocker.sol::BkdLocker._MAX_BOOST')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 40d84442cab67e86ad8e] {pendingUInts256[@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._KEEPER_FEE_FRACTION_KEY], pendingUInts256[@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._TREASURY_FEE_FRACTION_KEY]}
+ writer root       -> contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler.executeTreasuryFee()
+ writer effect     -> contracts/utils/Preparable.sol:150
+ written member    -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.pendingUInts256', '@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._TREASURY_FEE_FRACTION_KEY')
+ potentially stale -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.pendingUInts256', '@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._KEEPER_FEE_FRACTION_KEY')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 4266f91c946de0d90bd3] {lastMigrationEvent, lastUpdated[$arg0]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.claimFees(address)
+ writer effect     -> contracts/BkdLocker.sol:333
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.lastUpdated', '$arg0')
+ potentially stale -> ('SV', 'contracts/BkdLocker.sol', 'BkdLocker.lastMigrationEvent')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 4e7855215d31dd9e54f1] {perUserShareCrv[$arg0], perUserShareCvx[$arg0], perUserShare[$arg0]}
+ writer root       -> contracts/tokenomics/AmmGauge.sol::AmmGauge.unstake(uint256)
+ writer effect     -> contracts/tokenomics/AmmGauge.sol:156
+ written member    -> ('MS', 'contracts/tokenomics/AmmGauge.sol', 'AmmGauge.perUserShare', '$arg0')
+ potentially stale -> ('MS', 'contracts/tokenomics/AmmConvexGauge.sol', 'AmmConvexGauge.perUserShareCrv', '$arg0'), ('MS', 'contracts/tokenomics/AmmConvexGauge.sol', 'AmmConvexGauge.perUserShareCvx', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 562b2f9a4b432e3ec543] {balances[$sender], totalStashed[$sender]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.userCheckpoint(address)
+ writer effect     -> contracts/BkdLocker.sol:335
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.balances', '$sender')
+ potentially stale -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.totalStashed', '$sender')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 5961cb8994d22b07eb29] {_lastWithdrawal[$arg0], minWithdrawalDelay}
+ writer root       -> contracts/vault/VaultReserve.sol::VaultReserve.withdraw(address,uint256)
+ writer effect     -> contracts/vault/VaultReserve.sol:80
+ written member    -> ('MS', 'contracts/vault/VaultReserve.sol', 'VaultReserve._lastWithdrawal', '$arg0')
+ potentially stale -> ('SV', 'contracts/vault/VaultReserve.sol', 'VaultReserve.minWithdrawalDelay')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 5d685c812401bc6a320a] {balances[$sender], totalStashed[$sender]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.claimFees()
+ writer effect     -> contracts/BkdLocker.sol:335
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.balances', '$sender')
+ potentially stale -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.totalStashed', '$sender')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 5fce1132bf2cb0c9e781] {boostFactors[$arg0], currentUInts256[@state::contracts/BkdLocker.sol::BkdLocker._MAX_BOOST]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.claimFees(address)
+ writer effect     -> contracts/BkdLocker.sol:334
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.boostFactors', '$arg0')
+ potentially stale -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.currentUInts256', '@state::contracts/BkdLocker.sol::BkdLocker._MAX_BOOST')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 63648a4f3690809d7245] {perUserShareCrv[$arg0], perUserShareCvx[$arg0], perUserShare[$arg0]}
+ writer root       -> contracts/tokenomics/AmmGauge.sol::AmmGauge.stake(uint256)
+ writer effect     -> contracts/tokenomics/AmmGauge.sol:156
+ written member    -> ('MS', 'contracts/tokenomics/AmmGauge.sol', 'AmmGauge.perUserShare', '$arg0')
+ potentially stale -> ('MS', 'contracts/tokenomics/AmmConvexGauge.sol', 'AmmConvexGauge.perUserShareCrv', '$arg0'), ('MS', 'contracts/tokenomics/AmmConvexGauge.sol', 'AmmConvexGauge.perUserShareCvx', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 66b6afc6da2c04c98665] {balances[$sender], totalStashed[$sender]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.prepareUnlock(uint256)
+ writer effect     -> contracts/BkdLocker.sol:123
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.totalStashed', '$sender')
+ potentially stale -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.balances', '$sender')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 67598b99130024bf9eec] {pendingUInts256[@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._KEEPER_FEE_FRACTION_KEY], pendingUInts256[@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._TREASURY_FEE_FRACTION_KEY]}
+ writer root       -> contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler.executeKeeperFee()
+ writer effect     -> contracts/utils/Preparable.sol:150
+ written member    -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.pendingUInts256', '@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._KEEPER_FEE_FRACTION_KEY')
+ potentially stale -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.pendingUInts256', '@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._TREASURY_FEE_FRACTION_KEY')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 6e0ebcb81e3b2c287f83] {pendingUInts256[@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._KEEPER_FEE_FRACTION_KEY], pendingUInts256[@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._TREASURY_FEE_FRACTION_KEY]}
+ writer root       -> contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler.resetTreasuryFee()
+ writer effect     -> contracts/utils/Preparable.sol:88
+ written member    -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.pendingUInts256', '@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._TREASURY_FEE_FRACTION_KEY')
+ potentially stale -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.pendingUInts256', '@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._KEEPER_FEE_FRACTION_KEY')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 6f43eda2aee284806db8] {boostFactors[$arg0], currentUInts256[@state::contracts/BkdLocker.sol::BkdLocker._MAX_BOOST]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.userCheckpoint(address)
+ writer effect     -> contracts/BkdLocker.sol:334
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.boostFactors', '$arg0')
+ potentially stale -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.currentUInts256', '@state::contracts/BkdLocker.sol::BkdLocker._MAX_BOOST')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 6fb261c98ad0b17d4b44] {lastMigrationEvent, lastUpdated[$arg0]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.userCheckpoint(address)
+ writer effect     -> contracts/BkdLocker.sol:333
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.lastUpdated', '$arg0')
+ potentially stale -> ('SV', 'contracts/BkdLocker.sol', 'BkdLocker.lastMigrationEvent')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 70f1016b44ca21c19b0b] {perUserShareCrv[$arg0], perUserShareCvx[$arg0], perUserShare[$arg0]}
+ writer root       -> contracts/tokenomics/AmmConvexGauge.sol::AmmConvexGauge.unstakeFor(address,uint256)
+ writer effect     -> contracts/tokenomics/AmmConvexGauge.sol:217
+ written member    -> ('MS', 'contracts/tokenomics/AmmConvexGauge.sol', 'AmmConvexGauge.perUserShareCrv', '$arg0')
+ potentially stale -> ('MS', 'contracts/tokenomics/AmmConvexGauge.sol', 'AmmConvexGauge.perUserShareCvx', '$arg0'), ('MS', 'contracts/tokenomics/AmmGauge.sol', 'AmmGauge.perUserShare', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 76a701be96fc54bf7daa] {totalAvailableToNow, totalMintedToNow}
+ writer root       -> contracts/tokenomics/Minter.sol::Minter.mint(address,uint256)
+ writer effect     -> contracts/tokenomics/Minter.sol:221
+ written member    -> ('SV', 'contracts/tokenomics/Minter.sol', 'Minter.totalMintedToNow')
+ potentially stale -> ('SV', 'contracts/tokenomics/Minter.sol', 'Minter.totalAvailableToNow')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 8d73dc08043c7735db60] {boostFactors[$arg0], currentUInts256[@state::contracts/BkdLocker.sol::BkdLocker._MAX_BOOST]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.claimFees()
+ writer effect     -> contracts/BkdLocker.sol:334
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.boostFactors', '$arg0')
+ potentially stale -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.currentUInts256', '@state::contracts/BkdLocker.sol::BkdLocker._MAX_BOOST')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 8dff9ed45e1dca68afcd] {pendingUInts256[@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._KEEPER_FEE_FRACTION_KEY], pendingUInts256[@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._TREASURY_FEE_FRACTION_KEY]}
+ writer root       -> contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler.prepareTreasuryFee(uint256)
+ writer effect     -> contracts/utils/Preparable.sol:45
+ written member    -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.pendingUInts256', '@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._TREASURY_FEE_FRACTION_KEY')
+ potentially stale -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.pendingUInts256', '@state::contracts/actions/topup/TopUpActionFeeHandler.sol::TopUpActionFeeHandler._KEEPER_FEE_FRACTION_KEY')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 951eaa526e5fb231b722] {lastMigrationEvent, lastUpdated[$arg0]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.lock(uint256)
+ writer effect     -> contracts/BkdLocker.sol:333
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.lastUpdated', '$arg0')
+ potentially stale -> ('SV', 'contracts/BkdLocker.sol', 'BkdLocker.lastMigrationEvent')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate a56552cdd647940ddb92] {perUserShareCrv[$arg0], perUserShareCvx[$arg0], perUserShare[$arg0]}
+ writer root       -> contracts/tokenomics/AmmConvexGauge.sol::AmmConvexGauge.unstakeFor(address,uint256)
+ writer effect     -> contracts/tokenomics/AmmConvexGauge.sol:214
+ written member    -> ('MS', 'contracts/tokenomics/AmmGauge.sol', 'AmmGauge.perUserShare', '$arg0')
+ potentially stale -> ('MS', 'contracts/tokenomics/AmmConvexGauge.sol', 'AmmConvexGauge.perUserShareCrv', '$arg0'), ('MS', 'contracts/tokenomics/AmmConvexGauge.sol', 'AmmConvexGauge.perUserShareCvx', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate acb9ecf51db6915ec5b5] {admin, fundAdmin}
+ writer root       -> contracts/tokenomics/VestedEscrow.sol::VestedEscrow.setFundAdmin(address)
+ writer effect     -> contracts/tokenomics/VestedEscrow.sol:77
+ written member    -> ('SV', 'contracts/tokenomics/VestedEscrow.sol', 'VestedEscrow.fundAdmin')
+ potentially stale -> ('SV', 'contracts/tokenomics/VestedEscrow.sol', 'VestedEscrow.admin')
+ reader witnesses  -> 9
+ storage exposures -> 2
+[MV-SI candidate cafa2fc4a10640e61788] {perUserShareCrv[$arg0], perUserShareCvx[$arg0], perUserShare[$arg0]}
+ writer root       -> contracts/tokenomics/AmmConvexGauge.sol::AmmConvexGauge.unstakeFor(address,uint256)
+ writer effect     -> contracts/tokenomics/AmmConvexGauge.sol:220
+ written member    -> ('MS', 'contracts/tokenomics/AmmConvexGauge.sol', 'AmmConvexGauge.perUserShareCvx', '$arg0')
+ potentially stale -> ('MS', 'contracts/tokenomics/AmmConvexGauge.sol', 'AmmConvexGauge.perUserShareCrv', '$arg0'), ('MS', 'contracts/tokenomics/AmmGauge.sol', 'AmmGauge.perUserShare', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate d4b4cb2b4bcf2dfbfa86] {epoch, keeperRecords}
+ writer root       -> contracts/tokenomics/KeeperGauge.sol::KeeperGauge.advanceEpoch()
+ writer effect     -> contracts/tokenomics/KeeperGauge.sol:98
+ written member    -> ('SV', 'contracts/tokenomics/KeeperGauge.sol', 'KeeperGauge.epoch')
+ potentially stale -> ('SV', 'contracts/tokenomics/KeeperGauge.sol', 'KeeperGauge.keeperRecords')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate d50454952e8c22f63a27] {totalAvailableToNow, totalMintedToNow}
+ writer root       -> contracts/tokenomics/InflationManager.sol::InflationManager.mintRewards(address,uint256)
+ writer effect     -> contracts/tokenomics/Minter.sol:221
+ written member    -> ('SV', 'contracts/tokenomics/Minter.sol', 'Minter.totalMintedToNow')
+ potentially stale -> ('SV', 'contracts/tokenomics/Minter.sol', 'Minter.totalAvailableToNow')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate dafe05bc43680cb1f5cc] {boostFactors[$arg0], currentUInts256[@state::contracts/BkdLocker.sol::BkdLocker._MAX_BOOST]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.executeUnlocks()
+ writer effect     -> contracts/BkdLocker.sol:334
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.boostFactors', '$arg0')
+ potentially stale -> ('MS', 'contracts/utils/Preparable.sol', 'Preparable.currentUInts256', '@state::contracts/BkdLocker.sol::BkdLocker._MAX_BOOST')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate f20ca66a2b613cd1abea] {epoch, keeperRecords}
+ writer root       -> contracts/tokenomics/KeeperGauge.sol::KeeperGauge.reportFees(address,uint256,address)
+ writer effect     -> contracts/tokenomics/KeeperGauge.sol:85
+ written member    -> ('SV', 'contracts/tokenomics/KeeperGauge.sol', 'KeeperGauge.keeperRecords')
+ potentially stale -> ('SV', 'contracts/tokenomics/KeeperGauge.sol', 'KeeperGauge.epoch')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate f4ced56689ab42cf4b4f] {totalAvailableToNow, totalMintedToNow}
+ writer root       -> contracts/tokenomics/InflationManager.sol::InflationManager.mintRewards(address,uint256)
+ writer effect     -> contracts/tokenomics/Minter.sol:188
+ written member    -> ('SV', 'contracts/tokenomics/Minter.sol', 'Minter.totalAvailableToNow')
+ potentially stale -> ('SV', 'contracts/tokenomics/Minter.sol', 'Minter.totalMintedToNow')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f986181f8245788f992c] {balances[$sender], totalStashed[$sender]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.claimFees(address)
+ writer effect     -> contracts/BkdLocker.sol:335
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.balances', '$sender')
+ potentially stale -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.totalStashed', '$sender')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate fa3b920fb7c5623b7db7] {lastMigrationEvent, lastUpdated[$arg0]}
+ writer root       -> contracts/BkdLocker.sol::BkdLocker.lockFor(address,uint256)
+ writer effect     -> contracts/BkdLocker.sol:333
+ written member    -> ('MS', 'contracts/BkdLocker.sol', 'BkdLocker.lastUpdated', '$arg0')
+ potentially stale -> ('SV', 'contracts/BkdLocker.sol', 'BkdLocker.lastMigrationEvent')
+ reader witnesses  -> 6
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (171 contracts with 1 detectors), 47 result(s) found

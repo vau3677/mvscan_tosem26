@@ -1,0 +1,212 @@
+'/tmp/.svm/0.8.13/solc-0.8.13 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1446 vars=160
+[mvscan-stage] root-seeding-done eligible_exposures=108 seeded=93 multi_exposure_entry_blocks=12 collapsed_contextual_aliases=15 excluded_dependency=0 excluded_interface=33 excluded_library=1 excluded_abstract=14 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=f459ac758ea54f4b99cfb5dc379ff460db7dc5a41ca5009902eed9020f1a940e candidate_count=29 candidate_digest=5b3ac2f25157fc886d65c159d91eed2913d734f1f077de15f8ecb241659761ca context_instance_count=583 eligible_readers=6 eligible_writers=9 execution_context_digest=5991ff03ecd916ad011e12391fa84af2322add7f9ce6ce3c66430353701a29bb insensitive_readers_filtered=56 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=6 owner_context_pairs=583 owner_context_pairs_considered=3518 raw_block_pairs=54 reader_witness_count=583 relation_base_members_shadowed=0 relation_context_incompatible=601 relation_digest=9d37bf7639b0df53f8130d076b01995012bc3c2bb5ab1bbadf515274b59da972 relation_members_raw=24 relation_origins_registered=2 relation_origins_rejected_unary_after_shadowing=16 relation_origins_rejected_unreachable=28 relation_origins_seen=18 relation_unbound_key_templates=79 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=1 scalar_variables_skipped=106 storage_context_mismatch=2328 variables_considered=108
+INFO:Detectors:
+
+[MV-SI candidate 1879cc9c187807b20fe2] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.stakeNRN(uint256,uint256)
+ writer effect     -> src/FighterFarm.sol:270
+ written member    -> ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 18e0e0ee2089e187a4a2] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 207550c4bbfb40dd269f] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 253d0348e1ebb786c8ea] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 41
+ storage exposures -> 3
+[MV-SI candidate 2981f2f2611c67a83de6] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:343
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 27
+ storage exposures -> 2
+[MV-SI candidate 2c7f505fbee75eefa561] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/AAMintPass.sol::AAMintPass.burn(uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 13
+ storage exposures -> 1
+[MV-SI candidate 3011130af0993f1f3e25] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.approve(address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 40
+ storage exposures -> 3
+[MV-SI candidate 37a2115baa3c4e3b380f] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:343
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 39713303aae75aacb02b] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 455b84bcad62c516b78e] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.updateFighterStaking(uint256,bool)
+ writer effect     -> src/FighterFarm.sol:270
+ written member    -> ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 45be1baae315efc32867] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:343
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 41
+ storage exposures -> 3
+[MV-SI candidate 51052c7406eb74eba01b] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:343
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 27
+ storage exposures -> 2
+[MV-SI candidate 510cbbbbd24229fb15fd] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 21
+ storage exposures -> 3
+[MV-SI candidate 620592917f77a3f5aa37] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 68814e0f3c1840b01fa2] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 13
+ storage exposures -> 2
+[MV-SI candidate 702d93e2e6fe9ba77472] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:343
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 80d08f2fa0c007dced6f] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 27
+ storage exposures -> 2
+[MV-SI candidate 93384de750370106e12e] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.redeemMintPass(uint256[],uint8[],uint8[],string[],string[],string[])
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:285
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 9c5eea5a2e30f392b6ed] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/RankedBattle.sol::RankedBattle.unstakeNRN(uint256,uint256)
+ writer effect     -> src/FighterFarm.sol:270
+ written member    -> ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate a4b8665c3bc8ca38600f] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 27
+ storage exposures -> 2
+[MV-SI candidate b1f8f0fd97a1d1293522] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/AAMintPass.sol::AAMintPass.claimMintPass(uint8[2],bytes,string[])
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:285
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate b7103136bc2341708be0] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 13
+ storage exposures -> 2
+[MV-SI candidate b9a7fb9562e5cd078b7c] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.mintFromMergingPool(address,string,string,uint256[2])
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:285
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate bebe4bf75eacd7935b14] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:345
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate e375b48f2f32ffc80413] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 40
+ storage exposures -> 3
+[MV-SI candidate e6c7caaf807059a095cc] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 26
+ storage exposures -> 2
+[MV-SI candidate eea5a29b3e1b84d5ed55] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate f11af557525c94819b23] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:358
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 26
+ storage exposures -> 2
+[MV-SI candidate f63e2a32e1920c1e2621] {_balances[$arg1], _operatorApprovals[@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender], _owners[$arg0], _tokenApprovals[$arg0], fighterStaked[$arg0]}
+ writer root       -> src/FighterFarm.sol::FighterFarm.claimFighters(uint8[2],bytes,string[],string[])
+ writer effect     -> lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol:285
+ written member    -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._balances', '$arg1')
+ potentially stale -> ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '@local::lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol::ERC721._isApprovedOrOwner(address,uint256)::LocalVariable::owner_1][$sender'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0'), ('MS', 'src/FighterFarm.sol', 'FighterFarm.fighterStaked', '$arg0')
+ reader witnesses  -> 14
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (33 contracts with 1 detectors), 29 result(s) found

@@ -1,0 +1,444 @@
+'/tmp/.svm/0.8.20/solc-0.8.20 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: Unnamed return variable can remain unassigned. Add an explicit return with value to all non-reverting code paths or name the variable.
+  --> src/oracles/aggregators/MagicLpAggregator.sol:33:60:
+   |
+33 |     function _getReserves() internal view virtual returns (uint256, uint256) {
+   |                                                            ^^^^^^^
+
+
+Warning: Warning: Unnamed return variable can remain unassigned. Add an explicit return with value to all non-reverting code paths or name the variable.
+  --> src/oracles/aggregators/MagicLpAggregator.sol:33:69:
+   |
+33 |     function _getReserves() internal view virtual returns (uint256, uint256) {
+   |                                                                     ^^^^^^^
+
+
+Warning: Warning: Unused local variable.
+  --> src/oracles/aggregators/MagicLpAggregator.sol:34:10:
+   |
+34 |         (uint256 baseReserve, uint256 quoteReserve) = pair.getReserves();
+   |          ^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Warning: Unused local variable.
+  --> src/oracles/aggregators/MagicLpAggregator.sol:34:31:
+   |
+34 |         (uint256 baseReserve, uint256 quoteReserve) = pair.getReserves();
+   |                               ^^^^^^^^^^^^^^^^^^^^
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=20104 vars=361
+[mvscan-stage] root-seeding-done eligible_exposures=301 seeded=181 multi_exposure_entry_blocks=81 collapsed_contextual_aliases=120 excluded_dependency=0 excluded_interface=351 excluded_library=0 excluded_abstract=24 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=6b09f6565628dd1a3ff976dc5dd021baf19f8a68e191c7c13bbed7573306fe8d candidate_count=58 candidate_digest=9aea8e57ff5c2dedc62289f4dbd716c3863e24f2d9dd96d7773219e196951604 context_instance_count=333 eligible_readers=206 eligible_writers=144 execution_context_digest=6b27041245e165756d6327a53612ad0b1367893f487df82eddf09a43a11a697c insensitive_readers_filtered=88 invalid_partial_write_filtered=0 must_full_relation_filtered=22 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=5484 owner_context_pairs=442 owner_context_pairs_considered=19770 raw_block_pairs=2316 reader_witness_count=442 relation_base_members_shadowed=37 relation_context_incompatible=3776 relation_digest=ac0b3fade915d449235e652065679fb7ec0f8089da9b714c82c0301b95fe91dd relation_members_raw=183 relation_origins_registered=17 relation_origins_rejected_unary_after_shadowing=107 relation_origins_rejected_unreachable=152 relation_origins_seen=124 relation_unbound_key_templates=11 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=52 scalar_variables_skipped=151 storage_context_mismatch=10046 variables_considered=168
+INFO:Detectors:
+
+[MV-SI candidate 0050a3591c25ddfbfd9c] {lockedSupply, unlockedSupply}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.stake(uint256,bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:486
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lockedSupply')
+ potentially stale -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.unlockedSupply')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 0116dfe8425772529900] {caps[$arg0], totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.lock(address,uint256)
+ writer effect     -> src/blast/BlastOnboarding.sol:126
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals')
+ potentially stale -> ('MS', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.caps', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0563c18c568e9e3059eb] {_BASE_TOKEN_, _QUOTE_TOKEN_}
+ writer root       -> src/mimswap/MagicLP.sol::MagicLP.init(address,address,uint256,address,uint256,uint256)
+ writer effect     -> src/mimswap/MagicLP.sol:120
+ written member    -> ('SV', 'src/mimswap/MagicLP.sol', 'MagicLP._QUOTE_TOKEN_')
+ potentially stale -> ('SV', 'src/mimswap/MagicLP.sol', 'MagicLP._BASE_TOKEN_')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 0b9e31a0c36b2e3c03ab] {balances, totalPoolShares, totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.withdraw(address,uint256)
+ writer effect     -> src/blast/BlastOnboarding.sol:133
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.balances')
+ potentially stale -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals'), ('SV', 'src/blast/BlastOnboardingBoot.sol', 'BlastOnboardingBootDataV1.totalPoolShares')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 0e600394a034874abb2f] {lockedSupply, unlockedSupply}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.withdrawWithRewards(uint256)
+ writer effect     -> src/staking/LockingMultiRewards.sol:178
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.unlockedSupply')
+ potentially stale -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lockedSupply')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 11702ae8944a0a69359d] {balances, totalPoolShares, totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.deposit(address,uint256,bool)
+ writer effect     -> src/blast/BlastOnboarding.sol:105
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals')
+ potentially stale -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.balances'), ('SV', 'src/blast/BlastOnboardingBoot.sol', 'BlastOnboardingBootDataV1.totalPoolShares')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 1425e22d19a81a19dbc6] {lockedSupply, unlockedSupply}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.stakeFor(address,uint256,bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:486
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lockedSupply')
+ potentially stale -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.unlockedSupply')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 1a9215847f78fbdec837] {lockedSupply, unlockedSupply}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.processExpiredLocks(address[],uint256[])
+ writer effect     -> src/staking/LockingMultiRewards.sol:441
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.unlockedSupply')
+ potentially stale -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lockedSupply')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 235fb7dbe1f9b5ecc32f] {balances, totalPoolShares, totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.deposit(address,uint256,bool)
+ writer effect     -> src/blast/BlastOnboarding.sol:118
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.balances')
+ potentially stale -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals'), ('SV', 'src/blast/BlastOnboardingBoot.sol', 'BlastOnboardingBootDataV1.totalPoolShares')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 23a39ff16bbb3b39928e] {_userLocks, lastLockIndex[$arg0]}
+ writer root       -> src/blast/BlastOnboardingBoot.sol::BlastOnboardingBoot.claim(bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:510
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards._userLocks')
+ potentially stale -> ('MS', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lastLockIndex', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 27fe35709bf3b4490bed] {operators[$sender], owner}
+ writer root       -> lib/solmate/src/auth/Owned.sol::Owned.transferOwnership(address)
+ writer effect     -> lib/solmate/src/auth/Owned.sol:40
+ written member    -> ('SV', 'lib/solmate/src/auth/Owned.sol', 'Owned.owner')
+ potentially stale -> ('MS', 'src/mixins/OperatableV2.sol', 'OperatableV2.operators', '$sender')
+ reader witnesses  -> 6
+ storage exposures -> 2
+[MV-SI candidate 29543e428d56a940854d] {caps[$arg0], totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.lock(address,uint256)
+ writer effect     -> src/blast/BlastOnboarding.sol:127
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals')
+ potentially stale -> ('MS', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.caps', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 2c9585e38856c033aa51] {borrowLimit, totalBorrow}
+ writer root       -> src/cauldrons/CauldronV4.sol::CauldronV4.init(bytes)
+ writer effect     -> src/cauldrons/CauldronV4.sol:140
+ written member    -> ('SV', 'src/cauldrons/CauldronV4.sol', 'CauldronV4.borrowLimit')
+ potentially stale -> ('SV', 'src/cauldrons/CauldronV4.sol', 'CauldronV4.totalBorrow')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 30e83c2f6b5f6620b357] {_userLocks, lastLockIndex[$arg0]}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.stakeFor(address,uint256,bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:502
+ written member    -> ('MS', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lastLockIndex', '$arg0')
+ potentially stale -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards._userLocks')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 35293b181d0704f1359a] {borrowLimit, totalBorrow}
+ writer root       -> src/blast/BlastWrappers.sol::BlastCauldronV4.init(bytes)
+ writer effect     -> src/cauldrons/CauldronV4.sol:140
+ written member    -> ('SV', 'src/cauldrons/CauldronV4.sol', 'CauldronV4.borrowLimit')
+ potentially stale -> ('SV', 'src/cauldrons/CauldronV4.sol', 'CauldronV4.totalBorrow')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 373de2fbf24d9c4b9b55] {_userLocks, lastLockIndex[$arg0]}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.stake(uint256,bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:501
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards._userLocks')
+ potentially stale -> ('MS', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lastLockIndex', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3ae1acc691a7c89e796c] {_userLocks, lastLockIndex[$arg0]}
+ writer root       -> src/blast/BlastOnboardingBoot.sol::BlastOnboardingBoot.claim(bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:483
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards._userLocks')
+ potentially stale -> ('MS', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lastLockIndex', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 4334084811c1c4dcc031] {balances, totalPoolShares, totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.lock(address,uint256)
+ writer effect     -> src/blast/BlastOnboarding.sol:125
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.balances')
+ potentially stale -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals'), ('SV', 'src/blast/BlastOnboardingBoot.sol', 'BlastOnboardingBootDataV1.totalPoolShares')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 44b6ed297f0b004da9d4] {balances, totalPoolShares, totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.withdraw(address,uint256)
+ writer effect     -> src/blast/BlastOnboarding.sol:134
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.balances')
+ potentially stale -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals'), ('SV', 'src/blast/BlastOnboardingBoot.sol', 'BlastOnboardingBootDataV1.totalPoolShares')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 48f5bfbc3633de21ef1f] {balances, totalPoolShares, totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.deposit(address,uint256,bool)
+ writer effect     -> src/blast/BlastOnboarding.sol:108
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals')
+ potentially stale -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.balances'), ('SV', 'src/blast/BlastOnboardingBoot.sol', 'BlastOnboardingBootDataV1.totalPoolShares')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 4b06220a065efed9e978] {lockedSupply, unlockedSupply}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.processExpiredLocks(address[],uint256[])
+ writer effect     -> src/staking/LockingMultiRewards.sol:442
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lockedSupply')
+ potentially stale -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.unlockedSupply')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 4c69e4ec7c26db663716] {caps[$arg0], totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.withdraw(address,uint256)
+ writer effect     -> src/blast/BlastOnboarding.sol:136
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals')
+ potentially stale -> ('MS', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.caps', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 4f5fdf0f3077dd602b31] {_userLocks, lastLockIndex[$arg0]}
+ writer root       -> src/blast/BlastOnboardingBoot.sol::BlastOnboardingBoot.claim(bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:501
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards._userLocks')
+ potentially stale -> ('MS', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lastLockIndex', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 53e408f704f7578546d7] {caps[$arg0], totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.deposit(address,uint256,bool)
+ writer effect     -> src/blast/BlastOnboarding.sol:105
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals')
+ potentially stale -> ('MS', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.caps', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 58bb0dae17fcbb2220f7] {_BASE_TOKEN_, _QUOTE_TOKEN_}
+ writer root       -> src/mimswap/MagicLP.sol::MagicLP.init(address,address,uint256,address,uint256,uint256)
+ writer effect     -> src/mimswap/MagicLP.sol:119
+ written member    -> ('SV', 'src/mimswap/MagicLP.sol', 'MagicLP._BASE_TOKEN_')
+ potentially stale -> ('SV', 'src/mimswap/MagicLP.sol', 'MagicLP._QUOTE_TOKEN_')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 5fc301a526a1cd3f77ba] {lockedSupply, unlockedSupply}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.withdraw(uint256)
+ writer effect     -> src/staking/LockingMultiRewards.sol:178
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.unlockedSupply')
+ potentially stale -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lockedSupply')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 62e87e2bcf4cd04bee9b] {_userLocks, lastLockIndex[$arg0]}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.lock(uint256)
+ writer effect     -> src/staking/LockingMultiRewards.sol:502
+ written member    -> ('MS', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lastLockIndex', '$arg0')
+ potentially stale -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards._userLocks')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 704ebc58b1b8e6c37bd8] {balances, totalPoolShares, totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.withdraw(address,uint256)
+ writer effect     -> src/blast/BlastOnboarding.sol:135
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals')
+ potentially stale -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.balances'), ('SV', 'src/blast/BlastOnboardingBoot.sol', 'BlastOnboardingBootDataV1.totalPoolShares')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 7117a22fc31e3be19149] {_userLocks, lastLockIndex[$arg0]}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.lock(uint256)
+ writer effect     -> src/staking/LockingMultiRewards.sol:501
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards._userLocks')
+ potentially stale -> ('MS', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lastLockIndex', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 71b9d8f4de0767c4b0fe] {lockedSupply, unlockedSupply}
+ writer root       -> src/blast/BlastOnboardingBoot.sol::BlastOnboardingBoot.claim(bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:473
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.unlockedSupply')
+ potentially stale -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lockedSupply')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 723a0ca64298e540b088] {balances, totalPoolShares, totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.deposit(address,uint256,bool)
+ writer effect     -> src/blast/BlastOnboarding.sol:106
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.balances')
+ potentially stale -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals'), ('SV', 'src/blast/BlastOnboardingBoot.sol', 'BlastOnboardingBootDataV1.totalPoolShares')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 7b3e2b4bba96805f6bc8] {borrowLimit, totalBorrow}
+ writer root       -> src/cauldrons/CauldronV4.sol::CauldronV4.changeBorrowLimit(uint128,uint128)
+ writer effect     -> src/cauldrons/CauldronV4.sol:663
+ written member    -> ('SV', 'src/cauldrons/CauldronV4.sol', 'CauldronV4.borrowLimit')
+ potentially stale -> ('SV', 'src/cauldrons/CauldronV4.sol', 'CauldronV4.totalBorrow')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 7bbad1f0b87ec70661f6] {balances, totalPoolShares, totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.lock(address,uint256)
+ writer effect     -> src/blast/BlastOnboarding.sol:127
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals')
+ potentially stale -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.balances'), ('SV', 'src/blast/BlastOnboardingBoot.sol', 'BlastOnboardingBootDataV1.totalPoolShares')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 7fe0fa91acccf7f7d562] {_userLocks, lastLockIndex[$arg0]}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.stake(uint256,bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:510
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards._userLocks')
+ potentially stale -> ('MS', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lastLockIndex', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 85810504a88e9bd2b24c] {_userLocks, lastLockIndex[$arg0]}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.stake(uint256,bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:502
+ written member    -> ('MS', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lastLockIndex', '$arg0')
+ potentially stale -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards._userLocks')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 8d7b4533c87f1fdba479] {balances, totalPoolShares, totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.lock(address,uint256)
+ writer effect     -> src/blast/BlastOnboarding.sol:124
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.balances')
+ potentially stale -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals'), ('SV', 'src/blast/BlastOnboardingBoot.sol', 'BlastOnboardingBootDataV1.totalPoolShares')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 8e11ea7e84d79a77ab55] {lockedSupply, unlockedSupply}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.stake(uint256,bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:473
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.unlockedSupply')
+ potentially stale -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lockedSupply')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate a52e6ddcf70ef9eef963] {_userLocks, lastLockIndex[$arg0]}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.lock(uint256)
+ writer effect     -> src/staking/LockingMultiRewards.sol:483
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards._userLocks')
+ potentially stale -> ('MS', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lastLockIndex', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate a85e6687806c305fac07] {balances, totalPoolShares, totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.lock(address,uint256)
+ writer effect     -> src/blast/BlastOnboarding.sol:126
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals')
+ potentially stale -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.balances'), ('SV', 'src/blast/BlastOnboardingBoot.sol', 'BlastOnboardingBootDataV1.totalPoolShares')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate ad535604d6ba49019e47] {_userLocks, lastLockIndex[$arg0]}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.stakeFor(address,uint256,bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:483
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards._userLocks')
+ potentially stale -> ('MS', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lastLockIndex', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate b0f5b144219b0665fdfa] {_userLocks, lastLockIndex[$arg0]}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.stakeFor(address,uint256,bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:510
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards._userLocks')
+ potentially stale -> ('MS', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lastLockIndex', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate bd491df71f139da60ddd] {caps[$arg0], totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.deposit(address,uint256,bool)
+ writer effect     -> src/blast/BlastOnboarding.sol:112
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals')
+ potentially stale -> ('MS', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.caps', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate be01a5d0f4c4f5882988] {_userLocks, lastLockIndex[$arg0]}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.lock(uint256)
+ writer effect     -> src/staking/LockingMultiRewards.sol:510
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards._userLocks')
+ potentially stale -> ('MS', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lastLockIndex', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate be85dfba874ca642a097] {balances, totalPoolShares, totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.withdraw(address,uint256)
+ writer effect     -> src/blast/BlastOnboarding.sol:136
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals')
+ potentially stale -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.balances'), ('SV', 'src/blast/BlastOnboardingBoot.sol', 'BlastOnboardingBootDataV1.totalPoolShares')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate c08dd7e808088bbbde10] {masterContractApproved[@local::src/DegenBox.sol::DegenBox.allowed(address)::LocalVariable::masterContract_1][$arg0], masterContractOf[$sender]}
+ writer root       -> src/mixins/MasterContractManager.sol::MasterContractManager.registerProtocol()
+ writer effect     -> src/mixins/MasterContractManager.sol:60
+ written member    -> ('MS', 'lib/BoringSolidity/contracts/BoringFactory.sol', 'BoringFactory.masterContractOf', '$sender')
+ potentially stale -> ('MS', 'src/mixins/MasterContractManager.sol', 'MasterContractManager.masterContractApproved', '@local::src/DegenBox.sol::DegenBox.allowed(address)::LocalVariable::masterContract_1][$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate c1144d9bc3fcd043d0df] {caps[$arg0], totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.withdraw(address,uint256)
+ writer effect     -> src/blast/BlastOnboarding.sol:135
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals')
+ potentially stale -> ('MS', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.caps', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate caa3b30ca7f7af1d8833] {balances, totalPoolShares, totals}
+ writer root       -> src/blast/BlastOnboardingBoot.sol::BlastOnboardingBoot.bootstrap(uint256)
+ writer effect     -> src/blast/BlastOnboardingBoot.sol:106
+ written member    -> ('SV', 'src/blast/BlastOnboardingBoot.sol', 'BlastOnboardingBootDataV1.totalPoolShares')
+ potentially stale -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.balances'), ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate cb3c2a096230050367df] {caps[$arg0], totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.deposit(address,uint256,bool)
+ writer effect     -> src/blast/BlastOnboarding.sol:108
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals')
+ potentially stale -> ('MS', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.caps', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d94a7458f2b3d5e22cb5] {_userLocks, lastLockIndex[$arg0]}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.stake(uint256,bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:483
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards._userLocks')
+ potentially stale -> ('MS', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lastLockIndex', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate dea1f562297010c7b2b4] {operators[$sender], owner}
+ writer root       -> src/mixins/OperatableV2.sol::OperatableV2.setOperator(address,bool)
+ writer effect     -> src/mixins/OperatableV2.sol:29
+ written member    -> ('MS', 'src/mixins/OperatableV2.sol', 'OperatableV2.operators', '$sender')
+ potentially stale -> ('SV', 'lib/solmate/src/auth/Owned.sol', 'Owned.owner')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate e26b1f394e73fe5ccfe1] {_userLocks, lastLockIndex[$arg0]}
+ writer root       -> src/blast/BlastOnboardingBoot.sol::BlastOnboardingBoot.claim(bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:502
+ written member    -> ('MS', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lastLockIndex', '$arg0')
+ potentially stale -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards._userLocks')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate e2eaac279b3c7165836d] {lockedSupply, unlockedSupply}
+ writer root       -> src/blast/BlastOnboardingBoot.sol::BlastOnboardingBoot.claim(bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:486
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lockedSupply')
+ potentially stale -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.unlockedSupply')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate e52f3fea5efb83d0697c] {pendingStrategy[$arg0], strategyData[$arg0]}
+ writer root       -> src/DegenBox.sol::DegenBox.harvest(IERC20,bool,uint256)
+ writer effect     -> src/DegenBox.sol:500
+ written member    -> ('MS', 'src/DegenBox.sol', 'DegenBox.strategyData', '$arg0')
+ potentially stale -> ('MS', 'src/DegenBox.sol', 'DegenBox.pendingStrategy', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate e5b74ee59d3a64cb60af] {lockedSupply, unlockedSupply}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.stakeFor(address,uint256,bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:473
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.unlockedSupply')
+ potentially stale -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lockedSupply')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate e70f7382592a8c669044] {caps[$arg0], totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.setCap(address,uint256)
+ writer effect     -> src/blast/BlastOnboarding.sol:186
+ written member    -> ('MS', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.caps', '$arg0')
+ potentially stale -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate ea13c9296e5d0726c89b] {_userLocks, lastLockIndex[$arg0]}
+ writer root       -> src/staking/LockingMultiRewards.sol::LockingMultiRewards.stakeFor(address,uint256,bool)
+ writer effect     -> src/staking/LockingMultiRewards.sol:501
+ written member    -> ('SV', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards._userLocks')
+ potentially stale -> ('MS', 'src/staking/LockingMultiRewards.sol', 'LockingMultiRewards.lastLockIndex', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate ea4954b41188914bc95c] {balances, totalPoolShares, totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.deposit(address,uint256,bool)
+ writer effect     -> src/blast/BlastOnboarding.sol:112
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals')
+ potentially stale -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.balances'), ('SV', 'src/blast/BlastOnboardingBoot.sol', 'BlastOnboardingBootDataV1.totalPoolShares')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate f1e95e5aac2965e7694f] {balances, totalPoolShares, totals}
+ writer root       -> src/blast/BlastOnboarding.sol::BlastOnboarding.deposit(address,uint256,bool)
+ writer effect     -> src/blast/BlastOnboarding.sol:109
+ written member    -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.balances')
+ potentially stale -> ('SV', 'src/blast/BlastOnboarding.sol', 'BlastOnboardingData.totals'), ('SV', 'src/blast/BlastOnboardingBoot.sol', 'BlastOnboardingBootDataV1.totalPoolShares')
+ reader witnesses  -> 16
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (124 contracts with 1 detectors), 58 result(s) found

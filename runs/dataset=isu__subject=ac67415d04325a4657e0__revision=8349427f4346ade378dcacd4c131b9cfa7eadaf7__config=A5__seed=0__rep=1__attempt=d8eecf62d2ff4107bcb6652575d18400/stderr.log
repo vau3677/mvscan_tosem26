@@ -1,0 +1,68 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=986 vars=118
+[mvscan-stage] root-seeding-done eligible_exposures=63 seeded=55 multi_exposure_entry_blocks=8 collapsed_contextual_aliases=8 excluded_dependency=0 excluded_interface=42 excluded_library=0 excluded_abstract=14 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=97d2c26933cfd775fbf78d29347571254e40d1c153bdd2867f0db15862ee28f6 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=146fbf0c9815fbd28fb666e9b09a6539b670f7bb27c5faf477f4551ce9a359e1 insensitive_readers_filtered=14 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_base_members_shadowed=38 relation_context_incompatible=0 relation_digest=e10148fb1b8d062d6ca49d39b195e393f3db18702b422c1ac96454e42018b56d relation_members_raw=119 relation_origins_registered=8 relation_origins_rejected_unary_after_shadowing=59 relation_origins_rejected_unreachable=28 relation_origins_seen=67 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=78 storage_context_mismatch=0 variables_considered=80
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=4137 vars=394
+[mvscan-stage] root-seeding-done eligible_exposures=232 seeded=170 multi_exposure_entry_blocks=49 collapsed_contextual_aliases=62 excluded_dependency=0 excluded_interface=132 excluded_library=0 excluded_abstract=57 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=012b11a3da93b54f8b82aa9045ee89fff5fa479cc3ec34a9d0d6a84b21789c15 candidate_count=8 candidate_digest=0ff72c035c2c0ea87650714b29fe0c777e3dbfa33a9799859bd79f2b1600cc10 context_instance_count=38 eligible_readers=8 eligible_writers=7 execution_context_digest=16abd94e252caec8ca21fa21fbdae0b98ef764e27c160b3e23f3adaaf89af1bf insensitive_readers_filtered=50 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=16 owner_context_pairs=38 owner_context_pairs_considered=247 raw_block_pairs=11 reader_witness_count=38 relation_base_members_shadowed=126 relation_context_incompatible=0 relation_digest=6478c94ae7f2b09d1e9fe6c8bc7490623ac71204e86119b888fd184d4aa94105 relation_evidence_edges=7 relation_incompatible=3 relation_members_raw=416 relation_origins_registered=34 relation_origins_rejected_unary_after_shadowing=201 relation_origins_rejected_unreachable=71 relation_origins_seen=235 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=1 scalar_variables_skipped=181 storage_context_mismatch=193 variables_considered=193
+INFO:Detectors:
+
+[MV-SI candidate 0515a086ee167fc4a8e1] {_owner, permissions[$arg0][$arg1][$arg2]}
+ writer root       -> @openzeppelin/contracts/access/Ownable.sol::Ownable.renounceOwnership()
+ writer effect     -> @openzeppelin/contracts/access/Ownable.sol:80
+ written member    -> ('SV', '@openzeppelin/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('MS', 'contracts/access/PermitControl.sol', 'PermitControl.permissions', '$arg0][$arg1][$arg2')
+ reader witnesses  -> 11
+ storage exposures -> 2
+[MV-SI candidate 3204e57fd1b2d82f78f5] {beginBurn, timeToBurn}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.changeTimeToBurn(uint256)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1335
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.timeToBurn')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.beginBurn')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 72679112751bcf27a429] {beginReserve, earlyReservePeriod}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.setSaleActive()
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1287
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.beginReserve')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.earlyReservePeriod')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 9d080c01c7bb5e5887f3] {bytesBurned[@local::contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.burnBytes(uint256)::TemporaryVariable::TMP_3419], mostBytesBurned}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.burnBytes(uint256)
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1510
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.mostBytesBurned')
+ potentially stale -> ('MS', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.bytesBurned', '@local::contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.burnBytes(uint256)::TemporaryVariable::TMP_3419')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b2c934610bc7ff7b634c] {_owner, permissions[$arg0][$arg1][$arg2]}
+ writer root       -> contracts/access/PermitControl.sol::PermitControl.setPermit(address,bytes32,bytes32,uint256)
+ writer effect     -> contracts/access/PermitControl.sol:151
+ written member    -> ('MS', 'contracts/access/PermitControl.sol', 'PermitControl.permissions', '$arg0][$arg1][$arg2')
+ potentially stale -> ('SV', '@openzeppelin/contracts/access/Ownable.sol', 'Ownable._owner')
+ reader witnesses  -> 11
+ storage exposures -> 2
+[MV-SI candidate c24343320a9e9a885f5d] {beginBurn, timeToBurn}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.startBurn()
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1329
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.beginBurn')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.timeToBurn')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e3b6823b43f6b115ff04] {_owner, permissions[$arg0][$arg1][$arg2]}
+ writer root       -> @openzeppelin/contracts/access/Ownable.sol::Ownable.transferOwnership(address)
+ writer effect     -> @openzeppelin/contracts/access/Ownable.sol:80
+ written member    -> ('SV', '@openzeppelin/contracts/access/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('MS', 'contracts/access/PermitControl.sol', 'PermitControl.permissions', '$arg0][$arg1][$arg2')
+ reader witnesses  -> 11
+ storage exposures -> 2
+[MV-SI candidate f307d6c22b4d269358d9] {maxTokens, totalMembersInBytesAuction}
+ writer root       -> contracts/s2/NTOuterIdentity.sol::NTOuterIdentity.reserveIdentity()
+ writer effect     -> contracts/s2/NTOuterIdentity.sol:1484
+ written member    -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.totalMembersInBytesAuction')
+ potentially stale -> ('SV', 'contracts/s2/NTOuterIdentity.sol', 'NTOuterIdentity.maxTokens')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (169 contracts with 1 detectors), 8 result(s) found

@@ -1,0 +1,29 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=568 vars=30
+[mvscan-stage] root-seeding-done eligible_exposures=58 seeded=30 multi_exposure_entry_blocks=16 collapsed_contextual_aliases=28 excluded_dependency=0 excluded_interface=86 excluded_library=0 excluded_abstract=13 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=18cfc03d6b36e6c2b394cc0d441d250a42059dcf80cf7b767fc6337726d891d0 candidate_count=3 candidate_digest=f384afff413b2d157d5f45219ba68e86ee0dae1a9ea886a95f3113ba615dcb6c context_instance_count=24 eligible_readers=3 eligible_writers=2 execution_context_digest=0a1c9140e6d3395484ceb561191d1ad0c3956566e50b55e6a3a4860176fceaa6 insensitive_readers_filtered=3 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=10 owner_context_pairs=24 owner_context_pairs_considered=144 raw_block_pairs=6 reader_witness_count=24 relation_base_members_shadowed=2 relation_context_incompatible=38 relation_digest=5cdaeaef60abfe6ff1a86f114b7a70cfec8f97b968dcfc79e88a88ba08367268 relation_members_raw=22 relation_origins_registered=1 relation_origins_rejected_unary_after_shadowing=18 relation_origins_rejected_unreachable=7 relation_origins_seen=19 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=10 storage_context_mismatch=72 variables_considered=11
+INFO:Detectors:
+
+[MV-SI candidate 10d45380de5d07c9c9bf] {_manager, _owner}
+ writer root       -> @pooltogether/owner-manager-contracts/contracts/Manageable.sol::Manageable.setManager(address)
+ writer effect     -> @pooltogether/owner-manager-contracts/contracts/Manageable.sol:66
+ written member    -> ('SV', '@pooltogether/owner-manager-contracts/contracts/Manageable.sol', 'Manageable._manager')
+ potentially stale -> ('SV', '@pooltogether/owner-manager-contracts/contracts/Ownable.sol', 'Ownable._owner')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 3394150c022c36c7f456] {_manager, _owner}
+ writer root       -> @pooltogether/owner-manager-contracts/contracts/Ownable.sol::Ownable.renounceOwnership()
+ writer effect     -> @pooltogether/owner-manager-contracts/contracts/Ownable.sol:108
+ written member    -> ('SV', '@pooltogether/owner-manager-contracts/contracts/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', '@pooltogether/owner-manager-contracts/contracts/Manageable.sol', 'Manageable._manager')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate e01eeb51b0b74c2f1166] {_manager, _owner}
+ writer root       -> @pooltogether/owner-manager-contracts/contracts/Ownable.sol::Ownable.claimOwnership()
+ writer effect     -> @pooltogether/owner-manager-contracts/contracts/Ownable.sol:108
+ written member    -> ('SV', '@pooltogether/owner-manager-contracts/contracts/Ownable.sol', 'Ownable._owner')
+ potentially stale -> ('SV', '@pooltogether/owner-manager-contracts/contracts/Manageable.sol', 'Manageable._manager')
+ reader witnesses  -> 8
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (36 contracts with 1 detectors), 3 result(s) found

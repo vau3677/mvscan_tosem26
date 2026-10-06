@@ -1,0 +1,290 @@
+'/tmp/.svm/0.8.12/solc-0.8.12 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: Contract code size is 32100 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> src/StakedCitadel.sol:59:1:
+   |
+59 | contract StakedCitadel is
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1775 vars=126
+[mvscan-stage] root-seeding-done eligible_exposures=120 seeded=89 multi_exposure_entry_blocks=11 collapsed_contextual_aliases=31 excluded_dependency=0 excluded_interface=63 excluded_library=0 excluded_abstract=6 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=2f619a533fee58fc8501466ab68ef79929168d49782b5c681eb11e229f43219e candidate_count=39 candidate_digest=f497d70d228ea97b757188d5a7d8fb7d08ba4531b3edd04d190c79b1ebe903b3 context_instance_count=207 eligible_readers=74 eligible_writers=93 execution_context_digest=f8d242f0f34e9ec73f0212e81015e7460ccf1b9de33561abd3f5bb4514d31e46 insensitive_readers_filtered=76 invalid_partial_write_filtered=0 must_full_relation_filtered=141 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=26 owner_context_pairs=277 owner_context_pairs_considered=2151 raw_block_pairs=482 reader_witness_count=277 relation_base_members_shadowed=0 relation_context_incompatible=656 relation_digest=6953d06bab3b295bd9f5663671a0b51ad0a769a0eaefb593ee4b3cdeeb59e15d relation_members_raw=137 relation_origins_registered=21 relation_origins_rejected_unary_after_shadowing=78 relation_origins_rejected_unreachable=14 relation_origins_seen=99 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=12 scalar_variables_skipped=80 storage_context_mismatch=1051 variables_considered=101
+INFO:Detectors:
+
+[MV-SI candidate 0f7e35d40a44a70770df] {assetDecimalsNormalizationValue, citadelPriceInAsset, funding}
+ writer root       -> src/Funding.sol::Funding.initialize(address,address,address,address,address,address,uint256)
+ writer effect     -> src/Funding.sol:132
+ written member    -> ('SV', 'src/Funding.sol', 'Funding.funding')
+ potentially stale -> ('SV', 'src/Funding.sol', 'Funding.assetDecimalsNormalizationValue'), ('SV', 'src/Funding.sol', 'Funding.citadelPriceInAsset')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 186beec5835def2082c4] {saleDuration, saleStart, tokenInLimit, totalTokenIn}
+ writer root       -> src/KnightingRound.sol::KnightingRound.setSaleDuration(uint256)
+ writer effect     -> src/KnightingRound.sol:318
+ written member    -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleDuration')
+ potentially stale -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleStart'), ('SV', 'src/KnightingRound.sol', 'KnightingRound.tokenInLimit'), ('SV', 'src/KnightingRound.sol', 'KnightingRound.totalTokenIn')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 1ad51a8caf34862c8885] {performanceFeeGovernance, performanceFeeStrategist, strategist, withdrawalFee}
+ writer root       -> src/StakedCitadel.sol::StakedCitadel.setPerformanceFeeGovernance(uint256)
+ writer effect     -> src/StakedCitadel.sol:654
+ written member    -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.performanceFeeGovernance')
+ potentially stale -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.performanceFeeStrategist'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.withdrawalFee'), ('SV', 'src/lib/SettAccessControl.sol', 'SettAccessControl.strategist')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 1e8b10f8e104c3106726] {governance, keeper}
+ writer root       -> src/lib/SettAccessControl.sol::SettAccessControl.setKeeper(address)
+ writer effect     -> src/lib/SettAccessControl.sol:46
+ written member    -> ('SV', 'src/lib/SettAccessControl.sol', 'SettAccessControl.keeper')
+ potentially stale -> ('SV', 'src/lib/SettAccessControl.sol', 'SettAccessControl.governance')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 23ec6b1aa7e7ca12f865] {governance, strategist}
+ writer root       -> src/lib/SettAccessControl.sol::SettAccessControl.setStrategist(address)
+ writer effect     -> src/lib/SettAccessControl.sol:39
+ written member    -> ('SV', 'src/lib/SettAccessControl.sol', 'SettAccessControl.strategist')
+ potentially stale -> ('SV', 'src/lib/SettAccessControl.sol', 'SettAccessControl.governance')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 2bda57e8d5cb0961f3e3] {tokenInLimit, totalTokenIn}
+ writer root       -> src/KnightingRound.sol::KnightingRound.setTokenInLimit(uint256)
+ writer effect     -> src/KnightingRound.sol:386
+ written member    -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.tokenInLimit')
+ potentially stale -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.totalTokenIn')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 2ffdf8b8eb511a10bc95] {tokenInNormalizationValue, tokenOutPrice}
+ writer root       -> src/KnightingRound.sol::KnightingRound.setTokenOutPrice(uint256)
+ writer effect     -> src/KnightingRound.sol:336
+ written member    -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.tokenOutPrice')
+ potentially stale -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.tokenInNormalizationValue')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 31c8e6249601594cadae] {assetDecimalsNormalizationValue, citadelPriceInAsset, funding}
+ writer root       -> src/Funding.sol::Funding.setAssetCap(uint256)
+ writer effect     -> src/Funding.sol:300
+ written member    -> ('SV', 'src/Funding.sol', 'Funding.funding')
+ potentially stale -> ('SV', 'src/Funding.sol', 'Funding.assetDecimalsNormalizationValue'), ('SV', 'src/Funding.sol', 'Funding.citadelPriceInAsset')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 35890b5c9984a6a011c0] {performanceFeeGovernance, performanceFeeStrategist, strategist, withdrawalFee}
+ writer root       -> src/StakedCitadel.sol::StakedCitadel.setWithdrawalFee(uint256)
+ writer effect     -> src/StakedCitadel.sol:614
+ written member    -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.withdrawalFee')
+ potentially stale -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.performanceFeeGovernance'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.performanceFeeStrategist'), ('SV', 'src/lib/SettAccessControl.sol', 'SettAccessControl.strategist')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 39ece79f4f2bbf6bad40] {assetDecimalsNormalizationValue, citadelPriceInAsset, funding}
+ writer root       -> src/Funding.sol::Funding.initialize(address,address,address,address,address,address,uint256)
+ writer effect     -> src/Funding.sol:134
+ written member    -> ('SV', 'src/Funding.sol', 'Funding.assetDecimalsNormalizationValue')
+ potentially stale -> ('SV', 'src/Funding.sol', 'Funding.citadelPriceInAsset'), ('SV', 'src/Funding.sol', 'Funding.funding')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 47146f0a006e8e231dea] {assetDecimalsNormalizationValue, citadelPriceInAsset, funding}
+ writer root       -> src/Funding.sol::Funding.setDiscount(uint256)
+ writer effect     -> src/Funding.sol:273
+ written member    -> ('SV', 'src/Funding.sol', 'Funding.funding')
+ potentially stale -> ('SV', 'src/Funding.sol', 'Funding.assetDecimalsNormalizationValue'), ('SV', 'src/Funding.sol', 'Funding.citadelPriceInAsset')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 4b0bb7948a227dac60ee] {governance, guardian}
+ writer root       -> src/lib/SettAccessControl.sol::SettAccessControl.setGovernance(address)
+ writer effect     -> src/lib/SettAccessControl.sol:53
+ written member    -> ('SV', 'src/lib/SettAccessControl.sol', 'SettAccessControl.governance')
+ potentially stale -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.guardian')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 539fe8718b533f4a75c5] {assetDecimalsNormalizationValue, citadelPriceInAsset, funding}
+ writer root       -> src/Funding.sol::Funding.setDiscountLimits(uint256,uint256)
+ writer effect     -> src/Funding.sol:363
+ written member    -> ('SV', 'src/Funding.sol', 'Funding.funding')
+ potentially stale -> ('SV', 'src/Funding.sol', 'Funding.assetDecimalsNormalizationValue'), ('SV', 'src/Funding.sol', 'Funding.citadelPriceInAsset')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 56d0a61f3885eb19b26e] {saleDuration, saleStart, tokenInLimit, totalTokenIn}
+ writer root       -> src/KnightingRound.sol::KnightingRound.initialize(address,address,address,uint256,uint256,uint256,address,address,uint256)
+ writer effect     -> src/KnightingRound.sol:141
+ written member    -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleStart')
+ potentially stale -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleDuration'), ('SV', 'src/KnightingRound.sol', 'KnightingRound.tokenInLimit'), ('SV', 'src/KnightingRound.sol', 'KnightingRound.totalTokenIn')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 58f25f5659604522feb2] {lastHarvestedAt, managementFee, performanceFeeGovernance, performanceFeeStrategist, withdrawalFee}
+ writer root       -> src/StakedCitadel.sol::StakedCitadel.setPerformanceFeeGovernance(uint256)
+ writer effect     -> src/StakedCitadel.sol:654
+ written member    -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.performanceFeeGovernance')
+ potentially stale -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.lastHarvestedAt'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.managementFee'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.performanceFeeStrategist'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.withdrawalFee')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 5d536cf46fa734a6c21f] {saleDuration, saleStart, tokenInLimit, totalTokenIn}
+ writer root       -> src/KnightingRound.sol::KnightingRound.buy(uint256,uint8,bytes32[])
+ writer effect     -> src/KnightingRound.sol:198
+ written member    -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.totalTokenIn')
+ potentially stale -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleDuration'), ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleStart'), ('SV', 'src/KnightingRound.sol', 'KnightingRound.tokenInLimit')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 642eb05195a975599bb5] {assetDecimalsNormalizationValue, citadelPriceInAsset, funding}
+ writer root       -> src/Funding.sol::Funding.updateCitadelPriceInAsset()
+ writer effect     -> src/Funding.sol:438
+ written member    -> ('SV', 'src/Funding.sol', 'Funding.citadelPriceInAsset')
+ potentially stale -> ('SV', 'src/Funding.sol', 'Funding.assetDecimalsNormalizationValue'), ('SV', 'src/Funding.sol', 'Funding.funding')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 727c5658a2dc39187290] {lastHarvestedAt, managementFee, performanceFeeGovernance, performanceFeeStrategist, withdrawalFee}
+ writer root       -> src/StakedCitadel.sol::StakedCitadel.setManagementFee(uint256)
+ writer effect     -> src/StakedCitadel.sol:667
+ written member    -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.managementFee')
+ potentially stale -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.lastHarvestedAt'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.performanceFeeGovernance'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.performanceFeeStrategist'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.withdrawalFee')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 73c0c6a6223e2533b300] {saleDuration, saleStart, tokenInLimit, totalTokenIn}
+ writer root       -> src/KnightingRound.sol::KnightingRound.initialize(address,address,address,uint256,uint256,uint256,address,address,uint256)
+ writer effect     -> src/KnightingRound.sol:142
+ written member    -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleDuration')
+ potentially stale -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleStart'), ('SV', 'src/KnightingRound.sol', 'KnightingRound.tokenInLimit'), ('SV', 'src/KnightingRound.sol', 'KnightingRound.totalTokenIn')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 7b3893ab938672638ad9] {lastHarvestedAt, managementFee, performanceFeeGovernance, performanceFeeStrategist, withdrawalFee}
+ writer root       -> src/StakedCitadel.sol::StakedCitadel.reportHarvest(uint256)
+ writer effect     -> src/StakedCitadel.sol:421
+ written member    -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.lastHarvestedAt')
+ potentially stale -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.managementFee'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.performanceFeeGovernance'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.performanceFeeStrategist'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.withdrawalFee')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 80b9dc0c04eaaa96ed1b] {assetDecimalsNormalizationValue, citadelPriceInAsset, funding}
+ writer root       -> src/Funding.sol::Funding.setDiscountManager(address)
+ writer effect     -> src/Funding.sol:378
+ written member    -> ('SV', 'src/Funding.sol', 'Funding.funding')
+ potentially stale -> ('SV', 'src/Funding.sol', 'Funding.assetDecimalsNormalizationValue'), ('SV', 'src/Funding.sol', 'Funding.citadelPriceInAsset')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 8828c60c3ef10bcd33ec] {performanceFeeGovernance, performanceFeeStrategist, strategist, withdrawalFee}
+ writer root       -> src/StakedCitadel.sol::StakedCitadel.setPerformanceFeeStrategist(uint256)
+ writer effect     -> src/StakedCitadel.sol:634
+ written member    -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.performanceFeeStrategist')
+ potentially stale -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.performanceFeeGovernance'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.withdrawalFee'), ('SV', 'src/lib/SettAccessControl.sol', 'SettAccessControl.strategist')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 8ed5e8e6cde121b200f2] {tokenInLimit, totalTokenIn}
+ writer root       -> src/KnightingRound.sol::KnightingRound.buy(uint256,uint8,bytes32[])
+ writer effect     -> src/KnightingRound.sol:198
+ written member    -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.totalTokenIn')
+ potentially stale -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.tokenInLimit')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 910dfea4f2c255c25a51] {governance, keeper}
+ writer root       -> src/lib/SettAccessControl.sol::SettAccessControl.setGovernance(address)
+ writer effect     -> src/lib/SettAccessControl.sol:53
+ written member    -> ('SV', 'src/lib/SettAccessControl.sol', 'SettAccessControl.governance')
+ potentially stale -> ('SV', 'src/lib/SettAccessControl.sol', 'SettAccessControl.keeper')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 96dde3adc82f9714b115] {_balances, totalTokenOutBought, totalTokenOutClaimed}
+ writer root       -> src/KnightingRound.sol::KnightingRound.buy(uint256,uint8,bytes32[])
+ writer effect     -> src/KnightingRound.sol:199
+ written member    -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.totalTokenOutBought')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._balances'), ('SV', 'src/KnightingRound.sol', 'KnightingRound.totalTokenOutClaimed')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 987f6f387e5089357f8c] {assetDecimalsNormalizationValue, citadelPriceInAsset, funding}
+ writer root       -> src/Funding.sol::Funding.updateCitadelPriceInAsset(uint256)
+ writer effect     -> src/Funding.sol:465
+ written member    -> ('SV', 'src/Funding.sol', 'Funding.citadelPriceInAsset')
+ potentially stale -> ('SV', 'src/Funding.sol', 'Funding.assetDecimalsNormalizationValue'), ('SV', 'src/Funding.sol', 'Funding.funding')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate ab23292871efe7811fb3] {saleDuration, saleStart}
+ writer root       -> src/KnightingRound.sol::KnightingRound.setSaleStart(uint256)
+ writer effect     -> src/KnightingRound.sol:299
+ written member    -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleStart')
+ potentially stale -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleDuration')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate ae00999ee83543dcc35d] {lastHarvestedAt, managementFee, performanceFeeGovernance, performanceFeeStrategist, withdrawalFee}
+ writer root       -> src/StakedCitadel.sol::StakedCitadel.setWithdrawalFee(uint256)
+ writer effect     -> src/StakedCitadel.sol:614
+ written member    -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.withdrawalFee')
+ potentially stale -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.lastHarvestedAt'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.managementFee'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.performanceFeeGovernance'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.performanceFeeStrategist')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate af3342562d813681c6f2] {saleDuration, saleStart, tokenInLimit, totalTokenIn}
+ writer root       -> src/KnightingRound.sol::KnightingRound.setSaleStart(uint256)
+ writer effect     -> src/KnightingRound.sol:299
+ written member    -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleStart')
+ potentially stale -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleDuration'), ('SV', 'src/KnightingRound.sol', 'KnightingRound.tokenInLimit'), ('SV', 'src/KnightingRound.sol', 'KnightingRound.totalTokenIn')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate cc88880d513bdc80908d] {governance, strategist}
+ writer root       -> src/lib/SettAccessControl.sol::SettAccessControl.setGovernance(address)
+ writer effect     -> src/lib/SettAccessControl.sol:53
+ written member    -> ('SV', 'src/lib/SettAccessControl.sol', 'SettAccessControl.governance')
+ potentially stale -> ('SV', 'src/lib/SettAccessControl.sol', 'SettAccessControl.strategist')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate d51182adb3e580c12784] {_balances, totalTokenOutBought, totalTokenOutClaimed}
+ writer root       -> src/KnightingRound.sol::KnightingRound.claim()
+ writer effect     -> src/KnightingRound.sol:218
+ written member    -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.totalTokenOutClaimed')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._balances'), ('SV', 'src/KnightingRound.sol', 'KnightingRound.totalTokenOutBought')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate dba8a719cbbcda571faf] {assetDecimalsNormalizationValue, citadelPriceInAsset, funding}
+ writer root       -> src/Funding.sol::Funding.setDiscountLimits(uint256,uint256)
+ writer effect     -> src/Funding.sol:362
+ written member    -> ('SV', 'src/Funding.sol', 'Funding.funding')
+ potentially stale -> ('SV', 'src/Funding.sol', 'Funding.assetDecimalsNormalizationValue'), ('SV', 'src/Funding.sol', 'Funding.citadelPriceInAsset')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate de15ed0a4512ac37ee2f] {assetDecimalsNormalizationValue, citadelPriceInAsset, funding}
+ writer root       -> src/Funding.sol::Funding.deposit(uint256,uint256)
+ writer effect     -> src/Funding.sol:175
+ written member    -> ('SV', 'src/Funding.sol', 'Funding.funding')
+ potentially stale -> ('SV', 'src/Funding.sol', 'Funding.assetDecimalsNormalizationValue'), ('SV', 'src/Funding.sol', 'Funding.citadelPriceInAsset')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e459686e38d2c7d96ac3] {lastHarvestedAt, managementFee, performanceFeeGovernance, performanceFeeStrategist, withdrawalFee}
+ writer root       -> src/StakedCitadel.sol::StakedCitadel.setPerformanceFeeStrategist(uint256)
+ writer effect     -> src/StakedCitadel.sol:634
+ written member    -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.performanceFeeStrategist')
+ potentially stale -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.lastHarvestedAt'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.managementFee'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.performanceFeeGovernance'), ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.withdrawalFee')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate e5accce041f0a7755759] {tokenInLimit, totalTokenIn}
+ writer root       -> src/KnightingRound.sol::KnightingRound.initialize(address,address,address,uint256,uint256,uint256,address,address,uint256)
+ writer effect     -> src/KnightingRound.sol:146
+ written member    -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.tokenInLimit')
+ potentially stale -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.totalTokenIn')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate ea76f2c4814ade1f6df9] {governance, guardian}
+ writer root       -> src/StakedCitadel.sol::StakedCitadel.setGuardian(address)
+ writer effect     -> src/StakedCitadel.sol:564
+ written member    -> ('SV', 'src/StakedCitadel.sol', 'StakedCitadel.guardian')
+ potentially stale -> ('SV', 'src/lib/SettAccessControl.sol', 'SettAccessControl.governance')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate eddc2d062eb68ee2b805] {saleDuration, saleStart, tokenInLimit, totalTokenIn}
+ writer root       -> src/KnightingRound.sol::KnightingRound.initialize(address,address,address,uint256,uint256,uint256,address,address,uint256)
+ writer effect     -> src/KnightingRound.sol:146
+ written member    -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.tokenInLimit')
+ potentially stale -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleDuration'), ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleStart'), ('SV', 'src/KnightingRound.sol', 'KnightingRound.totalTokenIn')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate f759c6e66e586a825b99] {saleDuration, saleStart, tokenInLimit, totalTokenIn}
+ writer root       -> src/KnightingRound.sol::KnightingRound.setTokenInLimit(uint256)
+ writer effect     -> src/KnightingRound.sol:386
+ written member    -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.tokenInLimit')
+ potentially stale -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleDuration'), ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleStart'), ('SV', 'src/KnightingRound.sol', 'KnightingRound.totalTokenIn')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate f9cb3f06583bdfde56a3] {saleDuration, saleStart}
+ writer root       -> src/KnightingRound.sol::KnightingRound.setSaleDuration(uint256)
+ writer effect     -> src/KnightingRound.sol:318
+ written member    -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleDuration')
+ potentially stale -> ('SV', 'src/KnightingRound.sol', 'KnightingRound.saleStart')
+ reader witnesses  -> 3
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (51 contracts with 1 detectors), 39 result(s) found

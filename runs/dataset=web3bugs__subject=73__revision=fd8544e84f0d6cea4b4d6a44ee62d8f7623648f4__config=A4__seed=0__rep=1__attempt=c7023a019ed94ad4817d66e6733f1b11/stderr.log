@@ -1,0 +1,84 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=4773 vars=146
+[mvscan-stage] root-seeding-done eligible_exposures=331 seeded=257 multi_exposure_entry_blocks=24 collapsed_contextual_aliases=74 excluded_dependency=0 excluded_interface=7 excluded_library=57 excluded_abstract=0 missing_entry_point=15 missing_entry_block=0
+[mvscan-pairs] call_target_digest=0a38aa209d3770b2665d6b7966079b451b3db21e943c4abae7b6d6960e5ec8ef candidate_count=8 candidate_digest=107dc636554ed229e6b57ca102d8523e1d3333f16e500acd8c301e8defc788db context_instance_count=9 eligible_readers=4 eligible_writers=10 execution_context_digest=fee4c21487cc8f316bf8c45d4d35e975f67b1121c993ff9d331fc0d96bba8eb0 insensitive_readers_filtered=7 invalid_partial_write_filtered=0 must_full_relation_filtered=2 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=9 owner_context_pairs_considered=13 raw_block_pairs=13 reader_witness_count=9 relation_base_members_shadowed=0 relation_context_incompatible=2 relation_digest=45bed5f955777e24b30c6b7d8eb9baf241fefde081dda9a543b12d1c4f43ee82 relation_members_raw=84 relation_origins_registered=3 relation_origins_rejected_unary_after_shadowing=78 relation_origins_rejected_unreachable=38 relation_origins_seen=81 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=92 storage_context_mismatch=0 variables_considered=95
+INFO:Detectors:
+
+[MV-SI candidate 279cb4e420210019ed48] {isWhitelisted, nextValidRequest}
+ writer root       -> contracts/token/LivepeerTokenFaucet.sol::LivepeerTokenFaucet.removeFromWhitelist(address)
+ writer effect     -> contracts/token/LivepeerTokenFaucet.sol:63
+ written member    -> ('SV', 'contracts/token/LivepeerTokenFaucet.sol', 'LivepeerTokenFaucet.isWhitelisted')
+ potentially stale -> ('SV', 'contracts/token/LivepeerTokenFaucet.sol', 'LivepeerTokenFaucet.nextValidRequest')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 540e5e5f732d428456e5] {inflation, inflationChange}
+ writer root       -> contracts/token/Minter.sol::Minter.setInflationChange(uint256)
+ writer effect     -> contracts/token/Minter.sol:108
+ written member    -> ('SV', 'contracts/token/Minter.sol', 'Minter.inflationChange')
+ potentially stale -> ('SV', 'contracts/token/Minter.sol', 'Minter.inflation')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6534ac4f83f3666027e2] {inflation, inflationChange}
+ writer root       -> contracts/token/Minter.sol::Minter.setCurrentRewardTokens()
+ writer effect     -> contracts/token/Minter.sol:239
+ written member    -> ('SV', 'contracts/token/Minter.sol', 'Minter.inflation')
+ potentially stale -> ('SV', 'contracts/token/Minter.sol', 'Minter.inflationChange')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 66d65b80759f57f0ca61] {inflation, inflationChange}
+ writer root       -> contracts/token/Minter.sol::Minter.setCurrentRewardTokens()
+ writer effect     -> contracts/token/Minter.sol:233
+ written member    -> ('SV', 'contracts/token/Minter.sol', 'Minter.inflation')
+ potentially stale -> ('SV', 'contracts/token/Minter.sol', 'Minter.inflationChange')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a44faa11e1d88b4180db] {inflation, inflationChange}
+ writer root       -> contracts/token/Minter.sol::Minter.setCurrentRewardTokens()
+ writer effect     -> contracts/token/Minter.sol:237
+ written member    -> ('SV', 'contracts/token/Minter.sol', 'Minter.inflation')
+ potentially stale -> ('SV', 'contracts/token/Minter.sol', 'Minter.inflationChange')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ddba26d6a7886c05099a] {isWhitelisted, nextValidRequest}
+ writer root       -> contracts/token/LivepeerTokenFaucet.sol::LivepeerTokenFaucet.request()
+ writer effect     -> contracts/token/LivepeerTokenFaucet.sol:71
+ written member    -> ('SV', 'contracts/token/LivepeerTokenFaucet.sol', 'LivepeerTokenFaucet.nextValidRequest')
+ potentially stale -> ('SV', 'contracts/token/LivepeerTokenFaucet.sol', 'LivepeerTokenFaucet.isWhitelisted')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate ddd9edd70aa85d0010c4] {isWhitelisted, nextValidRequest}
+ writer root       -> contracts/token/LivepeerTokenFaucet.sol::LivepeerTokenFaucet.addToWhitelist(address)
+ writer effect     -> contracts/token/LivepeerTokenFaucet.sol:55
+ written member    -> ('SV', 'contracts/token/LivepeerTokenFaucet.sol', 'LivepeerTokenFaucet.isWhitelisted')
+ potentially stale -> ('SV', 'contracts/token/LivepeerTokenFaucet.sol', 'LivepeerTokenFaucet.nextValidRequest')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f7a2fd8debd9ac9f8687] {currentMintableTokens, currentMintedTokens}
+ writer root       -> contracts/token/Minter.sol::Minter.createReward(uint256,uint256)
+ writer effect     -> contracts/token/Minter.sol:152
+ written member    -> ('SV', 'contracts/token/Minter.sol', 'Minter.currentMintedTokens')
+ potentially stale -> ('SV', 'contracts/token/Minter.sol', 'Minter.currentMintableTokens')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=12 vars=2
+[mvscan-stage] root-seeding-done eligible_exposures=2 seeded=2 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=dbbba2b91a15f1340493634fc8928c2ca78469c8cfcc8cf5ce879aa903253bfb candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=bbe36ccb66873f63a0ad167b2930a877957a0c6cfe3052b8196e94435f5e5011 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_base_members_shadowed=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_members_raw=1 relation_origins_rejected_unary_after_shadowing=1 relation_origins_seen=1 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=1 storage_context_mismatch=0 variables_considered=1
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=137 vars=2
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=4 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=b246641c0f1a7ada5931bcc1e978694bf6bc2dc7fd689382c2358cfbb4f57e78 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_origins_rejected_unreachable=2 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=7 vars=1
+[mvscan-stage] root-seeding-done eligible_exposures=1 seeded=1 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=fd0addeba2a65edd3fa1d4ac314a0b87a7a690f1fa87920be652b533b2bff490 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_origins_rejected_unreachable=2 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=1 storage_context_mismatch=0 variables_considered=1
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=65 vars=1
+[mvscan-stage] root-seeding-done eligible_exposures=23 seeded=9 multi_exposure_entry_blocks=7 collapsed_contextual_aliases=14 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=8acdaa8fa318ae69748f4f019927f4d97f3fcc28ebeffb2813817e32bff6dd31 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=81f5b6d1b402465a718b526fa84d091a91c3834948583be68f567f3ef177a43f invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_base_members_shadowed=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_members_raw=6 relation_origins_rejected_unary_after_shadowing=6 relation_origins_seen=6 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=1 storage_context_mismatch=0 variables_considered=1
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=7 vars=2
+[mvscan-stage] root-seeding-done eligible_exposures=2 seeded=2 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=63d9ecb900ce0e9014a7a2e60842e30bdfbb028fd3f6ee1f2a5709c3af5ac336 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_base_members_shadowed=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_members_raw=1 relation_origins_rejected_unary_after_shadowing=1 relation_origins_seen=1 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=2 storage_context_mismatch=0 variables_considered=2
+INFO:Slither:. analyzed (93 contracts with 1 detectors), 8 result(s) found

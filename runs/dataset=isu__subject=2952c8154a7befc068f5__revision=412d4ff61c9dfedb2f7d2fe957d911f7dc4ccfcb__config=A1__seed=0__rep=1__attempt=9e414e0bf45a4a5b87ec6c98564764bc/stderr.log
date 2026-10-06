@@ -1,0 +1,114 @@
+'/tmp/.svm/0.8.0/solc-0.8.0 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> contracts/UniswapStyleLib.sol
+
+
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> interfaces/IWETH.sol
+
+
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> libraries/UniswapStyleLib.sol
+
+
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> node_modules/@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol
+
+
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> node_modules/@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1996 vars=122
+[mvscan-stage] root-seeding-done eligible_exposures=123 seeded=94 multi_exposure_entry_blocks=5 collapsed_contextual_aliases=29 excluded_dependency=0 excluded_interface=25 excluded_library=0 excluded_abstract=67 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=b01378dff2eca13aa93970dc42cc8571c476b03de21edeb775c30cbad2371760 candidate_count=12 candidate_digest=8f8219f7790e15a3c38fc18e1a3b0a56af881c13a121ef6bbf8d053276f9cb3c context_instance_count=12 eligible_readers=12 eligible_writers=14 execution_context_digest=12123ff7928bf0102e3e66f4ba805c8d46732e08df08a844665cd785f2610b98 insensitive_readers_filtered=18 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=46 owner_context_pairs=12 owner_context_pairs_considered=422 raw_block_pairs=54 reader_witness_count=12 relation_base_members_shadowed=0 relation_context_incompatible=364 relation_digest=c67a1340f84ad9e126c0df39aa0e6a3e623abf363aa45ab47fd6eefde1b69876 relation_members_raw=35 relation_origins_registered=3 relation_origins_rejected_unary_after_shadowing=27 relation_origins_rejected_unreachable=8 relation_origins_seen=30 relation_unbound_key_templates=19 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=3 scalar_variables_skipped=86 storage_context_mismatch=0 variables_considered=89
+INFO:Detectors:
+
+[MV-SI candidate 16d9ae9b90a372be4860] {currentMaintenanceStaker, maintenanceDelegateTo[@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0]}
+ writer root       -> contracts/Admin.sol::Admin.getUpdatedCurrentStaker()
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('MS', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo', '@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 5dc14e3b4f85c676e32a] {currentMaintenanceStaker, maintenanceDelegateTo[@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0]}
+ writer root       -> contracts/Admin.sol::Admin.depositMaintenanceStake(uint256)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('MS', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo', '@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7cf09ea007645fdd6191] {currentMaintenanceStaker, maintenanceDelegateTo[@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0]}
+ writer root       -> contracts/Admin.sol::Admin.isAuthorizedStaker(address)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('MS', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo', '@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7da500088b04667518e5] {currentMaintenanceStaker, maintenanceDelegateTo[@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0]}
+ writer root       -> contracts/Admin.sol::Admin.depositMaintenanceStake(uint256)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('MS', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo', '@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 8441bd0301f997df0957] {currentMaintenanceStaker, maintenanceDelegateTo[@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0]}
+ writer root       -> contracts/Admin.sol::Admin.isAuthorizedStaker(address)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('MS', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo', '@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b6fd78e6d2d768d8af22] {currentMaintenanceStaker, maintenanceDelegateTo[@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0]}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('MS', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo', '@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c83b0eab2083255c4dcb] {currentMaintenanceStaker, maintenanceDelegateTo[@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0]}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('MS', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo', '@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate dc546f3f8f7e47c335c5] {currentMaintenanceStaker, maintenanceDelegateTo[@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0]}
+ writer root       -> contracts/Admin.sol::Admin.withdrawStake(uint256)
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('MS', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo', '@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate dd2cc75d76ff0c374640] {currentMaintenanceStaker, maintenanceDelegateTo[@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0]}
+ writer root       -> contracts/Admin.sol::Admin.withdrawStake(uint256)
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('MS', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo', '@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ec6815518d91f98f5702] {currentMaintenanceStaker, maintenanceDelegateTo[@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0]}
+ writer root       -> contracts/Admin.sol::Admin.getUpdatedCurrentStaker()
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('MS', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo', '@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f4b7c6f017c07a3944c4] {currentMaintenanceStaker, maintenanceDelegateTo[@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0]}
+ writer root       -> contracts/IsolatedMarginLiquidation.sol::IsolatedMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:150
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('MS', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo', '@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate fb8eb154ab8f252a02d0] {currentMaintenanceStaker, maintenanceDelegateTo[@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0]}
+ writer root       -> contracts/CrossMarginLiquidation.sol::CrossMarginLiquidation.liquidate(address[])
+ writer effect     -> contracts/Admin.sol:143
+ written member    -> ('SV', 'contracts/Admin.sol', 'Admin.currentMaintenanceStaker')
+ potentially stale -> ('MS', 'contracts/Admin.sol', 'Admin.maintenanceDelegateTo', '@local::contracts/Admin.sol::Admin.isAuthorizedStaker(address)::LocalVariable::currentStaker_1][$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (29 contracts with 1 detectors), 12 result(s) found

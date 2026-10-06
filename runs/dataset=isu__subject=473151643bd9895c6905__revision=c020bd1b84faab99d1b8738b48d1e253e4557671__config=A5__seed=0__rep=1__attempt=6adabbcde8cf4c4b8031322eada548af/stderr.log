@@ -1,0 +1,59 @@
+'/tmp/.svm/0.8.25/solc-0.8.25 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: Contract initcode size is 59730 bytes and exceeds 49152 bytes (a limit introduced in Shanghai). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> src/LegionSaleFactory.sol:29:1:
+   |
+29 | contract LegionSaleFactory is ILegionSaleFactory, Ownable {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=2380 vars=106
+[mvscan-stage] root-seeding-done eligible_exposures=70 seeded=54 multi_exposure_entry_blocks=16 collapsed_contextual_aliases=16 excluded_dependency=0 excluded_interface=81 excluded_library=0 excluded_abstract=21 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=da38aa0b8d6f0de5c8e3d162732ebb58d63e6f418bdc448d98adc1947d6734df candidate_count=6 candidate_digest=e953a899718d844b2480c3f04c715b5cb53a918d2ff5bc8b097eff83cfadc88a context_instance_count=16 eligible_readers=24 eligible_writers=12 execution_context_digest=7e8abe4e8924dd4aedcf015e40042dcb3095e90d450b6046a0af8810b92fde10 insensitive_readers_filtered=2 invalid_partial_write_filtered=0 must_full_relation_filtered=8 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=6 owner_context_pairs=28 owner_context_pairs_considered=58 raw_block_pairs=42 reader_witness_count=28 relation_base_members_shadowed=16 relation_context_incompatible=0 relation_digest=c6e23a4910119240f1efa7977c8d6f3d0e1c4f7ea81de6f764f4a7277399fed2 relation_evidence_edges=25 relation_incompatible=16 relation_members_raw=93 relation_origins_registered=5 relation_origins_rejected_unary_after_shadowing=67 relation_origins_rejected_unreachable=7 relation_origins_seen=72 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=1 scalar_variables_skipped=67 storage_context_mismatch=16 variables_considered=72
+INFO:Detectors:
+
+[MV-SI candidate 2cc821099ee71878a5f2] {askTokenTotalSupply, tokenAllocationOnTGEBps}
+ writer root       -> src/LegionPreLiquidSale.sol::LegionPreLiquidSale.initialize(ILegionPreLiquidSale.PreLiquidSaleConfig)
+ writer effect     -> src/LegionPreLiquidSale.sol:147
+ written member    -> ('SV', 'src/LegionPreLiquidSale.sol', 'LegionPreLiquidSale.tokenAllocationOnTGEBps')
+ potentially stale -> ('SV', 'src/LegionPreLiquidSale.sol', 'LegionPreLiquidSale.askTokenTotalSupply')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 76050fb9ccc789744210] {askTokenTotalSupply, tokenAllocationOnTGEBps}
+ writer root       -> src/LegionSaleFactory.sol::LegionSaleFactory.createPreLiquidSale(ILegionPreLiquidSale.PreLiquidSaleConfig)
+ writer effect     -> src/LegionPreLiquidSale.sol:147
+ written member    -> ('SV', 'src/LegionPreLiquidSale.sol', 'LegionPreLiquidSale.tokenAllocationOnTGEBps')
+ potentially stale -> ('SV', 'src/LegionPreLiquidSale.sol', 'LegionPreLiquidSale.askTokenTotalSupply')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 8d9d63aef6afee32cf86] {askTokenTotalSupply, tokenAllocationOnTGEBps}
+ writer root       -> src/LegionPreLiquidSale.sol::LegionPreLiquidSale.updateVestingTerms(uint256,uint256,uint256)
+ writer effect     -> src/LegionPreLiquidSale.sol:355
+ written member    -> ('SV', 'src/LegionPreLiquidSale.sol', 'LegionPreLiquidSale.tokenAllocationOnTGEBps')
+ potentially stale -> ('SV', 'src/LegionPreLiquidSale.sol', 'LegionPreLiquidSale.askTokenTotalSupply')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c0953546671f6b441a12] {investorPositions[$arg0], refundPeriodSeconds}
+ writer root       -> src/LegionPreLiquidSale.sol::LegionPreLiquidSale.initialize(ILegionPreLiquidSale.PreLiquidSaleConfig)
+ writer effect     -> src/LegionPreLiquidSale.sol:144
+ written member    -> ('SV', 'src/LegionPreLiquidSale.sol', 'LegionPreLiquidSale.refundPeriodSeconds')
+ potentially stale -> ('MS', 'src/LegionPreLiquidSale.sol', 'LegionPreLiquidSale.investorPositions', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate c71a659b1c124eec35d4] {askTokenTotalSupply, tokenAllocationOnTGEBps}
+ writer root       -> src/LegionPreLiquidSale.sol::LegionPreLiquidSale.publishTgeDetails(address,uint256,uint256,uint256)
+ writer effect     -> src/LegionPreLiquidSale.sol:273
+ written member    -> ('SV', 'src/LegionPreLiquidSale.sol', 'LegionPreLiquidSale.askTokenTotalSupply')
+ potentially stale -> ('SV', 'src/LegionPreLiquidSale.sol', 'LegionPreLiquidSale.tokenAllocationOnTGEBps')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ce69fa46325906ea5013] {investorPositions[$arg0], refundPeriodSeconds}
+ writer root       -> src/LegionSaleFactory.sol::LegionSaleFactory.createPreLiquidSale(ILegionPreLiquidSale.PreLiquidSaleConfig)
+ writer effect     -> src/LegionPreLiquidSale.sol:144
+ written member    -> ('SV', 'src/LegionPreLiquidSale.sol', 'LegionPreLiquidSale.refundPeriodSeconds')
+ potentially stale -> ('MS', 'src/LegionPreLiquidSale.sol', 'LegionPreLiquidSale.investorPositions', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (49 contracts with 1 detectors), 6 result(s) found

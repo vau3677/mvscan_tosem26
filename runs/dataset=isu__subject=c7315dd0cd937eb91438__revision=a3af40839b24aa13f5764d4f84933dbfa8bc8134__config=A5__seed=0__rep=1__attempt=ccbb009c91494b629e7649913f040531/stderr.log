@@ -1,0 +1,51 @@
+'/tmp/.svm/0.8.23/solc-0.8.23 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1286 vars=41
+[mvscan-stage] root-seeding-done eligible_exposures=32 seeded=26 multi_exposure_entry_blocks=6 collapsed_contextual_aliases=6 excluded_dependency=0 excluded_interface=81 excluded_library=0 excluded_abstract=8 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=ccb80e30eebed9c438b804f38d4b72a15c1bec7413f58ce2c312927a40bd1fa4 candidate_count=6 candidate_digest=24eeba6216b7bd3c5ed94c2089ea8635dd42b9bd1c790cc0d007176b0f7aafc0 context_instance_count=8 eligible_readers=3 eligible_writers=3 execution_context_digest=ec239fe061f633335858fa34cc60f3c6b6c6ec54b702dc7748f270130583aec1 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=8 owner_context_pairs_considered=16 raw_block_pairs=9 reader_witness_count=8 relation_base_members_shadowed=0 relation_context_incompatible=0 relation_digest=301187a7366e2e27a532e8a6ca8dc2319cd300ff974f70a1a7e34666a77d8f56 relation_evidence_edges=4 relation_incompatible=5 relation_members_raw=13 relation_origins_registered=1 relation_origins_rejected_unary_after_shadowing=11 relation_origins_rejected_unreachable=15 relation_origins_seen=12 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=18 storage_context_mismatch=8 variables_considered=19
+INFO:Detectors:
+
+[MV-SI candidate 2428a38dfd2aaaba6b15] {_initialized, _initializing}
+ writer root       -> contracts/protocol/ParticleInfoReader.sol::ParticleInfoReader.initialize(address)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 808db0b1f9503093cdc3] {_initialized, _initializing}
+ writer root       -> contracts/protocol/ParticleInfoReader.sol::ParticleInfoReader.initialize(address)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a57435c99e88a600f32d] {_initialized, _initializing}
+ writer root       -> contracts/protocol/ParticlePositionManager.sol::ParticlePositionManager.initialize(address,uint256,uint128,uint256,uint256)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a7b1f4ec6a6f9f6f194b] {_initialized, _initializing}
+ writer root       -> contracts/protocol/ParticlePositionManager.sol::ParticlePositionManager.initialize(address,uint256,uint128,uint256,uint256)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate aceb650f5b082cccfa32] {_initialized, _initializing}
+ writer root       -> contracts/protocol/ParticlePositionManager.sol::ParticlePositionManager.initialize(address,uint256,uint128,uint256,uint256)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c3fb251fe9502bfb7eb8] {_initialized, _initializing}
+ writer root       -> contracts/protocol/ParticleInfoReader.sol::ParticleInfoReader.initialize(address)
+ writer effect     -> lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (50 contracts with 1 detectors), 6 result(s) found

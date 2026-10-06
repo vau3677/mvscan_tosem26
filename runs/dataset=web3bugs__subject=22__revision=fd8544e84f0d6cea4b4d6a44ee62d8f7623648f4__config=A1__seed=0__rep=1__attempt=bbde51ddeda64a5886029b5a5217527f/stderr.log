@@ -1,0 +1,888 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=2328 vars=225
+[mvscan-stage] root-seeding-done eligible_exposures=355 seeded=191 multi_exposure_entry_blocks=100 collapsed_contextual_aliases=164 excluded_dependency=0 excluded_interface=44 excluded_library=0 excluded_abstract=69 missing_entry_point=2 missing_entry_block=0
+[mvscan-pairs] call_target_digest=6fbfe34235111c6ba7be47fd1b6be46c4f8ea9e68adbc7a4a083d8f8a233e9a2 candidate_count=124 candidate_digest=0945f2102029b11e2a5fc9ae505aae088f3559117693a5339f22d6fff86e2697 context_instance_count=3434 eligible_readers=110 eligible_writers=279 execution_context_digest=36d8d617beb0be7701e04071533eec432b82ecc46b9fe710f79a7ee4cfbc981d insensitive_readers_filtered=280 invalid_partial_write_filtered=0 must_full_relation_filtered=3132 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=252 owner_context_pairs=9325 owner_context_pairs_considered=82671 raw_block_pairs=2747 reader_witness_count=9325 relation_base_members_shadowed=0 relation_context_incompatible=17018 relation_digest=048ead4f8bcc12a08d088f747b68f45cbcb3fa2c8125173aeb76d8f3a9d74318 relation_members_raw=83 relation_origins_registered=15 relation_origins_rejected_unary_after_shadowing=22 relation_origins_rejected_unreachable=31 relation_origins_seen=37 relation_unbound_key_templates=4 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=174 storage_context_mismatch=52944 variables_considered=189
+INFO:Detectors:
+
+[MV-SI candidate 03cca3a647de3526be1b] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/LongShort.sol::LongShort.shiftPositionFromShortNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:1157
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 26
+ storage exposures -> 3
+[MV-SI candidate 05e656b160f77ac72188] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._shiftPositionNextPriceExposed(uint32,uint256,bool)
+ writer effect     -> contracts/LongShort.sol:1145
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 0bb3058386f966df2c02] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._updateSystemStateInternalExposed(uint32)
+ writer effect     -> contracts/LongShort.sol:753
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 0fc1835694d6857248a1] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setFloatRewardCalcParams(uint32,address,address,uint256,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:35
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate 10b0394bd17efbdd414a] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setFloatRewardCalcParams(uint32,address,address,uint256,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:38
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate 10c6c2acbb29c5a89f14] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/generated/StakerMockable.sol::StakerMockable._changeMarketLaunchIncentiveParametersExposed(uint32,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:251
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 90
+ storage exposures -> 1
+[MV-SI candidate 13f432c5fad4d0e1d125] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._batchConfirmOutstandingPendingActionsExposed(uint32,uint256,uint256)
+ writer effect     -> contracts/LongShort.sol:1157
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 16cebef71d2aa72ef5d2] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/LongShort.sol::LongShort.shiftPositionFromShortNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:752
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ reader witnesses  -> 76
+ storage exposures -> 3
+[MV-SI candidate 197a37000c0d8d8f0c54] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/LongShort.sol::LongShort.redeemShortNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:753
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ reader witnesses  -> 76
+ storage exposures -> 3
+[MV-SI candidate 1997810a493c5aa71362] {btcBlockReward, btcBlocksPerDay, btcSupply, lastUpdated}
+ writer root       -> contracts/oracles/OracleManagerFlippening_V0.sol::OracleManagerFlippening_V0.changeBtcBlockReward(uint256)
+ writer effect     -> contracts/oracles/OracleManagerFlippening_V0.sol:128
+ written member    -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.btcBlockReward')
+ potentially stale -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.btcBlocksPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.btcSupply'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.lastUpdated')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 1a002895144045b155f2] {ethBlockReward, ethBlocksPerDay, ethNephewReward, ethSupply, ethUncleReward, ethUnclesPerDay, lastUpdated}
+ writer root       -> contracts/oracles/OracleManagerFlippening_V0.sol::OracleManagerFlippening_V0.updatePrice()
+ writer effect     -> contracts/oracles/OracleManagerFlippening_V0.sol:164
+ written member    -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.lastUpdated')
+ potentially stale -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethBlockReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethBlocksPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethNephewReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethSupply'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethUncleReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethUnclesPerDay')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 1af1532d281e022d8d80] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/LongShort.sol::LongShort.shiftPositionFromShortNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:1145
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 26
+ storage exposures -> 3
+[MV-SI candidate 1bbbf4df0ab1518e5f5f] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/LongShort.sol::LongShort.updateSystemState(uint32)
+ writer effect     -> contracts/LongShort.sol:1145
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 26
+ storage exposures -> 3
+[MV-SI candidate 215b5611106aea8ec0af] {ethBlockReward, ethBlocksPerDay, ethNephewReward, ethSupply, ethUncleReward, ethUnclesPerDay, lastUpdated}
+ writer root       -> contracts/oracles/OracleManagerFlippening_V0.sol::OracleManagerFlippening_V0.changeEthUncleReward(uint256)
+ writer effect     -> contracts/oracles/OracleManagerFlippening_V0.sol:136
+ written member    -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethUncleReward')
+ potentially stale -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethBlockReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethBlocksPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethNephewReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethSupply'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethUnclesPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.lastUpdated')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 217a641febec802a2e69] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._mintNextPriceExposed(uint32,uint256,bool)
+ writer effect     -> contracts/LongShort.sol:752
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 25193aa7858bd516b705] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/LongShort.sol::LongShort.shiftPositionFromShortNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:753
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ reader witnesses  -> 76
+ storage exposures -> 3
+[MV-SI candidate 2a7f65c7a8ab8e2153a1] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/testing/LongShortInternalStateSetters.sol::LongShortInternalStateSetters.setPerformOustandingBatchedSettlementsGlobals(uint32,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/LongShortInternalStateSetters.sol:127
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 19
+ storage exposures -> 2
+[MV-SI candidate 2ddf3fbcd19c09ebd797] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setAddNewStakingFundParams(uint32,address,address,address,address)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:131
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 108
+ storage exposures -> 2
+[MV-SI candidate 30005661c8cfacadbe1d] {ethBlockReward, ethBlocksPerDay, ethNephewReward, ethSupply, ethUncleReward, ethUnclesPerDay, lastUpdated}
+ writer root       -> contracts/oracles/OracleManagerFlippening_V0.sol::OracleManagerFlippening_V0.updatePrice()
+ writer effect     -> contracts/oracles/OracleManagerFlippening_V0.sol:161
+ written member    -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethSupply')
+ potentially stale -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethBlockReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethBlocksPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethNephewReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethUncleReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethUnclesPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.lastUpdated')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 319e149ad6f1165180f0] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._shiftPositionNextPriceExposed(uint32,uint256,bool)
+ writer effect     -> contracts/LongShort.sol:753
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 332e6faf64eaaecf4ddd] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/Staker.sol::Staker.pushUpdatedMarketPricesToUpdateFloatIssuanceCalculations(uint32,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:584
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 3
+[MV-SI candidate 3a7c737ebc94bf175a51] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/LongShort.sol::LongShort.mintShortNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:752
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ reader witnesses  -> 76
+ storage exposures -> 3
+[MV-SI candidate 3f093183764623335a94] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._updateSystemStateInternalExposed(uint32)
+ writer effect     -> contracts/LongShort.sol:752
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 400b3956ce7e88cfec68] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setCalculateAccumulatedFloatInRangeGlobals(uint32,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:60
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 108
+ storage exposures -> 2
+[MV-SI candidate 47c755e3467580c93e14] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/LongShort.sol::LongShort.redeemLongNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:752
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ reader witnesses  -> 76
+ storage exposures -> 3
+[MV-SI candidate 487af3366f2341208cf7] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/generated/StakerMockable.sol::StakerMockable._changeMarketLaunchIncentiveParametersExposed(uint32,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:251
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 228
+ storage exposures -> 1
+[MV-SI candidate 497199db4048206e8825] {ethBlockReward, ethBlocksPerDay, ethNephewReward, ethSupply, ethUncleReward, ethUnclesPerDay, lastUpdated}
+ writer root       -> contracts/oracles/OracleManagerFlippening_V0.sol::OracleManagerFlippening_V0.changeEthNephewReward(uint256)
+ writer effect     -> contracts/oracles/OracleManagerFlippening_V0.sol:140
+ written member    -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethNephewReward')
+ potentially stale -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethBlockReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethBlocksPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethSupply'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethUncleReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethUnclesPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.lastUpdated')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 49aa7097f71b06c65c12] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/generated/StakerMockable.sol::StakerMockable._setCurrentAccumulativeIssuancePerStakeStakedSynthSnapshotExposed(uint32,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:582
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 4c8a265e8a0fa70d5979] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/LongShort.sol::LongShort.mintShortNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:1157
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 26
+ storage exposures -> 3
+[MV-SI candidate 4d8e76e4a3d08670ec69] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/LongShort.sol::LongShort.mintLongNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:1157
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 26
+ storage exposures -> 3
+[MV-SI candidate 55687c53fa4841ee2e8a] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setAddNewStakingFundParams(uint32,address,address,address,address)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:132
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate 558e0bce001e07186a93] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setCalculateNewCumulativeRateParams(uint32,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:188
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate 566302f4572f5919d696] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setEquilibriumOffset(uint32,int256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:264
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 354
+ storage exposures -> 2
+[MV-SI candidate 5925b9e01f03847af373] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/LongShort.sol::LongShort.shiftPositionFromLongNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:752
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ reader witnesses  -> 76
+ storage exposures -> 3
+[MV-SI candidate 5c54691bf600160da78a] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._seedMarketInitiallyExposed(uint256,uint32)
+ writer effect     -> contracts/LongShort.sol:324
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 5c5ddd39e644752cffb9] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._mintNextPriceExposed(uint32,uint256,bool)
+ writer effect     -> contracts/LongShort.sol:753
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 5f08148993ff4f53c315] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/LongShort.sol::LongShort.redeemLongNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:753
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ reader witnesses  -> 76
+ storage exposures -> 3
+[MV-SI candidate 691fa2ab09cfd7d08786] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setGetMarketLaunchIncentiveParametersParams(uint32,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:152
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 354
+ storage exposures -> 2
+[MV-SI candidate 6a4989bd3fd9f8d37825] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setFloatRewardCalcParams(uint32,address,address,uint256,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:41
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate 6a9fecfe57f8f25f16fd] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/LongShort.sol::LongShort.updateSystemState(uint32)
+ writer effect     -> contracts/LongShort.sol:1157
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 26
+ storage exposures -> 3
+[MV-SI candidate 6b36d5106a9268503c38] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/Staker.sol::Staker.changeMarketLaunchIncentiveParameters(uint32,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:250
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 192
+ storage exposures -> 3
+[MV-SI candidate 6c93498a0543a456208c] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/LongShort.sol::LongShort.shiftPositionFromLongNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:1145
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 26
+ storage exposures -> 3
+[MV-SI candidate 6c96fa3c326c17a3adfc] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/LongShort.sol::LongShort.mintLongNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:753
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ reader witnesses  -> 76
+ storage exposures -> 3
+[MV-SI candidate 6da09614a2865d31d2b3] {ethBlockReward, ethBlocksPerDay, ethNephewReward, ethSupply, ethUncleReward, ethUnclesPerDay, lastUpdated}
+ writer root       -> contracts/oracles/OracleManagerFlippening_V0.sol::OracleManagerFlippening_V0.changeEthUnclesPerDay(uint256)
+ writer effect     -> contracts/oracles/OracleManagerFlippening_V0.sol:124
+ written member    -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethUnclesPerDay')
+ potentially stale -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethBlockReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethBlocksPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethNephewReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethSupply'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethUncleReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.lastUpdated')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 705d7082a815663fb35b] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._shiftPositionNextPriceExposed(uint32,uint256,bool)
+ writer effect     -> contracts/LongShort.sol:1157
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 71470f16c37c2111f250] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setAddNewStakingFundParams(uint32,address,address,address,address)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:130
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate 758b10ae5bf684b949f9] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setCalculateNewCumulativeRateParams(uint32,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:185
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate 764a96c424d603acd018] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/generated/StakerMockable.sol::StakerMockable._setCurrentAccumulativeIssuancePerStakeStakedSynthSnapshotExposed(uint32,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:588
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate 7710c1bd46ae4ea30555] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/LongShort.sol::LongShort.mintLongNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:1145
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 26
+ storage exposures -> 3
+[MV-SI candidate 7d09bb1dda0ad16f335c] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/Staker.sol::Staker.pushUpdatedMarketPricesToUpdateFloatIssuanceCalculations(uint32,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:582
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 144
+ storage exposures -> 3
+[MV-SI candidate 7ff3b99e227667954276] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setFloatRewardCalcParams(uint32,address,address,uint256,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:44
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 108
+ storage exposures -> 2
+[MV-SI candidate 8057e69b557148a216d3] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._redeemNextPriceExposed(uint32,uint256,bool)
+ writer effect     -> contracts/LongShort.sol:1145
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 82e59e7485e7a33ca83d] {btcBlockReward, btcBlocksPerDay, btcSupply, lastUpdated}
+ writer root       -> contracts/oracles/OracleManagerFlippening_V0.sol::OracleManagerFlippening_V0.updatePrice()
+ writer effect     -> contracts/oracles/OracleManagerFlippening_V0.sol:164
+ written member    -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.lastUpdated')
+ potentially stale -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.btcBlockReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.btcBlocksPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.btcSupply')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 82f4d27bfdf25f7ba4ac] {btcBlockReward, btcBlocksPerDay, btcSupply, lastUpdated}
+ writer root       -> contracts/oracles/OracleManagerFlippening_V0.sol::OracleManagerFlippening_V0.changeBtcSupply(uint256)
+ writer effect     -> contracts/oracles/OracleManagerFlippening_V0.sol:112
+ written member    -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.btcSupply')
+ potentially stale -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.btcBlockReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.btcBlocksPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.lastUpdated')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 856af42229d2ba426de4] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/generated/StakerMockable.sol::StakerMockable._setCurrentAccumulativeIssuancePerStakeStakedSynthSnapshotExposed(uint32,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:588
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 88c05ed272edb863e94b] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/generated/StakerMockable.sol::StakerMockable._setCurrentAccumulativeIssuancePerStakeStakedSynthSnapshotExposed(uint32,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:582
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 8ab84b61ad6beae70a9b] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/LongShort.sol::LongShort.shiftPositionFromLongNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:1157
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 26
+ storage exposures -> 3
+[MV-SI candidate 8baf33c79d63ba5245a6] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setFloatRewardCalcParams(uint32,address,address,uint256,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:35
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 108
+ storage exposures -> 2
+[MV-SI candidate 90d0cb889fcd2026cd88] {btcBlockReward, btcBlocksPerDay, btcSupply, lastUpdated}
+ writer root       -> contracts/oracles/OracleManagerFlippening_V0.sol::OracleManagerFlippening_V0.changeBtcBlocksPerDay(uint256)
+ writer effect     -> contracts/oracles/OracleManagerFlippening_V0.sol:116
+ written member    -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.btcBlocksPerDay')
+ potentially stale -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.btcBlockReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.btcSupply'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.lastUpdated')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 93556766a189dc53f049] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/generated/StakerMockable.sol::StakerMockable._changeBalanceIncentiveExponentExposed(uint32,uint256)
+ writer effect     -> contracts/Staker.sol:281
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 204
+ storage exposures -> 1
+[MV-SI candidate 93af9d2dd789d358336a] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._redeemNextPriceExposed(uint32,uint256,bool)
+ writer effect     -> contracts/LongShort.sol:752
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 95645bc3d7ba80fe9e2b] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/Staker.sol::Staker.pushUpdatedMarketPricesToUpdateFloatIssuanceCalculations(uint32,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:582
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 3
+[MV-SI candidate 9d45e62c3c2af846f4d9] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/LongShort.sol::LongShort.redeemShortNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:1157
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 26
+ storage exposures -> 3
+[MV-SI candidate 9da00842df918c019182] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setCalculateTimeDeltaParams(uint32,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:175
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate a37d35ba6cc53589148d] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setCalculateAccumulatedFloatInRangeGlobals(uint32,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:60
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate a391d446590a6525bd86] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._updateSystemStateInternalExposed(uint32)
+ writer effect     -> contracts/LongShort.sol:1157
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate a3dd825fb5d7e0e064b0] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/Staker.sol::Staker.changeMarketLaunchIncentiveParameters(uint32,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:251
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 480
+ storage exposures -> 3
+[MV-SI candidate a4cb83c2f28d162a2fd1] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/generated/StakerMockable.sol::StakerMockable._changeBalanceIncentiveEquilibriumOffsetExposed(uint32,int256)
+ writer effect     -> contracts/Staker.sol:309
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 228
+ storage exposures -> 1
+[MV-SI candidate a770cb97c83f371af8a6] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/LongShort.sol::LongShort.mintShortNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:1145
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 26
+ storage exposures -> 3
+[MV-SI candidate a84687d0367bcedca581] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setCalculateNewCumulativeRateParams(uint32,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:185
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 108
+ storage exposures -> 2
+[MV-SI candidate adba3699ccd3256e43d9] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/LongShort.sol::LongShort.redeemLongNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:1157
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 26
+ storage exposures -> 3
+[MV-SI candidate b1bbd6e7de3c03d3a11a] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/generated/StakerMockable.sol::StakerMockable._setCurrentAccumulativeIssuancePerStakeStakedSynthSnapshotExposed(uint32,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:584
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 72
+ storage exposures -> 1
+[MV-SI candidate b2a639249c500ec5b012] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setGetKValueParams(uint32,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:157
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate b357f951e9bcfb8a8ed4] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._seedMarketInitiallyExposed(uint256,uint32)
+ writer effect     -> contracts/LongShort.sol:325
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate b6ee5d602dba3cbe08a7] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/Staker.sol::Staker.changeMarketLaunchIncentiveParameters(uint32,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:250
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 480
+ storage exposures -> 3
+[MV-SI candidate b7322ecf30265a5b09ab] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/testing/LongShortInternalStateSetters.sol::LongShortInternalStateSetters.setPerformOustandingBatchedSettlementsGlobals(uint32,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/LongShortInternalStateSetters.sol:126
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 19
+ storage exposures -> 2
+[MV-SI candidate b9fe1fb37af7e444ce01] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setGetMarketLaunchIncentiveParametersParams(uint32,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:152
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 141
+ storage exposures -> 2
+[MV-SI candidate bced36ee491429cf9d39] {ethBlockReward, ethBlocksPerDay, ethNephewReward, ethSupply, ethUncleReward, ethUnclesPerDay, lastUpdated}
+ writer root       -> contracts/oracles/OracleManagerFlippening_V0.sol::OracleManagerFlippening_V0.changeEthBlocksPerDay(uint256)
+ writer effect     -> contracts/oracles/OracleManagerFlippening_V0.sol:120
+ written member    -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethBlocksPerDay')
+ potentially stale -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethBlockReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethNephewReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethSupply'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethUncleReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethUnclesPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.lastUpdated')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate be08071c332fb30d0849] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/LongShort.sol::LongShort.shiftPositionFromLongNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:753
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ reader witnesses  -> 76
+ storage exposures -> 3
+[MV-SI candidate bfea74a62c9640210251] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/LongShort.sol::LongShort.mintLongNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:815
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 26
+ storage exposures -> 3
+[MV-SI candidate c39efb33a2ca61dd2292] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setCalculateAccumulatedFloatInRangeGlobals(uint32,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:66
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate c754d120ce13f28e69fe] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/LongShort.sol::LongShort.redeemShortNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:752
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ reader witnesses  -> 76
+ storage exposures -> 3
+[MV-SI candidate c783a0f6054fa4574c21] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/LongShort.sol::LongShort.mintShortNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:753
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ reader witnesses  -> 76
+ storage exposures -> 3
+[MV-SI candidate c9e91ce184ecec336f9e] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._mintNextPriceExposed(uint32,uint256,bool)
+ writer effect     -> contracts/LongShort.sol:1145
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate cd2cb2aba44972ddd5dd] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setAddNewStakingFundParams(uint32,address,address,address,address)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:130
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 108
+ storage exposures -> 2
+[MV-SI candidate d05d2586145ac77889f5] {ethBlockReward, ethBlocksPerDay, ethNephewReward, ethSupply, ethUncleReward, ethUnclesPerDay, lastUpdated}
+ writer root       -> contracts/oracles/OracleManagerFlippening_V0.sol::OracleManagerFlippening_V0.changeEthSupply(uint256)
+ writer effect     -> contracts/oracles/OracleManagerFlippening_V0.sol:108
+ written member    -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethSupply')
+ potentially stale -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethBlockReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethBlocksPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethNephewReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethUncleReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethUnclesPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.lastUpdated')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate d19c2312ad7c83590bd7] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._updateSystemStateInternalExposed(uint32)
+ writer effect     -> contracts/LongShort.sol:1145
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate d29680ee51e8bb30e9c6] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setCalculateAccumulatedFloatInRangeGlobals(uint32,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:64
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate d375d8444a3e33a370ed] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setCalculateAccumulatedFloatInRangeGlobals(uint32,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:66
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 108
+ storage exposures -> 2
+[MV-SI candidate d3e38038d5fccf89cd92] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setGetMarketLaunchIncentiveParametersParams(uint32,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:153
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 141
+ storage exposures -> 2
+[MV-SI candidate d473bcaa8fbb995acfb6] {ethBlockReward, ethBlocksPerDay, ethNephewReward, ethSupply, ethUncleReward, ethUnclesPerDay, lastUpdated}
+ writer root       -> contracts/oracles/OracleManagerFlippening_V0.sol::OracleManagerFlippening_V0.changeEthBlockReward(uint256)
+ writer effect     -> contracts/oracles/OracleManagerFlippening_V0.sol:132
+ written member    -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethBlockReward')
+ potentially stale -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethBlocksPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethNephewReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethSupply'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethUncleReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.ethUnclesPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.lastUpdated')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate d7df2970907bda73ce10] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/generated/StakerMockable.sol::StakerMockable._changeMarketLaunchIncentiveParametersExposed(uint32,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:250
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 228
+ storage exposures -> 1
+[MV-SI candidate d85253434af5862947b7] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setFloatRewardCalcParams(uint32,address,address,uint256,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:41
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 108
+ storage exposures -> 2
+[MV-SI candidate daae2387393b6b435b01] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setGetKValueParams(uint32,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:157
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 108
+ storage exposures -> 2
+[MV-SI candidate dc3d2e0ff38a95c22ba3] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setGetMarketLaunchIncentiveParametersParams(uint32,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:153
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 354
+ storage exposures -> 2
+[MV-SI candidate dc64e39aeb5bd87b3262] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/LongShort.sol::LongShort.updateSystemState(uint32)
+ writer effect     -> contracts/LongShort.sol:752
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ reader witnesses  -> 76
+ storage exposures -> 3
+[MV-SI candidate dcfd214d300adc4c8729] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setCalculateNewCumulativeRateParams(uint32,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:188
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 108
+ storage exposures -> 2
+[MV-SI candidate de2022b89cc7cccd237a] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/LongShort.sol::LongShort.redeemLongNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:1145
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 26
+ storage exposures -> 3
+[MV-SI candidate e17da8ca20116354a3b7] {btcBlockReward, btcBlocksPerDay, btcSupply, lastUpdated}
+ writer root       -> contracts/oracles/OracleManagerFlippening_V0.sol::OracleManagerFlippening_V0.updatePrice()
+ writer effect     -> contracts/oracles/OracleManagerFlippening_V0.sol:162
+ written member    -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.btcSupply')
+ potentially stale -> ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.btcBlockReward'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.btcBlocksPerDay'), ('SV', 'contracts/oracles/OracleManagerFlippening_V0.sol', 'OracleManagerFlippening_V0.lastUpdated')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e3cc1a76608c33be5ca6] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/generated/StakerMockable.sol::StakerMockable._setCurrentAccumulativeIssuancePerStakeStakedSynthSnapshotExposed(uint32,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:584
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate e4cde6dfda31f589dabd] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setCalculateTimeDeltaParams(uint32,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:175
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 108
+ storage exposures -> 2
+[MV-SI candidate e52a4f6388c92a273838] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/Staker.sol::Staker.changeMarketLaunchIncentiveParameters(uint32,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:251
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 192
+ storage exposures -> 3
+[MV-SI candidate e52ea7fb7bee4980d4f4] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setFloatRewardCalcParams(uint32,address,address,uint256,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:44
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate e59e15ae1c929e6b860b] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setAddNewStakingFundParams(uint32,address,address,address,address)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:132
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 108
+ storage exposures -> 2
+[MV-SI candidate e631a3ee9d47290e00ec] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/LongShort.sol::LongShort.mintLongNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:752
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ reader witnesses  -> 76
+ storage exposures -> 3
+[MV-SI candidate e8f985f40d52f6c4175a] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setCalculateAccumulatedFloatInRangeGlobals(uint32,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:62
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate e9c8becd24259bd95e2a] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/Staker.sol::Staker.pushUpdatedMarketPricesToUpdateFloatIssuanceCalculations(uint32,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:584
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 144
+ storage exposures -> 3
+[MV-SI candidate e9ce6d9ec8e7cf5da829] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setCalculateAccumulatedFloatInRangeGlobals(uint32,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:64
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 108
+ storage exposures -> 2
+[MV-SI candidate ea85fa38a79cbd8d40c8] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/Staker.sol::Staker.changeBalanceIncentiveExponent(uint32,uint256)
+ writer effect     -> contracts/Staker.sol:281
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 432
+ storage exposures -> 3
+[MV-SI candidate eb7f387129303813664f] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setAddNewStakingFundParams(uint32,address,address,address,address)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:131
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate ec12daadc7efc0392e16] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/LongShort.sol::LongShort.redeemShortNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:1145
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 26
+ storage exposures -> 3
+[MV-SI candidate ee928f3f6e276887ada3] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/Staker.sol::Staker.changeBalanceIncentiveEquilibriumOffset(uint32,int256)
+ writer effect     -> contracts/Staker.sol:309
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 480
+ storage exposures -> 3
+[MV-SI candidate eee3a8d21ae035034b3d] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/LongShort.sol::LongShort.updateSystemState(uint32)
+ writer effect     -> contracts/LongShort.sol:753
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ reader witnesses  -> 76
+ storage exposures -> 3
+[MV-SI candidate f14d1641794f690f0770] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/generated/StakerMockable.sol::StakerMockable._changeMarketLaunchIncentiveParametersExposed(uint32,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:250
+ written member    -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ reader witnesses  -> 90
+ storage exposures -> 1
+[MV-SI candidate f1e8ac6104a8f44a2f50] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setFloatRewardCalcParams(uint32,address,address,uint256,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:38
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 108
+ storage exposures -> 2
+[MV-SI candidate f4191b1ca40ad10a4be6] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/Staker.sol::Staker.pushUpdatedMarketPricesToUpdateFloatIssuanceCalculations(uint32,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:588
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 144
+ storage exposures -> 3
+[MV-SI candidate f439514c295e10a2b1e9] {accumulativeFloatPerSyntheticTokenSnapshots, marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/Staker.sol::Staker.pushUpdatedMarketPricesToUpdateFloatIssuanceCalculations(uint32,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/Staker.sol:588
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 3
+[MV-SI candidate f476773c1d408b34786d] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._redeemNextPriceExposed(uint32,uint256,bool)
+ writer effect     -> contracts/LongShort.sol:753
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate f58d9cd1dfc4c36895b0] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._redeemNextPriceExposed(uint32,uint256,bool)
+ writer effect     -> contracts/LongShort.sol:1157
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate f5ab8035789200e2716f] {marketSideValueInPaymentToken[$arg0][@const::False], marketSideValueInPaymentToken[$arg0][@const::True]}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._shiftPositionNextPriceExposed(uint32,uint256,bool)
+ writer effect     -> contracts/LongShort.sol:752
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.marketSideValueInPaymentToken', '$arg0][@const::False')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate f7844bdd825aca154176] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._batchConfirmOutstandingPendingActionsExposed(uint32,uint256,uint256)
+ writer effect     -> contracts/LongShort.sol:1145
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate f8b2ed81dc60ec98a1cc] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/testing/generated/LongShortMockable.sol::LongShortMockable._mintNextPriceExposed(uint32,uint256,bool)
+ writer effect     -> contracts/LongShort.sol:1157
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate f8f61e9a7b6c9fc93ca0] {batched_amountPaymentToken_deposit[$arg0][@const::False], batched_amountPaymentToken_deposit[$arg0][@const::True], syntheticToken_priceSnapshot}
+ writer root       -> contracts/LongShort.sol::LongShort.mintShortNextPrice(uint32,uint256)
+ writer effect     -> contracts/LongShort.sol:815
+ written member    -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::False')
+ potentially stale -> ('MS', 'contracts/LongShort.sol', 'LongShort.batched_amountPaymentToken_deposit', '$arg0][@const::True'), ('SV', 'contracts/LongShort.sol', 'LongShort.syntheticToken_priceSnapshot')
+ reader witnesses  -> 26
+ storage exposures -> 3
+[MV-SI candidate fa415d1361ecc5863395] {accumulativeFloatPerSyntheticTokenSnapshots, balanceIncentiveCurve_equilibriumOffset[$arg0], balanceIncentiveCurve_exponent[$arg0], marketLaunchIncentive_multipliers[$arg0], marketLaunchIncentive_period[$arg0]}
+ writer root       -> contracts/testing/StakerInternalStateSetters.sol::StakerInternalStateSetters.setCalculateAccumulatedFloatInRangeGlobals(uint32,uint256,uint256,uint256,uint256,uint256,uint256)
+ writer effect     -> contracts/testing/StakerInternalStateSetters.sol:62
+ written member    -> ('SV', 'contracts/Staker.sol', 'Staker.accumulativeFloatPerSyntheticTokenSnapshots')
+ potentially stale -> ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_equilibriumOffset', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.balanceIncentiveCurve_exponent', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_multipliers', '$arg0'), ('MS', 'contracts/Staker.sol', 'Staker.marketLaunchIncentive_period', '$arg0')
+ reader witnesses  -> 108
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=13 vars=2
+[mvscan-stage] root-seeding-done eligible_exposures=2 seeded=2 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=c5bdf05cb860427f8704ca3c000e67f3ffd8a5c537dd8cf97d7b315e93dd1a0c candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=6abfb7e721884b7bd2eee7f13341c0bbe526cce08ed5acb15d5715188ae6e679 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=1 storage_context_mismatch=0 variables_considered=1
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=4 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=26 vars=9
+[mvscan-stage] root-seeding-done eligible_exposures=5 seeded=5 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=3e361cee750c9f854c5f300c8bee12e6fe1fa2c50a5bd124708478d70bfb45c2 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_origins_rejected_unreachable=2 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=5 storage_context_mismatch=0 variables_considered=5
+INFO:Slither:. analyzed (78 contracts with 1 detectors), 124 result(s) found

@@ -1,0 +1,106 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=4579 vars=205
+[mvscan-stage] root-seeding-done eligible_exposures=756 seeded=361 multi_exposure_entry_blocks=93 collapsed_contextual_aliases=395 excluded_dependency=0 excluded_interface=94 excluded_library=0 excluded_abstract=306 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=7556159d950cb63086cdc5caa76f683194ee90d655bfa1ca307110a265ae8a08 candidate_count=14 candidate_digest=eaee5efc1ab840441aec9c635689b49abbbea356660ecac88fe7dbaf49d72f65 context_instance_count=218 eligible_readers=40 eligible_writers=38 execution_context_digest=d8fef381c99baf5ded9a8eb7dff9d31d5ff782c2f161c9d583a1ab525e465399 insensitive_readers_filtered=90 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=4541 owner_context_pairs=776 owner_context_pairs_considered=79640 raw_block_pairs=178 reader_witness_count=776 relation_base_members_shadowed=0 relation_context_incompatible=3787 relation_digest=63e9d492c8cb4d7d762051d814fb8c1c3f54ffd4e0f6feb9264d0112728a9dfc relation_members_raw=153 relation_origins_registered=14 relation_origins_rejected_unary_after_shadowing=118 relation_origins_rejected_unreachable=99 relation_origins_seen=132 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=11 scalar_variables_skipped=99 storage_context_mismatch=70536 variables_considered=110
+INFO:Detectors:
+
+[MV-SI candidate 0cbdb9093613475e459a] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/token/ERC721/ERC721.sol:359
+ written member    -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 124
+ storage exposures -> 8
+[MV-SI candidate 147f0351411e4fa9261a] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/ERC721Mock.sol::ERC721Mock.burn(uint256)
+ writer effect     -> contracts/token/ERC721/ERC721.sol:359
+ written member    -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 157723c496a595b8435e] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> contracts/token/ERC721/ERC721.sol:359
+ written member    -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 124
+ storage exposures -> 8
+[MV-SI candidate 2490fec89726a8ec8642] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/ERC721VotesMock.sol::ERC721VotesMock.burn(uint256)
+ writer effect     -> contracts/token/ERC721/ERC721.sol:359
+ written member    -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 274a377d504f7942759f] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/ERC721EnumerableMock.sol::ERC721EnumerableMock.burn(uint256)
+ writer effect     -> contracts/token/ERC721/ERC721.sol:359
+ written member    -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 2fff0d3c3b1f2a53f2d7] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/token/ERC721/ERC721.sol:359
+ written member    -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 124
+ storage exposures -> 8
+[MV-SI candidate 329ce31d3772b38005bc] {_baseURI, _tokenURIs}
+ writer root       -> contracts/mocks/ERC1155URIStorageMock.sol::ERC1155URIStorageMock.setBaseURI(string)
+ writer effect     -> contracts/token/ERC1155/extensions/ERC1155URIStorage.sol:60
+ written member    -> ('SV', 'contracts/token/ERC1155/extensions/ERC1155URIStorage.sol', 'ERC1155URIStorage._baseURI')
+ potentially stale -> ('SV', 'contracts/token/ERC1155/extensions/ERC1155URIStorage.sol', 'ERC1155URIStorage._tokenURIs')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 5e29c7161a5c9636c2c4] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/ERC721URIStorageMock.sol::ERC721URIStorageMock.burn(uint256)
+ writer effect     -> contracts/token/ERC721/ERC721.sol:359
+ written member    -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 787fe557f0ec86de6f99] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/ERC721RoyaltyMock.sol::ERC721RoyaltyMock.burn(uint256)
+ writer effect     -> contracts/token/ERC721/ERC721.sol:359
+ written member    -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 9fdc3c6c92f7aa52e918] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/mocks/ERC721PausableMock.sol::ERC721PausableMock.burn(uint256)
+ writer effect     -> contracts/token/ERC721/ERC721.sol:359
+ written member    -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate b33c37181a1bc2916d52] {_operatorApprovals, _owners}
+ writer root       -> contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/token/ERC721/ERC721.sol:374
+ written member    -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 31
+ storage exposures -> 8
+[MV-SI candidate c4433c42e09204ccba25] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/token/ERC721/ERC721.sol::ERC721.approve(address,uint256)
+ writer effect     -> contracts/token/ERC721/ERC721.sol:359
+ written member    -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 124
+ storage exposures -> 8
+[MV-SI candidate deb92785124466d71c87] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/token/ERC721/ERC721.sol:374
+ written member    -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._owners'), ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 124
+ storage exposures -> 8
+[MV-SI candidate e88114d45fa0a82c9549] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/token/ERC721/extensions/ERC721Burnable.sol::ERC721Burnable.burn(uint256)
+ writer effect     -> contracts/token/ERC721/ERC721.sol:359
+ written member    -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', 'contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 16
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (286 contracts with 1 detectors), 14 result(s) found

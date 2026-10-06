@@ -1,0 +1,195 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=432 vars=33
+[mvscan-stage] root-seeding-done eligible_exposures=50 seeded=20 multi_exposure_entry_blocks=18 collapsed_contextual_aliases=30 excluded_dependency=0 excluded_interface=11 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=e58f7b800b63f4be3db258c60b2d1cc72d61b81f768e33d1b4fad84bce559e30 candidate_count=2 candidate_digest=3b4353956937d26bd62a61cd8c0af61d6dfa8df0ef284c4b959b8a659d5032b5 context_instance_count=10 eligible_readers=5 eligible_writers=5 execution_context_digest=7c7f4fa430accbc91922d941e11ca5560cde69dbe71f6eaaafb5dd6813c9f87f invalid_partial_write_filtered=0 must_full_relation_filtered=10 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=10 owner_context_pairs_considered=48 raw_block_pairs=14 reader_witness_count=10 relation_base_members_shadowed=7 relation_context_incompatible=0 relation_digest=9b097bbec8094ec26ba8e4d4c5d357a3e9e29683d70d707001d167b1700dded7 relation_evidence_edges=7 relation_incompatible=7 relation_members_raw=23 relation_origins_registered=2 relation_origins_rejected_unary_after_shadowing=12 relation_origins_seen=14 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=16 storage_context_mismatch=28 variables_considered=18
+INFO:Detectors:
+
+[MV-SI candidate 6dcde54c9f6d5813ad29] {pendingStrategy[$arg0], strategyData[$arg0]}
+ writer root       -> contracts/BentoBoxFlat.sol::BentoBoxV1.harvest(IERC20,bool,uint256)
+ writer effect     -> contracts/BentoBoxFlat.sol:1147
+ written member    -> ('MS', 'contracts/BentoBoxFlat.sol', 'BentoBoxV1.strategyData', '$arg0')
+ potentially stale -> ('MS', 'contracts/BentoBoxFlat.sol', 'BentoBoxV1.pendingStrategy', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 81950052ae3b9f262c49] {masterContractApproved[@local::contracts/BentoBoxFlat.sol::BentoBoxV1.allowed(address)::LocalVariable::masterContract_1][$arg0], masterContractOf[$sender]}
+ writer root       -> contracts/BentoBoxFlat.sol::MasterContractManager.registerProtocol()
+ writer effect     -> contracts/BentoBoxFlat.sol:517
+ written member    -> ('MS', 'contracts/BentoBoxFlat.sol', 'BoringFactory.masterContractOf', '$sender')
+ potentially stale -> ('MS', 'contracts/BentoBoxFlat.sol', 'MasterContractManager.masterContractApproved', '@local::contracts/BentoBoxFlat.sol::BentoBoxV1.allowed(address)::LocalVariable::masterContract_1][$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1020 vars=106
+[mvscan-stage] root-seeding-done eligible_exposures=56 seeded=44 multi_exposure_entry_blocks=6 collapsed_contextual_aliases=12 excluded_dependency=0 excluded_interface=35 excluded_library=0 excluded_abstract=9 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=de93e2e149525e09bb9c194ed7d582812354ab2d708c65a1b6c0b1089934c541 candidate_count=12 candidate_digest=5744626cf4f1f9bf8982468c2e961286906a2df7b06e2605f00135d7e7fa4cf9 context_instance_count=60 eligible_readers=46 eligible_writers=11 execution_context_digest=8ab0789191619496147e3f6d5e492c0823f0c0284d23b4ffd5b39c89862c19f6 insensitive_readers_filtered=2 invalid_partial_write_filtered=0 must_full_relation_filtered=60 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=21 owner_context_pairs=60 owner_context_pairs_considered=141 raw_block_pairs=83 reader_witness_count=60 relation_base_members_shadowed=41 relation_context_incompatible=0 relation_digest=f91a839c8d475f943a4c264ebfb42868a8c6f6dcd7d772e601466136a5455e3f relation_evidence_edges=39 relation_incompatible=41 relation_members_raw=104 relation_origins_registered=7 relation_origins_rejected_unary_after_shadowing=49 relation_origins_rejected_unreachable=5 relation_origins_seen=56 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=3 scalar_variables_skipped=38 storage_context_mismatch=0 variables_considered=44
+INFO:Detectors:
+
+[MV-SI candidate 0ee7f1e2c003d4c24c2a] {_tokens, totalSupply}
+ writer root       -> @boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol::BoringMultipleNFT.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol:94
+ written member    -> ('SV', '@boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol', 'BoringMultipleNFT._tokens')
+ potentially stale -> ('SV', '@boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol', 'BoringMultipleNFT.totalSupply')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 15144ea967f57c693ade] {_tokens, totalSupply}
+ writer root       -> @boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol::BoringMultipleNFT.transferFrom(address,address,uint256)
+ writer effect     -> @boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol:88
+ written member    -> ('SV', '@boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol', 'BoringMultipleNFT._tokens')
+ potentially stale -> ('SV', '@boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol', 'BoringMultipleNFT.totalSupply')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 1b6e48188bf8a9e3edbc] {tokenLoanParams[$arg0], tokenLoan[$arg0]}
+ writer root       -> contracts/NFTPairWithOracle.sol::NFTPairWithOracle.updateLoanParams(uint256,TokenLoanParams)
+ writer effect     -> contracts/NFTPairWithOracle.sol:221
+ written member    -> ('MS', 'contracts/NFTPairWithOracle.sol', 'NFTPairWithOracle.tokenLoanParams', '$arg0')
+ potentially stale -> ('MS', 'contracts/NFTPairWithOracle.sol', 'NFTPairWithOracle.tokenLoan', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 1de22af03105c4e4f948] {tokenLoanParams, tokenLoan[$arg0]}
+ writer root       -> contracts/NFTPairWithOracle.sol::NFTPairWithOracle.updateLoanParams(uint256,TokenLoanParams)
+ writer effect     -> contracts/NFTPairWithOracle.sol:221
+ written member    -> ('SV', 'contracts/NFTPairWithOracle.sol', 'NFTPairWithOracle.tokenLoanParams')
+ potentially stale -> ('MS', 'contracts/NFTPairWithOracle.sol', 'NFTPairWithOracle.tokenLoan', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 4a437170655d95d72487] {tokenLoanParams, tokenLoan[$arg0]}
+ writer root       -> contracts/NFTPair.sol::NFTPair.updateLoanParams(uint256,TokenLoanParams)
+ writer effect     -> contracts/NFTPair.sol:201
+ written member    -> ('SV', 'contracts/NFTPair.sol', 'NFTPair.tokenLoanParams')
+ potentially stale -> ('MS', 'contracts/NFTPair.sol', 'NFTPair.tokenLoan', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 97db40b90eea9f8110c5] {_tokens, totalSupply}
+ writer root       -> @boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol::BoringMultipleNFT.safeTransferFrom(address,address,uint256)
+ writer effect     -> @boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol:88
+ written member    -> ('SV', '@boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol', 'BoringMultipleNFT._tokens')
+ potentially stale -> ('SV', '@boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol', 'BoringMultipleNFT.totalSupply')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate acfb6e701a862b6b5655] {_tokens, totalSupply}
+ writer root       -> @boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol::BoringMultipleNFT.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol:88
+ written member    -> ('SV', '@boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol', 'BoringMultipleNFT._tokens')
+ potentially stale -> ('SV', '@boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol', 'BoringMultipleNFT.totalSupply')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate adcad36ce7b323951111] {tokenLoanParams, tokenLoan[$arg0]}
+ writer root       -> contracts/NFTPairWithOracle.sol::NFTPairWithOracle.cook(uint8[],uint256[],bytes[])
+ writer effect     -> contracts/NFTPairWithOracle.sol:244
+ written member    -> ('SV', 'contracts/NFTPairWithOracle.sol', 'NFTPairWithOracle.tokenLoanParams')
+ potentially stale -> ('MS', 'contracts/NFTPairWithOracle.sol', 'NFTPairWithOracle.tokenLoan', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate cde282b83883971798fd] {_tokens, totalSupply}
+ writer root       -> @boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol::BoringMultipleNFT.transferFrom(address,address,uint256)
+ writer effect     -> @boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol:94
+ written member    -> ('SV', '@boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol', 'BoringMultipleNFT._tokens')
+ potentially stale -> ('SV', '@boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol', 'BoringMultipleNFT.totalSupply')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate daf20a7488e241631949] {tokenLoanParams[$arg0], tokenLoan[$arg0]}
+ writer root       -> contracts/NFTPair.sol::NFTPair.updateLoanParams(uint256,TokenLoanParams)
+ writer effect     -> contracts/NFTPair.sol:201
+ written member    -> ('MS', 'contracts/NFTPair.sol', 'NFTPair.tokenLoanParams', '$arg0')
+ potentially stale -> ('MS', 'contracts/NFTPair.sol', 'NFTPair.tokenLoan', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate e34e46eaa0f614f995fa] {_tokens, totalSupply}
+ writer root       -> @boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol::BoringMultipleNFT.safeTransferFrom(address,address,uint256)
+ writer effect     -> @boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol:94
+ written member    -> ('SV', '@boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol', 'BoringMultipleNFT._tokens')
+ potentially stale -> ('SV', '@boringcrypto/boring-solidity/contracts/BoringMultipleNFT.sol', 'BoringMultipleNFT.totalSupply')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ee0686c82176a2056740] {tokenLoanParams, tokenLoan[$arg0]}
+ writer root       -> contracts/NFTPair.sol::NFTPair.cook(uint8[],uint256[],bytes[])
+ writer effect     -> contracts/NFTPair.sol:224
+ written member    -> ('SV', 'contracts/NFTPair.sol', 'NFTPair.tokenLoanParams')
+ potentially stale -> ('MS', 'contracts/NFTPair.sol', 'NFTPair.tokenLoan', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=41 vars=11
+[mvscan-stage] root-seeding-done eligible_exposures=4 seeded=4 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=3031b3344bc7490cbbf30684990d3a53b56c8ce8a9d6271792d3e109313b16e6 candidate_count=7 candidate_digest=78eacd58bfc1ea75543b9bdf39a8ba8324bfe359a01cc10adf4025834ed4a757 context_instance_count=24 eligible_readers=11 eligible_writers=7 execution_context_digest=fa333f16ea8d7a52f14c8b930d684e1369d46fcca17c416e57280e470719bcaf invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=24 owner_context_pairs_considered=24 raw_block_pairs=39 reader_witness_count=24 relation_base_members_shadowed=3 relation_context_incompatible=0 relation_digest=7f56c3a4bae28b4a2202adb0a94d6f1c520f956440fe2f02f06b774644c43811 relation_evidence_edges=28 relation_incompatible=8 relation_members_raw=9 relation_origins_registered=2 relation_origins_rejected_unary_after_shadowing=1 relation_origins_seen=3 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=7 scalar_variables_skipped=7 storage_context_mismatch=0 variables_considered=9
+INFO:Detectors:
+
+[MV-SI candidate 3c2051fc7ab3c521b0a4] {balanceOf[$arg0], balanceOf[$sender]}
+ writer root       -> contracts/mocks/ReturnFalseERC20Mock.sol::ReturnFalseERC20Mock.transfer(address,uint256)
+ writer effect     -> contracts/mocks/ReturnFalseERC20Mock.sol:36
+ written member    -> ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.balanceOf', '$arg0')
+ potentially stale -> ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.balanceOf', '$sender')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 55a535649931da1709ee] {allowance[$arg0][$sender], balanceOf[$arg0], balanceOf[$arg1]}
+ writer root       -> contracts/mocks/ReturnFalseERC20Mock.sol::ReturnFalseERC20Mock.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/ReturnFalseERC20Mock.sol:50
+ written member    -> ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.balanceOf', '$arg0')
+ potentially stale -> ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.allowance', '$arg0][$sender'), ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.balanceOf', '$arg1')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 616f733ab6c500476a59] {balanceOf[$arg0], balanceOf[$sender]}
+ writer root       -> contracts/mocks/ReturnFalseERC20Mock.sol::ReturnFalseERC20Mock.transfer(address,uint256)
+ writer effect     -> contracts/mocks/ReturnFalseERC20Mock.sol:35
+ written member    -> ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.balanceOf', '$sender')
+ potentially stale -> ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.balanceOf', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate b2701c3225d9fdbfdf4f] {allowance[$arg0][$sender], balanceOf[$arg0], balanceOf[$arg1]}
+ writer root       -> contracts/mocks/ReturnFalseERC20Mock.sol::ReturnFalseERC20Mock.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/ReturnFalseERC20Mock.sol:52
+ written member    -> ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.balanceOf', '$arg1')
+ potentially stale -> ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.allowance', '$arg0][$sender'), ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.balanceOf', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate b5eaa2d4b21445de902f] {allowance[$arg0][$sender], balanceOf[$arg0], balanceOf[$arg1]}
+ writer root       -> contracts/mocks/ReturnFalseERC20Mock.sol::ReturnFalseERC20Mock.transfer(address,uint256)
+ writer effect     -> contracts/mocks/ReturnFalseERC20Mock.sol:36
+ written member    -> ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.balanceOf', '$arg0')
+ potentially stale -> ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.allowance', '$arg0][$sender'), ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.balanceOf', '$arg1')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate df6d8a8b88e69a153329] {balanceOf[$arg0], balanceOf[$sender]}
+ writer root       -> contracts/mocks/ReturnFalseERC20Mock.sol::ReturnFalseERC20Mock.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/ReturnFalseERC20Mock.sol:50
+ written member    -> ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.balanceOf', '$arg0')
+ potentially stale -> ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.balanceOf', '$sender')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate ee2e1856fd082e75ba88] {allowance[$arg0][$sender], balanceOf[$arg0], balanceOf[$arg1]}
+ writer root       -> contracts/mocks/ReturnFalseERC20Mock.sol::ReturnFalseERC20Mock.transferFrom(address,address,uint256)
+ writer effect     -> contracts/mocks/ReturnFalseERC20Mock.sol:51
+ written member    -> ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.allowance', '$arg0][$sender')
+ potentially stale -> ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.balanceOf', '$arg0'), ('MS', 'contracts/mocks/ReturnFalseERC20Mock.sol', 'ReturnFalseERC20Mock.balanceOf', '$arg1')
+ reader witnesses  -> 5
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=31 vars=9
+[mvscan-stage] root-seeding-done eligible_exposures=3 seeded=3 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=222e1beb3db04e4710f887cb24671e982edc47d539be83bd5aecdc69fb61a463 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_base_members_shadowed=5 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_members_raw=10 relation_origins_rejected_unary_after_shadowing=5 relation_origins_seen=5 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=5 storage_context_mismatch=0 variables_considered=5
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=290 vars=31
+[mvscan-stage] root-seeding-done eligible_exposures=32 seeded=14 multi_exposure_entry_blocks=14 collapsed_contextual_aliases=18 excluded_dependency=0 excluded_interface=8 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=9555647fc467d5f7d6da8843d3eb88978641484b057ec2c0692b530e3a770c53 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 eligible_readers=17 eligible_writers=10 execution_context_digest=6631fbef40ca20014180fbcbc24d67e20f1e37f80d7f899646b1cc0996b79c2e insensitive_readers_filtered=28 invalid_partial_write_filtered=0 must_full_relation_filtered=158 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=128 owner_context_pairs=0 owner_context_pairs_considered=572 raw_block_pairs=36 reader_witness_count=0 relation_base_members_shadowed=3 relation_context_incompatible=0 relation_digest=5eef0e54a8ccd38b9677181dea9c5e0f251b0025871d1f2b78027cd43077fb76 relation_evidence_edges=20 relation_incompatible=15 relation_members_raw=30 relation_origins_registered=5 relation_origins_rejected_unary_after_shadowing=16 relation_origins_seen=21 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=1 scalar_variables_skipped=22 storage_context_mismatch=286 variables_considered=27
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=29 vars=8
+[mvscan-stage] root-seeding-done eligible_exposures=5 seeded=5 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=37164bf8aa4383576ae86caec44f69c0e1d7855a961521c7132bfffd27cf086a candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=eae44f7578783d0c5d3840b0a1aaffc0da08480d4c0139d2c2765f02104d4efd invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_base_members_shadowed=4 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_members_raw=8 relation_origins_rejected_unary_after_shadowing=4 relation_origins_seen=4 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=5 storage_context_mismatch=0 variables_considered=5
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=0 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=5 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=0 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=1 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=0 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=5 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=0 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=8 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+INFO:Slither:. analyzed (79 contracts with 1 detectors), 21 result(s) found

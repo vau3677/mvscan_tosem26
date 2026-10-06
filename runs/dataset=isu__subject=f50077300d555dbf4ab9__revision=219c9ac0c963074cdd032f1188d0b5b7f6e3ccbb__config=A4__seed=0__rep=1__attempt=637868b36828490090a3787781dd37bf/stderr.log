@@ -1,0 +1,184 @@
+'/tmp/.svm/0.8.24/solc-0.8.24 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1186 vars=38
+[mvscan-stage] root-seeding-done eligible_exposures=34 seeded=31 multi_exposure_entry_blocks=3 collapsed_contextual_aliases=3 excluded_dependency=0 excluded_interface=26 excluded_library=0 excluded_abstract=3 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=55c196301f22cc2221964c4aa0c632c54aec6552934b6b4f3e49dfa4b6b8420b candidate_count=25 candidate_digest=0f9cd3f2d5434b3d98edf8024a82dfbacd5a4b8449071859bc5dca3da9fa3c79 context_instance_count=131 eligible_readers=208 eligible_writers=75 execution_context_digest=519280411091e9e31291f95fcaf5581d09d03d692c5dc6b8e33bbdb3e3eb80aa insensitive_readers_filtered=26 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=28 owner_context_pairs=667 owner_context_pairs_considered=1875 raw_block_pairs=1201 reader_witness_count=667 relation_base_members_shadowed=0 relation_context_incompatible=1162 relation_digest=f2aed8e55c99c925779581df8a976a86f6a863ffe28d710b824c621866814a65 relation_members_raw=75 relation_origins_registered=15 relation_origins_rejected_unary_after_shadowing=45 relation_origins_rejected_unreachable=5 relation_origins_seen=60 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=51 scalar_variables_skipped=27 storage_context_mismatch=18 variables_considered=42
+INFO:Detectors:
+
+[MV-SI candidate 068868b905d5eeb08a85] {_initialized, _initializing}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.initialize(address,address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0c8cb2f8ded42a217450] {claimsPerTierPerAddress, tiers}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.setTiers(uint256[],uint256[],uint256[],uint256[])
+ writer effect     -> contracts/PlayFiLicenseSale.sol:369
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.tiers')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.claimsPerTierPerAddress')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 1da89be587ce66dea6dc] {partnerReferrals, referrals}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.setReferralForReceiver(string,address)
+ writer effect     -> contracts/PlayFiLicenseSale.sol:509
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.referrals')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.partnerReferrals')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate 288dd36ee10cf7b1932d] {partnerClaimsPerTierPerAddress, partnerTiers}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.claimLicensePartner(uint256,uint256,string,string)
+ writer effect     -> contracts/PlayFiLicenseSale.sol:194
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.partnerTiers')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.partnerClaimsPerTierPerAddress')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 2e3bb9f3fe412e9885d0] {partnerReferrals, referrals}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.setReferral(string)
+ writer effect     -> contracts/PlayFiLicenseSale.sol:508
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.referrals')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.partnerReferrals')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate 31317f96a2e4d0fa0011] {_initialized, _initializing}
+ writer root       -> contracts/PreOrderLicenseClaimer.sol::PreOrderLicenseClaimer.initialize(address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 437f2cae1d9ce47a039e] {partnerReferrals, referrals}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.claimLicensePartner(uint256,uint256,string,string)
+ writer effect     -> contracts/PlayFiLicenseSale.sol:193
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.partnerReferrals')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.referrals')
+ reader witnesses  -> 110
+ storage exposures -> 1
+[MV-SI candidate 464b2432247b360aef4f] {partnerReferrals, referrals}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.setPartnerReceiverAddress(string,address)
+ writer effect     -> contracts/PlayFiLicenseSale.sol:473
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.partnerReferrals')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.referrals')
+ reader witnesses  -> 110
+ storage exposures -> 1
+[MV-SI candidate 4c248b7024065545b9fe] {partnerReferrals, referrals}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.claimLicensePartner(uint256,uint256,string,string)
+ writer effect     -> contracts/PlayFiLicenseSale.sol:191
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.referrals')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.partnerReferrals')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate 50741d41e71f7e874c84] {partnerReferrals, referrals}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.claimLicensePublicWhitelist(uint256,uint256,bytes,bytes32[])
+ writer effect     -> contracts/PlayFiLicenseSale.sol:249
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.referrals')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.partnerReferrals')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate 5ed3693dd8515d3e34f1] {tiers, whitelistTiers}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.setWhitelistTiers(uint256[],uint256[],uint256[],uint256[])
+ writer effect     -> contracts/PlayFiLicenseSale.sol:386
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.whitelistTiers')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.tiers')
+ reader witnesses  -> 63
+ storage exposures -> 1
+[MV-SI candidate 63aac95bed009e1a8a5b] {partnerReferrals, referrals}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.setReferralForReceiver(string,address)
+ writer effect     -> contracts/PlayFiLicenseSale.sol:506
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.referrals')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.partnerReferrals')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate 6704b01cc8059e1fe9f6] {partnerReferrals, referrals}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.setReferral(string)
+ writer effect     -> contracts/PlayFiLicenseSale.sol:509
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.referrals')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.partnerReferrals')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate 7eb2f5e310e5634df3e7] {partnerReferrals, referrals}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.claimLicensePublic(uint256,uint256,string)
+ writer effect     -> contracts/PlayFiLicenseSale.sol:219
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.referrals')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.partnerReferrals')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate a9fa52ac5cb325fae54e] {_initialized, _initializing}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.initialize(address,address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b486c09d6837e958dd89] {tiers, whitelistTiers}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.claimLicensePublicWhitelist(uint256,uint256,bytes,bytes32[])
+ writer effect     -> contracts/PlayFiLicenseSale.sol:246
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.whitelistTiers')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.tiers')
+ reader witnesses  -> 63
+ storage exposures -> 1
+[MV-SI candidate b88caed000af3e7cee36] {_initialized, _initializing}
+ writer root       -> contracts/PreOrderLicenseClaimer.sol::PreOrderLicenseClaimer.initialize(address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c6705d0c9256f465673e] {_initialized, _initializing}
+ writer root       -> contracts/PreOrderLicenseClaimer.sol::PreOrderLicenseClaimer.initialize(address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c926a4aac00fe773c8d9] {partnerReferrals, referrals}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.setReferral(string)
+ writer effect     -> contracts/PlayFiLicenseSale.sol:506
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.referrals')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.partnerReferrals')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate c96c1d2555fb21d50462] {partnerReferrals, referrals}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.setReferralForReceiver(string,address)
+ writer effect     -> contracts/PlayFiLicenseSale.sol:508
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.referrals')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.partnerReferrals')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate d37b648db795eb1c3f0c] {claimsPerTierPerAddress, tiers}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.claimLicensePublic(uint256,uint256,string)
+ writer effect     -> contracts/PlayFiLicenseSale.sol:216
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.tiers')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.claimsPerTierPerAddress')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate dda4b3953a27f512ee99] {tiers, whitelistTiers}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.claimLicensePublic(uint256,uint256,string)
+ writer effect     -> contracts/PlayFiLicenseSale.sol:216
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.tiers')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.whitelistTiers')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate df7e77a88c745a27e398] {_initialized, _initializing}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.initialize(address,address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e833e217732cb0a358c9] {partnerClaimsPerTierPerAddress, partnerTiers}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.setPartnerTiers(string[],uint256[],uint256[],uint256[],uint256[])
+ writer effect     -> contracts/PlayFiLicenseSale.sol:404
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.partnerTiers')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.partnerClaimsPerTierPerAddress')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f3e236e07d5d73f5f773] {tiers, whitelistTiers}
+ writer root       -> contracts/PlayFiLicenseSale.sol::PlayFiLicenseSale.setTiers(uint256[],uint256[],uint256[],uint256[])
+ writer effect     -> contracts/PlayFiLicenseSale.sol:369
+ written member    -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.tiers')
+ potentially stale -> ('SV', 'contracts/PlayFiLicenseSale.sol', 'PlayFiLicenseSale.whitelistTiers')
+ reader witnesses  -> 42
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (18 contracts with 1 detectors), 25 result(s) found

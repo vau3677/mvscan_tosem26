@@ -1,0 +1,1826 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=3651 vars=217
+[mvscan-stage] root-seeding-done eligible_exposures=363 seeded=207 multi_exposure_entry_blocks=41 collapsed_contextual_aliases=156 excluded_dependency=0 excluded_interface=79 excluded_library=0 excluded_abstract=121 missing_entry_point=2 missing_entry_block=0
+[mvscan-pairs] call_target_digest=3f6046a0df85d8257bf898e500776f3fad05f4308717d1a4aa04e4ad60f6fe3b candidate_count=258 candidate_digest=db1381f26decf25a4533a5ef4bd2e98588eb5f11e909b686e6b7331b5548e9ea context_instance_count=3977 eligible_readers=368 eligible_writers=278 execution_context_digest=f81082c79a533ae06fd9dd7185e682115f05aafdec5d3df4debfa2925b5ab175 insensitive_readers_filtered=299 invalid_partial_write_filtered=0 must_full_relation_filtered=3301 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=262 owner_context_pairs=6813 owner_context_pairs_considered=40291 raw_block_pairs=3666 reader_witness_count=6813 relation_base_members_shadowed=47 relation_context_incompatible=16694 relation_digest=439ad4c21e9ce2ae81936f08feda34e3083a9a767cc48fc58c7b7683bbc5e1f2 relation_members_raw=288 relation_origins_registered=36 relation_origins_rejected_unary_after_shadowing=162 relation_origins_rejected_unreachable=48 relation_origins_seen=198 relation_unbound_key_templates=228 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=104 scalar_variables_skipped=139 storage_context_mismatch=13221 variables_considered=175
+INFO:Detectors:
+
+[MV-SI candidate 02643b2ec6c1f27ede4d] {_initialized, _initializing}
+ writer root       -> contracts/asset/PureTokenAdapter.sol::PureTokenAdapter.__PureTokenAdapter_init(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:43
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0278113ef9c3997d259e] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowWithPermit(address,uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/market/UToken.sol:492
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 06cc7c98b400c98580e3] {totalFrozen, totalStaked}
+ writer root       -> contracts/user/UserManager.sol::UserManager.updateTotalFrozen(address,bool)
+ writer effect     -> contracts/user/UserManager.sol:786
+ written member    -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalFrozen')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalStaked')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 07c776d7757acf91687c] {members[$arg0], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.updateLockedData(address,uint256,bool)
+ writer effect     -> contracts/user/UserManager.sol:594
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg0')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 092d35b34e4b76dffbcb] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.redeem(uint256)
+ writer effect     -> contracts/market/UToken.sol:557
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 0ae63a734e1f1a54f4fc] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.accrueInterest()
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 0b1e4166596acee13a5b] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.borrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:419
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 0b22a8498b967841e4f6] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 0bb6735711b91940f95d] {_roles[$arg1], uToken}
+ writer root       -> @openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol::AccessControlUpgradeable.renounceRole(bytes32,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:215
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol', 'AccessControlUpgradeable._roles', '$arg1')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.uToken')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 0bc44ae8704110ee46eb] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.redeem(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 0c69def52562ec8c655d] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowBehalf(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:497
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 0e1211d82dffa7fdabd1] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.removeReserves(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 104ab28e47b093b51744] {members[$arg1], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.unstake(uint256)
+ writer effect     -> contracts/user/UserManager.sol:664
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 104f4a3cf75e34a78d89] {totalFrozen, totalStaked}
+ writer root       -> contracts/user/UserManager.sol::UserManager.batchUpdateTotalFrozen(address[],bool[])
+ writer effect     -> contracts/user/UserManager.sol:778
+ written member    -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalFrozen')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalStaked')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 114187294143fff595dd] {initialExchangeRateMantissa, totalRedeemable}
+ writer root       -> contracts/market/UToken.sol::UToken.redeemUnderlying(uint256)
+ writer effect     -> contracts/market/UToken.sol:653
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalRedeemable')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.initialExchangeRateMantissa')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 138f812cdd395ed97589] {accountBorrows[$arg0], borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowBehalf(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 143d1dc22f59f1714ffb] {totalFrozen, totalStaked}
+ writer root       -> contracts/user/UserManager.sol::UserManager.batchUpdateTotalFrozen(address[],bool[])
+ writer effect     -> contracts/user/UserManager.sol:788
+ written member    -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalFrozen')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalStaked')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 1550b97788b5636bc56e] {accountBorrows[$arg0], borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.borrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 169a88d8f9565a5a9437] {gInflationIndex, users}
+ writer root       -> contracts/token/Comptroller.sol::Comptroller.__Comptroller_init(address,address)
+ writer effect     -> contracts/token/Comptroller.sol:62
+ written member    -> ('SV', 'contracts/token/Comptroller.sol', 'Comptroller.gInflationIndex')
+ potentially stale -> ('SV', 'contracts/token/Comptroller.sol', 'Comptroller.users')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 17033acacfeb919d124a] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.borrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:426
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 186e7fcbe848d55961c2] {accountBorrows[$arg0], borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.redeem(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 1991a831f9e0920ea2f8] {_initialized, _initializing}
+ writer root       -> contracts/asset/AssetManager.sol::AssetManager.__AssetManager_init(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:36
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 1a03e172c683c6e32a3d] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.addReserves(uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 1c812ba487d61d06dba1] {members[$arg1], stakers[$arg0], stakers[$sender]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.debtWriteOff(address,uint256)
+ writer effect     -> contracts/user/UserManager.sol:716
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0'), ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$sender')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 1ea6d8986fb441febf2f] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.addReserves(uint256)
+ writer effect     -> contracts/market/UToken.sol:557
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 1f1cdee95a3e20b94e5d] {_initialized, _initializing}
+ writer root       -> contracts/market/MarketRegistry.sol::MarketRegistry.__MarketRegistry_init()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 1fb7799877d3f27f0c6c] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.__UToken_init(IUErc20,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/market/UToken.sol:126
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 1fb9efb318ad9bac0d77] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.exchangeRateCurrent()
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 138
+ storage exposures -> 1
+[MV-SI candidate 1ffef718346902a6c93a] {accountBorrows[$arg0], borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.balanceOfUnderlying(address)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 20bac3ccb30a60eb4514] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.exchangeRateCurrent()
+ writer effect     -> contracts/market/UToken.sol:557
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 20c28a59585e1e5c7ecd] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.addReserves(uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 20dde75cc0f4ab94d84c] {_initialized, _initializing}
+ writer root       -> contracts/tests/CompoundMock.sol::CompoundMock.__CompoundMock_init(uint256,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:36
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 213192c2f624fae8de47] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.balanceOfUnderlying(address)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 138
+ storage exposures -> 1
+[MV-SI candidate 2381401c86ca14bbb15d] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.redeem(uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 2517a593982b41186559] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowBehalf(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:492
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 2563329109f5fd6bfc0e] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.borrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 25ceda51b13cf48164df] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.__UToken_init(IUErc20,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/market/UToken.sol:134
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 136
+ storage exposures -> 1
+[MV-SI candidate 25deeef930e58fb21a5e] {_roles[$arg1], uToken}
+ writer root       -> contracts/user/UserManager.sol::UserManager.setUToken(address)
+ writer effect     -> contracts/user/UserManager.sol:157
+ written member    -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.uToken')
+ potentially stale -> ('MS', '@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol', 'AccessControlUpgradeable._roles', '$arg1')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 264adbae18a00b379b3b] {balances[$arg0][$arg1], totalPrincipal[$arg0]}
+ writer root       -> contracts/asset/AssetManager.sol::AssetManager.withdraw(address,address,uint256)
+ writer effect     -> contracts/asset/AssetManager.sol:264
+ written member    -> ('MS', 'contracts/asset/AssetManager.sol', 'AssetManager.balances', '$arg0][$arg1')
+ potentially stale -> ('MS', 'contracts/asset/AssetManager.sol', 'AssetManager.totalPrincipal', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 26585f22f74cda2b4bb1] {_initialized, _initializing}
+ writer root       -> contracts/user/UserManager.sol::UserManager.__UserManager_init(address,address,address,address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:43
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 269800a8fbfe7f57d2ee] {_initialized, _initializing}
+ writer root       -> contracts/market/UToken.sol::UToken.__UToken_init(IUErc20,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:36
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 275eb50c159c67394a1b] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.redeem(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 28b8bd222c7a92c01c10] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowBehalf(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:504
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 292339a0f5d0251d50be] {members[$arg1], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.debtWriteOff(address,uint256)
+ writer effect     -> contracts/user/UserManager.sol:716
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 294b45b234c8e1163b0e] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowBehalf(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 2988b6b6add7d9b07821] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.mint(uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 2a821d459df62b6165fa] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:493
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 2b2bc55ad04ebd28f4d7] {members[$arg1], stakers[$arg0], stakers[$sender]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.debtWriteOff(address,uint256)
+ writer effect     -> contracts/user/UserManager.sol:727
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0'), ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$sender')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 2c85fe838eb6ed7b6614] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.exchangeRateCurrent()
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 2caac0bae1f539f33b2d] {members[$arg0], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.stake(uint256)
+ writer effect     -> contracts/user/UserManager.sol:616
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 2cce77b2d59d268c4904] {tokens, userManagerList[@local::contracts/market/MarketRegistry.sol::MarketRegistry.deleteMarket(address)::LocalVariable::i_scope_0_2]}
+ writer root       -> contracts/market/MarketRegistry.sol::MarketRegistry.addUserManager(address,address)
+ writer effect     -> contracts/market/MarketRegistry.sol:61
+ written member    -> ('SV', 'contracts/market/MarketRegistry.sol', 'MarketRegistry.tokens')
+ potentially stale -> ('MS', 'contracts/market/MarketRegistry.sol', 'MarketRegistry.userManagerList', '@local::contracts/market/MarketRegistry.sol::MarketRegistry.deleteMarket(address)::LocalVariable::i_scope_0_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 2ce8e315caa5eed198b6] {members[$arg0], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.stakeWithPermit(uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/user/UserManager.sol:616
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 2deda866c875870ff408] {totalFrozen, totalStaked}
+ writer root       -> contracts/user/UserManager.sol::UserManager.unstake(uint256)
+ writer effect     -> contracts/user/UserManager.sol:665
+ written member    -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalStaked')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalFrozen')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate 2e04f2f6b269cd0df7cc] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 2fbce574225ed2a3835c] {balances[$arg0][$arg1], totalPrincipal[$arg0]}
+ writer root       -> contracts/asset/AssetManager.sol::AssetManager.debtWriteOff(address,uint256)
+ writer effect     -> contracts/asset/AssetManager.sol:275
+ written member    -> ('MS', 'contracts/asset/AssetManager.sol', 'AssetManager.balances', '$arg0][$arg1')
+ potentially stale -> ('MS', 'contracts/asset/AssetManager.sol', 'AssetManager.totalPrincipal', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 307a1753b20b7db80411] {_roles[$arg1], uToken}
+ writer root       -> @openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol::AccessControlUpgradeable.revokeRole(bytes32,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:215
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol', 'AccessControlUpgradeable._roles', '$arg1')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.uToken')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 33b582c3c8e744cc05ab] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.borrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:431
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 34b264247d5570651bbf] {_initialized, _initializing}
+ writer root       -> contracts/asset/PureTokenAdapter.sol::PureTokenAdapter.__PureTokenAdapter_init(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:36
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 3582e8299999b7c25749] {_roles[$arg1], uToken}
+ writer root       -> contracts/user/UserManager.sol::UserManager.__UserManager_init(address,address,address,address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:208
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol', 'AccessControlUpgradeable._roles', '$arg1')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.uToken')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 35cee5e890755b784c6a] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowBehalf(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 36a8a205e9984577b0ef] {members[$arg1], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.debtWriteOff(address,uint256)
+ writer effect     -> contracts/user/UserManager.sol:724
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 36cfb672aaa72df14324] {members[$arg1], stakers[$arg0], stakers[$sender]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.updateTrust(address,uint256)
+ writer effect     -> contracts/user/UserManager.sol:459
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0'), ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$sender')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 372620fe08f77aa53a9e] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.redeemUnderlying(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 136
+ storage exposures -> 1
+[MV-SI candidate 372bad3bf8b5ca0085c6] {_initialized, _initializing}
+ writer root       -> contracts/tests/CompoundMock.sol::CompoundMock.__CompoundMock_init(uint256,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 37a7b62c7c83c06cb24b] {_initialized, _initializing}
+ writer root       -> contracts/tests/AaveMock.sol::AaveMock.__AaveMock_init(uint128,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 38c37e61ff2873027ce3] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.balanceOfUnderlying(address)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 3c116872652ce4c9854b] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.accrueInterest()
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 136
+ storage exposures -> 1
+[MV-SI candidate 3c3edc6b3c0e3beab2c5] {_initialized, _initializing}
+ writer root       -> contracts/tests/AssetManagerMock.sol::AssetManagerMock.__AssetManager_init()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 3cb891ae94ee74c83c8e] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.__UToken_init(IUErc20,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/market/UToken.sol:128
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 3cd23df33badca244da8] {_initialized, _initializing}
+ writer root       -> contracts/asset/AaveAdapter.sol::AaveAdapter.__AaveAdapter_init(address,LendingPool)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:36
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 3e016510acd17f2da74e] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.debtWriteOff(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:710
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 3e908dd6f14c0a60366d] {_initialized, _initializing}
+ writer root       -> contracts/user/UserManager.sol::UserManager.__UserManager_init(address,address,address,address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:36
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 4030e099f0a0d0cb205b] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.__UToken_init(IUErc20,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/market/UToken.sol:134
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 4053517c4a9732e0e663] {_roles[$arg1], uToken}
+ writer root       -> @openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol::AccessControlUpgradeable.grantRole(bytes32,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:208
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol', 'AccessControlUpgradeable._roles', '$arg1')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.uToken')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 4152c8ed8402c2e1327b] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowWithPermit(address,uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/market/UToken.sol:557
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 42c62c6742bd58dce978] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowWithPermit(address,uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 42ed12ab5b1f017a4766] {tokens, userManagerList[@local::contracts/market/MarketRegistry.sol::MarketRegistry.deleteMarket(address)::LocalVariable::i_scope_0_2]}
+ writer root       -> contracts/market/MarketRegistry.sol::MarketRegistry.addUToken(address,address)
+ writer effect     -> contracts/market/MarketRegistry.sol:55
+ written member    -> ('SV', 'contracts/market/MarketRegistry.sol', 'MarketRegistry.tokens')
+ potentially stale -> ('MS', 'contracts/market/MarketRegistry.sol', 'MarketRegistry.userManagerList', '@local::contracts/market/MarketRegistry.sol::MarketRegistry.deleteMarket(address)::LocalVariable::i_scope_0_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 44bd6efa3dfbb4bb14f6] {initialExchangeRateMantissa, totalRedeemable}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowWithPermit(address,uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/market/UToken.sol:508
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalRedeemable')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.initialExchangeRateMantissa')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 44de99fa320b739b93e7] {_initialized, _initializing}
+ writer root       -> contracts/market/UToken.sol::UToken.__UToken_init(IUErc20,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 458fd3d48d4847c0a485] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:499
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 45f7da9ed98198d0b71b] {members[$arg1], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.debtWriteOff(address,uint256)
+ writer effect     -> contracts/user/UserManager.sol:727
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 4606038c922c71dd4f74] {_initialized, _initializing}
+ writer root       -> contracts/tests/AaveMock.sol::AaveMock.__AaveMock_init(uint128,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:36
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 4757736af0fdfee0b1cc] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.accrueInterest()
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 4759743f12a2feefc0a6] {balances[$arg0][$arg1], totalPrincipal[$arg0]}
+ writer root       -> contracts/asset/AssetManager.sol::AssetManager.withdraw(address,address,uint256)
+ writer effect     -> contracts/asset/AssetManager.sol:265
+ written member    -> ('MS', 'contracts/asset/AssetManager.sol', 'AssetManager.totalPrincipal', '$arg0')
+ potentially stale -> ('MS', 'contracts/asset/AssetManager.sol', 'AssetManager.balances', '$arg0][$arg1')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 4c5a0916e5776b0721da] {tokens, uTokenList[@local::contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)::LocalVariable::i_2]}
+ writer root       -> contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.addUToken(address,address)
+ writer effect     -> contracts/tests/MarketRegistryMock.sol:20
+ written member    -> ('SV', 'contracts/tests/MarketRegistryMock.sol', 'MarketRegistryMock.tokens')
+ potentially stale -> ('MS', 'contracts/tests/MarketRegistryMock.sol', 'MarketRegistryMock.uTokenList', '@local::contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)::LocalVariable::i_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 4c9d796745c60e9e46ac] {totalFrozen, totalStaked}
+ writer root       -> contracts/user/UserManager.sol::UserManager.stake(uint256)
+ writer effect     -> contracts/user/UserManager.sol:617
+ written member    -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalStaked')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalFrozen')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate 4d16f3cd43fc1afeaaec] {_initialized, _initializing}
+ writer root       -> contracts/tests/CompoundAdapterMock.sol::CompoundAdapterMock.__CompoundAdapterMock_init()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:36
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 4d17e93e9755541f6d4f] {members[$arg0], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.debtWriteOff(address,uint256)
+ writer effect     -> contracts/user/UserManager.sol:716
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 4d3342b036b69fe0525a] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.borrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:429
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 4dca8863df2a33cb63ec] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.setDebtCeiling(uint256)
+ writer effect     -> contracts/market/UToken.sol:160
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ reader witnesses  -> 93
+ storage exposures -> 1
+[MV-SI candidate 4eaa38a4f1c6194b4716] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.borrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:430
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 5071548d1ebf4a257e86] {memberFrozen[$arg0], totalFrozen}
+ writer root       -> contracts/user/UserManager.sol::UserManager.batchUpdateTotalFrozen(address[],bool[])
+ writer effect     -> contracts/user/UserManager.sol:788
+ written member    -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalFrozen')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.memberFrozen', '$arg0')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 50c78767446da104a83a] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowBehalf(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:499
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 510fb9b9bcb2375ff5be] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowWithPermit(address,uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/market/UToken.sol:497
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 521b40bce4d20f629f83] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.borrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:557
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 52c54b43f53cc4686fc7] {_initialized, _initializing}
+ writer root       -> contracts/user/UserManager.sol::UserManager.__UserManager_init(address,address,address,address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 556cba0e917ac205e46f] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.borrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 55af12c15216a34ddbad] {gInflationIndex, users}
+ writer root       -> contracts/token/Comptroller.sol::Comptroller.addFrozenCoinAge(address,address,uint256,uint256)
+ writer effect     -> contracts/token/Comptroller.sol:220
+ written member    -> ('SV', 'contracts/token/Comptroller.sol', 'Comptroller.users')
+ potentially stale -> ('SV', 'contracts/token/Comptroller.sol', 'Comptroller.gInflationIndex')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 55ba00beb3a0d234a14a] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowWithPermit(address,uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/market/UToken.sol:504
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 5649a794ede0dc84185b] {members[$arg0], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.debtWriteOff(address,uint256)
+ writer effect     -> contracts/user/UserManager.sol:724
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg0')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 5675ffc9ed5712a1b325] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowWithPermit(address,uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/market/UToken.sol:511
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 569c614983f07cd02dc2] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.balanceOfUnderlying(address)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 570dd61640de412c2e63] {accountBorrows[$arg0], borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.addReserves(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 5912f879c46281297d86] {totalFrozen, totalStaked}
+ writer root       -> contracts/user/UserManager.sol::UserManager.stakeWithPermit(uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/user/UserManager.sol:617
+ written member    -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalStaked')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalFrozen')
+ reader witnesses  -> 36
+ storage exposures -> 1
+[MV-SI candidate 5a7c59ce90b3d4c54ef8] {members[$arg1], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.debtWriteOff(address,uint256)
+ writer effect     -> contracts/user/UserManager.sol:728
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 5bd8f5cee2f10b9c014c] {accountBorrows[$arg0], borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.removeReserves(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 5bec14719b70e66c40d4] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowBehalf(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:512
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 5c66e1398b4670d46000] {tokens, uTokenList[@local::contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)::LocalVariable::i_2]}
+ writer root       -> contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)
+ writer effect     -> contracts/tests/MarketRegistryMock.sol:63
+ written member    -> ('SV', 'contracts/tests/MarketRegistryMock.sol', 'MarketRegistryMock.tokens')
+ potentially stale -> ('MS', 'contracts/tests/MarketRegistryMock.sol', 'MarketRegistryMock.uTokenList', '@local::contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)::LocalVariable::i_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 5e2d11ecc3724cb304ad] {members[$arg1], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.updateLockedData(address,uint256,bool)
+ writer effect     -> contracts/user/UserManager.sol:594
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 5e8cb4e5f3caeef65793] {members[$arg1], stakers[$arg0], stakers[$sender]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.stake(uint256)
+ writer effect     -> contracts/user/UserManager.sol:616
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0'), ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$sender')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 615872b4098bd9baf07d] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.redeemUnderlying(uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 6176a3b1c3e5cee1b93b] {_initialized, _initializing}
+ writer root       -> contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.__MarketRegistryMock_init()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:36
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6249e173dd5b3ca7ff25] {totalFrozen, totalStaked}
+ writer root       -> contracts/user/UserManager.sol::UserManager.updateTotalFrozen(address,bool)
+ writer effect     -> contracts/user/UserManager.sol:778
+ written member    -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalFrozen')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalStaked')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 6288e2c9e1ff6505c541] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.setOverdueBlocks(uint256)
+ writer effect     -> contracts/market/UToken.sol:187
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ reader witnesses  -> 245
+ storage exposures -> 1
+[MV-SI candidate 64425dfb07d93a3491c0] {_initialized, _initializing}
+ writer root       -> contracts/tests/AssetManagerMock.sol::AssetManagerMock.__AssetManager_init()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:43
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 654487445c20c027eeae] {accountBorrows[$arg0], borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.redeemUnderlying(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 6586ea0a98b488ea31bd] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.addReserves(uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 138
+ storage exposures -> 1
+[MV-SI candidate 66047e495556d795cc04] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.balanceOfUnderlying(address)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 136
+ storage exposures -> 1
+[MV-SI candidate 674d306c9eba4b2a0404] {members[$arg0], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.debtWriteOff(address,uint256)
+ writer effect     -> contracts/user/UserManager.sol:728
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg0')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 67a518b71c6ad7ec2b27] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.__UToken_init(IUErc20,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/market/UToken.sol:127
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ reader witnesses  -> 93
+ storage exposures -> 1
+[MV-SI candidate 685c5653a5b64b8bc403] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.addReserves(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 136
+ storage exposures -> 1
+[MV-SI candidate 6a7fffbe8ba598bff03c] {_initialized, _initializing}
+ writer root       -> contracts/tests/CompoundAdapterMock.sol::CompoundAdapterMock.__CompoundAdapterMock_init()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:43
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6b100837911cbe698bba] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:557
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 6cca8c86fb35e020ab3e] {_initialized, _initializing}
+ writer root       -> contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.__MarketRegistryMock_init()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 6f51231575ce3a68dfaa] {_initialized, _initializing}
+ writer root       -> contracts/Controller.sol::Controller.__Controller_init(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:36
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 9
+ storage exposures -> 9
+[MV-SI candidate 70758cf7b0a3ce151921] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowWithPermit(address,uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 7154c384a61853cf5915] {_initialized, _initializing}
+ writer root       -> contracts/asset/CompoundAdapter.sol::CompoundAdapter.__CompoundAdapter_init(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 7156622d736deb8824fc] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.redeemUnderlying(uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 71ba53cd9aba19d750ba] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.balanceOfUnderlying(address)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 72614a0efb4e8aa5f0aa] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.redeemUnderlying(uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 138
+ storage exposures -> 1
+[MV-SI candidate 7321d9aead5fbdb41b14] {accountBorrows[$arg0], borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.__UToken_init(IUErc20,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/market/UToken.sol:134
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 777a1246db8112f62c32] {balances[$arg0][$arg1], totalPrincipal[$arg0]}
+ writer root       -> contracts/asset/AssetManager.sol::AssetManager.debtWriteOff(address,uint256)
+ writer effect     -> contracts/asset/AssetManager.sol:276
+ written member    -> ('MS', 'contracts/asset/AssetManager.sol', 'AssetManager.totalPrincipal', '$arg0')
+ potentially stale -> ('MS', 'contracts/asset/AssetManager.sol', 'AssetManager.balances', '$arg0][$arg1')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 780334e7da54b835170c] {_initialized, _initializing}
+ writer root       -> contracts/tests/FaucetERC20.sol::FaucetERC20.__FaucetERC20_init(string,string)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:43
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 792869daf66926926cf5] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:511
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 7939909a90c9d3b5b35f] {_initialized, _initializing}
+ writer root       -> contracts/asset/CompoundAdapter.sol::CompoundAdapter.__CompoundAdapter_init(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:43
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7aad246770773e351813] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.exchangeRateCurrent()
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 7af13044c81ae8e10687] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowWithPermit(address,uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 7b1873b386579daed71f] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.setMaxBorrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:178
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 7b4fab1db2ae6b794c65] {tokens, uTokenList[@local::contracts/market/MarketRegistry.sol::MarketRegistry.deleteMarket(address)::LocalVariable::i_2]}
+ writer root       -> contracts/market/MarketRegistry.sol::MarketRegistry.addUserManager(address,address)
+ writer effect     -> contracts/market/MarketRegistry.sol:61
+ written member    -> ('SV', 'contracts/market/MarketRegistry.sol', 'MarketRegistry.tokens')
+ potentially stale -> ('MS', 'contracts/market/MarketRegistry.sol', 'MarketRegistry.uTokenList', '@local::contracts/market/MarketRegistry.sol::MarketRegistry.deleteMarket(address)::LocalVariable::i_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7cde105227440a1e9ef7] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowWithPermit(address,uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/market/UToken.sol:499
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 7fe9c9fc22327e511562] {totalFrozen, totalStaked}
+ writer root       -> contracts/user/UserManager.sol::UserManager.updateTotalFrozen(address,bool)
+ writer effect     -> contracts/user/UserManager.sol:775
+ written member    -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalFrozen')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalStaked')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 804bc8f3c1c0ac3ef9ce] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.mint(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 805c18fd48fab974e413] {_roles[$arg1], uToken}
+ writer root       -> contracts/Controller.sol::Controller.renounceAdmin()
+ writer effect     -> @openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:215
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol', 'AccessControlUpgradeable._roles', '$arg1')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.uToken')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 80845ae10b476af5fc3c] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.__UToken_init(IUErc20,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/market/UToken.sol:134
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 81945ace5c716015af73] {_initialized, _initializing}
+ writer root       -> contracts/market/UToken.sol::UToken.__UToken_init(IUErc20,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:43
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 82655922174b7f7ca1f1] {balances[$arg0][$arg1], totalPrincipal[$arg0]}
+ writer root       -> contracts/asset/AssetManager.sol::AssetManager.deposit(address,uint256)
+ writer effect     -> contracts/asset/AssetManager.sol:177
+ written member    -> ('MS', 'contracts/asset/AssetManager.sol', 'AssetManager.totalPrincipal', '$arg0')
+ potentially stale -> ('MS', 'contracts/asset/AssetManager.sol', 'AssetManager.balances', '$arg0][$arg1')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 82ff66de94e1b8326790] {members[$arg0], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.updateTrust(address,uint256)
+ writer effect     -> contracts/user/UserManager.sol:459
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg0')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 843c1f46e3c7f3c41995] {_initialized, _initializing}
+ writer root       -> contracts/market/MarketRegistry.sol::MarketRegistry.__MarketRegistry_init()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:36
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 85ba820bd88330624ba5] {_initialized, _initializing}
+ writer root       -> contracts/tests/CompoundMock.sol::CompoundMock.__CompoundMock_init(uint256,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:43
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 85d1b2d72cca3f0ad602] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.redeem(uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 138
+ storage exposures -> 1
+[MV-SI candidate 870b29b26525b10f03d0] {tokens, userManagerList[@local::contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)::LocalVariable::i_scope_0_2]}
+ writer root       -> contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.addUserManager(address,address)
+ writer effect     -> contracts/tests/MarketRegistryMock.sol:25
+ written member    -> ('SV', 'contracts/tests/MarketRegistryMock.sol', 'MarketRegistryMock.tokens')
+ potentially stale -> ('MS', 'contracts/tests/MarketRegistryMock.sol', 'MarketRegistryMock.userManagerList', '@local::contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)::LocalVariable::i_scope_0_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 8b71c217e517c670e0c1] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowBehalf(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:511
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 8be5f59036251641d775] {_initialized, _initializing}
+ writer root       -> contracts/asset/AaveAdapter.sol::AaveAdapter.__AaveAdapter_init(address,LendingPool)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 8c3c0feb72d38e0ed259] {_initialized, _initializing}
+ writer root       -> contracts/token/Comptroller.sol::Comptroller.__Comptroller_init(address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 90802c3cbf29cdb25ce2] {members[$arg1], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.updateTrust(address,uint256)
+ writer effect     -> contracts/user/UserManager.sol:459
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 90b903e6cdd548ce208e] {members[$arg1], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.stake(uint256)
+ writer effect     -> contracts/user/UserManager.sol:616
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 915ad4d1ce5159a0e0c3] {_initialized, _initializing}
+ writer root       -> contracts/tests/FaucetERC20.sol::FaucetERC20.__FaucetERC20_init(string,string)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 915d3f30dd420d2aa16e] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.exchangeRateCurrent()
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 136
+ storage exposures -> 1
+[MV-SI candidate 9236912d3655a5d3c169] {members[$arg1], stakers[$arg0], stakers[$sender]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.unstake(uint256)
+ writer effect     -> contracts/user/UserManager.sol:664
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0'), ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$sender')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 9297aeb6c413293b6dc0] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowBehalf(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:493
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 9486f024920409d5f093] {_initialized, _initializing}
+ writer root       -> contracts/tests/UTokenMock.sol::UTokenMock.__UToken_init()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:36
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 94cf419eb1c08cb64f38] {tokens, userManagerList[@local::contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)::LocalVariable::i_scope_0_2]}
+ writer root       -> contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)
+ writer effect     -> contracts/tests/MarketRegistryMock.sol:45
+ written member    -> ('SV', 'contracts/tests/MarketRegistryMock.sol', 'MarketRegistryMock.tokens')
+ potentially stale -> ('MS', 'contracts/tests/MarketRegistryMock.sol', 'MarketRegistryMock.userManagerList', '@local::contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)::LocalVariable::i_scope_0_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 95a1bc636ac17ebecdf7] {initialExchangeRateMantissa, totalRedeemable}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowBehalf(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:508
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalRedeemable')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.initialExchangeRateMantissa')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 95e1875606c08eb95b9e] {_initialized, _initializing}
+ writer root       -> contracts/tests/UTokenMock.sol::UTokenMock.__UToken_init()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:43
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 96929ef35938b9bbf694] {gInflationIndex, users}
+ writer root       -> contracts/token/Comptroller.sol::Comptroller.updateTotalStaked(address,uint256)
+ writer effect     -> contracts/token/Comptroller.sol:198
+ written member    -> ('SV', 'contracts/token/Comptroller.sol', 'Comptroller.gInflationIndex')
+ potentially stale -> ('SV', 'contracts/token/Comptroller.sol', 'Comptroller.users')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 97b2744386b9375d4252] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.removeReserves(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 136
+ storage exposures -> 1
+[MV-SI candidate 97b4f6db3f8262d0fee6] {tokens, uTokenList[@local::contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)::LocalVariable::i_2]}
+ writer root       -> contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)
+ writer effect     -> contracts/tests/MarketRegistryMock.sol:45
+ written member    -> ('SV', 'contracts/tests/MarketRegistryMock.sol', 'MarketRegistryMock.tokens')
+ potentially stale -> ('MS', 'contracts/tests/MarketRegistryMock.sol', 'MarketRegistryMock.uTokenList', '@local::contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)::LocalVariable::i_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 990c4605e9fbd2273519] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.accrueInterest()
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 9a3db361ed119bea7c5c] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.mint(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 9aa62519bd0be859d739] {memberFrozen[$arg0], totalFrozen}
+ writer root       -> contracts/user/UserManager.sol::UserManager.batchUpdateTotalFrozen(address[],bool[])
+ writer effect     -> contracts/user/UserManager.sol:778
+ written member    -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalFrozen')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.memberFrozen', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 9aa980f320f317bbc6f9] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.setOriginationFee(uint256)
+ writer effect     -> contracts/market/UToken.sol:151
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow')
+ reader witnesses  -> 52
+ storage exposures -> 1
+[MV-SI candidate 9bc8310e482c9f9c2ded] {_initialized, _initializing}
+ writer root       -> contracts/Controller.sol::Controller.__Controller_init(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 18
+ storage exposures -> 9
+[MV-SI candidate 9bca56115ab05db559c6] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.addReserves(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 9ca69d244e46ea2769df] {accountBorrows[$arg0], borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.exchangeRateCurrent()
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 9f7bb3430cb5012d895a] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowBehalf(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:557
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate a35048464c51ebcc4e98] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.balanceOfUnderlying(address)
+ writer effect     -> contracts/market/UToken.sol:557
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate a4b76c283ef13a5f2390] {memberFrozen[$arg0], totalFrozen}
+ writer root       -> contracts/user/UserManager.sol::UserManager.batchUpdateTotalFrozen(address[],bool[])
+ writer effect     -> contracts/user/UserManager.sol:786
+ written member    -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalFrozen')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.memberFrozen', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate a87ff02b691168a02063] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.exchangeRateCurrent()
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate a900b3fb3f26cb86d812] {_initialized, _initializing}
+ writer root       -> contracts/Controller.sol::Controller.__Controller_init(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:43
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 9
+ storage exposures -> 9
+[MV-SI candidate a93dd549e92d7ba100b4] {initialExchangeRateMantissa, totalRedeemable}
+ writer root       -> contracts/market/UToken.sol::UToken.mint(uint256)
+ writer effect     -> contracts/market/UToken.sol:581
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalRedeemable')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.initialExchangeRateMantissa')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate aa2b5b14ace2577a5a29] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.removeReserves(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate ab8a247b335255d79af4] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:512
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate ac06a90ab798f95f51ed] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.redeemUnderlying(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate ad2e86a79e684a60e439] {_initialized, _initializing}
+ writer root       -> contracts/tests/AssetManagerMock.sol::AssetManagerMock.__AssetManager_init()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:36
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ad355ca1b86e5be5858d] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.removeReserves(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:557
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate af6dd5a32133e497a09d] {_initialized, _initializing}
+ writer root       -> contracts/tests/AaveMock.sol::AaveMock.__AaveMock_init(uint128,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:43
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b330919efc43d1737ce5] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.removeReserves(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate b400bc6521e16351253e] {_initialized, _initializing}
+ writer root       -> contracts/token/Comptroller.sol::Comptroller.__Comptroller_init(address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:36
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b4f7cedb728f463511f1] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.mint(uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 138
+ storage exposures -> 1
+[MV-SI candidate b5a19a92459872c2a980] {initialExchangeRateMantissa, totalRedeemable}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:508
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalRedeemable')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.initialExchangeRateMantissa')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate b67a640df40295e5f943] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.mint(uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate b73ba583bce7948fd4bf] {members[$arg1], stakers[$arg0], stakers[$sender]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.updateLockedData(address,uint256,bool)
+ writer effect     -> contracts/user/UserManager.sol:594
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0'), ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$sender')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate b7c6e4a749a9295d7512] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:504
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate b8163ff471d29e6422c3] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.debtWriteOff(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:709
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate b82e3c46fda5cb6a8b83] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.accrueInterest()
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 138
+ storage exposures -> 1
+[MV-SI candidate b9c45e48e95554e9af0f] {_roles[$arg1], uToken}
+ writer root       -> contracts/Controller.sol::Controller.addAdmin(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:208
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol', 'AccessControlUpgradeable._roles', '$arg1')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.uToken')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate ba4beee858f2e800c233] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.redeemUnderlying(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate bd33a0558797d6329a4b] {_initialized, _initializing}
+ writer root       -> contracts/asset/AssetManager.sol::AssetManager.__AssetManager_init(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c00fced77e3a2b9a658e] {_roles[$arg1], uToken}
+ writer root       -> contracts/Controller.sol::Controller.__Controller_init(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:208
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol', 'AccessControlUpgradeable._roles', '$arg1')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.uToken')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c085ee680f15ccdec6e6] {totalFrozen, totalStaked}
+ writer root       -> contracts/user/UserManager.sol::UserManager.batchUpdateTotalFrozen(address[],bool[])
+ writer effect     -> contracts/user/UserManager.sol:775
+ written member    -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalFrozen')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalStaked')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate c29734fd4d4bbe7befcb] {_initialized, _initializing}
+ writer root       -> contracts/tests/FaucetERC20.sol::FaucetERC20.__FaucetERC20_init(string,string)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:36
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c334a245cfa7af80bdb2] {tokens, uTokenList[@local::contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)::LocalVariable::i_2]}
+ writer root       -> contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.addUserManager(address,address)
+ writer effect     -> contracts/tests/MarketRegistryMock.sol:25
+ written member    -> ('SV', 'contracts/tests/MarketRegistryMock.sol', 'MarketRegistryMock.tokens')
+ potentially stale -> ('MS', 'contracts/tests/MarketRegistryMock.sol', 'MarketRegistryMock.uTokenList', '@local::contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)::LocalVariable::i_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c4a6fa38961255019ab0] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.mint(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 136
+ storage exposures -> 1
+[MV-SI candidate c659068274d15444353f] {members[$arg1], stakers[$arg0], stakers[$sender]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.stakeWithPermit(uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/user/UserManager.sol:616
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0'), ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$sender')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c6fb9253811514344098] {_initialized, _initializing}
+ writer root       -> contracts/asset/AaveAdapter.sol::AaveAdapter.__AaveAdapter_init(address,LendingPool)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:43
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c8bc72c09ab772aa693d] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowWithPermit(address,uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/market/UToken.sol:512
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate cbe36a96fa54a636be36] {members[$arg0], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.unstake(uint256)
+ writer effect     -> contracts/user/UserManager.sol:664
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate d038b41b0a750207125c] {_initialized, _initializing}
+ writer root       -> contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.__MarketRegistryMock_init()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:43
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d05bcecda965e2826dc8] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.removeReserves(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate d1d2d4d81836d5518ad1] {totalFrozen, totalStaked}
+ writer root       -> contracts/user/UserManager.sol::UserManager.updateTotalFrozen(address,bool)
+ writer effect     -> contracts/user/UserManager.sol:788
+ written member    -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalFrozen')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalStaked')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate d239b4a44f99a45a16cd] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.borrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate d28fb59acd64488b70ed] {initialExchangeRateMantissa, totalRedeemable}
+ writer root       -> contracts/market/UToken.sol::UToken.__UToken_init(IUErc20,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/market/UToken.sol:131
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.initialExchangeRateMantissa')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalRedeemable')
+ reader witnesses  -> 42
+ storage exposures -> 1
+[MV-SI candidate d35bea2e3a771d21a898] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.balanceOfUnderlying(address)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate d418d8fb82129efe4d44] {_initialized, _initializing}
+ writer root       -> contracts/tests/CompoundAdapterMock.sol::CompoundAdapterMock.__CompoundAdapterMock_init()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate d6bfb102ab0d46eb87d3] {members[$arg0], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.debtWriteOff(address,uint256)
+ writer effect     -> contracts/user/UserManager.sol:727
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg0')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate d8c0e5445119b66f8b76] {balances[$arg0][$arg1], totalPrincipal[$arg0]}
+ writer root       -> contracts/asset/AssetManager.sol::AssetManager.deposit(address,uint256)
+ writer effect     -> contracts/asset/AssetManager.sol:176
+ written member    -> ('MS', 'contracts/asset/AssetManager.sol', 'AssetManager.balances', '$arg0][$arg1')
+ potentially stale -> ('MS', 'contracts/asset/AssetManager.sol', 'AssetManager.totalPrincipal', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate dad37be520b79476c3de] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.removeReserves(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 138
+ storage exposures -> 1
+[MV-SI candidate db351800fe1161856ecf] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate db60be9843ade1b803fd] {members[$arg1], stakers[$arg0]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.stakeWithPermit(uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/user/UserManager.sol:616
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate dc3f4e903293017d763f] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.__UToken_init(IUErc20,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/market/UToken.sol:133
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate ddad9f7b8a93a78c83aa] {tokens, userManagerList[@local::contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)::LocalVariable::i_scope_0_2]}
+ writer root       -> contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.addUToken(address,address)
+ writer effect     -> contracts/tests/MarketRegistryMock.sol:20
+ written member    -> ('SV', 'contracts/tests/MarketRegistryMock.sol', 'MarketRegistryMock.tokens')
+ potentially stale -> ('MS', 'contracts/tests/MarketRegistryMock.sol', 'MarketRegistryMock.userManagerList', '@local::contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)::LocalVariable::i_scope_0_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ddf495af885733f54a7c] {totalFrozen, totalStaked}
+ writer root       -> contracts/user/UserManager.sol::UserManager.batchUpdateTotalFrozen(address[],bool[])
+ writer effect     -> contracts/user/UserManager.sol:786
+ written member    -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalFrozen')
+ potentially stale -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalStaked')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate de4150a494368dd29d63] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.redeemUnderlying(uint256)
+ writer effect     -> contracts/market/UToken.sol:557
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate df77dbf0720ef1eab675] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:492
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate dfa83a512bfadfc51ef9] {_initialized, _initializing}
+ writer root       -> contracts/tests/UTokenMock.sol::UTokenMock.__UToken_init()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e0f01c8e4587e6df1218] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.redeem(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 136
+ storage exposures -> 1
+[MV-SI candidate e196e083287df76860ca] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.borrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate e317651d469afc434067] {members[$arg1], stakers[$arg0], stakers[$sender]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.debtWriteOff(address,uint256)
+ writer effect     -> contracts/user/UserManager.sol:724
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0'), ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$sender')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate e5ab72b1e50da5936b6c] {tokens, uTokenList[@local::contracts/market/MarketRegistry.sol::MarketRegistry.deleteMarket(address)::LocalVariable::i_2]}
+ writer root       -> contracts/market/MarketRegistry.sol::MarketRegistry.addUToken(address,address)
+ writer effect     -> contracts/market/MarketRegistry.sol:55
+ written member    -> ('SV', 'contracts/market/MarketRegistry.sol', 'MarketRegistry.tokens')
+ potentially stale -> ('MS', 'contracts/market/MarketRegistry.sol', 'MarketRegistry.uTokenList', '@local::contracts/market/MarketRegistry.sol::MarketRegistry.deleteMarket(address)::LocalVariable::i_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e60046aa36184319ac7f] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex, maxBorrow, originationFee}
+ writer root       -> contracts/market/UToken.sol::UToken.addReserves(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.maxBorrow'), ('SV', 'contracts/market/UToken.sol', 'UToken.originationFee')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate e638c7d2f1fb80908569] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.debtWriteOff(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:709
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 86
+ storage exposures -> 1
+[MV-SI candidate e6e401b02617aa6efc30] {_initialized, _initializing}
+ writer root       -> contracts/asset/AssetManager.sol::AssetManager.__AssetManager_init(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:43
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e85f41c1620083b1eae8] {_initialized, _initializing}
+ writer root       -> contracts/market/MarketRegistry.sol::MarketRegistry.__MarketRegistry_init()
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:43
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e91317c7ffeee0a5b3c3] {tokens, userManagerList[@local::contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)::LocalVariable::i_scope_0_2]}
+ writer root       -> contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)
+ writer effect     -> contracts/tests/MarketRegistryMock.sol:63
+ written member    -> ('SV', 'contracts/tests/MarketRegistryMock.sol', 'MarketRegistryMock.tokens')
+ potentially stale -> ('MS', 'contracts/tests/MarketRegistryMock.sol', 'MarketRegistryMock.userManagerList', '@local::contracts/tests/MarketRegistryMock.sol::MarketRegistryMock.deleteMarket(address)::LocalVariable::i_scope_0_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e918a104a4582dd05bef] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowWithPermit(address,uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/market/UToken.sol:493
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate e9e4616e611754193037] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:497
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate eab29f9f9700cedcf17d] {_initialized, _initializing}
+ writer root       -> contracts/asset/PureTokenAdapter.sol::PureTokenAdapter.__PureTokenAdapter_init(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate eb376e8370202063cd21] {_initialized, _initializing}
+ writer root       -> contracts/asset/CompoundAdapter.sol::CompoundAdapter.__CompoundAdapter_init(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:36
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate eea12c07439b760f943f] {memberFrozen[$arg0], totalFrozen}
+ writer root       -> contracts/user/UserManager.sol::UserManager.batchUpdateTotalFrozen(address[],bool[])
+ writer effect     -> contracts/user/UserManager.sol:775
+ written member    -> ('SV', 'contracts/user/UserManager.sol', 'UserManager.totalFrozen')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.memberFrozen', '$arg0')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate eef71fb6e7c84ef55bd3] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowBehalf(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate eff59b5dcefaf3e05bfb] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.exchangeRateCurrent()
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate f0d0819a1a1d2d6f447e] {accountBorrows, accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.__UToken_init(IUErc20,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/market/UToken.sol:133
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 138
+ storage exposures -> 1
+[MV-SI candidate f0efe606281010d6ff23] {accountBorrows[$arg0], borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.mint(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate f23e6410a39dea9012f2] {_initialized, _initializing}
+ writer root       -> contracts/token/Comptroller.sol::Comptroller.__Comptroller_init(address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:43
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f35a7d6b24e590ee71a4] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowWithPermit(address,uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate f542b591f50e5a6908d1] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.accrueInterest()
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate f61c7d3a9ab7a28d63c7] {members[$arg1], stakers[$arg0], stakers[$sender]}
+ writer root       -> contracts/user/UserManager.sol::UserManager.debtWriteOff(address,uint256)
+ writer effect     -> contracts/user/UserManager.sol:728
+ written member    -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.members', '$arg1')
+ potentially stale -> ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$arg0'), ('MS', 'contracts/user/UserManager.sol', 'UserManager.stakers', '$sender')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate f625044e49fba4d25865] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.accrueInterest()
+ writer effect     -> contracts/market/UToken.sol:557
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate f726f59de4d65ac08abb] {debtCeiling, totalBorrows}
+ writer root       -> contracts/market/UToken.sol::UToken.mint(uint256)
+ writer effect     -> contracts/market/UToken.sol:557
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalBorrows')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.debtCeiling')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate f87306214a98e3886c6e] {accountBorrows, overdueBlocks}
+ writer root       -> contracts/market/UToken.sol::UToken.__UToken_init(IUErc20,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/market/UToken.sol:130
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.overdueBlocks')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.accountBorrows')
+ reader witnesses  -> 245
+ storage exposures -> 1
+[MV-SI candidate f886735e427b2887d25a] {accountBorrows[$arg0], borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowWithPermit(address,uint256,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate f8de60179ca9b0be2dea] {initialExchangeRateMantissa, totalRedeemable}
+ writer root       -> contracts/market/UToken.sol::UToken.redeem(uint256)
+ writer effect     -> contracts/market/UToken.sol:653
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.totalRedeemable')
+ potentially stale -> ('SV', 'contracts/market/UToken.sol', 'UToken.initialExchangeRateMantissa')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate fa1eb62470f252cf32f1] {accountBorrows[$arg0], borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate fafae98da107b919a50b] {accountBorrows[$arg0], borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.accrueInterest()
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate fc79ed97c1ffd1973f16] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.__UToken_init(IUErc20,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/market/UToken.sol:133
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate fd18a6e2b43f9479ba5e] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrowBehalf(address,uint256)
+ writer effect     -> contracts/market/UToken.sol:556
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate ff23b62746a5c3bcacad] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.repayBorrow(uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate ff63638a7b9330cf8ca7] {accountBorrows[$arg0], accrualBlockNumber, borrowIndex}
+ writer root       -> contracts/market/UToken.sol::UToken.redeem(uint256)
+ writer effect     -> contracts/market/UToken.sol:555
+ written member    -> ('SV', 'contracts/market/UToken.sol', 'UToken.accrualBlockNumber')
+ potentially stale -> ('MS', 'contracts/market/UToken.sol', 'UToken.accountBorrows', '$arg0'), ('SV', 'contracts/market/UToken.sol', 'UToken.borrowIndex')
+ reader witnesses  -> 32
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=10 vars=2
+[mvscan-stage] root-seeding-done eligible_exposures=1 seeded=1 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=adcf9d9c1c84b046680de5228732d2e3b7d0b040a6f7c92dc8ac46b7fa563a24 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_origins_rejected_unreachable=2 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=1 storage_context_mismatch=0 variables_considered=1
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=93 vars=2
+[mvscan-stage] root-seeding-done eligible_exposures=1 seeded=1 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=d7883c1803c88c7242f39d32149f710de28876633fda76b330fd7f79c83b0510 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=9f014ee6bbc6d276f8b69106869a28267884caf5386544cb9b5dd2b91b754c60 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=1 storage_context_mismatch=0 variables_considered=1
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=49 vars=8
+[mvscan-stage] root-seeding-done eligible_exposures=21 seeded=21 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=c4dda33b188eca5f2f233505cad0a8fee65aec879fcc60c36056886367439185 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_origins_rejected_unreachable=5 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=6 storage_context_mismatch=0 variables_considered=6
+INFO:Slither:. analyzed (103 contracts with 1 detectors), 258 result(s) found

@@ -1,0 +1,962 @@
+'/tmp/.svm/0.8.15/solc-0.8.15 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: Unreachable code.
+  --> modules/VOTES.sol:47:9:
+   |
+47 |         return true;
+   |         ^^^^^^^^^^^
+
+
+Warning: Warning: Unreachable code.
+  --> src/modules/VOTES.sol:47:9:
+   |
+47 |         return true;
+   |         ^^^^^^^^^^^
+
+
+Warning: Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> modules/VOTES.sol:45:23:
+   |
+45 |     function transfer(address to_, uint256 amount_) public pure override returns (bool) {
+   |                       ^^^^^^^^^^^
+
+
+Warning: Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> modules/VOTES.sol:45:36:
+   |
+45 |     function transfer(address to_, uint256 amount_) public pure override returns (bool) {
+   |                                    ^^^^^^^^^^^^^^^
+
+
+Warning: Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> src/modules/VOTES.sol:45:23:
+   |
+45 |     function transfer(address to_, uint256 amount_) public pure override returns (bool) {
+   |                       ^^^^^^^^^^^
+
+
+Warning: Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> src/modules/VOTES.sol:45:36:
+   |
+45 |     function transfer(address to_, uint256 amount_) public pure override returns (bool) {
+   |                                    ^^^^^^^^^^^^^^^
+
+
+Warning: Warning: Contract code size is 35776 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> policies/Operator.sol:30:1:
+   |
+30 | contract Operator is IOperator, Policy, ReentrancyGuard {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 35776 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> src/policies/Operator.sol:30:1:
+   |
+30 | contract Operator is IOperator, Policy, ReentrancyGuard {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=2438 vars=179
+[mvscan-stage] root-seeding-done eligible_exposures=157 seeded=118 multi_exposure_entry_blocks=5 collapsed_contextual_aliases=39 excluded_dependency=0 excluded_interface=80 excluded_library=0 excluded_abstract=22 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=6dc5b33ebae25bc2a3976a5bf2ef40c230975ebba99505da5943b2d5b2987817 candidate_count=128 candidate_digest=dd944f4d14ea68174d402b4c789b4114c1f590e3c33c0a7386fa48b0d17dd7e6 context_instance_count=1530 eligible_readers=436 eligible_writers=437 execution_context_digest=fc9c23fc54e4bd165aabb29ed5f9548056203728056cfe4cd20d07e7bd65282a insensitive_readers_filtered=859 invalid_partial_write_filtered=0 must_full_relation_filtered=23 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=482 owner_context_pairs=4134 owner_context_pairs_considered=246684 raw_block_pairs=12805 reader_witness_count=4134 relation_base_members_shadowed=32 relation_context_incompatible=179808 relation_digest=4a302df85265a0a280a1b04d15148a51d6a0295ee57c50db36f1f3316f7c372c relation_members_raw=204 relation_origins_registered=22 relation_origins_rejected_unary_after_shadowing=99 relation_origins_seen=121 relation_unbound_key_templates=34 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=121 scalar_variables_skipped=126 storage_context_mismatch=62237 variables_considered=148
+INFO:Detectors:
+
+[MV-SI candidate 0388f1f6a5e7935496d7] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.setCushionParams(uint32,uint32,uint32)
+ writer effect     -> src/policies/Operator.sol:541
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 04b03c5c206bf6c4cc7e] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.operate()
+ writer effect     -> policies/Operator.sol:678
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 051ae968524d345c8420] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> src/policies/PriceConfig.sol::OlympusPriceConfig.changeObservationFrequency(uint48)
+ writer effect     -> modules/PRICE.sol:287
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate 059849a2e5493f38ebc0] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.operate()
+ writer effect     -> policies/Operator.sol:705
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 0898d443b034ccf333e4] {nextObsIndex, observations[@state::modules/PRICE.sol::OlympusPrice.nextObsIndex]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.changeMovingAverageDuration(uint48)
+ writer effect     -> modules/PRICE.sol:255
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@state::modules/PRICE.sol::OlympusPrice.nextObsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 0a72278dec688d5f94ab] {_range, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.changeMovingAverageDuration(uint48)
+ writer effect     -> modules/PRICE.sol:257
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex'), ('SV', 'modules/RANGE.sol', 'OlympusRange._range')
+ reader witnesses  -> 80
+ storage exposures -> 1
+[MV-SI candidate 0e71f9e5591e2d45164c] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.initialize()
+ writer effect     -> policies/Operator.sol:718
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 0f95e08bf78adce20b70] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.changeMovingAverageDuration(uint48)
+ writer effect     -> modules/PRICE.sol:254
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate 10007db908bc7fbc5758] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.operate()
+ writer effect     -> policies/Operator.sol:717
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 115499b443b16d21c0a1] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.changeMovingAverageDuration(uint48)
+ writer effect     -> modules/PRICE.sol:257
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ reader witnesses  -> 80
+ storage exposures -> 1
+[MV-SI candidate 11eff8228dc9d265d1da] {_range, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.updateMovingAverage()
+ writer effect     -> modules/PRICE.sol:144
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations'), ('SV', 'modules/RANGE.sol', 'OlympusRange._range')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 14ce53694fd04b7b2ccf] {_range, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> src/policies/Heart.sol::OlympusHeart.beat()
+ writer effect     -> modules/PRICE.sol:144
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations'), ('SV', 'modules/RANGE.sol', 'OlympusRange._range')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 157e64666b2f69eb62a4] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.regenerate(bool)
+ writer effect     -> policies/Operator.sol:708
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 183892a0c15aae9531af] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.initialize()
+ writer effect     -> policies/Operator.sol:707
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 1b359af851702123e58d] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.regenerate(bool)
+ writer effect     -> src/policies/Operator.sol:717
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 1ebdf3324a5d4c08994a] {nextObsIndex, observations[@state::modules/PRICE.sol::OlympusPrice.nextObsIndex]}
+ writer root       -> src/policies/PriceConfig.sol::OlympusPriceConfig.changeMovingAverageDuration(uint48)
+ writer effect     -> modules/PRICE.sol:255
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@state::modules/PRICE.sol::OlympusPrice.nextObsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 1fbfed696e961f93a054] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.operate()
+ writer effect     -> src/policies/Operator.sol:691
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 1fe35ae14e31a3f6e6b5] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.operate()
+ writer effect     -> policies/Operator.sol:670
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 211820699789d83dee2f] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.operate()
+ writer effect     -> src/policies/Operator.sol:670
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 23e77d7fcae3c1d95103] {nextObsIndex, observations[@state::src/modules/PRICE.sol::OlympusPrice.nextObsIndex]}
+ writer root       -> src/modules/PRICE.sol::OlympusPrice.changeObservationFrequency(uint48)
+ writer effect     -> src/modules/PRICE.sol:287
+ written member    -> ('SV', 'src/modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'src/modules/PRICE.sol', 'OlympusPrice.observations', '@state::src/modules/PRICE.sol::OlympusPrice.nextObsIndex')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 2482126f90260e443425] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.regenerate(bool)
+ writer effect     -> src/policies/Operator.sol:718
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 275bfedba27bac00bd03] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.changeObservationFrequency(uint48)
+ writer effect     -> modules/PRICE.sol:286
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate 2fe788e52e09758a5332] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.operate()
+ writer effect     -> src/policies/Operator.sol:686
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 311a3548ac39f250a00d] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.regenerate(bool)
+ writer effect     -> src/policies/Operator.sol:719
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 3164d8fb5551bb47a239] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.operate()
+ writer effect     -> policies/Operator.sol:706
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 32776b82d95e84ffab70] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.initialize()
+ writer effect     -> policies/Operator.sol:708
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 33c4f4c7500d0d3d3417] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.initialize()
+ writer effect     -> policies/Operator.sol:720
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 353cdd12bcb25721c1ba] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> src/policies/PriceConfig.sol::OlympusPriceConfig.changeObservationFrequency(uint48)
+ writer effect     -> modules/PRICE.sol:286
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate 3a73cbf4c9042b463c36] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.regenerate(bool)
+ writer effect     -> policies/Operator.sol:720
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 3b08dfb87eb33386b374] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.updateMovingAverage()
+ writer effect     -> modules/PRICE.sol:138
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate 3d2586366d8737a8767d] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.operate()
+ writer effect     -> policies/Operator.sol:675
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 3de39d1b58e9c7270fdd] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.setCushionParams(uint32,uint32,uint32)
+ writer effect     -> policies/Operator.sol:540
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._config')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._status')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 406598e9822b46f627e0] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.regenerate(bool)
+ writer effect     -> src/policies/Operator.sol:705
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 41a76ae4933254f3ce11] {_range, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.changeObservationFrequency(uint48)
+ writer effect     -> modules/PRICE.sol:289
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex'), ('SV', 'modules/RANGE.sol', 'OlympusRange._range')
+ reader witnesses  -> 80
+ storage exposures -> 1
+[MV-SI candidate 42f43ef2bc302a4ac8fd] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.initialize()
+ writer effect     -> policies/Operator.sol:705
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 43b893ee9405ea2093c1] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.setReserveFactor(uint32)
+ writer effect     -> src/policies/Operator.sol:553
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 440f718a2b8a462a3295] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.operate()
+ writer effect     -> src/policies/Operator.sol:718
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 45e27a6aaf1d48278d16] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> src/policies/PriceConfig.sol::OlympusPriceConfig.initialize(uint256[],uint48)
+ writer effect     -> modules/PRICE.sol:230
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate 497b9a9a6a1966ac1b30] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.operate()
+ writer effect     -> src/policies/Operator.sol:675
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 4d148b2b9f729650b17f] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.operate()
+ writer effect     -> policies/Operator.sol:719
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 4d8ca02ac218b787067b] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.initialize()
+ writer effect     -> src/policies/Operator.sol:720
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 4f34ee0343ca3152a4bf] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.setCushionFactor(uint32)
+ writer effect     -> policies/Operator.sol:521
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._config')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._status')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 50bbc84ae932ddde61af] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.initialize()
+ writer effect     -> src/policies/Operator.sol:708
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 542bae8a0eb572ab0321] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.operate()
+ writer effect     -> src/policies/Operator.sol:717
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 55ae63cec16c8d1d77bd] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> src/policies/PriceConfig.sol::OlympusPriceConfig.changeMovingAverageDuration(uint48)
+ writer effect     -> modules/PRICE.sol:257
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ reader witnesses  -> 80
+ storage exposures -> 1
+[MV-SI candidate 5d74720b3f08d2953421] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> policies/Operator.sol:578
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 5e61feba0a34ef0aac38] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> src/policies/PriceConfig.sol::OlympusPriceConfig.changeMovingAverageDuration(uint48)
+ writer effect     -> modules/PRICE.sol:254
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate 60ceb069f8aed7360dd3] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.initialize()
+ writer effect     -> src/policies/Operator.sol:705
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 6688383ae7b358fb09b0] {nextObsIndex, observations[@state::src/modules/PRICE.sol::OlympusPrice.nextObsIndex]}
+ writer root       -> src/modules/PRICE.sol::OlympusPrice.changeMovingAverageDuration(uint48)
+ writer effect     -> src/modules/PRICE.sol:255
+ written member    -> ('SV', 'src/modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'src/modules/PRICE.sol', 'OlympusPrice.observations', '@state::src/modules/PRICE.sol::OlympusPrice.nextObsIndex')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 693b4383c07335aedc8c] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.initialize()
+ writer effect     -> policies/Operator.sol:719
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 69d56929a27d1534328d] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> src/policies/Operator.sol:578
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 6b20c8ff6283b4436025] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> src/policies/PriceConfig.sol::OlympusPriceConfig.changeObservationFrequency(uint48)
+ writer effect     -> modules/PRICE.sol:289
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ reader witnesses  -> 80
+ storage exposures -> 1
+[MV-SI candidate 6c8047b41fceda29e63a] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.operate()
+ writer effect     -> policies/Operator.sol:708
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 6c8c76d1969184764c0b] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.operate()
+ writer effect     -> policies/Operator.sol:694
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 6d40425093245f1428fa] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> src/policies/Operator.sol:570
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 7002df4f869ea4043e48] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.setCushionParams(uint32,uint32,uint32)
+ writer effect     -> src/policies/Operator.sol:542
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 70b7325f5f53d760b066] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.operate()
+ writer effect     -> src/policies/Operator.sol:678
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 71cf538e47f4a69998db] {nextObsIndex, observations[@state::modules/PRICE.sol::OlympusPrice.nextObsIndex]}
+ writer root       -> src/policies/PriceConfig.sol::OlympusPriceConfig.changeObservationFrequency(uint48)
+ writer effect     -> modules/PRICE.sol:287
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@state::modules/PRICE.sol::OlympusPrice.nextObsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 77fff718631278527e0e] {activeProposal, userVotesForProposal[@local::src/policies/Governance.sol::OlympusGovernance.vote(bool)::ReferenceVariable::REF_1054][$sender]}
+ writer root       -> src/policies/Governance.sol::OlympusGovernance.activateProposal(uint256)
+ writer effect     -> src/policies/Governance.sol:231
+ written member    -> ('SV', 'src/policies/Governance.sol', 'OlympusGovernance.activeProposal')
+ potentially stale -> ('MS', 'src/policies/Governance.sol', 'OlympusGovernance.userVotesForProposal', '@local::src/policies/Governance.sol::OlympusGovernance.vote(bool)::ReferenceVariable::REF_1054][$sender')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7911be9b377d07c6cfdf] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> src/policies/Heart.sol::OlympusHeart.beat()
+ writer effect     -> modules/PRICE.sol:138
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate 7941c0fe373e5a00538b] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.updateMovingAverage()
+ writer effect     -> modules/PRICE.sol:144
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate 7d2bcb39ab11f954a2c2] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.operate()
+ writer effect     -> src/policies/Operator.sol:707
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 7e8f3e547a116d685acd] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.setCushionParams(uint32,uint32,uint32)
+ writer effect     -> policies/Operator.sol:542
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._config')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._status')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 7eccd50cf851ff8d6155] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.changeObservationFrequency(uint48)
+ writer effect     -> modules/PRICE.sol:287
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate 8146f83e160a7efd1f94] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.setCushionParams(uint32,uint32,uint32)
+ writer effect     -> src/policies/Operator.sol:540
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 82f147a9a2fd430c2cf7] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.updateMovingAverage()
+ writer effect     -> modules/PRICE.sol:136
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate 879fe9f663c6d43adcd2] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.operate()
+ writer effect     -> policies/Operator.sol:720
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 8b439d6d406d04a71b3b] {_range, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> src/policies/PriceConfig.sol::OlympusPriceConfig.changeObservationFrequency(uint48)
+ writer effect     -> modules/PRICE.sol:289
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex'), ('SV', 'modules/RANGE.sol', 'OlympusRange._range')
+ reader witnesses  -> 80
+ storage exposures -> 1
+[MV-SI candidate 8d60396c46e728eb6001] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.operate()
+ writer effect     -> src/policies/Operator.sol:694
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 8f32a5c1af3d25fd0b0f] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> src/policies/Operator.sol:580
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 924bcda66e16941ee1a9] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.changeMovingAverageDuration(uint48)
+ writer effect     -> modules/PRICE.sol:255
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate 955c861d1f480f579169] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.setCushionParams(uint32,uint32,uint32)
+ writer effect     -> policies/Operator.sol:541
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._config')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._status')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 95a0acf9ce3af06136c2] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.regenerate(bool)
+ writer effect     -> policies/Operator.sol:717
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 96d4da7af3ed26c8196e] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.changeObservationFrequency(uint48)
+ writer effect     -> modules/PRICE.sol:289
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ reader witnesses  -> 80
+ storage exposures -> 1
+[MV-SI candidate 994b8489d315b3a7d2e2] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> src/policies/Heart.sol::OlympusHeart.beat()
+ writer effect     -> modules/PRICE.sol:136
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate 999043a9fa531d5556d3] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> src/policies/Operator.sol:569
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 9c6428365a2dd2529032] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> policies/Operator.sol:579
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate a0b32595bcac3da6a31e] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.operate()
+ writer effect     -> policies/Operator.sol:718
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate a1811b74c54dce9bdeee] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.regenerate(bool)
+ writer effect     -> policies/Operator.sol:705
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate a485b60785d5c31aeb6f] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.operate()
+ writer effect     -> policies/Operator.sol:686
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate a5131489a0e6a2a89395] {_range, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.changeMovingAverageDuration(uint48)
+ writer effect     -> modules/PRICE.sol:255
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations'), ('SV', 'modules/RANGE.sol', 'OlympusRange._range')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate a527197105f683045877] {_range, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> src/policies/PriceConfig.sol::OlympusPriceConfig.changeObservationFrequency(uint48)
+ writer effect     -> modules/PRICE.sol:287
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations'), ('SV', 'modules/RANGE.sol', 'OlympusRange._range')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate adc7892b89a1b4807f28] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.regenerate(bool)
+ writer effect     -> src/policies/Operator.sol:707
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate af83f36dd1e5997c5170] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.initialize()
+ writer effect     -> src/policies/Operator.sol:718
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate b03b26b81f91580f747f] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.operate()
+ writer effect     -> src/policies/Operator.sol:719
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate b3138874e5c3e734992b] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.regenerate(bool)
+ writer effect     -> src/policies/Operator.sol:708
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate b5911f5ccde1c021a3d4] {_range, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> src/policies/PriceConfig.sol::OlympusPriceConfig.changeMovingAverageDuration(uint48)
+ writer effect     -> modules/PRICE.sol:257
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex'), ('SV', 'modules/RANGE.sol', 'OlympusRange._range')
+ reader witnesses  -> 80
+ storage exposures -> 1
+[MV-SI candidate b916ce4dd7bd50ef7c2f] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.operate()
+ writer effect     -> src/policies/Operator.sol:706
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate bab9b8c1591c9b21bb7b] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> policies/Operator.sol:574
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate bd8be420df38bcf48286] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.initialize(uint256[],uint48)
+ writer effect     -> modules/PRICE.sol:230
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ reader witnesses  -> 56
+ storage exposures -> 1
+[MV-SI candidate be7662187df724a074d9] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.initialize()
+ writer effect     -> policies/Operator.sol:717
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate c4c6fe4842a92daa3cf7] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.initialize()
+ writer effect     -> src/policies/Operator.sol:707
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate c86e1c74402b2a3493ea] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.operate()
+ writer effect     -> policies/Operator.sol:707
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate cb3e1d47e6fc84927c9b] {_range, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> src/policies/PriceConfig.sol::OlympusPriceConfig.changeMovingAverageDuration(uint48)
+ writer effect     -> modules/PRICE.sol:255
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations'), ('SV', 'modules/RANGE.sol', 'OlympusRange._range')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate cbd636fbacbcac2cd3ad] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> src/policies/Operator.sol:571
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate cf93fcb61434f2b4b351] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.setReserveFactor(uint32)
+ writer effect     -> policies/Operator.sol:553
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._config')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._status')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate d06a3d1afb66b8f55ce9] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> src/policies/Operator.sol:575
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate d0ad92e6dc750ad8935b] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> src/policies/Operator.sol:576
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate d11b1691b1dd9e98fc06] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.initialize()
+ writer effect     -> src/policies/Operator.sol:717
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate d1c2ab82814f295c599e] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.operate()
+ writer effect     -> policies/Operator.sol:691
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate d501e62288afbfbdeb8f] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.initialize()
+ writer effect     -> src/policies/Operator.sol:719
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate d60f3b88087e9b788cef] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> policies/Operator.sol:571
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._config')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._status')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate d89e096802998f6bedf8] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.regenerate(bool)
+ writer effect     -> policies/Operator.sol:718
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate d9900587e5fff06678f7] {_range, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.changeObservationFrequency(uint48)
+ writer effect     -> modules/PRICE.sol:287
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations'), ('SV', 'modules/RANGE.sol', 'OlympusRange._range')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate db3318d416a92dc61a87] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.initialize()
+ writer effect     -> src/policies/Operator.sol:706
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate db58200920a2f9b93bb0] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.regenerate(bool)
+ writer effect     -> policies/Operator.sol:707
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate dba5ac422ad908aae0b6] {activeProposal, noVotesForProposal[@local::src/policies/Governance.sol::OlympusGovernance.executeProposal()::ReferenceVariable::REF_1068], yesVotesForProposal[@local::src/policies/Governance.sol::OlympusGovernance.executeProposal()::ReferenceVariable::REF_1066]}
+ writer root       -> src/policies/Governance.sol::OlympusGovernance.executeProposal()
+ writer effect     -> src/policies/Governance.sol:288
+ written member    -> ('SV', 'src/policies/Governance.sol', 'OlympusGovernance.activeProposal')
+ potentially stale -> ('MS', 'src/policies/Governance.sol', 'OlympusGovernance.noVotesForProposal', '@local::src/policies/Governance.sol::OlympusGovernance.executeProposal()::ReferenceVariable::REF_1068'), ('MS', 'src/policies/Governance.sol', 'OlympusGovernance.yesVotesForProposal', '@local::src/policies/Governance.sol::OlympusGovernance.executeProposal()::ReferenceVariable::REF_1066')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate dbf67ee6ee4ec6ebcdf8] {activeProposal, noVotesForProposal[@local::src/policies/Governance.sol::OlympusGovernance.executeProposal()::ReferenceVariable::REF_1068], yesVotesForProposal[@local::src/policies/Governance.sol::OlympusGovernance.executeProposal()::ReferenceVariable::REF_1066]}
+ writer root       -> src/policies/Governance.sol::OlympusGovernance.activateProposal(uint256)
+ writer effect     -> src/policies/Governance.sol:231
+ written member    -> ('SV', 'src/policies/Governance.sol', 'OlympusGovernance.activeProposal')
+ potentially stale -> ('MS', 'src/policies/Governance.sol', 'OlympusGovernance.noVotesForProposal', '@local::src/policies/Governance.sol::OlympusGovernance.executeProposal()::ReferenceVariable::REF_1068'), ('MS', 'src/policies/Governance.sol', 'OlympusGovernance.yesVotesForProposal', '@local::src/policies/Governance.sol::OlympusGovernance.executeProposal()::ReferenceVariable::REF_1066')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate dc4be946224c91b18da4] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> policies/Operator.sol:576
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate de709cc57e7905ad7bfe] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> policies/Operator.sol:569
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._config')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._status')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate e0a797e527b4f399b06c] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.operate()
+ writer effect     -> src/policies/Operator.sol:720
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate e0d4fe17978a8fc2d104] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.operate()
+ writer effect     -> src/policies/Operator.sol:708
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate e2d0c3b34a5648ff5487] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.regenerate(bool)
+ writer effect     -> policies/Operator.sol:719
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate e4264df8795ce7ba6ad8] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.setCushionFactor(uint32)
+ writer effect     -> src/policies/Operator.sol:521
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate e582bb92df694665dc15] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.regenerate(bool)
+ writer effect     -> src/policies/Operator.sol:706
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate e6a5a8b2eca05d9cbac9] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> src/policies/Operator.sol:579
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate e6b52e013e0fe6558f42] {nextObsIndex, observations[@state::modules/PRICE.sol::OlympusPrice.nextObsIndex]}
+ writer root       -> modules/PRICE.sol::OlympusPrice.changeObservationFrequency(uint48)
+ writer effect     -> modules/PRICE.sol:287
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@state::modules/PRICE.sol::OlympusPrice.nextObsIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e978a1e4c1274e1ccf3c] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> policies/Operator.sol:575
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate ee8ec97c3e00d6a1c070] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.operate()
+ writer effect     -> src/policies/Operator.sol:705
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate eee195eec05bea7e5251] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> policies/Operator.sol:580
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate f1b462847a56c5a845a0] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> src/policies/PriceConfig.sol::OlympusPriceConfig.changeMovingAverageDuration(uint48)
+ writer effect     -> modules/PRICE.sol:255
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate f38a214153550593acc6] {_movingAverage, nextObsIndex, numObservations, observations[@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3]}
+ writer root       -> src/policies/Heart.sol::OlympusHeart.beat()
+ writer effect     -> modules/PRICE.sol:144
+ written member    -> ('SV', 'modules/PRICE.sol', 'OlympusPrice.nextObsIndex')
+ potentially stale -> ('MS', 'modules/PRICE.sol', 'OlympusPrice.observations', '@local::modules/PRICE.sol::OlympusPrice.getLastPrice()::LocalVariable::lastIndex_3'), ('SV', 'modules/PRICE.sol', 'OlympusPrice._movingAverage'), ('SV', 'modules/PRICE.sol', 'OlympusPrice.numObservations')
+ reader witnesses  -> 64
+ storage exposures -> 1
+[MV-SI candidate f535033f999ccd7756d6] {activeProposal, userVotesForProposal[@local::src/policies/Governance.sol::OlympusGovernance.vote(bool)::ReferenceVariable::REF_1054][$sender]}
+ writer root       -> src/policies/Governance.sol::OlympusGovernance.executeProposal()
+ writer effect     -> src/policies/Governance.sol:288
+ written member    -> ('SV', 'src/policies/Governance.sol', 'OlympusGovernance.activeProposal')
+ potentially stale -> ('MS', 'src/policies/Governance.sol', 'OlympusGovernance.userVotesForProposal', '@local::src/policies/Governance.sol::OlympusGovernance.vote(bool)::ReferenceVariable::REF_1054][$sender')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f714f11c9aeccdee790e] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.initialize()
+ writer effect     -> policies/Operator.sol:706
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate f8faf332e73cb0ce4dc6] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> policies/Operator.sol:570
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._config')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._status')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate fa08377cdac54f87dd0e] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.regenerate(bool)
+ writer effect     -> src/policies/Operator.sol:720
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate fb45a8c2096cddc0e2be] {_config, _range, _status}
+ writer root       -> policies/Operator.sol::Operator.regenerate(bool)
+ writer effect     -> policies/Operator.sol:706
+ written member    -> ('SV', 'policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate ff0b8a4620a362dff997] {_config, _range, _status}
+ writer root       -> src/policies/Operator.sol::Operator.setRegenParams(uint32,uint32,uint32)
+ writer effect     -> src/policies/Operator.sol:574
+ written member    -> ('SV', 'src/policies/Operator.sol', 'Operator._status')
+ potentially stale -> ('SV', 'modules/RANGE.sol', 'OlympusRange._range'), ('SV', 'src/policies/Operator.sol', 'Operator._config')
+ reader witnesses  -> 26
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (61 contracts with 1 detectors), 128 result(s) found

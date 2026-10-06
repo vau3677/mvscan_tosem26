@@ -1,0 +1,561 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=3024 vars=167
+[mvscan-stage] root-seeding-done eligible_exposures=148 seeded=118 multi_exposure_entry_blocks=10 collapsed_contextual_aliases=30 excluded_dependency=0 excluded_interface=102 excluded_library=0 excluded_abstract=5 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=b1462c281b0191cf4a29d27cc8cfcfa2badd4142a3746de1a66a444675e05ef4 candidate_count=79 candidate_digest=3d1a04b5af72f43ab317e7904cbe24396de964bfa0dec7060f33743d913d6ce4 context_instance_count=3615 eligible_readers=163 eligible_writers=114 execution_context_digest=dac291ec46cc9cdf972d0e2e3c8703275ad2d47d032e5c1377222dbfc93b6291 insensitive_readers_filtered=100 invalid_partial_write_filtered=0 must_full_relation_filtered=8356 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=7771 owner_context_pairs_considered=35072 raw_block_pairs=3072 reader_witness_count=7771 relation_base_members_shadowed=0 relation_context_incompatible=18185 relation_digest=06e676fbf31c2f457ba5fa2086863c5315b7df0f3036f144026974733658805a relation_members_raw=113 relation_origins_registered=12 relation_origins_rejected_unary_after_shadowing=86 relation_origins_rejected_unreachable=23 relation_origins_seen=98 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=66 scalar_variables_skipped=84 storage_context_mismatch=760 variables_considered=96
+INFO:Detectors:
+
+[MV-SI candidate 00e2a598b488fe3e03ef] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.claim()
+ writer effect     -> contracts/vault/MochiVault.sol:105
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ reader witnesses  -> 285
+ storage exposures -> 1
+[MV-SI candidate 034ff6e79a5bc6e6edf3] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:354
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 0401b0b55d8667b94898] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:269
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate 040cf76945c37b920178] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:107
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate 082dfe55c726ac3acfc4] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:107
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate 09c0b4e256bac7ead965] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:151
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate 0bf2a2d1d2aec3a93b58] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:173
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate 0df2c4e29dc43067096e] {_initialized, _initializing}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.initialize(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 126664ddf0a4456a3e47] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.initialize(address)
+ writer effect     -> contracts/vault/MochiVault.sol:62
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ reader witnesses  -> 95
+ storage exposures -> 1
+[MV-SI candidate 1718f0e6b8ed26a638e8] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:206
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate 2090865040269df47a8b] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.claim()
+ writer effect     -> contracts/vault/MochiVault.sol:90
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ reader witnesses  -> 285
+ storage exposures -> 1
+[MV-SI candidate 235b7300332b4e9f06b3] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:267
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ reader witnesses  -> 285
+ storage exposures -> 1
+[MV-SI candidate 26766cbc0cae835f6e16] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.mint(address,address)
+ writer effect     -> contracts/vault/MochiVault.sol:152
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate 26e5c83296efa26dc543] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:243
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate 2c9defd516ed7992ff93] {_initialized, _initializing}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.initialize(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 31e8a16bf81284a6a89f] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:246
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate 34ad29297fad247fd0a4] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.accrueDebt(uint256)
+ writer effect     -> contracts/vault/MochiVault.sol:93
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ reader witnesses  -> 95
+ storage exposures -> 1
+[MV-SI candidate 39204adb1c0159f74a64] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:343
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 51
+ storage exposures -> 2
+[MV-SI candidate 39c6d1da4dd2cc1d1b4c] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:247
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate 3dd789bd297caa52e3fc] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.claim()
+ writer effect     -> contracts/vault/MochiVault.sol:109
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate 3ff8c50401e6c8f8b7be] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:354
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate 45dc5d5959754894d768] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.accrueDebt(uint256)
+ writer effect     -> contracts/vault/MochiVault.sol:105
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ reader witnesses  -> 285
+ storage exposures -> 1
+[MV-SI candidate 46313b24c8cad554af22] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:354
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 498cde910b5b4595aa15] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:354
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate 4b7f932a50caeae2f260] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:153
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate 4d1601aa24938daefb0e] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:105
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ reader witnesses  -> 285
+ storage exposures -> 1
+[MV-SI candidate 5291980db1dd7833b633] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:173
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate 529ce5fca48d04c2b2a7] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:175
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate 53dd06c97846afe45027] {_operatorApprovals, _owners}
+ writer root       -> contracts/vault/MochiNft.sol::MochiNFT.mint(address,address)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:281
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 57c93c04e248365cd28f] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.claim()
+ writer effect     -> contracts/vault/MochiVault.sol:107
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate 6045d10ed60fcce28777] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.mint(address,address)
+ writer effect     -> contracts/vault/MochiVault.sol:153
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate 62b908aa563af760ef75] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.mint(address,address)
+ writer effect     -> contracts/vault/MochiVault.sol:151
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate 6e3ee45bf059e2b1bf0c] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:265
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ reader witnesses  -> 285
+ storage exposures -> 1
+[MV-SI candidate 71e0442b84f86f32023e] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:175
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate 72e9df16a219b17be3e9] {_initialized, _initializing}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.initialize(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7b1f1a8151ded731ff98] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.claim()
+ writer effect     -> contracts/vault/MochiVault.sol:107
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate 7e520c870aebd0c4da40] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:271
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate 8058a68cc29a11364b2c] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.claim()
+ writer effect     -> contracts/vault/MochiVault.sol:109
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 37
+ storage exposures -> 1
+[MV-SI candidate 8246602d7ef7e0d235fa] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:343
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 51
+ storage exposures -> 2
+[MV-SI candidate 84d4f32a3369ba6414ac] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:269
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate 885d980c2c0cf288a160] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:208
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate 89ee39d7c6e12b90488a] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:107
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate 8a58008af6e1c423d319] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:109
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate 8e9b7df153c6cf4e59fb] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:90
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ reader witnesses  -> 285
+ storage exposures -> 1
+[MV-SI candidate 95a6b2b2e5ef65cb6f93] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.accrueDebt(uint256)
+ writer effect     -> contracts/vault/MochiVault.sol:107
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate 97a1e403c42bc44cf14b] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:107
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate 997cad1d4ed2aa37d52c] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.mint(address,address)
+ writer effect     -> contracts/vault/MochiVault.sol:151
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate a0dc40b222a4a6471c77] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:271
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate add5e99d3c4b63e7167d] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:247
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate af216cd3ebaae1e7e6e1] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:153
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate b14c4669dee33ba39bfd] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.approve(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:367
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 51
+ storage exposures -> 2
+[MV-SI candidate b15d1f02eb97c9a1adb7] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:343
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 51
+ storage exposures -> 2
+[MV-SI candidate bb21f88442adb88cf53f] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:152
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate c40666c35da66b833b68] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:105
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ reader witnesses  -> 285
+ storage exposures -> 1
+[MV-SI candidate cde29affc840ef4682ba] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:246
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate cee6a6b732ac9f47fd18] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:378
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 63
+ storage exposures -> 2
+[MV-SI candidate cf46687aef8c1c2159be] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.accrueDebt(uint256)
+ writer effect     -> contracts/vault/MochiVault.sol:90
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ reader witnesses  -> 285
+ storage exposures -> 1
+[MV-SI candidate dae99e2d1ae0421a705c] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.mint(address,address)
+ writer effect     -> contracts/vault/MochiVault.sol:152
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate daf3de0bf9a66dcbe4ad] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.accrueDebt(uint256)
+ writer effect     -> contracts/vault/MochiVault.sol:109
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 37
+ storage exposures -> 1
+[MV-SI candidate db6185a236afad92955d] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:354
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate dfcbc8326d73d5da7102] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:208
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate e4cb6807b6a8c805f6c7] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:109
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 37
+ storage exposures -> 1
+[MV-SI candidate e9a08e638e985522f751] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/vault/MochiNft.sol::MochiNFT.mint(address,address)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:281
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate ebe0558cd4e7c2ac51e1] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.mint(address,address)
+ writer effect     -> contracts/vault/MochiVault.sol:153
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate eda6ed2b02f37bc1eff6] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.accrueDebt(uint256)
+ writer effect     -> contracts/vault/MochiVault.sol:107
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate efd3abfcf9533e00a7ff] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.accrueDebt(uint256)
+ writer effect     -> contracts/vault/MochiVault.sol:109
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate f0d315abc1f276321411] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:93
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ reader witnesses  -> 95
+ storage exposures -> 1
+[MV-SI candidate f2ee85508cd83c0e4460] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.claim()
+ writer effect     -> contracts/vault/MochiVault.sol:93
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ reader witnesses  -> 95
+ storage exposures -> 1
+[MV-SI candidate f43d9c8c23829d928c3e] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:206
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate f6975686dd35ea6f3b8d] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:90
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ reader witnesses  -> 285
+ storage exposures -> 1
+[MV-SI candidate f72836cc4dacb65a91bb] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:152
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 46
+ storage exposures -> 1
+[MV-SI candidate f7ec1b2a116408127a7a] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:93
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ reader witnesses  -> 95
+ storage exposures -> 1
+[MV-SI candidate f86e738f9b3dba21b23a] {debtIndex, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:109
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debtIndex')
+ reader witnesses  -> 37
+ storage exposures -> 1
+[MV-SI candidate fa0e8574fbab1a25c09a] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:248
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ reader witnesses  -> 285
+ storage exposures -> 1
+[MV-SI candidate fcc78b4910a2a1f2c7af] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:354
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 60
+ storage exposures -> 2
+[MV-SI candidate fdf82073f0fb27b64bdd] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:243
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate ff2e5ac24ee7bf461e1d] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.increase(uint256,uint256,uint256,address,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:151
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1
+[MV-SI candidate ff38b3a4281d9234e9a8] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:378
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 9
+ storage exposures -> 2
+[MV-SI candidate ffba9b9ed79fe0d7fd89] {debts, details}
+ writer root       -> contracts/vault/MochiVault.sol::MochiVault.decrease(uint256,uint256,uint256,bytes)
+ writer effect     -> contracts/vault/MochiVault.sol:109
+ written member    -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.details')
+ potentially stale -> ('SV', 'contracts/vault/MochiVault.sol', 'MochiVault.debts')
+ reader witnesses  -> 114
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (85 contracts with 1 detectors), 79 result(s) found

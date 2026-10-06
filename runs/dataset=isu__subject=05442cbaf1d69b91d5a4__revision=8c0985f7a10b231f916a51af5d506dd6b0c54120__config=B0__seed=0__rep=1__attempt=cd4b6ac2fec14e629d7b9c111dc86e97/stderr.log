@@ -1,0 +1,339 @@
+'forge clean' running (wd: /workspace)
+'forge config --json' running
+'forge build --build-info --skip ./test/** ./script/** --force' running (wd: /workspace)
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=6022 vars=114
+[mvscan-stage] root-seeding-done eligible_exposures=88 seeded=74 multi_exposure_entry_blocks=7 collapsed_contextual_aliases=14 excluded_dependency=40 excluded_interface=48 excluded_library=0 excluded_abstract=7 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=0cfceecb967ea031a5ef6debe7f2afb2942af809c78688e752dcf0d32178b31e candidate_count=47 candidate_digest=afbcf3af369dfc0e1923de906251bec8145a6f85e671676241f7230dab714325 context_instance_count=124 eligible_readers=24 eligible_writers=35 execution_context_digest=78c9f4f7b523fea5b0dc064b09a597a51fe61f5657887ccb4733e6c2ed9937f1 insensitive_readers_filtered=13 invalid_partial_write_filtered=0 must_full_relation_filtered=74 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=231 owner_context_pairs_considered=7172 raw_block_pairs=176 reader_witness_count=231 relation_base_members_shadowed=11 relation_context_incompatible=6867 relation_digest=6c5d7b93baa5239b99a845395d9fd457bbd5cedff210ecf23dae8788cf2759dd relation_members_raw=62 relation_origins_registered=6 relation_origins_rejected_unary_after_shadowing=35 relation_origins_rejected_unreachable=42 relation_origins_seen=41 relation_unbound_key_templates=18 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=12 scalar_variables_skipped=73 storage_context_mismatch=0 variables_considered=79
+INFO:Detectors:
+
+[MV-SI candidate 044ae3ee3aa274a09c71] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.buyShareCred(uint256,uint256,uint256)
+ writer effect     -> src/Cred.sol:709
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 06167ac310bbef73d6a3] {balanceOf[$arg0], withdrawRoyalty}
+ writer root       -> src/reward/CuratorRewardsDistributor.sol::CuratorRewardsDistributor.updateRoyalty(uint256)
+ writer effect     -> src/reward/CuratorRewardsDistributor.sol:61
+ written member    -> ('SV', 'src/reward/CuratorRewardsDistributor.sol', 'CuratorRewardsDistributor.withdrawRoyalty')
+ potentially stale -> ('MS', 'src/reward/CuratorRewardsDistributor.sol', 'CuratorRewardsDistributor.balanceOf', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 10c8297712de1b7708cb] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.sellShareCred(uint256,uint256,uint256)
+ writer effect     -> src/Cred.sol:697
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 15ab6f698e7e4978a4c1] {_credIdsPerAddressCredIdIndex[$arg1][$arg0], _credIdsPerAddress[$arg1][@local::src/Cred.sol::Cred._removeCredIdPerAddress(uint256,address)::LocalVariable::indexToRemove_1]}
+ writer root       -> src/Cred.sol::Cred._removeCredIdPerAddress(uint256,address)
+ writer effect     -> src/Cred.sol:712
+ written member    -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddress', '$arg1][@local::src/Cred.sol::Cred._removeCredIdPerAddress(uint256,address)::LocalVariable::indexToRemove_1')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 18551db4272bb00e78c1] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.sellShareCred(uint256,uint256,uint256)
+ writer effect     -> src/Cred.sol:702
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 1c71af07cd88d99f4e2b] {artistReward, curateReward, referralReward, verifierReward}
+ writer root       -> src/reward/PhiRewards.sol::PhiRewards.updateReferralReward(uint256)
+ writer effect     -> src/reward/PhiRewards.sol:47
+ written member    -> ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.referralReward')
+ potentially stale -> ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.artistReward'), ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.curateReward'), ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.verifierReward')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 25cd3b2616d9fe550dd2] {artistReward, curateReward, referralReward, verifierReward}
+ writer root       -> src/reward/PhiRewards.sol::PhiRewards.updateArtistReward(uint256)
+ writer effect     -> src/reward/PhiRewards.sol:40
+ written member    -> ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.artistReward')
+ potentially stale -> ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.curateReward'), ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.referralReward'), ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.verifierReward')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 269d2c72b1a3cc8718af] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.buyShareCred(uint256,uint256,uint256)
+ writer effect     -> src/Cred.sol:697
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 2b4c23aaeb8faba1c5b7] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.sellShareCred(uint256,uint256,uint256)
+ writer effect     -> src/Cred.sol:687
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 2cb9d9283d3a395d47f1] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.buyShareCred(uint256,uint256,uint256)
+ writer effect     -> src/Cred.sol:702
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 2e6fc54745c55bfd8bc0] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.sellShareCred(uint256,uint256,uint256)
+ writer effect     -> src/Cred.sol:720
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3813564a2a2b1eb3b31d] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.buyShareCredFor(uint256,uint256,address,uint256)
+ writer effect     -> src/Cred.sol:709
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3a20d5fc679eb0f6a181] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.batchBuyShareCred(uint256[],uint256[],uint256[],address)
+ writer effect     -> src/Cred.sol:702
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3c63bee047c05be5a985] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.buyShareCredFor(uint256,uint256,address,uint256)
+ writer effect     -> src/Cred.sol:702
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3df35e4eabc4ffdc4618] {artistReward, curateReward, referralReward, verifierReward}
+ writer root       -> src/reward/PhiRewards.sol::PhiRewards.updateCurateReward(uint256)
+ writer effect     -> src/reward/PhiRewards.sol:61
+ written member    -> ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.curateReward')
+ potentially stale -> ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.artistReward'), ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.referralReward'), ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.verifierReward')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 43b3768550edd63fcd88] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.batchSellShareCred(uint256[],uint256[],uint256[])
+ writer effect     -> src/Cred.sol:709
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 473e40269e5f80b80884] {balanceOf[$arg0], withdrawRoyalty}
+ writer root       -> src/reward/CuratorRewardsDistributor.sol::CuratorRewardsDistributor.deposit(uint256,uint256)
+ writer effect     -> src/reward/CuratorRewardsDistributor.sol:73
+ written member    -> ('MS', 'src/reward/CuratorRewardsDistributor.sol', 'CuratorRewardsDistributor.balanceOf', '$arg0')
+ potentially stale -> ('SV', 'src/reward/CuratorRewardsDistributor.sol', 'CuratorRewardsDistributor.withdrawRoyalty')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 50133885c1c5cca1099f] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.batchBuyShareCred(uint256[],uint256[],uint256[],address)
+ writer effect     -> src/Cred.sol:709
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 51d3a38bdedd768968bc] {_credIdsPerAddressCredIdIndex[$arg1][$arg0], _credIdsPerAddress[$arg1][@local::src/Cred.sol::Cred._removeCredIdPerAddress(uint256,address)::LocalVariable::indexToRemove_1]}
+ writer root       -> src/Cred.sol::Cred.buyShareCredFor(uint256,uint256,address,uint256)
+ writer effect     -> src/Cred.sol:712
+ written member    -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddress', '$arg1][@local::src/Cred.sol::Cred._removeCredIdPerAddress(uint256,address)::LocalVariable::indexToRemove_1')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 5503bfd755198f4bbc23] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.sellShareCred(uint256,uint256,uint256)
+ writer effect     -> src/Cred.sol:709
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 5a1a1c30f5fbd43481db] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.batchBuyShareCred(uint256[],uint256[],uint256[],address)
+ writer effect     -> src/Cred.sol:687
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 60f56720ab47b4af68b3] {_credIdsPerAddressCredIdIndex[$arg1][$arg0], _credIdsPerAddress[$arg1][@local::src/Cred.sol::Cred._removeCredIdPerAddress(uint256,address)::LocalVariable::indexToRemove_1]}
+ writer root       -> src/Cred.sol::Cred._addCredIdPerAddress(uint256,address)
+ writer effect     -> src/Cred.sol:689
+ written member    -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddress', '$arg1][@local::src/Cred.sol::Cred._removeCredIdPerAddress(uint256,address)::LocalVariable::indexToRemove_1')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 6d7603dfe3ba030c67aa] {artistReward, curateReward, referralReward, verifierReward}
+ writer root       -> src/reward/PhiRewards.sol::PhiRewards.updateVerifierReward(uint256)
+ writer effect     -> src/reward/PhiRewards.sol:54
+ written member    -> ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.verifierReward')
+ potentially stale -> ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.artistReward'), ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.curateReward'), ('SV', 'src/reward/PhiRewards.sol', 'PhiRewards.referralReward')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 703ab8ea059c58aa1b03] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred._removeCredIdPerAddress(uint256,address)
+ writer effect     -> src/Cred.sol:709
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 72968ad686b2f3b9aab0] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred._removeCredIdPerAddress(uint256,address)
+ writer effect     -> src/Cred.sol:720
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 780ec21c5a0f0c18ce34] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.batchBuyShareCred(uint256[],uint256[],uint256[],address)
+ writer effect     -> src/Cred.sol:697
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 8d57899642d3a7fb5065] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.buyShareCredFor(uint256,uint256,address,uint256)
+ writer effect     -> src/Cred.sol:689
+ written member    -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ potentially stale -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ reader witnesses  -> 70
+ storage exposures -> 1
+[MV-SI candidate 8f8dee3343fcc8ffeade] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.batchSellShareCred(uint256[],uint256[],uint256[])
+ writer effect     -> src/Cred.sol:687
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 988e854c49133370ec20] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.buyShareCred(uint256,uint256,uint256)
+ writer effect     -> src/Cred.sol:687
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 9c6e18b6bfbf226ddac7] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.buyShareCredFor(uint256,uint256,address,uint256)
+ writer effect     -> src/Cred.sol:687
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 9f32eff4ac9135c4873d] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.createCred(address,bytes,bytes,uint16,uint16)
+ writer effect     -> src/Cred.sol:697
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate a07b2017927d4a9e695a] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.batchSellShareCred(uint256[],uint256[],uint256[])
+ writer effect     -> src/Cred.sol:697
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate a7da09ff2c45383ba520] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred._removeCredIdPerAddress(uint256,address)
+ writer effect     -> src/Cred.sol:697
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate ab6a349200ee7cf5c26a] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.createCred(address,bytes,bytes,uint16,uint16)
+ writer effect     -> src/Cred.sol:702
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate af1444f568cddd9c0852] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.batchBuyShareCred(uint256[],uint256[],uint256[],address)
+ writer effect     -> src/Cred.sol:720
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate ba32688ac00ecbaa0687] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.createCred(address,bytes,bytes,uint16,uint16)
+ writer effect     -> src/Cred.sol:720
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate bb3b745e99f8f69bef6f] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.batchSellShareCred(uint256[],uint256[],uint256[])
+ writer effect     -> src/Cred.sol:720
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c23e734d46f405a3cf39] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.buyShareCredFor(uint256,uint256,address,uint256)
+ writer effect     -> src/Cred.sol:697
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c24eda2841e8b13429fe] {_credIdsPerAddressCredIdIndex[$arg1][$arg0], _credIdsPerAddress[$arg1][@local::src/Cred.sol::Cred._removeCredIdPerAddress(uint256,address)::LocalVariable::indexToRemove_1]}
+ writer root       -> src/Cred.sol::Cred.batchBuyShareCred(uint256[],uint256[],uint256[],address)
+ writer effect     -> src/Cred.sol:712
+ written member    -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddress', '$arg1][@local::src/Cred.sol::Cred._removeCredIdPerAddress(uint256,address)::LocalVariable::indexToRemove_1')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c376b459bf1c9ab671c8] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.createCred(address,bytes,bytes,uint16,uint16)
+ writer effect     -> src/Cred.sol:687
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c70728f13b68db7c894a] {_credIdsPerAddressCredIdIndex[$arg1][$arg0], _credIdsPerAddress[$arg1][@local::src/Cred.sol::Cred._removeCredIdPerAddress(uint256,address)::LocalVariable::indexToRemove_1]}
+ writer root       -> src/Cred.sol::Cred.buyShareCredFor(uint256,uint256,address,uint256)
+ writer effect     -> src/Cred.sol:689
+ written member    -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddress', '$arg1][@local::src/Cred.sol::Cred._removeCredIdPerAddress(uint256,address)::LocalVariable::indexToRemove_1')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate c7db5b90c072cf730400] {balanceOf[$arg0], withdrawRoyalty}
+ writer root       -> src/reward/CuratorRewardsDistributor.sol::CuratorRewardsDistributor.distribute(uint256)
+ writer effect     -> src/reward/CuratorRewardsDistributor.sol:118
+ written member    -> ('MS', 'src/reward/CuratorRewardsDistributor.sol', 'CuratorRewardsDistributor.balanceOf', '$arg0')
+ potentially stale -> ('SV', 'src/reward/CuratorRewardsDistributor.sol', 'CuratorRewardsDistributor.withdrawRoyalty')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate da3445041d0f43de658d] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.buyShareCredFor(uint256,uint256,address,uint256)
+ writer effect     -> src/Cred.sol:720
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate dde9b7267dfaa1caa5f3] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred._removeCredIdPerAddress(uint256,address)
+ writer effect     -> src/Cred.sol:702
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate de82966bde902e12863c] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.createCred(address,bytes,bytes,uint16,uint16)
+ writer effect     -> src/Cred.sol:709
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e5dbc9596d20c8413fbe] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.batchSellShareCred(uint256[],uint256[],uint256[])
+ writer effect     -> src/Cred.sol:702
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate ea51571e19a036ce8f86] {_credIdsPerAddress, _credIdsPerAddressCredIdIndex[$arg1][$arg0]}
+ writer root       -> src/Cred.sol::Cred.buyShareCred(uint256,uint256,uint256)
+ writer effect     -> src/Cred.sol:720
+ written member    -> ('SV', 'src/Cred.sol', 'Cred._credIdsPerAddress')
+ potentially stale -> ('MS', 'src/Cred.sol', 'Cred._credIdsPerAddressCredIdIndex', '$arg1][$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (67 contracts with 1 detectors), 47 result(s) found

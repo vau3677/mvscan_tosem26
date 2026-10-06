@@ -1,0 +1,1039 @@
+'/tmp/.svm/0.8.33/solc-0.8.33 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: Natspec memory-safe-assembly special comment for inline assembly is deprecated and scheduled for removal. Use the memory-safe block annotation instead.
+   --> node_modules/@openzeppelin/contracts/utils/Address.sol:213:17:
+    |
+213 |                 assembly {
+    |                 ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> src/contracts/VariableInterestRate.sol:63:47:
+   |
+63 |     function getNewRate(bytes calldata _data, bytes calldata _initData) external pure returns (uint64 _newRatePerSec) {
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1731 vars=88
+[mvscan-stage] root-seeding-done eligible_exposures=46 seeded=37 multi_exposure_entry_blocks=7 collapsed_contextual_aliases=9 excluded_dependency=0 excluded_interface=49 excluded_library=0 excluded_abstract=24 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=81dc2cd9c2d2dd4c9ac3a90448992f5b4e54ea9c692af54ee7bd10f62b6edc0e candidate_count=145 candidate_digest=3da6a6f7d24ecaf2be216c384791c89e21890e70afd33ad8f22a0d9f1308bfb3 context_instance_count=543 eligible_readers=31 eligible_writers=51 execution_context_digest=f31c3e0282159aae34f14479563b37712ef876e80a1cc6b35ba6c45f95126d22 insensitive_readers_filtered=86 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=5019 owner_context_pairs=763 owner_context_pairs_considered=10232 raw_block_pairs=221 reader_witness_count=763 relation_base_members_shadowed=12 relation_context_incompatible=4450 relation_digest=6a312d57f5f674def96a0f77bdc5ff2256dae8b803215638e981601343bf7dd6 relation_members_raw=60 relation_origins_registered=10 relation_origins_rejected_unary_after_shadowing=27 relation_origins_seen=37 relation_unbound_key_templates=23 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=4 scalar_variables_skipped=33 storage_context_mismatch=0 variables_considered=42
+INFO:Detectors:
+
+[MV-SI candidate 00a003b931055403d91e] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidateClean(uint128,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:494
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 010edfde00e54fe9c99e] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidateClean(uint128,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:868
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 038adcffabc3ef3ee85d] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.withdraw(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 03e66194002e8768815a] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.mint(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 05ba9448082cc222d6fa] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAsset(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:494
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 064965ca9a8b10296340] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAsset(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:438
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 070d0fb75a0e02080858] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidateClean(uint128,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:1008
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 07d02a499c9e5452270f] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.unpause()
+ writer effect     -> node_modules/@openzeppelin/contracts/security/Pausable.sol:102
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 09836ef038e336cffcc8] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.addCollateral(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:494
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 09b6bfab5577910773be] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.addCollateral(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:438
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 0b0650a74039395243af] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.addCollateral(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 0c381f65b23f6822ff10] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.deposit(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:438
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 0cbdb305f69063c4f3a8] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAssetWithCollateral(address,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 0f263af1338f72de3d22] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.borrowAsset(uint256,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 0f43f6d53b0176435bef] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidate(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:868
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 1055ade275d4997c0798] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.initialize(string,address[],address[],bytes)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:494
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 1076c7a3b1f9e946461c] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.borrowAsset(uint256,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 109ad788a61fe1ae68de] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.pause()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 12f7f3b591f541a0ecd4] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.mint(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 139a96da75cd3bc22359] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAssetWithCollateral(address,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:438
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 148746bfb3ce395c052a] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.addCollateral(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 148fe62606e2961750d2] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.borrowAsset(uint256,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 1b59991d787c30814dac] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.borrowAsset(uint256,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 1c3c0dd66edcc6686860] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.addInterest()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:438
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 20054ed8b9bf500fcc66] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.initialize(string,address[],address[],bytes)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 205b57c5bb2ccf3db4dc] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.withdraw(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 211fe4c4dda426b935c1] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidateClean(uint128,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 230359b314dde3514086] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.borrowAsset(uint256,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:723
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 2aad69af816733cea4e6] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAssetWithCollateral(address,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 2add36bc9bb035e93613] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidateClean(uint128,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:438
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 2be33daa04dae50a4db2] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidate(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:868
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 2c30ef75c3520df02914] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAssetWithCollateral(address,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 30462195aaaf76c566c6] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.redeem(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 3061eeb4bb0ee91ee47c] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.leveragedPosition(address,uint256,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:723
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 30d7737a5a1d87eff92b] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.leveragedPosition(address,uint256,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:723
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 30e04c1f298b5a371d87] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAsset(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 33a3f4caed47e1dca3bd] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.redeem(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:647
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 33c4db2acadb34fb1ba4] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidate(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 34227bf61d1331d1af4b] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.pause()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 36c669d340e3e19c55d4] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.withdrawFees(uint128,address)
+ writer effect     -> src/contracts/FraxlendPair.sol:258
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 378f8f79a16f18604fe0] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.removeCollateral(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 37bc61faec820fe92130] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidateClean(uint128,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 39637fcf95118477bf18] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.deposit(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:571
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 3a2835e1723524fd05dd] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAssetWithCollateral(address,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:494
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 3ab94cedbc95d47c97fd] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAsset(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3b71717cf5334eb1ba99] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.redeem(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:494
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 450dfb23c67330e45953] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.deposit(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:571
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 4b88d255bd7cafc645fd] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidate(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 4bbca30027eaa2e70db8] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidateClean(uint128,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:868
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 4ece538b8f286ae898ec] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidateClean(uint128,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 50189f8fad381d04b135] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.initialize(string,address[],address[],bytes)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:438
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 501e90684ca46426ab75] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAsset(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 505424c6fc7a7381a777] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.pause()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 509a776ce7523ea80c4b] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.removeCollateral(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 52dc16e8f2fcd1f6edba] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.unpause()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 53d29433a420930704d1] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidate(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 54d8880c8c4ca66fd005] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAsset(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 56fe50315ffd5cb85354] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.pause()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 59b38b27bd34b9495279] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAssetWithCollateral(address,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 5a3ff9f48587f9fb99c9] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.deposit(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 5c7a59ab57667dd0f88d] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.leveragedPosition(address,uint256,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 641bba9b23dff83d018b] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAssetWithCollateral(address,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 645722552df3ee14ac7c] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.addInterest()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 661d300f903fe39e03a1] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.leveragedPosition(address,uint256,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 69714a1cce98c07cae67] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.addInterest()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 69fcfbc224843c9593ba] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.initialize(string,address[],address[],bytes)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 6af716427f6a970d482d] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.pause()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 6ecd797d7d974f7817f4] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.redeem(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 730a9cde8a174e379dee] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.borrowAsset(uint256,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:438
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 7333ed97185cf128fda5] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.withdraw(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:647
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 75168a016b94feb15f57] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.withdraw(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 75f781008bcf1b8cfaa6] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.leveragedPosition(address,uint256,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 7660eb099528b019bc0c] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.leveragedPosition(address,uint256,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:438
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 770f12efa1a8843e7f90] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.borrowAsset(uint256,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:723
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 77680be9f49c3dcda153] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAssetWithCollateral(address,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:868
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 7c381ffd53f5cdb80fc1] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.leveragedPosition(address,uint256,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 7ce0788f56605ac7187d] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.deposit(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:494
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 7eea58bda7e0548cb806] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.mint(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:438
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 807a5019b28111a1a5c3] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.removeCollateral(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:494
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 818784bec5422ea8405d] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.redeem(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:438
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 84f9311198f418603c27] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.deposit(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 8794f8a7f1bba56df57c] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidate(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 8b7e9490652c5623913c] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.removeCollateral(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:438
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 946628db09e5ef462572] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.unpause()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 94a9e620b344741f624f] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.redeem(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:647
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 9970473d3fdaf5f8d369] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAssetWithCollateral(address,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:868
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 9f4bf0eff561ae262c57] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.leveragedPosition(address,uint256,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:723
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate a0abbc310ca4e3cf7b2e] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAssetWithCollateral(address,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:868
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate a0ca732cc48278733133] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.redeem(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate a1b585d3f32db4594d61] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.initialize(string,address[],address[],bytes)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate a2140dade2418ff1f934] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.mint(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate a657956bd4e66e56d2f3] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.leveragedPosition(address,uint256,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate a742b1595834222e4324] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.addInterest()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate a7ef5a1d4a4553f4bf8b] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.deposit(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate adb569b3ab9cf7a91ee8] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.redeem(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate b25276182446ab28a8bd] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.withdraw(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate b745d1024f54cea0cdc9] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAsset(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:868
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate b7f3d3aa29b15e27a009] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.changeFee(uint32)
+ writer effect     -> src/contracts/FraxlendPair.sol:220
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate b80d54fcab0315ad1d1b] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.mint(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate bb41881cfd700bddc4c3] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.addCollateral(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate bc0258c7df5f7afc54be] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.withdraw(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate bd27bda4b6e4a50ccc10] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.borrowAsset(uint256,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:494
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate be8e6ccd00f2859d2e60] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.addInterest()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate bf23ae12c20552ef3cb7] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.unpause()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c05331fe515171894605] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidateClean(uint128,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate c08ad7e9f2c869592523] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.redeem(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate c09035fd166e969d1d15] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.pause()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:438
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate c2bd7b9ab6f276bf1d60] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidateClean(uint128,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:1008
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c4a385967b6f038491ea] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.addInterest()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:494
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate c543290c002253afca0d] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAsset(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:868
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate c54ebd601811442872c9] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.pause()
+ writer effect     -> node_modules/@openzeppelin/contracts/security/Pausable.sol:90
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c595249b9004b0452e37] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.addCollateral(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate c59901bd4932328c418e] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.mint(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c5bfb09b2de3f88b017e] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.pause()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:494
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate c6df24b578d511baf09a] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.deposit(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c7583d8ea440a8fbde44] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.unpause()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate c8513a102834feb5ba8b] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.withdraw(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:647
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c9b000cb877f84a4c8db] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.removeCollateral(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate c9f3b69e03bf20c86bd6] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.mint(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:571
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate cb5ef037f1c28faad7b1] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.mint(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:571
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate cc0cd3fa12f30e3476e9] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidate(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:494
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate cf427fdff358b2e608da] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.borrowAsset(uint256,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate d16b7b5b39122c8615ca] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.mint(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:494
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate d2d685466b317bd0512a] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidate(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:868
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate d2e21e92535de92c6539] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.withdraw(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:438
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate d302c5833158fae2a6b8] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.removeCollateral(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate d4f6ee408d66a400290c] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.withdrawFees(uint128,address)
+ writer effect     -> src/contracts/FraxlendPair.sol:258
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate d61c2d3394a99623b989] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.unpause()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate d6471315e555ce602a68] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.borrowAsset(uint256,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:723
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate d6910b5f26cc0829b10e] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.addInterest()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate d76de1839f2f45814099] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidateClean(uint128,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate d98e228be8da93334470] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAsset(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:868
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate db6529e80df08789d5db] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidate(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate dc40b12b2531ea5bb6a0] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.deposit(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate dd760f72c53a05ba590f] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidate(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:438
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate df323e9ca90515a4b617] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.addCollateral(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:493
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e013ed93e9917f29e5cf] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.unpause()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:494
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate eb6cf2513fcbb374b353] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.withdraw(uint256,address,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:494
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate ef0e30e584563d97e843] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.initialize(string,address[],address[],bytes)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate ef848715e054b01dbabf] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.leveragedPosition(address,uint256,uint256,uint256,address[])
+ writer effect     -> src/contracts/FraxlendPairCore.sol:494
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate efd45cca9ea2759e60b4] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.initialize(string,address[],address[],bytes)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate f77b81abfb592e424d84] {currentRateInfo, totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPair.sol::FraxlendPair.unpause()
+ writer effect     -> src/contracts/FraxlendPairCore.sol:438
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.currentRateInfo')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset'), ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate f86897c7b3e6563ed679] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.removeCollateral(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate f8cce8b8f3ca10e496be] {_paused, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.liquidateClean(uint128,uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:868
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/security/Pausable.sol', 'Pausable._paused')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate ff604756fb6f5c1f1709] {totalAsset, totalBorrow}
+ writer root       -> src/contracts/FraxlendPairCore.sol::FraxlendPairCore.repayAsset(uint256,address)
+ writer effect     -> src/contracts/FraxlendPairCore.sol:495
+ written member    -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalBorrow')
+ potentially stale -> ('SV', 'src/contracts/FraxlendPairCore.sol', 'FraxlendPairCore.totalAsset')
+ reader witnesses  -> 9
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (30 contracts with 1 detectors), 145 result(s) found

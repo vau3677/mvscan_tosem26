@@ -1,0 +1,206 @@
+'/tmp/.svm/0.8.13/solc-0.8.13 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: Return value of low-level calls not used.
+   --> src/modules/GroupBuy.sol:265:9:
+    |
+265 |         payable(msg.sender).call{value: contribution}("");
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Warning: Return value of low-level calls not used.
+   --> src/modules/GroupBuy.sol:283:9:
+    |
+283 |         payable(msg.sender).call{value: balance}("");
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Warning: Unused local variable.
+   --> src/modules/GroupBuy.sol:174:13:
+    |
+174 |             uint48 totalSupply,
+    |             ^^^^^^^^^^^^^^^^^^
+
+
+Warning: Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> src/punks/protoforms/PunksMarketBuyer.sol:71:27:
+   |
+71 |     function _deployVault(uint256 _punkId)
+   |                           ^^^^^^^^^^^^^^^
+
+
+Warning: Warning: Contract code size is 28902 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> src/punks/modules/OptimisticListingPunks.sol:25:1:
+   |
+25 | contract OptimisticListingPunks is
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 33952 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> src/seaport/modules/OptimisticListingSeaport.sol:23:1:
+   |
+23 | contract OptimisticListingSeaport is
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=3196 vars=195
+[mvscan-stage] root-seeding-done eligible_exposures=172 seeded=136 multi_exposure_entry_blocks=13 collapsed_contextual_aliases=36 excluded_dependency=0 excluded_interface=120 excluded_library=3 excluded_abstract=25 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=661ddda00d11f684cf2835fba443e44eb2d674da55531f16d89d2b405bba1018 candidate_count=22 candidate_digest=8a46f8b86704c0fa32f114d85824d0c023fdaaa2081cf7bf37c9e7f5d930cdfa context_instance_count=257 eligible_readers=59 eligible_writers=30 execution_context_digest=e1d0d041315ca2b2336969387da47b07962fa0cf9fca93d1b460589ce186b305 insensitive_readers_filtered=79 invalid_partial_write_filtered=240 must_full_relation_filtered=10 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=39 owner_context_pairs=668 owner_context_pairs_considered=3213 raw_block_pairs=254 reader_witness_count=668 relation_base_members_shadowed=47 relation_context_incompatible=0 relation_digest=9df6117db550452f2177da335c103380ab2dc9f3dc51b587ee67d5b3cec41c3f relation_evidence_edges=156 relation_incompatible=94 relation_members_raw=168 relation_origins_registered=13 relation_origins_rejected_unary_after_shadowing=89 relation_origins_rejected_unreachable=25 relation_origins_seen=102 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=8 scalar_variables_skipped=98 storage_context_mismatch=2256 variables_considered=109
+INFO:Detectors:
+
+[MV-SI candidate 03bf3e9d415f20300760] {_operatorApprovals[$arg0][$arg1], _tokenApprovals[$arg0], _tokenOwner[$arg0]}
+ writer root       -> src/punks/utils/WrappedPunk.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> src/punks/utils/WrappedPunk.sol:1093
+ written member    -> ('MS', 'src/punks/utils/WrappedPunk.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'src/punks/utils/WrappedPunk.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'src/punks/utils/WrappedPunk.sol', 'ERC721._tokenOwner', '$arg0')
+ reader witnesses  -> 177
+ storage exposures -> 5
+[MV-SI candidate 06d7311d8bdb74816928] {currentId, filledQuantities[$arg0], poolInfo[$arg0]}
+ writer root       -> src/modules/GroupBuy.sol::GroupBuy.createPool(address,uint256[],uint256,uint48,uint40,uint256,uint256)
+ writer effect     -> src/modules/GroupBuy.sol:74
+ written member    -> ('SV', 'src/modules/GroupBuy.sol', 'GroupBuy.currentId')
+ potentially stale -> ('MS', 'src/modules/GroupBuy.sol', 'GroupBuy.filledQuantities', '$arg0'), ('MS', 'src/modules/GroupBuy.sol', 'GroupBuy.poolInfo', '$arg0')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 1b0ed53268c470ffefb9] {currentId, filledQuantities[$arg0], poolInfo[$arg0]}
+ writer root       -> src/modules/GroupBuy.sol::GroupBuy.contribute(uint256,uint256,uint256)
+ writer effect     -> src/modules/GroupBuy.sol:128
+ written member    -> ('MS', 'src/modules/GroupBuy.sol', 'GroupBuy.filledQuantities', '$arg0')
+ potentially stale -> ('MS', 'src/modules/GroupBuy.sol', 'GroupBuy.poolInfo', '$arg0'), ('SV', 'src/modules/GroupBuy.sol', 'GroupBuy.currentId')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 2c36aaa9379cb53932f0] {_operatorApprovals[$arg0][$arg1], _tokenApprovals[$arg0], _tokenOwner[$arg0]}
+ writer root       -> src/punks/utils/WrappedPunk.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> src/punks/utils/WrappedPunk.sol:1093
+ written member    -> ('MS', 'src/punks/utils/WrappedPunk.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'src/punks/utils/WrappedPunk.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'src/punks/utils/WrappedPunk.sol', 'ERC721._tokenOwner', '$arg0')
+ reader witnesses  -> 177
+ storage exposures -> 5
+[MV-SI candidate 2cbd66a56e52a12b694d] {activeListings, proposedListings[$arg0]}
+ writer root       -> src/punks/modules/OptimisticListingPunks.sol::OptimisticListingPunks.propose(address,uint256,uint256)
+ writer effect     -> src/punks/modules/OptimisticListingPunks.sol:142
+ written member    -> ('MS', 'src/punks/modules/OptimisticListingPunks.sol', 'OptimisticListingPunks.proposedListings', '$arg0')
+ potentially stale -> ('SV', 'src/punks/modules/OptimisticListingPunks.sol', 'OptimisticListingPunks.activeListings')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 415d8b6d999f1ef2cdae] {filledQuantities[$arg0], minReservePrices[$arg0]}
+ writer root       -> src/modules/GroupBuy.sol::GroupBuy.contribute(uint256,uint256,uint256)
+ writer effect     -> src/modules/GroupBuy.sol:139
+ written member    -> ('MS', 'src/modules/GroupBuy.sol', 'GroupBuy.minReservePrices', '$arg0')
+ potentially stale -> ('MS', 'src/modules/GroupBuy.sol', 'GroupBuy.filledQuantities', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 4ec0ae20fad9d96e0d50] {currentId, minBidPrices[$arg0]}
+ writer root       -> src/modules/GroupBuy.sol::GroupBuy.createPool(address,uint256[],uint256,uint48,uint40,uint256,uint256)
+ writer effect     -> src/modules/GroupBuy.sol:74
+ written member    -> ('SV', 'src/modules/GroupBuy.sol', 'GroupBuy.currentId')
+ potentially stale -> ('MS', 'src/modules/GroupBuy.sol', 'GroupBuy.minBidPrices', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 5041b2dcbb8d3d2d7992] {activeListings, proposedListings[$arg0]}
+ writer root       -> src/punks/modules/OptimisticListingPunks.sol::OptimisticListingPunks.settle(address,bytes32[])
+ writer effect     -> src/punks/modules/OptimisticListingPunks.sol:338
+ written member    -> ('SV', 'src/punks/modules/OptimisticListingPunks.sol', 'OptimisticListingPunks.activeListings')
+ potentially stale -> ('MS', 'src/punks/modules/OptimisticListingPunks.sol', 'OptimisticListingPunks.proposedListings', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 5ad741cda60a9c5f99be] {activeListings, proposedListings[$arg0]}
+ writer root       -> src/punks/modules/OptimisticListingPunks.sol::OptimisticListingPunks.rejectActive(address,uint256,bytes32[])
+ writer effect     -> src/punks/modules/OptimisticListingPunks.sol:217
+ written member    -> ('SV', 'src/punks/modules/OptimisticListingPunks.sol', 'OptimisticListingPunks.activeListings')
+ potentially stale -> ('MS', 'src/punks/modules/OptimisticListingPunks.sol', 'OptimisticListingPunks.proposedListings', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 5e9b57045551301ef238] {filledQuantities[$arg0], minReservePrices[$arg0]}
+ writer root       -> src/modules/GroupBuy.sol::GroupBuy.createPool(address,uint256[],uint256,uint48,uint40,uint256,uint256)
+ writer effect     -> src/modules/GroupBuy.sol:128
+ written member    -> ('MS', 'src/modules/GroupBuy.sol', 'GroupBuy.filledQuantities', '$arg0')
+ potentially stale -> ('MS', 'src/modules/GroupBuy.sol', 'GroupBuy.minReservePrices', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 728c486db9926478aecb] {activeListings, proposedListings}
+ writer root       -> src/seaport/modules/OptimisticListingSeaport.sol::OptimisticListingSeaport.rejectActive(address,uint256,bytes32[])
+ writer effect     -> src/seaport/modules/OptimisticListingSeaport.sol:200
+ written member    -> ('SV', 'src/seaport/modules/OptimisticListingSeaport.sol', 'OptimisticListingSeaport.activeListings')
+ potentially stale -> ('SV', 'src/seaport/modules/OptimisticListingSeaport.sol', 'OptimisticListingSeaport.proposedListings')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 7f637fffd481cdd38107] {activeListings, proposedListings}
+ writer root       -> src/seaport/modules/OptimisticListingSeaport.sol::OptimisticListingSeaport.rejectProposal(address,uint256)
+ writer effect     -> src/seaport/modules/OptimisticListingSeaport.sol:153
+ written member    -> ('SV', 'src/seaport/modules/OptimisticListingSeaport.sol', 'OptimisticListingSeaport.proposedListings')
+ potentially stale -> ('SV', 'src/seaport/modules/OptimisticListingSeaport.sol', 'OptimisticListingSeaport.activeListings')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 8467a5fd8faf796b0ecb] {activeListings, proposedListings[$arg0]}
+ writer root       -> src/punks/modules/OptimisticListingPunks.sol::OptimisticListingPunks.rejectActive(address,uint256,bytes32[])
+ writer effect     -> src/punks/modules/OptimisticListingPunks.sol:224
+ written member    -> ('SV', 'src/punks/modules/OptimisticListingPunks.sol', 'OptimisticListingPunks.activeListings')
+ potentially stale -> ('MS', 'src/punks/modules/OptimisticListingPunks.sol', 'OptimisticListingPunks.proposedListings', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 847a76401577080b2d9e] {activeListings, proposedListings}
+ writer root       -> src/seaport/modules/OptimisticListingSeaport.sol::OptimisticListingSeaport.rejectActive(address,uint256,bytes32[])
+ writer effect     -> src/seaport/modules/OptimisticListingSeaport.sol:193
+ written member    -> ('SV', 'src/seaport/modules/OptimisticListingSeaport.sol', 'OptimisticListingSeaport.activeListings')
+ potentially stale -> ('SV', 'src/seaport/modules/OptimisticListingSeaport.sol', 'OptimisticListingSeaport.proposedListings')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 878f489e75e4314893bc] {_operatorApprovals[$arg0][$arg1], _tokenApprovals[$arg0], _tokenOwner[$arg0]}
+ writer root       -> src/punks/utils/WrappedPunk.sol::WrappedPunk.burn(uint256)
+ writer effect     -> src/punks/utils/WrappedPunk.sol:1093
+ written member    -> ('MS', 'src/punks/utils/WrappedPunk.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'src/punks/utils/WrappedPunk.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'src/punks/utils/WrappedPunk.sol', 'ERC721._tokenOwner', '$arg0')
+ reader witnesses  -> 45
+ storage exposures -> 1
+[MV-SI candidate 955cf75775411b2e427d] {currentId, filledQuantities[$arg0], poolInfo[$arg0]}
+ writer root       -> src/modules/GroupBuy.sol::GroupBuy.createPool(address,uint256[],uint256,uint48,uint40,uint256,uint256)
+ writer effect     -> src/modules/GroupBuy.sol:128
+ written member    -> ('MS', 'src/modules/GroupBuy.sol', 'GroupBuy.filledQuantities', '$arg0')
+ potentially stale -> ('MS', 'src/modules/GroupBuy.sol', 'GroupBuy.poolInfo', '$arg0'), ('SV', 'src/modules/GroupBuy.sol', 'GroupBuy.currentId')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 9ba4805b7804daf5186a] {activeListings, proposedListings[$arg0]}
+ writer root       -> src/punks/modules/OptimisticListingPunks.sol::OptimisticListingPunks.cancel(address,bytes32[])
+ writer effect     -> src/punks/modules/OptimisticListingPunks.sol:306
+ written member    -> ('SV', 'src/punks/modules/OptimisticListingPunks.sol', 'OptimisticListingPunks.activeListings')
+ potentially stale -> ('MS', 'src/punks/modules/OptimisticListingPunks.sol', 'OptimisticListingPunks.proposedListings', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate bf3a4c24de84361b2393] {activeListings, proposedListings[$arg0]}
+ writer root       -> src/punks/modules/OptimisticListingPunks.sol::OptimisticListingPunks.rejectProposal(address,uint256)
+ writer effect     -> src/punks/modules/OptimisticListingPunks.sol:182
+ written member    -> ('MS', 'src/punks/modules/OptimisticListingPunks.sol', 'OptimisticListingPunks.proposedListings', '$arg0')
+ potentially stale -> ('SV', 'src/punks/modules/OptimisticListingPunks.sol', 'OptimisticListingPunks.activeListings')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c0a3a1c4d4b988eacece] {filledQuantities[$arg0], minReservePrices[$arg0]}
+ writer root       -> src/modules/GroupBuy.sol::GroupBuy.contribute(uint256,uint256,uint256)
+ writer effect     -> src/modules/GroupBuy.sol:128
+ written member    -> ('MS', 'src/modules/GroupBuy.sol', 'GroupBuy.filledQuantities', '$arg0')
+ potentially stale -> ('MS', 'src/modules/GroupBuy.sol', 'GroupBuy.minReservePrices', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c751a7007dd9eabd7434] {filledQuantities[$arg0], minReservePrices[$arg0]}
+ writer root       -> src/modules/GroupBuy.sol::GroupBuy.createPool(address,uint256[],uint256,uint48,uint40,uint256,uint256)
+ writer effect     -> src/modules/GroupBuy.sol:139
+ written member    -> ('MS', 'src/modules/GroupBuy.sol', 'GroupBuy.minReservePrices', '$arg0')
+ potentially stale -> ('MS', 'src/modules/GroupBuy.sol', 'GroupBuy.filledQuantities', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate cbb43642298075e98f42] {activeListings, proposedListings}
+ writer root       -> src/seaport/modules/OptimisticListingSeaport.sol::OptimisticListingSeaport.cash(address,bytes32[])
+ writer effect     -> src/seaport/modules/OptimisticListingSeaport.sol:293
+ written member    -> ('SV', 'src/seaport/modules/OptimisticListingSeaport.sol', 'OptimisticListingSeaport.activeListings')
+ potentially stale -> ('SV', 'src/seaport/modules/OptimisticListingSeaport.sol', 'OptimisticListingSeaport.proposedListings')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate cff2a127c769227113de] {_operatorApprovals[$arg0][$arg1], _tokenApprovals[$arg0], _tokenOwner[$arg0]}
+ writer root       -> src/punks/utils/WrappedPunk.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> src/punks/utils/WrappedPunk.sol:1093
+ written member    -> ('MS', 'src/punks/utils/WrappedPunk.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', 'src/punks/utils/WrappedPunk.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', 'src/punks/utils/WrappedPunk.sol', 'ERC721._tokenOwner', '$arg0')
+ reader witnesses  -> 177
+ storage exposures -> 5Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (99 contracts with 1 detectors), 22 result(s) found

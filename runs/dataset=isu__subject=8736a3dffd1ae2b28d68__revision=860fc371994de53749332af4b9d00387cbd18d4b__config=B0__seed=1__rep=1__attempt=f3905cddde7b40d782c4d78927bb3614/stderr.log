@@ -1,0 +1,134 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1478 vars=60
+[mvscan-stage] root-seeding-done eligible_exposures=49 seeded=39 multi_exposure_entry_blocks=10 collapsed_contextual_aliases=10 excluded_dependency=0 excluded_interface=38 excluded_library=0 excluded_abstract=2 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=5dcf69dce95ca8b2bf44868fe9d2489bfa1da4383ac61cf76cc268b004e6c6e3 candidate_count=18 candidate_digest=f47e4a4f5e5e372425894de62279c4a07d0096e9b3666b9ec3fd99f0c3fa2134 context_instance_count=74 eligible_readers=25 eligible_writers=19 execution_context_digest=14bb63d8959aa395734bdcf3d977571ac50fee1b8d1a9fc4a987af9cec4ee826 insensitive_readers_filtered=19 invalid_partial_write_filtered=0 must_full_relation_filtered=17 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=8 owner_context_pairs=194 owner_context_pairs_considered=481 raw_block_pairs=86 reader_witness_count=194 relation_base_members_shadowed=1 relation_context_incompatible=262 relation_digest=2ddebfb10800b0c87a00616223401d06f890821a87843439da5e15c54758f6ec relation_members_raw=59 relation_origins_registered=6 relation_origins_rejected_unary_after_shadowing=46 relation_origins_rejected_unreachable=15 relation_origins_seen=52 relation_unbound_key_templates=1 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=4 scalar_variables_skipped=45 storage_context_mismatch=0 variables_considered=51
+INFO:Detectors:
+
+[MV-SI candidate 05f7b091ce2ee104aff4] {ibRatio, weights[@local::contracts/Basket.sol::Basket.pullUnderlying(uint256,address)::LocalVariable::i_2]}
+ writer root       -> contracts/Basket.sol::Basket.mint(uint256)
+ writer effect     -> contracts/Basket.sol:149
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ potentially stale -> ('MS', 'contracts/Basket.sol', 'Basket.weights', '@local::contracts/Basket.sol::Basket.pullUnderlying(uint256,address)::LocalVariable::i_2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 09c7eb6b5de3122f1f64] {_totalSupply, maxSupply}
+ writer root       -> contracts/Basket.sol::Basket.initialize(IFactory.Proposal,IAuction)
+ writer effect     -> contracts/Basket.sol:55
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.maxSupply')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 15bb6aa83f09f10527b5] {_totalSupply, maxSupply}
+ writer root       -> contracts/Basket.sol::Basket.mintTo(uint256,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:263
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.maxSupply')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 22205d1e88ff4d08e8e6] {auctionStart, bondBlock}
+ writer root       -> contracts/Auction.sol::Auction.bondForRebalance()
+ writer effect     -> contracts/Auction.sol:63
+ written member    -> ('SV', 'contracts/Auction.sol', 'Auction.bondBlock')
+ potentially stale -> ('SV', 'contracts/Auction.sol', 'Auction.auctionStart')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 2a0f133323f16a99f8f5] {_totalSupply, maxSupply}
+ writer root       -> contracts/Basket.sol::Basket.setNewMaxSupply(uint256)
+ writer effect     -> contracts/Basket.sol:201
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.maxSupply')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 31ff61d01caa9d576095] {ibRatio, weights[@local::contracts/Basket.sol::Basket.pullUnderlying(uint256,address)::LocalVariable::i_2]}
+ writer root       -> contracts/Basket.sol::Basket.burn(uint256)
+ writer effect     -> contracts/Basket.sol:149
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ potentially stale -> ('MS', 'contracts/Basket.sol', 'Basket.weights', '@local::contracts/Basket.sol::Basket.pullUnderlying(uint256,address)::LocalVariable::i_2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 36aa09b5898e41275a01] {ibRatio, weights[@local::contracts/Basket.sol::Basket.pullUnderlying(uint256,address)::LocalVariable::i_2]}
+ writer root       -> contracts/Basket.sol::Basket.updateIBRatio(uint256)
+ writer effect     -> contracts/Basket.sol:267
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ potentially stale -> ('MS', 'contracts/Basket.sol', 'Basket.weights', '@local::contracts/Basket.sol::Basket.pullUnderlying(uint256,address)::LocalVariable::i_2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 7888fb2f4b97cba37dd7] {_totalSupply, maxSupply}
+ writer root       -> contracts/Basket.sol::Basket.burn(uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:263
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.maxSupply')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 78cd9234d0db60fe8be1] {ibRatio, weights[@local::contracts/Basket.sol::Basket.pullUnderlying(uint256,address)::LocalVariable::i_2]}
+ writer root       -> contracts/Basket.sol::Basket.mintTo(uint256,address)
+ writer effect     -> contracts/Basket.sol:149
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ potentially stale -> ('MS', 'contracts/Basket.sol', 'Basket.weights', '@local::contracts/Basket.sol::Basket.pullUnderlying(uint256,address)::LocalVariable::i_2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 88fbdb762fc22e8e5ca1] {ibRatio, weights[@local::contracts/Basket.sol::Basket.pullUnderlying(uint256,address)::LocalVariable::i_2]}
+ writer root       -> contracts/Basket.sol::Basket.initialize(IFactory.Proposal,IAuction)
+ writer effect     -> contracts/Basket.sol:52
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ potentially stale -> ('MS', 'contracts/Basket.sol', 'Basket.weights', '@local::contracts/Basket.sol::Basket.pullUnderlying(uint256,address)::LocalVariable::i_2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 8e1a517158a054f36ebb] {auctionStart, bondBlock}
+ writer root       -> contracts/Auction.sol::Auction.startAuction()
+ writer effect     -> contracts/Auction.sol:40
+ written member    -> ('SV', 'contracts/Auction.sol', 'Auction.auctionStart')
+ potentially stale -> ('SV', 'contracts/Auction.sol', 'Auction.bondBlock')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a9d5ef3210b6ffe03e37] {_totalSupply, maxSupply}
+ writer root       -> contracts/Basket.sol::Basket.auctionBurn(uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:291
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.maxSupply')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate b4111e23def643690ad2] {_totalSupply, maxSupply}
+ writer root       -> contracts/Basket.sol::Basket.burn(uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:291
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.maxSupply')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate c5a18e03a6ac4ed743a6] {_totalSupply, maxSupply}
+ writer root       -> contracts/Basket.sol::Basket.mint(uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:263
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.maxSupply')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate dc30f5b302790544283d] {auction, publisher}
+ writer root       -> contracts/Basket.sol::Basket.changePublisher(address)
+ writer effect     -> contracts/Basket.sol:162
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.publisher')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.auction')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate de804d8d42f7c936da29] {ibRatio, weights[@local::contracts/Basket.sol::Basket.pullUnderlying(uint256,address)::LocalVariable::i_2]}
+ writer root       -> contracts/Basket.sol::Basket.auctionBurn(uint256)
+ writer effect     -> contracts/Basket.sol:149
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ potentially stale -> ('MS', 'contracts/Basket.sol', 'Basket.weights', '@local::contracts/Basket.sol::Basket.pullUnderlying(uint256,address)::LocalVariable::i_2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f21536a6bd8c92c23506] {ibRatio, weights[@local::contracts/Basket.sol::Basket.pullUnderlying(uint256,address)::LocalVariable::i_2]}
+ writer root       -> contracts/Basket.sol::Basket.auctionBurn(uint256)
+ writer effect     -> contracts/Basket.sol:127
+ written member    -> ('SV', 'contracts/Basket.sol', 'Basket.ibRatio')
+ potentially stale -> ('MS', 'contracts/Basket.sol', 'Basket.weights', '@local::contracts/Basket.sol::Basket.pullUnderlying(uint256,address)::LocalVariable::i_2')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f89fa883dfb8c52c98df] {_totalSupply, maxSupply}
+ writer root       -> contracts/Basket.sol::Basket.auctionBurn(uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:263
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ potentially stale -> ('SV', 'contracts/Basket.sol', 'Basket.maxSupply')
+ reader witnesses  -> 16
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (23 contracts with 1 detectors), 18 result(s) found

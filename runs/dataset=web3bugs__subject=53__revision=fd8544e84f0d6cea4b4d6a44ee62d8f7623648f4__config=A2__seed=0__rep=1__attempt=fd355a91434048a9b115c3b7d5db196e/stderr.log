@@ -1,0 +1,513 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1321 vars=87
+[mvscan-stage] root-seeding-done eligible_exposures=111 seeded=86 multi_exposure_entry_blocks=13 collapsed_contextual_aliases=25 excluded_dependency=0 excluded_interface=46 excluded_library=0 excluded_abstract=16 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=f3dadbae9f262bee06a1d6f7fbe69742fd29c0d24db12b6d48bf0818aea105a9 candidate_count=71 candidate_digest=1f76271e349ea119fac6b78539118746aac8a29658c8864f761147d49aa838ee context_instance_count=769 eligible_readers=167 eligible_writers=86 execution_context_digest=90eee8b6da8ae711edeed87d38e159766133027f37db38759e4287c391ed30b2 insensitive_readers_filtered=144 invalid_partial_write_filtered=0 must_full_relation_filtered=61 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=20 owner_context_pairs=1118 owner_context_pairs_considered=67594 raw_block_pairs=1835 reader_witness_count=1118 relation_base_members_shadowed=32 relation_context_incompatible=52964 relation_digest=deed7bb82baa9ecaf7da61ae984dc55d2939902c097cdc2d87c2528033035708 relation_members_raw=110 relation_origins_registered=10 relation_origins_rejected_unary_after_shadowing=55 relation_origins_seen=65 relation_unbound_key_templates=87 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=42 scalar_variables_skipped=50 storage_context_mismatch=13431 variables_considered=60
+INFO:Detectors:
+
+[MV-SI candidate 02ddeddc12506eec64ab] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.create(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:78
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 0435af7a5a5b20d9ef10] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedRecords.sol::NestedRecords.setMaxHoldingsCount(uint256)
+ writer effect     -> contracts/NestedRecords.sol:172
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ reader witnesses  -> 94
+ storage exposures -> 1
+[MV-SI candidate 1815f1d11e8ec2d30d40] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.swapTokenForTokens(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:77
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 1dd4fa5cf1abc02651a3] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.addTokens(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:77
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 2022504fe199a55023fd] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedRecords.sol::NestedRecords.updateLockTimestamp(uint256,uint256)
+ writer effect     -> contracts/NestedRecords.sol:164
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 22f55474c307da91591e] {maxHoldingsCount, records}
+ writer root       -> contracts/mocks/DummyRouter.sol::DummyRouter.prepareAttack(address,IWETH,INestedFactory.Order[],INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:102
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 2e7dc0d958f9813c6287] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 68
+ storage exposures -> 2
+[MV-SI candidate 33f0b44169c18ec723ab] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> contracts/NestedAsset.sol::NestedAsset.burn(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate 37b23e9bc68b2559a531] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.sellTokensToWallet(uint256,IERC20,uint256[],INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:77
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 3992ea67ca577c4dbdad] {maxHoldingsCount, records}
+ writer root       -> contracts/mocks/DummyRouter.sol::DummyRouter.reentrancyAttackForDestroy(uint256)
+ writer effect     -> contracts/NestedRecords.sol:116
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 3a7280453f10dbbf733b] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.increaseLockTimestamp(uint256,uint256)
+ writer effect     -> contracts/NestedRecords.sol:164
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 469830ee0e37e752ca15] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.sellTokensToNft(uint256,IERC20,uint256[],INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:78
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 501799538d1f32668be3] {shareholders, totalWeights}
+ writer root       -> contracts/FeeSplitter.sol::FeeSplitter.setRoyaltiesWeight(uint256)
+ writer effect     -> contracts/FeeSplitter.sol:97
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 50abf3fe91554098f3ff] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.destroy(uint256,IERC20,INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:116
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 54da59bcfe84de59e9be] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedRecords.sol::NestedRecords.store(uint256,address,uint256,address)
+ writer effect     -> contracts/NestedRecords.sol:78
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 587d808fb3192811b8ce] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.sellTokensToWallet(uint256,IERC20,uint256[],INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:102
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 5c622f100e1f0c640035] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.destroy(uint256,IERC20,INestedFactory.Order[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate 68d3677ab6c51d6a241e] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.create(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:102
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 693c8ecb939a4ca2ffea] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.sellTokensToNft(uint256,IERC20,uint256[],INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:102
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 694eac5cb893ee6885fd] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedRecords.sol::NestedRecords.store(uint256,address,uint256,address)
+ writer effect     -> contracts/NestedRecords.sol:102
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 6ff41ab14d83fc796cbf] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 2
+[MV-SI candidate 719eac78329108cfc621] {maxHoldingsCount, records}
+ writer root       -> contracts/mocks/DummyRouter.sol::DummyRouter.prepareAttack(address,IWETH,INestedFactory.Order[],INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:77
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 720eafc575aa990f0065] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedRecords.sol::NestedRecords.updateHoldingAmount(uint256,address,uint256)
+ writer effect     -> contracts/NestedRecords.sol:102
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 74843efc992a59c32e3b] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.addTokens(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:220
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 7ca97d66875a7da0f050] {shareholders, totalWeights}
+ writer root       -> contracts/FeeSplitter.sol::FeeSplitter.sendFees(IERC20,uint256)
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 7d919b43da712e5fe266] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 2
+[MV-SI candidate 7dfa1917c237c7c24231] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.swapTokenForTokens(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:78
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 82338f06a6b09f72e6bb] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedRecords.sol::NestedRecords.removeNFT(uint256)
+ writer effect     -> contracts/NestedRecords.sol:207
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 84a6883e9f2089518303] {shareholders, totalWeights}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.sellTokensToNft(uint256,IERC20,uint256[],INestedFactory.Order[])
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 84da33cf1d6b375b481a] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.sellTokensToNft(uint256,IERC20,uint256[],INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:77
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 84ec4a4dd937eb33302b] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.addTokens(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:78
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 8712b47a481451c54cc3] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.withdraw(uint256,uint256)
+ writer effect     -> contracts/NestedRecords.sol:187
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 8d09076b76630d070407] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 68
+ storage exposures -> 2
+[MV-SI candidate 8e83f54fb538cccb1e66] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedRecords.sol::NestedRecords.deleteAsset(uint256,uint256)
+ writer effect     -> contracts/NestedRecords.sol:220
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 901b80677057eb5fe288] {shareholders, totalWeights}
+ writer root       -> contracts/mocks/DummyRouter.sol::DummyRouter.reentrancyAttackForDestroy(uint256)
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 9315c6edcc94fbe2ddc9] {shareholders, totalWeights}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.sellTokensToWallet(uint256,IERC20,uint256[],INestedFactory.Order[])
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 996e6c3f53334d6eaa95] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.approve(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 68
+ storage exposures -> 2
+[MV-SI candidate 9b0fa1e63fb2847b3c9b] {shareholders, totalWeights}
+ writer root       -> contracts/mocks/DummyRouter.sol::DummyRouter.prepareAttack(address,IWETH,INestedFactory.Order[],INestedFactory.Order[])
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 9c9f226bd2390aac6c9f] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.addTokens(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:102
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate a0a880b12fe9ff28a948] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedRecords.sol::NestedRecords.updateHoldingAmount(uint256,address,uint256)
+ writer effect     -> contracts/NestedRecords.sol:220
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate a256503c575e11191301] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.withdraw(uint256,uint256)
+ writer effect     -> contracts/NestedRecords.sol:220
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate a2c541846f8047fff4f9] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.sellTokensToWallet(uint256,IERC20,uint256[],INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:220
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate a38f9fd1283c3c159acd] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.swapTokenForTokens(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:102
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate a6b297178f6f821a8e7c] {_owners[$arg0], lastOwnerBeforeBurn[@local::contracts/NestedAsset.sol::NestedAsset.originalOwner(uint256)::LocalVariable::originalAssetId_1], originalAsset[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'contracts/NestedAsset.sol', 'NestedAsset.lastOwnerBeforeBurn', '@local::contracts/NestedAsset.sol::NestedAsset.originalOwner(uint256)::LocalVariable::originalAssetId_1'), ('MS', 'contracts/NestedAsset.sol', 'NestedAsset.originalAsset', '$arg0')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate a9c3fe649af868007447] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.create(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:220
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate aa0a4437209c224d1a06] {shareholders, totalWeights}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.addTokens(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate ac8e3aba514614af7cea] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedRecords.sol::NestedRecords.createRecord(uint256,address,uint256,address)
+ writer effect     -> contracts/NestedRecords.sol:78
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate acf8503845acbfcdfccf] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedRecords.sol::NestedRecords.setReserve(uint256,address)
+ writer effect     -> contracts/NestedRecords.sol:201
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate ad28a2ab812a0ed1bd94] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.destroy(uint256,IERC20,INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:207
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate bd389033904ede481c79] {shareholders, totalWeights}
+ writer root       -> contracts/FeeSplitter.sol::FeeSplitter.setRoyaltiesWeight(uint256)
+ writer effect     -> contracts/FeeSplitter.sol:95
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate bef23760161efdb93deb] {shareholders, totalWeights}
+ writer root       -> contracts/FeeSplitter.sol::FeeSplitter.sendFeesWithRoyalties(address,IERC20,uint256)
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c4c4f7caf446c1b0eeec] {maxHoldingsCount, records}
+ writer root       -> contracts/mocks/DummyRouter.sol::DummyRouter.prepareAttack(address,IWETH,INestedFactory.Order[],INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:78
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate c97ed9be6abe1344beed] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> contracts/mocks/DummyRouter.sol::DummyRouter.reentrancyAttackForDestroy(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate d0858ccebd539d91b2aa] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedRecords.sol::NestedRecords.store(uint256,address,uint256,address)
+ writer effect     -> contracts/NestedRecords.sol:77
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate d74230ca7fb601a9c1af] {shareholders, totalWeights}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.swapTokenForTokens(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate d804e567de3c7f6e53c3] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.create(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:77
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate dab4539136ca720702c5] {shareholders, totalWeights}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.withdraw(uint256,uint256)
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate dd50f8ba5cbf43849e07] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.sellTokensToNft(uint256,IERC20,uint256[],INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:220
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate dffeae7c6956206d0a57] {shareholders, totalWeights}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.destroy(uint256,IERC20,INestedFactory.Order[])
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e9b911c23835d38969f9] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedRecords.sol::NestedRecords.createRecord(uint256,address,uint256,address)
+ writer effect     -> contracts/NestedRecords.sol:77
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate ea52d5130c0e300b314a] {_owners[$arg0], lastOwnerBeforeBurn[@local::contracts/NestedAsset.sol::NestedAsset.originalOwner(uint256)::LocalVariable::originalAssetId_1], originalAsset[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'contracts/NestedAsset.sol', 'NestedAsset.lastOwnerBeforeBurn', '@local::contracts/NestedAsset.sol::NestedAsset.originalOwner(uint256)::LocalVariable::originalAssetId_1'), ('MS', 'contracts/NestedAsset.sol', 'NestedAsset.originalAsset', '$arg0')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate eb9db95bf1e8c57fe818] {shareholders, totalWeights}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.create(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/FeeSplitter.sol:227
+ written member    -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.shareholders')
+ potentially stale -> ('SV', 'contracts/FeeSplitter.sol', 'FeeSplitter.totalWeights')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate ee25963f4562cc39cc60] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.swapTokenForTokens(uint256,IERC20,uint256,INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:220
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate ef3c23eb81b222981d0a] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedFactory.sol::NestedFactory.sellTokensToWallet(uint256,IERC20,uint256[],INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:78
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate f175154c74c70b6d2540] {maxHoldingsCount, records}
+ writer root       -> contracts/mocks/DummyRouter.sol::DummyRouter.reentrancyAttackForDestroy(uint256)
+ writer effect     -> contracts/NestedRecords.sol:207
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate f460ffda69345dd961c6] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 2
+[MV-SI candidate f897e6b9b1256d800d72] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedRecords.sol::NestedRecords.freeHolding(uint256,address)
+ writer effect     -> contracts/NestedRecords.sol:116
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate f8fd412895ac9928a383] {maxHoldingsCount, records}
+ writer root       -> contracts/NestedRecords.sol::NestedRecords.store(uint256,address,uint256,address)
+ writer effect     -> contracts/NestedRecords.sol:220
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate f9ce81bb81898f1bd539] {_owners[$arg0], lastOwnerBeforeBurn[@local::contracts/NestedAsset.sol::NestedAsset.originalOwner(uint256)::LocalVariable::originalAssetId_1], originalAsset[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:344
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ potentially stale -> ('MS', 'contracts/NestedAsset.sol', 'NestedAsset.lastOwnerBeforeBurn', '@local::contracts/NestedAsset.sol::NestedAsset.originalOwner(uint256)::LocalVariable::originalAssetId_1'), ('MS', 'contracts/NestedAsset.sol', 'NestedAsset.originalAsset', '$arg0')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate fc205c3bdc2bedaa5b58] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:355
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 68
+ storage exposures -> 2
+[MV-SI candidate ffe916a027f6c0144a9d] {maxHoldingsCount, records}
+ writer root       -> contracts/mocks/DummyRouter.sol::DummyRouter.prepareAttack(address,IWETH,INestedFactory.Order[],INestedFactory.Order[])
+ writer effect     -> contracts/NestedRecords.sol:220
+ written member    -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.records')
+ potentially stale -> ('SV', 'contracts/NestedRecords.sol', 'NestedRecords.maxHoldingsCount')
+ reader witnesses  -> 10
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=8 vars=1
+[mvscan-stage] root-seeding-done eligible_exposures=1 seeded=1 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=ddbfd1375918aa6bda17865fad159f63a3c338d8871851b4a214f6573a509e2a invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=31 vars=8
+[mvscan-stage] root-seeding-done eligible_exposures=6 seeded=6 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4ad690d33e18b458ea2f4bafeffe121b523b0c45121010d84108e280766bec9e candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=83ada319037ef0f22719d1ad519a037f38667aa1f6ae6ed1593f6e64359e1a05 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_base_members_shadowed=4 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_members_raw=8 relation_origins_rejected_unary_after_shadowing=4 relation_origins_seen=4 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=5 storage_context_mismatch=0 variables_considered=5
+INFO:Slither:. analyzed (48 contracts with 1 detectors), 71 result(s) found

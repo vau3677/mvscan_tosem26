@@ -1,0 +1,918 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=423 vars=28
+[mvscan-stage] root-seeding-done eligible_exposures=30 seeded=18 multi_exposure_entry_blocks=8 collapsed_contextual_aliases=12 excluded_dependency=0 excluded_interface=11 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=11bb8eb79f9b2cdc58833097672d0f322a8ebedd1a0e5e981501a6f570f08da8 candidate_count=5 candidate_digest=bf72045e89f971e6e22f9d428c39816cd88eb2470347ba6c9be71db335bcc913 context_instance_count=14 eligible_readers=6 eligible_writers=8 execution_context_digest=246e05e677cae553773d92dc7ad250495ccbdbc8091539b976ad1ccce887745c insensitive_readers_filtered=2 invalid_partial_write_filtered=0 must_full_relation_filtered=5 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=2 owner_context_pairs=14 owner_context_pairs_considered=85 raw_block_pairs=24 reader_witness_count=14 relation_base_members_shadowed=0 relation_context_incompatible=24 relation_digest=a4eb3838756c78788a012d99806caa2b471dc9786192ee572ea83c412c5d5460 relation_members_raw=16 relation_origins_registered=2 relation_origins_rejected_unary_after_shadowing=12 relation_origins_seen=14 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=11 storage_context_mismatch=40 variables_considered=13
+INFO:Detectors:
+
+[MV-SI candidate 07ad356bce1b1ef535d7] {masterContractApproved, masterContractOf}
+ writer root       -> contracts/flat/BentoBoxV1Flat.sol::BoringFactory.deploy(address,bytes,bool)
+ writer effect     -> contracts/flat/BentoBoxV1Flat.sol:462
+ written member    -> ('SV', 'contracts/flat/BentoBoxV1Flat.sol', 'BoringFactory.masterContractOf')
+ potentially stale -> ('SV', 'contracts/flat/BentoBoxV1Flat.sol', 'MasterContractManager.masterContractApproved')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 1396572fc55a1d21fca2] {masterContractApproved, masterContractOf}
+ writer root       -> contracts/flat/BentoBoxV1Flat.sol::MasterContractManager.setMasterContractApproval(address,address,bool,uint8,bytes32,bytes32)
+ writer effect     -> contracts/flat/BentoBoxV1Flat.sol:595
+ written member    -> ('SV', 'contracts/flat/BentoBoxV1Flat.sol', 'MasterContractManager.masterContractApproved')
+ potentially stale -> ('SV', 'contracts/flat/BentoBoxV1Flat.sol', 'BoringFactory.masterContractOf')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3d96a7ee3da47cb45ef5] {pendingStrategy, strategyData}
+ writer root       -> contracts/flat/BentoBoxV1Flat.sol::BentoBoxV1.setStrategyTargetPercentage(IERC20,uint64)
+ writer effect     -> contracts/flat/BentoBoxV1Flat.sol:1036
+ written member    -> ('SV', 'contracts/flat/BentoBoxV1Flat.sol', 'BentoBoxV1.strategyData')
+ potentially stale -> ('SV', 'contracts/flat/BentoBoxV1Flat.sol', 'BentoBoxV1.pendingStrategy')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate aba6af169396579df69b] {pendingStrategy, strategyData}
+ writer root       -> contracts/flat/BentoBoxV1Flat.sol::BentoBoxV1.harvest(IERC20,bool,uint256)
+ writer effect     -> contracts/flat/BentoBoxV1Flat.sol:1149
+ written member    -> ('SV', 'contracts/flat/BentoBoxV1Flat.sol', 'BentoBoxV1.strategyData')
+ potentially stale -> ('SV', 'contracts/flat/BentoBoxV1Flat.sol', 'BentoBoxV1.pendingStrategy')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e709e3f7fe3cae9ef226] {masterContractApproved, masterContractOf}
+ writer root       -> contracts/flat/BentoBoxV1Flat.sol::MasterContractManager.registerProtocol()
+ writer effect     -> contracts/flat/BentoBoxV1Flat.sol:520
+ written member    -> ('SV', 'contracts/flat/BentoBoxV1Flat.sol', 'BoringFactory.masterContractOf')
+ potentially stale -> ('SV', 'contracts/flat/BentoBoxV1Flat.sol', 'MasterContractManager.masterContractApproved')
+ reader witnesses  -> 4
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=4276 vars=229
+[mvscan-stage] root-seeding-done eligible_exposures=122 seeded=101 multi_exposure_entry_blocks=13 collapsed_contextual_aliases=21 excluded_dependency=0 excluded_interface=22 excluded_library=2 excluded_abstract=27 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=199071e0475fee9741e3a1ba70f9b709ef3a6a370f563564a37106a1cd38a7f7 candidate_count=123 candidate_digest=2ee492f33a52fef9cc4bf062f57b2ae3a0024cf90897697b3e69f66e14b51e67 context_instance_count=811 eligible_readers=238 eligible_writers=176 execution_context_digest=e1e579bf710af0e4e26c3c1050f54e9ec10f6f328ee35addfc8b9c325ac6931b insensitive_readers_filtered=302 invalid_partial_write_filtered=0 must_full_relation_filtered=160 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=508 owner_context_pairs=1508 owner_context_pairs_considered=8099 raw_block_pairs=1800 reader_witness_count=1508 relation_base_members_shadowed=0 relation_context_incompatible=2075 relation_digest=577dbe30b7ffcfe746951dca4c3c6e437ee4cb5230eb8061f3a2d0b3a64acb58 relation_members_raw=144 relation_origins_registered=27 relation_origins_rejected_unary_after_shadowing=76 relation_origins_rejected_unreachable=27 relation_origins_seen=103 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=66 scalar_variables_skipped=78 storage_context_mismatch=3848 variables_considered=105
+INFO:Detectors:
+
+[MV-SI candidate 01a54f48e22d7a4a67e5] {barFee, kLast}
+ writer root       -> contracts/pool/franchised/FranchisedConstantProductPool.sol::FranchisedConstantProductPool.mint(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedConstantProductPool.sol:121
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.kLast')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.barFee')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 024931eab6ba3cfdf612] {barFee, kLast, totalSupply}
+ writer root       -> contracts/workInProgress/Migrator.sol::Migrator.migrate(ConstantProductPool)
+ writer effect     -> contracts/pool/TridentERC20.sol:134
+ written member    -> ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.barFee'), ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.kLast')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 09ddcf4c4feb30fa9ef1] {getApproved, isApprovedForAll, ownerOf}
+ writer root       -> contracts/pool/concentrated/TridentNFT.sol::TridentNFT.setApprovalForAll(address,bool)
+ writer effect     -> contracts/pool/concentrated/TridentNFT.sol:85
+ written member    -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.isApprovedForAll')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.getApproved'), ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.ownerOf')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0a2b007747804ce59528] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedConstantProductPool.sol::FranchisedConstantProductPool.burnSingle(bytes)
+ writer effect     -> contracts/pool/franchised/TridentFranchisedERC20.sol:155
+ written member    -> ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.barFee'), ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.kLast')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 162facbb81795c8dd349] {records, tokens}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.burn(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:132
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 17e45f151598974c3a8d] {records, tokens}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.burnSingle(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:150
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 1bf0b95264348882b433] {records, tokens}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.flashSwap(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:201
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 1d566c5784906a802bc7] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.burn(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:136
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records'), ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 1e85ccf07f7701ab88d2] {isApprovedForAll, nonces, ownerOf}
+ writer root       -> contracts/pool/concentrated/TridentNFT.sol::TridentNFT.permitAll(address,address,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/pool/concentrated/TridentNFT.sol:228
+ written member    -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.isApprovedForAll')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.nonces'), ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.ownerOf')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 20604fc0a7f99e65c221] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedConstantProductPool.sol::FranchisedConstantProductPool.mint(bytes)
+ writer effect     -> contracts/pool/franchised/TridentFranchisedERC20.sol:141
+ written member    -> ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.barFee'), ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.kLast')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 24eaa503b6fe6ee4926c] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.burn(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:132
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records'), ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 2652f4f74fc50ce6777f] {incentives, positions}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol::ConcentratedLiquidityPoolManager.addIncentive(IConcentratedLiquidityPool,ConcentratedLiquidityPoolManager.Incentive)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol:43
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol', 'ConcentratedLiquidityPoolManager.incentives')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPosition.sol', 'ConcentratedLiquidityPosition.positions')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 288e0b25abe0bf8aa566] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/ConstantProductPool.sol::ConstantProductPool.burnSingle(bytes)
+ writer effect     -> contracts/pool/TridentERC20.sol:148
+ written member    -> ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.barFee'), ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.kLast')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 2d3d862c5adcf9c26edf] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/ConstantProductPool.sol::ConstantProductPool.updateBarFee()
+ writer effect     -> contracts/pool/ConstantProductPool.sol:246
+ written member    -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.barFee')
+ potentially stale -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.kLast'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate 2db8cf4b9ee63dc62b33] {barFee, dLast, totalSupply}
+ writer root       -> contracts/pool/HybridPool.sol::HybridPool.mint(bytes)
+ writer effect     -> contracts/pool/HybridPool.sol:113
+ written member    -> ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.dLast')
+ potentially stale -> ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.barFee'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 334cf6ca8e3163aa4714] {barFee, kLast, totalSupply}
+ writer root       -> contracts/workInProgress/Migrator.sol::Migrator.migrate(ConstantProductPool)
+ writer effect     -> contracts/pool/TridentERC20.sol:148
+ written member    -> ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.barFee'), ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.kLast')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 34727329764e352d00ee] {balanceOf, totalSupply}
+ writer root       -> contracts/pool/franchised/TridentFranchisedERC20.sol::TridentFranchisedERC20.transfer(address,uint256)
+ writer effect     -> contracts/pool/franchised/TridentFranchisedERC20.sol:75
+ written member    -> ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.balanceOf')
+ potentially stale -> ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 355b52cd49388fa080cc] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.flashSwap(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:213
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens'), ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 356963965fc8bb0f2e88] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedConstantProductPool.sol::FranchisedConstantProductPool.burn(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedConstantProductPool.sol:150
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.kLast')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.barFee'), ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 39f5a4ce94b3bcbf03ba] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.burnSingle(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:150
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 3a65f022703761bde08b] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.burnSingle(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:163
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens'), ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 3cdd3cc79f6536d598b6] {barFee, dLast, totalSupply}
+ writer root       -> contracts/pool/HybridPool.sol::HybridPool.burn(bytes)
+ writer effect     -> contracts/pool/TridentERC20.sol:148
+ written member    -> ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.barFee'), ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.dLast')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 3e8b7313b8b1c502c4fb] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.mint(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:105
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 41ac8955f6b68751126a] {balanceOf, totalSupply}
+ writer root       -> contracts/pool/franchised/TridentFranchisedERC20.sol::TridentFranchisedERC20.transferFrom(address,address,uint256)
+ writer effect     -> contracts/pool/franchised/TridentFranchisedERC20.sol:103
+ written member    -> ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.balanceOf')
+ potentially stale -> ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 430faccf5d32c2280ea0] {lastObservation, liquidity}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPool.sol::ConcentratedLiquidityPool.burn(bytes)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPool.sol:242
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPool.sol', 'ConcentratedLiquidityPool.liquidity')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPool.sol', 'ConcentratedLiquidityPool.lastObservation')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 431f2396d53604598215] {barFee, dLast, totalSupply}
+ writer root       -> contracts/pool/HybridPool.sol::HybridPool.burnSingle(bytes)
+ writer effect     -> contracts/pool/HybridPool.sol:156
+ written member    -> ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.dLast')
+ potentially stale -> ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.barFee'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 43d44f17803ca1cb3654] {lastObservation, liquidity}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPool.sol::ConcentratedLiquidityPool.swap(bytes)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPool.sol:316
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPool.sol', 'ConcentratedLiquidityPool.lastObservation')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPool.sol', 'ConcentratedLiquidityPool.liquidity')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 45311e8ccafecf81c1e5] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/ConstantProductPool.sol::ConstantProductPool.burnSingle(bytes)
+ writer effect     -> contracts/pool/TridentERC20.sol:134
+ written member    -> ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.barFee'), ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.kLast')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 4821fd11af10a726e8c9] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.swap(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:188
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens'), ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 48ab5d87c7542cd1fe09] {records, tokens}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.swap(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:174
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 4944da76bff9a815ec97] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.burn(bytes)
+ writer effect     -> contracts/pool/TridentERC20.sol:148
+ written member    -> ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records'), ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens')
+ reader witnesses  -> 13
+ storage exposures -> 1
+[MV-SI candidate 4cf80df71bdd4e56862a] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/ConstantProductPool.sol::ConstantProductPool.burnSingle(bytes)
+ writer effect     -> contracts/pool/ConstantProductPool.sol:161
+ written member    -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.kLast')
+ potentially stale -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.barFee'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate 4ecb6a944876200e6b56] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.swap(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:174
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 4f3ee683d7ed9fab91b9] {records, tokens}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.flashSwap(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:200
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 4f5941c93f2ed7116b32] {records, tokens}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.flashSwap(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:214
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 4fe18a5a3fa277f2d431] {getApproved, isApprovedForAll, ownerOf}
+ writer root       -> contracts/pool/concentrated/TridentNFT.sol::TridentNFT.safeTransferFrom(address,address,uint256)
+ writer effect     -> contracts/pool/concentrated/TridentNFT.sol:123
+ written member    -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.getApproved')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.isApprovedForAll'), ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.ownerOf')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 5186e40c9f8acce3dcab] {isApprovedForAll, ownerOf}
+ writer root       -> contracts/pool/concentrated/TridentNFT.sol::TridentNFT.permitAll(address,address,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/pool/concentrated/TridentNFT.sol:228
+ written member    -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.isApprovedForAll')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.ownerOf')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 54ff6303c0367f619fb3] {isApprovedForAll, nonces, ownerOf}
+ writer root       -> contracts/pool/concentrated/TridentNFT.sol::TridentNFT.permit(address,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/pool/concentrated/TridentNFT.sol:179
+ written member    -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.nonces')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.isApprovedForAll'), ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.ownerOf')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 59018d1440a854306c0f] {incentives, positions}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol::ConcentratedLiquidityPosition.collect(uint256,address,bool)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol:100
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPosition.sol', 'ConcentratedLiquidityPosition.positions')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol', 'ConcentratedLiquidityPoolManager.incentives')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 5960e349dfbc341b9081] {records, tokens}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.burn(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:143
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 59880c8b966a2494049a] {barFee, dLast, totalSupply}
+ writer root       -> contracts/pool/HybridPool.sol::HybridPool.updateBarFee()
+ writer effect     -> contracts/pool/HybridPool.sol:235
+ written member    -> ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.barFee')
+ potentially stale -> ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.dLast'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 609d58c8b06e75bc7639] {isApprovedForAll, nonces, ownerOf}
+ writer root       -> contracts/pool/concentrated/TridentNFT.sol::TridentNFT.setApprovalForAll(address,bool)
+ writer effect     -> contracts/pool/concentrated/TridentNFT.sol:85
+ written member    -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.isApprovedForAll')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.nonces'), ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.ownerOf')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 610bdfbfd2d1b646ef60] {getApproved, isApprovedForAll, ownerOf}
+ writer root       -> contracts/pool/concentrated/TridentNFT.sol::TridentNFT.transferFrom(address,address,uint256)
+ writer effect     -> contracts/pool/concentrated/TridentNFT.sol:123
+ written member    -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.getApproved')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.isApprovedForAll'), ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.ownerOf')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 64d915c43c9c6997c963] {balanceOf, totalSupply}
+ writer root       -> contracts/pool/franchised/TridentFranchisedERC20.sol::TridentFranchisedERC20.transfer(address,uint256)
+ writer effect     -> contracts/pool/franchised/TridentFranchisedERC20.sol:79
+ written member    -> ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.balanceOf')
+ potentially stale -> ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 65579fccc9ae906838ec] {incentives, positions}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol::ConcentratedLiquidityPoolManager.claimReward(uint256,uint256,address,bool)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol:96
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol', 'ConcentratedLiquidityPoolManager.incentives')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPosition.sol', 'ConcentratedLiquidityPosition.positions')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 66bbb054dd8f0fa97c19] {records, tokens}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.swap(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:187
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 67147ce61f8864b32734] {barFee, dLast, totalSupply}
+ writer root       -> contracts/pool/HybridPool.sol::HybridPool.burn(bytes)
+ writer effect     -> contracts/pool/TridentERC20.sol:134
+ written member    -> ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.barFee'), ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.dLast')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 68ae764c21e85a7304ed] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/ConstantProductPool.sol::ConstantProductPool.mint(bytes)
+ writer effect     -> contracts/pool/TridentERC20.sol:134
+ written member    -> ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.barFee'), ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.kLast')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 69b9328c27901725cbe1] {incentives, positions}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol::ConcentratedLiquidityPosition.burn(uint256,uint128,address,bool)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol:67
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPosition.sol', 'ConcentratedLiquidityPosition.positions')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol', 'ConcentratedLiquidityPoolManager.incentives')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 6a80a23dd7c236c2108c] {barFee, dLast, totalSupply}
+ writer root       -> contracts/pool/HybridPool.sol::HybridPool.burnSingle(bytes)
+ writer effect     -> contracts/pool/TridentERC20.sol:134
+ written member    -> ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.barFee'), ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.dLast')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 6c99fde364508cf7b907] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.flashSwap(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:201
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 6e6ed4153336633c2368] {incentiveCount, positions}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol::ConcentratedLiquidityPosition.positionMintCallback(address,int24,int24,uint128,uint256,uint256)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol:48
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPosition.sol', 'ConcentratedLiquidityPosition.positions')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol', 'ConcentratedLiquidityPoolManager.incentiveCount')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 704021b0d7c59b35a4f1] {nearestTick, ticks}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPool.sol::ConcentratedLiquidityPool.burn(bytes)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPool.sol:270
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPool.sol', 'ConcentratedLiquidityPool.nearestTick')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPool.sol', 'ConcentratedLiquidityPool.ticks')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 71716f69c4977ce10443] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/ConstantProductPool.sol::ConstantProductPool.burn(bytes)
+ writer effect     -> contracts/pool/ConstantProductPool.sol:139
+ written member    -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.kLast')
+ potentially stale -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.barFee'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate 719a8396742083fa5649] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.swap(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:175
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 71a780c6b556b4663e73] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/ConstantProductPool.sol::ConstantProductPool.burn(bytes)
+ writer effect     -> contracts/pool/TridentERC20.sol:134
+ written member    -> ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.barFee'), ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.kLast')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 7410ad13599ef4190b83] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.burn(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:143
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens'), ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 74bda5e12b16636e53c5] {records, tokens}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.mint(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:105
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 762e335fbdbcf0fb6c57] {getApproved, isApprovedForAll, ownerOf}
+ writer root       -> contracts/pool/concentrated/TridentNFT.sol::TridentNFT.permit(address,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/pool/concentrated/TridentNFT.sol:192
+ written member    -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.getApproved')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.isApprovedForAll'), ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.ownerOf')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 76cd40378a07ca5690f1] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedConstantProductPool.sol::FranchisedConstantProductPool.burn(bytes)
+ writer effect     -> contracts/pool/franchised/TridentFranchisedERC20.sol:155
+ written member    -> ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.barFee'), ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.kLast')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 77422cee9f920016ca21] {reserve0, reserve1}
+ writer root       -> contracts/workInProgress/Migrator.sol::Migrator.migrate(ConstantProductPool)
+ writer effect     -> contracts/pool/ConstantProductPool.sol:278
+ written member    -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.reserve0')
+ potentially stale -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.reserve1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 794505177fbd641b8346] {getApproved, isApprovedForAll, ownerOf}
+ writer root       -> contracts/pool/concentrated/TridentNFT.sol::TridentNFT.transfer(address,uint256)
+ writer effect     -> contracts/pool/concentrated/TridentNFT.sol:101
+ written member    -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.getApproved')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.isApprovedForAll'), ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.ownerOf')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7a14ee7daba1a9ba613e] {records, tokens}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.burn(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:130
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 7e253bc3ea3b2074fb9f] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.mint(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:118
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens'), ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 7e93c61ed974d31665bf] {records, tokens}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.mint(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:118
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 804b31cfa44a3b56c3be] {incentives, positions}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol::ConcentratedLiquidityPosition.positionMintCallback(address,int24,int24,uint128,uint256,uint256)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol:48
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPosition.sol', 'ConcentratedLiquidityPosition.positions')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol', 'ConcentratedLiquidityPoolManager.incentives')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 80c4c94b8fad1e50649f] {getApproved, isApprovedForAll, ownerOf}
+ writer root       -> contracts/pool/concentrated/TridentNFT.sol::TridentNFT.approve(address,uint256)
+ writer effect     -> contracts/pool/concentrated/TridentNFT.sol:77
+ written member    -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.getApproved')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.isApprovedForAll'), ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.ownerOf')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 8238c8cfe358410f4831] {balanceOf, totalSupply}
+ writer root       -> contracts/pool/franchised/TridentFranchisedERC20.sol::TridentFranchisedERC20.transferFrom(address,address,uint256)
+ writer effect     -> contracts/pool/franchised/TridentFranchisedERC20.sol:99
+ written member    -> ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.balanceOf')
+ potentially stale -> ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 15
+ storage exposures -> 3
+[MV-SI candidate 89547c81af28f2776c79] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.burnSingle(bytes)
+ writer effect     -> contracts/pool/franchised/TridentFranchisedERC20.sol:155
+ written member    -> ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records'), ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens')
+ reader witnesses  -> 13
+ storage exposures -> 1
+[MV-SI candidate 89dabd1e1e90813121bc] {records, tokens}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.swap(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:188
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 8bd549cf7a30f0253ca7] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.burn(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:119
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 8ef6a7e0b5a27a7b6afc] {getApproved, isApprovedForAll, ownerOf}
+ writer root       -> contracts/pool/concentrated/TridentNFT.sol::TridentNFT.permitAll(address,address,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/pool/concentrated/TridentNFT.sol:228
+ written member    -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.isApprovedForAll')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.getApproved'), ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.ownerOf')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 92ca6c4095dbc3d1c863] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedConstantProductPool.sol::FranchisedConstantProductPool.burnSingle(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedConstantProductPool.sol:196
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.kLast')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.barFee'), ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 94f17084501ef3fad480] {reserve0, reserve1}
+ writer root       -> contracts/workInProgress/Migrator.sol::Migrator.migrate(ConstantProductPool)
+ writer effect     -> contracts/pool/ConstantProductPool.sol:291
+ written member    -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.reserve0')
+ potentially stale -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.reserve1')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 955e5a4134d7076b5773] {incentives, positions}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol::ConcentratedLiquidityPoolManager.claimReward(uint256,uint256,address,bool)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol:95
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol', 'ConcentratedLiquidityPoolManager.incentives')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPosition.sol', 'ConcentratedLiquidityPosition.positions')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 962eb767e1a2f1e58f66] {records, tokens}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.burn(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:136
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 970018198c535bb1e6a3] {reserve0, reserve1}
+ writer root       -> contracts/workInProgress/Migrator.sol::Migrator.migrate(ConstantProductPool)
+ writer effect     -> contracts/pool/ConstantProductPool.sol:279
+ written member    -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.reserve1')
+ potentially stale -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.reserve0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 99c807c4eca4b9d21aa0] {getApproved, isApprovedForAll, ownerOf}
+ writer root       -> contracts/pool/concentrated/TridentNFT.sol::TridentNFT.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> contracts/pool/concentrated/TridentNFT.sol:123
+ written member    -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.getApproved')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.isApprovedForAll'), ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.ownerOf')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 9c321463fdfe9c0aaefd] {incentives, positions}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol::ConcentratedLiquidityPosition.burn(uint256,uint128,address,bool)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol:69
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPosition.sol', 'ConcentratedLiquidityPosition.positions')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol', 'ConcentratedLiquidityPoolManager.incentives')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 9d78ff919ed5a7c097e1] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.mint(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:108
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records'), ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 9f47ee3a4b653551fc49] {lastObservation, liquidity}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPool.sol::ConcentratedLiquidityPool.mint(bytes)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPool.sol:176
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPool.sol', 'ConcentratedLiquidityPool.liquidity')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPool.sol', 'ConcentratedLiquidityPool.lastObservation')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a15762718c647716344e] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.burnSingle(bytes)
+ writer effect     -> contracts/pool/TridentERC20.sol:148
+ written member    -> ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records'), ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens')
+ reader witnesses  -> 13
+ storage exposures -> 1
+[MV-SI candidate a2c1840042659b9ad343] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedConstantProductPool.sol::FranchisedConstantProductPool.mint(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedConstantProductPool.sol:121
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.kLast')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.barFee'), ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate a3154d1a6775dfcd0916] {incentiveCount, positions}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol::ConcentratedLiquidityPoolManager.addIncentive(IConcentratedLiquidityPool,ConcentratedLiquidityPoolManager.Incentive)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol:43
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol', 'ConcentratedLiquidityPoolManager.incentiveCount')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPosition.sol', 'ConcentratedLiquidityPosition.positions')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a7b3a10927752d0065da] {incentives, positions}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol::ConcentratedLiquidityPosition.collect(uint256,address,bool)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol:99
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPosition.sol', 'ConcentratedLiquidityPosition.positions')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol', 'ConcentratedLiquidityPoolManager.incentives')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate a8ebe86ea2a9569476b8] {records, tokens}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.flashSwap(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:213
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate a9ab2b65b4c0c888d50c] {reserve0, reserve1}
+ writer root       -> contracts/workInProgress/Migrator.sol::Migrator.migrate(ConstantProductPool)
+ writer effect     -> contracts/pool/ConstantProductPool.sol:292
+ written member    -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.reserve1')
+ potentially stale -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.reserve0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate aa73ae34cfb8138e646b] {barFee, kLast}
+ writer root       -> contracts/pool/franchised/FranchisedConstantProductPool.sol::FranchisedConstantProductPool.burn(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedConstantProductPool.sol:150
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.kLast')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.barFee')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate ae31487a41f50387a1e4] {lastObservation, liquidity}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPool.sol::ConcentratedLiquidityPool.swap(bytes)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPool.sol:422
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPool.sol', 'ConcentratedLiquidityPool.liquidity')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPool.sol', 'ConcentratedLiquidityPool.lastObservation')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate aecd6b6feca041934643] {records, tokens}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.mint(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:95
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate af6380ac9d467ab9c4f5] {barFee, dLast, totalSupply}
+ writer root       -> contracts/pool/HybridPool.sol::HybridPool.mint(bytes)
+ writer effect     -> contracts/pool/TridentERC20.sol:134
+ written member    -> ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.barFee'), ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.dLast')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate b170c1dbf26ddcda3383] {incentiveCount, positions}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol::ConcentratedLiquidityPosition.burn(uint256,uint128,address,bool)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol:69
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPosition.sol', 'ConcentratedLiquidityPosition.positions')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol', 'ConcentratedLiquidityPoolManager.incentiveCount')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b2c2198b44d1f99c84b0] {nearestTick, ticks}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPool.sol::ConcentratedLiquidityPool.mint(bytes)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPool.sol:180
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPool.sol', 'ConcentratedLiquidityPool.nearestTick')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPool.sol', 'ConcentratedLiquidityPool.ticks')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate b39c7e910e146feb9da9] {barFee, dLast, totalSupply}
+ writer root       -> contracts/pool/HybridPool.sol::HybridPool.burnSingle(bytes)
+ writer effect     -> contracts/pool/TridentERC20.sol:148
+ written member    -> ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.barFee'), ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.dLast')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate b5cc0cfc7d2d26188d15] {barFee, kLast}
+ writer root       -> contracts/pool/franchised/FranchisedConstantProductPool.sol::FranchisedConstantProductPool.burnSingle(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedConstantProductPool.sol:196
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.kLast')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.barFee')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate b6e250212e5ed0120ffe] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/ConstantProductPool.sol::ConstantProductPool.mint(bytes)
+ writer effect     -> contracts/pool/ConstantProductPool.sol:114
+ written member    -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.kLast')
+ potentially stale -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.barFee'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate b7a6c6979f6adef1a893] {records, tokens}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.burnSingle(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:163
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate bd7d475861f5c43831a7] {records, tokens}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.swap(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:175
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate be019ef418f1c8b3e0ad] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.swap(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:187
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens'), ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate bf4ce389639ff26291d5] {incentiveCount, positions}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol::ConcentratedLiquidityPosition.collect(uint256,address,bool)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol:99
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPosition.sol', 'ConcentratedLiquidityPosition.positions')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol', 'ConcentratedLiquidityPoolManager.incentiveCount')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate bf974542d77aae318c0b] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.mint(bytes)
+ writer effect     -> contracts/pool/TridentERC20.sol:134
+ written member    -> ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records'), ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens')
+ reader witnesses  -> 13
+ storage exposures -> 1
+[MV-SI candidate c1bce5053ac06b6225e4] {records, tokens}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.burn(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:123
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate c9ecebf2825f3a9cce5d] {incentiveCount, positions}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol::ConcentratedLiquidityPosition.collect(uint256,address,bool)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol:100
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPosition.sol', 'ConcentratedLiquidityPosition.positions')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol', 'ConcentratedLiquidityPoolManager.incentiveCount')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate cc55a01d963b09f92b1e] {barFee, dLast, totalSupply}
+ writer root       -> contracts/pool/HybridPool.sol::HybridPool.burn(bytes)
+ writer effect     -> contracts/pool/HybridPool.sol:138
+ written member    -> ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.dLast')
+ potentially stale -> ('SV', 'contracts/pool/HybridPool.sol', 'HybridPool.barFee'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate d0126994501928934e2b] {isApprovedForAll, ownerOf}
+ writer root       -> contracts/pool/concentrated/TridentNFT.sol::TridentNFT.setApprovalForAll(address,bool)
+ writer effect     -> contracts/pool/concentrated/TridentNFT.sol:85
+ written member    -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.isApprovedForAll')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.ownerOf')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d3dbd6c36da9e3191e61] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.flashSwap(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:214
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens'), ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate d51f3a24112b00af69ce] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.flashSwap(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:200
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate da5543d912f3fd087b6b] {incentiveCount, positions}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol::ConcentratedLiquidityPosition.burn(uint256,uint128,address,bool)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol:67
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPosition.sol', 'ConcentratedLiquidityPosition.positions')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPoolManager.sol', 'ConcentratedLiquidityPoolManager.incentiveCount')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate dc6608a6269aaa9c8d88] {records, tokens}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.burn(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:119
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate e2737abfda1e7c5f0db1] {nearestTick, ticks}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPool.sol::ConcentratedLiquidityPool.swap(bytes)
+ writer effect     -> contracts/pool/concentrated/ConcentratedLiquidityPool.sol:421
+ written member    -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPool.sol', 'ConcentratedLiquidityPool.nearestTick')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/ConcentratedLiquidityPool.sol', 'ConcentratedLiquidityPool.ticks')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate e2e76100a7baab6ffa48] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.burn(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:130
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate e37577c09b447d42de78] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedConstantProductPool.sol::FranchisedConstantProductPool.burn(bytes)
+ writer effect     -> contracts/pool/franchised/TridentFranchisedERC20.sol:141
+ written member    -> ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.barFee'), ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.kLast')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate e588ac1f66b47d25cb5b] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.burn(bytes)
+ writer effect     -> contracts/pool/franchised/TridentFranchisedERC20.sol:155
+ written member    -> ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records'), ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens')
+ reader witnesses  -> 13
+ storage exposures -> 1
+[MV-SI candidate e742d2eba6e86014f5bc] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.mint(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:95
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate eac14d9ba996d364c9c1] {ownerOf, totalSupply}
+ writer root       -> contracts/pool/concentrated/ConcentratedLiquidityPosition.sol::ConcentratedLiquidityPosition.positionMintCallback(address,int24,int24,uint128,uint256,uint256)
+ writer effect     -> contracts/pool/concentrated/TridentNFT.sol:236
+ written member    -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/concentrated/TridentNFT.sol', 'TridentNFT.ownerOf')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate eb9d85026439a99ce91f] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/IndexPool.sol::IndexPool.burn(bytes)
+ writer effect     -> contracts/pool/IndexPool.sol:123
+ written member    -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.tokens')
+ potentially stale -> ('SV', 'contracts/pool/IndexPool.sol', 'IndexPool.records'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate ed8920eecc0939b332c1] {barFee, kLast, totalSupply}
+ writer root       -> contracts/workInProgress/Migrator.sol::Migrator.migrate(ConstantProductPool)
+ writer effect     -> contracts/pool/ConstantProductPool.sol:139
+ written member    -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.kLast')
+ potentially stale -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.barFee'), ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate f5e3488bc5784d21e073] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedConstantProductPool.sol::FranchisedConstantProductPool.updateBarFee()
+ writer effect     -> contracts/pool/franchised/FranchisedConstantProductPool.sol:260
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.barFee')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.kLast'), ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate f6f36fc68e64c3c03b97] {records, tokens}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.mint(bytes)
+ writer effect     -> contracts/pool/franchised/FranchisedIndexPool.sol:108
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate f8f14aa4b3e12c068fd0] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedConstantProductPool.sol::FranchisedConstantProductPool.burnSingle(bytes)
+ writer effect     -> contracts/pool/franchised/TridentFranchisedERC20.sol:141
+ written member    -> ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.barFee'), ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.kLast')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate fbc39ebeecfb87edb9b0] {records, tokens, totalSupply}
+ writer root       -> contracts/pool/franchised/FranchisedIndexPool.sol::FranchisedIndexPool.mint(bytes)
+ writer effect     -> contracts/pool/franchised/TridentFranchisedERC20.sol:141
+ written member    -> ('SV', 'contracts/pool/franchised/TridentFranchisedERC20.sol', 'TridentFranchisedERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.records'), ('SV', 'contracts/pool/franchised/FranchisedIndexPool.sol', 'FranchisedIndexPool.tokens')
+ reader witnesses  -> 13
+ storage exposures -> 1
+[MV-SI candidate fbe78aca81f8520ec3db] {barFee, kLast}
+ writer root       -> contracts/pool/franchised/FranchisedConstantProductPool.sol::FranchisedConstantProductPool.updateBarFee()
+ writer effect     -> contracts/pool/franchised/FranchisedConstantProductPool.sol:260
+ written member    -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.barFee')
+ potentially stale -> ('SV', 'contracts/pool/franchised/FranchisedConstantProductPool.sol', 'FranchisedConstantProductPool.kLast')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate fff560a701eacd6704cf] {barFee, kLast, totalSupply}
+ writer root       -> contracts/pool/ConstantProductPool.sol::ConstantProductPool.burn(bytes)
+ writer effect     -> contracts/pool/TridentERC20.sol:148
+ written member    -> ('SV', 'contracts/pool/TridentERC20.sol', 'TridentERC20.totalSupply')
+ potentially stale -> ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.barFee'), ('SV', 'contracts/pool/ConstantProductPool.sol', 'ConstantProductPool.kLast')
+ reader witnesses  -> 32
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=86 vars=5
+[mvscan-stage] root-seeding-done eligible_exposures=21 seeded=8 multi_exposure_entry_blocks=8 collapsed_contextual_aliases=13 excluded_dependency=0 excluded_interface=6 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=2e4028023227f6f42c4c82d5e9e9c8d22d853d046779b8adeff49503ed0344b6 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=3ff580e3a60631f0ba83f2f8b1ae1d722555d870b22183bbe09deb16fac71687 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_base_members_shadowed=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_members_raw=4 relation_origins_rejected_unary_after_shadowing=4 relation_origins_rejected_unreachable=5 relation_origins_seen=4 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=3 storage_context_mismatch=0 variables_considered=3
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=57 vars=8
+[mvscan-stage] root-seeding-done eligible_exposures=4 seeded=4 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=491c3bf4ff4d01b9768ee24e1da3f7208da2e95e5081567502cbfc4d8df6faa5 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=94239976df472fff92d327a35442a7261b8d1d338f69bb141e2f6b8447628fab invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_base_members_shadowed=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_members_raw=3 relation_origins_rejected_unary_after_shadowing=3 relation_origins_seen=3 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=3 storage_context_mismatch=0 variables_considered=3
+INFO:Slither:. analyzed (74 contracts with 1 detectors), 128 result(s) found

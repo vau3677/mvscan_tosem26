@@ -1,0 +1,1121 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=4106 vars=242
+[mvscan-stage] root-seeding-done eligible_exposures=320 seeded=197 multi_exposure_entry_blocks=48 collapsed_contextual_aliases=123 excluded_dependency=0 excluded_interface=84 excluded_library=0 excluded_abstract=144 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=801f7e5b8442930c47742cf75908ea00f5c79f1eb432bcd6235417a256f191dd candidate_count=159 candidate_digest=b11a4a4bc8e7e45ec1bafedb46156aac451c747dfaed40bc25dbb3fa4f6d1fb4 context_instance_count=2374 eligible_readers=101 eligible_writers=93 execution_context_digest=b1816da3256229361be1783da7ea8892d69647127bd8b5bb32232a7c23cd33d0 insensitive_readers_filtered=87 invalid_partial_write_filtered=0 must_full_relation_filtered=110 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=2243 owner_context_pairs=2459 owner_context_pairs_considered=11183 raw_block_pairs=755 reader_witness_count=2459 relation_base_members_shadowed=0 relation_context_incompatible=863 relation_digest=874025a7d435403844f9ac544cdfb2ef7fd522754ca0f0fa1dfc38b6fd352ddd relation_members_raw=81 relation_origins_registered=15 relation_origins_rejected_unary_after_shadowing=30 relation_origins_rejected_unreachable=72 relation_origins_seen=45 relation_unbound_key_templates=76 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=15 scalar_variables_skipped=143 storage_context_mismatch=5508 variables_considered=158
+INFO:Detectors:
+
+[MV-SI candidate 0213caeba9da13aab018] {borrowed[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 024c6c93205c3ded2c56] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:202
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 04897e03f1fd5040849a] {finishAt, rewardPerTokenStored, rewardRatio, totalSupply, updatedAt}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.stake(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:58
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ potentially stale -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 06e13cacd6c682f608b6] {rewardPerTokenStored, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.getReward()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:180
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.userRewardPerTokenPaid', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.rewards', '$arg0'), ('SV', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.rewardPerTokenStored')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 083fb48cc36c2bce7795] {finishAt, rewardPerTokenStored, rewardRatio, updatedAt}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.purchaseOtherEarnings(address,bool)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:73
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored')
+ potentially stale -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 0b326ebfa64167b6ec9d] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.withdraw(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:95
+ written member    -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 0b50601e0a0338fdfce4] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.purchaseOtherEarnings(address,bool)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:73
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 0b5863a9ad8484db5e86] {borrowed[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 3
+[MV-SI candidate 0d069b38b6a6ab03c254] {rewardPerTokenStored, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.getReward()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:179
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.rewardPerTokenStored')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 0d2db83dbe177c2b6952] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.reStake()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:145
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 0d555a2cdb297a98f8e3] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.refreshReward(address)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:74
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 0e5f10e8706e9f262103] {borrowed[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 3
+[MV-SI candidate 122439a348445f6ae2f0] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 1414ba1e37f32bed60da] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:74
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 14857ac12893d0809b4d] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.getReward()
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:73
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 15fe300b29d97bc9f46c] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 17ff30b7ed20d0af11b0] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.reStake()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:144
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 18042691b60a0e4bec61] {finishAt, rewardPerTokenStored, rewardRatio, totalSupply, updatedAt}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:58
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ potentially stale -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 193c9885170d91e84cd6] {borrowed[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 1ba0cf2fbaa02a4f8ff8] {rewardPerTokenStored, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.refreshReward(address)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:179
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.rewardPerTokenStored')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 1bf8ec726b8ea6225770] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 1ce3fc5015bb46bee02f] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:143
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 1d0506f384b5cc8675a3] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 219e7a59068e5b526ab4] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.purchaseOtherEarnings(address,bool)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:209
+ written member    -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 225c290c489afcc7a925] {borrowed[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 242c6f12724752b8ddac] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.withdraw(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:57
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 2490f7221aefe94644a9] {borrowed[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 3
+[MV-SI candidate 254c8455ab2a24dcfb00] {finishAt, rewardPerTokenStored, rewardRatio, totalSupply, updatedAt}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.withdraw(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:57
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored')
+ potentially stale -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 26231a4398902d1d0c19] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:73
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 270a02cf300b88bcdb1f] {borrowed[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 3
+[MV-SI candidate 27b94dc44f522bd5b6ce] {oracleFee, protocolFeeConfig, relayerFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setRelayerPrice(uint128,uint128,uint128,uint64,uint64)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:330
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.relayerFeeConfig')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee'), ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 2a1945fbb48a06573034] {finishAt, rewardPerTokenStored, rewardRatio, updatedAt}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.getReward()
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:74
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ potentially stale -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 32aa27b1e61a6bae1935] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 37d6e99ac3c1395104a1] {rewardPerTokenStored, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.notifyRewardAmount(uint256,uint256)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:233
+ written member    -> ('SV', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.rewardPerTokenStored')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.userRewardPerTokenPaid', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 38a4a1a6f58035ed16c5] {finishAt, rewardPerTokenStored, rewardRatio, updatedAt}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.refreshReward(address)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:73
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored')
+ potentially stale -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 39aeded6261461aa51fa] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.getReward()
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:196
+ written member    -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 3afcf68cca4bdf032706] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.getReward()
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:74
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 3b442b822f70d8c632d3] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.stake(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:58
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 3cd478f6c859cfe96749] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 3f651b3e0f398532384b] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.refreshReward(address)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:78
+ written member    -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 3fb1d1fe8e77d3de293f] {lastReportTime, poolTotalEUSDCirculation}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:284
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 426ff78c8a5dda4c0ede] {borrowed[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 3
+[MV-SI candidate 4671383827b7149176c8] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:202
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 4b39270afca99fccb133] {time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unstake(uint256)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:95
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 4cf282c65a295d53cd35] {lastReportTime, poolTotalEUSDCirculation}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:297
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 5225109f5457e9c93088] {borrowed[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 3
+[MV-SI candidate 55926f5a8e5420796bc6] {finishAt, rewardPerTokenStored, rewardRatio, updatedAt}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.purchaseOtherEarnings(address,bool)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:74
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ potentially stale -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 55d776e06fb6e381788b] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.getReward()
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:114
+ written member    -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 57d632fa98da0bc6e67f] {borrowed[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 3
+[MV-SI candidate 5855b4b28ea6801ab1ec] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.getReward()
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:58
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 5b52198c142b363bc2e6] {lastReportTime, poolTotalEUSDCirculation}
+ writer root       -> contracts/lybra/pools/LybraStETHVault.sol::LybraStETHDepositVault.excessIncomeDistribution(uint256)
+ writer effect     -> contracts/lybra/pools/LybraStETHVault.sol:92
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 5bc87f8ce0bb2df03c09] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.withdraw(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:58
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 5cbcacfc71d924235c0d] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.withdraw(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:61
+ written member    -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate 5ee063f1242f721900f7] {borrowed[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 5fab58ae82193f9dc198] {time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unlockPrematurely()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:121
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 64fb769d0df6e34390a3] {borrowed[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 6519a5d30a8a4fb99000] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 674e240beff874f0e9b5] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 683a0e1e8a02ce2af3c5] {rewardPerTokenStored, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.getReward()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:193
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.rewardPerTokenStored')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 68b591ef42c3764ae22d] {rewardPerTokenStored, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.notifyRewardAmount(uint256,uint256)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:236
+ written member    -> ('SV', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.rewardPerTokenStored')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.userRewardPerTokenPaid', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 6926a57854d95d5354b5] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.getReward()
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:77
+ written member    -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 69ef41aa1359a20327ee] {finishAt, rewardPerTokenStored, rewardRatio, totalSupply, updatedAt}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.stake(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:57
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored')
+ potentially stale -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 6b66749292058ffa8fb0] {finishAt, rewardPerTokenStored, rewardRatio, updatedAt}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.refreshReward(address)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:74
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ potentially stale -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 700f1ff62243530ce999] {time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unlockPrematurely()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:120
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 70b33d463759257f886d] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 715c9148348df40a0770] {lastReportTime, poolTotalEUSDCirculation}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.superLiquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:297
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 73f7dc7ec3c66de5ba23] {finishAt, rewardPerTokenStored, rewardRatio, totalSupply, updatedAt}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.stake(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:88
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply')
+ potentially stale -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 74a3f8c49e128ac1da28] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:202
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 7654cc7a44604f5ffee0] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 76f20c25cd9c65007d6b] {lastReportTime, poolTotalEUSDCirculation}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:284
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 78db5eecdc07a26e9483] {lastReportTime, poolTotalEUSDCirculation}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.superLiquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:284
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 790424e321f6d3627726] {time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.reStake()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:145
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 7a45f1d4c348f9c1bfd1] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 7da20afec91920c6948f] {finishAt, rewardPerTokenStored, rewardRatio, totalSupply, updatedAt}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:57
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored')
+ potentially stale -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate 83fc02206e55e27d43cf] {lastReportTime, poolTotalEUSDCirculation}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:284
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 85d220c516559e4a8ff9] {oracleFee, protocolFeeConfig, relayerFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setRelayerPrice(uint128,uint128,uint128,uint64,uint64)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:332
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.relayerFeeConfig')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee'), ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 863659b139998b0c5015] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.getReward()
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:62
+ written member    -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate 8754187fddca32808f03] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:234
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 877ed51a11097947a192] {oracleFee, protocolFeeConfig, relayerFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setRelayerPrice(uint128,uint128,uint128,uint64,uint64)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:334
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.relayerFeeConfig')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee'), ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 8a5ebd21d50d1622c39e] {rewardPerTokenStored, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.refreshReward(address)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:180
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.userRewardPerTokenPaid', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.rewards', '$arg0'), ('SV', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.rewardPerTokenStored')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 8a5f3402f4994f78938f] {finishAt, rewardPerTokenStored, rewardRatio, totalSupply, updatedAt}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:137
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio')
+ potentially stale -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate 8e47130dc83c1ddefb29] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:239
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 8e67d61f1f08a4eb7406] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:198
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 90d40233e4017e92b70e] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.purchaseOtherEarnings(address,bool)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:78
+ written member    -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 922cf18c8f93a6a97b54] {finishAt, rewardPerTokenStored, rewardRatio, totalSupply, updatedAt}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:143
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ potentially stale -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 92aba2f29a00b5829780] {time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unstake(uint256)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:96
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate 93610e0e72ce486d02a6] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.setPeUSDExtraRatio(uint256)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:112
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 93911f1f6de154d40ce4] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.purchaseOtherEarnings(address,bool)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:74
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate 94996c335c6ddb67be18] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:134
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 95ac6ddcd17e987b082d] {borrowed[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 3
+[MV-SI candidate 967f66cb2acd385ae7f1] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unstake(uint256)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:95
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 96d04c3e46159a3d302e] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 9726d62f8db3b7e84610] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.getReward()
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:57
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 97eb82b55bbb1152cf60] {oracleFee, protocolFeeConfig, relayerFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setProtocolFee(uint256,uint256)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:339
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee'), ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.relayerFeeConfig')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 9a0f70bc5593ee00c578] {time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.reStake()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:144
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 9ba50940cafcd7803f5a] {lastReportTime, poolTotalEUSDCirculation}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:297
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 9c29966710b76d6f092c] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.purchaseOtherEarnings(address,bool)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:77
+ written member    -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 9ccc620eef1a80099842] {oracleFee, protocolFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setProtocolFee(uint256,uint256)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:338
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a086c1e3848aa8932718] {oracleFee, protocolFeeConfig, relayerFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setOracleFee(uint256)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:343
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig'), ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.relayerFeeConfig')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate a2daec8b4479c9d8b93f] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.setExtraRatio(uint256)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:107
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate a2ef219e6c3a3a941904] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate a51ee883ddd92e77a369] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate a63bdf534ff79553e982] {finishAt, rewardPerTokenStored, rewardRatio, totalSupply, updatedAt}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.getReward()
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:58
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ potentially stale -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate a80017f50cbe8ed64c1d] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.stake(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:62
+ written member    -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate a8a5d9d6a639d283b317] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:231
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate aa18a951e06b62d5dbfa] {finishAt, rewardPerTokenStored, rewardRatio, totalSupply, updatedAt}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.withdraw(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:58
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ potentially stale -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate ab9fd87fcb86028e6a6f] {borrowed[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 3
+[MV-SI candidate af0a3335391503e7e33d] {lastReportTime, poolTotalEUSDCirculation}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:297
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate afd5fac6c704845d49d5] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:58
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate afee4e21a8b96ef7d9a6] {finishAt, rewardPerTokenStored, rewardRatio, updatedAt}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.getReward()
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:73
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored')
+ potentially stale -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate b1349d8a3cbae8a3695e] {oracleFee, protocolFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setProtocolFee(uint256,uint256)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:339
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b203252235aadf75cbf0] {lastReportTime, poolTotalEUSDCirculation}
+ writer root       -> contracts/lybra/pools/LybraStETHVault.sol::LybraStETHDepositVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:266
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b407cd4fa2a3afc0535b] {lastReportTime, poolTotalEUSDCirculation}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:297
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate b460221e317139f0f149] {oracleFee, protocolFeeConfig, relayerFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setRelayerPrice(uint128,uint128,uint128,uint64,uint64)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:333
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.relayerFeeConfig')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee'), ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate b9aa686610d30430fb8b] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.stake(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:61
+ written member    -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate bbaa03c373767f45f780] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:206
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate bc14f9a593b39a3cb2a6] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate bc76628fefbe6079f372] {finishAt, rewardPerTokenStored, rewardRatio, totalSupply, updatedAt}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:142
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt')
+ potentially stale -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate be10b51d51b3fcd53a8f] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.withdraw(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:62
+ written member    -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate c07a160d4f8c8982ba31] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate c0962fb49ace0b934c0c] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unstake(uint256)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:96
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate c156f7657af979741d76] {lastReportTime, poolTotalEUSDCirculation}
+ writer root       -> contracts/lybra/pools/LybraStETHVault.sol::LybraStETHDepositVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:297
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c15bc0afc878e266219d] {finishAt, rewardPerTokenStored, rewardRatio, totalSupply, updatedAt}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:134
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio')
+ potentially stale -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 25
+ storage exposures -> 1
+[MV-SI candidate c1fa4899a6083e23bf91] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:137
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate c2f42894da3cbecefae2] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:240
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio')
+ reader witnesses  -> 32
+ storage exposures -> 1
+[MV-SI candidate c33d81302ac72d0c3029] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:142
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 23
+ storage exposures -> 1
+[MV-SI candidate c3bc88f958ee227e94ed] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.stake(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:87
+ written member    -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate c5ff21910a62636bfa0d] {oracleFee, protocolFeeConfig, relayerFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setRelayerPrice(uint128,uint128,uint128,uint64,uint64)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:331
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.relayerFeeConfig')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee'), ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate c89d47cfaf3f1fccd114] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate c8cd0c9440b39ab6fd37] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.withdraw(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:96
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 23
+ storage exposures -> 1
+[MV-SI candidate c95e8139da74b380f10f] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate ccb832bfb582fd167d4e] {borrowed[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.liquidation(address,address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 3
+[MV-SI candidate cd96d226df75c45908fc] {oracleFee, protocolFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setOracleFee(uint256)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:343
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate ce05d46db19dc9be8043] {finishAt, rewardPerTokenStored, rewardRatio, totalSupply, updatedAt}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.withdraw(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:96
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply')
+ potentially stale -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 20
+ storage exposures -> 1
+[MV-SI candidate d177e9c26d681a803db2] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unlockPrematurely()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:121
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate d33061f71bbfca5f31a2] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraRETHVault.sol::LybraRETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:233
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate d578531c41a01aa9444e] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate d78a6f6bb51ebcc3b793] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.withdraw(address)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:105
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate d955b247379a0e0edf91] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate db2940ffae4ad1e982e0] {rewardPerTokenStored, rewards[$arg0], userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.notifyRewardAmount(uint256,uint256)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:238
+ written member    -> ('SV', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.rewardPerTokenStored')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.userRewardPerTokenPaid', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate de3b758c078a17972797] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.getReward()
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:61
+ written member    -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 29
+ storage exposures -> 1
+[MV-SI candidate df6041b70a21ea75b480] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.stake(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:57
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate e2fdaea8e524f812a348] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.stake(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:88
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 23
+ storage exposures -> 1
+[MV-SI candidate e3132c3b4b5b2fa91d13] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWbETHVault.sol::LybraWBETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e40c03123df51971324d] {balanceOf[$arg0], finishAt, rewardPerTokenStored, rewardRatio, rewards[$arg0], totalSupply, updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.notifyRewardAmount(uint256)
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:57
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored')
+ potentially stale -> ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.balanceOf', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate e4cb7240bfe2061d9d57] {borrowed[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/LybraWstETHVault.sol::LybraWstETHVault.depositEtherToMint(uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:179
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e52763fe8ea789c1b58d] {lastReportTime, poolTotalEUSDCirculation}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.mint(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:266
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e5896b8cbbe6c691ab96] {lastReportTime, poolTotalEUSDCirculation}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:297
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate e757bc082110745aa1c2] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.getReward()
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:78
+ written member    -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate ed86feefc590274dec08] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unlockPrematurely()
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:120
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate edcbf09ba5db0f72a088] {lastWithdrawTime[$arg0], time2fullRedemption[$arg0], unstakeRatio[$arg0]}
+ writer root       -> contracts/lybra/miner/ProtocolRewardsPool.sol::ProtocolRewardsPool.unstake(uint256)
+ writer effect     -> contracts/lybra/miner/ProtocolRewardsPool.sol:105
+ written member    -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.lastWithdrawTime', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.time2fullRedemption', '$arg0'), ('MS', 'contracts/lybra/miner/ProtocolRewardsPool.sol', 'ProtocolRewardsPool.unstakeRatio', '$arg0')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate f13ebab286603d47f3e4] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.refreshReward(address)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:77
+ written member    -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate f238b1c1c30837469b9b] {finishAt, rewardPerTokenStored, rewardRatio, totalSupply, updatedAt}
+ writer root       -> contracts/lybra/miner/stakerewardV2pool.sol::StakingRewardsV2.getReward()
+ writer effect     -> contracts/lybra/miner/stakerewardV2pool.sol:57
+ written member    -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardPerTokenStored')
+ potentially stale -> ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.finishAt'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.rewardRatio'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.totalSupply'), ('SV', 'contracts/lybra/miner/stakerewardV2pool.sol', 'StakingRewardsV2.updatedAt')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate f37fcb947d6b612f03b4] {lastReportTime, poolTotalEUSDCirculation}
+ writer root       -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol::LybraEUSDVaultBase.depositAssetToMint(uint256,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraEUSDVaultBase.sol:266
+ written member    -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.poolTotalEUSDCirculation')
+ potentially stale -> ('SV', 'contracts/lybra/pools/base/LybraEUSDVaultBase.sol', 'LybraEUSDVaultBase.lastReportTime')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f48fd1d62fc2d602f562] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:232
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate f7ae2cf342a2b3143660] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.rigidRedemption(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:198
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate f9476fa7c0f3362cb3ab] {extraRatio, finishAt, peUSDExtraRatio, rewardPerTokenStored, rewardRatio, rewards[$arg0], updatedAt, userRewardPerTokenPaid[$arg0]}
+ writer root       -> contracts/lybra/miner/EUSDMiningIncentives.sol::EUSDMiningIncentives.refreshReward(address)
+ writer effect     -> contracts/lybra/miner/EUSDMiningIncentives.sol:73
+ written member    -> ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardPerTokenStored')
+ potentially stale -> ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewards', '$arg0'), ('MS', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.userRewardPerTokenPaid', '$arg0'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.extraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.finishAt'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.peUSDExtraRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.rewardRatio'), ('SV', 'contracts/lybra/miner/EUSDMiningIncentives.sol', 'EUSDMiningIncentives.updatedAt')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate fb0b36eb2332923fe134] {borrowed[$arg0], feeStored[$arg0], feeUpdatedAt[$arg0]}
+ writer root       -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol::LybraPeUSDVaultBase.burn(address,uint256)
+ writer effect     -> contracts/lybra/pools/base/LybraPeUSDVaultBase.sol:198
+ written member    -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeStored', '$arg0')
+ potentially stale -> ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.borrowed', '$arg0'), ('MS', 'contracts/lybra/pools/base/LybraPeUSDVaultBase.sol', 'LybraPeUSDVaultBase.feeUpdatedAt', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate fdfdea4ad984c508eeea] {oracleFee, protocolFeeConfig, relayerFeeConfig}
+ writer root       -> contracts/mocks/LZEndpointMock.sol::LZEndpointMock.setProtocolFee(uint256,uint256)
+ writer effect     -> contracts/mocks/LZEndpointMock.sol:338
+ written member    -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.protocolFeeConfig')
+ potentially stale -> ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.oracleFee'), ('SV', 'contracts/mocks/LZEndpointMock.sol', 'LZEndpointMock.relayerFeeConfig')
+ reader witnesses  -> 5
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (120 contracts with 1 detectors), 159 result(s) found

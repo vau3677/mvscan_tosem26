@@ -1,0 +1,87 @@
+'/tmp/.svm/0.8.33/solc-0.8.33 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: Natspec memory-safe-assembly special comment for inline assembly is deprecated and scheduled for removal. Use the memory-safe block annotation instead.
+  --> lib/openzeppelin-contracts/contracts/utils/Strings.sol:24:13:
+   |
+24 |             assembly {
+   |             ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Natspec memory-safe-assembly special comment for inline assembly is deprecated and scheduled for removal. Use the memory-safe block annotation instead.
+  --> lib/openzeppelin-contracts/contracts/utils/Strings.sol:30:17:
+   |
+30 |                 assembly {
+   |                 ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Natspec memory-safe-assembly special comment for inline assembly is deprecated and scheduled for removal. Use the memory-safe block annotation instead.
+  --> lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol:63:13:
+   |
+63 |             assembly {
+   |             ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Visibility for constructor is ignored. If you want the contract to be non-deployable, making it "abstract" is sufficient.
+  --> src/DepositContract.sol:74:5:
+   |
+74 |     constructor() public {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1125 vars=71
+[mvscan-stage] root-seeding-done eligible_exposures=80 seeded=46 multi_exposure_entry_blocks=23 collapsed_contextual_aliases=34 excluded_dependency=0 excluded_interface=20 excluded_library=0 excluded_abstract=34 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=59abe507b6501262fc932815d3df503e100d0931cad4630ad997dbc2b0a1c66f candidate_count=7 candidate_digest=5d7c921f98a779e3610598ae4e0e3afd7a0c9462b3d5d357bf82ebe2848c89c5 context_instance_count=63 eligible_readers=14 eligible_writers=6 execution_context_digest=6fc235f2b22ca69238d23b2ef157c9dbf8ae4bbef721aa2da3f61898de40c61e insensitive_readers_filtered=3 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=5 owner_context_pairs=63 owner_context_pairs_considered=290 raw_block_pairs=24 reader_witness_count=63 relation_base_members_shadowed=7 relation_context_incompatible=0 relation_digest=3823ec32b51e21e50c7663931d782783057073ee051aaa82b93804b1926a8867 relation_evidence_edges=14 relation_incompatible=9 relation_members_raw=53 relation_origins_registered=4 relation_origins_rejected_unary_after_shadowing=38 relation_origins_rejected_unreachable=17 relation_origins_seen=42 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=1 scalar_variables_skipped=40 storage_context_mismatch=222 variables_considered=44
+INFO:Detectors:
+
+[MV-SI candidate 1a80d13d365c4f5dbf17] {owner, timelock_address}
+ writer root       -> src/OperatorRegistry.sol::OperatorRegistry.setTimelock(address)
+ writer effect     -> src/OperatorRegistry.sol:204
+ written member    -> ('SV', 'src/OperatorRegistry.sol', 'OperatorRegistry.timelock_address')
+ potentially stale -> ('SV', 'src/Utils/Owned.sol', 'Owned.owner')
+ reader witnesses  -> 24
+ storage exposures -> 2
+[MV-SI candidate 645c7cbbe115038622d1] {owner, timelock_address}
+ writer root       -> src/ERC20/ERC20PermitPermissionedMint.sol::ERC20PermitPermissionedMint.setTimelock(address)
+ writer effect     -> src/ERC20/ERC20PermitPermissionedMint.sol:96
+ written member    -> ('SV', 'src/ERC20/ERC20PermitPermissionedMint.sol', 'ERC20PermitPermissionedMint.timelock_address')
+ potentially stale -> ('SV', 'src/Utils/Owned.sol', 'Owned.owner')
+ reader witnesses  -> 6
+ storage exposures -> 2
+[MV-SI candidate 6aa29de56cd17780ba06] {name, nonces[$arg0]}
+ writer root       -> src/sfrxETH.sol::sfrxETH.depositWithSignature(uint256,address,uint256,bool,uint8,bytes32,bytes32)
+ writer effect     -> lib/solmate/src/tokens/ERC20.sol:130
+ written member    -> ('MS', 'lib/solmate/src/tokens/ERC20.sol', 'ERC20.nonces', '$arg0')
+ potentially stale -> ('SV', 'lib/solmate/src/tokens/ERC20.sol', 'ERC20.name')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 77b710da1d7e6b6b62f6] {name, nonces[$arg0]}
+ writer root       -> src/sfrxETH.sol::sfrxETH.mintWithSignature(uint256,address,uint256,bool,uint8,bytes32,bytes32)
+ writer effect     -> lib/solmate/src/tokens/ERC20.sol:130
+ written member    -> ('MS', 'lib/solmate/src/tokens/ERC20.sol', 'ERC20.nonces', '$arg0')
+ potentially stale -> ('SV', 'lib/solmate/src/tokens/ERC20.sol', 'ERC20.name')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 90c9b612946ab0339964] {owner, timelock_address}
+ writer root       -> src/Utils/Owned.sol::Owned.acceptOwnership()
+ writer effect     -> src/Utils/Owned.sol:24
+ written member    -> ('SV', 'src/Utils/Owned.sol', 'Owned.owner')
+ potentially stale -> ('SV', 'src/OperatorRegistry.sol', 'OperatorRegistry.timelock_address')
+ reader witnesses  -> 22
+ storage exposures -> 2
+[MV-SI candidate a338366422ada9c12b1e] {owner, timelock_address}
+ writer root       -> src/Utils/Owned.sol::Owned.acceptOwnership()
+ writer effect     -> src/Utils/Owned.sol:24
+ written member    -> ('SV', 'src/Utils/Owned.sol', 'Owned.owner')
+ potentially stale -> ('SV', 'src/ERC20/ERC20PermitPermissionedMint.sol', 'ERC20PermitPermissionedMint.timelock_address')
+ reader witnesses  -> 6
+ storage exposures -> 2
+[MV-SI candidate ac30d2980bdecc1eefd1] {activeValidators[@local::src/frxETHMinter.sol::frxETHMinter.depositEther()::LocalVariableInitFromTuple::pubKey_1], validators[@local::src/OperatorRegistry.sol::OperatorRegistry.getNextValidator()::TemporaryVariable::TMP_1215]}
+ writer root       -> src/frxETHMinter.sol::frxETHMinter.depositEther()
+ writer effect     -> src/frxETHMinter.sol:151
+ written member    -> ('MS', 'src/frxETHMinter.sol', 'frxETHMinter.activeValidators', '@local::src/frxETHMinter.sol::frxETHMinter.depositEther()::LocalVariableInitFromTuple::pubKey_1')
+ potentially stale -> ('MS', 'src/OperatorRegistry.sol', 'OperatorRegistry.validators', '@local::src/OperatorRegistry.sol::OperatorRegistry.getNextValidator()::TemporaryVariable::TMP_1215')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (31 contracts with 1 detectors), 7 result(s) found

@@ -1,0 +1,80 @@
+'/tmp/.svm/0.8.7/solc-0.8.7 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+ERROR:ContractSolcParsing:Missing function Variable not found: LBFactory__QuoteAssetNotWhitelisted(IERC20) (context LBFactory src/LBFactory.sol#20-611 (1 - 2))
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=2402 vars=63
+[mvscan-stage] root-seeding-done eligible_exposures=39 seeded=36 multi_exposure_entry_blocks=3 collapsed_contextual_aliases=3 excluded_dependency=0 excluded_interface=102 excluded_library=0 excluded_abstract=0 missing_entry_point=15 missing_entry_block=0
+[mvscan-pairs] call_target_digest=3db75fdf04a92e127e4bddd06ea809d4d3ce6fee78085803ad8d730a214b24ca candidate_count=10 candidate_digest=3bd148849425cce423d1e982a494d81dadca50b0e7ca79bb6071477e0a447d08 context_instance_count=10 eligible_readers=12 eligible_writers=10 execution_context_digest=46fa44bf78c0304d1151023e7d83981d8a924972ca416350eca8f4bf8d4c20e3 insensitive_readers_filtered=14 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=10 owner_context_pairs_considered=12 raw_block_pairs=84 reader_witness_count=10 relation_base_members_shadowed=6 relation_context_incompatible=0 relation_digest=8273a5488d58760ab372a6c976944e8f98246859bcfce1109c8c51cb26ceb324 relation_evidence_edges=10 relation_incompatible=71 relation_members_raw=43 relation_origins_registered=4 relation_origins_rejected_unary_after_shadowing=29 relation_origins_rejected_unreachable=10 relation_origins_seen=33 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=3 scalar_variables_skipped=18 storage_context_mismatch=2 variables_considered=20
+INFO:Detectors:
+
+[MV-SI candidate 12fe07fb3fd8692b1392] {_bins[@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142], _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.burn(uint256[],uint256[],address)
+ writer effect     -> src/LBPair.sol:671
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('MS', 'src/LBPair.sol', 'LBPair._bins', '@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 2ce2ace8bde3d8fd80b0] {_bins[@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142], _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.burn(uint256[],uint256[],address)
+ writer effect     -> src/LBPair.sol:670
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('MS', 'src/LBPair.sol', 'LBPair._bins', '@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 2de11b383a43cfae8ecc] {_bins[@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142], _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.initialize(IERC20,IERC20,uint24,uint16,bytes32)
+ writer effect     -> src/LBPair.sol:119
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('MS', 'src/LBPair.sol', 'LBPair._bins', '@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 4309f3ee7919c2b17fba] {_bins[@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142], _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.increaseOracleLength(uint16)
+ writer effect     -> src/LBPair.sol:926
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('MS', 'src/LBPair.sol', 'LBPair._bins', '@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 64667f3afc9d55ebd113] {_bins[@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142], _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.initialize(IERC20,IERC20,uint24,uint16,bytes32)
+ writer effect     -> src/LBPair.sol:120
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('MS', 'src/LBPair.sol', 'LBPair._bins', '@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6b303798ca7e07af4c75] {_bins[@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142], _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.collectFees(address,uint256[])
+ writer effect     -> src/LBPair.sol:720
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('MS', 'src/LBPair.sol', 'LBPair._bins', '@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6fb13fd3fb2b2ee4c876] {_bins[@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142], _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.swap(bool,address)
+ writer effect     -> src/LBPair.sol:404
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('MS', 'src/LBPair.sol', 'LBPair._bins', '@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a130fc4590d1a0b6a286] {_bins[@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142], _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.collectFees(address,uint256[])
+ writer effect     -> src/LBPair.sol:717
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('MS', 'src/LBPair.sol', 'LBPair._bins', '@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b359dcbe96c6b22587c9] {_bins[@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142], _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.initialize(IERC20,IERC20,uint24,uint16,bytes32)
+ writer effect     -> src/LBPair.sol:926
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('MS', 'src/LBPair.sol', 'LBPair._bins', '@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e6c19addd224b13193de] {_bins[@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142], _pairInformation}
+ writer root       -> src/LBPair.sol::LBPair.mint(uint256[],uint256[],uint256[],address)
+ writer effect     -> src/LBPair.sol:593
+ written member    -> ('SV', 'src/LBPair.sol', 'LBPair._pairInformation')
+ potentially stale -> ('MS', 'src/LBPair.sol', 'LBPair._bins', '@local::src/LBPair.sol::LBPair.swap(bool,address)::ReferenceVariable::REF_142')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (39 contracts with 1 detectors), 10 result(s) found

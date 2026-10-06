@@ -1,0 +1,133 @@
+'/tmp/.svm/0.8.19/solc-0.8.19 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> contracts/interfaces/common/IMulticall.sol
+
+
+Warning: Warning: Contract code size is 34888 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/core/InitCore.sol:28:1:
+   |
+28 | contract InitCore is IInitCore, Multicall, ReentrancyGuardUpgradeable, UnderACM {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 31823 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/core/PosManager.sol:19:1:
+   |
+19 | contract PosManager is IPosManager, UnderACM, ERC721EnumerableUpgradeable, ERC721HolderUpgradeable {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=3230 vars=207
+[mvscan-stage] root-seeding-done eligible_exposures=120 seeded=105 multi_exposure_entry_blocks=13 collapsed_contextual_aliases=15 excluded_dependency=0 excluded_interface=166 excluded_library=0 excluded_abstract=21 missing_entry_point=4 missing_entry_block=0
+[mvscan-pairs] call_target_digest=05d2b5f009dbec28845915f8df9c87f526f77178500bc8f1bcfce01532cb03f5 candidate_count=15 candidate_digest=442098e6d99f833a56993e80924cce00a0bb1f4e0632d82934b442c273c83433 context_instance_count=187 eligible_readers=12 eligible_writers=13 execution_context_digest=ae1130483c18ca056e92e14394ede76eda3dfb8cad2547dbc04c25ec01c58a31 insensitive_readers_filtered=33 invalid_partial_write_filtered=0 must_full_relation_filtered=100 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=8 owner_context_pairs=187 owner_context_pairs_considered=607 raw_block_pairs=73 reader_witness_count=187 relation_base_members_shadowed=0 relation_context_incompatible=312 relation_digest=3ffed543ebf4228f2201551d837ba4f4e3d3ebeb2a96d51dcf7985f02c2aa149 relation_members_raw=25 relation_origins_registered=4 relation_origins_rejected_unary_after_shadowing=16 relation_origins_rejected_unreachable=37 relation_origins_seen=20 relation_unbound_key_templates=26 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=3 scalar_variables_skipped=67 storage_context_mismatch=0 variables_considered=71
+INFO:Detectors:
+
+[MV-SI candidate 077d3aeb13ef20ed85cc] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.toSharesCurrent(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 0f299eff38f2c703962c] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.debtAmtToShareCurrent(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 583f8a33a31c24c6868d] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.burn(address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:118
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 5e35769a0dbe4ab72d93] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.burn(address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 8b7bdbdec66494d72c2d] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.debtShareToAmtCurrent(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 9c0b07f21f15d11b459d] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.accrueInterest()
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate aa664b54e34d6f172d95] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.toAmtCurrent(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate b2977b0bd794b1b535d8] {initPosIds[$sender][@local::contracts/hook/MoneyMarketHook.sol::MoneyMarketHook.execute(IMoneyMarketHook.OperationParams)::LocalVariable::posId_2], lastPosIds[$sender]}
+ writer root       -> contracts/hook/MoneyMarketHook.sol::MoneyMarketHook.execute(IMoneyMarketHook.OperationParams)
+ writer effect     -> contracts/hook/MoneyMarketHook.sol:85
+ written member    -> ('MS', 'contracts/hook/MoneyMarketHook.sol', 'MoneyMarketHook.lastPosIds', '$sender')
+ potentially stale -> ('MS', 'contracts/hook/MoneyMarketHook.sol', 'MoneyMarketHook.initPosIds', '$sender][@local::contracts/hook/MoneyMarketHook.sol::MoneyMarketHook.execute(IMoneyMarketHook.OperationParams)::LocalVariable::posId_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b8175b3d04a5baa9cf30] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.setReserveFactor_e18(uint256)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate b9cfebc080be1c712556] {initPosIds[$sender][@local::contracts/hook/MoneyMarketHook.sol::MoneyMarketHook.execute(IMoneyMarketHook.OperationParams)::LocalVariable::posId_2], lastPosIds[$sender]}
+ writer root       -> contracts/hook/MoneyMarketHook.sol::MoneyMarketHook.createPos(uint16,address)
+ writer effect     -> contracts/hook/MoneyMarketHook.sol:85
+ written member    -> ('MS', 'contracts/hook/MoneyMarketHook.sol', 'MoneyMarketHook.lastPosIds', '$sender')
+ potentially stale -> ('MS', 'contracts/hook/MoneyMarketHook.sol', 'MoneyMarketHook.initPosIds', '$sender][@local::contracts/hook/MoneyMarketHook.sol::MoneyMarketHook.execute(IMoneyMarketHook.OperationParams)::LocalVariable::posId_2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c24ab0c73097820691d2] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.mint(address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:107
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate c3c4e4f0c603d697249a] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.setIrm(address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate c51c166d4cca4236158d] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.syncCash()
+ writer effect     -> contracts/lending_pool/LendingPool.sol:151
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate de1700c8a8d13b4b2525] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.mint(address)
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate f0277aaa1a18e281ab93] {cash, totalDebt}
+ writer root       -> contracts/lending_pool/LendingPool.sol::LendingPool.syncCash()
+ writer effect     -> contracts/lending_pool/LendingPool.sol:166
+ written member    -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.totalDebt')
+ potentially stale -> ('SV', 'contracts/lending_pool/LendingPool.sol', 'LendingPool.cash')
+ reader witnesses  -> 14
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (92 contracts with 1 detectors), 15 result(s) found

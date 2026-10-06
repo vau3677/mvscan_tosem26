@@ -1,0 +1,47 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1611 vars=68
+[mvscan-stage] root-seeding-done eligible_exposures=98 seeded=52 multi_exposure_entry_blocks=27 collapsed_contextual_aliases=46 excluded_dependency=0 excluded_interface=42 excluded_library=0 excluded_abstract=9 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=6c46c1047e1816f0dadcf3b00c7907a0030a8f45445d87936bb29afae69aa13d candidate_count=5 candidate_digest=768c33ea54fdfd4ebbf5b6697e16369a9e4bd53b2141a02152da7ee5221349f0 context_instance_count=95 eligible_readers=20 eligible_writers=7 execution_context_digest=91d58d44fb4cb029fe994afbdd81439cfde168c75f9b698dc9f87783e840e397 insensitive_readers_filtered=15 invalid_partial_write_filtered=0 must_full_relation_filtered=4 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=41 owner_context_pairs=144 owner_context_pairs_considered=567 raw_block_pairs=38 reader_witness_count=144 relation_base_members_shadowed=21 relation_context_incompatible=0 relation_digest=b245cbd0b1c6abb07d3745e3f23958ff496cca457ff516f063b1edea73ef7534 relation_evidence_edges=23 relation_incompatible=11 relation_members_raw=77 relation_origins_registered=6 relation_origins_rejected_unary_after_shadowing=41 relation_origins_rejected_unreachable=14 relation_origins_seen=47 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=4 scalar_variables_skipped=37 storage_context_mismatch=378 variables_considered=42
+INFO:Detectors:
+
+[MV-SI candidate 6491b229aba14c1da2b9] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:368
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 98
+ storage exposures -> 3
+[MV-SI candidate 8a02d06058b858082f2d] {convertedUst, pendingRedeems}
+ writer root       -> contracts/strategy/BaseStrategy.sol::BaseStrategy.initRedeemStable(uint256)
+ writer effect     -> contracts/strategy/BaseStrategy.sol:167
+ written member    -> ('SV', 'contracts/strategy/BaseStrategy.sol', 'BaseStrategy.pendingRedeems')
+ potentially stale -> ('SV', 'contracts/strategy/BaseStrategy.sol', 'BaseStrategy.convertedUst')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e8be241c5bc1d097bfc2] {convertedUst, pendingRedeems}
+ writer root       -> contracts/strategy/BaseStrategy.sol::BaseStrategy.finishDepositStable(uint256)
+ writer effect     -> contracts/strategy/BaseStrategy.sol:146
+ written member    -> ('SV', 'contracts/strategy/BaseStrategy.sol', 'BaseStrategy.convertedUst')
+ potentially stale -> ('SV', 'contracts/strategy/BaseStrategy.sol', 'BaseStrategy.pendingRedeems')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e9c0ad501defc61947c5] {convertedUst, pendingRedeems}
+ writer root       -> contracts/strategy/BaseStrategy.sol::BaseStrategy.withdrawAllToVault()
+ writer effect     -> contracts/strategy/BaseStrategy.sol:167
+ written member    -> ('SV', 'contracts/strategy/BaseStrategy.sol', 'BaseStrategy.pendingRedeems')
+ potentially stale -> ('SV', 'contracts/strategy/BaseStrategy.sol', 'BaseStrategy.convertedUst')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f59ec0df32e4d6e08491] {_operatorApprovals[$arg0][$arg1], _owners[$arg0]}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:368
+ written member    -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1')
+ potentially stale -> ('MS', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 40
+ storage exposures -> 3Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=0 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=2 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+INFO:Slither:. analyzed (41 contracts with 1 detectors), 5 result(s) found

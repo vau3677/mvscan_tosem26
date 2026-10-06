@@ -1,0 +1,197 @@
+'/tmp/.svm/0.8.17/solc-0.8.17 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: This declaration has the same name as another declaration.
+  --> src/UniswapOracleFundingRateController.sol:95:20:
+   |
+95 |     function _init(uint256 target, address _pool) internal {
+   |                    ^^^^^^^^^^^^^^
+Note: The other declaration is here:
+  --> src/UniswapOracleFundingRateController.sol:86:5:
+   |
+86 |     function target() external view override returns (uint256) {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> src/NFTEDA/NFTEDA.sol:114:35:
+    |
+114 |     function _auctionCurrentPrice(uint256 id, uint256 startTime, INFTEDA.Auction memory auction)
+    |                                   ^^^^^^^^^^
+
+
+Warning: Warning: Function state mutability can be restricted to pure
+  --> src/NFTEDA/libraries/EDAPrice.sol:10:5:
+   |
+10 |     function currentPrice(
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Function state mutability can be restricted to pure
+  --> src/libraries/OracleLibrary.sol:34:5:
+   |
+34 |     function timeWeightedAverageTick(int56 startTick, int56 endTick, int56 twapDuration)
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Function state mutability can be restricted to view
+  --> src/libraries/UniswapHelpers.sol:82:5:
+   |
+82 |     function poolCurrentTick(address pool) internal returns (int24) {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Function state mutability can be restricted to view
+  --> src/ReservoirOracleUnderwriter.sol:64:5:
+   |
+64 |     function underwritePriceForCollateral(ERC721 asset, PriceKind priceKind, OracleInfo memory oracleInfo)
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 39290 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> src/PaprController.sol:18:1:
+   |
+18 | contract PaprController is
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1327 vars=67
+[mvscan-stage] root-seeding-done eligible_exposures=30 seeded=28 multi_exposure_entry_blocks=2 collapsed_contextual_aliases=2 excluded_dependency=0 excluded_interface=38 excluded_library=0 excluded_abstract=16 missing_entry_point=2 missing_entry_block=0
+[mvscan-pairs] call_target_digest=48286d03b19500ad582572a2c9fad8875a095d73d813a737f19beba81fbaaadb candidate_count=19 candidate_digest=7a3eb155ec61623208d2cda85c1ec858ac0888c45108c0e7a09d55827fc96ac5 context_instance_count=110 eligible_readers=57 eligible_writers=41 execution_context_digest=ca31620f8cc622a7613d5eb100b36af220b87bc720dcd1c807e8d2ab04a9c534 insensitive_readers_filtered=51 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=361 owner_context_pairs=550 owner_context_pairs_considered=2231 raw_block_pairs=442 reader_witness_count=550 relation_base_members_shadowed=6 relation_context_incompatible=1115 relation_digest=08a0b59f52d5827130c18cad7f7b7587b88713ce1ce39fbd4f1826ac597d17f7 relation_members_raw=41 relation_origins_registered=7 relation_origins_rejected_unary_after_shadowing=21 relation_origins_rejected_unreachable=17 relation_origins_seen=28 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=16 scalar_variables_skipped=26 storage_context_mismatch=205 variables_considered=32
+INFO:Detectors:
+
+[MV-SI candidate 01a25df0cfbee900fa9c] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.purchaseLiquidationAuctionNFT(INFTEDA.Auction,uint256,address,ReservoirOracleUnderwriter.OracleInfo)
+ writer effect     -> src/UniswapOracleFundingRateController.sol:53
+ written member    -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ potentially stale -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ reader witnesses  -> 70
+ storage exposures -> 1
+[MV-SI candidate 13026f73b68888e6e32f] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/PaprController.sol:419
+ written member    -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ potentially stale -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 263e17c360603bde1792] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.startLiquidationAuction(address,IPaprController.Collateral,ReservoirOracleUnderwriter.OracleInfo)
+ writer effect     -> src/PaprController.sol:326
+ written member    -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ potentially stale -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 2eb6cec667b722ee7994] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.startLiquidationAuction(address,IPaprController.Collateral,ReservoirOracleUnderwriter.OracleInfo)
+ writer effect     -> src/UniswapOracleFundingRateController.sol:53
+ written member    -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ potentially stale -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ reader witnesses  -> 70
+ storage exposures -> 1
+[MV-SI candidate 3dc022d7008f8d7e7d04] {_target, _vaultInfo}
+ writer root       -> src/UniswapOracleFundingRateController.sol::UniswapOracleFundingRateController.updateTarget()
+ writer effect     -> src/UniswapOracleFundingRateController.sol:53
+ written member    -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ potentially stale -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ reader witnesses  -> 70
+ storage exposures -> 1
+[MV-SI candidate 4ff7294a5aeedfa17a7b] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.buyAndReduceDebt(address,ERC721,IPaprController.SwapParams)
+ writer effect     -> src/PaprController.sol:487
+ written member    -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ potentially stale -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 64e6a175bb16e92e2d5e] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.removeCollateral(address,IPaprController.Collateral[],ReservoirOracleUnderwriter.OracleInfo)
+ writer effect     -> src/UniswapOracleFundingRateController.sol:53
+ written member    -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ potentially stale -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ reader witnesses  -> 70
+ storage exposures -> 1
+[MV-SI candidate 64f84a51c2995fa5a78b] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/UniswapOracleFundingRateController.sol:53
+ written member    -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ potentially stale -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ reader witnesses  -> 70
+ storage exposures -> 1
+[MV-SI candidate 66e8e19174f8a6061709] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.increaseDebt(address,ERC721,uint256,ReservoirOracleUnderwriter.OracleInfo)
+ writer effect     -> src/UniswapOracleFundingRateController.sol:53
+ written member    -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ potentially stale -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ reader witnesses  -> 70
+ storage exposures -> 1
+[MV-SI candidate 6c3e6be574e002b8b4b5] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.reduceDebt(address,ERC721,uint256)
+ writer effect     -> src/PaprController.sol:487
+ written member    -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ potentially stale -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 761d0ed202916c7a5d9b] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.removeCollateral(address,IPaprController.Collateral[],ReservoirOracleUnderwriter.OracleInfo)
+ writer effect     -> src/PaprController.sol:439
+ written member    -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ potentially stale -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 9d1ec956516203c9c402] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.onERC721Received(address,address,uint256,bytes)
+ writer effect     -> src/PaprController.sol:475
+ written member    -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ potentially stale -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate a79628796a80c6f056c7] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.addCollateral(IPaprController.Collateral[])
+ writer effect     -> src/PaprController.sol:419
+ written member    -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ potentially stale -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate c71a8c9736e9d911c68c] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.increaseDebt(address,ERC721,uint256,ReservoirOracleUnderwriter.OracleInfo)
+ writer effect     -> src/PaprController.sol:475
+ written member    -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ potentially stale -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate c9b6730f982be805dcdf] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.uniswapV3SwapCallback(int256,int256,bytes)
+ writer effect     -> src/UniswapOracleFundingRateController.sol:53
+ written member    -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ potentially stale -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ reader witnesses  -> 70
+ storage exposures -> 1
+[MV-SI candidate d5f83af029da409810e2] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.purchaseLiquidationAuctionNFT(INFTEDA.Auction,uint256,address,ReservoirOracleUnderwriter.OracleInfo)
+ writer effect     -> src/PaprController.sol:487
+ written member    -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ potentially stale -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate d94e4705c2ac3c82e1de] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.uniswapV3SwapCallback(int256,int256,bytes)
+ writer effect     -> src/PaprController.sol:475
+ written member    -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ potentially stale -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate e7f3f8198b7e186245f0] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.startLiquidationAuction(address,IPaprController.Collateral,ReservoirOracleUnderwriter.OracleInfo)
+ writer effect     -> src/PaprController.sol:325
+ written member    -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ potentially stale -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate f33601420e16e8e83d35] {_target, _vaultInfo}
+ writer root       -> src/PaprController.sol::PaprController.purchaseLiquidationAuctionNFT(INFTEDA.Auction,uint256,address,ReservoirOracleUnderwriter.OracleInfo)
+ writer effect     -> src/PaprController.sol:526
+ written member    -> ('SV', 'src/PaprController.sol', 'PaprController._vaultInfo')
+ potentially stale -> ('SV', 'src/UniswapOracleFundingRateController.sol', 'UniswapOracleFundingRateController._target')
+ reader witnesses  -> 5
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (36 contracts with 1 detectors), 19 result(s) found

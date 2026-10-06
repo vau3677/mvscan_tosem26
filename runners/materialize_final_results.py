@@ -62,6 +62,8 @@ def main() -> int:
     sample = json.loads((root / "freeze/CROSS_ABLATION_SAMPLE.json").read_text(encoding="utf-8"))
     inventory = json.loads((root / "freeze/CROSS_ABLATION_UNION_INVENTORY.json").read_text(encoding="utf-8"))
     by_configuration = sample["selection"]["by_configuration"]
+    selection_memberships = Counter(key for keys in by_configuration.values() for key in keys)
+    overlap_count = sum(count > 1 for count in selection_memberships.values())
     populations = sample["population_counts"]
     bucket_configurations = {
         bucket["global_candidate_id"]: tuple(bucket["configurations"])
@@ -165,7 +167,7 @@ def main() -> int:
             "union_label_counts": dict(sorted(union_counts.items())),
             "population_union_buckets": inventory["union_bucket_count"],
             "overlap_union_buckets": sample["overlap_union_bucket_count"],
-            "overlap_selected_buckets": sample["overlap_selected_bucket_count"],
+            "overlap_selected_buckets": overlap_count,
             "by_configuration": config_rows,
             "membership_patterns": membership_rows,
         },
@@ -216,7 +218,7 @@ def main() -> int:
         f"{union_counts['NONBUG']} were labeled NONBUG.",
         f"The full frozen union contains {inventory['union_bucket_count']} buckets. "
         f"The coordinated samples merge to {len(review_rows)} audited buckets; "
-        f"{sample['overlap_selected_bucket_count']} audited buckets occur in more than one configuration sample.",
+        f"{overlap_count} audited buckets occur in more than one configuration sample.",
         "",
         "## Historical ISU recovery",
         "",

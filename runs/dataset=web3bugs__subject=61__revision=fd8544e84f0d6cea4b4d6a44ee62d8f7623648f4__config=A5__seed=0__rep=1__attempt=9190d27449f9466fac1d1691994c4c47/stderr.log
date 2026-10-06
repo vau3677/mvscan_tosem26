@@ -1,0 +1,703 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=3419 vars=153
+[mvscan-stage] root-seeding-done eligible_exposures=266 seeded=217 multi_exposure_entry_blocks=24 collapsed_contextual_aliases=49 excluded_dependency=0 excluded_interface=108 excluded_library=0 excluded_abstract=11 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=98b8a8649c4679d5cefe912abccc221a244dbb35d802b6f8359efb7ffe5ff531 candidate_count=97 candidate_digest=c7b379c394c53b0e69f490b2ca98fd5db36673e8dfd0e9d2215306a0257565db context_instance_count=1275 eligible_readers=284 eligible_writers=128 execution_context_digest=7e52368b1e4504c15b27bd6d2de5f5bec6e45dae8e617784a53344a0c712b012 insensitive_readers_filtered=282 invalid_partial_write_filtered=0 must_full_relation_filtered=1086 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=117 owner_context_pairs=3135 owner_context_pairs_considered=5066 raw_block_pairs=4654 reader_witness_count=3135 relation_base_members_shadowed=19 relation_context_incompatible=0 relation_digest=9fd037d61c2edefd6b89df4fbc2a8f16755256b0afebbb991942899a2115d899 relation_evidence_edges=2316 relation_incompatible=2319 relation_members_raw=253 relation_origins_registered=25 relation_origins_rejected_unary_after_shadowing=150 relation_origins_rejected_unreachable=24 relation_origins_seen=175 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=19 scalar_variables_skipped=131 storage_context_mismatch=728 variables_considered=156
+INFO:Detectors:
+
+[MV-SI candidate 01917b52e70669d5c05d] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.instalmentDeadlineExtended(address)
+ writer effect     -> contracts/Pool/Repayments.sol:439
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 0461d58a78d57af03e4d] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.liquidateForLender(address,bool,bool,bool)
+ writer effect     -> contracts/Pool/Pool.sol:827
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate 0477f90a10647f17cd0a] {_totalSupply, poolConstants}
+ writer root       -> contracts/Pool/Pool.sol::Pool.initialize(uint256,uint256,address,address,address,uint256,uint256,uint256,address,uint256,bool,address,uint256,uint256)
+ writer effect     -> contracts/Pool/Pool.sol:154
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 08acd73be1a75f60b5fe] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.repayPrincipal(address)
+ writer effect     -> contracts/Pool/Repayments.sol:365
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 0a1ac5d67dc20df237c6] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.closeLoan()
+ writer effect     -> contracts/Pool/Pool.sol:594
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate 0c70187080de0c4a7842] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.initializeRepayment(uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/Pool/Repayments.sol:164
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 0cf34e2eeb8a0b52b691] {_initialized, _initializing}
+ writer root       -> contracts/yield/YearnYield.sol::YearnYield.initialize(address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 105f6d88a8e9cdbca91f] {_initialized, _initializing}
+ writer root       -> contracts/yield/YearnYield.sol::YearnYield.initialize(address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 1a22e5878417f4691068] {_initialized, _initializing}
+ writer root       -> contracts/PriceOracle.sol::PriceOracle.initialize(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 1a7c11ebde2c40053f7a] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.initializeRepayment(uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/Pool/Repayments.sol:166
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 1ad48dd403d9eda6a0d0] {_initialized, _initializing}
+ writer root       -> contracts/yield/CompoundYield.sol::CompoundYield.initialize(address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 1e38a932443ee7e3df96] {_totalSupply, poolConstants}
+ writer root       -> contracts/Pool/Pool.sol::Pool.withdrawBorrowedAmount()
+ writer effect     -> contracts/Pool/Pool.sol:340
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 1e90ac3657d20bc8e1f3] {_totalSupply, poolConstants}
+ writer root       -> contracts/Pool/Pool.sol::Pool.initialize(uint256,uint256,address,address,address,uint256,uint256,uint256,address,uint256,bool,address,uint256,uint256)
+ writer effect     -> contracts/Pool/Pool.sol:150
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 26671623e5f385953abd] {_initialized, _initializing}
+ writer root       -> contracts/yield/CompoundYield.sol::CompoundYield.initialize(address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 2d3898f70d0c33720477] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.initializeRepayment(uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/Pool/Repayments.sol:168
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 3379b4b0a7643b96c3ee] {_initialized, _initializing}
+ writer root       -> contracts/Pool/Extension.sol::Extension.initialize(address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 36b4cdff9f18fb49b137] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.repayPrincipal(address)
+ writer effect     -> contracts/Pool/Repayments.sol:328
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 3782a95df12c68e83c80] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.cancelPool()
+ writer effect     -> contracts/Pool/Pool.sol:538
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate 3a42c243502a257483f3] {_initialized, _initializing}
+ writer root       -> contracts/Pool/PoolFactory.sol::PoolFactory.initialize(address,uint256,uint256,uint256,bytes4,uint256,uint256,uint256,uint256,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 3a4a5b40795ab6a1c725] {_initialized, _initializing}
+ writer root       -> contracts/Verification/adminVerifier.sol::AdminVerifier.initialize(address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 3a65cf74f6b22b7eec97] {_initialized, _initializing}
+ writer root       -> contracts/PriceOracle.sol::PriceOracle.initialize(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 413c0ff2726bde546828] {_initialized, _initializing}
+ writer root       -> contracts/Pool/Pool.sol::Pool.initialize(uint256,uint256,address,address,address,uint256,uint256,uint256,address,uint256,bool,address,uint256,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 44fe5f05a1a94d5d703a] {_initialized, _initializing}
+ writer root       -> contracts/SavingsAccount/SavingsAccount.sol::SavingsAccount.initialize(address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 46020304bd0e4fb54ae3] {_initialized, _initializing}
+ writer root       -> contracts/Verification/adminVerifier.sol::AdminVerifier.initialize(address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 4631725297c06ee1b36c] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.liquidateForLender(address,bool,bool,bool)
+ writer effect     -> contracts/Pool/Pool.sol:826
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate 477a996cef733dbe1b46] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.terminatePool()
+ writer effect     -> contracts/Pool/Pool.sol:583
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate 47c31ff7e856e93f9614] {_initialized, _initializing}
+ writer root       -> contracts/Pool/Extension.sol::Extension.initialize(address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 490b66092bb097a3abc6] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.initializeRepayment(uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/Pool/Repayments.sol:167
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 53262471e71568f1b549] {_initialized, _initializing}
+ writer root       -> contracts/yield/CompoundYield.sol::CompoundYield.initialize(address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 551247dce90934fbc78e] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.initializeRepayment(uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/Pool/Repayments.sol:161
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 560bdb4ce6a5493df8d3] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.liquidatePool(bool,bool,bool)
+ writer effect     -> contracts/Pool/Pool.sol:744
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate 56dc2dbe70ee700af88d] {_totalSupply, poolConstants}
+ writer root       -> contracts/Pool/Pool.sol::Pool.initialize(uint256,uint256,address,address,address,uint256,uint256,uint256,address,uint256,bool,address,uint256,uint256)
+ writer effect     -> contracts/Pool/Pool.sol:151
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 57f99d9a1a43b93404ab] {_initialized, _initializing}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.initialize(address,uint256,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 58acc5947fc295538cf8] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.liquidatePool(bool,bool,bool)
+ writer effect     -> contracts/Pool/Pool.sol:759
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate 5a66e7052055e29c2054] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.addCollateralInMarginCall(address,uint256,bool)
+ writer effect     -> contracts/Pool/Pool.sol:296
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate 5b3a51f1dff3cd78efa3] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.repay(address,uint256)
+ writer effect     -> contracts/Pool/Repayments.sol:327
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 607d65e45a1bee543114] {_initialized, _initializing}
+ writer root       -> contracts/Verification/Verification.sol::Verification.initialize(address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 62cb2309cb0f5d415cdf] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.closeLoan()
+ writer effect     -> contracts/Pool/Pool.sol:366
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate 6310a8616fda72940780] {_initialized, _initializing}
+ writer root       -> contracts/SavingsAccount/SavingsAccount.sol::SavingsAccount.initialize(address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 709f44ad327db16aa326] {_initialized, _initializing}
+ writer root       -> contracts/Verification/adminVerifier.sol::AdminVerifier.initialize(address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 71f7969c7380dc5205fc] {_initialized, _initializing}
+ writer root       -> contracts/CreditLine/CreditLine.sol::CreditLine.initialize(address,address,address,address,address,uint256,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 756dec8f162c1dc4207c] {_totalSupply, poolConstants}
+ writer root       -> contracts/Pool/Pool.sol::Pool.initialize(uint256,uint256,address,address,address,uint256,uint256,uint256,address,uint256,bool,address,uint256,uint256)
+ writer effect     -> contracts/Pool/Pool.sol:157
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 774bd77ef738c9ae8e7f] {_initialized, _initializing}
+ writer root       -> contracts/yield/AaveYield.sol::AaveYield.initialize(address,address,address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 784b592e246aa849f29a] {_totalSupply, poolConstants}
+ writer root       -> contracts/Pool/Pool.sol::Pool.liquidateForLender(address,bool,bool,bool)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:261
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 51
+ storage exposures -> 1
+[MV-SI candidate 8023bbe96111d556a15d] {_initialized, _initializing}
+ writer root       -> contracts/yield/NoYield.sol::NoYield.initialize(address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 83a0e615e18d162469d3] {_totalSupply, poolConstants}
+ writer root       -> contracts/Pool/Pool.sol::Pool.initialize(uint256,uint256,address,address,address,uint256,uint256,uint256,address,uint256,bool,address,uint256,uint256)
+ writer effect     -> contracts/Pool/Pool.sol:159
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 8522ef60472bdfc08c7b] {_initialized, _initializing}
+ writer root       -> contracts/yield/NoYield.sol::NoYield.initialize(address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 86afbe1fcf56797edb76] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.initializeRepayment(uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/Pool/Repayments.sol:163
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 89092389dc7522eb6c7d] {_initialized, _initializing}
+ writer root       -> contracts/Pool/PoolFactory.sol::PoolFactory.initialize(address,uint256,uint256,uint256,bytes4,uint256,uint256,uint256,uint256,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 892efd61332d3b3922b3] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.terminatePool()
+ writer effect     -> contracts/Pool/Pool.sol:365
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate 8af2974b3f55a507b120] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.cancelPool()
+ writer effect     -> contracts/Pool/Pool.sol:366
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate 8ee414ad460545833a03] {_totalSupply, poolConstants}
+ writer root       -> contracts/Pool/Pool.sol::Pool.initialize(uint256,uint256,address,address,address,uint256,uint256,uint256,address,uint256,bool,address,uint256,uint256)
+ writer effect     -> contracts/Pool/Pool.sol:160
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 8f3650910365117793c0] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.initializeRepayment(uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/Pool/Repayments.sol:162
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 91bd61b5c47e8537f128] {_initialized, _initializing}
+ writer root       -> contracts/SavingsAccount/SavingsAccount.sol::SavingsAccount.initialize(address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 957c298315d8ea3b5df6] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.liquidatePool(bool,bool,bool)
+ writer effect     -> contracts/Pool/Pool.sol:760
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate 9886dbb3e1da9d289c5d] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.repay(address,uint256)
+ writer effect     -> contracts/Pool/Repayments.sol:365
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 9e7663b132f0e995df44] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.terminatePool()
+ writer effect     -> contracts/Pool/Pool.sol:366
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate a056859b6ced5ff5f278] {_totalSupply, poolConstants}
+ writer root       -> contracts/Pool/Pool.sol::Pool.withdrawLiquidity()
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:261
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 51
+ storage exposures -> 1
+[MV-SI candidate a1555be8a25dab12081d] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.depositCollateral(uint256,bool)
+ writer effect     -> contracts/Pool/Pool.sol:221
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate a297dc80bd6e6b765d85] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.closeLoan()
+ writer effect     -> contracts/Pool/Pool.sol:365
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate a45f13f77da827e2d273] {_initialized, _initializing}
+ writer root       -> contracts/PriceOracle.sol::PriceOracle.initialize(address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a4de1d21b801bd17734c] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.repay(address,uint256)
+ writer effect     -> contracts/Pool/Repayments.sol:328
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate a832324c9d5cd9cd21b5] {_initialized, _initializing}
+ writer root       -> contracts/Pool/Extension.sol::Extension.initialize(address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a99af8fa71e9015d8476] {governance, strategist}
+ writer root       -> contracts/mocks/yVault/Controller.sol::Controller.setStrategist(address)
+ writer effect     -> contracts/mocks/yVault/Controller.sol:82
+ written member    -> ('SV', 'contracts/mocks/yVault/Controller.sol', 'Controller.strategist')
+ potentially stale -> ('SV', 'contracts/mocks/yVault/Controller.sol', 'Controller.governance')
+ reader witnesses  -> 98
+ storage exposures -> 1
+[MV-SI candidate aeffcabe749a18ff554d] {_initialized, _initializing}
+ writer root       -> contracts/yield/StrategyRegistry.sol::StrategyRegistry.initialize(address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate af7160110ab27459a5d1] {_initialized, _initializing}
+ writer root       -> contracts/Verification/Verification.sol::Verification.initialize(address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b1881f3bcef76d8a62ea] {_initialized, _initializing}
+ writer root       -> contracts/yield/AaveYield.sol::AaveYield.initialize(address,address,address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b369263f9a4c83a8983f] {_totalSupply, poolConstants}
+ writer root       -> contracts/Pool/Pool.sol::Pool.initialize(uint256,uint256,address,address,address,uint256,uint256,uint256,address,uint256,bool,address,uint256,uint256)
+ writer effect     -> contracts/Pool/Pool.sol:152
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b454909e21ec2c2f9f37] {_initialized, _initializing}
+ writer root       -> contracts/CreditLine/CreditLine.sol::CreditLine.initialize(address,address,address,address,address,uint256,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate bf2a928b7b6bbb911879] {_initialized, _initializing}
+ writer root       -> contracts/yield/NoYield.sol::NoYield.initialize(address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c16a9f01fba11994c173] {governance, strategist}
+ writer root       -> contracts/mocks/yVault/Controller.sol::Controller.setGovernance(address)
+ writer effect     -> contracts/mocks/yVault/Controller.sol:97
+ written member    -> ('SV', 'contracts/mocks/yVault/Controller.sol', 'Controller.governance')
+ potentially stale -> ('SV', 'contracts/mocks/yVault/Controller.sol', 'Controller.strategist')
+ reader witnesses  -> 49
+ storage exposures -> 1
+[MV-SI candidate c5e3fe56324a364c9a88] {_initialized, _initializing}
+ writer root       -> contracts/Pool/PoolFactory.sol::PoolFactory.initialize(address,uint256,uint256,uint256,bytes4,uint256,uint256,uint256,uint256,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ca015e8bce5d3d9d39d4] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.cancelPool()
+ writer effect     -> contracts/Pool/Pool.sol:365
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate ca1c1b27195ffa557bc8] {_totalSupply, poolConstants}
+ writer root       -> contracts/Pool/Pool.sol::Pool.initialize(uint256,uint256,address,address,address,uint256,uint256,uint256,address,uint256,bool,address,uint256,uint256)
+ writer effect     -> contracts/Pool/Pool.sol:156
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate cdea17c723e6fffef11c] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.repay(address,uint256)
+ writer effect     -> contracts/Pool/Repayments.sol:373
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate d26b52d6405bf2833e26] {_initialized, _initializing}
+ writer root       -> contracts/CreditLine/CreditLine.sol::CreditLine.initialize(address,address,address,address,address,uint256,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate d2d24893c0717ba370d3] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.initializeRepayment(uint256,uint256,uint256,uint256,address)
+ writer effect     -> contracts/Pool/Repayments.sol:165
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate d3a26a37b7c55d819f83] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.repayPrincipal(address)
+ writer effect     -> contracts/Pool/Repayments.sol:361
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate d403f7aa2c65ff968528] {_totalSupply, poolConstants}
+ writer root       -> contracts/Pool/Pool.sol::Pool.lend(address,uint256,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:239
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 51
+ storage exposures -> 1
+[MV-SI candidate dea455e1e1f75c460978] {_initialized, _initializing}
+ writer root       -> contracts/yield/StrategyRegistry.sol::StrategyRegistry.initialize(address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e21aa2bdac19427c2344] {poolConstants, poolVariables}
+ writer root       -> contracts/Pool/Pool.sol::Pool.liquidateCancelPenalty(bool,bool)
+ writer effect     -> contracts/Pool/Pool.sol:565
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ reader witnesses  -> 153
+ storage exposures -> 1
+[MV-SI candidate e2c1df9ffe57d0d3cf46] {_initialized, _initializing}
+ writer root       -> contracts/yield/AaveYield.sol::AaveYield.initialize(address,address,address,address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e3dd4146fcbb773b1c2e] {_initialized, _initializing}
+ writer root       -> contracts/yield/StrategyRegistry.sol::StrategyRegistry.initialize(address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e41d4ceec6726d74f7da] {_totalSupply, poolConstants}
+ writer root       -> contracts/Pool/Pool.sol::Pool.initialize(uint256,uint256,address,address,address,uint256,uint256,uint256,address,uint256,bool,address,uint256,uint256)
+ writer effect     -> contracts/Pool/Pool.sol:158
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e61713798445edd7d3d9] {_initialized, _initializing}
+ writer root       -> contracts/yield/YearnYield.sol::YearnYield.initialize(address,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ec742c0b7c7fbd9a6498] {_initialized, _initializing}
+ writer root       -> contracts/Pool/Pool.sol::Pool.initialize(uint256,uint256,address,address,address,uint256,uint256,uint256,address,uint256,bool,address,uint256,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate ecddf609f2e2b1e700e8] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.repayPrincipal(address)
+ writer effect     -> contracts/Pool/Repayments.sol:373
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate f1012fa582c801e234d2] {_initialized, _initializing}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.initialize(address,uint256,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f12a1ce053a88c09d6bd] {_initialized, _initializing}
+ writer root       -> contracts/Verification/Verification.sol::Verification.initialize(address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f28db150251276f650cb] {_totalSupply, poolConstants}
+ writer root       -> contracts/Pool/Pool.sol::Pool.initialize(uint256,uint256,address,address,address,uint256,uint256,uint256,address,uint256,bool,address,uint256,uint256)
+ writer effect     -> contracts/Pool/Pool.sol:153
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f3d83dc1182290f84a8e] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.repay(address,uint256)
+ writer effect     -> contracts/Pool/Repayments.sol:361
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate f436bf2d1f8e96919bd8] {_initialized, _initializing}
+ writer root       -> contracts/Pool/Pool.sol::Pool.initialize(uint256,uint256,address,address,address,uint256,uint256,uint256,address,uint256,bool,address,uint256,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f60c0bf998204985db72] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.repayPrincipal(address)
+ writer effect     -> contracts/Pool/Repayments.sol:327
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate f6a50e6b0a050c5dd25b] {_initialized, _initializing}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.initialize(address,uint256,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f7db4b6f6bade6493399] {repayConstants, repayVariables}
+ writer root       -> contracts/Pool/Repayments.sol::Repayments.instalmentDeadlineExtended(address)
+ writer effect     -> contracts/Pool/Repayments.sol:440
+ written member    -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayVariables')
+ potentially stale -> ('SV', 'contracts/Pool/Repayments.sol', 'Repayments.repayConstants')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate f84d00d19ad7c0f4d044] {_totalSupply, poolConstants}
+ writer root       -> contracts/Pool/Pool.sol::Pool.initialize(uint256,uint256,address,address,address,uint256,uint256,uint256,address,uint256,bool,address,uint256,uint256)
+ writer effect     -> contracts/Pool/Pool.sol:162
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate fe744ba8c988c852b9f4] {_totalSupply, poolConstants}
+ writer root       -> contracts/Pool/Pool.sol::Pool.initialize(uint256,uint256,address,address,address,uint256,uint256,uint256,address,uint256,bool,address,uint256,uint256)
+ writer effect     -> contracts/Pool/Pool.sol:163
+ written member    -> ('SV', 'contracts/Pool/Pool.sol', 'Pool.poolConstants')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol', 'ERC20Upgradeable._totalSupply')
+ reader witnesses  -> 2
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=0 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=3 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=7 vars=2
+[mvscan-stage] root-seeding-done eligible_exposures=1 seeded=1 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=a808e8c2fa5627dee930dc8448313cc7578c018ad90648ae103d2f54b5cc742c candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=06ff53c8d3646e9a73d1433be1f174aeed8a70a34e1e098cb014484082433ed6 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_base_members_shadowed=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_members_raw=1 relation_origins_rejected_unary_after_shadowing=1 relation_origins_seen=1 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=1 storage_context_mismatch=0 variables_considered=1
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=10 vars=3
+[mvscan-stage] root-seeding-done eligible_exposures=1 seeded=1 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=45a68be58f5305305ea6162cf3f7212ea3fe9fec38b3674f96763348819fc7b8 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_origins_rejected_unreachable=2 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=1 storage_context_mismatch=0 variables_considered=1
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=10 vars=2
+[mvscan-stage] root-seeding-done eligible_exposures=1 seeded=1 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=da5ba04836b5fd7f5e244242a820b943991a3386bc122bc5aa91f261365e2da2 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4a25252ee4c294aa75d344436dc3e92a3452e69038cc6267e26765319de2bba3 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_base_members_shadowed=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_members_raw=1 relation_origins_rejected_unary_after_shadowing=1 relation_origins_seen=1 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=1 storage_context_mismatch=0 variables_considered=1
+INFO:Slither:. analyzed (85 contracts with 1 detectors), 97 result(s) found

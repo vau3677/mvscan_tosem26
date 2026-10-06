@@ -1,0 +1,169 @@
+'forge clean' running (wd: /workspace)
+'forge config --json' running
+Warning: Found unknown config section in foundry.toml: [ci]
+This notation for profiles has been deprecated and may result in the profile not being registered in future versions.
+Please use [profile.ci] instead or run `forge config --fix`.
+Warning: Found unknown config section in foundry.toml: [default]
+This notation for profiles has been deprecated and may result in the profile not being registered in future versions.
+Please use [profile.default] instead or run `forge config --fix`.
+'forge build --build-info --skip ./test/** ./script/** --force' running (wd: /workspace)
+ERROR:ContractSolcParsing:Impossible to generate IR for OracleRef.readOracle (contracts/refs/OracleRef.sol#101-123):
+ 'NoneType' object has no attribute 'parameters'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=4484 vars=255
+[mvscan-stage] root-seeding-done eligible_exposures=257 seeded=175 multi_exposure_entry_blocks=44 collapsed_contextual_aliases=82 excluded_dependency=61 excluded_interface=105 excluded_library=0 excluded_abstract=58 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=7dc69576c151b64313a9ad2b3b32845af0c60d0197e435bdffe9899caf2aaf0f candidate_count=21 candidate_digest=595b4a5cabb1ccf0ab46fec93139194ae00455a67aabbf5744d78c4919b58cc8 context_instance_count=90 eligible_readers=22 eligible_writers=14 execution_context_digest=3a16fe05cfa715393592af9c12c55920057d05e3cbe51ebdac6dcc8de11a8805 insensitive_readers_filtered=33 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=32 owner_context_pairs=126 owner_context_pairs_considered=692 raw_block_pairs=29 reader_witness_count=126 relation_base_members_shadowed=13 relation_context_incompatible=304 relation_digest=2c9f27c230ae44395a7ce400bae6b64e35354a0e5f88aa4ac738d03f7560fb0c relation_members_raw=93 relation_origins_registered=9 relation_origins_rejected_unary_after_shadowing=62 relation_origins_rejected_unreachable=103 relation_origins_seen=71 relation_unbound_key_templates=3 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=2 scalar_variables_skipped=81 storage_context_mismatch=230 variables_considered=90
+INFO:Detectors:
+
+[MV-SI candidate 020fa41e6b48684b3d72] {_initialized, _initializing}
+ writer root       -> contracts/core/Core.sol::Core.init()
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 0407a5b181d5a119f70c] {_initialized, _initializing}
+ writer root       -> contracts/test/unit/psm/NonCustodialPSM.t.sol::NonCustodialPSMTest.setUp()
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 19f6c6ca0682d6a1d929] {duration, startTime}
+ writer root       -> contracts/test/unit/oracle/ScalingPriceOracle.t.sol::ScalingPriceOracleTest.testFulfillFailureTimed()
+ writer effect     -> contracts/utils/Timed.sol:66
+ written member    -> ('SV', 'contracts/utils/Timed.sol', 'Timed.startTime')
+ potentially stale -> ('SV', 'contracts/utils/Timed.sol', 'Timed.duration')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 378281dd8dcb24b60367] {_initialized, _initializing}
+ writer root       -> contracts/mock/MockCore.sol::MockCore.init(address)
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 4800f465a1011e109f6e] {_initialized, _initializing}
+ writer root       -> contracts/test/unit/psm/NonCustodialPSM.t.sol::NonCustodialPSMTest.setUp()
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 56bae64ad3834f95d753] {_initialized, _initializing}
+ writer root       -> contracts/test/unit/core/Core.t.sol::CoreTest.setUp()
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 5a19f3db523904c53b1e] {_initialized, _initializing}
+ writer root       -> contracts/test/integration/IntegrationTestVoltDeployment.t.sol::IntegrationTestVoltDeployment.setUp()
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 5b68e72b1ae723cca433] {duration, startTime}
+ writer root       -> contracts/oracle/ScalingPriceOracle.sol::ScalingPriceOracle.requestCPIData()
+ writer effect     -> contracts/utils/Timed.sol:66
+ written member    -> ('SV', 'contracts/utils/Timed.sol', 'Timed.startTime')
+ potentially stale -> ('SV', 'contracts/utils/Timed.sol', 'Timed.duration')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 6faf9b952c58cce97924] {_initialized, _initializing}
+ writer root       -> contracts/mock/MockCore.sol::MockCore.init(address)
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7bd5e5bcf486f2505070] {_initialized, _initializing}
+ writer root       -> contracts/core/Core.sol::Core.init()
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 7d3b57f76e9d44d6146c] {_initialized, _initializing}
+ writer root       -> contracts/test/unit/core/Core.t.sol::CoreTest.setUp()
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 8478914307e819b3e430] {_initialized, _initializing}
+ writer root       -> contracts/core/Core.sol::Core.init()
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 89d45b8b67aac66a1716] {_initialized, _initializing}
+ writer root       -> contracts/test/unit/psm/NonCustodialPSM.t.sol::NonCustodialPSMTest.setUp()
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 913877de44662b0817dc] {_initialized, _initializing}
+ writer root       -> contracts/test/unit/Volt.t.sol::VoltTest.setUp()
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 964d83bcee4483094522] {duration, startTime}
+ writer root       -> contracts/test/unit/oracle/ScalingPriceOracle.t.sol::ScalingPriceOracleTest.testFulfillFailureCalendar()
+ writer effect     -> contracts/utils/Timed.sol:66
+ written member    -> ('SV', 'contracts/utils/Timed.sol', 'Timed.startTime')
+ potentially stale -> ('SV', 'contracts/utils/Timed.sol', 'Timed.duration')
+ reader witnesses  -> 16
+ storage exposures -> 1
+[MV-SI candidate 9738dbf57796551a406c] {_initialized, _initializing}
+ writer root       -> contracts/test/integration/IntegrationTestVoltDeployment.t.sol::IntegrationTestVoltDeployment.setUp()
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate ba9a4c761ebada65eba1] {_initialized, _initializing}
+ writer root       -> contracts/mock/MockCore.sol::MockCore.init(address)
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:92
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e978078e0a6c1afb0d19] {_initialized, _initializing}
+ writer root       -> contracts/test/unit/core/Core.t.sol::CoreTest.setUp()
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate ef6d4a0e347e8e09bb6a] {_initialized, _initializing}
+ writer root       -> contracts/test/integration/IntegrationTestVoltDeployment.t.sol::IntegrationTestVoltDeployment.setUp()
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate f253d163cec3d05b4741] {_initialized, _initializing}
+ writer root       -> contracts/test/unit/Volt.t.sol::VoltTest.setUp()
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:96
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate f6a032c678fb63863f37] {_initialized, _initializing}
+ writer root       -> contracts/test/unit/Volt.t.sol::VoltTest.setUp()
+ writer effect     -> node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 5
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=35 vars=8
+[mvscan-stage] root-seeding-done eligible_exposures=7 seeded=7 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=99cf2e38cfab196639283a8ef14624c84809702af0e1ff48774555787c64c60e candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=62f1baed20e3842dac020a0cd146f4bbedfbb3c7b144b54e6ebec7f2ed3659a6 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_base_members_shadowed=4 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 relation_members_raw=8 relation_origins_rejected_unary_after_shadowing=4 relation_origins_seen=4 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=8 storage_context_mismatch=0 variables_considered=8
+INFO:Slither:. analyzed (101 contracts with 1 detectors), 21 result(s) found

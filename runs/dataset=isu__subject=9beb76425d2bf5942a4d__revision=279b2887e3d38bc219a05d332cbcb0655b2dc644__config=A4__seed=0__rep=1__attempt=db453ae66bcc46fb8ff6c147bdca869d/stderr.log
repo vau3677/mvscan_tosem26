@@ -1,0 +1,869 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1424 vars=94
+[mvscan-stage] root-seeding-done eligible_exposures=98 seeded=71 multi_exposure_entry_blocks=12 collapsed_contextual_aliases=27 excluded_dependency=0 excluded_interface=120 excluded_library=0 excluded_abstract=17 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=23c7d9999c2cbc32f732a398ede2887fdbe3c1c2519b5b604531f71c04ee244c candidate_count=123 candidate_digest=57c4e8cbb6bbd1d47679b7b2faaad7b9997d3d24ef9332d30a8e11b7c9100796 context_instance_count=1598 eligible_readers=262 eligible_writers=158 execution_context_digest=d80af09b79a08599af0d9fdbb070299c17258bfac8f88b4c3bfe4394ff3a696d insensitive_readers_filtered=180 invalid_partial_write_filtered=0 must_full_relation_filtered=56 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=3892 owner_context_pairs_considered=10346 raw_block_pairs=1229 reader_witness_count=3892 relation_base_members_shadowed=0 relation_context_incompatible=1345 relation_digest=e5cb3e249327b0025bf272235f1784694bbccb822e52258ce71cc262866d13dc relation_members_raw=154 relation_origins_registered=37 relation_origins_rejected_unary_after_shadowing=56 relation_origins_rejected_unreachable=29 relation_origins_seen=93 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=65 scalar_variables_skipped=68 storage_context_mismatch=5053 variables_considered=105
+INFO:Detectors:
+
+[MV-SI candidate 00a043c2a7ea4a95dd65] {_operatorApprovals, _owners}
+ writer root       -> contracts/test/TestERC721.sol::TestERC721.mintToken(address)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:281
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 034ff6e79a5bc6e6edf3] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:354
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 13
+ storage exposures -> 3
+[MV-SI candidate 081f265f36c994bd7e18] {currentGeneration, generationMintCounts, maxTokensPerGen}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:351
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 084816acdb55d3e34170] {currentGeneration, generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:328
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 69
+ storage exposures -> 1
+[MV-SI candidate 08b0384c2579e532fa71] {batchSize2, lastInitializedIndex, maxSlotIndex}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.writeEntropyBatch1()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:60
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.lastInitializedIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.batchSize2'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.maxSlotIndex')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 08dee43f213f3be8a5b4] {_operatorApprovals, _owners}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.burn(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:315
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 0a21e16f32d85f837cb6] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:281
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 65
+ storage exposures -> 1
+[MV-SI candidate 0df57a5f6ea7aa99f6c0] {batchSize1, batchSize2, lastInitializedIndex}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.writeEntropyBatch2()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:80
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.lastInitializedIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.batchSize1'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.batchSize2')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 0ee814f7243d02be5dae] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:351
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 0f75d5cf2706856ce18f] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:350
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 23
+ storage exposures -> 1
+[MV-SI candidate 0f7f0d474a8e50279313] {_operatorApprovals, _owners}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:281
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 1547aa9dc0567997481e] {listedTokenIds, listings}
+ writer root       -> contracts/EntityForging/EntityForging.sol::EntityForging.forgeWithListed(uint256,uint256)
+ writer effect     -> contracts/EntityForging/EntityForging.sol:194
+ written member    -> ('SV', 'contracts/EntityForging/EntityForging.sol', 'EntityForging.listings')
+ potentially stale -> ('SV', 'contracts/EntityForging/EntityForging.sol', 'EntityForging.listedTokenIds')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 1640dd5d3385095f5e16] {generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:293
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 18233c7f2c6a77dad9a8] {currentGeneration, generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:293
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 63
+ storage exposures -> 1
+[MV-SI candidate 1d6b1fecb2f5dc864ffb] {maxGeneration, tokenGenerations}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:327
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.tokenGenerations')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxGeneration')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 1d6dad851652b91aacc5] {ageMultiplier, defaultNukeFactorIncrease, nukeFactorMaxParam}
+ writer root       -> contracts/NukeFund/NukeFund.sol::NukeFund.setNukeFactorMaxParam(uint256)
+ writer effect     -> contracts/NukeFund/NukeFund.sol:80
+ written member    -> ('SV', 'contracts/NukeFund/NukeFund.sol', 'NukeFund.nukeFactorMaxParam')
+ potentially stale -> ('SV', 'contracts/NukeFund/NukeFund.sol', 'NukeFund.ageMultiplier'), ('SV', 'contracts/NukeFund/NukeFund.sol', 'NukeFund.defaultNukeFactorIncrease')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 1e922539d208efc00077] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:351
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 1fb7fc881cf12c18e0d4] {generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:352
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 26f65a31ea3ec1d38d00] {batchSize2, lastInitializedIndex, maxSlotIndex}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.writeEntropyBatch3()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:97
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.lastInitializedIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.batchSize2'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.maxSlotIndex')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 274c7d2de91aee54d686] {batchSize1, batchSize2, lastInitializedIndex}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.writeEntropyBatch3()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:97
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.lastInitializedIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.batchSize1'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.batchSize2')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 28969e3545521e22aeab] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:350
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 23
+ storage exposures -> 1
+[MV-SI candidate 2c83f4655e45a7c4eaf6] {generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:351
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 2ee790a6c72368441010] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.setStartPrice(uint256)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:101
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement')
+ reader witnesses  -> 27
+ storage exposures -> 1
+[MV-SI candidate 2f81af2b0e38f85b18ee] {generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:352
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 31893cada21889c3b371] {batchSize2, lastInitializedIndex, maxSlotIndex}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.writeEntropyBatch2()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:80
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.lastInitializedIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.batchSize2'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.maxSlotIndex')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 33bcec67054aa82f365d] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:350
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 23
+ storage exposures -> 1
+[MV-SI candidate 34daf6fb57b9e6a7c7de] {lastForgeResetTimestamp, oneYearInDays}
+ writer root       -> contracts/EntityForging/EntityForging.sol::EntityForging.listForForging(uint256,uint256)
+ writer effect     -> contracts/EntityForging/EntityForging.sol:202
+ written member    -> ('SV', 'contracts/EntityForging/EntityForging.sol', 'EntityForging.lastForgeResetTimestamp')
+ potentially stale -> ('SV', 'contracts/EntityForging/EntityForging.sol', 'EntityForging.oneYearInDays')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 37f26357c5c6cc91c182] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:293
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 39204adb1c0159f74a64] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:343
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 155
+ storage exposures -> 3
+[MV-SI candidate 3924116eca26918a0ef0] {currentGeneration, generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:352
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate 3a73566288c3039485ca] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.setPriceIncrement(uint256)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:105
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 3bb4070ba2481260951c] {currentNumberIndex, entropySlots}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.writeEntropyBatch1()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:57
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.entropySlots')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentNumberIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 3c8cd5a466b27254222d] {currentGeneration, generationMintCounts, maxTokensPerGen}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:351
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 3d652122bb50fb83f5c6] {currentNumberIndex, maxNumberIndex}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.getNextEntropy()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:113
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentNumberIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.maxNumberIndex')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 3ff8c50401e6c8f8b7be] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:354
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 165
+ storage exposures -> 3
+[MV-SI candidate 46313b24c8cad554af22] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:354
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 13
+ storage exposures -> 3
+[MV-SI candidate 46943279ee713a975036] {generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:351
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 474f76429dc6ad505b7a] {currentNumberIndex, currentSlotIndex, numberIndexSelectionPoint, slotIndexSelectionPoint}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.initializeAlphaIndices()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:214
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.slotIndexSelectionPoint')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentNumberIndex'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentSlotIndex'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.numberIndexSelectionPoint')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 498cde910b5b4595aa15] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:354
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 165
+ storage exposures -> 3
+[MV-SI candidate 4ca236c21e6529f975f9] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:285
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 540aa94aa5aed403733e] {generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:352
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 560573bafb4f775abee3] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:285
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate 57c709a22d159fddd076] {lastInitializedIndex, maxSlotIndex}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.writeEntropyBatch3()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:97
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.lastInitializedIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.maxSlotIndex')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 58412bab05acda772438] {generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:328
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 5e26b51ccf489cd72203] {currentNumberIndex, currentSlotIndex, numberIndexSelectionPoint, slotIndexSelectionPoint}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.getNextEntropy()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:110
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentSlotIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentNumberIndex'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.numberIndexSelectionPoint'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.slotIndexSelectionPoint')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 5e78a955aa98f22a5e92] {currentNumberIndex, entropySlots}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.writeEntropyBatch2()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:77
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.entropySlots')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentNumberIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 5e7a47727f9490c505bd] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:352
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate 5e8514fa3c4e2e8e09e7] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:281
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 65
+ storage exposures -> 1
+[MV-SI candidate 5fd91af4d506487f5ef2] {_operatorApprovals, _owners}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:281
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 631d1499a56a0ca6bcf9] {generationMintCounts, maxTokensPerGen}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:328
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 646b2fffeb2ab9f4ae91] {batchSize1, lastInitializedIndex}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.writeEntropyBatch1()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:60
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.lastInitializedIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.batchSize1')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 6a84d41260f9c6863cbe] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.burn(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:315
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 65
+ storage exposures -> 1
+[MV-SI candidate 6c09b385400705b662d5] {maxGeneration, tokenGenerations}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:292
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.tokenGenerations')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxGeneration')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6ca9d6651f65c540852d] {ageMultiplier, defaultNukeFactorIncrease, nukeFactorMaxParam}
+ writer root       -> contracts/NukeFund/NukeFund.sol::NukeFund.setDefaultNukeFactorIncrease(uint256)
+ writer effect     -> contracts/NukeFund/NukeFund.sol:72
+ written member    -> ('SV', 'contracts/NukeFund/NukeFund.sol', 'NukeFund.defaultNukeFactorIncrease')
+ potentially stale -> ('SV', 'contracts/NukeFund/NukeFund.sol', 'NukeFund.ageMultiplier'), ('SV', 'contracts/NukeFund/NukeFund.sol', 'NukeFund.nukeFactorMaxParam')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 70bd3eed4b8f608a4385] {lastInitializedIndex, maxSlotIndex}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.writeEntropyBatch2()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:80
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.lastInitializedIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.maxSlotIndex')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 77fc9a11cb84bbb0e4c7] {currentGeneration, generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:351
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 69
+ storage exposures -> 1
+[MV-SI candidate 7829153518765363ae90] {currentGeneration, generationMintCounts, maxTokensPerGen}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:293
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate 7965f47d7662de01aba8] {currentNumberIndex, currentSlotIndex, numberIndexSelectionPoint, slotIndexSelectionPoint}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.initializeAlphaIndices()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:215
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.numberIndexSelectionPoint')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentNumberIndex'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentSlotIndex'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.slotIndexSelectionPoint')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 819a309748c21f50d419] {listedTokenIds, listings}
+ writer root       -> contracts/EntityForging/EntityForging.sol::EntityForging.cancelListingForForging(uint256)
+ writer effect     -> contracts/EntityForging/EntityForging.sol:194
+ written member    -> ('SV', 'contracts/EntityForging/EntityForging.sol', 'EntityForging.listings')
+ potentially stale -> ('SV', 'contracts/EntityForging/EntityForging.sol', 'EntityForging.listedTokenIds')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 81cf31dbf5a9d0d112ea] {currentGeneration, generationMintCounts, maxTokensPerGen}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:351
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate 81dcb6f2dcc3b46f9640] {generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.setPriceIncrement(uint256)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:105
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 14
+ storage exposures -> 1
+[MV-SI candidate 8246602d7ef7e0d235fa] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:343
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 155
+ storage exposures -> 3
+[MV-SI candidate 8899f8d1d4ddc3797f5b] {currentGeneration, generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:352
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate 8a5d55dfe9d65c6e0e32] {currentGeneration, generationMintCounts, maxTokensPerGen}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:350
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate 8a81a4f64be89e4f1760] {maxGeneration, tokenGenerations}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.setMaxGeneration(uint256)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:119
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxGeneration')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.tokenGenerations')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 8c312a649737268aebc9] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:351
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate 8e05f2c202f5c1142097] {currentGeneration, generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:352
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate 9084b41c80f368b196f0] {currentNumberIndex, currentSlotIndex, numberIndexSelectionPoint, slotIndexSelectionPoint}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.getNextEntropy()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:106
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentNumberIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentSlotIndex'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.numberIndexSelectionPoint'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.slotIndexSelectionPoint')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 929f0e8ed39c19d75008] {currentNumberIndex, maxNumberIndex}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.getNextEntropy()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:106
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentNumberIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.maxNumberIndex')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 9310f29e4ac3ae2f721d] {currentGeneration, generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.setPriceIncrement(uint256)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:105
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate 9372207b8a4d8eab832c] {currentGeneration, generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:351
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 69
+ storage exposures -> 1
+[MV-SI candidate 9665d113c9f7c20a2953] {batchSize1, lastInitializedIndex}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.writeEntropyBatch3()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:97
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.lastInitializedIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.batchSize1')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 9e6f8f5700cc922c7454] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/test/TestERC721.sol::TestERC721.mintToken(address)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:281
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 50
+ storage exposures -> 1
+[MV-SI candidate 9f5a81bd2499d702daab] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:281
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 65
+ storage exposures -> 1
+[MV-SI candidate a0bb0aa3b3a1f709b6e1] {currentGeneration, generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:351
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 69
+ storage exposures -> 1
+[MV-SI candidate a1a98ea064e9084c332d] {currentNumberIndex, entropySlots}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.writeEntropyBatch3()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:94
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.entropySlots')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentNumberIndex')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a8adda1c9a3ee7d4618a] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:352
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate a8de43aa801b712bc93e] {currentGeneration, generationMintCounts, maxTokensPerGen}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:328
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen')
+ reader witnesses  -> 54
+ storage exposures -> 1
+[MV-SI candidate a8eac9feb815ba659991] {generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:293
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate a9188cbe5ebbe9b03389] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:321
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate aba34dc1750fb1a82e19] {currentGeneration, generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.setStartPrice(uint256)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:101
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement')
+ reader witnesses  -> 69
+ storage exposures -> 1
+[MV-SI candidate af5acd6124d862e451bf] {currentGeneration, generationMintCounts, maxTokensPerGen}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:350
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate b14c4669dee33ba39bfd] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.approve(address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:367
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 155
+ storage exposures -> 3
+[MV-SI candidate b15d1f02eb97c9a1adb7] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:343
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 155
+ storage exposures -> 3
+[MV-SI candidate b1cd14963d5cbbb242f9] {generationMintCounts, maxTokensPerGen}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:293
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate b2082d4c7d35ddd8faea] {listedTokenIds, listings}
+ writer root       -> contracts/EntityTrading/EntityTrading.sol::EntityTrading.cancelListing(uint256)
+ writer effect     -> contracts/EntityTrading/EntityTrading.sol:106
+ written member    -> ('SV', 'contracts/EntityTrading/EntityTrading.sol', 'EntityTrading.listings')
+ potentially stale -> ('SV', 'contracts/EntityTrading/EntityTrading.sol', 'EntityTrading.listedTokenIds')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate b21d33f00a4b5e90c4d6] {generationMintCounts, maxTokensPerGen}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:351
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate b544726d6b5c4492c15e] {lastForgeResetTimestamp, oneYearInDays}
+ writer root       -> contracts/EntityForging/EntityForging.sol::EntityForging.setOneYearInDays(uint256)
+ writer effect     -> contracts/EntityForging/EntityForging.sol:41
+ written member    -> ('SV', 'contracts/EntityForging/EntityForging.sol', 'EntityForging.oneYearInDays')
+ potentially stale -> ('SV', 'contracts/EntityForging/EntityForging.sol', 'EntityForging.lastForgeResetTimestamp')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate b89e2bbab09c42bbd64b] {batchSize1, lastInitializedIndex}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.writeEntropyBatch2()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:80
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.lastInitializedIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.batchSize1')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate b8f14217005e7d2210fd] {currentGeneration, generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:350
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 57
+ storage exposures -> 1
+[MV-SI candidate bc5885a97933ec1e87b6] {currentGeneration, generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:350
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 57
+ storage exposures -> 1
+[MV-SI candidate c1d613eac0a61578e710] {currentNumberIndex, currentSlotIndex, numberIndexSelectionPoint, slotIndexSelectionPoint}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.getNextEntropy()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:113
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentNumberIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentSlotIndex'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.numberIndexSelectionPoint'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.slotIndexSelectionPoint')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c2d4c93b1d4d0f129d3c] {lastForgeResetTimestamp, oneYearInDays}
+ writer root       -> contracts/EntityForging/EntityForging.sol::EntityForging.forgeWithListed(uint256,uint256)
+ writer effect     -> contracts/EntityForging/EntityForging.sol:205
+ written member    -> ('SV', 'contracts/EntityForging/EntityForging.sol', 'EntityForging.lastForgeResetTimestamp')
+ potentially stale -> ('SV', 'contracts/EntityForging/EntityForging.sol', 'EntityForging.oneYearInDays')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c4269831f089e607e727] {currentGeneration, generationMintCounts, maxTokensPerGen}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:350
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen')
+ reader witnesses  -> 39
+ storage exposures -> 1
+[MV-SI candidate c51de541873e737914d8] {currentGeneration, generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:350
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 57
+ storage exposures -> 1
+[MV-SI candidate c67d41fe0b458515408b] {currentSlotIndex, maxSlotIndex}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.getNextEntropy()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:110
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentSlotIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.maxSlotIndex')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate ca7d4a6f98a3dbdacb6a] {generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:351
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate cacc332dc349dca0a6d7] {lastForgeResetTimestamp, oneYearInDays}
+ writer root       -> contracts/EntityForging/EntityForging.sol::EntityForging.listForForging(uint256,uint256)
+ writer effect     -> contracts/EntityForging/EntityForging.sol:205
+ written member    -> ('SV', 'contracts/EntityForging/EntityForging.sol', 'EntityForging.lastForgeResetTimestamp')
+ potentially stale -> ('SV', 'contracts/EntityForging/EntityForging.sol', 'EntityForging.oneYearInDays')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate cee6a6b732ac9f47fd18] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:378
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 190
+ storage exposures -> 3
+[MV-SI candidate cff34156f1db7f5974ca] {generationMintCounts, maxTokensPerGen}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:293
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate d658390038aee17da61c] {generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.setStartPrice(uint256)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:101
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement')
+ reader witnesses  -> 17
+ storage exposures -> 1
+[MV-SI candidate d691dc00b17ef57b2ee0] {generationMintCounts, maxTokensPerGen}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:351
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate d802192d8a6c998b6e99] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:352
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 24
+ storage exposures -> 1
+[MV-SI candidate d938818595056deff85f] {currentGeneration, generationMintCounts, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:293
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 63
+ storage exposures -> 1
+[MV-SI candidate d97b352d089dd5f02359] {ageMultiplier, defaultNukeFactorIncrease, nukeFactorMaxParam}
+ writer root       -> contracts/NukeFund/NukeFund.sol::NukeFund.setAgeMultplier(uint256)
+ writer effect     -> contracts/NukeFund/NukeFund.sol:110
+ written member    -> ('SV', 'contracts/NukeFund/NukeFund.sol', 'NukeFund.ageMultiplier')
+ potentially stale -> ('SV', 'contracts/NukeFund/NukeFund.sol', 'NukeFund.defaultNukeFactorIncrease'), ('SV', 'contracts/NukeFund/NukeFund.sol', 'NukeFund.nukeFactorMaxParam')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate d9dd2734b2feb9ba2d41] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:293
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 26
+ storage exposures -> 1
+[MV-SI candidate db6185a236afad92955d] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:354
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 13
+ storage exposures -> 3
+[MV-SI candidate db63d426f30413a9e959] {ageMultiplier, defaultNukeFactorIncrease}
+ writer root       -> contracts/NukeFund/NukeFund.sol::NukeFund.setAgeMultplier(uint256)
+ writer effect     -> contracts/NukeFund/NukeFund.sol:110
+ written member    -> ('SV', 'contracts/NukeFund/NukeFund.sol', 'NukeFund.ageMultiplier')
+ potentially stale -> ('SV', 'contracts/NukeFund/NukeFund.sol', 'NukeFund.defaultNukeFactorIncrease')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate de515d83352c4ce02959] {batchSize1, batchSize2, lastInitializedIndex}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.writeEntropyBatch1()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:60
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.lastInitializedIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.batchSize1'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.batchSize2')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate df91b69f581fc8e76b09] {currentSlotIndex, maxSlotIndex}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.getNextEntropy()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:108
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentSlotIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.maxSlotIndex')
+ reader witnesses  -> 18
+ storage exposures -> 1
+[MV-SI candidate dfe84c71c9df89aa1171] {ageMultiplier, defaultNukeFactorIncrease}
+ writer root       -> contracts/NukeFund/NukeFund.sol::NukeFund.setDefaultNukeFactorIncrease(uint256)
+ writer effect     -> contracts/NukeFund/NukeFund.sol:72
+ written member    -> ('SV', 'contracts/NukeFund/NukeFund.sol', 'NukeFund.defaultNukeFactorIncrease')
+ potentially stale -> ('SV', 'contracts/NukeFund/NukeFund.sol', 'NukeFund.ageMultiplier')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e19262a446846599c9c1] {listedTokenIds, listings}
+ writer root       -> contracts/EntityTrading/EntityTrading.sol::EntityTrading.buyNFT(uint256)
+ writer effect     -> contracts/EntityTrading/EntityTrading.sol:83
+ written member    -> ('SV', 'contracts/EntityTrading/EntityTrading.sol', 'EntityTrading.listings')
+ potentially stale -> ('SV', 'contracts/EntityTrading/EntityTrading.sol', 'EntityTrading.listedTokenIds')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate e6fdb96b26c05d8e76fb] {_operatorApprovals, _owners}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintToken(bytes32[])
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:281
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate eb52b6328ca7e1a68d47] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.burn(uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:308
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 70
+ storage exposures -> 1
+[MV-SI candidate edeef43dfaf74f2221c2] {maxGeneration, tokenGenerations}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:292
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.tokenGenerations')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxGeneration')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate f2e69de5b5d514dc3281] {currentGeneration, generationMintCounts, maxTokensPerGen}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:293
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen')
+ reader witnesses  -> 48
+ storage exposures -> 1
+[MV-SI candidate f45ad8ad241524d734ce] {lastForgeResetTimestamp, oneYearInDays}
+ writer root       -> contracts/EntityForging/EntityForging.sol::EntityForging.forgeWithListed(uint256,uint256)
+ writer effect     -> contracts/EntityForging/EntityForging.sol:202
+ written member    -> ('SV', 'contracts/EntityForging/EntityForging.sol', 'EntityForging.lastForgeResetTimestamp')
+ potentially stale -> ('SV', 'contracts/EntityForging/EntityForging.sol', 'EntityForging.oneYearInDays')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f47012f9b1f58bdf6b84] {lastInitializedIndex, maxSlotIndex}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.writeEntropyBatch1()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:60
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.lastInitializedIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.maxSlotIndex')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate fb046a493d7ebd9e6765] {currentNumberIndex, currentSlotIndex, numberIndexSelectionPoint, slotIndexSelectionPoint}
+ writer root       -> contracts/EntropyGenerator/EntropyGenerator.sol::EntropyGenerator.getNextEntropy()
+ writer effect     -> contracts/EntropyGenerator/EntropyGenerator.sol:108
+ written member    -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentSlotIndex')
+ potentially stale -> ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.currentNumberIndex'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.numberIndexSelectionPoint'), ('SV', 'contracts/EntropyGenerator/EntropyGenerator.sol', 'EntropyGenerator.slotIndexSelectionPoint')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate fbe1a3c02be1b3d86796] {_tokenIds, currentGeneration, generationMintCounts, maxTokensPerGen, priceIncrement, startPrice}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.forge(address,uint256,uint256,string)
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:328
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft._tokenIds'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.currentGeneration'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.priceIncrement'), ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.startPrice')
+ reader witnesses  -> 28
+ storage exposures -> 1
+[MV-SI candidate fcc78b4910a2a1f2c7af] {_operatorApprovals, _owners, _tokenApprovals}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:354
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals'), ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals')
+ reader witnesses  -> 165
+ storage exposures -> 3
+[MV-SI candidate fea93fdd6c4b824ddf76] {generationMintCounts, maxTokensPerGen}
+ writer root       -> contracts/TraitForgeNft/TraitForgeNft.sol::TraitForgeNft.mintWithBudget(bytes32[])
+ writer effect     -> contracts/TraitForgeNft/TraitForgeNft.sol:351
+ written member    -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.generationMintCounts')
+ potentially stale -> ('SV', 'contracts/TraitForgeNft/TraitForgeNft.sol', 'TraitForgeNft.maxTokensPerGen')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate ff38b3a4281d9234e9a8] {_operatorApprovals, _owners}
+ writer root       -> @openzeppelin/contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> @openzeppelin/contracts/token/ERC721/ERC721.sol:378
+ written member    -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals')
+ potentially stale -> ('SV', '@openzeppelin/contracts/token/ERC721/ERC721.sol', 'ERC721._owners')
+ reader witnesses  -> 18
+ storage exposures -> 3Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (44 contracts with 1 detectors), 123 result(s) found

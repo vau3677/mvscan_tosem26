@@ -78,7 +78,15 @@ Manual evaluation must establish C1 through C5. Exploitability, attacker control
 | **C4: Omitted-member consumption before reconciliation** | `>=1` omitted relation member is read from persistent state after the desynchronizing transition and before reconciliation, and that read reaches a behaviorally relevant modeled `control`, `storage_write`, or `external_effect` sink. Record the omitted entity, exact read, consumer, sink, ordering, reconciliation point, transaction relationship, and behavioral relevance. Logging, debugging, dead computation, and outcome-insensitive uses fail C4. |
 | **C5: Multi-variable essentiality** | The defect must depend essentially on the relationship between `>=2` persistent-state variables. A unary stale-variable defect fails C5 even when additional emitted entities are incidental. |
 
-The historical semantic classes are `MV_SI`, `SV_SI`, `ISU_OTHER`, `OTHER`, and `INSUFFICIENT_EVIDENCE`. Two independent annotators classify all 116 historical rows without inspecting final detector output. Original labels are immutable; disagreements produce separate adjudication records.
+The historical semantic classes are `MV_SI`, `NON_MVSI`, and `INSUFFICIENT_EVIDENCE`. Detector-blind cards mechanically present the published report facts, pinned source provenance, and frozen source excerpts for all 116 oracle findings. Two independent annotators evaluate C1 through C5 for every finding. The authoritative response protocol is:
+
+- Leave a criterion blank when it passes. `Y` is accepted but unnecessary.
+- Enter `N` only for a failed criterion and `U` only when the supplied evidence cannot establish that criterion.
+- Add a short `annotation_notes` explanation whenever any criterion is `N` or `U`.
+- Set `review_complete` to `Y` after evaluating all five criteria. A row without `review_complete=Y` is unfinished; blank criteria on an unfinished row are not positive decisions.
+- Derive the historical class mechanically: any `N` yields `NON_MVSI`; otherwise any `U` yields `INSUFFICIENT_EVIDENCE`; otherwise the row yields `MV_SI`.
+
+Initial annotators establish the C1-C5 classification but do not populate the strict semantic-match oracle. Only after independent annotation and adjudication, the research team records the exact relation core, writer, written and omitted roles, persistent read, sink, ordering, and reconciliation point for rows adjudicated `MV_SI`. This keeps initial annotation lightweight and detector-blind while preserving the evidence required for strict recovery matching. Original decisions are immutable, and disagreements produce separate adjudication records. Neither card construction nor initial annotation inspects MV-Scan output.
 
 ## Evaluation units and identifiers
 
@@ -145,16 +153,17 @@ evidence_references
 
 Global semantic-match rules are:
 
-- A relation passes when it contains every required semantic-core entity. Extra emitted members do not fail recovery and are recorded as over-approximation.
-- An entity matches only the same canonical declaration or precise mapping location.
+- A relation passes when it recovers the same persistent-state invariant and defect surface. The historical finding and detector candidate may express that invariant at different granularities: an aggregate struct or mapping may stand for its relevant fields, and a downstream accounting or authorization surface may stand for the narrower historical formulation.
+- Extra emitted members do not fail recovery and are recorded as over-approximation.
+- An entity matches the same canonical declaration, precise mapping location, or an enclosing aggregate that contains the required state role.
 - Source renaming in an exact vulnerable/fixed pair may be mapped through the source diff.
-- The writer identifies the actual desynchronizing assignment or call transition.
-- The omitted read is the required persistent entity.
-- The detector serializes a modeled sink reached by that read.
+- The candidate need not serialize the exact omitted assignment as its writer. A direct helper, inverse transition, corrective branch, mitigation path, or adjacent transition passes when it exposes the same invariant on the same defect-producing or defect-consuming code surface.
+- The omitted role must be represented directly or through its enclosing aggregate, and the candidate must serialize a persistent read or downstream consumption that exposes the same inconsistency.
+- The detector serializes a modeled sink on that same inconsistency surface; it need not be the final exploit guard or consequence named by the historical report.
 - One serialized witness must provide a feasible execution under the global C1-C5 rules.
 - Context and ordering must be compatible with the documented defect.
 
-There are no case-specific accepted aliases, incidental members, origin lists, equivalent roots, storage contexts, direct feeders, or equivalent writer-transition lists.
+Shared contracts, similar names, or the same vulnerability category are not enough by themselves. Reviewers must explain the invariant and code-surface correspondence whenever a match relies on different granularity or a neighboring transition.
 
 ### Recovery and diagnostic waterfall
 

@@ -1,0 +1,568 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=2590 vars=200
+[mvscan-stage] root-seeding-done eligible_exposures=236 seeded=142 multi_exposure_entry_blocks=77 collapsed_contextual_aliases=94 excluded_dependency=0 excluded_interface=67 excluded_library=0 excluded_abstract=11 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=bebb09d1b1a4bd440ed6bd0e95b898d70f580fd125cd0c8d91060eca3949e782 candidate_count=80 candidate_digest=b72208085fc691bd8db0308299ab23908ba96313a6484a64a25af9b02ee166f5 context_instance_count=1054 eligible_readers=142 eligible_writers=99 execution_context_digest=44f5069caf2914198a926d5756eb2b7d84a0070f7e5316c761f1db3d1058619e insensitive_readers_filtered=313 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=60 owner_context_pairs=1223 owner_context_pairs_considered=23700 raw_block_pairs=442 reader_witness_count=1223 relation_base_members_shadowed=68 relation_context_incompatible=10412 relation_digest=0f90d7b5aab7e6b4188e3297dd5260d8f534f6076a102208838b16e8bc6df0dc relation_members_raw=239 relation_origins_registered=33 relation_origins_rejected_unary_after_shadowing=100 relation_origins_seen=133 relation_unbound_key_templates=408 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=15 scalar_variables_skipped=133 storage_context_mismatch=12005 variables_considered=166
+INFO:Detectors:
+
+[MV-SI candidate 02467ec5908f7b796f75] {smartWalletOfKnot[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.claimRewardsAsNodeRunner(address,bytes[])::ReferenceVariable::REF_524], smartWalletOfNodeRunner[$sender]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:447
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$sender')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfKnot', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.claimRewardsAsNodeRunner(address,bytes[])::ReferenceVariable::REF_524')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 07ba21d0c8818fd461b7] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:364
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners', '$arg0')
+ reader witnesses  -> 30
+ storage exposures -> 2
+[MV-SI candidate 082acb275bfe6ed3bfd1] {smartWalletOfNodeRunner[$sender], stakedKnotsOfSmartWallet[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentative(address)::LocalVariable::smartWallet_1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:447
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$sender')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.stakedKnotsOfSmartWallet', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentative(address)::LocalVariable::smartWallet_1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 0abbc0b10c0a5a30ee44] {accruedEarningPerCollateralizedSlotOwnerOfKnot[@local::contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])::LocalVariable::_blsPubKey_1][$sender], claimedPerCollateralizedSlotOwnerOfKnot[@local::contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])::LocalVariable::_blsPubKey_1][$sender]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:318
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.claimedPerCollateralizedSlotOwnerOfKnot', '@local::contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])::LocalVariable::_blsPubKey_1][$sender')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accruedEarningPerCollateralizedSlotOwnerOfKnot', '@local::contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])::LocalVariable::_blsPubKey_1][$sender')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 0c8ab50748eaa1d36995] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.safeTransferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:351
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 2
+[MV-SI candidate 0e8da6294058b15796f8] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.updatePriorityStakingBlock(uint256)
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 0ead26ffbf1777793d7c] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.updateCollateralizedSlotOwnersAccruedETH(bytes)
+ writer effect     -> contracts/syndicate/Syndicate.sol:527
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ reader witnesses  -> 54
+ storage exposures -> 2
+[MV-SI candidate 0ef8ecdac5cf112b37a2] {_initialized, _initializing}
+ writer root       -> contracts/smart-wallet/OwnableSmartWallet.sol::OwnableSmartWallet.initialize(address)
+ writer effect     -> @openzeppelin/contracts/proxy/utils/Initializable.sol:90
+ written member    -> ('SV', '@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 1a83c24b7a79ab2267b3] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.stake(bytes[],uint256[],address)
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 1b7777a0f8e740a5952c] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.updateCollateralizedSlotOwnersAccruedETH(bytes)
+ writer effect     -> contracts/syndicate/Syndicate.sol:615
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ reader witnesses  -> 58
+ storage exposures -> 2
+[MV-SI candidate 1c6110efa87e608bed58] {smartWalletOfNodeRunner[$sender], smartWalletRepresentative[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentative(address)::LocalVariable::smartWallet_1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateNodeRunnerOfSmartWallet(address,address,bool)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:366
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$sender')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletRepresentative', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentative(address)::LocalVariable::smartWallet_1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 2609ae633a6ab78f9ba9] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.beforeTokenTransfer(address,address,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 2a7ff9b8ba0b63eb9635] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.approve(address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:364
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners', '$arg0')
+ reader witnesses  -> 30
+ storage exposures -> 2
+[MV-SI candidate 2b3759f0cea41b9586ba] {smartWalletOfNodeRunner[$arg0], smartWalletRepresentative[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentativeOfNodeRunner(address,address)::LocalVariable::smartWallet_1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentativeOfNodeRunner(address,address)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:730
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletRepresentative', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentativeOfNodeRunner(address,address)::LocalVariable::smartWallet_1')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 2cfb2a46a79b83c555a7] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.beforeTokenTransfer(address,address,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:65
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ reader witnesses  -> 50
+ storage exposures -> 2
+[MV-SI candidate 2d0fc0351a02846ea55f] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.deRegisterKnots(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 2e0996b78a5d78c1a35a] {accumulatedETHPerFreeFloatingShare, lastAccumulatedETHPerFreeFloatingShare[$arg0], sETHStakedBalanceForKnot[$arg0][$arg1], sETHUserClaimForKnot[$arg0][$arg1]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.updateCollateralizedSlotOwnersAccruedETH(bytes)
+ writer effect     -> contracts/syndicate/Syndicate.sol:618
+ written member    -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.lastAccumulatedETHPerFreeFloatingShare', '$arg0')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHStakedBalanceForKnot', '$arg0][$arg1'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.sETHUserClaimForKnot', '$arg0][$arg1'), ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerFreeFloatingShare')
+ reader witnesses  -> 50
+ storage exposures -> 2
+[MV-SI candidate 3718217bf72dfa7a0244] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.depositETHForStaking(bytes,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:65
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ reader witnesses  -> 25
+ storage exposures -> 2
+[MV-SI candidate 3b89435e626237da7dd7] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimFundsFromSyndicateForDistribution(bytes[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 37
+ storage exposures -> 2
+[MV-SI candidate 3d3d2e55f6cb1a1562c3] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.batchDepositETHForStaking(bytes[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 37
+ storage exposures -> 2
+[MV-SI candidate 3f3b7ebf8d12dbd50206] {isPriorityStaker[$arg2], priorityStakingEndBlock}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.updatePriorityStakingBlock(uint256)
+ writer effect     -> contracts/syndicate/Syndicate.sol:170
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.priorityStakingEndBlock')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isPriorityStaker', '$arg2')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 3faabe5d9b07fbd679fd] {smartWalletOfNodeRunner[$sender], smartWalletRepresentative[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)::LocalVariable::smartWallet_3]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateNodeRunnerOfSmartWallet(address,address,bool)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:366
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$sender')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletRepresentative', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)::LocalVariable::smartWallet_3')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 428ea4c1a7f54b2afae5] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.batchDepositETHForStaking(address[],uint256[],bytes[][],uint256[][])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:65
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate 42e0946ef8624467faf3] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimRewards(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 479e84205bdd50910909] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.updateAccruedETHPerShares()
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 4ea961dcc49e940d631f] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimRewards(address,bytes[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 37
+ storage exposures -> 2
+[MV-SI candidate 4ff7980039ad0aeeefd3] {smartWalletOfNodeRunner[$arg0], smartWalletRepresentative[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentativeOfNodeRunner(address,address)::LocalVariable::smartWallet_1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateNodeRunnerOfSmartWallet(address,address,bool)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:366
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$arg0')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletRepresentative', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentativeOfNodeRunner(address,address)::LocalVariable::smartWallet_1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 5041c689d1856f32bde2] {smartWalletOfKnot[$arg1], smartWalletOfNodeRunner[$sender]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:447
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$sender')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfKnot', '$arg1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 590cda9d785aae1fd777] {_initialized, _initializing}
+ writer root       -> contracts/smart-wallet/OwnableSmartWallet.sol::OwnableSmartWallet.initialize(address)
+ writer effect     -> @openzeppelin/contracts/proxy/utils/Initializable.sol:84
+ written member    -> ('SV', '@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 5e2780e7fce1518e61c9] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.beforeTokenTransfer(address,address,uint256)
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 5ed4fce40cf1cc4f561c] {smartWalletOfNodeRunner[$arg0], stakedKnotsOfSmartWallet[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentativeOfNodeRunner(address,address)::LocalVariable::smartWallet_1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:447
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$arg0')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.stakedKnotsOfSmartWallet', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentativeOfNodeRunner(address,address)::LocalVariable::smartWallet_1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 616e4e552529fc6d974e] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.restoreFreeFloatingSharesToSmartWalletForRageQuit(address,bytes[],uint256[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 66046c22cd00909fa59e] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.claimRewards(address,address[],bytes[][])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:65
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ reader witnesses  -> 18
+ storage exposures -> 2
+[MV-SI candidate 6cc6624b7186435fb4cf] {MODULO, daoCommissionPercentage}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.updateDAORevenueCommission(uint256)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:953
+ written member    -> ('SV', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.daoCommissionPercentage')
+ potentially stale -> ('SV', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.MODULO')
+ reader witnesses  -> 6
+ storage exposures -> 2
+[MV-SI candidate 736d71b38d5845195e0a] {bannedBLSPublicKeys[$arg0], smartWalletOfKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.withdrawETHForKnot(address,bytes)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:347
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.bannedBLSPublicKeys', '$arg0')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfKnot', '$arg0')
+ reader witnesses  -> 28
+ storage exposures -> 2
+[MV-SI candidate 7896d8c2e3881561ab6d] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.unstakeSyndicateSharesForRageQuit(address,bytes[],uint256[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 7a4be5647b72c0cfe8fc] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.updateAccumulatedETHPerLP()
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 37
+ storage exposures -> 2
+[MV-SI candidate 83fb480bb763beebff08] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:351
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 2
+[MV-SI candidate 8aa9b85a2bca9097e95b] {smartWalletOfNodeRunner[$sender], smartWalletRepresentative[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentative(address)::LocalVariable::smartWallet_1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:447
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$sender')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletRepresentative', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentative(address)::LocalVariable::smartWallet_1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 94c713cacb11895e83c5] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.batchDepositETHForStaking(bytes[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:65
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ reader witnesses  -> 25
+ storage exposures -> 2
+[MV-SI candidate 96ac1a8662d81d9ac52d] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.mintDerivatives(bytes[],IDataStructures.ETH2DataReport[],IDataStructures.EIP712Signature[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate 96cf12084c6c863cbdab] {isPriorityStaker[$arg2], priorityStakingEndBlock}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.initialize(address,uint256,address[],bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:483
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.priorityStakingEndBlock')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isPriorityStaker', '$arg2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 97233d1aac328704e545] {MODULO, daoCommissionPercentage}
+ writer root       -> contracts/testing/liquid-staking/MockLiquidStakingManager.sol::MockLiquidStakingManager.init(address,address,address,address,address,address,address,address,uint256,bool,string)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:953
+ written member    -> ('SV', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.daoCommissionPercentage')
+ potentially stale -> ('SV', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.MODULO')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 998796ed5c77c37dfbd7] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.unstake(address,address,bytes[],uint256[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 9baf5b664f3b83e025a0] {isPriorityStaker[$arg2], priorityStakingEndBlock}
+ writer root       -> contracts/testing/syndicate/SyndicateMock.sol::SyndicateMock.initialize(address,uint256,address[],bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:483
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.priorityStakingEndBlock')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isPriorityStaker', '$arg2')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 9dea233322047e943abb] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.restoreFreeFloatingSharesToSmartWalletForRageQuit(address,bytes[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 44
+ storage exposures -> 1
+[MV-SI candidate 9f5c7159f86a3d636a9e] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.burnLPTokensForETH(LPToken[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 37
+ storage exposures -> 2
+[MV-SI candidate 9f8ba2153a064499334b] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.addPriorityStakers(address[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate 9fca49ae00c7c680a6dc] {_initialized, _initializing}
+ writer root       -> contracts/smart-wallet/OwnableSmartWallet.sol::OwnableSmartWallet.initialize(address)
+ writer effect     -> @openzeppelin/contracts/proxy/utils/Initializable.sol:86
+ written member    -> ('SV', '@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a16829f1f08e32c0dabb] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.depositETHForStaking(bytes,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 37
+ storage exposures -> 2
+[MV-SI candidate a9e1b3f555d36208a450] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.updateAccumulatedETHPerLP()
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate b1251eff7f0559db2a81] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.transferFrom(address,address,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:364
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners', '$arg0')
+ reader witnesses  -> 30
+ storage exposures -> 2
+[MV-SI candidate b702c7f35f5ce6512d74] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.claimAsStaker(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate ba8bfb29a803f7b644c0] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.registerKnotsToSyndicate(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate bf97294e755fde1885a2] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/syndicate/Syndicate.sol::Syndicate.claimAsCollateralizedSLOTOwner(address,bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate bfdb77a2240435af6b79] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimFundsFromSyndicateForDistribution(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate c102b662cf92eb91c4d4] {smartWalletOfKnot[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.mintDerivatives(bytes[],IDataStructures.ETH2DataReport[],IDataStructures.EIP712Signature[])::ReferenceVariable::REF_584], stakedKnotsOfSmartWallet[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.mintDerivatives(bytes[],IDataStructures.ETH2DataReport[],IDataStructures.EIP712Signature[])::LocalVariable::smartWallet_1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.mintDerivatives(bytes[],IDataStructures.ETH2DataReport[],IDataStructures.EIP712Signature[])
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:615
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.stakedKnotsOfSmartWallet', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.mintDerivatives(bytes[],IDataStructures.ETH2DataReport[],IDataStructures.EIP712Signature[])::LocalVariable::smartWallet_1')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfKnot', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.mintDerivatives(bytes[],IDataStructures.ETH2DataReport[],IDataStructures.EIP712Signature[])::ReferenceVariable::REF_584')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate c10b4900cbccc50ba43e] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.claimRewards(address,address[],bytes[][])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c2f6e91e3134a1ba127c] {smartWalletOfNodeRunner[$sender], smartWalletRepresentative[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)::LocalVariable::smartWallet_3]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:447
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$sender')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletRepresentative', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)::LocalVariable::smartWallet_3')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate c3e6e4458618cb76c1f4] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.burnLPForETH(LPToken,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 37
+ storage exposures -> 2
+[MV-SI candidate c8282fc2c46780af557d] {smartWalletOfKnot[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.stake(bytes[],bytes[],bytes[],IDataStructures.EIP712Signature[],bytes32[])::LocalVariable::blsPubKey_1], smartWalletRepresentative[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.stake(bytes[],bytes[],bytes[],IDataStructures.EIP712Signature[],bytes32[])::LocalVariable::associatedSmartWallet_1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.stake(bytes[],bytes[],bytes[],IDataStructures.EIP712Signature[],bytes32[])
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:730
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletRepresentative', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.stake(bytes[],bytes[],bytes[],IDataStructures.EIP712Signature[],bytes32[])::LocalVariable::associatedSmartWallet_1')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfKnot', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.stake(bytes[],bytes[],bytes[],IDataStructures.EIP712Signature[],bytes32[])::LocalVariable::blsPubKey_1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate c952dd14a547bebe08c5] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> contracts/testing/stakehouse/MockBrandNFT.sol::MockBrandNFT.mint(string,bytes,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:292
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals', '$arg0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate cc77d31d800cf28b3371] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.burnLPTokensForETHByBLS(bytes[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 37
+ storage exposures -> 2
+[MV-SI candidate cccdb9af0da8d184ab13] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.unstakeSyndicateSharesForRageQuit(address,bytes[],uint256[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 37
+ storage exposures -> 2
+[MV-SI candidate cef11ef25c4b57992692] {smartWalletOfNodeRunner[$sender], smartWalletRepresentative[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentative(address)::LocalVariable::smartWallet_1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentative(address)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:730
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletRepresentative', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentative(address)::LocalVariable::smartWallet_1')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$sender')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate cf65b5d8589e97c2b8fc] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.batchDepositETHForStaking(address[],uint256[],bytes[][],uint256[][])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate d2c177159294a9f6cff5] {accumulatedETHPerCollateralizedSlotPerKnot, isNoLongerPartOfSyndicate[$arg0], totalETHProcessedPerCollateralizedKnot[$arg0]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.deRegisterKnotFromSyndicate(bytes[])
+ writer effect     -> contracts/syndicate/Syndicate.sol:190
+ written member    -> ('SV', 'contracts/syndicate/Syndicate.sol', 'Syndicate.accumulatedETHPerCollateralizedSlotPerKnot')
+ potentially stale -> ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.isNoLongerPartOfSyndicate', '$arg0'), ('MS', 'contracts/syndicate/Syndicate.sol', 'Syndicate.totalETHProcessedPerCollateralizedKnot', '$arg0')
+ reader witnesses  -> 8
+ storage exposures -> 1
+[MV-SI candidate dbbd7ae68130ea4881dd] {MODULO, daoCommissionPercentage}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.init(address,address,address,address,address,address,address,address,uint256,bool,string)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:953
+ written member    -> ('SV', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.daoCommissionPercentage')
+ potentially stale -> ('SV', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.MODULO')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate dec769528b0ace84ff9c] {smartWalletOfNodeRunner[$arg0], smartWalletRepresentative[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentativeOfNodeRunner(address,address)::LocalVariable::smartWallet_1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.registerBLSPublicKeys(bytes[],bytes[],address)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:447
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$arg0')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletRepresentative', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentativeOfNodeRunner(address,address)::LocalVariable::smartWallet_1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate e5781f9e289b50c74084] {smartWalletOfNodeRunner[$sender], stakedKnotsOfSmartWallet[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentative(address)::LocalVariable::smartWallet_1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateNodeRunnerOfSmartWallet(address,address,bool)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:366
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$sender')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.stakedKnotsOfSmartWallet', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentative(address)::LocalVariable::smartWallet_1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate e6a8cc9985372a74d5df] {smartWalletOfNodeRunner[$arg0], stakedKnotsOfSmartWallet[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentativeOfNodeRunner(address,address)::LocalVariable::smartWallet_1]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateNodeRunnerOfSmartWallet(address,address,bool)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:366
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$arg0')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.stakedKnotsOfSmartWallet', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateEOARepresentativeOfNodeRunner(address,address)::LocalVariable::smartWallet_1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate e7940a0dedc205af2594] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:351
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals', '$arg0')
+ reader witnesses  -> 12
+ storage exposures -> 2
+[MV-SI candidate e9077581515de94485d9] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol::ERC721Upgradeable.safeTransferFrom(address,address,uint256,bytes)
+ writer effect     -> @openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:364
+ written member    -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._tokenApprovals', '$arg0')
+ potentially stale -> ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._operatorApprovals', '$arg0][$arg1'), ('MS', '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol', 'ERC721Upgradeable._owners', '$arg0')
+ reader witnesses  -> 30
+ storage exposures -> 2
+[MV-SI candidate ed1772b1840be2197dd2] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.bringUnusedETHBackIntoGiantPool(address[],LPToken[][],uint256[][])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 22
+ storage exposures -> 1
+[MV-SI candidate edcf66d86c8ae5ba909e] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.claimRewards(address,bytes[])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:65
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ reader witnesses  -> 25
+ storage exposures -> 2
+[MV-SI candidate f0f0ed4585ad0487bd2a] {smartWalletOfKnot[$arg1], smartWalletOfNodeRunner[$sender]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateNodeRunnerOfSmartWallet(address,address,bool)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:366
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$sender')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfKnot', '$arg1')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate f248c6caa6059b7c4cd5] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.beforeTokenTransfer(address,address,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:65
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate fd0c38e81b6da22944bf] {smartWalletOfKnot[@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.claimRewardsAsNodeRunner(address,bytes[])::ReferenceVariable::REF_524], smartWalletOfNodeRunner[$sender]}
+ writer root       -> contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.rotateNodeRunnerOfSmartWallet(address,address,bool)
+ writer effect     -> contracts/liquid-staking/LiquidStakingManager.sol:366
+ written member    -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfNodeRunner', '$sender')
+ potentially stale -> ('MS', 'contracts/liquid-staking/LiquidStakingManager.sol', 'LiquidStakingManager.smartWalletOfKnot', '@local::contracts/liquid-staking/LiquidStakingManager.sol::LiquidStakingManager.claimRewardsAsNodeRunner(address,bytes[])::ReferenceVariable::REF_524')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate fdf7ce81afc00f69f005] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/GiantMevAndFeesPool.sol::GiantMevAndFeesPool.claimRewards(address,address[],bytes[][])
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 28
+ storage exposures -> 2
+[MV-SI candidate fe84950a2e337093411b] {totalClaimed, totalETHSeen}
+ writer root       -> contracts/liquid-staking/StakingFundsVault.sol::StakingFundsVault.beforeTokenTransfer(address,address,uint256)
+ writer effect     -> contracts/liquid-staking/SyndicateRewardsProcessor.sol:87
+ written member    -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalETHSeen')
+ potentially stale -> ('SV', 'contracts/liquid-staking/SyndicateRewardsProcessor.sol', 'SyndicateRewardsProcessor.totalClaimed')
+ reader witnesses  -> 37
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (88 contracts with 1 detectors), 80 result(s) found

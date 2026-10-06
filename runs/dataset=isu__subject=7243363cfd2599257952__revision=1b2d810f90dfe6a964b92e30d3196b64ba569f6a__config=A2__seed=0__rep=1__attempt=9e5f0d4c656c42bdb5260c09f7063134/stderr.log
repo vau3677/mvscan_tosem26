@@ -1,0 +1,28 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": false, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_multi_return_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+Traceback (most recent call last):
+  File "/usr/local/bin/slither", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/site-packages/slither/__main__.py", line 776, in main
+    main_impl(all_detector_classes=detectors, all_printer_classes=printers)
+  File "/usr/local/lib/python3.10/site-packages/slither/__main__.py", line 882, in main_impl
+    ) = process_all(filename, args, detector_classes, printer_classes)
+  File "/usr/local/lib/python3.10/site-packages/slither/__main__.py", line 107, in process_all
+    ) = process_single(compilation, args, detector_classes, printer_classes)
+  File "/usr/local/lib/python3.10/site-packages/slither/__main__.py", line 87, in process_single
+    return _process(slither, detector_classes, printer_classes)
+  File "/usr/local/lib/python3.10/site-packages/slither/__main__.py", line 137, in _process
+    detector_resultss = slither.run_detectors()
+  File "/usr/local/lib/python3.10/site-packages/slither/slither.py", line 292, in run_detectors
+    results = [d.detect() for d in self._detectors]
+  File "/usr/local/lib/python3.10/site-packages/slither/slither.py", line 292, in <listcomp>
+    results = [d.detect() for d in self._detectors]
+  File "/usr/local/lib/python3.10/site-packages/slither/detectors/abstract_detector.py", line 203, in detect
+    for r in [output.data for output in self._detect()]:
+  File "/mnt/detector/mvscan_plugin/inconsistent_state.py", line 1051, in _detect
+    icfg = build_icfg(self.compilation_unit)
+  File "/mnt/detector/mvscan_plugin/inconsistent_state.py", line 553, in build_icfg
+    icfg.add_block(node)
+  File "/mnt/detector/mvscan_plugin/utils/icfg.py", line 1460, in add_block
+    raise RuntimeError(f"Conflicting storage-context semantics for call edge {edge_key}: {previous_mode} vs {edge_mode}")
+RuntimeError: Conflicting storage-context semantics for call edge (('contracts/cgp/AxelarGateway.sol::AxelarGateway.upgrade(address,bytes32,bytes)', 4), ('contracts/cgp/AxelarGateway.sol::AxelarGateway.contractId()', 0)): ('switch', 'contracts/cgp/AxelarGateway.sol::AxelarGateway') vs ('preserve', None)

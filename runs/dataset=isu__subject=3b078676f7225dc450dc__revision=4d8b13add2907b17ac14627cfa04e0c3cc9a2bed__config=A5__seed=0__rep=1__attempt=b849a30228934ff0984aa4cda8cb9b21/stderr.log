@@ -1,0 +1,784 @@
+'/tmp/.svm/0.8.12/solc-0.8.12 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> @matterlabs/signature-checker/contracts/SignatureChecker.sol
+
+
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> contracts/bonds/BondTreasury.sol
+
+
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> contracts/libraries/FixedPoint.sol
+
+
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> contracts/libraries/FullMath.sol
+
+
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> contracts/libraries/WETH.sol
+
+
+Warning: Warning: This contract has a payable fallback function, but no receive ether function. Consider adding a receive ether function.
+ --> contracts/libraries/WETH.sol:6:1:
+  |
+6 | contract WETH is EIP712 {
+  | ^ (Relevant source part starts here and spans across multiple lines).
+Note: The payable fallback function is defined here.
+  --> contracts/libraries/WETH.sol:22:5:
+   |
+22 |     fallback() external payable {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Return value of low-level calls not used.
+  --> contracts/libraries/WETH.sol:36:9:
+   |
+36 |         address(msg.sender).call{value: wad}("");
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Warning: Unused local variable.
+   --> contracts/dynamic/MuteSwitchRouterDynamic.sol:304:33:
+    |
+304 |             (uint reserveInput, uint reserveOutput) = input == token0 ? (reserve0, reserve1) : (reserve1, reserve0);
+    |                                 ^^^^^^^^^^^^^^^^^^
+
+
+Warning: Warning: Contract code size is 26144 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+ --> contracts/dynamic/MuteSwitchFactoryDynamic.sol:8:1:
+  |
+8 | contract MuteSwitchFactoryDynamic {
+  | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=2232 vars=158
+[mvscan-stage] root-seeding-done eligible_exposures=80 seeded=69 multi_exposure_entry_blocks=6 collapsed_contextual_aliases=11 excluded_dependency=0 excluded_interface=64 excluded_library=0 excluded_abstract=2 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4393036cc1baba08f348699440ec5b107316c95d4559f2280c08874bb984b75d candidate_count=103 candidate_digest=fff57b0e537097b87b301d037e295d36a8be693824d82f1977d5fa3837093b94 context_instance_count=711 eligible_readers=90 eligible_writers=66 execution_context_digest=dc1eb7f94e4ead741b4cb053f2f357f102aebd47ca235082f1eeeb4551098aa5 insensitive_readers_filtered=70 invalid_partial_write_filtered=0 must_full_relation_filtered=80 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=130 owner_context_pairs=831 owner_context_pairs_considered=1233 raw_block_pairs=285 reader_witness_count=831 relation_base_members_shadowed=46 relation_context_incompatible=0 relation_digest=d9d4049c4bfbf7612519ac6260d5c62444447a607e3805fb77ad39581e747caa relation_evidence_edges=195 relation_incompatible=107 relation_members_raw=190 relation_origins_registered=23 relation_origins_rejected_unary_after_shadowing=92 relation_origins_rejected_unreachable=34 relation_origins_seen=115 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=9 scalar_variables_skipped=109 storage_context_mismatch=192 variables_considered=132
+INFO:Detectors:
+
+[MV-SI candidate 03c65b95835f4c3a6adb] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.burn(address)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:123
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 05056dcc353ce7152f29] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.delegate(address)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:126
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ reader witnesses  -> 12
+ storage exposures -> 3
+[MV-SI candidate 053165ca565cef0bfd4c] {_delegates, numCheckpoints[$arg1]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.mint(address)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:48
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic._delegates')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 09eb8ff7ead1987a49d7] {epoch, maxPayout, terms}
+ writer root       -> contracts/bonds/MuteBond.sol::MuteBond.deposit(uint256,address,bool)
+ writer effect     -> contracts/bonds/MuteBond.sol:182
+ written member    -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.terms')
+ potentially stale -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.epoch'), ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.maxPayout')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 0a7d3a0fa7b1b68b98d5] {claimable0[$sender], claimable1[$sender]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.claimFees()
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:497
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.claimable0', '$sender')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.claimable1', '$sender')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 0b6850012d8e3882b42e] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.burn(address)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:125
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 0eafdc127f5a498d1e1f] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.changeFeeType(uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:126
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 0feb2a88cf031d89d2fb] {_delegates, numCheckpoints[$arg1]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.changeFeeType(uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:74
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic._delegates')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 104d1882e3f9c834ff80] {claimable0[$sender], claimable1[$sender]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.claimFees()
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:498
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.claimable1', '$sender')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.claimable0', '$sender')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 106747862bfe28c51459] {_userStakedLpToken[$arg0], totalFees0, totalFees1}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.withdraw()
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:116
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees0')
+ potentially stale -> ('MS', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._userStakedLpToken', '$arg0'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees1')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 1791ddd281557575d9ab] {epochDuration, epochStart}
+ writer root       -> contracts/bonds/MuteBond.sol::MuteBond.setEpochDuration(uint256)
+ writer effect     -> contracts/bonds/MuteBond.sol:131
+ written member    -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.epochDuration')
+ potentially stale -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.epochStart')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 1810bb6ceec51eb4b934] {index0, supplyIndex0[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.mint(address)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:450
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex0', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index0')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 18598f3d6115374decb6] {_mostRecentValueCalcTime, _totalStakeLpToken, endTime}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.withdraw()
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:383
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._totalStakeLpToken')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._mostRecentValueCalcTime'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.endTime')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 1cf6a95a26d3282cba06] {_userStakedLpToken[$arg0], totalFees0, totalFees1}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.payout()
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:117
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees1')
+ potentially stale -> ('MS', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._userStakedLpToken', '$arg0'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees0')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 22eeff21d30b189637a5] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.mint(address)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:123
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 253910f6fa0cfedf2a78] {_delegates, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.delegate(address)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:135
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic._delegates')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 3
+[MV-SI candidate 27a0bbfbad20b995ce51] {index0, supplyIndex0[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transferFrom(address,address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:463
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex0', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 294168d6853f44ec6a00] {_delegates, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transfer(address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:71
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic._delegates')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 2cb044dd595ee70720e1] {_mostRecentValueCalcTime, _totalStakeLpToken, endTime}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.payout()
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:109
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._mostRecentValueCalcTime')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._totalStakeLpToken'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.endTime')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 2cc7e5e5e0d1cb841930] {index1, supplyIndex1[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.burn(address)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:451
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex1', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index1')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 2de800ad5cce67380fcd] {_delegates, numCheckpoints[$arg1]}
+ writer root       -> contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.delegate(address)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:135
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic._delegates')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg1')
+ reader witnesses  -> 8
+ storage exposures -> 3
+[MV-SI candidate 2f11c71ae57b9198feb2] {index1, supplyIndex1[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.swap(uint256,uint256,address,bytes)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:536
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index1')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex1', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 2f44f6ce8277aabfc2f9] {_userStakedLpToken[$arg0], totalFees0, totalFees1}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.stake(uint256)
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:116
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees0')
+ potentially stale -> ('MS', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._userStakedLpToken', '$arg0'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees1')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 30a3f9af8118fed72f90] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.delegate(address)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:123
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 3
+[MV-SI candidate 31a9fae7478c6b82b9cd] {_delegates, numCheckpoints[$arg1]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transfer(address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:74
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic._delegates')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 35b54039615fbe86c66d] {index0, supplyIndex0[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.burn(address)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:463
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex0', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 35e07dbc4629d45950ba] {_userStakedLpToken[$arg0], totalFees0, totalFees1}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.stake(uint256)
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:385
+ written member    -> ('MS', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._userStakedLpToken', '$arg0')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees0'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees1')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 37c3e6170cf236b769e2] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transfer(address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:123
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 390999f7e643e831fa3a] {index1, supplyIndex1[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.burn(address)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:464
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex1', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 3d9573291e231192f9c1] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.burn(address)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:126
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 3e2b3201c4d0320b96c1] {_mostRecentValueCalcTime, _totalStakeLpToken, endTime}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.payout()
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:358
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._totalStakeLpToken')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._mostRecentValueCalcTime'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.endTime')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 3f10c289cd2ee6107d84] {_mostRecentValueCalcTime, _totalStakeLpToken, endTime}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.payout()
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:383
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._totalStakeLpToken')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._mostRecentValueCalcTime'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.endTime')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 40a39779f35934d06634] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.mint(address)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:126
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 439199b52302e340f61c] {_mostRecentValueCalcTime, _totalStakeLpToken, endTime}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.payout()
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:90
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._mostRecentValueCalcTime')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._totalStakeLpToken'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.endTime')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 49ebd4f6fe8f571ad0b6] {_mostRecentValueCalcTime, _totalStakeLpToken, endTime}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.withdraw()
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:109
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._mostRecentValueCalcTime')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._totalStakeLpToken'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.endTime')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 4baa656b700cc30eb189] {epochDuration, epochStart}
+ writer root       -> contracts/bonds/MuteBond.sol::MuteBond.deposit(uint256,address,bool)
+ writer effect     -> contracts/bonds/MuteBond.sol:187
+ written member    -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.epochStart')
+ potentially stale -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.epochDuration')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 4c405b35d243524dd60d] {index1, supplyIndex1[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.claimFees()
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:451
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex1', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index1')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 4f945649561ac925c044] {_mostRecentValueCalcTime, _totalStakeLpToken, endTime}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.withdraw()
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:90
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._mostRecentValueCalcTime')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._totalStakeLpToken'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.endTime')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 5464c48f042a1d6fa30e] {checkpoints[$arg0][@local::contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.getPriorVotes(address,uint256)::LocalVariable::center_1], numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.changeFeeType(uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:126
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints', '$arg0][@local::contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.getPriorVotes(address,uint256)::LocalVariable::center_1')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 547e1833ba9eced5255a] {checkpoints[$arg0][@local::contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.getPriorVotes(address,uint256)::LocalVariable::center_1], numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.mint(address)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:126
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints', '$arg0][@local::contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.getPriorVotes(address,uint256)::LocalVariable::center_1')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 57c6881c4d1590cf2d34] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transferFrom(address,address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:126
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate 583251ccfb5984c4d580] {_delegates, numCheckpoints[$arg1]}
+ writer root       -> contracts/dao/dSoulBound.sol::dSoulBound.delegate(address)
+ writer effect     -> contracts/dao/dSoulBound.sol:89
+ written member    -> ('SV', 'contracts/dao/dSoulBound.sol', 'dSoulBound._delegates')
+ potentially stale -> ('MS', 'contracts/dao/dSoulBound.sol', 'dSoulBound.numCheckpoints', '$arg1')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 5c354c2c66613a3691d3] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.delegate(address)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:125
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 9
+ storage exposures -> 3
+[MV-SI candidate 5c4c3b6f9adf514d5e28] {index0, supplyIndex0[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transferFrom(address,address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:450
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex0', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index0')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 5f141773cfaaf5356b59] {_userStakedLpToken[$arg0], totalFees0, totalFees1}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.withdraw()
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:117
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees1')
+ potentially stale -> ('MS', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._userStakedLpToken', '$arg0'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees0')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 63906d4d2dce67ab8198] {checkpoints[$arg0][@local::contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.getPriorVotes(address,uint256)::LocalVariable::center_1], numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.delegate(address)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:126
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints', '$arg0][@local::contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.getPriorVotes(address,uint256)::LocalVariable::center_1')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 6460a1ae7f7c2bb84969] {epoch, maxPayout, terms}
+ writer root       -> contracts/bonds/MuteBond.sol::MuteBond.deposit(uint256,address,bool)
+ writer effect     -> contracts/bonds/MuteBond.sol:196
+ written member    -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.epoch')
+ potentially stale -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.maxPayout'), ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.terms')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 6734be1b6d80b2536b82] {_delegates, numCheckpoints[$arg0]}
+ writer root       -> contracts/dao/dSoulBound.sol::dSoulBound.delegate(address)
+ writer effect     -> contracts/dao/dSoulBound.sol:89
+ written member    -> ('SV', 'contracts/dao/dSoulBound.sol', 'dSoulBound._delegates')
+ potentially stale -> ('MS', 'contracts/dao/dSoulBound.sol', 'dSoulBound.numCheckpoints', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 69b82875daadb1ee58ab] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.changeFeeType(uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:123
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 6d4225ebbdaee475fcee] {_userStakedLpToken[$arg0], totalFees0, totalFees1}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.payout()
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:385
+ written member    -> ('MS', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._userStakedLpToken', '$arg0')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees0'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees1')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 6f1f178d56ae109633a6] {_delegates, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.mint(address)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:48
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic._delegates')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 70df28c951c554af144f] {_mostRecentValueCalcTime, _totalStakeLpToken, endTime}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.initializeDeposit(uint256,uint256)
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:169
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.endTime')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._mostRecentValueCalcTime'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._totalStakeLpToken')
+ reader witnesses  -> 9
+ storage exposures -> 1
+[MV-SI candidate 712c59e05adfc65605c7] {_delegates, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.changeFeeType(uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:71
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic._delegates')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 71b58f6bf0b557179e4e] {index0, supplyIndex0[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transfer(address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:450
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex0', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index0')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 74ccec8e5ec1b0fd76e6] {_mostRecentValueCalcTime, _totalStakeLpToken, endTime}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.stake(uint256)
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:109
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._mostRecentValueCalcTime')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._totalStakeLpToken'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.endTime')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 790a4ebe258e8a48285f] {index0, supplyIndex0[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.burn(address)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:450
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex0', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index0')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 793cd2e44407f0701756] {_delegates, numCheckpoints[$arg1]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transferFrom(address,address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:74
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic._delegates')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 7cd74bdae84caed78d12] {_delegates, numCheckpoints[$arg1]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transfer(address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:71
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic._delegates')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 7f2ff8290882eacbff79] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transferFrom(address,address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:123
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate 812a8ad158416ab273cf] {_userStakedLpToken[$arg0], totalFees0, totalFees1}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.withdraw()
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:385
+ written member    -> ('MS', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._userStakedLpToken', '$arg0')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees0'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees1')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 8716a944fe4c14c247e3] {index1, supplyIndex1[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.mint(address)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:451
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex1', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index1')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 8813557ca91fa2a4ddab] {index1, supplyIndex1[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.claimFees()
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:464
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex1', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 89434885ca2525cc6a4b] {_mostRecentValueCalcTime, _totalStakeLpToken, endTime}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.stake(uint256)
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:90
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._mostRecentValueCalcTime')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._totalStakeLpToken'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.endTime')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 90904f91725b47d897b3] {_delegates, numCheckpoints[$arg0]}
+ writer root       -> contracts/dao/dMute.sol::dMute.Lock(uint256,uint256)
+ writer effect     -> contracts/dao/dSoulBound.sol:40
+ written member    -> ('SV', 'contracts/dao/dSoulBound.sol', 'dSoulBound._delegates')
+ potentially stale -> ('MS', 'contracts/dao/dSoulBound.sol', 'dSoulBound.numCheckpoints', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 96b876d8196443672bcc] {_userStakedLpToken[$arg0], totalFees0, totalFees1}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.stake(uint256)
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:117
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees1')
+ potentially stale -> ('MS', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._userStakedLpToken', '$arg0'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees0')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate 97fb19ff615718176925] {epoch, maxPayout, terms}
+ writer root       -> contracts/bonds/MuteBond.sol::MuteBond.deposit(uint256,address,bool)
+ writer effect     -> contracts/bonds/MuteBond.sol:194
+ written member    -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.terms')
+ potentially stale -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.epoch'), ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.maxPayout')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate 98e22bce4ef3b157ffe0] {checkpoints[$arg0][@local::contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.getPriorVotes(address,uint256)::LocalVariable::center_1], numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.burn(address)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:126
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints', '$arg0][@local::contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.getPriorVotes(address,uint256)::LocalVariable::center_1')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate 9cd61948aa18783209c4] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.changeFeeType(uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:125
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate a24e6bb15a2c4ef1a75b] {_mostRecentValueCalcTime, _totalStakeLpToken, endTime}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.payout()
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:355
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._totalStakeLpToken')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._mostRecentValueCalcTime'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.endTime')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate a4028755778c624627c5] {_delegates, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transferFrom(address,address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:74
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic._delegates')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate a935080ba0e5165b5a80] {epoch, maxPayout, terms}
+ writer root       -> contracts/bonds/MuteBond.sol::MuteBond.deposit(uint256,address,bool)
+ writer effect     -> contracts/bonds/MuteBond.sol:181
+ written member    -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.terms')
+ potentially stale -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.epoch'), ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.maxPayout')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate ab1e6584313e5d4e38d8] {index0, supplyIndex0[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transfer(address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:463
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex0', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate ab40f10a7423b6e16b3f] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.mint(address)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:125
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate ad1313fd7506d2850414] {_delegates, numCheckpoints[$arg1]}
+ writer root       -> contracts/dao/dMute.sol::dMute.Lock(uint256,uint256)
+ writer effect     -> contracts/dao/dSoulBound.sol:40
+ written member    -> ('SV', 'contracts/dao/dSoulBound.sol', 'dSoulBound._delegates')
+ potentially stale -> ('MS', 'contracts/dao/dSoulBound.sol', 'dSoulBound.numCheckpoints', '$arg1')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate ad27957f88b4cc73285b] {epoch, maxPayout, terms}
+ writer root       -> contracts/bonds/MuteBond.sol::MuteBond.deposit(uint256,address,bool)
+ writer effect     -> contracts/bonds/MuteBond.sol:183
+ written member    -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.terms')
+ potentially stale -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.epoch'), ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.maxPayout')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate ae289852a6cc6d7c61b2] {_mostRecentValueCalcTime, _totalStakeLpToken, endTime}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.stake(uint256)
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:355
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._totalStakeLpToken')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._mostRecentValueCalcTime'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.endTime')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate b029cc8c40733b5ca3ba] {_userStakedLpToken[$arg0], totalFees0, totalFees1}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.payout()
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:116
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees0')
+ potentially stale -> ('MS', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._userStakedLpToken', '$arg0'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.totalFees1')
+ reader witnesses  -> 21
+ storage exposures -> 1
+[MV-SI candidate b11383047fed2983b91e] {index1, supplyIndex1[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transfer(address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:451
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex1', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index1')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate b249fa35d8a700721a03] {index0, supplyIndex0[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.swap(uint256,uint256,address,bytes)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:518
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index0')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex0', '$arg0')
+ reader witnesses  -> 5
+ storage exposures -> 1
+[MV-SI candidate b5499c587374a0820ffe] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transfer(address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:126
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ reader witnesses  -> 10
+ storage exposures -> 1
+[MV-SI candidate b582f15cfa1a9fd4bfa3] {_delegates, numCheckpoints[$arg1]}
+ writer root       -> contracts/dao/dMute.sol::dMute.LockTo(uint256,uint256,address)
+ writer effect     -> contracts/dao/dSoulBound.sol:40
+ written member    -> ('SV', 'contracts/dao/dSoulBound.sol', 'dSoulBound._delegates')
+ potentially stale -> ('MS', 'contracts/dao/dSoulBound.sol', 'dSoulBound.numCheckpoints', '$arg1')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate bddc45002d4fbf6df0e4] {index0, supplyIndex0[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.claimFees()
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:463
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex0', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate be9fb984afb94993e5a7] {_delegates, numCheckpoints[$arg1]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transferFrom(address,address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:71
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic._delegates')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate bf77e265e658a4f3d75a] {_delegates, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transfer(address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:74
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic._delegates')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate c1cc1848b14efc60ec64] {epochDuration, epochStart}
+ writer root       -> contracts/bonds/MuteBond.sol::MuteBond.deposit(uint256,address,bool)
+ writer effect     -> contracts/bonds/MuteBond.sol:190
+ written member    -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.epochStart')
+ potentially stale -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.epochDuration')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate c1ddae4514b9f4db06fc] {index1, supplyIndex1[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transfer(address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:464
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex1', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate c3afd0b717a2aabb58d6] {_delegates, numCheckpoints[$arg0]}
+ writer root       -> contracts/dao/dMute.sol::dMute.LockTo(uint256,uint256,address)
+ writer effect     -> contracts/dao/dSoulBound.sol:40
+ written member    -> ('SV', 'contracts/dao/dSoulBound.sol', 'dSoulBound._delegates')
+ potentially stale -> ('MS', 'contracts/dao/dSoulBound.sol', 'dSoulBound.numCheckpoints', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate c6b5177a1130b136dff4] {checkpoints[$arg0][@local::contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.getPriorVotes(address,uint256)::LocalVariable::center_1], numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transfer(address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:126
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints', '$arg0][@local::contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.getPriorVotes(address,uint256)::LocalVariable::center_1')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate c714e79041dfe2d8de24] {_delegates, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transferFrom(address,address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:71
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic._delegates')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate c94910f2d9ed11b1f037] {index0, supplyIndex0[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.mint(address)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:463
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex0', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index0')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate cc7f5662f6f4e580b9f7] {epochDuration, epochStart}
+ writer root       -> contracts/bonds/MuteBond.sol::MuteBond.deposit(uint256,address,bool)
+ writer effect     -> contracts/bonds/MuteBond.sol:195
+ written member    -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.epochStart')
+ potentially stale -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.epochDuration')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate cfcc5bfc226a071af4c1] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transferFrom(address,address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:125
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate d18c46da5649706a2e3e] {index1, supplyIndex1[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.mint(address)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:464
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex1', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate d9fcf128b025dadc18c5] {checkpoints[$arg0][@local::contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.getPriorVotes(address,uint256)::LocalVariable::center_1], numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transferFrom(address,address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:126
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints', '$arg0][@local::contracts/dynamic/MuteSwitchERC20Dynamic.sol::MuteSwitchERC20Dynamic.getPriorVotes(address,uint256)::LocalVariable::center_1')
+ reader witnesses  -> 3
+ storage exposures -> 1
+[MV-SI candidate ddb7f49df530104b5ddb] {_mostRecentValueCalcTime, _totalStakeLpToken, endTime}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.stake(uint256)
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:358
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._totalStakeLpToken')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._mostRecentValueCalcTime'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.endTime')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate e2dac4b3c211cb0513b7] {checkpoints, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transfer(address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:125
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.checkpoints')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1
+[MV-SI candidate ebd6b3a581ebe419d7df] {index1, supplyIndex1[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transferFrom(address,address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:451
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex1', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index1')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate f3db3442072ed2edd33e] {index0, supplyIndex0[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.claimFees()
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:450
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex0', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index0')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate f7d32b0691e317eb6139] {epoch, maxPayout, terms}
+ writer root       -> contracts/bonds/MuteBond.sol::MuteBond.setMaxPayout(uint256)
+ writer effect     -> contracts/bonds/MuteBond.sol:121
+ written member    -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.maxPayout')
+ potentially stale -> ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.epoch'), ('SV', 'contracts/bonds/MuteBond.sol', 'MuteBond.terms')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate fa8bd517bc906d5a32fa] {_mostRecentValueCalcTime, _totalStakeLpToken, endTime}
+ writer root       -> contracts/amplifier/MuteAmplifier.sol::MuteAmplifier.stake(uint256)
+ writer effect     -> contracts/amplifier/MuteAmplifier.sol:383
+ written member    -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._totalStakeLpToken')
+ potentially stale -> ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier._mostRecentValueCalcTime'), ('SV', 'contracts/amplifier/MuteAmplifier.sol', 'MuteAmplifier.endTime')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate fbb63938cb844d64cf2a] {index1, supplyIndex1[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.transferFrom(address,address,uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchPairDynamic.sol:464
+ written member    -> ('MS', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.supplyIndex1', '$arg0')
+ potentially stale -> ('SV', 'contracts/dynamic/MuteSwitchPairDynamic.sol', 'MuteSwitchPairDynamic.index1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate fd4f502b9437e5b1556d] {_delegates, numCheckpoints[$arg1]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.changeFeeType(uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:71
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic._delegates')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg1')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate ffce2cb3632437bd66bd] {_delegates, numCheckpoints[$arg0]}
+ writer root       -> contracts/dynamic/MuteSwitchPairDynamic.sol::MuteSwitchPairDynamic.changeFeeType(uint256)
+ writer effect     -> contracts/dynamic/MuteSwitchERC20Dynamic.sol:74
+ written member    -> ('SV', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic._delegates')
+ potentially stale -> ('MS', 'contracts/dynamic/MuteSwitchERC20Dynamic.sol', 'MuteSwitchERC20Dynamic.numCheckpoints', '$arg0')
+ reader witnesses  -> 7
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (46 contracts with 1 detectors), 103 result(s) found

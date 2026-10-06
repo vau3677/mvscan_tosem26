@@ -1,0 +1,2078 @@
+'/tmp/.svm/0.8.17/solc-0.8.17 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> sol-tests/proposals/DummyCallTarget.sol
+
+
+Warning: Warning: This declaration shadows an existing declaration.
+   --> sol-tests/crowdfund/AuctionCrowdfund.t.sol:146:9:
+    |
+146 |         ProposalStorage.ProposalEngineOpts memory proposalEngineOpts;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> sol-tests/crowdfund/AuctionCrowdfund.t.sol:57:5:
+   |
+57 |     ProposalStorage.ProposalEngineOpts proposalEngineOpts;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Warning: This declaration shadows an existing declaration.
+   --> sol-tests/crowdfund/BuyCrowdfund.t.sol:139:9:
+    |
+139 |         ProposalStorage.ProposalEngineOpts memory proposalEngineOpts;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> sol-tests/crowdfund/BuyCrowdfund.t.sol:55:5:
+   |
+55 |     ProposalStorage.ProposalEngineOpts proposalEngineOpts;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Warning: This declaration shadows an existing declaration.
+   --> sol-tests/crowdfund/Crowdfund.t.sol:184:9:
+    |
+184 |         Crowdfund.FixedGovernanceOpts memory govOpts = cf.getFixedGovernanceOpts();
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> sol-tests/crowdfund/Crowdfund.t.sol:65:5:
+   |
+65 |     Crowdfund.FixedGovernanceOpts govOpts;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Warning: This contract has a payable fallback function, but no receive ether function. Consider adding a receive ether function.
+ --> contracts/utils/Proxy.sol:8:1:
+  |
+8 | contract Proxy {
+  | ^ (Relevant source part starts here and spans across multiple lines).
+Note: The payable fallback function is defined here.
+  --> contracts/utils/Proxy.sol:25:5:
+   |
+25 |     fallback() external payable {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Return value of low-level calls not used.
+  --> sol-tests/utils/Implementation.t.sol:24:9:
+   |
+24 |         address(this).call(abi.encodeCall(this.initialize, ()));
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Warning: Unreachable code.
+  --> contracts/crowdfund/CrowdfundNFT.sol:57:81:
+   |
+57 |     function transferFrom(address, address, uint256) external pure alwaysRevert {}
+   |                                                                                 ^^
+
+
+Warning: Warning: Unreachable code.
+  --> contracts/crowdfund/CrowdfundNFT.sol:61:85:
+   |
+61 |     function safeTransferFrom(address, address, uint256) external pure alwaysRevert {}
+   |                                                                                     ^^
+
+
+Warning: Warning: Unreachable code.
+  --> contracts/crowdfund/CrowdfundNFT.sol:70:34:
+   |
+70 |     ) external pure alwaysRevert {}
+   |                                  ^^
+
+
+Warning: Warning: Unreachable code.
+  --> contracts/crowdfund/CrowdfundNFT.sol:74:67:
+   |
+74 |     function approve(address, uint256) external pure alwaysRevert {}
+   |                                                                   ^^
+
+
+Warning: Warning: Unreachable code.
+  --> contracts/crowdfund/CrowdfundNFT.sol:78:74:
+   |
+78 |     function setApprovalForAll(address, bool) external pure alwaysRevert {}
+   |                                                                          ^^
+
+
+Warning: Warning: "this" used in constructor. Note that external functions of a contract cannot be called while it is being constructed.
+  --> sol-tests/utils/Implementation.t.sol:24:43:
+   |
+24 |         address(this).call(abi.encodeCall(this.initialize, ()));
+   |                                           ^^^^
+
+
+Warning: Warning: Contract code size is 41097 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/party/PartyGovernanceNFT.sol:14:1:
+   |
+14 | contract PartyGovernanceNFT is PartyGovernance, ERC721, IERC2981 {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 45048 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/party/Party.sol:11:1:
+   |
+11 | contract Party is PartyGovernanceNFT {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 34386 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+ --> contracts/crowdfund/AuctionCrowdfund.sol:8:1:
+  |
+8 | contract AuctionCrowdfund is AuctionCrowdfundBase {
+  | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 32143 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/crowdfund/BuyCrowdfund.sol:14:1:
+   |
+14 | contract BuyCrowdfund is BuyCrowdfundBase {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 34051 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/crowdfund/CollectionBatchBuyCrowdfund.sol:15:1:
+   |
+15 | contract CollectionBatchBuyCrowdfund is BuyCrowdfundBase {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 31652 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/crowdfund/CollectionBuyCrowdfund.sol:16:1:
+   |
+16 | contract CollectionBuyCrowdfund is BuyCrowdfundBase {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 36603 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/crowdfund/RollingAuctionCrowdfund.sol:12:1:
+   |
+12 | contract RollingAuctionCrowdfund is AuctionCrowdfundBase {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 27356 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/crowdfund/ReraiseETHCrowdfund.sol:15:1:
+   |
+15 | contract ReraiseETHCrowdfund is ETHCrowdfundBase, CrowdfundNFT {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 31627 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/proposals/ProposalExecutionEngine.sol:21:1:
+   |
+21 | contract ProposalExecutionEngine is
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 32546 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/renderers/CrowdfundNFTRenderer.sol:11:1:
+   |
+11 | contract CrowdfundNFTRenderer is RendererBase {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 31047 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/renderers/PartyNFTRenderer.sol:13:1:
+   |
+13 | contract PartyNFTRenderer is RendererBase {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 51284 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/crowdfund/AuctionCrowdfund.t.sol:20:1:
+   |
+20 | contract AuctionCrowdfundTest is Test, TestUtils {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 41650 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/crowdfund/BuyCrowdfund.t.sol:19:1:
+   |
+19 | contract BuyCrowdfundTest is Test, TestUtils {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 78451 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/crowdfund/CollectionBatchBuyCrowdfund.t.sol:19:1:
+   |
+19 | contract CollectionBatchBuyCrowdfundTest is Test, TestUtils {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 30478 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+ --> sol-tests/crowdfund/TestableCrowdfund.sol:6:1:
+  |
+6 | contract TestableCrowdfund is Crowdfund {
+  | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 118719 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/crowdfund/Crowdfund.t.sol:33:1:
+   |
+33 | contract CrowdfundTest is Test, TestUtils {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 56624 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/crowdfund/CrowdfundFactory.t.sol:20:1:
+   |
+20 | contract CrowdfundFactoryTest is Test, TestUtils {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 48584 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/crowdfund/InitialETHCrowdfund.t.sol:14:1:
+   |
+14 | contract InitialETHCrowdfundTest is Test, TestUtils, ERC721Receiver {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 64263 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol:14:1:
+   |
+14 | contract ReraiseETHCrowdfundTest is Test, TestUtils, ERC721Receiver {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 119119 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/crowdfund/RollingAuctionCrowdfund.t.sol:14:1:
+   |
+14 | contract RollingAuctionCrowdfundTest is TestUtils, ERC721Receiver {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 105774 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+ --> sol-tests/crowdfund/RollingNounsCrowdfundForked.t.sol:8:1:
+  |
+8 | contract RollingNounsCrowdfundForkedTest is RollingAuctionCrowdfundTest {
+  | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 42426 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/distribution/TokenDistributor.t.sol:14:1:
+   |
+14 | contract TokenDistributorTest is Test, TestUtils {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 81021 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/distribution/TokenDistributorUnit.t.sol:70:1:
+   |
+70 | contract TokenDistributorUnitTest is Test, TestUtils {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 123321 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/party/PartyGovernance.t.sol:15:1:
+   |
+15 | contract PartyGovernanceTest is Test, TestUtils {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 27945 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/party/PartyGovernanceNFT.t.sol:21:1:
+   |
+21 | contract PartyGovernanceNFTTest is Test, TestUtils {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 42464 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/party/PartyGovernanceNFTUnit.sol:13:1:
+   |
+13 | contract TestablePartyGovernanceNFT is PartyGovernanceNFT {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 28933 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+   --> sol-tests/party/PartyGovernanceUnit.t.sol:152:1:
+    |
+152 | contract TestablePartyGovernance is PartyGovernance {
+    | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 146228 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+   --> sol-tests/party/PartyGovernanceUnit.t.sol:223:1:
+    |
+223 | contract PartyGovernanceUnitTest is Test, TestUtils {
+    | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 42132 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/proposals/ArbitraryCallsProposal.t.sol:56:1:
+   |
+56 | contract ArbitraryCallsProposalTest is
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 78821 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/proposals/ListOnOpenseaProposalForked.t.sol:17:1:
+   |
+17 | contract ListOnOpenseaProposalForkedTest is Test, TestUtils, ZoraTestUtils, OpenseaTestUtils {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 146789 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/proposals/ListOnZoraProposalIntegration.t.sol:16:1:
+   |
+16 | contract ListOnZoraProposalIntegrationTest is Test, TestUtils, ZoraTestUtils {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 33067 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+ --> sol-tests/proposals/TestableProposalExecutionEngine.sol:8:1:
+  |
+8 | contract TestableProposalExecutionEngine is ProposalExecutionEngine {
+  | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 56923 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/proposals/ProposalExecutionEngine.t.sol:15:1:
+   |
+15 | contract ProposalExecutionEngineTest is Test, TestUtils {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 49092 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/proposals/UpgradeProposalEngineForked.t.sol:13:1:
+   |
+13 | contract UpgradeProposalEngineForkedTest is Test, TestUtils {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 142990 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> sol-tests/utils/PartyGovernanceHelpers.t.sol:19:1:
+   |
+19 | contract PartyGovernanceHelpersTest is Test, TestUtils {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=15270 vars=608
+[mvscan-stage] root-seeding-done eligible_exposures=927 seeded=699 multi_exposure_entry_blocks=68 collapsed_contextual_aliases=228 excluded_dependency=0 excluded_interface=232 excluded_library=0 excluded_abstract=78 missing_entry_point=5 missing_entry_block=0
+[mvscan-pairs] call_target_digest=60f9f76a435b37253667c6b4325b274e984ba4de10b10bae0fa99f5b9fd26064 candidate_count=246 candidate_digest=46cdf0f94a98511f4b3cf66cd12c16bc717c1d154ce4cd464bc8ac71e0987b15 context_instance_count=46809 eligible_readers=109 eligible_writers=38 execution_context_digest=42d3208000d2b6951a115e4bd14fd0245bea08590486896458de79c14197fe94 insensitive_readers_filtered=615 invalid_partial_write_filtered=0 must_full_relation_filtered=1240 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=1322 owner_context_pairs=252345 owner_context_pairs_considered=868606 raw_block_pairs=488 reader_witness_count=252345 relation_base_members_shadowed=0 relation_context_incompatible=153401 relation_digest=c6e3740545ad070447344078d07ecbae8ba17fe162eff6ee1b68e860c9be046b relation_members_raw=70 relation_origins_registered=9 relation_origins_rejected_unary_after_shadowing=40 relation_origins_rejected_unreachable=26 relation_origins_seen=49 relation_unbound_key_templates=2 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=2 scalar_variables_skipped=226 storage_context_mismatch=460298 variables_considered=235
+INFO:Detectors:
+
+[MV-SI candidate 01014198f06e13fa64a5] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_initialization_cannotReinitialize()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 0134c409f7d2871ba3ae] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.claim(uint256,address)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 028f2ff29fa4b32865db] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_finalize_onlyHostCanFinalizeEarlyWhenActive()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 62
+ storage exposures -> 1
+[MV-SI candidate 03273bb663aaadb4e552] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_aboveMaxTotalContribution()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 0349bdc3ccd1b811491d] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_initialization_cannotReinitialize()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:133
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ reader witnesses  -> 1566
+ storage exposures -> 1
+[MV-SI candidate 035d734026a6141f78d2] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_initialization_cannotReinitialize()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 03cf0633f6d7db0eb7bb] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contributeFor_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 049deaaf749977f8e3ca] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.contribute(address,bytes)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 0540c37b141e53fc8e8b] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_refund_notLost()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 05690183b7456742129f] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claim_mintNewCard_withDisableContributingForExistingCard()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 061651d0a289cb851a44] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.initialize(ETHCrowdfundBase.ETHCrowdfundOptions)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 06e49264793657dfedb6] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_finalize_onlyHostCanFinalizeEarlyWhenActive()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 0740c5c1156d96f6996f] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_batchClaim_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 084ef99ec69addf83e2e] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.initialize(InitialETHCrowdfund.InitialETHCrowdfundOptions,InitialETHCrowdfund.ETHPartyOptions)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 094a75caadf96de26f59] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_fee_contributionAndRefund()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 09abcd96c94f7c697892] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_afterLost()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 09b13c0db854afcad5bc] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_twiceDoesNotMintAnotherCrowdfundNFT()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 0a4340a37bf013fabf38] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_belowMinContribution()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 0c5e9fc881e916ae92b8] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_mintNewCard()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 0dd238c4f870e72ccffa] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.claim(address)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 0e7d609842df3c52a8e0] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_aboveMaxTotalContribution()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 0ea46f76a331ac244d06] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contributeFor_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 110e58563ad0897e692e] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claimMultiple_cannotClaimMoreThanVotingPower()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 122d9bb34325950e8144] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_belowMinContribution()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 15de2c69549d50d8f420] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_finalize_belowMinTotalContributions()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 17b3319190eaf286733e] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_expiry_lost()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 19b456de03f96197e55d] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claimMultiple_votingPowerOfCardAboveMax()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 1b191c22da9abe155990] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claim_addVotingPowerToExistingCard()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 1bbab9d1b2401109101a] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_initialization_cannotReinitialize()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 1e06a1b2e681b7261837] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_refund_notLost()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 1f3cd426a34f41438401] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_batchClaimMultiple_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 2413783f9dfd6563cb35] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_refund_twice()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 2592bf8cb57845d4e63f] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.initialize(InitialETHCrowdfund.InitialETHCrowdfundOptions,InitialETHCrowdfund.ETHPartyOptions)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 263cfd2a9b3b56587cb7] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_batchClaimMultiple_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 274db83301fc017b6b8a] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claimMultiple_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 27e6638c0461b4dcf770] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_refund_notLost()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 29afecf127e788abd3fa] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.batchContribute(InitialETHCrowdfund.BatchContributeArgs)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 2b188c778b668c384c68] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claimMultiple_votingPowerOfCardBelowMin()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 2bc07a1192dcec44046f] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_finalize_onlyHostCanFinalizeEarlyWhenActive()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 2bc95b4b712cd4336cc2] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_refund_twice()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 31347a901ad83fa2ac91] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_initialization_cannotReinitialize()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:133
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ reader witnesses  -> 1170
+ storage exposures -> 1
+[MV-SI candidate 31ba6948ef41b2183f55] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_initialization_cannotReinitialize()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 320006f505a502a58ce3] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_batchRefund_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 325b7627f14c2e52b310] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_finalize_anyoneCanFinalizeWhenExpired()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 338dddd312d483973768] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_fee_finalize()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 3410c0d53c9590813d4b] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_noContribution()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 34992f77862828bac4b8] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claimMultiple_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 34b8b5edd6b0d20915c7] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claim_aboveMax()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 35c2d5676fd197cae6cf] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_batchRefund_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 36ae55c9582b26796281] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_finalize_belowMinTotalContributions()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 37eb783c661a86c1b6e8] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_initialization_cannotReinitialize()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 3a0e964fce2f368930ac] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_aboveMaxTotalContribution()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 3abd771e9935723b313f] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_aboveMaxTotalContribution()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 3ba3a1dd5c923d4850b6] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_initialization_cannotReinitialize()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:139
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ reader witnesses  -> 1722
+ storage exposures -> 1
+[MV-SI candidate 3bf0e435d6c4a60e9129] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_addVotingPowerToExistingCard()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 3c4184fa3ff5aefd0e98] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_finalize_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 62
+ storage exposures -> 1
+[MV-SI candidate 3d5e9e61850544cb7555] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_finalize_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 3d916ff32cceab47f9c6] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.initialize(ETHCrowdfundBase.ETHCrowdfundOptions)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:141
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 3e689166e0a44c4b435b] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contributeFor_doesNotUpdateExistingDelegation()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 3ea12dfdbd278bf8e0f4] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_mintNewCard()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 40d4eb35e57065697f49] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_aboveMaxContribution()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 40e5dec04e22b2514e18] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_finalize_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 62
+ storage exposures -> 1
+[MV-SI candidate 41defdec30314d332d54] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_afterLost()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 41ec5dc9ec8f93480138] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_addVotingPowerToExistingCard()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 2700
+ storage exposures -> 1
+[MV-SI candidate 42e912999954878f629a] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_expiry_won()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 43c093a2bc9db8f40ee2] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.initialize(ETHCrowdfundBase.ETHCrowdfundOptions)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:133
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ reader witnesses  -> 1566
+ storage exposures -> 1
+[MV-SI candidate 4649d2735ec6098101e5] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_aboveMaxTotalContribution()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 4a585e12db908b70caf9] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_batchRefund_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 4b7a80111e6fbf162a77] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/crowdfund/ETHCrowdfundBase.sol::ETHCrowdfundBase.finalize()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 93
+ storage exposures -> 1
+[MV-SI candidate 4d8220c9a4d943a42135] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_mintNewCard_withDisableContributingForExistingCard()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 4f7b716c4d40d95514b4] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.initialize(InitialETHCrowdfund.InitialETHCrowdfundOptions,InitialETHCrowdfund.ETHPartyOptions)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:139
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ reader witnesses  -> 1332
+ storage exposures -> 1
+[MV-SI candidate 50bbb37b05c5a42c7588] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_initialization_cannotReinitialize()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:139
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ reader witnesses  -> 1332
+ storage exposures -> 1
+[MV-SI candidate 51096a9de0eca9741ac6] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_noContribution()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 51d0e97bf3f26c8ef670] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_finalize_onlyHostCanFinalizeEarlyWhenActive()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 5244b4b293b961a42e69] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_finalize_anyoneCanFinalizeWhenExpired()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 534c6e4706e96167b47f] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_refund_twice()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 540e35740f42684c99dd] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_batchContribute_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 54a70038520f17b4231b] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_belowMinContribution()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 565709776b8692a225e2] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.contribute(uint256,address,bytes)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 578136b60b92844b7b8a] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_finalize_belowMinTotalContributions()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 587bc5e7368a3d894c56] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_fee_contributionAndRefund()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 5a3f7c99af686f54b850] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_expiry_lost()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 5a88e4bc7242f8e6bfe5] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_expiry_won()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 5ae006d276ed84564b99] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claim_aboveMax()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 5ba0f66ec267dc56b631] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.initialize(InitialETHCrowdfund.InitialETHCrowdfundOptions,InitialETHCrowdfund.ETHPartyOptions)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:141
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ reader witnesses  -> 1332
+ storage exposures -> 1
+[MV-SI candidate 5c6cdecd391cf5c901f8] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_refund_notLost()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 5ef1c979804b9ac42fe4] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.contribute(address,bytes)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 5f530e571de4920ea4cd] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_twiceDoesNotMintAnotherCrowdfundNFT()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 5f5d3f98a7c8276fcc27] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claim_addVotingPowerToExistingCard()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 61031a8207e2e8a1bcbf] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_batchClaimMultiple_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 61f8450a542dc4bcf856] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_expiry_lost()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 626e68edf2119ca6ec04] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.contributeFor(address,address,bytes)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 62e96fe7a3551c801b73] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_batchRefund_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 63247e5cb930ffb3745f] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_refund_twice()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 63a3cdb789ca54918a27] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_finalize_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 65ae6386f734c73fdb8a] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.initialize(InitialETHCrowdfund.InitialETHCrowdfundOptions,InitialETHCrowdfund.ETHPartyOptions)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 65babf7569e00c8f6299] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claimMultiple_votingPowerOfCardAboveMax()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 65e7dcd361e17efb3f4b] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.contributeFor(uint256,address,address,bytes)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 66df20aeade4be95cf56] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_fee_finalize()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 672dceb1c2c52eb25f2a] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_expiry_lost()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 67895fe79a3fae262f2f] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.contribute(address,bytes)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 68c25fb7ae9047e091ec] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claimMultiple_cannotClaimMoreThanVotingPower()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 6949bbfc186e8b49a647] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contributeFor_doesNotUpdateExistingDelegation()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 69f0e570058b57f48fed] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_aboveMaxContribution()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 6a929e427dcf9484cd73] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_fee_contributionAndRefund()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 6b6b37882da304b64e51] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claim_aboveMax()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 6c3ae6ffaa0986f31c3f] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claim_addVotingPowerToExistingCard()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 6c526348dfde6b8b21a6] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.initialize(InitialETHCrowdfund.InitialETHCrowdfundOptions,InitialETHCrowdfund.ETHPartyOptions)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:133
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ reader witnesses  -> 1170
+ storage exposures -> 1
+[MV-SI candidate 6ccbeaa0ef02bf1b5c9d] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_afterLost()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 6e0c47e9425d05a88033] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.contribute(uint256,address,bytes)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 6f5954c5a5ed2fa61ea1] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claim_mintNewCard()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 7031eed3f560531f7799] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.initialize(ETHCrowdfundBase.ETHCrowdfundOptions)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:139
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ reader witnesses  -> 1722
+ storage exposures -> 1
+[MV-SI candidate 7227fed0e605fd061c90] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_addVotingPowerToExistingCard()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 2700
+ storage exposures -> 1
+[MV-SI candidate 725e34bba4b2a394a0d3] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_batchRefund_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 75b5f15531b53806e65b] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_finalize_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 77e4be42e7656453d0d5] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_expiry_lost()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 7a8c262523abe441db71] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claim_mintNewCard_withDisableContributingForExistingCard()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 7b9295d03e8119fe9a9d] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_belowMinContribution()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 7c3b943bc9456ed9f43f] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_finalize_anyoneCanFinalizeWhenExpired()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 62
+ storage exposures -> 1
+[MV-SI candidate 7cf9655b4547225d6455] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contributeFor_doesNotUpdateExistingDelegation()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 2700
+ storage exposures -> 1
+[MV-SI candidate 7ec1a39e4e3a97deb94e] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_expiry_won()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 7ef02cf0634c514e9f63] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_noContribution()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 80d8fb0a8d471b2cfae7] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.batchContribute(ReraiseETHCrowdfund.BatchContributeArgs)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 817955bde4ebd1a202e8] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_aboveMaxContribution()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 81b99c79bfc6bf740063] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claimMultiple_cannotHaveRemainingVotingPowerAfterClaim()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 87189ef627ecd0c5c3ff] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_aboveMaxTotalContribution()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 879fa4ffaf3b967e2b28] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_mintNewCard()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 88a08a19a27e36fa1f97] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_refund_twice()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 88de746f9afa15881362] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_refund_notLost()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 8911d1b67ecf9f2b4047] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_batchClaim_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 89b549a195b11a3ea626] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/party/PartyGovernanceNFT.sol::PartyGovernanceNFT.addVotingPower(uint256,uint256)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 89f929bd6ef245cf2b37] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 8a6355b83b0e0a3cbfef] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_finalize_anyoneCanFinalizeWhenExpired()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 8bf90c4d53d80093acbd] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contributeFor_doesNotUpdateExistingDelegation()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 3588
+ storage exposures -> 1
+[MV-SI candidate 8c78f3ae93144e3b7172] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_initialization_cannotReinitialize()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 8cc8b77764c360fac9d8] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_expiry_won()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 8d16d6087acef077c673] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_fundingSplit_contributionAndRefund()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 8d39350d05494698eb0b] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.batchContribute(ReraiseETHCrowdfund.BatchContributeArgs)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 8fda67f308448e4119a3] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_refund_notLost()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 91d8a91fb03e3fad4db7] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_refund_notLost()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 92254c4347da9119277d] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.initialize(ETHCrowdfundBase.ETHCrowdfundOptions)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 943a99109bdd5df2af92] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_finalize_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 95ebf143c482b75d18d5] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claimMultiple_votingPowerOfCardAboveMax()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 9a1ead262bfa5b7108cb] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_batchContribute_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 9b3e83713134821a7796] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_batchContribute_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 9c15d641d2494ce475fb] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_aboveMaxContribution()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate 9ea10e4587439a923996] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_afterLost()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate 9ea5e1724761fb197d73] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_fee_finalize()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate 9f5eafcdbb535a3a63bb] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claimMultiple_cannotHaveRemainingVotingPowerAfterClaim()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate 9fb1af682adc0779a3db] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_refund_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate a096e6238a745153612b] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.contributeFor(uint256,address,address,bytes)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate a0ebcd6a78249ae94101] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_finalize_belowMinTotalContributions()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 62
+ storage exposures -> 1
+[MV-SI candidate a13f6e8c378072029edb] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_fundingSplit_finalize()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate a496783257fd800ba9f4] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claimMultiple_votingPowerOfCardBelowMin()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate a523715ba7450736c7ce] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_aboveMaxContribution()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate a79b47500fd923222899] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_batchContribute_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate a85b260c5be91da5dd5b] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_aboveMaxContribution()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate a9400f368b5cb75c6e0a] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contributeFor_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate aa8348d544a92770a27a] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.initialize(ETHCrowdfundBase.ETHCrowdfundOptions)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate aa8f6b922edaf694dfda] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_finalize_anyoneCanFinalizeWhenExpired()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate ab6e9c541512e95d1d06] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_afterLost()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate acf4ef5603965083a781] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_addVotingPowerToExistingCard()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate ad7bbb1c8c4b03e05acf] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_afterLost()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate aed0e1ced0636c7068c3] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claim_mintNewCard()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate b02b65302f4d429adb0e] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_finalize_belowMinTotalContributions()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate b0a0b871f27f9c70a09c] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_belowMinContribution()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate b14044c438402a5f1251] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_batchRefund_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate b2b150e79b09c1398536] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contributeFor_doesNotUpdateExistingDelegation()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate b57ac522dd5878275dd8] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_finalize_onlyHostCanFinalizeEarlyWhenActive()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate b67a5e4809230bec39ac] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_refund_twice()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate b7903dac3b601ab72f4e] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_initialization_cannotReinitialize()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:141
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ reader witnesses  -> 1332
+ storage exposures -> 1
+[MV-SI candidate b8daff30094bb14afe7f] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claim_mintNewCard()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate b8ef35628370c1f0517d] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_noContribution()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate b8ff35efb745dff8e322] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_batchContribute_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate bb7afc689f492cfd1f83] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_batchRefund_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate bbc6d549d831950264bf] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_initialization_cannotReinitialize()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate be72057d430a683a010c] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_fundingSplit_contributionAndRefund()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate be80ca49b60f48839a4f] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.batchContribute(InitialETHCrowdfund.BatchContributeArgs)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate bf72539306ccc701fe6a] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.contribute(uint256,address,bytes)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate c1faaac431546f9ba45b] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_refund_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate c27a377cef8aa5c55176] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.initialize(InitialETHCrowdfund.InitialETHCrowdfundOptions,InitialETHCrowdfund.ETHPartyOptions)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate c2ad6353378b64583d7d] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_fee_finalize()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate c3757a6044ee8aa2c243] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claim_mintNewCard()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate c4764987e86303de2f0f] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_batchContribute_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate c50eccbcd83e3af8531a] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_expiry_won()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate c5ce9b6b39db8dbda7cb] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.contributeFor(uint256,address,address,bytes)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate c6339e675809ec1b2633] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.batchContribute(InitialETHCrowdfund.BatchContributeArgs)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate c6824b9ab233bb811f82] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_expiry_lost()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate c74e12b361ad11849ec5] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_finalize_anyoneCanFinalizeWhenExpired()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 62
+ storage exposures -> 1
+[MV-SI candidate ca5761f3cd08ea2e2137] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_expiry_won()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate cc7ac570e421dbbba959] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.contributeFor(address,address,bytes)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate cce0b07a4a1c08b1dac0] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claim_mintNewCard_withDisableContributingForExistingCard()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate cd1596d73567e4b2b9b4] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_expiry_lost()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate cd31c19940549de095d1] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_fundingSplit_contributionAndRefund()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate ceac7262290332d424dd] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.contribute(address,bytes)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate d1f7a89ca90588bac9fb] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contributeFor_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate d38dd3610b738bc7ef27] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.contribute(address,bytes)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate d3923e62735492454e2a] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_finalize_belowMinTotalContributions()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate d47a5d000240c0f329b1] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_mintNewCard()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate d7815da7f348a43840a0] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_finalize_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate d825aa796cc70d81523d] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claim_aboveMax()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate d856cfb14b381317b397] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_refund_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate d8b4794d6786f94a0185] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_batchClaim_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate db504d9e85a9e8e47fbc] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_finalize_belowMinTotalContributions()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 62
+ storage exposures -> 1
+[MV-SI candidate dc1ccd5a503a1ad9cc71] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.contribute(address,bytes)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate dc4326bab6a47fd1aa6b] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contributeFor_doesNotUpdateExistingDelegation()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 3588
+ storage exposures -> 1
+[MV-SI candidate dd2c350ff303f12d8218] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.contributeFor(address,address,bytes)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate dd7d1ec536535af3b359] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_fundingSplit_finalize()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate de0387bcdb9658db4842] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate e1318bd049d8c348ce65] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> contracts/party/PartyGovernanceNFT.sol::PartyGovernanceNFT.increaseTotalVotingPower(uint96)
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate e204436405bcd984a101] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_refund_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate e26a07876bda9ab6fa7e] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_aboveMaxContribution()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate e3194ef027a826124209] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_finalize_onlyHostCanFinalizeEarlyWhenActive()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate e437abd16476bb6237f3] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate e4483f29450a892578c7] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_belowMinContribution()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate e594ec1c7fa03e03516c] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/ReraiseETHCrowdfund.sol::ReraiseETHCrowdfund.batchContribute(ReraiseETHCrowdfund.BatchContributeArgs)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate e7560d767164de5e2673] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_mintNewCard_withDisableContributingForExistingCard()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate e79ee230d0cfe894061b] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.contribute(uint256,address,bytes)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate e878f833d7867ffb24d8] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contributeFor_doesNotUpdateExistingDelegation()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 2700
+ storage exposures -> 1
+[MV-SI candidate e8fe9f80e25084be0e35] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claimMultiple_cannotClaimMoreThanVotingPower()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate ea43cd1763c38ebd0d7b] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.contributeFor(uint256,address,address,bytes)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate ea4492e01140ff386a15] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_noContribution()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate eb315eaf03b942bed459] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_refund_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate ec5c881e55fe1e92686b] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> contracts/crowdfund/InitialETHCrowdfund.sol::InitialETHCrowdfund.contribute(address,bytes)
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate ed2afbdd5579af66adf9] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claimMultiple_cannotHaveRemainingVotingPowerAfterClaim()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate edac2db22a615592186f] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_afterLost()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate edf40147799668fbc804] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_fundingSplit_finalize()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate ee7c21d2e46b5d888b3d] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_fee_contributionAndRefund()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate f08ffc08192ab3b0a42f] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contributeFor_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate f176be158e458f7c7654] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_finalize_anyoneCanFinalizeWhenExpired()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate f5896b0f6becaff8d692] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_noContribution()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate f5bdaf0369b774fefe88] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contributeFor_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate f5cb4a673b3d8855c2c0] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_initialization_cannotReinitialize()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:141
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate f6e930c34abe0a88bd27] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claimMultiple_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate f6f9ab8df631fcb60a46] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_refund_twice()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate f749f093ff7d42c74fb3] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contributeFor_works()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate f7dfa35a758a30b77b77] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_twiceDoesNotMintAnotherCrowdfundNFT()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate f82478db19b455ec6943] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_expiry_won()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate f83a79a7387737f10210] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_noContribution()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate f84d73311b58bfe25ac9] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_contribute_belowMinContribution()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:207
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate f86b18c28733de23143c] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_mintNewCard_withDisableContributingForExistingCard()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1
+[MV-SI candidate f8b19e78fc1cc4f1e00f] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_contribute_aboveMaxTotalContribution()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1350
+ storage exposures -> 1
+[MV-SI candidate fa112f27d3bcaa757794] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_refund_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:185
+ written member    -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ potentially stale -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ reader witnesses  -> 272
+ storage exposures -> 1
+[MV-SI candidate fb5f994c795f584f1c1d] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_finalize_onlyHostCanFinalizeEarlyWhenActive()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 62
+ storage exposures -> 1
+[MV-SI candidate fdce3ffcd2d1a6a99350] {exchangeRateBps, fundingSplitBps, maxTotalContributions, totalContributions}
+ writer root       -> sol-tests/crowdfund/ReraiseETHCrowdfund.t.sol::ReraiseETHCrowdfundTest.test_claimMultiple_votingPowerOfCardBelowMin()
+ writer effect     -> contracts/crowdfund/ETHCrowdfundBase.sol:221
+ written member    -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.totalContributions')
+ potentially stale -> ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.exchangeRateBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.fundingSplitBps'), ('SV', 'contracts/crowdfund/ETHCrowdfundBase.sol', 'ETHCrowdfundBase.maxTotalContributions')
+ reader witnesses  -> 1794
+ storage exposures -> 1
+[MV-SI candidate ff7511b1e0a36d20c20e] {_governanceValues, votingPowerByTokenId[$arg0]}
+ writer root       -> sol-tests/crowdfund/InitialETHCrowdfund.t.sol::InitialETHCrowdfundTest.test_refund_works()
+ writer effect     -> contracts/party/PartyGovernanceNFT.sol:196
+ written member    -> ('SV', 'contracts/party/PartyGovernance.sol', 'PartyGovernance._governanceValues')
+ potentially stale -> ('MS', 'contracts/party/PartyGovernanceNFT.sol', 'PartyGovernanceNFT.votingPowerByTokenId', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (219 contracts with 1 detectors), 246 result(s) found

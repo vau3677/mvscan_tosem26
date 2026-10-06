@@ -1,0 +1,513 @@
+'/tmp/.svm/0.8.17/solc-0.8.17 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=2325 vars=92
+[mvscan-stage] root-seeding-done eligible_exposures=122 seeded=118 multi_exposure_entry_blocks=4 collapsed_contextual_aliases=4 excluded_dependency=0 excluded_interface=9 excluded_library=0 excluded_abstract=26 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=361b97b304a04ae5fc16c454333b84385a0460d866b68dfa02fd5be696a4c71d candidate_count=72 candidate_digest=b8f3e7772c71e367f454977867bd6cf335fec14c9e1499bb4d7f0beb808a625b context_instance_count=1704 eligible_readers=128 eligible_writers=94 execution_context_digest=06bac3e15f82a1bddbbdbf144d78e8b8b069e0c48b37e1f31b2f90630bf350e7 insensitive_readers_filtered=1708 invalid_partial_write_filtered=0 must_full_relation_filtered=69 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=104 owner_context_pairs=2149 owner_context_pairs_considered=100810 raw_block_pairs=881 reader_witness_count=2149 relation_base_members_shadowed=84 relation_context_incompatible=78073 relation_digest=94c12e81c808284efc0e337742a939e6e54842ace031b19f0cc71ee00bcb31a5 relation_members_raw=307 relation_origins_registered=25 relation_origins_rejected_unary_after_shadowing=154 relation_origins_rejected_unreachable=35 relation_origins_seen=179 relation_unbound_key_templates=1794 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=28 scalar_variables_skipped=61 storage_context_mismatch=20415 variables_considered=86
+INFO:Detectors:
+
+[MV-SI candidate 0afea84286a6b12ba688] {_initialized, _initializing}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.initialize(Storage,ERC20)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:89
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 0e2fc9df9bfcbb5e5a9e] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.syncRewards()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:106
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 68
+ storage exposures -> 1
+[MV-SI candidate 10d6d2066534348a51b7] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.withdrawAVAX(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:245
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 1a68ebd87eed8e25b403] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/MinipoolManager.sol::MinipoolManager.recordStakingEnd(address,uint256,uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:149
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 1dbe58d912d47f8f282d] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/MinipoolManager.sol::MinipoolManager.claimAndInitiateStaking(address)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:160
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 1e406318b7ba3f5f0cfd] {addressStorage[$arg0], guardian}
+ writer root       -> contracts/contract/Storage.sol::Storage.confirmGuardian()
+ writer effect     -> contracts/contract/Storage.sol:63
+ written member    -> ('SV', 'contracts/contract/Storage.sol', 'Storage.guardian')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.addressStorage', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 208bce48a180ed33c49e] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/utils/RialtoSimulator.sol::RialtoSimulator.processMinipoolStart(address)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:160
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 2296f9b9d38e5b8b9332] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.initialize(Storage,ERC20)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:78
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 26d5b0f431ee83d034d3] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/utils/RialtoSimulator.sol::RialtoSimulator.depositggAVAX(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:252
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 2a17216bda4f489fd3de] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/utils/RialtoSimulator.sol::RialtoSimulator.processMinipoolEndWithoutRewards(address)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:149
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate 2a9ae408358f9e00d920] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.withdrawForStaking(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:160
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate 2bf0a9026f096560747e] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/utils/RialtoSimulator.sol::RialtoSimulator.processMinipoolStart(address)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:160
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate 2bfc18c8a77d6941d95a] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/utils/RialtoSimulator.sol::RialtoSimulator.processMinipoolEndWithoutRewards(address)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:149
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 303b6dddcd169b0353ec] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.initialize(Storage,ERC20)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:78
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 68
+ storage exposures -> 1
+[MV-SI candidate 304947be40dcca269295] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.syncRewards()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:105
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 35
+ storage exposures -> 1
+[MV-SI candidate 3bee84690d3718549f5d] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/MinipoolManager.sol::MinipoolManager.recordStakingError(address,bytes32)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:149
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 401343107111baf71f59] {lastRewardsAmt, lastSync, rewardsCycleEnd, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.redeemAVAX(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:245
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate 46fe84de2e36ef39e4c3] {booleanStorage[$arg0], guardian}
+ writer root       -> contracts/contract/Storage.sol::Storage.setBool(bytes32,bool)
+ writer effect     -> contracts/contract/Storage.sol:109
+ written member    -> ('MS', 'contracts/contract/Storage.sol', 'Storage.booleanStorage', '$arg0')
+ potentially stale -> ('SV', 'contracts/contract/Storage.sol', 'Storage.guardian')
+ reader witnesses  -> 108
+ storage exposures -> 1
+[MV-SI candidate 473c8e43e106943fe527] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.withdrawForStaking(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:160
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 4a84d6272721a0848e26] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.redeemAVAX(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:245
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 4b5969a2407167acc113] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/MinipoolManager.sol::MinipoolManager.claimAndInitiateStaking(address)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:160
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 4f49215858b91cbc9246] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.depositAVAX()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:252
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate 512f567473fb87f97bf1] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/utils/RialtoSimulator.sol::RialtoSimulator.processMinipoolEndWithRewards(address)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:149
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate 5499c078d7f502c8534e] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.redeemAVAX(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:245
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 5983c31fd306a0f80cb9] {lastRewardsAmt, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.withdrawAVAX(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:245
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 5c01bcf77f7f20c123dc] {lastRewardsAmt, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.redeemAVAX(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:245
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 5c8e9734adf337f30883] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.initialize(Storage,ERC20)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:78
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 5d554792b3bf41481527] {booleanStorage[@local::contracts/contract/Storage.sol::Storage.onlyRegisteredNetworkContract()::TemporaryVariable::TMP_2311], guardian}
+ writer root       -> contracts/contract/Storage.sol::Storage.confirmGuardian()
+ writer effect     -> contracts/contract/Storage.sol:63
+ written member    -> ('SV', 'contracts/contract/Storage.sol', 'Storage.guardian')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.booleanStorage', '@local::contracts/contract/Storage.sol::Storage.onlyRegisteredNetworkContract()::TemporaryVariable::TMP_2311')
+ reader witnesses  -> 86
+ storage exposures -> 1
+[MV-SI candidate 5e7e7ae1f6d46f2fd5f4] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.depositFromStaking(uint256,uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:149
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 5f20438f437b3deb9e47] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/utils/RialtoSimulator.sol::RialtoSimulator.processMinipoolEndWithRewards(address)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:149
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 6056f95b6698e6d4a981] {addressStorage[$arg0], booleanStorage[$arg0]}
+ writer root       -> contracts/contract/Storage.sol::Storage.setAddress(bytes32,address)
+ writer effect     -> contracts/contract/Storage.sol:105
+ written member    -> ('MS', 'contracts/contract/Storage.sol', 'Storage.addressStorage', '$arg0')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.booleanStorage', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 620d48f16786c3102563] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.syncRewards()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:106
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate 662c86c103120f4127aa] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/MinipoolManager.sol::MinipoolManager.recordStakingError(address,bytes32)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:149
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate 67cabafd9a89dc255f51] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/utils/RialtoSimulator.sol::RialtoSimulator.processMinipoolEndWithoutRewards(address)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:149
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 68b54b7aed9ba53bb706] {_initialized, _initializing}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.initialize(Storage,ERC20)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:95
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 6e5aceb588673cccadef] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.syncRewards()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:107
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 6ea06ee638154997ffd1] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/utils/RialtoSimulator.sol::RialtoSimulator.processMinipoolStart(address)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:160
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 715651f9f8c2b22747c1] {addressStorage[$arg0], booleanStorage[$arg0]}
+ writer root       -> contracts/contract/Storage.sol::Storage.setBool(bytes32,bool)
+ writer effect     -> contracts/contract/Storage.sol:109
+ written member    -> ('MS', 'contracts/contract/Storage.sol', 'Storage.booleanStorage', '$arg0')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.addressStorage', '$arg0')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 75290e57b01c608bd6fe] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/MinipoolManager.sol::MinipoolManager.recordStakingError(address,bytes32)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:149
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 7a542436bf4e8fbbbd04] {addressStorage[$arg0], guardian}
+ writer root       -> contracts/contract/Storage.sol::Storage.setAddress(bytes32,address)
+ writer effect     -> contracts/contract/Storage.sol:105
+ written member    -> ('MS', 'contracts/contract/Storage.sol', 'Storage.addressStorage', '$arg0')
+ potentially stale -> ('SV', 'contracts/contract/Storage.sol', 'Storage.guardian')
+ reader witnesses  -> 108
+ storage exposures -> 1
+[MV-SI candidate 7cd5c7c1c7bd4a0d74cb] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/utils/RialtoSimulator.sol::RialtoSimulator.processMinipoolEndWithRewards(address)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:149
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 7f725ba7c2f8df257525] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.syncRewards()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:105
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 35
+ storage exposures -> 1
+[MV-SI candidate 7f9089e7451437ba9b03] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.withdrawAVAX(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:245
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 8218f9a16f5b986bcd73] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.depositFromStaking(uint256,uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:149
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate 86d662d7ccc945a34b47] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.redeemAVAX(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:245
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate 88b45ea7f1d121d334d9] {INITIAL_DOMAIN_SEPARATOR, name, nonces[$arg0]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.initialize(Storage,ERC20)
+ writer effect     -> contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol:63
+ written member    -> ('SV', 'contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol', 'ERC20Upgradeable.INITIAL_DOMAIN_SEPARATOR')
+ potentially stale -> ('MS', 'contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol', 'ERC20Upgradeable.nonces', '$arg0'), ('SV', 'contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol', 'ERC20Upgradeable.name')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 8ab0803c475b52126fbe] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.withdrawAVAX(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:245
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate 8b73377abd90aed29aae] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.syncRewards()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:107
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 8e2eff6ffa6e00b270ac] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.depositFromStaking(uint256,uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:149
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate 971ae797cf7e43b6eb56] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/MinipoolManager.sol::MinipoolManager.claimAndInitiateStaking(address)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:160
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate 994e22d190bc0805d2f3] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.depositAVAX()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:252
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate 9edd44c9d36d297067d4] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.syncRewards()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:104
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 68
+ storage exposures -> 1
+[MV-SI candidate 9fc211c1f3e70bfa3ef6] {booleanStorage[$arg0], guardian}
+ writer root       -> contracts/contract/Storage.sol::Storage.confirmGuardian()
+ writer effect     -> contracts/contract/Storage.sol:63
+ written member    -> ('SV', 'contracts/contract/Storage.sol', 'Storage.guardian')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.booleanStorage', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b0482bc8e245db8994e2] {INITIAL_DOMAIN_SEPARATOR, name, nonces[$arg0]}
+ writer root       -> contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol::ERC20Upgradeable.permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+ writer effect     -> contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol:132
+ written member    -> ('MS', 'contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol', 'ERC20Upgradeable.nonces', '$arg0')
+ potentially stale -> ('SV', 'contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol', 'ERC20Upgradeable.INITIAL_DOMAIN_SEPARATOR'), ('SV', 'contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol', 'ERC20Upgradeable.name')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate b3558532ed28636462ab] {lastRewardsAmt, lastSync, rewardsCycleEnd, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.withdrawAVAX(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:245
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate b361de0afe1f86c7e7fe] {lastRewardsAmt, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.depositAVAX()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:252
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate b5acd235fe88f16be3bf] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.syncRewards()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:104
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate bc2629c6a0ff97bcec43] {lastRewardsAmt, lastSync, rewardsCycleEnd, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.initialize(Storage,ERC20)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:78
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 15
+ storage exposures -> 1
+[MV-SI candidate cb7355d75b38fb3df151] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.syncRewards()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:107
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate cc09e3ccaa40f9f9ce8a] {_initialized, _initializing}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.initialize(Storage,ERC20)
+ writer effect     -> node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:91
+ written member    -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', 'node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate d35068a0fe35465dbf66] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.syncRewards()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:104
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 34
+ storage exposures -> 1
+[MV-SI candidate d95d1ff32ec2a452ae3c] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/MinipoolManager.sol::MinipoolManager.recordStakingEnd(address,uint256,uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:149
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 38
+ storage exposures -> 1
+[MV-SI candidate dfc7f2501945924b30d5] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.withdrawForStaking(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:160
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate e2563c057bbf5238234b] {lastRewardsAmt, lastSync, rewardsCycleEnd, totalReleasedAssets}
+ writer root       -> contracts/contract/utils/RialtoSimulator.sol::RialtoSimulator.depositggAVAX(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:252
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate e5be21d3fc62f4438e11] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/MinipoolManager.sol::MinipoolManager.recordStakingEnd(address,uint256,uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:149
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 19
+ storage exposures -> 1
+[MV-SI candidate e74441969914e53c6b15] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.depositAVAX()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:252
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '@local::contracts/contract/MinipoolManager.sol::MinipoolManager.canClaimAndInitiateStaking(address)::TemporaryVariable::TMP_744'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate ecf5b7ba3d55dd28fb51] {lastRewardsAmt, lastSync, rewardsCycleEnd, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.depositAVAX()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:252
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd')
+ reader witnesses  -> 11
+ storage exposures -> 1
+[MV-SI candidate f169b0638aaef597efac] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/utils/RialtoSimulator.sol::RialtoSimulator.depositggAVAX(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:252
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ reader witnesses  -> 30
+ storage exposures -> 1
+[MV-SI candidate f2164c86011fc261e7d2] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/utils/RialtoSimulator.sol::RialtoSimulator.depositggAVAX(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:252
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets')
+ reader witnesses  -> 60
+ storage exposures -> 1
+[MV-SI candidate f8fd3d214d199049eef2] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.syncRewards()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:105
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 70
+ storage exposures -> 1
+[MV-SI candidate fad6463bcab902e9e3cf] {lastRewardsAmt, totalReleasedAssets}
+ writer root       -> contracts/contract/utils/RialtoSimulator.sol::RialtoSimulator.depositggAVAX(uint256)
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:252
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ potentially stale -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate fde3c4021c3604f457a4] {lastRewardsAmt, lastSync, rewardsCycleEnd, stakingTotalAssets, totalReleasedAssets, uintStorage[$arg0]}
+ writer root       -> contracts/contract/tokens/TokenggAVAX.sol::TokenggAVAX.syncRewards()
+ writer effect     -> contracts/contract/tokens/TokenggAVAX.sol:106
+ written member    -> ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.rewardsCycleEnd')
+ potentially stale -> ('MS', 'contracts/contract/Storage.sol', 'Storage.uintStorage', '$arg0'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastRewardsAmt'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.lastSync'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.stakingTotalAssets'), ('SV', 'contracts/contract/tokens/TokenggAVAX.sol', 'TokenggAVAX.totalReleasedAssets')
+ reader witnesses  -> 34
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (42 contracts with 1 detectors), 72 result(s) found

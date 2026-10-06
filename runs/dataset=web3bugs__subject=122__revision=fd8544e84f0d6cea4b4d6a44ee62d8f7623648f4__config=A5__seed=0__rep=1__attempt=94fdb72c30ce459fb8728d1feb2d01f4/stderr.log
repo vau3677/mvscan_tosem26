@@ -1,0 +1,29 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=4579 vars=239
+[mvscan-stage] root-seeding-done eligible_exposures=756 seeded=361 multi_exposure_entry_blocks=93 collapsed_contextual_aliases=395 excluded_dependency=0 excluded_interface=94 excluded_library=0 excluded_abstract=306 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=7556159d950cb63086cdc5caa76f683194ee90d655bfa1ca307110a265ae8a08 candidate_count=3 candidate_digest=965cfddf5772900df2a5e4ab9039a82605eb542b3a3bf195131cbc706522730f context_instance_count=63 eligible_readers=20 eligible_writers=6 execution_context_digest=748e547f472d3e6c1e58e780e6be4f881f3155bb16d6a3d14028e7fd95e05404 insensitive_readers_filtered=36 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=363 owner_context_pairs=125 owner_context_pairs_considered=4384 raw_block_pairs=21 reader_witness_count=125 relation_base_members_shadowed=57 relation_context_incompatible=0 relation_digest=12a12cf64196367f8fa83ccc4f9d1c8ff57e39f0cc114e76a35039e90895804e relation_evidence_edges=16 relation_incompatible=5 relation_members_raw=210 relation_origins_registered=14 relation_origins_rejected_unary_after_shadowing=118 relation_origins_rejected_unreachable=99 relation_origins_seen=132 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=123 storage_context_mismatch=3896 variables_considered=131
+INFO:Detectors:
+
+[MV-SI candidate 471bf937c9e39c8d7777] {_operatorApprovals[$arg0][$arg1], _owners[$arg0]}
+ writer root       -> contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/token/ERC721/ERC721.sol:374
+ written member    -> ('MS', 'contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1')
+ potentially stale -> ('MS', 'contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0')
+ reader witnesses  -> 31
+ storage exposures -> 8
+[MV-SI candidate 95a6562964d5748ab5d7] {_baseURI, _tokenURIs[$arg0]}
+ writer root       -> contracts/mocks/ERC1155URIStorageMock.sol::ERC1155URIStorageMock.setBaseURI(string)
+ writer effect     -> contracts/token/ERC1155/extensions/ERC1155URIStorage.sol:60
+ written member    -> ('SV', 'contracts/token/ERC1155/extensions/ERC1155URIStorage.sol', 'ERC1155URIStorage._baseURI')
+ potentially stale -> ('MS', 'contracts/token/ERC1155/extensions/ERC1155URIStorage.sol', 'ERC1155URIStorage._tokenURIs', '$arg0')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate a7f543de3ee898b21cef] {_operatorApprovals[$arg0][$arg1], _owners[$arg0], _tokenApprovals[$arg0]}
+ writer root       -> contracts/token/ERC721/ERC721.sol::ERC721.setApprovalForAll(address,bool)
+ writer effect     -> contracts/token/ERC721/ERC721.sol:374
+ written member    -> ('MS', 'contracts/token/ERC721/ERC721.sol', 'ERC721._operatorApprovals', '$arg0][$arg1')
+ potentially stale -> ('MS', 'contracts/token/ERC721/ERC721.sol', 'ERC721._owners', '$arg0'), ('MS', 'contracts/token/ERC721/ERC721.sol', 'ERC721._tokenApprovals', '$arg0')
+ reader witnesses  -> 93
+ storage exposures -> 8Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (286 contracts with 1 detectors), 3 result(s) found

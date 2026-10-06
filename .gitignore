@@ -1,81 +1,44 @@
-# VCS / identity artifacts
-.git/
+# Local tool/dependency caches and nested repository internals.
 **/.git/
-.gitmodules
-.git-credentials
-.gitconfig.local
-
-# OS/editor noise
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Python cache/env
-__pycache__/
+**/.venv/
+**/node_modules/
+**/__pycache__/
+**/.pytest_cache/
+**/.ruff_cache/
 *.py[cod]
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.tox/
-.venv/
-venv/
-.env
-.env.*
-!.env.example
+.DS_Store
 
-# Node/tool caches
-node_modules/
-.npm/
-.pnpm-store/
-.yarn/
-.next/
-dist/
-build/
-coverage/
-*.tsbuildinfo
+# Checksummed release assets and restored derivatives.
+/publication/data/
+/freeze/CROSS_ABLATION_UNION_INVENTORY.json
+/environment/oci-rootfs/
+/environment/oci-rootfs.restore/
+/environment/oci/blobs/sha256/41a7fb1f35f19a54a3ae673fa7b15d93fbeee44766998f555f6e35e4a192ae0b
+/environment/oci/blobs/sha256/039e6f9f9752f74a3ff4a6a224f64c7c864da16ed98f882107704328f41b9c42
+/environment/oci/blobs/sha256/bf6650a2b37e3b8c135d72d1865592b65ae79fb423c6a8853c7280154ef826b2
+/environment/oci/blobs/sha256/29f0f9790bebd307c2cd1745aa20237e4e4346859cad4f816a0f94f61a361e6f
+/environment/oci/blobs/sha256/0b96f3bb254edd4e41c8a2d4dad219a2a6755971b41672c2aefa5b4de3ac26d4
+/environment/oci/blobs/sha256/307d41db334144d7f5b689fc8599d100cc464f24972536067b7d15e379573a46
+/benchmarks/sources/
+/benchmarks/isu/best_effort_build_runs/
+/benchmarks/isu/build_screen_attempts/
+/benchmarks/web3bugs/best_effort_build_runs/
+/benchmarks/web3bugs/build_screen_attempts/
+/benchmarks/web3bugs/build_evidence_attempts/
+/benchmarks/isu/project_sources/
+/benchmarks/isu/sources/
+/benchmarks/isu/source_resolution_evidence/
+/accepted-inputs-manifest.json
+/source-evidence-manifest.json
 
-# Solidity/build caches
-artifacts/
-cache/
-cache_hardhat/
-out-debug/
-out-release/
-typechain/
-typechain-types/
-broadcast/
-
-# Logs/temp files
-*.log
-tmp/
-temp/
-*.tmp
-
-# ICSE data
-external/
-TODO.md
-FULL_TODO.md
-OBJECTIONS
-
-# Oracle audit scratch/prose; canonical TOSEM queue lives at oracle/tosem_oracle_review_queue.csv.
-oracle/audits/*
-
-# Local scaffolding for the checked-in Annotator 2 handoff packet.
-oracle/scripts/build_annotator2_packet.py
-
-# Nested repositories are maintained separately; retain their local files.
-/ideas/web3bugs_agreement_ui/
-/oracle/SolidityStateStudy/
-
-# Regenerable manuscript compilation bookkeeping.
+# Manuscript build intermediates; retain the manuscript PDF and bibliography.
 /manuscript/*.aux
-/manuscript/*.blg
+/manuscript/*.log
 /manuscript/*.fls
 /manuscript/*.fdb_latexmk
+/manuscript/*.blg
 /manuscript/*.out
 /manuscript/comment.cut
-
-# Local cleanup bookkeeping; not part of the research artifact.
-/archive/2026-10-05-preservation-audit/
+/manuscript/_minted*/
+*.download
+*.restore

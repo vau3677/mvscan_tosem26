@@ -1,0 +1,475 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=3674 vars=154
+[mvscan-stage] root-seeding-done eligible_exposures=462 seeded=196 multi_exposure_entry_blocks=86 collapsed_contextual_aliases=266 excluded_dependency=0 excluded_interface=76 excluded_library=0 excluded_abstract=54 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=50d0aab1f12dbcc2f88b5168ab57fb288f1c6989c7ea935d07a69a4f4dc44aaa candidate_count=65 candidate_digest=ecde8c609a800eb6298dcc26ba694ae76f7e7257c6f0bc5b303991cbac2cab3e context_instance_count=624 eligible_readers=17 eligible_writers=16 execution_context_digest=8ff23c3a4da053d25564ae55ff33870122f4305baea5457387017b0877a43ad3 insensitive_readers_filtered=20 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=362 owner_context_pairs=624 owner_context_pairs_considered=26728 raw_block_pairs=65 reader_witness_count=624 relation_base_members_shadowed=8 relation_context_incompatible=1457 relation_digest=882da7317089286437437550935086a9c21eff2518e06dcf70ff1ac92340f936 relation_members_raw=82 relation_origins_registered=6 relation_origins_rejected_unary_after_shadowing=61 relation_origins_rejected_unreachable=67 relation_origins_seen=67 relation_unbound_key_templates=26 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=2 scalar_variables_skipped=91 storage_context_mismatch=24285 variables_considered=97
+INFO:Detectors:
+
+[MV-SI candidate 03801a44f4258107e8d7] {_initialized, _initializing}
+ writer root       -> contracts/builders/PoolWithMultipleWinnersBuilder.sol::PoolWithMultipleWinnersBuilder.createYieldSourceMultipleWinners(PoolWithMultipleWinnersBuilder.YieldSourcePrizePoolConfig,MultipleWinnersBuilder.MultipleWinnersConfig,uint8)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 40
+ storage exposures -> 4
+[MV-SI candidate 076b6c78e85db3f3dd4b] {_initialized, _initializing}
+ writer root       -> contracts/prize-strategy/PeriodicPrizeStrategy.sol::PeriodicPrizeStrategy.initialize(uint256,uint256,PrizePool,TicketInterface,IERC20Upgradeable,RNGInterface,IERC20Upgradeable[])
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 7
+ storage exposures -> 2
+[MV-SI candidate 104926ed5442409a6ef7] {_initialized, _initializing}
+ writer root       -> contracts/prize-strategy/multiple-winners/MultipleWinners.sol::MultipleWinners.initializeMultipleWinners(uint256,uint256,PrizePool,TicketInterface,IERC20Upgradeable,RNGInterface,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 14
+ storage exposures -> 2
+[MV-SI candidate 1277ad0c2dad090aa4fa] {_initialized, _initializing}
+ writer root       -> contracts/prize-pool/PrizePool.sol::PrizePool.initialize(RegistryInterface,ControlledTokenInterface[],uint256,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 10
+ storage exposures -> 7
+[MV-SI candidate 148658f2cea70feaa42d] {_initialized, _initializing}
+ writer root       -> contracts/builders/ControlledTokenBuilder.sol::ControlledTokenBuilder.createTicket(ControlledTokenBuilder.ControlledTokenConfig)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 16a0561ec6cd1acf01a7] {_initialized, _initializing}
+ writer root       -> contracts/prize-pool/compound/CompoundPrizePool.sol::CompoundPrizePool.initialize(RegistryInterface,ControlledTokenInterface[],uint256,uint256,CTokenInterface)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 3
+ storage exposures -> 2
+[MV-SI candidate 1c8146da4333839e1879] {_initialized, _initializing}
+ writer root       -> contracts/token-faucet/TokenFaucetProxyFactory.sol::TokenFaucetProxyFactory.create(IERC20Upgradeable,IERC20Upgradeable,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 213c4e5f4abdbcadb76d] {_initialized, _initializing}
+ writer root       -> contracts/builders/ControlledTokenBuilder.sol::ControlledTokenBuilder.createControlledToken(ControlledTokenBuilder.ControlledTokenConfig)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 234f401285ddf349174d] {_initialized, _initializing}
+ writer root       -> contracts/builders/MultipleWinnersBuilder.sol::MultipleWinnersBuilder.createMultipleWinners(PrizePool,MultipleWinnersBuilder.MultipleWinnersConfig,uint8,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 18
+ storage exposures -> 3
+[MV-SI candidate 23885e31e29da6a216dd] {_initialized, _initializing}
+ writer root       -> contracts/prize-pool/compound/CompoundPrizePool.sol::CompoundPrizePool.initialize(RegistryInterface,ControlledTokenInterface[],uint256,uint256,CTokenInterface)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 3
+ storage exposures -> 2
+[MV-SI candidate 278ae06e4cbbc8c8f69d] {_initialized, _initializing}
+ writer root       -> contracts/builders/MultipleWinnersBuilder.sol::MultipleWinnersBuilder.createMultipleWinnersFromExistingPrizeStrategy(PeriodicPrizeStrategy,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 2900af00ceb1f9d5dc50] {_initialized, _initializing}
+ writer root       -> contracts/builders/PoolWithMultipleWinnersBuilder.sol::PoolWithMultipleWinnersBuilder.createYieldSourceMultipleWinners(PoolWithMultipleWinnersBuilder.YieldSourcePrizePoolConfig,MultipleWinnersBuilder.MultipleWinnersConfig,uint8)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 20
+ storage exposures -> 4
+[MV-SI candidate 2a7994f10eece5e2a01e] {_initialized, _initializing}
+ writer root       -> contracts/prize-strategy/PeriodicPrizeStrategy.sol::PeriodicPrizeStrategy.initialize(uint256,uint256,PrizePool,TicketInterface,IERC20Upgradeable,RNGInterface,IERC20Upgradeable[])
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 7
+ storage exposures -> 2
+[MV-SI candidate 308d4a342d60d54c46b6] {_initialized, _initializing}
+ writer root       -> contracts/builders/PoolWithMultipleWinnersBuilder.sol::PoolWithMultipleWinnersBuilder.createCompoundMultipleWinners(PoolWithMultipleWinnersBuilder.CompoundPrizePoolConfig,MultipleWinnersBuilder.MultipleWinnersConfig,uint8)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 20
+ storage exposures -> 4
+[MV-SI candidate 36db11fc7ea286bddb11] {_initialized, _initializing}
+ writer root       -> contracts/prize-pool/PrizePool.sol::PrizePool.initialize(RegistryInterface,ControlledTokenInterface[],uint256,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 20
+ storage exposures -> 7
+[MV-SI candidate 3a321255e10fdef61aa3] {_initialized, _initializing}
+ writer root       -> contracts/token-faucet/TokenFaucetProxyFactory.sol::TokenFaucetProxyFactory.createAndDeposit(IERC20Upgradeable,IERC20Upgradeable,uint256,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 3cbf5029731fc5d1ec04] {_initialized, _initializing}
+ writer root       -> contracts/prize-pool/stake/StakePrizePool.sol::StakePrizePool.initialize(RegistryInterface,ControlledTokenInterface[],uint256,uint256,IERC20Upgradeable)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 3
+ storage exposures -> 2
+[MV-SI candidate 3d728f4e65e026c2612d] {_initialized, _initializing}
+ writer root       -> contracts/prize-pool/yield-source/YieldSourcePrizePool.sol::YieldSourcePrizePool.initializeYieldSourcePrizePool(RegistryInterface,ControlledTokenInterface[],uint256,uint256,IYieldSource)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 6
+ storage exposures -> 2
+[MV-SI candidate 42aa7e07736b431ebab7] {_initialized, _initializing}
+ writer root       -> contracts/token-faucet/TokenFaucetProxyFactory.sol::TokenFaucetProxyFactory.create(IERC20Upgradeable,IERC20Upgradeable,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 452bdeea561036b7b6d6] {_initialized, _initializing}
+ writer root       -> contracts/test/PrizePoolHarness.sol::PrizePoolHarness.initializeAll(RegistryInterface,ControlledTokenInterface[],uint256,uint256,YieldSourceStub)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 466bb0c5e944cdb0e836] {_initialized, _initializing}
+ writer root       -> contracts/builders/MultipleWinnersBuilder.sol::MultipleWinnersBuilder.createMultipleWinnersFromExistingPrizeStrategy(PeriodicPrizeStrategy,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 4a104875c477458c25ae] {_initialized, _initializing}
+ writer root       -> contracts/prize-strategy/PeriodicPrizeStrategy.sol::PeriodicPrizeStrategy.initialize(uint256,uint256,PrizePool,TicketInterface,IERC20Upgradeable,RNGInterface,IERC20Upgradeable[])
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 14
+ storage exposures -> 2
+[MV-SI candidate 4a19d7fc389ac7841d57] {_initialized, _initializing}
+ writer root       -> contracts/builders/PoolWithMultipleWinnersBuilder.sol::PoolWithMultipleWinnersBuilder.createCompoundMultipleWinners(PoolWithMultipleWinnersBuilder.CompoundPrizePoolConfig,MultipleWinnersBuilder.MultipleWinnersConfig,uint8)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 20
+ storage exposures -> 4
+[MV-SI candidate 4b10144444f328b04aca] {_initialized, _initializing}
+ writer root       -> contracts/builders/ControlledTokenBuilder.sol::ControlledTokenBuilder.createControlledToken(ControlledTokenBuilder.ControlledTokenConfig)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 51efe1741ae7063eee1a] {_initialized, _initializing}
+ writer root       -> contracts/prize-pool/yield-source/YieldSourcePrizePool.sol::YieldSourcePrizePool.initializeYieldSourcePrizePool(RegistryInterface,ControlledTokenInterface[],uint256,uint256,IYieldSource)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 3
+ storage exposures -> 2
+[MV-SI candidate 5414ab6319f4699f60da] {_initialized, _initializing}
+ writer root       -> contracts/prize-pool/stake/StakePrizePool.sol::StakePrizePool.initialize(RegistryInterface,ControlledTokenInterface[],uint256,uint256,IERC20Upgradeable)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 6
+ storage exposures -> 2
+[MV-SI candidate 5616b22b4ed6456370b5] {_initialized, _initializing}
+ writer root       -> contracts/builders/MultipleWinnersBuilder.sol::MultipleWinnersBuilder.createMultipleWinnersFromExistingPrizeStrategy(PeriodicPrizeStrategy,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 593a2b98f85d0b7d71b2] {_initialized, _initializing}
+ writer root       -> contracts/test/PrizePoolHarness.sol::PrizePoolHarness.initializeAll(RegistryInterface,ControlledTokenInterface[],uint256,uint256,YieldSourceStub)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 59875529c38680045f5d] {_initialized, _initializing}
+ writer root       -> contracts/token/UnsafeTokenListenerDelegator.sol::UnsafeTokenListenerDelegator.initialize(TokenListenerInterface)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 604bcdfb81bd5f738b8b] {_initialized, _initializing}
+ writer root       -> contracts/token/UnsafeTokenListenerDelegator.sol::UnsafeTokenListenerDelegator.initialize(TokenListenerInterface)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 61430a6b410e0eccdb36] {_initialized, _initializing}
+ writer root       -> contracts/token-faucet/TokenFaucet.sol::TokenFaucet.initialize(IERC20Upgradeable,IERC20Upgradeable,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 6725a3f7a0015268fd2c] {_initialized, _initializing}
+ writer root       -> contracts/token/ControlledToken.sol::ControlledToken.initialize(string,string,uint8,TokenControllerInterface)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 67beef4bf91a7f026ecc] {_initialized, _initializing}
+ writer root       -> contracts/prize-pool/yield-source/YieldSourcePrizePool.sol::YieldSourcePrizePool.initializeYieldSourcePrizePool(RegistryInterface,ControlledTokenInterface[],uint256,uint256,IYieldSource)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 3
+ storage exposures -> 2
+[MV-SI candidate 692da7662ddeccc93396] {_initialized, _initializing}
+ writer root       -> contracts/builders/PoolWithMultipleWinnersBuilder.sol::PoolWithMultipleWinnersBuilder.createStakeMultipleWinners(PoolWithMultipleWinnersBuilder.StakePrizePoolConfig,MultipleWinnersBuilder.MultipleWinnersConfig,uint8)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 40
+ storage exposures -> 4
+[MV-SI candidate 6b6ecfa6c7bb6a746c02] {_initialized, _initializing}
+ writer root       -> contracts/builders/MultipleWinnersBuilder.sol::MultipleWinnersBuilder.createMultipleWinners(PrizePool,MultipleWinnersBuilder.MultipleWinnersConfig,uint8,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 18
+ storage exposures -> 3
+[MV-SI candidate 6e55edef3b0ec70051e4] {_initialized, _initializing}
+ writer root       -> contracts/token/UnsafeTokenListenerDelegatorFactory.sol::UnsafeTokenListenerDelegatorProxyFactory.create(TokenListenerInterface)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 7015655977180682072d] {_initialized, _initializing}
+ writer root       -> contracts/token/Ticket.sol::Ticket.initialize(string,string,uint8,TokenControllerInterface)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 73ee2b424971b956ffa0] {_initialized, _initializing}
+ writer root       -> contracts/token/Ticket.sol::Ticket.initialize(string,string,uint8,TokenControllerInterface)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 77105a9f38f5dfd9e7b4] {_initialized, _initializing}
+ writer root       -> contracts/token/UnsafeTokenListenerDelegator.sol::UnsafeTokenListenerDelegator.initialize(TokenListenerInterface)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate 846dfb077c7370cf91ca] {_initialized, _initializing}
+ writer root       -> contracts/test/PrizePoolHarness.sol::PrizePoolHarness.initializeAll(RegistryInterface,ControlledTokenInterface[],uint256,uint256,YieldSourceStub)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 924c25efab0fd5826ebd] {_initialized, _initializing}
+ writer root       -> contracts/builders/PoolWithMultipleWinnersBuilder.sol::PoolWithMultipleWinnersBuilder.createYieldSourceMultipleWinners(PoolWithMultipleWinnersBuilder.YieldSourcePrizePoolConfig,MultipleWinnersBuilder.MultipleWinnersConfig,uint8)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 20
+ storage exposures -> 4
+[MV-SI candidate 92aefb7cb4e8d7738b12] {_initialized, _initializing}
+ writer root       -> contracts/builders/ControlledTokenBuilder.sol::ControlledTokenBuilder.createTicket(ControlledTokenBuilder.ControlledTokenConfig)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 96bee115e8f4718974cc] {_initialized, _initializing}
+ writer root       -> contracts/builders/ControlledTokenBuilder.sol::ControlledTokenBuilder.createControlledToken(ControlledTokenBuilder.ControlledTokenConfig)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 97a1f536d3165edd950a] {_initialized, _initializing}
+ writer root       -> contracts/builders/ControlledTokenBuilder.sol::ControlledTokenBuilder.createTicket(ControlledTokenBuilder.ControlledTokenConfig)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate 97bd3b4af09cf50b48e3] {_initialized, _initializing}
+ writer root       -> contracts/builders/PoolWithMultipleWinnersBuilder.sol::PoolWithMultipleWinnersBuilder.createCompoundMultipleWinners(PoolWithMultipleWinnersBuilder.CompoundPrizePoolConfig,MultipleWinnersBuilder.MultipleWinnersConfig,uint8)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 40
+ storage exposures -> 4
+[MV-SI candidate 9976737f1f5ec988510d] {_initialized, _initializing}
+ writer root       -> contracts/token/UnsafeTokenListenerDelegatorFactory.sol::UnsafeTokenListenerDelegatorProxyFactory.create(TokenListenerInterface)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate a0fa7744fdad309c2a49] {_initialized, _initializing}
+ writer root       -> contracts/token-faucet/TokenFaucetProxyFactory.sol::TokenFaucetProxyFactory.create(IERC20Upgradeable,IERC20Upgradeable,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate b97ea8a19ae2d5c9b654] {_owner, beforeAwardListener, periodicPrizeStrategyListener}
+ writer root       -> contracts/prize-strategy/PeriodicPrizeStrategy.sol::PeriodicPrizeStrategy.setPeriodicPrizeStrategyListener(PeriodicPrizeStrategyListenerInterface)
+ writer effect     -> contracts/prize-strategy/PeriodicPrizeStrategy.sol:441
+ written member    -> ('SV', 'contracts/prize-strategy/PeriodicPrizeStrategy.sol', 'PeriodicPrizeStrategy.periodicPrizeStrategyListener')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol', 'OwnableUpgradeable._owner'), ('SV', 'contracts/prize-strategy/PeriodicPrizeStrategy.sol', 'PeriodicPrizeStrategy.beforeAwardListener')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate c180b5e81a9889aa307f] {_initialized, _initializing}
+ writer root       -> contracts/builders/PoolWithMultipleWinnersBuilder.sol::PoolWithMultipleWinnersBuilder.createStakeMultipleWinners(PoolWithMultipleWinnersBuilder.StakePrizePoolConfig,MultipleWinnersBuilder.MultipleWinnersConfig,uint8)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 20
+ storage exposures -> 4
+[MV-SI candidate c289e3cd45bdd0554b67] {_initialized, _initializing}
+ writer root       -> contracts/token-faucet/TokenFaucetProxyFactory.sol::TokenFaucetProxyFactory.createAndDeposit(IERC20Upgradeable,IERC20Upgradeable,uint256,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate c35b0f0f5589308e3c2d] {_initialized, _initializing}
+ writer root       -> contracts/builders/MultipleWinnersBuilder.sol::MultipleWinnersBuilder.createMultipleWinners(PrizePool,MultipleWinnersBuilder.MultipleWinnersConfig,uint8,address)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 36
+ storage exposures -> 3
+[MV-SI candidate ca424d0850cc0d0d4c0d] {_initialized, _initializing}
+ writer root       -> contracts/token-faucet/TokenFaucet.sol::TokenFaucet.initialize(IERC20Upgradeable,IERC20Upgradeable,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate d0c3c462b59f661a1ab0] {_initialized, _initializing}
+ writer root       -> contracts/prize-pool/PrizePool.sol::PrizePool.initialize(RegistryInterface,ControlledTokenInterface[],uint256,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 10
+ storage exposures -> 7
+[MV-SI candidate d427857ef323d6178d19] {_initialized, _initializing}
+ writer root       -> contracts/token/ControlledToken.sol::ControlledToken.initialize(string,string,uint8,TokenControllerInterface)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate d59f46c0f39b50352e3f] {_initialized, _initializing}
+ writer root       -> contracts/builders/PoolWithMultipleWinnersBuilder.sol::PoolWithMultipleWinnersBuilder.createStakeMultipleWinners(PoolWithMultipleWinnersBuilder.StakePrizePoolConfig,MultipleWinnersBuilder.MultipleWinnersConfig,uint8)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 20
+ storage exposures -> 4
+[MV-SI candidate d90eb90d1f646aabedf6] {_initialized, _initializing}
+ writer root       -> contracts/prize-pool/compound/CompoundPrizePool.sol::CompoundPrizePool.initialize(RegistryInterface,ControlledTokenInterface[],uint256,uint256,CTokenInterface)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 6
+ storage exposures -> 2
+[MV-SI candidate dcdd878fe65fcd0342d4] {_initialized, _initializing}
+ writer root       -> contracts/token-faucet/TokenFaucetProxyFactory.sol::TokenFaucetProxyFactory.createAndDeposit(IERC20Upgradeable,IERC20Upgradeable,uint256,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate ddd270e8a9245f7be1f2] {_initialized, _initializing}
+ writer root       -> contracts/prize-pool/stake/StakePrizePool.sol::StakePrizePool.initialize(RegistryInterface,ControlledTokenInterface[],uint256,uint256,IERC20Upgradeable)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 3
+ storage exposures -> 2
+[MV-SI candidate e070dd6b1095843016d9] {_initialized, _initializing}
+ writer root       -> contracts/token/Ticket.sol::Ticket.initialize(string,string,uint8,TokenControllerInterface)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 12
+ storage exposures -> 1
+[MV-SI candidate f4ef291e92421a99b6d7] {_initialized, _initializing}
+ writer root       -> contracts/token/ControlledToken.sol::ControlledToken.initialize(string,string,uint8,TokenControllerInterface)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate f6153459c5dae1028a23] {_initialized, _initializing}
+ writer root       -> contracts/prize-strategy/multiple-winners/MultipleWinners.sol::MultipleWinners.initializeMultipleWinners(uint256,uint256,PrizePool,TicketInterface,IERC20Upgradeable,RNGInterface,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 7
+ storage exposures -> 2
+[MV-SI candidate f68b9eaef6f15b7cf353] {_owner, beforeAwardListener, periodicPrizeStrategyListener}
+ writer root       -> contracts/prize-strategy/PeriodicPrizeStrategy.sol::PeriodicPrizeStrategy.setBeforeAwardListener(BeforeAwardListenerInterface)
+ writer effect     -> contracts/prize-strategy/PeriodicPrizeStrategy.sol:428
+ written member    -> ('SV', 'contracts/prize-strategy/PeriodicPrizeStrategy.sol', 'PeriodicPrizeStrategy.beforeAwardListener')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol', 'OwnableUpgradeable._owner'), ('SV', 'contracts/prize-strategy/PeriodicPrizeStrategy.sol', 'PeriodicPrizeStrategy.periodicPrizeStrategyListener')
+ reader witnesses  -> 8
+ storage exposures -> 2
+[MV-SI candidate f8607ecec83b2ad09c67] {_initialized, _initializing}
+ writer root       -> contracts/token-faucet/TokenFaucet.sol::TokenFaucet.initialize(IERC20Upgradeable,IERC20Upgradeable,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate fc35b26e46253b04f50e] {_initialized, _initializing}
+ writer root       -> contracts/token/UnsafeTokenListenerDelegatorFactory.sol::UnsafeTokenListenerDelegatorProxyFactory.create(TokenListenerInterface)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 4
+ storage exposures -> 1
+[MV-SI candidate fdb02de18e9f839dd98b] {_initialized, _initializing}
+ writer root       -> contracts/prize-strategy/multiple-winners/MultipleWinners.sol::MultipleWinners.initializeMultipleWinners(uint256,uint256,PrizePool,TicketInterface,IERC20Upgradeable,RNGInterface,uint256)
+ writer effect     -> @openzeppelin/contracts-upgradeable/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 7
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=0 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=1 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=40 vars=3
+[mvscan-stage] root-seeding-done eligible_exposures=4 seeded=4 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=05de89b82069a74be72cc0768c6c5ae0965f506fc16dbe15a394bb9206786d7b candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=5560e6660f8ae0c9d88142123dec9a494f99a0c89e15166622dba5fcb0a36084 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=3 storage_context_mismatch=0 variables_considered=3
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=2 vars=0
+[mvscan-stage] root-seeding-done eligible_exposures=0 seeded=0 multi_exposure_entry_blocks=0 collapsed_contextual_aliases=0 excluded_dependency=0 excluded_interface=0 excluded_library=0 excluded_abstract=0 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 candidate_count=0 candidate_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 context_instance_count=0 execution_context_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=0 owner_context_pairs_considered=0 reader_witness_count=0 relation_context_incompatible=0 relation_digest=4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 root_context_sink_filtered=0 same_outer_root_filtered=0 storage_context_mismatch=0
+INFO:Slither:. analyzed (123 contracts with 1 detectors), 65 result(s) found

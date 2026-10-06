@@ -1,0 +1,78 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": false, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "no_branch_groups", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=2154 vars=105
+[mvscan-stage] root-seeding-done eligible_exposures=237 seeded=98 multi_exposure_entry_blocks=54 collapsed_contextual_aliases=139 excluded_dependency=0 excluded_interface=88 excluded_library=0 excluded_abstract=35 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=95782e8d568b2604e1979a9c3b08b3429a28015e891dc545f9e398c23a56c17d candidate_count=10 candidate_digest=8bd595f6ddd6f074b9a2036441490a9a686ee77b64c7a0474b3d8d47743b09e2 context_instance_count=46 eligible_readers=21 eligible_writers=20 execution_context_digest=4b71aab4314f54c8336efbda21294d53fd4bb8bd82c3dd4f4238d911e0aeaf31 insensitive_readers_filtered=45 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=12 owner_context_pairs=62 owner_context_pairs_considered=555 raw_block_pairs=110 reader_witness_count=62 relation_base_members_shadowed=0 relation_context_incompatible=185 relation_digest=8ecc93e285bf50d3c24291de93137054deb281df257ca6878fd4cca559a5c7dc relation_members_raw=29 relation_origins_registered=6 relation_origins_rejected_unary_after_shadowing=16 relation_origins_rejected_unreachable=72 relation_origins_seen=22 relation_unbound_key_templates=30 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=4 scalar_variables_skipped=60 storage_context_mismatch=296 variables_considered=66
+INFO:Detectors:
+
+[MV-SI candidate 0e3898f5aed5290177c7] {rngRequest, rngTimeout}
+ writer root       -> contracts/DrawBeacon.sol::DrawBeacon.startDraw()
+ writer effect     -> contracts/DrawBeacon.sol:319
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngRequest')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngTimeout')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 2646a21eb56161454906] {beaconPeriodSeconds, beaconPeriodStartedAt}
+ writer root       -> contracts/DrawBeacon.sol::DrawBeacon.setBeaconPeriodSeconds(uint32)
+ writer effect     -> contracts/DrawBeacon.sol:458
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.beaconPeriodSeconds')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.beaconPeriodStartedAt')
+ reader witnesses  -> 12
+ storage exposures -> 2
+[MV-SI candidate 33381e43c73430c8e2b5] {rngRequest, rngTimeout}
+ writer root       -> contracts/DrawBeacon.sol::DrawBeacon.startDraw()
+ writer effect     -> contracts/DrawBeacon.sol:320
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngRequest')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngTimeout')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 529267533782f159bd96] {rngRequest, rngTimeout}
+ writer root       -> contracts/DrawBeacon.sol::DrawBeacon.startDraw()
+ writer effect     -> contracts/DrawBeacon.sol:321
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngRequest')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngTimeout')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate 798a2ca530110bb7caff] {rngRequest, rngTimeout}
+ writer root       -> contracts/test/DrawBeaconHarness.sol::DrawBeaconHarness.setRngRequest(uint32,uint32)
+ writer effect     -> contracts/test/DrawBeaconHarness.sol:41
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngRequest')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngTimeout')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate 7ac8dab264f2564be620] {beaconPeriodSeconds, beaconPeriodStartedAt}
+ writer root       -> contracts/DrawBeacon.sol::DrawBeacon.completeDraw()
+ writer effect     -> contracts/DrawBeacon.sol:242
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.beaconPeriodStartedAt')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.beaconPeriodSeconds')
+ reader witnesses  -> 12
+ storage exposures -> 2
+[MV-SI candidate 94d8cea442779bb0b7e1] {rngRequest, rngTimeout}
+ writer root       -> contracts/DrawBeacon.sol::DrawBeacon.cancelDraw()
+ writer effect     -> contracts/DrawBeacon.sol:213
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngRequest')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngTimeout')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate e277b30f614b48163cda] {rngRequest, rngTimeout}
+ writer root       -> contracts/DrawBeacon.sol::DrawBeacon.completeDraw()
+ writer effect     -> contracts/DrawBeacon.sol:246
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngRequest')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngTimeout')
+ reader witnesses  -> 2
+ storage exposures -> 2
+[MV-SI candidate e48909e651df97fcc1ca] {rngRequest, rngTimeout}
+ writer root       -> contracts/test/DrawBeaconHarness.sol::DrawBeaconHarness.setRngRequest(uint32,uint32)
+ writer effect     -> contracts/test/DrawBeaconHarness.sol:40
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngRequest')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngTimeout')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate eb14b0092b51b8c2a6c8] {rngRequest, rngTimeout}
+ writer root       -> contracts/DrawBeacon.sol::DrawBeacon.setRngTimeout(uint32)
+ writer effect     -> contracts/DrawBeacon.sol:469
+ written member    -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngTimeout')
+ potentially stale -> ('SV', 'contracts/DrawBeacon.sol', 'DrawBeacon.rngRequest')
+ reader witnesses  -> 26
+ storage exposures -> 2Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (80 contracts with 1 detectors), 10 result(s) found

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from typing import Iterable
+from unittest.mock import patch
 import mvscan_plugin.utils.icfg as icfg_module
 from mvscan_plugin.utils.icfg import (
     ExecutionContext,
@@ -122,6 +123,7 @@ def test_contextual_sender_is_independent_of_outer_owner() -> None:
     assert graph.contextualize_location(location, outer).addr == "@sender::external-user"
     assert graph.contextualize_location(location, callee).addr == "@contract::contracts/Root.sol::Root"
 
+@patch.object(icfg_module, "INCLUDE_SCALAR_WITNESSES", True)
 def test_multiple_reader_blocks_survive() -> None:
     variable = FakeVar("x", "Test.x")
 
@@ -147,6 +149,7 @@ def test_multiple_reader_blocks_survive() -> None:
         (writer, reader_2),
     }, exact_pairs
 
+@patch.object(icfg_module, "INCLUDE_SCALAR_WITNESSES", True)
 def test_read_modify_write_does_not_suppress_later_reader() -> None:
     variable = FakeVar("balance", "Test.balance")
 
@@ -173,6 +176,7 @@ def test_read_modify_write_does_not_suppress_later_reader() -> None:
         (writer, later_reader),
     }, exact_pairs
 
+@patch.object(icfg_module, "INCLUDE_SCALAR_WITNESSES", True)
 def test_cfg_order_replaces_node_id_order() -> None:
     variable = FakeVar("counter", "Test.counter")
 
@@ -203,6 +207,7 @@ def test_cfg_order_replaces_node_id_order() -> None:
     assert witness.writer_reaches_reader is True
     assert witness.reader_reaches_writer is False
 
+@patch.object(icfg_module, "INCLUDE_SCALAR_WITNESSES", True)
 def test_enumeration_is_independent_of_mapping_insertion_order() -> None:
     alpha = FakeVar("alpha", "Test.alpha")
     beta = FakeVar("beta", "Test.beta")

@@ -1,0 +1,40 @@
+Problem executing hardhat to fetch configuration, using defaults: [Errno 2] No such file or directory: 'hardhat'
+ERROR:ContractSolcParsing:Impossible to generate IR for Zap.calcMintWithRen (contracts/Zap.sol#177-183):
+ 'list' object has no attribute 'type'
+ERROR:ContractSolcParsing:Impossible to generate IR for Zap.calcMintWithWbtc (contracts/Zap.sol#196-203):
+ 'list' object has no attribute 'type'
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "precise", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "full", "MVSCAN_CONTEXTUAL_KEYS": false, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": true, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=1780 vars=61
+[mvscan-stage] root-seeding-done eligible_exposures=101 seeded=65 multi_exposure_entry_blocks=12 collapsed_contextual_aliases=36 excluded_dependency=0 excluded_interface=38 excluded_library=0 excluded_abstract=4 missing_entry_point=0 missing_entry_block=0
+[mvscan-pairs] call_target_digest=36f06783a0f923cd988e64b4e12b82b896398850b6bea64d4a248530a1203925 candidate_count=4 candidate_digest=246937d957d63fc54a7282588c66e1131577e06035d64a3d643c64baae21c425 context_instance_count=6 eligible_readers=6 eligible_writers=4 execution_context_digest=79868ef9663489983c4cb3d631543def5a762ca74d3b251deff4634c691f3279 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=0 owner_context_pairs=6 owner_context_pairs_considered=6 raw_block_pairs=10 reader_witness_count=6 relation_base_members_shadowed=6 relation_context_incompatible=0 relation_digest=c1cd22ce99674090a6b6c6b964af835e3de172c91bb87e1fdba715a4f7d9c3fd relation_evidence_edges=6 relation_incompatible=4 relation_members_raw=37 relation_origins_registered=3 relation_origins_rejected_unary_after_shadowing=25 relation_origins_rejected_unreachable=5 relation_origins_seen=28 root_context_sink_filtered=0 same_outer_root_filtered=0 same_static_block_filtered=1 scalar_variables_skipped=34 storage_context_mismatch=0 variables_considered=36
+INFO:Detectors:
+
+[MV-SI candidate d76e554bdc9a59915173] {_initialized, _initializing}
+ writer root       -> contracts/Zap.sol::Zap.init(address)
+ writer effect     -> @openzeppelin/contracts/proxy/Initializable.sol:47
+ written member    -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1
+[MV-SI candidate e31af546159654024c56] {_initialized, _initializing}
+ writer root       -> contracts/Zap.sol::Zap.init(address)
+ writer effect     -> @openzeppelin/contracts/proxy/Initializable.sol:41
+ written member    -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initialized')
+ potentially stale -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initializing')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate e7e1419a2cd96a8d94bc] {peakAddresses, peaks[@local::contracts/Core.sol::Core.totalSystemAssets()::ReferenceVariable::REF_102]}
+ writer root       -> contracts/Core.sol::Core.whitelistPeak(address)
+ writer effect     -> contracts/Core.sol:166
+ written member    -> ('SV', 'contracts/Core.sol', 'Core.peakAddresses')
+ potentially stale -> ('MS', 'contracts/Core.sol', 'Core.peaks', '@local::contracts/Core.sol::Core.totalSystemAssets()::ReferenceVariable::REF_102')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate f94d0ee84bf23b8e7c0c] {_initialized, _initializing}
+ writer root       -> contracts/Zap.sol::Zap.init(address)
+ writer effect     -> @openzeppelin/contracts/proxy/Initializable.sol:40
+ written member    -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initializing')
+ potentially stale -> ('SV', '@openzeppelin/contracts/proxy/Initializable.sol', 'Initializable._initialized')
+ reader witnesses  -> 1
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:. analyzed (53 contracts with 1 detectors), 4 result(s) found

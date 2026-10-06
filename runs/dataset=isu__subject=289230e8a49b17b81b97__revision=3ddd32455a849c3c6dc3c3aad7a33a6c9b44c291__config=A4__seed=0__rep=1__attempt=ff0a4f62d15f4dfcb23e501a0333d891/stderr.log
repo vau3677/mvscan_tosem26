@@ -1,0 +1,52 @@
+'/tmp/.svm/0.8.22/solc-0.8.22 --version' running
+'solc --standard-json --allow-paths /tmp/analysis-input' running
+Warning: Warning: Contract code size is 25946 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> lib/safe-contracts/contracts/Safe.sol:33:1:
+   |
+33 | contract Safe is
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Warning: Contract code size is 26532 bytes and exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on Mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> lib/safe-contracts/contracts/SafeL2.sol:12:1:
+   |
+12 | contract SafeL2 is Safe {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+
+[mvscan-config] {"ATOMIC_GROUP": [], "DIVERGENCE_BUDGET": 1000, "ENABLE_BRANCH_GROUPS": true, "ENABLE_EXTERNAL_STATE": true, "ENABLE_MULTI_RETURN_GROUPS": true, "MAPPING_MODE": "base_collapsed", "MERGE_OVERLOADS": false, "MVSCAN_ABLATION": "mapping_insensitive", "MVSCAN_CONTEXTUAL_KEYS": true, "MVSCAN_INCLUDE_SCALAR_WITNESSES": false, "MVSCAN_INTERFACE_DISPATCH": false, "MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK": 128, "MVSCAN_MAX_DISPATCH_TARGETS": 16, "MVSCAN_REQUIRE_DISTINCT_OUTER_ROOTS": false, "MVSCAN_ROOT_CONTEXT_SINKS": false, "NOOP_WRITE_FILTER": true, "REQUIRE_SAME_SLOT_KEY": false, "SINK_TEST": "none", "USER_CALLABLE_ALWAYS": [], "USER_CALLABLE_DENY": []}
+[mvscan-stage] icfg-built blocks=5218 vars=105
+[mvscan-stage] root-seeding-done eligible_exposures=144 seeded=88 multi_exposure_entry_blocks=40 collapsed_contextual_aliases=56 excluded_dependency=0 excluded_interface=31 excluded_library=0 excluded_abstract=23 missing_entry_point=2 missing_entry_block=0
+[mvscan-pairs] call_target_digest=e150b9bef5349fe58f77aa255f9f9a6ba73e945a25dad1c50a1ce5bad43c25f9 candidate_count=4 candidate_digest=21814245596f8baa7d2a6efaebd99004af9b2900147a565f9f71a4214522ec01 context_instance_count=8 eligible_readers=10 eligible_writers=4 execution_context_digest=fe62e2b4630d025796dc85fe3a0a814d6c046e32bbdd99d44fc2f4e87287e8c4 insensitive_readers_filtered=8 invalid_partial_write_filtered=0 must_full_relation_filtered=0 omitted_member_evidence_filtered=0 omitted_member_not_sensitive_filtered=16 owner_context_pairs=16 owner_context_pairs_considered=96 raw_block_pairs=20 reader_witness_count=16 relation_base_members_shadowed=0 relation_context_incompatible=32 relation_digest=0da0e2f30c0ab27c6387d60ed0a8660e02f4e255b58fad393e020efa5d96f91b relation_members_raw=64 relation_origins_registered=2 relation_origins_rejected_unary_after_shadowing=60 relation_origins_rejected_unreachable=15 relation_origins_seen=62 root_context_sink_filtered=0 same_outer_root_filtered=0 scalar_variables_skipped=51 storage_context_mismatch=32 variables_considered=53
+INFO:Detectors:
+
+[MV-SI candidate 33aefaf46bac11fce292] {_contractToHook, hookStatus}
+ writer root       -> src/policies/Guard.sol::Guard.updateHookPath(address,address)
+ writer effect     -> src/modules/Storage.sol:302
+ written member    -> ('SV', 'src/modules/Storage.sol', 'StorageBase._contractToHook')
+ potentially stale -> ('SV', 'src/modules/Storage.sol', 'StorageBase.hookStatus')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 401e30f2293a61bbe808] {_contractToHook, hookStatus}
+ writer root       -> src/modules/Storage.sol::Storage.updateHookPath(address,address)
+ writer effect     -> src/modules/Storage.sol:302
+ written member    -> ('SV', 'src/modules/Storage.sol', 'StorageBase._contractToHook')
+ potentially stale -> ('SV', 'src/modules/Storage.sol', 'StorageBase.hookStatus')
+ reader witnesses  -> 6
+ storage exposures -> 1
+[MV-SI candidate 8cd7bf323a4ca523a669] {_contractToHook, hookStatus}
+ writer root       -> src/modules/Storage.sol::Storage.updateHookStatus(address,uint8)
+ writer effect     -> src/modules/Storage.sol:325
+ written member    -> ('SV', 'src/modules/Storage.sol', 'StorageBase.hookStatus')
+ potentially stale -> ('SV', 'src/modules/Storage.sol', 'StorageBase._contractToHook')
+ reader witnesses  -> 2
+ storage exposures -> 1
+[MV-SI candidate 98d3d6f5618b64852599] {_contractToHook, hookStatus}
+ writer root       -> src/policies/Guard.sol::Guard.updateHookStatus(address,uint8)
+ writer effect     -> src/modules/Storage.sol:325
+ written member    -> ('SV', 'src/modules/Storage.sol', 'StorageBase.hookStatus')
+ potentially stale -> ('SV', 'src/modules/Storage.sol', 'StorageBase._contractToHook')
+ reader witnesses  -> 2
+ storage exposures -> 1Reference: https://github.com/crytic/slither/wiki/Detector-Documentation
+INFO:Slither:mvscan-standard-input.json analyzed (87 contracts with 1 detectors), 4 result(s) found
