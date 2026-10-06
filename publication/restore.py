@@ -185,9 +185,38 @@ def runtime(download):
             raise RuntimeError(f"Frozen runtime tree mismatch: {relative}")
     print("Frozen runtime extension hashes verified.")
 
+def historical(download):
+    """Restore ignored originals from the preserved Git commit without clobbering edits."""
+    record = json.loads(gzip.decompress((ROOT / "publication/ignored-material.json.gz").read_bytes()))
+    source = record["source_commit"]
+    missing = []
+    def matches(path, entry):
+        if "target" in entry:
+            return path.is_symlink() and os.readlink(path) == entry["target"]
+        return path.is_file() and not path.is_symlink() and sha256(path) == entry["sha256"]
+    for entry in record["files"]:
+        path = safe_path(ROOT, entry["path"])
+        if not path.exists() and not path.is_symlink():
+            missing.append(entry["path"])
+        elif not matches(path, entry):
+            raise RuntimeError(f"Refusing to overwrite changed ignored file: {path}")
+    if missing:
+        available = subprocess.run(["git", "cat-file", "-e", source + "^{commit}"], cwd=ROOT, capture_output=True)
+        if available.returncode:
+            if not download:
+                raise RuntimeError(f"Missing historical commit {source}; rerun with --download")
+            subprocess.run(["git", "fetch", "origin", source], cwd=ROOT, check=True)
+        pathspec = b"".join((":(literal)" + name).encode() + b"\0" for name in missing)
+        subprocess.run(["git", "restore", "--source=" + source, "--worktree", "--pathspec-from-file=-", "--pathspec-file-nul"],
+                       cwd=ROOT, input=pathspec, check=True)
+    for entry in record["files"]:
+        if not matches(safe_path(ROOT, entry["path"]), entry):
+            raise RuntimeError(f"Historical restoration checksum mismatch: {entry['path']}")
+    print(f"Verified {len(record['files'])} ignored originals; restored {len(missing)} missing files.")
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("action", choices=["verify", "tables", "inputs", "runtime"])
+    parser.add_argument("action", choices=["verify", "tables", "inputs", "runtime", "historical"])
     parser.add_argument("--download", action="store_true", help="Fetch missing assets from the publication release")
     args = parser.parse_args()
     groups = MANIFEST["groups"]
@@ -203,6 +232,8 @@ def main():
         for name in ["accepted-inputs", "source-evidence"]:
             extract(assets(groups[name], args.download), ROOT)
         print("Frozen inputs restored. See benchmarks/bundles/restoration-validation.json.")
+    elif args.action == "historical":
+        historical(args.download)
     else:
         runtime(args.download)
 

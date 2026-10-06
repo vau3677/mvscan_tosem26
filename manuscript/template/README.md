@@ -10,16 +10,9 @@ package downloaded from CTAN on 2026-08-28.
 - Package page: <https://ctan.org/pkg/acmart>
 - SHA-256: `93933ce58fbeffa13e23398bb523fcb68275ecc73369c6bc73b421eeef2c10de`
 
-The untouched downloaded archive is
-`acmart-2.20-2026-08-16.zip`. The `acmart/` directory is its extracted
-contents, with upstream sample documents preserved under
-[the research archive](../../archive/legacy/manuscript/template/acmart/samples/). `acmart.cls` and the sample `.tex` files were generated from
-the included documented sources using the supplied `.ins` files.
+The class, bibliography style, documented class source, and upstream README remain tracked here. The unused ZIP, documentation PDFs, installer, template Makefile, example bibliography, and alternate BibLaTeX styles remain locally on disk but are ignored. Restore their exact original bytes with `python3.10 publication/restore.py historical --download` from the repository root. The bundled `acmart.cls` distribution notice requires the original `acmart.dtx` source, which remains tracked.
 
-TOSEM is an ACM journal. Use the archived
-[acmsmall.tex](../../archive/legacy/manuscript/template/acmart/samples/acmsmall.tex)
-as the journal layout reference. For the manuscript sent for review, ACM's current general
-submission instructions require single-column manuscript mode:
+TOSEM is an ACM journal. The manuscript uses single-column review mode:
 
 ```tex
 \documentclass[manuscript,screen,review]{acmart}
