@@ -12,11 +12,13 @@ package downloaded from CTAN on 2026-08-28.
 
 The untouched downloaded archive is
 `acmart-2.20-2026-08-16.zip`. The `acmart/` directory is its extracted
-contents. `acmart.cls` and the sample `.tex` files were generated from the
-included documented sources using the supplied `.ins` files.
+contents, with upstream sample documents preserved under
+[the research archive](../../archive/legacy/manuscript/template/acmart/samples/). `acmart.cls` and the sample `.tex` files were generated from
+the included documented sources using the supplied `.ins` files.
 
-TOSEM is an ACM journal. Use `acmart/samples/acmsmall.tex` as the journal
-layout reference. For the manuscript sent for review, ACM's current general
+TOSEM is an ACM journal. Use the archived
+[acmsmall.tex](../../archive/legacy/manuscript/template/acmart/samples/acmsmall.tex)
+as the journal layout reference. For the manuscript sent for review, ACM's current general
 submission instructions require single-column manuscript mode:
 
 ```tex
