@@ -60,6 +60,8 @@ python3.10 publication/restore.py historical --download
 
 This checks every original file or symlink, restores missing paths, and refuses to overwrite locally changed files. The option fetches the preserved commit only if it is missing from the clone. Table regeneration and new detector execution do not require these historical copies.
 
+The locally authored Backd tests under `validation/` are also preserved locally and through the same restoration command. They are ignored in the submission checkout because they are outside the reported evaluation and are not used by the manuscript build or reproduction commands.
+
 ## Evidence and preservation
 
 - `runs/`: 954 terminal attempt manifests and original detector outputs, including failures and accepted recovery attempts.
@@ -67,7 +69,6 @@ This checks every original file or symlink, restores missing paths, and refuses 
 - `human_review/`: completed reviews and supporting human-review materials.
 - `benchmarks/`: populations, scope, acquisition/build decisions, adjudications, and subject manifests.
 - `manuscript/`: the current local manuscript and pinned ACM template.
-- `validation/backd/`: two locally authored regression tests preserved during reconciliation.
 - `publication/VALIDATION.json`: preservation checks and explicit historical snapshot differences.
 - `reports/README.md`: locations and restoration instructions for hidden historical setup reports referenced by the deviation ledger.
 
