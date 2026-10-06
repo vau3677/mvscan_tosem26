@@ -1,6 +1,10 @@
 """
-icfg.py
-Implementation of our state-annotated ICFG for MV-SCAN
+State-annotated interprocedural control-flow graph (ICFG).
+
+Each physical Slither CFG block is stored once under a source-qualified
+function identity. Intraprocedural continuation and call-entry edges remain
+separate. Relations are bounded co-influence hypotheses, not proven
+invariants, feasible paths, or exploits.
 """
 import re
 from collections import defaultdict, deque
@@ -12,13 +16,14 @@ from slither.slithir.operations import Assignment, Call, Condition, EventCall, H
 from slither.slithir.variables import ReferenceVariable
 from .mvscan_env import env_bool, env_enum
 
-# A block is identified by its canonical function key and Slither node number.
-BasicBlock = Tuple[str, int]
-# The ordinal disambiguates multiple call IRs emitted for the same CFG node.
-CallSiteId = tuple[BasicBlock, int]
+BasicBlock = Tuple[str, int]           # Indexed by its fn key and Slither node number
+CallSiteId = tuple[BasicBlock, int]    # Disambiguates many call IRs emitted for same node
 _ARG_PATTERN = re.compile(r"\$arg\d+")
 
-# A resolved interprocedural edge plus its storage/key semantics
+# Access to Slither's object model
+def attr(obj, name, default=None): return getattr(obj, name, default)
+
+# Resolved call-entry transition with storage mode and key substitutions
 # ``storage_mode`` separates calls using storage from those executing in storage
 # ``substitutions`` instantiates callee mapping-key parameter templates
 @dataclass(frozen=True, slots=True)
@@ -31,12 +36,13 @@ class CallEdgeRecord:
     target_storage_context: str | None
     substitutions: tuple[tuple[str, str], ...]
 
-"""Immutable root ownership and storage domain for an ICFG traversal"""
 @dataclass(frozen=True, slots=True, order=True)
 class ExecutionContext:
+    """Immutable root, storage, binding, and active-sender call context."""
     owner: str
     storage_context: str
     bindings: tuple[tuple[str, str], ...] = ()
+    active_sender: str = ""
 
     # Expose immutable bindings as a lookup map
     @property
@@ -62,7 +68,7 @@ class ReadEvent:
 class ParameterOrigin:
     index: int
 
-# Values tracked by influence analysis originate in state or a formal argument.
+# Values tracked by influence analysis originate in state or a formal arg
 Origin = ReadEvent | ParameterOrigin
 
 # Sensitive op reached by an influenced value at one IR index
@@ -79,9 +85,9 @@ class ReturnSite:
     ir_index: int
     return_index: int
 
-# Interprocedural may-summary of values reaching sinks and returns
 @dataclass(slots=True)
 class FunctionInfluenceSummary:
+    """Monotone interprocedural may-summary for sinks and return components."""
     # Formal params whose values can reach sensitive operations
     parameter_to_sink: set[int] = field(default_factory=set)
 
@@ -94,48 +100,33 @@ class FunctionInfluenceSummary:
     # return index -> exact state-read events affecting that component
     read_to_returns: DefaultDict[int, set[ReadEvent]] = field(default_factory=lambda: defaultdict(set))
 
-    # Logical locations represented by each returned component, expressed in this function's parameter namespace
+    # Logical locations represented by each returned component, expressed in this fn's param namespace
     return_locations: DefaultDict[int, set[Hashable]] = field(default_factory=lambda: defaultdict(set))
     return_locations_by_site: DefaultDict[ReturnSite, set[Hashable]] = field(default_factory=lambda: defaultdict(set))
 
     sink_reads: DefaultDict[SinkSite, set[ReadEvent]] = field(default_factory=lambda: defaultdict(set))
     sink_parameters: DefaultDict[SinkSite, set[int]] = field(default_factory=lambda: defaultdict(set))
 
-# May- and must-write locations for one function with callees
 @dataclass(slots=True)
 class FunctionWriteSummary:
+    """Interprocedural may-write and conservative must-write summary."""
     may_writes: set[Hashable] = field(default_factory=set)
     must_writes: set[Hashable] = field(default_factory=set)
 
-_VALID_ABLATIONS = {
-    "full",
-    "sv_only",
-    "no_branch_groups",
-    "no_multi_return_groups",
-    "no_external_state",
-    "mapping_insensitive",
-}
-
+_VALID_ABLATIONS = { "full", "sv_only", "no_branch_groups", "no_multi_return_groups", "no_external_state", "mapping_insensitive" }
 MVSCAN_ABLATION = env_enum("MVSCAN_ABLATION", "full", _VALID_ABLATIONS)
 
-# Toggling scalar witnesses prunes results ~60% without affecting precision
 INCLUDE_SCALAR_WITNESSES = (MVSCAN_ABLATION == "sv_only" or env_bool("MVSCAN_INCLUDE_SCALAR_WITNESSES", False))
 ENABLE_BRANCH_GROUPS = (MVSCAN_ABLATION not in {"sv_only", "no_branch_groups"})
 ENABLE_MULTI_RETURN_GROUPS = (MVSCAN_ABLATION not in {"sv_only", "no_multi_return_groups"})
 ENABLE_EXTERNAL_STATE = (MVSCAN_ABLATION != "no_external_state")
 MAPPING_MODE = ("base_collapsed" if MVSCAN_ABLATION == "mapping_insensitive" else "precise")
-
-### Ablation toggles
-
-# Toggle that implements DivertScan's §4.2.3 P.4
-NOOP_WRITE_FILTER = env_bool("NOOP_WRITE_FILTER", True)
+NOOP_WRITE_FILTER = env_bool("NOOP_WRITE_FILTER", True) # Implements DivertScan's §4.2.3 P.4
 
 # Require same mapping-slot key for r/w pairs when both sides use slots of the same base mapping
 REQUIRE_SAME_SLOT_KEY = env_bool("REQUIRE_SAME_SLOT_KEY", True) and MAPPING_MODE == "precise"
 
-### Helpers for mapping-key agreement
-
-# Return { base_map_sv -> set(keys) } seen at a block for r/w
+# Mapping-key agreement utility: return {base_map_sv -> set(keys)} seen at block for r/w
 def slot_keys_at(icfg, bid, kind: str) -> dict:
     out = defaultdict(set)
     for v in icfg.blocks[bid][kind]:
@@ -149,23 +140,22 @@ def norm_txt(s) -> str:
     t = re.sub(r"\baddress\((.+?)\)", r"\1", (s or "").replace("this.", ""))
     return t.replace(" ", "").lower()
 
-# Normalize an expression while preserving case-sensitive identity details.
+# Normalize expression, preserving exact id details
 def identity_txt(value) -> str:
     text = str(value or "").replace("this.", "")
     text = re.sub(r"\baddress\((.+?)\)", r"\1", text)
     return re.sub(r"\s+", "", text)
 
-# Collapse an SSA variable to its concrete source variable when possible.
-def _non_ssa_variable(var): return getattr(var, "non_ssa_version", var)
+def _non_ssa_variable(var): return attr(var, "non_ssa_version", var) # Collapse SSA var to its concrete src var
 
-# Yield each formal index with its SSA and non-SSA parameter variants.
+# Yield each formal index with its SSA and non-SSA param variants
 def _parameter_variants(fn):
-    parameters_ssa = list(getattr(fn, "parameters_ssa", []) or [])
-    params = list(getattr(fn, "parameters", []) or [])
+    parameters_ssa = list(attr(fn, "parameters_ssa", []) or [])
+    params = list(attr(fn, "parameters", []) or [])
     for index in range(max(len(parameters_ssa), len(params))):
         yield index, tuple(params_l[index] for params_l in (parameters_ssa, params) if index < len(params_l))
 
-# Find which formal parameter, if any, an SSA operand represents.
+# Find which formal param, if any, an SSA operand represents
 def _formal_parameter_index(fn, operand):
     if fn is None or operand is None: return None
     concrete_operand = _non_ssa_variable(operand)
@@ -173,7 +163,6 @@ def _formal_parameter_index(fn, operand):
         for parameter in candidates:
             if operand is parameter: return index
             concrete_parameter = (_non_ssa_variable(parameter))
-
             if concrete_operand is concrete_parameter: return index
             try:
                 if concrete_operand == concrete_parameter: return index
@@ -185,47 +174,30 @@ def _formal_parameter_index(fn, operand):
 _PARAMETER_ALIAS_CACHE = {}
 def reset_icfg_analysis_caches(): _PARAMETER_ALIAS_CACHE.clear()
 
-_CANONICAL_KEY_PREFIXES = (
-    "$arg",
-    "$sender",
-    "@state::",
-    "@const::",
-    "@local::",
-    "@unknown::",
-    "@txarg::",
-    "@sender::",
-    "@unknown-receiver::",
-)
+_CANONICAL_KEY_PREFIXES = ( "$arg", "$sender", "@state::", "@const::", "@local::", "@unknown::", "@txarg::", "@sender::", "@contract::", "@unknown-receiver::" )
 
-# Convert a mapping key or argument into MV-Scan's term language
+# Convert mapping key or argument into MV-Scan's term language
 def canon_key(key, fn=None) -> str:
-    if (isinstance(key, str) and key.startswith(_CANONICAL_KEY_PREFIXES)):
-        return key
+    if (isinstance(key, str) and key.startswith(_CANONICAL_KEY_PREFIXES)): return key
 
     parameter_index = _formal_parameter_index(fn, key)
-    if parameter_index is not None:
-        return f"$arg{parameter_index}"
+    if parameter_index is not None: return f"$arg{parameter_index}"
 
     if fn is not None:
         aliases = _function_parameter_aliases(fn)
         indexes = set(aliases.get(key, set()))
         indexes.update(aliases.get(_non_ssa_variable(key), set()))
-        if len(indexes) == 1:
-            return f"$arg{next(iter(indexes))}"
+        if len(indexes) == 1: return f"$arg{next(iter(indexes))}"
 
     text = identity_txt(key)
-    lowered = text.lower()
-    if lowered in {"msg.sender", "_msgsender()", "_msgsender"}:
-        return "$sender"
+    if text.lower() in {"msg.sender", "_msgsender()", "_msgsender"}: return "$sender"
 
     concrete = _non_ssa_variable(key)
     if isinstance(concrete, StateVariable):
         canonical_name = (getattr(concrete, "canonical_name", None) or getattr(concrete, "name", None) or str(concrete))
         return "@state::" + source_file_key(concrete) + "::" + str(canonical_name)
-    if _looks_like_literal(key):
-        return "@const::" + text
-    if fn is not None:
-        return ("@local::" + function_key(fn) + "::" + type(concrete).__name__ + "::" + text)
+    if _looks_like_literal(key): return "@const::" + text
+    if fn is not None: return ("@local::" + function_key(fn) + "::" + type(concrete).__name__ + "::" + text)
     return "@unknown::" + type(concrete).__name__ + "::" + text
 
 # Extract normalized variable text for no-op write comparison
@@ -255,8 +227,7 @@ def resolve_alias(txt, defs, max_hops=3) -> str:
 
 # (DivertScan §4.2.3) Drop a pair w, r when the write sets v:=v or mapping slots like balances[a]:=balances[a].
 def is_self_copy_write(v, node) -> bool:
-    # Don't attempt on externals
-    if type(v).__name__ == "ExternalStateVar": return False
+    if type(v).__name__ == "ExternalStateVar": return False  # Don't attempt on externals
 
     x, defs = var_key_txt(v), build_defs_map(node)
     found_write = False
@@ -278,9 +249,8 @@ class MappingKeyPath:
     # Render nested mapping components in Solidity indexing form
     def __str__(self) -> str: return "][".join(self.components)
 
-# Hashable pseudo-variable for one mapping/array storage location
-# Keys are ``$argN`` until a call edge supplies caller args
 class MappingSlotVar:
+    """Hashable mapping/array location with a complete canonical key path."""
     __slots__ = ("base", "key_path")
 
     # Normalize a mapping access into a base var and structured key path
@@ -297,11 +267,7 @@ class MappingSlotVar:
 
     # Compare mapping accesses by base var and complete key path
     def __eq__(self, other):
-        return (
-            isinstance(other, MappingSlotVar)
-            and self.base == other.base
-            and self.key_path == other.key_path
-        )
+        return (isinstance(other, MappingSlotVar) and self.base == other.base and self.key_path == other.key_path)
 
     # Render the mapping base and canonical key path for reports
     @property
@@ -314,33 +280,26 @@ class MappingSlotVar:
 # Match a concrete access location against one relation member
 def location_matches_member(observed, expected) -> bool:
     if observed == expected: return True
-
-    # Relation has an imprecise base mapping
+    # Imprecise base mapping
     return bool(isinstance(expected, StateVariable) and isinstance(observed, MappingSlotVar) and observed.base == expected)
 
 # Return exact relation members, falling back to compatible mapping bases
 def matching_relation_members(members, observed) -> set:
     exact_matches = {member for member in members if observed == member}
-    if exact_matches:
-        return exact_matches
+    if exact_matches: return exact_matches
     return {
         member for member in members
-        if (
-            isinstance(member, StateVariable)
-            and isinstance(observed, MappingSlotVar)
-            and observed.base == member
-        )
+        if (isinstance(member, StateVariable) and isinstance(observed, MappingSlotVar) and observed.base == member)
     }
 
-# Detect constants or immutables
-def is_const(v: StateVariable) -> bool: return getattr(v, "is_constant", False) or getattr(v, "is_immutable", False)
+def is_const(v: StateVariable) -> bool: return attr(v, "is_constant", False) or attr(v, "is_immutable", False)
 
 # Detect if function can't write to storage
 def is_view_only(fn) -> bool:
-    if hasattr(fn, "state_mutability"): return fn.state_mutability in ("view", "pure") # >=0.9.3
-    return getattr(fn, "is_view", False) or getattr(fn, "is_pure", False) # <=0.9.2
+    if hasattr(fn, "state_mutability"): return fn.state_mutability in ("view", "pure")
+    return attr(fn, "is_view", False) or attr(fn, "is_pure", False)
 
-# Makes a new mapping slot
+# Makes new mapping slot
 def mk_slot(base, key, fn=None):
     if MAPPING_MODE == "base_collapsed": return base
     return MappingSlotVar(base, canon_key(key, fn))
@@ -354,23 +313,20 @@ def _substitute_key_template(template, substitutions):
 
 # Convert the callee's positional key templates into key expressions meaningful inside the caller
 def _call_key_substitutions(ir, caller_fn):
-    arguments = list(getattr(ir, "arguments", []) or [])
+    arguments = list(attr(ir, "arguments", []) or [])
     return { f"$arg{index}": canon_key(argument, caller_fn) for index, argument in enumerate(arguments)}
 
 # Instantiate one abstract state location across a function call
 def _instantiate_location_template(location, substitutions):
     if not isinstance(location, MappingSlotVar): return location
-    instantiated_key = _substitute_key_template(location.key, substitutions)
-    return MappingSlotVar(location.base, instantiated_key)
+    return MappingSlotVar(location.base, _substitute_key_template(location.key, substitutions))
 
 # Instantiate a flattened callee return summary at one concrete call site
 def _subst_returns_with_args(callee, ir, expr_vars, caller_fn):
-    substitutions = (_call_key_substitutions(ir, caller_fn))
-    return { _instantiate_location_template( returned_location, substitutions ) for returned_location in expr_vars }
+    return { _instantiate_location_template(returned_location, _call_key_substitutions(ir, caller_fn)) for returned_location in expr_vars }
 
-# Hashable pseudo-var for state observed through an external call
-# Receiver, selector, and normalized args form location id, lets external protocol state participate in relations like local state does
 class ExternalStateVar:
+    """Receiver/selector/argument identity for state read by a static call."""
     __slots__ = ("selector", "addr", "args")
 
     # Normalize an external read into immutable receiver, selector, and args
@@ -390,14 +346,10 @@ class ExternalStateVar:
 
     # Compare external locations by their full call identity.
     def __eq__(self, other):
-        return (isinstance(other, ExternalStateVar)
-            and self.selector == other.selector
-            and self.addr == other.addr
-            and self.args == other.args)
+        return (isinstance(other, ExternalStateVar) and self.selector == other.selector and self.addr == other.addr and self.args == other.args)
 
-    # Render the canonical external-state identity used in diagnostics.
-    def __str__(self):
-        return f"EXT::{self.addr}::{self.selector}::{self.args}"
+    # Render the canonical external-state id used diagnostically
+    def __str__(self): return f"EXT::{self.addr}::{self.selector}::{self.args}"
     __repr__ = __str__
 
 # A relation member must represent mutable protocol state
@@ -406,9 +358,9 @@ def relation_member_is_eligible(entity) -> bool:
     if isinstance(base, StateVariable): return not is_const(base)
     return isinstance(base, ExternalStateVar) # External state is a valid relation member
 
-"""Exact block pair showing a write/read interference opportunity."""
 @dataclass(frozen=True, slots=True)
 class RawStateWitness:
+    """Exact block pair showing a write/read interference opportunity."""
     writer_bid: BasicBlock
     reader_bid: BasicBlock
     variable: object
@@ -416,23 +368,22 @@ class RawStateWitness:
     reader_reaches_writer: bool
     relation_evidence: tuple["RelationAccessEvidence", ...] = ()
 
-"""Concrete accesses matching two members of an inferred relation"""
 @dataclass(frozen=True, slots=True)
 class RelationAccessEvidence:
+    """Concrete accesses matching distinct members of an inferred relation."""
     writer_location: Hashable
     writer_member: Hashable
     reader_location: Hashable
     reader_member: Hashable
     key_constraints: tuple["KeyEqualityConstraint", ...] = ()
 
-"""Symbolic mapping-key equality required for two accesses to alias"""
 @dataclass(frozen=True, slots=True)
 class KeyEqualityConstraint:
+    """Witness-local equality required for two symbolic accesses to alias."""
     left: str
     right: str
 
-# Sort blocks by function id & node number
-def basic_block_sort_key(bid): return str(bid[0]), int(bid[1])
+def basic_block_sort_key(bid): return str(bid[0]), int(bid[1]) # Sort bids by fn id & node number
 
 # Produce a stable cross-type ordering key for state entities
 def state_entity_sort_key(var) -> tuple:
@@ -445,23 +396,19 @@ def state_entity_sort_key(var) -> tuple:
     canonical_name = (getattr(var, "canonical_name", None) or getattr(var, "name", None) or str(var))
     return (type(var).__name__, source_file_key(var), str(canonical_name))
 
-### Edits made during revision
-
-# (1) Different contracts could contain functions with the same signature, so we fixate that here directly with two canonicalization methods
-
 def source_file_key(obj) -> str:
-    source_mapping = getattr(obj, "source_mapping", None)
-    filename = getattr(source_mapping, "filename", None)
-    return str(getattr(filename, "relative", None) or getattr(filename, "short", None) or getattr(filename, "absolute", None) or "<unknown-source>")
+    source_mapping = attr(obj, "source_mapping")
+    filename = attr(source_mapping, "filename")
+    return str(attr(filename, "relative") or attr(filename, "short") or attr(filename, "absolute") or "<unknown-source>")
 
 # Identify the contract whose storage is active for a call context
 def contract_storage_key(contract) -> str:
     if contract is None: return "<unknown-storage-context>"
-    canonical_name = (getattr(contract, "canonical_name", None) or getattr(contract, "name", None) or "<unknown-contract>")
+    cname = (getattr(contract, "canonical_name", None) or getattr(contract, "name", None) or "<unknown-contract>")
     source_path = source_file_key(contract).replace("\\", "/")
-    return f"{source_path}::{canonical_name}"
+    return f"{source_path}::{cname}"
 
-# Build a source-qualified function identity that survives name collisions
+# Build collision-resistant, src-qualified function id
 def function_key(fn) -> str:
     canonical_name = getattr(fn, "canonical_name", None)
     if not canonical_name:
@@ -471,39 +418,31 @@ def function_key(fn) -> str:
         canonical_name = f"{contract_name}.{full_name}"
     return f"{source_file_key(fn)}::{canonical_name}"
 
-# Normalize a function or call declaration to its dispatch signature
+# Normalize function or call declaration to its dispatch signature
 def function_signature_key(fn) -> str:
     full_name = getattr(fn, "full_name", None)
     if full_name: return str(full_name)
     parameter_types = ",".join(str(parameter.type).replace(" ", "") for parameter in (getattr(fn, "parameters", []) or []))
     return f"{getattr(fn, 'name', '<unknown-function>')}({parameter_types})"
 
-# Safely evaluate Slither flags exposed as either values or methods
+# Trick: evaluate if flag is value or method
 def bool_attr(obj, name: str) -> bool:
-    value = getattr(obj, name, False)
+    value = attr(obj, name, False)
     if callable(value):
         try: value = value()
         except TypeError: return False
     return bool(value)
 
-# Check whether a declaration has executable nodes and an entrypoint
-def function_has_body(fn) -> bool:
-    return fn is not None and getattr(fn, "entry_point", None) is not None
+# Check if declaration has executable nodes and an entrypoint
+def function_has_body(fn) -> bool: return fn is not None and attr(fn, "entry_point") is not None
 
-# Determine whether a declaration originates from dependency source code.
-def declaration_is_dependency(obj) -> bool:
-    source_mapping = getattr(obj, "source_mapping", None)
-    return bool(getattr(source_mapping, "is_dependency", False))
+# Does declaration originate from dependency source code
+def declaration_is_dependency(obj) -> bool: return bool(attr(attr(obj, "source_mapping"), "is_dependency", False))
 
 # Resolve the apparent contract type of a high-level call receiver.
 def receiver_contract_type(ir):
     destination = getattr(ir, "destination", None)
-    candidates = [
-        destination,
-        getattr(destination, "type", None),
-        getattr(getattr(destination, "type", None), "type", None),
-        getattr(getattr(destination, "type", None), "contract", None),
-    ]
+    candidates = [destination, getattr(destination, "type", None), getattr(getattr(destination, "type", None), "type", None), getattr(getattr(destination, "type", None), "contract", None)]
     for candidate in candidates:
         if candidate is not None and (hasattr(candidate, "functions") or hasattr(candidate, "functions_declared")):
             return candidate
@@ -517,45 +456,39 @@ def contract_lineage(contract) -> set:
         values.update(getattr(contract, attribute, None) or [])
     return values
 
-# Bind root parameters and sender placeholders to terms scoped to transaction only
-def root_context_bindings(fn, owner):
-    return tuple((f"$arg{i}", f"@txarg::{owner}::{i}") for i, _ in enumerate(getattr(fn, "parameters", []) or []))
+# Bind root params and sender placeholders to terms scoped to tx only
+def root_context_bindings(fn, owner): return tuple((f"$arg{i}", f"@txarg::{owner}::{i}") for i, _ in enumerate(getattr(fn, "parameters", []) or []))
 
-# Recognize Solidity literals that should remain fixed during unification.
+# Recognize Solidity literals that should be fixed during unification
 def _looks_like_literal(value) -> bool:
     text = norm_txt(str(value))
     if text in {"true", "false"}: return True
     if re.fullmatch(r"\d+", text) or re.fullmatch(r"0x[0-9a-f]+", text): return True
-    concrete = _non_ssa_variable(value)
-    return type(concrete).__name__.lower() in { "constant", "enum", "enumcontract", "enumtoplevel" }
+    return type(_non_ssa_variable(value)).__name__.lower() in { "constant", "enum", "enumcontract", "enumtoplevel" }
 
-# Substitute context bindings into a canonical mapping-key template.
-def instantiate_key_template(template: str, bindings: dict[str, str], owner: str) -> str:
+# Substitute context bindings into a canonical mapping-key template
+def instantiate_key_template(template: str, bindings, active_sender: str) -> str:
     current = str(template)
-    if current == "$sender": return f"@sender::{owner}"
+    if current == "$sender": return active_sender
     for _ in range(16):
         changed = False
-
-        # Replace one argument placeholder and track fixed-point progress!
+        # Replace one arg placeholder and track fixed-point progress
         def replace(match):
             nonlocal changed
             placeholder = match.group(0)
             replacement = bindings.get(placeholder, placeholder)
             if replacement != placeholder: changed = True
             return replacement
-
         current = _ARG_PATTERN.sub(replace, current)
         if not changed: break
     else:
         return "@unknown::recursive-substitution::" + current
-    return current.replace("$sender", f"@sender::{owner}")
+    return current.replace("$sender", active_sender)
 
 # Check whether a key still contains context-dependent symbolic terms
 def is_symbolic_key_template(key: str) -> bool:
     text = str(key)
-    return (bool(_ARG_PATTERN.search(text)) or "$sender" in text or "msg.sender" in text
-        or text.startswith(("@local::", "@unknown::"))
-    )
+    return (bool(_ARG_PATTERN.search(text)) or "$sender" in text or "msg.sender" in text or text.startswith(("@local::", "@unknown::")))
 
 # Compose caller bindings with call arguments to form a callee context.
 def compose_callee_bindings(caller_context: ExecutionContext, edge: CallEdgeRecord, relevant_formals):
@@ -563,10 +496,10 @@ def compose_callee_bindings(caller_context: ExecutionContext, edge: CallEdgeReco
     composed = {}
     for placeholder, caller_template in edge.substitutions:
         if placeholder not in relevant_formals: continue
-        composed[placeholder] = instantiate_key_template(caller_template, caller_bindings, caller_context.owner)
+        composed[placeholder] = instantiate_key_template(caller_template, caller_bindings, caller_context.active_sender or f"@sender::{caller_context.owner}")
     return tuple(sorted(composed.items()))
 
-# Extract the best available normalized signature from a call IR
+# Extract best available normalized signature from a call IR
 def _call_signature_key(ir) -> str:
     apparent = getattr(ir, "function", None)
     if apparent is not None:
@@ -574,26 +507,17 @@ def _call_signature_key(ir) -> str:
         if "(" in signature: return signature
     raw_name = str(getattr(ir, "function_name", "") or "")
     if "(" in raw_name: return raw_name
-    argument_types = ",".join(
-        str(getattr(argument, "type", "")).replace(" ", "")
-        for argument in (getattr(ir, "arguments", []) or [])
-    )
+    argument_types = ",".join(str(getattr(argt, "type", "")).replace(" ", "") for argt in (getattr(ir, "arguments", []) or []))
     return f"{raw_name}({argument_types})"
 
-# Canonicalize an external receiver, using call-site scope when unresolved.
+# Canonicalize an external receiver, using call-site scope when unresolved
 def external_receiver_term(ir, caller_fn, callsite_id) -> str:
     destination = getattr(ir, "destination", None)
     if destination is None:
-        return (
-            "@unknown-receiver::" + callsite_id[0][0] + "::"
-            + str(callsite_id[0][1]) + "::" + str(callsite_id[1])
-        )
+        return ("@unknown-receiver::" + callsite_id[0][0] + "::" + str(callsite_id[0][1]) + "::" + str(callsite_id[1]))
     term = canon_key(destination, caller_fn)
     if term: return term
-    return (
-        "@unknown-receiver::" + callsite_id[0][0] + "::"
-        + str(callsite_id[0][1]) + "::" + str(callsite_id[1])
-    )
+    return ("@unknown-receiver::" + callsite_id[0][0] + "::" + str(callsite_id[0][1]) + "::" + str(callsite_id[1]))
 
 # Represent an unresolved external view result as an aliased state location
 def external_view_location(ir, caller_fn, callsite_id):
@@ -604,7 +528,7 @@ def external_view_location(ir, caller_fn, callsite_id):
     return ExternalStateVar(
         _call_signature_key(ir),
         external_receiver_term(ir, caller_fn, callsite_id),
-        tuple(canon_key(argument, caller_fn) for argument in (getattr(ir, "arguments", []) or [])),
+        tuple(canon_key(argt, caller_fn) for argt in (getattr(ir, "arguments", []) or [])),
     )
 
 ## Sensitive-read influence analysis
@@ -621,7 +545,7 @@ def _ssa_irs(node):
     if irs: return irs
     return list(getattr(node, "irs", []) or [])
 
-# Compute SSA aliases that unambiguously trace back to formal parameters.
+# Compute SSA aliases that unambiguously trace back to formal params
 def _function_parameter_aliases(fn):
     cached = _PARAMETER_ALIAS_CACHE.get(fn)
     if cached is not None: return cached
@@ -683,7 +607,6 @@ def _function_reference_locations(fn, keep=None):
                 else:
                     origin = _reference_origin(base)
                     if isinstance(origin, StateVariable): location = mk_slot(origin, key, fn)
-
             else:
                 origin = _non_ssa_variable(base)
                 if isinstance(origin, StateVariable): location = mk_slot(origin, key, fn)
@@ -694,10 +617,9 @@ def _function_reference_locations(fn, keep=None):
             if locations.get(lvalue) != location:
                 locations[lvalue] = location
                 changed = True
-
     return locations
 
-# Identify mapping-like state variables across Slither type representations.
+# Identify mapping-like state vars across Slither type reprs
 def _is_mapping_state_variable(var) -> bool:
     if not isinstance(var, StateVariable): return False
     var_type = getattr(var, "type", None)
@@ -705,14 +627,14 @@ def _is_mapping_state_variable(var) -> bool:
     type_text = str(var_type).replace(" ", "").lower()
     return (type_name == "MappingType" or type_text.startswith("mapping("))
 
-# Recover the exact persistent-storage locations read and written by 1 CFG block
+# Recover persistent-storage locations read and written by CFG block
 def _node_storage_accesses(node, reference_locations):
     reads, writes, precise_read_bases, precise_write_bases = set(), set(),set(),set()
     unresolved_read_bases, unresolved_write_bases = set(), set()
     read_targets = reads, precise_read_bases, unresolved_read_bases
     write_targets = writes, precise_write_bases, unresolved_write_bases
 
-    # Record an access and whether its mapping identity is precise.
+    # Record an access and whether its mapping identity is precise
     def record_access(location, targets):
         if location is None: return
         accesses, precise_bases, unresolved_bases = targets
@@ -790,7 +712,7 @@ def _is_storage_lvalue(ir) -> bool:
         return isinstance(_reference_origin(lvalue), StateVariable)
     return bool(getattr(lvalue, "is_storage", False))
 
-# Capture require/assert even where Slither represents them as a SolidityCall rather than a separate Condition operation
+# Capture require/assert even where Slither represents them as a SolidityCall
 def _is_control_solidity_call(ir) -> bool:
     if not isinstance(ir, SolidityCall): return False
     function_text = str(getattr(ir, "function", "")).lower()
@@ -804,7 +726,7 @@ def _is_external_effect(ir) -> bool:
         return ("selfdestruct" in function_text or "suicide" in function_text)
     return isinstance(ir, Call)
 
-# Classify IR operations that can consume stale state in a security-relevant way.
+# Classify IR operations that can consume stale state in a security-relevant way
 def _sensitive_operation_kind(ir):
     if isinstance(ir, Condition) or _is_control_solidity_call(ir): return "control"
     if _is_storage_lvalue(ir): return "storage_write"
@@ -825,7 +747,6 @@ def _unpack_source(ir):
     for attribute in ("tuple", "tuple_variable", "variable"):
         value = getattr(ir, attribute, None)
         if value is not None: return value
-
     reads = list(getattr(ir, "read", []) or [])
     return reads[0] if reads else None
 
@@ -850,13 +771,11 @@ def _combined_influence_summary(targets, summaries):
 # Separate physical state reads from formal-parameter influence
 def _record_origins(origins, reads, parameters):
     for origin in origins:
-        if isinstance(origin, ReadEvent):
-            reads.add(origin)
-        elif isinstance(origin, ParameterOrigin):
-            parameters.add(origin.index)
+        if isinstance(origin, ReadEvent): reads.add(origin)
+        elif isinstance(origin, ParameterOrigin): parameters.add(origin.index)
 
-# Compute parameter, state-read, return, and sink influence for one function
 def _analyze_function_influence(fn, keep, summaries, target_resolver=None) -> FunctionInfluenceSummary:
+    """Compute parameter, state-read, return, and sink influence for one function"""
     origins: DefaultDict[object, set[Origin]] = defaultdict(set)
 
     # Tuple-return variable -> return index -> origins
@@ -895,7 +814,7 @@ def _analyze_function_influence(fn, keep, summaries, target_resolver=None) -> Fu
             operations.append((bid, ir_index, ir, call_ordinal if is_call else None, callees))
             call_ordinal += is_call
 
-    # SSA is usually ordered, but Phi nodes and recursive summary propagation require a local fixed point
+    # SSA is ordered, but Phi nodes and recursive summary propagation require a local fixed point
     local_changed = True
     while local_changed:
         local_changed = False
@@ -905,21 +824,21 @@ def _analyze_function_influence(fn, keep, summaries, target_resolver=None) -> Fu
 
             # Index and Member construct references
             if isinstance(ir, Index):
-                origins = set()
+                derived_origins = set()
                 key_operand = getattr(ir, "variable_right", None)
                 if key_operand is not None:
-                    origins.update(_origins_for_operand(key_operand, bid, origins, reference_locations))
+                    derived_origins.update(_origins_for_operand(key_operand, bid, origins, reference_locations))
                 
                 # Only propagate pre-existing origins from the base reference
                 base_operand = getattr(ir, "variable_left", None)
-                if base_operand is not None: origins.update(origins.get(base_operand, set()))
-                if _merge_origin_set(origins, lvalue, origins): local_changed = True
+                if base_operand is not None: derived_origins.update(origins.get(base_operand, set()))
+                if _merge_origin_set(origins, lvalue, derived_origins): local_changed = True
                 continue
 
             if isinstance(ir, Member):
-                origins = set()
-                for operand in getattr(ir, "read", []) or []: origins.update(origins.get(operand, set()))
-                if _merge_origin_set(origins, lvalue, origins): local_changed = True
+                derived_origins = set()
+                for operand in getattr(ir, "read", []) or []: derived_origins.update(origins.get(operand, set()))
+                if _merge_origin_set(origins, lvalue, derived_origins): local_changed = True
                 continue
 
             read_origins, read_locations = set(), set()
@@ -932,11 +851,8 @@ def _analyze_function_influence(fn, keep, summaries, target_resolver=None) -> Fu
             # High-level calls are both external-interaction sinks; and summary-bearing return producers when their implementation is known
             if isinstance(ir, (InternalCall, LibraryCall, HighLevelCall)):
                 arguments = list(getattr(ir, "arguments", []) or [])
-                argument_origins = [_origins_for_operand(argument, bid, origins, reference_locations) for argument in arguments]
-                argument_locations = [
-                    _locations_for_operand(argument, value_locations, reference_locations, include_non_ssa=True)
-                    for argument in arguments
-                ]
+                argument_origins = [_origins_for_operand(argt, bid, origins, reference_locations) for argt in arguments]
+                argument_locations = [_locations_for_operand(argt, value_locations, reference_locations, include_non_ssa=True) for argt in arguments]
 
                 call_key_substitutions = _call_key_substitutions(ir, fn)
                 callee_summary = _combined_influence_summary(callees, summaries)
@@ -954,10 +870,10 @@ def _analyze_function_influence(fn, keep, summaries, target_resolver=None) -> Fu
                             if parameter_index < len(argument_origins):
                                 sink_origins[sink_site].update(argument_origins[parameter_index])
 
-                    # Reads inside the callee that reach a callee sink.
+                    # Reads inside the callee that reaches a callee sink
                     sensitive_origins.update(callee_summary.read_to_sink)
 
-                    # Caller arguments reaching sensitive callee parameters
+                    # Caller args reaching sensitive callee parameters
                     for parameter_index in (callee_summary.parameter_to_sink):
                         if parameter_index < len(argument_origins):
                             sensitive_origins.update(argument_origins[parameter_index])
@@ -990,12 +906,9 @@ def _analyze_function_influence(fn, keep, summaries, target_resolver=None) -> Fu
                             if _merge_origin_set(tuple_location_components[lvalue], return_index, component_locations):
                                 local_changed = True
 
-                    if _merge_origin_set(origins, lvalue, all_return_origins):
-                        local_changed = True
-                    if _merge_origin_set(value_locations, lvalue, all_return_locations):
-                        local_changed = True
+                    if _merge_origin_set(origins, lvalue, all_return_origins): local_changed = True
+                    if _merge_origin_set(value_locations, lvalue, all_return_locations): local_changed = True
                     produced_return_locations = bool(all_return_locations)
-
                     if internal_dispatch: continue
 
             # Preserve individual return-component precision
@@ -1012,10 +925,8 @@ def _analyze_function_influence(fn, keep, summaries, target_resolver=None) -> Fu
                     selected_origins.update(origins.get(tuple_source, set()))
                 if (not selected_locations and tuple_source is not None):
                     selected_locations.update(value_locations.get(tuple_source, set()))
-                if _merge_origin_set(origins, lvalue, selected_origins):
-                    local_changed = True
-                if _merge_origin_set(value_locations, lvalue, selected_locations):
-                    local_changed = True
+                if _merge_origin_set(origins, lvalue, selected_origins): local_changed = True
+                if _merge_origin_set(value_locations, lvalue, selected_locations): local_changed = True
                 continue
 
             # Unresolved view call produces one receiver/signature/arg-qualified location
@@ -1087,31 +998,26 @@ def _merge_function_summary(destination, source) -> bool:
             changed |= _update_set(target_map[key], values)
     return changed
 
-# Iterate function analyses to a fixed point across interprocedural calls
 def _compute_function_influence_summaries(functions, keep=None, target_resolver=None):
+    """Compute the least interprocedural fixed point of influence facts."""
     summaries = { fn: FunctionInfluenceSummary() for fn in functions }
     changed, rounds = True, 0
     maximum_rounds = max(32, (len(functions) * 8) + 8)
     while changed:
         changed = False
         rounds += 1
-        if rounds > maximum_rounds:
-            raise RuntimeError(f"MV-Scan function influence analysis did not converge after {maximum_rounds} rounds")
-
+        if rounds > maximum_rounds: raise RuntimeError(f"Function influence analysis never converged in {maximum_rounds} rounds")
         for fn in functions:
             candidate = _analyze_function_influence(fn, keep, summaries, target_resolver=target_resolver)
-            if _merge_function_summary(summaries[fn], candidate):
-                changed = True
+            if _merge_function_summary(summaries[fn], candidate): changed = True
     return summaries
 
-"""
-State-annotated ICFG and its analysis indexes
-* Intraprocedural successors live on ``blocks``
-* Separately index calls, execution contexts, storage domains, state accesses, summaries,
-roots, and relation evidence so contextual traversals have no wrong-caller return edges
-"""
 class ICFG:
-    # Initialize graph indexes, summaries, relation maps, and context state
+    """
+    Physical block graph and analysis indexes used by MV-Scan
+    NOTE: Intraprocedural successors and call-entry edges are separated so no context-insensitive
+    synthetic return can enter another caller's CFG.
+    """
     def __init__(self):
         self.blocks: Dict[BasicBlock, Dict[str, Set]] = {}
         self.var_reads: Dict[StateVariable, Set[BasicBlock]] = defaultdict(set)
@@ -1163,17 +1069,17 @@ class ICFG:
         self.relation_template_writes = defaultdict(lambda: defaultdict(set))
 
         # Storing all provenance sites
-        self.relation_origins: DefaultDict[object, Set[str]] = defaultdict(set)
-
+        self.relation_origins: DefaultDict[object, Set[object]] = defaultdict(set)
         self.entry_contexts_by_block = defaultdict(set)
         self.root_function_by_owner = {}
         self.relevant_formals_by_function: dict[str, set[str]] = defaultdict(set)
         self.context_call_parents = defaultdict(set)
+        self.contexts_by_call_target = defaultdict(set)
         self.contextual_location_cache = {}
         self.interface_dispatch_enabled = False
         self.max_dispatch_targets = 16
 
-    # Index concrete functions by declaration, signature, and lineage.
+    # Index concrete functions by declaration, signature, and lineage
     def build_resolver_indexes(self) -> None:
         self.functions_by_contract_and_signature.clear()
         self.concrete_functions_by_signature.clear()
@@ -1216,39 +1122,34 @@ class ICFG:
                     caller_relevant = self.relevant_formals_by_function[edge.source_bid[0]]
                     before = len(caller_relevant)
                     for placeholder, template in edge.substitutions:
-                        if placeholder in target_relevant:
-                            caller_relevant.update(_ARG_PATTERN.findall(template))
+                        if placeholder in target_relevant: caller_relevant.update(_ARG_PATTERN.findall(template))
                     changed |= len(caller_relevant) != before
 
     # Instantiate a symbolic state location for a concrete execution context
     def contextualize_location(self, location, context: ExecutionContext):
-        cache_key = (location, context.owner, context.bindings)
+        active_sender = context.active_sender or f"@sender::{context.owner}"
+        cache_key = (location, context.owner, context.bindings, active_sender)
         cached = self.contextual_location_cache.get(cache_key)
-        if cached is not None:
-            return cached
+        if cached is not None: return cached
         if isinstance(location, MappingSlotVar):
-            instantiated = MappingSlotVar(
-                location.base,
-                instantiate_key_template(location.key, context.binding_map, context.owner),
-            )
+            instantiated = MappingSlotVar(location.base, instantiate_key_template(location.key, context.binding_map, active_sender))
         elif isinstance(location, ExternalStateVar):
             instantiated = ExternalStateVar(
                 location.selector,
-                instantiate_key_template(location.addr, context.binding_map, context.owner),
-                tuple(
-                    instantiate_key_template(argument, context.binding_map, context.owner)
-                    for argument in location.args
-                ),
+                instantiate_key_template(location.addr, context.binding_map, active_sender),
+                tuple(instantiate_key_template(argument, context.binding_map, active_sender) for argument in location.args),
             )
         else:
             instantiated = location
         self.contextual_location_cache[cache_key] = instantiated
         return instantiated
 
-    # Resolve direct, inherited, library, and optional interface call targets.
     def resolve_call_functions(self, ir, caller_fn) -> tuple:
+        """Resolve a call to bounded canonical physical function objects."""
         direct = getattr(ir, "function", None)
-        if function_has_body(direct): return (direct,)
+        if function_has_body(direct):
+            canonical_direct = self.fn_lookup.get(function_key(direct))
+            if function_has_body(canonical_direct): return (canonical_direct,)
 
         signature = _call_signature_key(ir)
         caller_contract = getattr(caller_fn, "contract_declarer", None)
@@ -1282,8 +1183,7 @@ class ICFG:
                 if function_has_body(fn)
                 and function_signature_key(fn) == signature
             }, key=function_key)
-            if len(visible_functions) == 1:
-                return tuple(visible_functions)
+            if len(visible_functions) == 1: return tuple(visible_functions)
             exact = sorted({
                 fn for fn in self.concrete_functions_by_signature.get(signature, set())
                 if function_has_body(fn)
@@ -1291,21 +1191,13 @@ class ICFG:
             }, key=function_key)
             return tuple(exact) if len(exact) == 1 else ()
 
-        apparent_contract = (
-            getattr(direct, "contract_declarer", None)
-            or getattr(direct, "contract", None)
-            or receiver_contract
-        )
-        if apparent_contract is None or declaration_is_dependency(apparent_contract):
-            return ()
+        apparent_contract = (getattr(direct, "contract_declarer", None) or getattr(direct, "contract", None) or receiver_contract)
+        if apparent_contract is None or declaration_is_dependency(apparent_contract): return ()
         candidates = sorted({
             fn for fn in self.concrete_functions_by_signature.get(signature, set())
             if function_has_body(fn)
             and not declaration_is_dependency(fn)
-            and apparent_contract in contract_lineage(
-                getattr(fn, "contract_declarer", None)
-                or getattr(fn, "contract", None)
-            )
+            and apparent_contract in contract_lineage(getattr(fn, "contract_declarer", None) or getattr(fn, "contract", None))
         }, key=function_key)
         if len(candidates) > self.max_dispatch_targets: return ()
         return tuple(candidates)
@@ -1317,24 +1209,18 @@ class ICFG:
             for destination_bid in info.get("succ", set()):
                 if destination_bid in self.blocks: self.predecessors[destination_bid].add(source_bid)
 
-    # Return ordinary intraprocedural CFG successors for a block.
+    # Return ordinary intraprocedural CFG successors or call-entry successors for a block
     def cfg_successors(self, bid: BasicBlock): return set(self.blocks.get(bid, {}).get("succ", set()))
-    # Return interprocedural call-entry successors for a block.
     def call_successors(self, bid: BasicBlock): return set(self.call_edges.get(bid, set()))
 
-    # May-reachability relation: (i) ordinary CFG continuation remains reachable after call; (ii) resolved callee body also reachable during call
+    # May-reachability relation: (i) CFG continuation remains reachable after call; (ii) resolved callee body as well
     def reachability_successors(self, bid: BasicBlock): return self.cfg_successors(bid) | self.call_successors(bid)
 
-    # Compute interprocedural read influence to a monotone fixed point
     def compute_sensitive_read_events(self, keep):
+        """Compute global and owner-specific state-read-to-sink indexes."""
         functions_by_key = { function_key(fn): fn for fn in self.fn_lookup.values() }
         functions = [ functions_by_key[key] for key in sorted(functions_by_key)]
-
-        summaries = (_compute_function_influence_summaries(
-            functions,
-            keep=keep,
-            target_resolver=lambda ir, caller: tuple(self.resolve_call_functions(ir, caller)),
-        ))
+        summaries = (_compute_function_influence_summaries(functions, keep=keep, target_resolver=lambda ir, caller: tuple(self.resolve_call_functions(ir, caller))))
 
         self.function_influence_summaries = (summaries)
         self.sensitive_read_events.clear()
@@ -1361,8 +1247,8 @@ class ICFG:
                 for event in events:
                     self.sink_sites_by_owner_and_event[(owner, event)].add(sink_site)
 
-    # Compute fixed-point may-write and must-write summaries for functions.
     def compute_function_write_summaries(self, keep):
+        """Compute interprocedural may-write and conservative must-write summaries."""
         functions = sorted(set(self.fn_lookup.values()), key=function_key)
         summaries = { fn: FunctionWriteSummary() for fn in functions }
 
@@ -1374,30 +1260,23 @@ class ICFG:
                 may_writes = set()
                 for node in getattr(fn, "nodes", []) or []:
                     bid = (function_key(fn), node.node_id)
-                    if bid not in keep or bid not in self.blocks:
-                        continue
+                    if bid not in keep or bid not in self.blocks: continue
                     may_writes.update(self.blocks[bid]["writes"])
                     for ir in _ssa_irs(node):
-                        if not isinstance(ir, (HighLevelCall, InternalCall, LibraryCall)):
-                            continue
+                        if not isinstance(ir, (HighLevelCall, InternalCall, LibraryCall)): continue
                         substitutions = _call_key_substitutions(ir, fn)
                         target_may_sets = []
                         for callee in self.resolve_call_functions(ir, fn):
                             callee_summary = summaries.get(callee)
                             if callee_summary is None: continue
-                            target_may_sets.append({
-                                _instantiate_location_template(location, substitutions)
-                                for location in callee_summary.may_writes
-                            })
-                        if target_may_sets:
-                            may_writes.update(set().union(*target_may_sets))
+                            target_may_sets.append({ _instantiate_location_template(location, substitutions) for location in callee_summary.may_writes })
+                        if target_may_sets: may_writes.update(set().union(*target_may_sets))
                 if not may_writes.issubset(summaries[fn].may_writes):
                     summaries[fn].may_writes.update(may_writes)
                     changed = True
 
         # Phase 2: greatest fixed point for must writes
-        for fn in functions:
-            summaries[fn].must_writes = set(summaries[fn].may_writes)
+        for fn in functions: summaries[fn].must_writes = set(summaries[fn].may_writes)
 
         changed = True
         while changed:
@@ -1414,11 +1293,8 @@ class ICFG:
                     bids = {(function_key(fn), node.node_id) for node in nodes}
                     universe = set(summaries[fn].may_writes)
                     out_sets = {bid: set(universe) for bid in bids}
-                    entry_bid = (
-                        (function_key(fn), fn.entry_point.node_id)
-                        if getattr(fn, "entry_point", None) is not None
-                        else None
-                    )
+                    entry_bid = ((function_key(fn), fn.entry_point.node_id) if getattr(fn, "entry_point", None) is not None else None)
+
                     local_changed = True
                     while local_changed:
                         local_changed = False
@@ -1431,8 +1307,7 @@ class ICFG:
                                 incoming = set.intersection(*(out_sets[pred] for pred in predecessors))
                             generated = set(self.blocks[bid]["writes"])
                             for ir in _ssa_irs(node):
-                                if not isinstance(ir, (HighLevelCall, InternalCall, LibraryCall)):
-                                    continue
+                                if not isinstance(ir, (HighLevelCall, InternalCall, LibraryCall)): continue
                                 substitutions = _call_key_substitutions(ir, fn)
                                 target_must_sets = []
                                 for callee in self.resolve_call_functions(ir, fn):
@@ -1452,16 +1327,10 @@ class ICFG:
                     exits = [
                         (function_key(fn), node.node_id)
                         for node in nodes
-                        if not any(
-                            (function_key(fn), son.node_id) in bids
-                            for son in (getattr(node, "sons", []) or [])
-                        )
+                        if not any((function_key(fn), son.node_id) in bids for son in (getattr(node, "sons", []) or []))
                         and str(getattr(node, "type", "")).lower() not in {"throw", "revert"}
                     ]
-                    candidate = (
-                        set.intersection(*(out_sets[bid] for bid in exits))
-                        if exits else set()
-                    )
+                    candidate = (set.intersection(*(out_sets[bid] for bid in exits)) if exits else set())
                 if candidate != summaries[fn].must_writes:
                     summaries[fn].must_writes = candidate
                     changed = True
@@ -1480,11 +1349,7 @@ class ICFG:
     # Return whether the exact read block and state location reaches a sensitive operation
     def read_event_is_sensitive(self, bid, var, context=None) -> bool:
         if context is not None:
-            events = {
-                event
-                for event in self.sensitive_read_events_by_owner.get(context.owner, set())
-                if event.block_id == bid
-            }
+            events = { event for event in self.sensitive_read_events_by_owner.get(context.owner, set()) if event.block_id == bid }
             if not events: return False
             observed = [ self.contextualize_location(event.location, context) for event in events ]
             members = getattr(var, "vars", None)
@@ -1498,23 +1363,16 @@ class ICFG:
         locations = (self.sensitive_locations_by_block.get(bid, set()))
 
         if not locations: return False
-        if getattr(var, "vars", None) is not None:
-            return bool(self.sensitive_relation_reads(bid, var))
-
+        if getattr(var, "vars", None) is not None: return bool(self.sensitive_relation_reads(bid, var))
         return any(location_matches_member(location, var) for location in locations)
 
-    # Compute multi-return summaries before block processing
     def precompute_return_summaries(self, functions):
+        """Compute ordinary return locations independently of relation ablation."""
         self.fn_returns.clear()
         self.fn_return_components.clear()
         self.fn_return_sites.clear()
-        if not ENABLE_MULTI_RETURN_GROUPS: return
 
-        summaries = _compute_function_influence_summaries(
-            functions,
-            keep=None,
-            target_resolver=self.resolve_call_functions,
-        )
+        summaries = _compute_function_influence_summaries(functions, keep=None, target_resolver=self.resolve_call_functions)
         for fn in functions:
             # Preserve restriction: relation-return helpers must not mutate persistent state
             if any(
@@ -1525,34 +1383,26 @@ class ICFG:
                 continue
 
             summary = summaries[fn]
-            site_locations = {
-                site: set(locations)
-                for site, locations in summary.return_locations_by_site.items()
-                if locations
-            }
-            if site_locations: self.fn_return_sites[fn] = site_locations
-
-            component_locations = {
-                return_index: set(locations)
-                for return_index, locations in summary.return_locations.items()
-                if locations
-            }
+            component_locations = { return_index: set(locations) for return_index, locations in summary.return_locations.items() if locations }
             if not component_locations: continue
             self.fn_return_components[fn] = component_locations
             self.fn_returns[fn] = set().union(*component_locations.values())
+            if ENABLE_MULTI_RETURN_GROUPS:
+                site_locations = { site: set(locations) for site, locations in summary.return_locations_by_site.items() if locations }
+                if site_locations: self.fn_return_sites[fn] = site_locations
 
-    # Populate the ICFG with one basic block & its inter-procedural edges
     def add_block(self, node: Node):
+        """Materialize one physical Slither CFG node and update ICFG indexes."""
         block_id: BasicBlock = (function_key(node.function), node.node_id)
         fn = node.function
 
-        # Processed already
+        # Already processed
         if block_id in self.blocks: return
         self.node_lookup[block_id] = node
 
         # Gather storage reads and writes
-        legacy_reads = { variable for variable in (getattr(node, "variables_read", []) or []) if isinstance(variable, StateVariable) }
-        legacy_writes = { variable for variable in (getattr(node, "variables_written", []) or []) if isinstance(variable, StateVariable) }
+        legacy_reads = { v for v in (getattr(node, "variables_read", []) or []) if isinstance(v, StateVariable) }
+        legacy_writes = { v for v in (getattr(node, "variables_written", []) or []) if isinstance(v, StateVariable) }
 
         fn_key = function_key(fn)
         reference_locations = (self.reference_locations_by_function.get(fn_key))
@@ -1574,8 +1424,7 @@ class ICFG:
         writes: Set[StateVariable | MappingSlotVar | ExternalStateVar] = set(legacy_writes)
 
         if MAPPING_MODE == "precise":
-            # Remove a coarse node-level base mapping only when every observed access
-            # to that base in this block was reconstructed precisely
+            # Remove coarse node-level base mapping only when every observed access to that base was precisely reconstructed
             for base in precise_read_bases:
                 if base not in unresolved_read_bases: reads.discard(base)
             for base in precise_write_bases:
@@ -1590,7 +1439,6 @@ class ICFG:
 
         # Handle every call IR in this block
         for callsite_id, ir in iter_call_sites(node):
-
             # Call-graph edges could be Function, None, or Variable
             resolved_functions = self.resolve_call_functions(ir, fn)
             resolved_targets = tuple(function_key(callee) for callee in resolved_functions)
@@ -1609,7 +1457,7 @@ class ICFG:
                 edge_key = (block_id, entry_bid)
                 previous_mode = self.call_edge_context_modes.get(edge_key)
                 if previous_mode is not None and previous_mode != edge_mode:
-                    raise RuntimeError(f"Found conflicting storage-context semantics for call edge {edge_key}: {previous_mode} vs {edge_mode}")
+                    raise RuntimeError(f"Conflicting storage-context semantics for call edge {edge_key}: {previous_mode} vs {edge_mode}")
                 self.call_edge_context_modes[edge_key] = edge_mode
                 self.call_edges_by_source[block_id].add(
                     CallEdgeRecord(
@@ -1619,13 +1467,10 @@ class ICFG:
                         target_function_key=function_key(callee),
                         storage_mode=edge_mode[0],
                         target_storage_context=edge_mode[1],
-                        substitutions=tuple(sorted(
-                            (f"$arg{index}", canon_key(argument, fn))
-                            for index, argument in enumerate(getattr(ir, "arguments", []) or [])
-                        )),
+                        substitutions=tuple(sorted((f"$arg{index}", canon_key(argument, fn)) for index, argument in enumerate(getattr(ir, "arguments", []) or []))),
                     )
                 )
-            # Summarize concrete returns; otherwise abstract an unresolved view.
+            # Summarize concrete returns; otherwise abstract an unresolved view
             instantiated_returns = set()
             for callee in resolved_functions:
                 if callee in self.fn_returns:
@@ -1633,8 +1478,7 @@ class ICFG:
             reads.update(instantiated_returns)
             if not instantiated_returns:
                 external_location = external_view_location(ir, fn, callsite_id)
-                if external_location is not None:
-                    reads.add(external_location)
+                if external_location is not None: reads.add(external_location)
 
         # Commits the caller block and updates
         self.blocks[block_id] = { "reads": reads, "writes": writes, "succ": succ }
@@ -1658,8 +1502,7 @@ def node_by_id(fn, node_id):
 def _relation_access_evidence(icfg, relation, writer_bid, reader_bid):
     writer_locations = (icfg.relation_writes.get(relation, {}).get(writer_bid, set()))
     reader_locations = icfg.sensitive_relation_reads(reader_bid, relation)
-    if not writer_locations or not reader_locations:
-        return ()
+    if not writer_locations or not reader_locations: return ()
     evidence_set = set()
     for writer_location in sorted(writer_locations, key=state_entity_sort_key):
         writer_members = matching_relation_members(relation.vars, writer_location)
@@ -1677,13 +1520,10 @@ def _relation_access_evidence(icfg, relation, writer_bid, reader_bid):
     return tuple(sorted(evidence_set, key=repr))
 
 # Check whether a block has exact or symbolic access to a relation
-def relation_block_has_candidate_access(icfg, relation, bid, kind: str) -> bool:
+def candidate_access(icfg, relation, bid, kind: str) -> bool:
     exact_map = (icfg.relation_writes if kind == "write" else icfg.relation_reads)
     template_map = (icfg.relation_template_writes if kind == "write" else icfg.relation_template_reads)
-    return bool(
-        exact_map.get(relation, {}).get(bid, set())
-        or template_map.get(relation, {}).get(bid, set())
-    )
+    return bool(exact_map.get(relation, {}).get(bid, set()) or template_map.get(relation, {}).get(bid, set()))
 
 # Split canonical nested-mapping keys into independently unifiable components
 def split_key_path(key: str): return tuple(str(key).split("]["))
@@ -1692,7 +1532,7 @@ def split_key_path(key: str): return tuple(str(key).split("]["))
 def _is_relation_placeholder(term: str) -> bool: return term == "$sender" or bool(re.fullmatch(r"\$arg\d+", term))
 
 # Identify constants and state references that cannot vary by transaction
-def _is_fixed_term(term: str) -> bool: return term.startswith(("@const::", "@state::"))
+def _is_fixed_term(term: str) -> bool: return term.startswith(("@const::", "@state::", "@contract::"))
 
 # Identify transaction-scoped terms that may require equality constraints
 def _is_free_runtime_term(term: str) -> bool: return term.startswith(("@txarg::", "@sender::"))
@@ -1728,25 +1568,16 @@ def _unify_component(expected, observed, bindings, constraints) -> bool:
         return False
     if _is_fixed_term(expected) and _is_fixed_term(observed):
         return False
-    if (
-        _is_fixed_term(expected)
-        or _is_fixed_term(observed)
-        or _is_free_runtime_term(expected)
-        or _is_free_runtime_term(observed)
-    ):
+    if (_is_fixed_term(expected) or _is_fixed_term(observed) or _is_free_runtime_term(expected) or _is_free_runtime_term(observed)):
         constraints.add(_constraint(expected, observed))
         return True
     return False
 
-# Unify complete nested key paths component by component.
+# Unify complete nested key paths component by component
 def _unify_key(expected, observed, bindings, constraints):
-    expected_parts = split_key_path(expected)
-    observed_parts = split_key_path(observed)
+    expected_parts, observed_parts = split_key_path(expected), split_key_path(observed)
     if len(expected_parts) != len(observed_parts): return False
-    return all(
-        _unify_component(left, right, bindings, constraints)
-        for left, right in zip(expected_parts, observed_parts)
-    )
+    return all(_unify_component(left, right, bindings, constraints) for left, right in zip(expected_parts, observed_parts))
 
 # Match a contextualized location to a relation member
 def _contextual_member_match(location, member, bindings, constraints) -> bool:
@@ -1758,14 +1589,18 @@ def _contextual_member_match(location, member, bindings, constraints) -> bool:
         if location.selector != member.selector or len(location.args) != len(member.args):
             return False
         pairs = [(member.addr, location.addr), *zip(member.args, location.args)]
-        return all(
-            _unify_key(str(expected), str(observed), bindings, constraints)
-            for expected, observed in pairs
-        )
+        return all(_unify_key(str(expected), str(observed), bindings, constraints) for expected, observed in pairs)
     return False
 
-# Validate writer/reader relation evidence under their execution contexts.
 def contextual_relation_access_evidence(icfg, relation, writer_bid, writer_context, reader_bid, reader_context):
+    """
+    Match distinct relation-member accesses under execution contexts.
+
+    Matching is existential and edge-local: every writer/reader access edge
+    carries its own equality constraints. MV-Scan does not solve one globally
+    joint constraint system for all accesses in a candidate; manual validation
+    determines whether the surviving contexts are jointly feasible.
+    """
     writer_locations = (
         set(icfg.relation_writes.get(relation, {}).get(writer_bid, set()))
         | set(icfg.relation_template_writes.get(relation, {}).get(writer_bid, set()))
@@ -1803,18 +1638,45 @@ def contextual_relation_access_evidence(icfg, relation, writer_bid, writer_conte
               for constraint in item.key_constraints),
     )))
 
-# Check whether a block overwrites an entity or any member of a relation.
+def effective_relation_write_members(icfg, relation, writer_bid, writer_context=None):
+    writer_locations = (
+        set(icfg.relation_writes.get(relation, {}).get(writer_bid, set()))
+        | set(icfg.relation_template_writes.get(relation, {}).get(writer_bid, set()))
+    )
+    writer_fn = icfg.fn_lookup.get(writer_bid[0])
+    writer_node = node_by_id(writer_fn, writer_bid[1]) if writer_fn is not None else None
+    effective = set()
+    for template in writer_locations:
+        if NOOP_WRITE_FILTER and writer_node is not None and is_self_copy_write(template, writer_node):
+            continue
+        location = (
+            icfg.contextualize_location(template, writer_context)
+            if writer_context is not None else template
+        )
+        if writer_context is None:
+            effective.update(matching_relation_members(relation.vars, location))
+            continue
+        for member in relation.vars:
+            if _contextual_member_match(location, member, {}, set()): effective.add(member)
+    return frozenset(effective)
+
+def sensitive_relation_member_events(icfg, relation, reader_bid, reader_context):
+    result = defaultdict(set)
+    for event in icfg.sensitive_read_events_by_owner.get(reader_context.owner, set()):
+        if event.block_id != reader_bid: continue
+        location = icfg.contextualize_location(event.location, reader_context)
+        for member in relation.vars:
+            if _contextual_member_match(location, member, {}, set()): result[member].add(event)
+    return result
+
+# Check whether a block overwrites an entity or any member of a relation
 def _block_writes_entity(icfg, bid, var) -> bool:
     writes = (icfg.blocks.get(bid, {}).get("writes", set()))
     if var in writes: return True
 
     members = getattr(var, "vars", None)
     if members is None: return False
-    return any(
-        location_matches_member(written_location, member)
-        for written_location in writes
-        for member in members
-    )
+    return any(location_matches_member(written_location, member) for written_location in writes for member in members)
 
 # Return whether dst is reachable from src within the same function without an intervening overwrite of var.
 def same_function_reachable_without_overwrite(icfg: ICFG, src_bid: BasicBlock, dst_bid: BasicBlock, var) -> bool:
@@ -1849,8 +1711,8 @@ def reachable_without_overwrite(icfg: ICFG, src_bid, dst_bid, v) -> bool:
             seen.add(nxt); q.append(nxt)
     return False
 
-# Yields exact RawStateWitness instances
 def stale_read_pairs(icfg: ICFG, reader_filter=None, pair_stats=None, contextual_relations=False):
+    """Enumerate coarse physical writer/reader opportunities for later validation."""
     pair_stats = pair_stats if pair_stats is not None else defaultdict(int)
     variables = sorted(icfg.var_writes.keys(), key=state_entity_sort_key)
     for var in variables:
@@ -1864,20 +1726,10 @@ def stale_read_pairs(icfg: ICFG, reader_filter=None, pair_stats=None, contextual
             continue
         if isinstance(var, StateVariable) and is_const(var): continue
 
-        writes = {
-            writer_bid
-            for writer_bid in icfg.var_writes.get(var, set())
-            if not icfg.fn_lookup[writer_bid[0]].is_constructor
-        }
+        writes = { w_bid for w_bid in icfg.var_writes.get(var, set()) if not icfg.fn_lookup[w_bid[0]].is_constructor }
         if not writes: continue
-
-        reads = {
-            reader_bid
-            for reader_bid in icfg.var_reads.get(var, set())
-            if not icfg.fn_lookup[reader_bid[0]].is_constructor
-        }
+        reads = { r_bid for r_bid in icfg.var_reads.get(var, set()) if not icfg.fn_lookup[r_bid[0]].is_constructor }
         if not reads: continue
-        
         sorted_writes = sorted(writes, key=basic_block_sort_key)
         sorted_reads = sorted(reads, key=basic_block_sort_key)
 
@@ -1901,13 +1753,11 @@ def stale_read_pairs(icfg: ICFG, reader_filter=None, pair_stats=None, contextual
             if (NOOP_WRITE_FILTER and not is_relation):
                 writer_fn = icfg.fn_lookup[writer_bid[0]]
                 writer_node = node_by_id(writer_fn, writer_bid[1])
-
                 if (writer_node is not None and is_self_copy_write(var, writer_node)):
                     pair_stats["noop_write_filtered"] += 1
                     continue
 
             eligible_writers.append(writer_bid)
-        
         if not eligible_writers: continue
         pair_stats["eligible_writers"] += len(eligible_writers)
 
@@ -1928,10 +1778,7 @@ def stale_read_pairs(icfg: ICFG, reader_filter=None, pair_stats=None, contextual
                 relation_evidence = ()
                 if is_relation:
                     if contextual_relations:
-                        if not (
-                            relation_block_has_candidate_access(icfg, var, writer_bid, "write")
-                            and relation_block_has_candidate_access(icfg, var, reader_bid, "read")
-                        ):
+                        if not (candidate_access(icfg, var, writer_bid, "write") and candidate_access(icfg, var, reader_bid, "read")):
                             pair_stats["relation_incompatible"] += 1
                             continue
                     else:
@@ -1942,10 +1789,8 @@ def stale_read_pairs(icfg: ICFG, reader_filter=None, pair_stats=None, contextual
                         pair_stats["relation_evidence_edges"] += len(relation_evidence)
 
                 if (REQUIRE_SAME_SLOT_KEY and not is_relation):
-                    writer_keys = writer_slot_keys[writer_bid]
-                    reader_keys = reader_slot_keys[reader_bid]
+                    writer_keys, reader_keys = writer_slot_keys[writer_bid], reader_slot_keys[reader_bid]
                     common_bases = (set(writer_keys) & set(reader_keys))
-
                     if (common_bases and not any(writer_keys[base] & reader_keys[base] for base in common_bases)):
                         pair_stats["same_slot_key_filtered"] += 1
                         continue

@@ -1,0 +1,53 @@
+\section{Background and Motivating Example}
+\label{s:background}
+
+\subsection{Persistent state and redundant protocol views}
+\label{s:background-state}
+
+Ethereum transactions are atomic, but contracts preserve state across transactions in persistent storage and can read other contracts. Storage and recomputation costs encourage incremental accounting, checkpoints, and derived views~\cite{he2025save}. Under EIP-2929, a cold storage read is charged 2,100 gas. Under EIP-2200, setting an originally clean zero slot to nonzero costs 20,000 gas, with the cold-access surcharge applied when relevant~\cite{eip2929,eip2200}. By contrast, \cc{block.timestamp} is an environmental opcode value, not an expensive persistent-storage read.
+
+Protocols use indexes, snapshots, checkpoints, caches, and local mirrors. For example, a global interest index may be updated once while each account stores the index when it was last settled. In another instance, governance power may be cached. A protocol may even record remote token balances locally so downstream operations can use an accounting view without repeating a cross-contract read. Such designs are not inherently incorrect. They define \emph{synchronization boundaries}: points at which two or more representations must satisfy the relation assumed by downstream logic.
+
+The relevant relation is not always equality. If \cc{shares} and \cc{assets} are connected by an exchange rate, consistency may require a proportional equation. A risk module may require collateral value to exceed debt by a threshold. A global timestamp and per-market checkpoint may be related by an ordering constraint. Accordingly, this paper uses \emph{relation} for the protocol condition that links distinct persistent locations, and \emph{reconciliation} for a transition that restores the condition required before a later use.
+
+\subsection{Motivating example}
+\label{s:motivating-example}
+
+\autoref{lst:running-example} is a semantic illustration of a minimal governance cache. It is not an end-to-end walkthrough of frozen-detector output: the shown \cc{canVote} view is not a state-changing root, and the snippet contains no retained root that calls it. The protocol keeps a token balance and a separately stored voting weight for each account. The intended relation is that \cc{votingPower[u]} reflects the voting entitlement derived from \cc{balance[u]}, while \cc{vote} consumes the cached weight directly.
+
+\begin{figure*}[t]
+\begin{minted}{solidity}
+mapping(address => uint256) balance;
+mapping(address => uint256) votingPower;
+
+function canVote(address u) external view returns (bool) {
+  return balance[u] > 0 && votingPower[u] >= MIN_POWER;
+}
+
+function withdrawAll() external {
+  address u = msg.sender;
+  uint256 amount = balance[u];
+  balance[u] = 0;                 // votingPower[u] omitted
+  token.transfer(u, amount);
+}
+
+function vote(bytes32 proposal) external {
+  address u = msg.sender;
+  require(votingPower[u] >= MIN_POWER);
+  hasVoted[proposal][u] = true;
+}
+\end{minted}
+\caption{Motivating case study. The withdrawal updates one member of a per-account relation, while a later control decision consumes the omitted voting weight.}
+\label{lst:running-example}
+\end{figure*}
+
+The code contains three distinct questions. First, are \cc{balance[u]} and \cc{votingPower[u]} related? Their joint influence on the value returned by \cc{canVote} demonstrates potential, but the final semantic judgment might vary. Second, can \cc{withdrawAll} commit a state in which only \cc{balance[u]} is updated? The assignment is locally partial, but the answer would change if a modifier, internal call, or guaranteed post-dominator always synchronized \cc{votingPower[u]} before the transaction completed. Third, can the stale member affect behavior before reconciliation? Here, \cc{votingPower[u]} reaches the predicate that authorizes a persistent governance write.
+
+If all three answers are positive, the sequence \cc{withdrawAll()} followed by \cc{vote(p)} is an MV-SI: the writer leaves the relation partially advanced, and the reader acts on the omitted state. If \cc{withdrawAll} invokes a synchronization routine on every returning path, there is no persistent partial transition. If \cc{votingPower} is retained but never influences a decision or effect, there is no behavioral consumption. If governance intentionally grants lifetime voting rights independent of current token holdings, the apparent relation is unsupported. The same syntax can therefore represent a defect, a benign cache, or two unrelated variables.
+
+\subsection{Why existing detection anchors are insufficient}
+\label{s:background-gap}
+
+Existing analyses typically begin by detecting conflicting accesses to one state location and then asking whether ordering, reentrancy, or flow divergence makes the conflict exploitable~\cite{bose2022sailfish,liu2025detecting}. In our case study, however, the two relevant accesses are to different mapping slots. A unary missed-update rule may flag \cc{votingPower}, but it cannot by itself identify what balance to track or which transition breaks that relation. General static analyzers and symbolic executors can reason about these operations once given properties and targets~\cite{feist2019slither,mythril,manticore}. Standard analyses miss the multi-variable relation and the semantic boundary where divergence matters.
+
+To be useful, MV-SI analysis should preserve keyed identities such as \cc{balance[u]} and carry argument and sender bindings across calls. The frozen implementation distinguishes abstract contract storage domains, but not concrete deployed instances of the same declaration. We must also distinguish store instructions from effective value changes and benign reads from reads whose value may influence behavior. These complexities motivate the analysis objective.

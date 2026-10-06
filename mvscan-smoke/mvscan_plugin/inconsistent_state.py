@@ -1,25 +1,17 @@
 """
-MV-Scan (Multi-Variable State-Inconsistency Detection)
+MV-Scan is a static may-analysis for candidate multi-variable state inconsistency (MV-SI).
+We do not verify invariants, path feasibility, or exploitability via symbolic execution.
 
-Goals:
-- Build an ICFG over the compilation.
-- Keep only the CFG blocks that are reachable from user-callable entrypoints.
-- Detect the stale-read/destructive-write pattern and group entangled variables instead of just the primary variable.
-- Aggregate writer-centered candidates for static evaluation and reproducibility.
+For each inferred relation R, the writer must update one or more members of R, but not all.
+The reader must read at least one member that the writer did not update.
+This read must come from persistent state and reach a sensitive operation.
 
-Non-goals:
-- We do not attempt to perfectly catch SI bugs or improve static SV-SI detection.
+Each relation is treated as a hypothesis for manual validation.
+Each candidate records the relation, writer, reader, execution context, constraint, and provenance.
 
-Extensions:
-- Pseudo-variables for branch-groups and multi-returns (to track MV-SI).
-- Reentrant and shared-callee shape tags to guide validation/fuzzing.
-- A basic “atomic group” merging of entrypoints (to support above-transaction work).
-
-Usage:
-1. Compile the analyzed project.
-2. Use ISD_JSON_OUT=out.json slither . --detect inconsistent_state --hardhat-ignore-compile
-2a. ISD_JSON_OUT is the filename of the JSON output.
-2b. --hardhat-ignore-compile reuses the existing compilation artifacts.
+This file controls the analysis workflow. It defines the configuration, orchestrates the ICFG,
+determines reachability from external roots, registers inferred relations, expands execution contexts,
+checks candidate conditions, aggregates results, and produces JSON.
 """
 import importlib.metadata
 import json, os, platform, sys
@@ -43,8 +35,10 @@ from .utils.icfg import (
     location_matches_member, matching_relation_members,
     is_symbolic_key_template,
     contextual_relation_access_evidence,
+    effective_relation_write_members,
+    sensitive_relation_member_events,
     state_entity_sort_key,
-    bool_attr, declaration_is_dependency,
+    attr, bool_attr, declaration_is_dependency,
     reset_icfg_analysis_caches
 )
 from .utils.mvscan_env import env_bool, env_csv, env_enum, env_int, reject_unknown_prefixed_environment
@@ -89,18 +83,17 @@ _KNOWN_MVSCAN_ENV = {
 
 ### Value-influence sink test
 
-# Sink behavior choices used in ablation testing:
-#   "value"  -> value-influence sink (second iteration)
-#   "samevar"-> same-var reread at branch/external-call (first iteration)
-#   else     -> skip sink altogether (default)
+# Optional second-stage reader gate. ICFG influence already establishes an
+# omitted-member consumer witness; this bounded heuristic may prune further
+# but proves neither feasibility nor exploitability.
 SINK_TEST = env_enum("SINK_TEST", "none", {"none", "samevar", "value"})
 
 # Per-process output registry to distinguish keys while keeping JSON uniform
 _JSON_RUNS: dict[tuple[int, str], dict[str, dict]] = {}
 
-""" Writer/reader witness before candidate aggregation """
 @dataclass(frozen=True, slots=True)
 class FindingWitnessRecord:
+    """One fully context-qualified writer/reader witness before aggregation."""
     subject: object
     writer_bid: BasicBlock
     reader_bid: BasicBlock
@@ -113,27 +106,31 @@ class FindingWitnessRecord:
     reader_file: str
     reader_line: int
     relation_evidence: tuple = ()
+    written_members: frozenset = frozenset()
     sink_sites: tuple = ()
     writer_bindings: tuple[tuple[str, str], ...] = ()
     reader_bindings: tuple[tuple[str, str], ...] = ()
+    writer_active_sender: str = ""
+    reader_active_sender: str = ""
     writer_reaches_reader: bool = False
     reader_reaches_writer: bool = False
 
-""" Stable identity of one writer-centered detector candidate """
 @dataclass(frozen=True, slots=True)
 class CandidateKey:
+    """Stable identity of one writer-centered MV-SI candidate."""
     writer_owner: str
     writer_bid: BasicBlock
     relation_id: tuple
     written_members: tuple
     potentially_stale_members: tuple
 
-"""
-Evidence for a single :class:`CandidateKey`.
-The sets dedupe evidence discovered through multiple ICFG contexts.
-"""
 @dataclass
 class CandidateAccumulator:
+    """
+    Evidence accumulated for one CandidateKey.
+    ``key_constraints`` is a union; witness-local lists are authoritative and
+    the candidate-wide set must not be interpreted as one conjunction.
+    """
     relation: object
     context_instances: set = field(default_factory=set)
     writer_exposures: set = field(default_factory=set)
@@ -158,14 +155,14 @@ def candidate_id(key: CandidateKey) -> str:
 def _shortest_call_chain(icfg, record):
     function_key_current = record.writer_bid[0]
     fn = icfg.fn_lookup.get(function_key_current)
-    entry = getattr(fn, "entry_point", None)
+    entry = attr(fn, "entry_point")
     if entry is None: return (record.writer_owner, function_key_current)
+    target_bid = (function_key_current, entry.node_id)
     candidates = [
         (context, parent)
-        for (target_bid, context), parents
-        in icfg.context_call_parents.items()
-        if (target_bid == (function_key_current, entry.node_id) and context.owner == record.writer_owner)
-        for parent in parents
+        for context in icfg.contexts_by_call_target.get(target_bid, set())
+        if context.owner == record.writer_owner
+        for parent in icfg.context_call_parents.get((target_bid, context), set())
     ]
     if not candidates: return (record.writer_owner, function_key_current)
     context, parent = min(candidates, key=repr)
@@ -178,7 +175,7 @@ def _shortest_call_chain(icfg, record):
         seen.add(caller_key)
         chain.append(caller_key)
         caller_fn = icfg.fn_lookup.get(caller_key)
-        caller_entry = getattr(caller_fn, "entry_point", None)
+        caller_entry = attr(caller_fn, "entry_point")
         if caller_entry is None: break
         parents = icfg.context_call_parents.get(((caller_key, caller_entry.node_id), caller_context), set())
         parent = min(parents, key=repr) if parents else None
@@ -239,8 +236,8 @@ def detector_metadata() -> dict:
 
 # Fingerprint compiler, source, and build-info inputs for reproducibility
 def compilation_metadata(detector) -> dict:
-    crytic_compile = getattr(detector.compilation_unit, "crytic_compile", None)
-    compiler_version = getattr(crytic_compile, "compiler_version", None)
+    crytic_compile = attr(detector.compilation_unit, "crytic_compile")
+    compiler_version = attr(crytic_compile, "compiler_version")
     source_paths = sorted({ source_file_key(contract) for contract in detector.compilation_unit.contracts })
     
     source_hasher = sha256()
@@ -270,15 +267,15 @@ def compilation_metadata(detector) -> dict:
 
 # Identify detector instances that belong to the same Slither analysis run
 def _analysis_run_token(detector) -> int:
-    slither_obj = getattr(detector, "slither", None)
+    slither_obj = attr(detector, "slither")
     if slither_obj is not None: return id(slither_obj)
-    crytic_compile = getattr(detector.compilation_unit, "crytic_compile", None)
+    crytic_compile = attr(detector.compilation_unit, "crytic_compile")
     if crytic_compile is not None: return id(crytic_compile)
     return id(detector.compilation_unit)
 
 # Produce a stable id for a compilation unit's contract set
 def _compilation_unit_id(unit) -> str:
-    identities = sorted((source_file_key(contract), str(getattr(contract, "canonical_name", None) or getattr(contract, "name", None) or "<unknown-contract>")) for contract in unit.contracts)
+    identities = sorted((source_file_key(contract), str(attr(contract, "canonical_name") or attr(contract, "name") or "<unknown-contract>")) for contract in unit.contracts)
     return sha256(json.dumps(identities, separators=(",", ":")).encode()).hexdigest()[:20]
 
 # Merge one compilation unit into the run-level JSON output atomically
@@ -308,7 +305,9 @@ def _record_json_unit(detector, unit_id, unit_stats, findings, relation_catalog=
         "compilation_units": ordered_units,
     }
     temporary_path = output_path.with_name(output_path.name + f".tmp.{os.getpid()}")
-    temporary_path.write_text(json.dumps(document, indent=2, sort_keys=True) + "\n")
+    with temporary_path.open("w", encoding="utf-8") as stream:
+        json.dump(document, stream, indent=2, sort_keys=True)
+        stream.write("\n")
     os.replace(temporary_path, output_path)
 
 # get block id's reads and return if the var is in its reads
@@ -318,20 +317,16 @@ def block_reads_var(bid,icfg,var) -> bool:
 
     if isinstance(var, MappingSlotVar): return var.base in reads
 
-    members = getattr(var, "vars", None)
+    members = attr(var, "vars")
     if members is None: return False
 
     # Preferred exact relation provenance
     if (icfg.relation_reads.get(var, {}).get(bid, set())): return True
 
     member_set = set(members)
-    return any(
-        observed in member_set
-        or (isinstance(observed,MappingSlotVar) and observed.base in member_set)
-        for observed in reads
-    )
+    return any(o in member_set or (isinstance(o,MappingSlotVar) and o.base in member_set) for o in reads)
 
-# A new sink heuristic: a read of 'var' is notable if, along some path without overwriting 'var', its value/copies influences:
+# Optional bounded sink heuristic: a read is notable if its value/copies influences
 # (a) control-flow at a branch predicate
 # (b) arguments/eth value to an ext/internal call
 # (c) RHS of a storage write to any storage var/slot
@@ -354,14 +349,14 @@ def value_influence_hits_sensitive_sink(var, start_bid, icfg, budget) -> bool:
             return True
 
         # Any call in the block and the block reads the variable
-        if node and any(isinstance(ir, (HighLevelCall, InternalCall)) for ir in getattr(node, "irs", [])) and block_reads_var(cur, icfg, var) and reachable_without_overwrite(icfg, start_bid, cur, var):
+        if node and any(isinstance(ir, (HighLevelCall, InternalCall)) for ir in attr(node, "irs", [])) and block_reads_var(cur, icfg, var) and reachable_without_overwrite(icfg, start_bid, cur, var):
             return True
 
         # Storage write in the block and the block reads the variable
-        if node and (getattr(node, "variables_written", None) or any(getattr(ir, "lvalue", None) for ir in getattr(node, "irs", []))) and block_reads_var(cur, icfg, var) and reachable_without_overwrite(icfg, start_bid, cur, var):
+        if node and (attr(node, "variables_written") or any(attr(ir, "lvalue") for ir in attr(node, "irs", []))) and block_reads_var(cur, icfg, var) and reachable_without_overwrite(icfg, start_bid, cur, var):
             return True
 
-        for nxt in icfg.reachability_successors(cur):
+        for nxt in sorted(icfg.reachability_successors(cur), key=lambda bid: (str(bid[0]), int(bid[1]))):
             if nxt not in seen:
                 seen.add(nxt); q.append(nxt)
     return False
@@ -394,7 +389,7 @@ def is_external_call_node(node, icfg) -> bool:
             
             for target_function_key in targets:
                 tg = icfg.fn_lookup.get(target_function_key)
-                if (tg is None or getattr(tg, "contract_declarer", None) is not getattr(fn, "contract_declarer", None)):
+                if tg is None or attr(tg, "contract_declarer") is not attr(fn, "contract_declarer"):
                     return True # resolved callee belongs to a different contract
     return False
 
@@ -421,7 +416,7 @@ def forward_slice_hits_sink_from(var, start_bid, icfg, budget=DIVERGENCE_BUDGET)
         # If we reach a re-read, that is notable! Otherwise keep going
         if cur in reads_of_var and is_critical_sink_bid(cur, icfg) and reachable_without_overwrite(icfg, start_bid, cur, var):
             return True
-        for nxt in icfg.reachability_successors(cur):
+        for nxt in sorted(icfg.reachability_successors(cur), key=lambda bid: (str(bid[0]), int(bid[1]))):
             if nxt not in seen:
                 seen.add(nxt)
                 q.append(nxt)
@@ -429,8 +424,7 @@ def forward_slice_hits_sink_from(var, start_bid, icfg, budget=DIVERGENCE_BUDGET)
 
 ### Variable id normalization for bucketing
 
-def _stable_n(entity) -> str: # get a stable name
-    return str(getattr(entity, "canonical_name", None) or getattr(entity, "name", None) or entity)
+def _stable_n(x) -> str: return str(attr(x, "canonical_name") or attr(x, "name") or x)
 
 # Stable id used for bucketing, shape metadata, and deduplication
 def var_key(v):
@@ -458,11 +452,11 @@ def normalize_entry_name(entry_name) -> str:
     return entry_name
 
 # Hide Slither's temporary reference variables from user-facing relation names.
-def prettify(v): return None if getattr(v, "name", "").startswith("REF_") else getattr(v, "name", "")
+def prettify(v): return None if attr(v, "name", "").startswith("REF_") else attr(v, "name", "")
 
-""" Source provenance for a relation inferred from dataflow """
 @dataclass(frozen=True, slots=True)
 class RelationOrigin:
+    """Physical dataflow origin of one inferred relation hypothesis."""
     origin_id: str
     function_key: str
     block_id: BasicBlock | None
@@ -473,20 +467,17 @@ class RelationOrigin:
 def serialize_rel_origin(o):
     return { "origin_id": o.origin_id, "function_key": o.function_key, "block_id": o.block_id, "ir_index": o.ir_index, "expression": o.expression }
 
-"""
-Hashable pseudo-variable representing related persistent locations.
-``semantic_id`` distinguishes independently inferred relations, whereas
-``equivalence_id`` groups relations that describe the same member family.
-Equality follows semantic identity because each origin remains independent during witness generation
-"""
 class MultiVarGroup:
-    # Treat a set of related state vars as one logical variable so we can
-    # 1. Detect multi-variable invariant violations
-    # 2. Bucket and report them
-    # 3. Propagate read and write sites into the pseudo for reachability and pair detection
+    """
+    Origin-specific pseudo-entity representing one inferred relation.
+    The pseudo indexes the union of member access sites for enumeration; a
+    write to one member never means the whole relation was written.
+    ``semantic_id`` preserves origins and ``equivalence_id`` groups equal
+    member families for candidate aggregation.
+    """
     __slots__ = ("vars", "semantic_id", "equivalence_id")
 
-    # Store the relation members and its semantic and equivalence identities.
+    # Store the relation members and its semantic and equivalence identities
     def __init__(self, vars_: tuple, semantic_id: tuple, equivalence_id: tuple):
         self.vars = vars_
         self.semantic_id = semantic_id
@@ -524,6 +515,12 @@ def summary_covers_relation(summary, relation) -> bool:
 ### ICFG construction
 
 def build_icfg(compilation_unit) -> ICFG:
+    """
+    Build one physical state-annotated ICFG for a compilation unit.
+    Declared functions are materialized once; ordinary CFG successors remain
+    separate from call-entry edges. External reachability and execution
+    contexts are computed later by ``compute_entry_owners``.
+    """
     icfg, functions_by_key = ICFG(), {}
     icfg.interface_dispatch_enabled = MVSCAN_INTERFACE_DISPATCH
     icfg.max_dispatch_targets = MVSCAN_MAX_DISPATCH_TARGETS
@@ -533,14 +530,14 @@ def build_icfg(compilation_unit) -> ICFG:
         key = function_key(fn)
         existing = functions_by_key.get(key)
         if existing is not None and existing is not fn:
-            raise RuntimeError(f"MV-Scan encountered two distinct declared functions or modifiers with the same canonical key: {key}")
+            raise RuntimeError(f"MV-Scan encountered two distinct declared functions/modifiers with the same canonical key: {key}")
         functions_by_key[key] = fn
 
     for contract in compilation_unit.contracts:
         for fn in contract.functions_and_modifiers_declared:
             register_function_or_modifier(fn)
     for fn in compilation_unit.functions:
-        if getattr(fn, "contract_declarer", None) is None:
+        if attr(fn, "contract_declarer") is None:
             register_function_or_modifier(fn)
     functions = [functions_by_key[key] for key in sorted(functions_by_key)]
     
@@ -550,9 +547,9 @@ def build_icfg(compilation_unit) -> ICFG:
     icfg.build_resolver_indexes()
     icfg.precompute_return_summaries(functions)
 
-    # Convert each Slither CFG node into the block facts consumed by later ISO 24183 checks
+    # Convert each Slither CFG node into the block facts consumed by MV-Scan.
     for fn in functions:
-        for node in sorted(getattr(fn, "nodes", []), key=lambda item: item.node_id):
+        for node in sorted(attr(fn, "nodes", []), key=lambda item: item.node_id):
             icfg.add_block(node)
     icfg.compute_relevant_formals()
 
@@ -567,13 +564,21 @@ def build_icfg(compilation_unit) -> ICFG:
 
 ### (DivertScan) §4.2.1 Entry reachability and user-callable heuristics
 
-# How a function is considered user-callable
-# contextual_ids supports a first-party owner identity for inherited functions
-# USER_CALLABLE_ALWAYS/USER_CALLABLE_DENY behavior remains compatible with canonical function keys and legacy fullnames
 def is_user_callable(fn, contextual_ids=()) -> bool:
-    if (fn.visibility not in {"public", "external"} or getattr(fn, "is_constructor", False) or icfg_module.is_view_only(fn)):
+    """
+    Return whether a function can seed a state-changing transaction root.
+    Root mutability is read directly from Slither's Function.view and
+    Function.pure properties. This root-only check is intentionally separate
+    from the optional external static-call abstraction.
+    """
+    if (
+        fn.visibility not in {"public", "external"}
+        or attr(fn, "is_constructor", False)
+        or bool_attr(fn, "view")
+        or bool_attr(fn, "pure")
+    ):
         return False
-    candidate_ids = { function_key(fn), getattr(fn, "full_name", ""), *contextual_ids }
+    candidate_ids = {function_key(fn), attr(fn, "full_name", ""), *contextual_ids}
     return not bool((candidate_ids - {""}) & USER_CALLABLE_DENY)
 
 # Normalize Slither source paths for deterministic filtering/sorting
@@ -581,7 +586,7 @@ def norm_path(obj) -> str:
     normalized = str(source_file_key(obj)).replace("\\", "/").strip().lower()
     return "/" + normalized.lstrip("/")
 
-# A real reason for root exclusion
+# Return the explicit reason a contract cannot seed an external root.
 def _root_contract_exclusion_reason(contract):
     if declaration_is_dependency(contract): return "dependency"
     if bool_attr(contract, "is_interface"): return "interface"
@@ -591,14 +596,20 @@ def _root_contract_exclusion_reason(contract):
 
 # Identify the externally callable deployment context
 def _root_owner_key(contract, fn) -> str:
-    contract_name = (getattr(contract, "canonical_name", None) or getattr(contract, "name", None) or "<unknown-contract>")
+    contract_name = attr(contract, "canonical_name") or attr(contract, "name") or "<unknown-contract>"
     return f"{source_file_key(contract)}::{contract_name}.{fn.full_name}"
 
-# Maps every user-reachable block to every externally relevant analysis owner
-# * ICFG identifies physical implementation blocks
-# * It does not clone those per deployed derived contract.
-# * So each physical entry_bid must receive exactly one owner.
 def compute_entry_owners(icfg: ICFG, compilation_unit):
+    """
+    Propagate external tx contexts over physical blocks
+    * ICFG stores one physical implementation block rather than cloning it
+    for every inherited exposure. Exposure names and deployment storage
+    contexts are retained around one selected analysis-owner identity.
+    * The outer owner, active storage domain, formal-key bindings, and active
+    msg.sender are distinct. Internal/library calls preserve storage and
+    sender; ordinary high-level calls switch storage and make the calling
+    contract the callee's sender.
+    """
     worklist, stats = deque(), defaultdict(int)
     entry_contexts = defaultdict(set)
     root_candidates: dict[BasicBlock, dict[str, dict]] = defaultdict(dict)
@@ -606,17 +617,16 @@ def compute_entry_owners(icfg: ICFG, compilation_unit):
     icfg.entry_contexts_by_block.clear()
     icfg.root_function_by_owner.clear()
     icfg.root_exposures.clear()
+    icfg.context_call_parents.clear()
+    icfg.contexts_by_call_target.clear()
 
-    contracts = sorted(
-        getattr(compilation_unit, "contracts", []) or [],
-        key=lambda contract: (norm_path(contract), str(getattr(contract, "canonical_name", None) or getattr(contract, "name", ""))),
-    )
+    contracts = sorted(attr(compilation_unit, "contracts", []) or [], key=lambda contract: (norm_path(contract), str(attr(contract, "canonical_name") or attr(contract, "name", ""))))
 
     # Phase 1: collect every eligible concrete exposure without seeding yet
     for contract in contracts:
         exclusion_reason = _root_contract_exclusion_reason(contract)
-        entry_functions = list(getattr(contract, "functions_entry_points", None) or getattr(contract, "functions", []) or [])
-        entry_functions.sort(key=lambda fn: (getattr(fn, "full_name", ""), function_key(fn)))
+        entry_functions = list(attr(contract, "functions_entry_points") or attr(contract, "functions", []) or [])
+        entry_functions.sort(key=lambda fn: (attr(fn, "full_name", ""), function_key(fn)))
 
         for fn in entry_functions:
             raw_exposure_owner = _root_owner_key(contract, fn)
@@ -627,7 +637,7 @@ def compute_entry_owners(icfg: ICFG, compilation_unit):
             force_ids = {
                 raw_exposure_owner,
                 raw_implementation_owner,
-                getattr(fn, "full_name", ""),
+                attr(fn, "full_name", ""),
                 exposure_owner,
                 implementation_owner,
             }
@@ -643,11 +653,8 @@ def compute_entry_owners(icfg: ICFG, compilation_unit):
                 stats[f"excluded_{exclusion_reason}"] += 1
                 continue
 
-            entry_point = getattr(fn, "entry_point", None)
-            entry_bid = (
-                (function_key(fn), entry_point.node_id)
-                if entry_point is not None else None
-            )
+            entry_point = attr(fn, "entry_point")
+            entry_bid = ((function_key(fn), entry_point.node_id) if entry_point is not None else None)
             if entry_bid is None:
                 stats["missing_entry_point"] += 1
                 continue
@@ -660,9 +667,7 @@ def compute_entry_owners(icfg: ICFG, compilation_unit):
                 "exposure_owner": exposure_owner,
                 "implementation_owner": implementation_owner,
                 "force_included": force_included,
-                "implementation_is_dependency": (
-                    declaration_is_dependency(fn)
-                ),
+                "implementation_is_dependency": (declaration_is_dependency(fn)),
                 "storage_context": icfg_module.contract_storage_key(contract),
                 "root_function": fn,
             }
@@ -701,10 +706,16 @@ def compute_entry_owners(icfg: ICFG, compilation_unit):
 
         icfg.root_exposures[analysis_owner].update(exposures)
 
-        if len(exposures) > 1:
-            stats["multi_exposure_entry_blocks"] += 1
+        if len(exposures) > 1: stats["multi_exposure_entry_blocks"] += 1
 
         stats["collapsed_contextual_aliases"] += (len(candidates) - 1)
+
+        # Deliberately retain Slither's exposure-specific root object:
+        # Function summaries are built over physical declared functions. Slither may
+        # provide a distinct inherited Function object for an exposure, so
+        # owner-specific summary lookup can under-approximate some inherited roots.
+        # MV-Scan accepts that completeness boundary rather than cloning summaries
+        # across every inheritance context.
         root_function = chosen["root_function"]
         previous_root_function = icfg.root_function_by_owner.get(analysis_owner)
         if previous_root_function is not None and previous_root_function is not root_function:
@@ -720,6 +731,7 @@ def compute_entry_owners(icfg: ICFG, compilation_unit):
                         owner=analysis_owner,
                         storage_context=storage_context,
                         bindings=root_context_bindings(root_function, analysis_owner),
+                        active_sender=f"@sender::{analysis_owner}",
                     ),
                 ))
             else:
@@ -743,12 +755,12 @@ def compute_entry_owners(icfg: ICFG, compilation_unit):
 
         if MVSCAN_CONTEXTUAL_KEYS:
             context_group = {
-                existing.bindings
+                (existing.active_sender, existing.bindings)
                 for existing in entry_contexts[block_id]
                 if (existing.owner == owner and existing.storage_context == storage_context)
             }
             if (
-                execution_context.bindings not in context_group
+                (execution_context.active_sender, execution_context.bindings) not in context_group
                 and len(context_group) >= MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK
             ):
                 raise RuntimeError(f"MV-Scan contextual key limit exceeded: block={block_id}, owner={owner}, storage_context={storage_context}, limit={MVSCAN_MAX_CONTEXTS_PER_OWNER_BLOCK}")
@@ -765,23 +777,13 @@ def compute_entry_owners(icfg: ICFG, compilation_unit):
             (edge.target_bid, edge.storage_mode, edge.target_storage_context, edge)
             for edge in sorted(
                 icfg.call_edges_by_source.get(block_id, set()),
-                key=lambda edge: (
-                    str(edge.target_bid[0]),
-                    int(edge.target_bid[1]),
-                    edge.callsite_id[1],
-                ),
+                key=lambda edge: (str(edge.target_bid[0]), int(edge.target_bid[1]), edge.callsite_id[1]),
             )
         ]
         if not call_transitions:
             call_transitions = [
-                (
-                    successor,
-                    *icfg.call_edge_context_modes.get((block_id, successor), ("preserve", None)),
-                )
-                for successor in sorted(
-                    icfg.call_successors(block_id),
-                    key=lambda bid: (str(bid[0]), int(bid[1])),
-                )
+                (successor, *icfg.call_edge_context_modes.get((block_id, successor), ("preserve", None)))
+                for successor in sorted(icfg.call_successors(block_id), key=lambda bid: (str(bid[0]), int(bid[1])))
             ]
         for transition in call_transitions:
             successor, mode, target_context = transition[:3]
@@ -798,10 +800,8 @@ def compute_entry_owners(icfg: ICFG, compilation_unit):
                 next_context = ExecutionContext(
                     owner=owner,
                     storage_context=next_storage_context,
-                    bindings=(
-                        compose_callee_bindings(execution_context, edge, relevant)
-                        if edge is not None else ()
-                    ),
+                    bindings=(compose_callee_bindings(execution_context, edge, relevant) if edge is not None else ()),
+                    active_sender=(execution_context.active_sender if mode == "preserve" else f"@contract::{storage_context}"),
                 )
                 if edge is not None:
                     icfg.context_call_parents[(successor, next_context)].add((
@@ -810,6 +810,7 @@ def compute_entry_owners(icfg: ICFG, compilation_unit):
                         edge.callsite_id,
                         edge.target_function_key,
                     ))
+                    icfg.contexts_by_call_target[successor].add(next_context)
                 worklist.append((successor, next_context))
             else:
                 worklist.append((successor, owner, next_storage_context))
@@ -855,35 +856,36 @@ def filter_relation_access_map(relation_map, keep):
 
 # Helper to return (filename, first_line) for a (fn_name, node_id) block id
 def src(bid, icfg):
-    fn = icfg.fn_lookup[bid[0]]
-    if fn is None: return "<unknown>", 0
+    node = icfg.node_lookup.get(bid)
+    source_mapping = attr(node, "source_mapping")
+    if source_mapping is None: return "<unknown-source>", 0
+    lines = list(attr(source_mapping, "lines", []) or [])
+    return source_file_key(node), (min(lines) if lines else 0)
 
-    node = next((n for n in fn.nodes if n.node_id == bid[1]), None)
-    if node is None or getattr(node, "source_mapping", None) is None: return "<unknown>", 0
-    return node.source_mapping.filename.short, min(node.source_mapping.lines)
-
-# Return a stable numeric selector for a function signature.
 def fn_id(fn):
-    # Return a uuid for a Slither func
-    try: contract = fn.contract_declarer.name
-    except AttributeError: contract = "<unknown>"
-    raw_sig = getattr(fn, "signature", None)
-    if not raw_sig:
-        raw_sig = f"{fn.name}(" + ",".join(str(p.type) for p in fn.parameters) + ")"
-    elif not isinstance(raw_sig, str):
-        raw_sig = str(raw_sig)
-    # recompute if needed
-    pretty = f"{contract}.{raw_sig}"
-    sel = getattr(fn, "selector", None)
-    if sel is None: sel = int.from_bytes(keccak(text=raw_sig)[:4], "big")
-    return pretty, hex(sel)
+    """Return a stable Solidity signature and ordinary ABI selector."""
+    contract = attr(attr(fn, "contract_declarer"), "name", "<unknown-contract>")
+    signature = (
+        attr(fn, "solidity_signature")
+        or attr(fn, "full_name")
+        or f"{attr(fn, 'name', '<unknown-function>')}("
+        + ",".join(str(parameter.type) for parameter in (attr(fn, "parameters", []) or []))
+        + ")"
+    )
+    pretty = f"{contract}.{signature}"
+    has_selector = (
+        attr(fn, "visibility") in {"public", "external"}
+        and not bool_attr(fn, "is_constructor")
+        and not bool_attr(fn, "is_fallback")
+        and not bool_attr(fn, "is_receive")
+    )
+    selector = "0x" + keccak(text=signature)[:4].hex() if has_selector else None
+    return pretty, selector
 
-# Recursively convert detector values into deterministic JSON-compatible data.
+# Recursively convert detector values into deterministic JSON-compatible data
 def _jsonable(value):
-    if isinstance(value, tuple):
-        return [_jsonable(item) for item in value]
-    if isinstance(value, (frozenset, set)):
-        return sorted((_jsonable(item) for item in value), key=str)
+    if isinstance(value, tuple): return [_jsonable(item) for item in value]
+    if isinstance(value, (frozenset, set)): return sorted((_jsonable(item) for item in value), key=str)
     return value
 
 # Package a state entity's identity, location, and relation metadata for JSON
@@ -901,20 +903,10 @@ def var_meta(v, icfg):
             "origins": sorted(icfg.relation_origins.get(v, set())),
             "shadowed_base_members": [
                 var_meta(member, icfg)
-                for member in sorted(
-                    icfg.relation_shadowed_members.get(v, set()), key=var_key
-                )
+                for member in sorted(icfg.relation_shadowed_members.get(v, set()), key=var_key)
             ],
-            "unresolved_base_read_count": sum(
-                len(accesses)
-                for accesses in icfg.relation_unresolved_base_reads
-                .get(v, {}).values()
-            ),
-            "unresolved_base_write_count": sum(
-                len(accesses)
-                for accesses in icfg.relation_unresolved_base_writes
-                .get(v, {}).values()
-            ),
+            "unresolved_base_read_count": sum(len(accesses) for accesses in icfg.relation_unresolved_base_reads.get(v, {}).values()),
+            "unresolved_base_write_count": sum(len(accesses) for accesses in icfg.relation_unresolved_base_writes.get(v, {}).values()),
         }
 
     meta = {"name": vname_prettified, "entity_key": _jsonable(var_key(v))}
@@ -926,11 +918,13 @@ def var_meta(v, icfg):
 # Define deterministic ordering for witness records in reports
 def witness_sort_key(record: FindingWitnessRecord) -> tuple:
     return (
-        repr(getattr(record.subject, "semantic_id", var_key(record.subject))),
+        repr(attr(record.subject, "semantic_id", var_key(record.subject))),
         record.writer_owner, record.writer_storage_context,
+        record.writer_active_sender,
         record.writer_bindings,
         str(record.writer_bid[0]), int(record.writer_bid[1]),
         record.reader_owner, record.reader_storage_context,
+        record.reader_active_sender,
         record.reader_bindings,
         str(record.reader_bid[0]), int(record.reader_bid[1]),
         record.writer_file, record.writer_line,
@@ -961,6 +955,7 @@ def _serialize_witness(record, subject_index, icfg):
                 "owner": record.writer_owner,
                 "storage_context": record.writer_storage_context,
                 "bindings": list(record.writer_bindings),
+                "active_sender": record.writer_active_sender,
             },
             "block": {
                 "function_key": record.writer_bid[0],
@@ -976,6 +971,7 @@ def _serialize_witness(record, subject_index, icfg):
                 "owner": record.reader_owner,
                 "storage_context": record.reader_storage_context,
                 "bindings": list(record.reader_bindings),
+                "active_sender": record.reader_active_sender,
             },
             "block": {
                 "function_key": record.reader_bid[0],
@@ -992,13 +988,7 @@ def _serialize_witness(record, subject_index, icfg):
                 "writer_member": var_meta(evidence.writer_member, icfg),
                 "reader_location": var_meta(evidence.reader_location, icfg),
                 "reader_member": var_meta(evidence.reader_member, icfg),
-                "key_constraints": [
-                    {
-                        "left": constraint.left,
-                        "right": constraint.right,
-                    }
-                    for constraint in evidence.key_constraints
-                ],
+                "key_constraints": [{ "left": c.left, "right": c.right } for c in evidence.key_constraints],
             }
             for evidence in record.relation_evidence
         ],
@@ -1014,19 +1004,29 @@ def _serialize_witness(record, subject_index, icfg):
     }
 
 class InconsistentState(AbstractDetector):
-    """ Detect the inconsistent states """
+    """Slither entry point for MV-Scan candidate generation and validation."""
 
-    # Slither will launch the detector with slither . --detect inconsistent_state
     ARGUMENT = 'inconsistent_state'
-    HELP = 'Inconsistent state detector'
+    HELP = 'Detect candidate multi-variable state inconsistencies'
     IMPACT = DetectorClassification.INFORMATIONAL
     CONFIDENCE = DetectorClassification.INFORMATIONAL
 
-    WIKI = '..'
-    WIKI_TITLE = 'Inconsistent state detector'
-    WIKI_DESCRIPTION = 'Plugin testing'
-    WIKI_EXPLOIT_SCENARIO = '..'
-    WIKI_RECOMMENDATION = '..'
+    WIKI = 'https://github.com/crytic/slither/wiki/Detector-Documentation'
+    WIKI_TITLE = 'Multi-variable state inconsistency'
+    WIKI_DESCRIPTION = (
+        'Infers candidate relations among persistent state entities and reports '
+        'writer transactions that update a proper subset before an omitted '
+        'member is consumed by a modeled sensitive operation.'
+    )
+    WIKI_EXPLOIT_SCENARIO = (
+        'A protocol maintains a relation among persistent entities. One '
+        'transaction updates only part of it, and another consumes an omitted '
+        'member in control, a storage write, or an external effect.'
+    )
+    WIKI_RECOMMENDATION = (
+        'Review the inferred relation and ensure every transition preserves '
+        'the protocol invariant before dependent state is consumed.'
+    )
 
     """
     Detector pipeline
@@ -1043,9 +1043,7 @@ class InconsistentState(AbstractDetector):
         (9) Emit Slither Output and reproducible machine-readable JSON.
     """
     def _detect(self) -> List[Output]:
-        if MVSCAN_STRICT_CONFIG:
-            reject_unknown_prefixed_environment("MVSCAN_", _KNOWN_MVSCAN_ENV)
-        
+        if MVSCAN_STRICT_CONFIG: reject_unknown_prefixed_environment("MVSCAN_", _KNOWN_MVSCAN_ENV)
         print("[mvscan-config] " + json.dumps(effective_config(), sort_keys=True), file=sys.stderr, flush=True)
         reset_icfg_analysis_caches()
         unit_id = _compilation_unit_id(self.compilation_unit)
@@ -1128,9 +1126,15 @@ class InconsistentState(AbstractDetector):
                 )
             return pseudo
 
+        entry_owners = compute_entry_owners(icfg, self.compilation_unit)
+        keep = set(entry_owners)
+
         if ENABLE_MULTI_RETURN_GROUPS:
             for fn, return_sites in icfg.fn_return_sites.items():
                 for return_site, returned_locations in return_sites.items():
+                    if return_site.block_id not in keep:
+                        pair_stats["relation_origins_rejected_unreachable"] += 1
+                        continue
                     members = { location for location in returned_locations if relation_member_is_eligible(location) }
                     origin_id = (
                         f"return::{function_key(fn)}::"
@@ -1138,7 +1142,7 @@ class InconsistentState(AbstractDetector):
                         f"{return_site.return_index}"
                     )
                     node = icfg.node_lookup.get(return_site.block_id)
-                    expression = str(getattr(node, "expression", "") or "")
+                    expression = str(attr(node, "expression", "") or "")
                     register_pseudo(
                         members,
                         RelationOrigin(
@@ -1151,8 +1155,6 @@ class InconsistentState(AbstractDetector):
                     )
 
         # Restrict all later evidence to code reachable from an external transaction entry
-        entry_owners = compute_entry_owners(icfg, self.compilation_unit)
-        keep = set(entry_owners)
         icfg.blocks = { block_id: info for block_id, info in icfg.blocks.items() if block_id in keep }
         icfg.rebuild_predecessors()
         filter_bid_map(icfg.var_reads, keep)
@@ -1183,7 +1185,7 @@ class InconsistentState(AbstractDetector):
                     if 0 <= sink_site.ir_index < len(sink_irs)
                     else None
                 )
-                expression = str(getattr(sink_node, "expression", None) or sink_ir or "")
+                expression = str(attr(sink_node, "expression") or sink_ir or "")
                 origin_id = (
                     f"sink::{sink_site.block_id[0]}::"
                     f"{sink_site.block_id[1]}::{sink_site.ir_index}"
@@ -1210,12 +1212,7 @@ class InconsistentState(AbstractDetector):
             return sink_cache[key]
 
         # Expand static access pairs into concrete transaction-root and storage contexts
-        for witness in stale_read_pairs(
-            icfg,
-            reader_filter=reader_passes_sink,
-            pair_stats=pair_stats,
-            contextual_relations=MVSCAN_CONTEXTUAL_KEYS,
-        ):
+        for witness in stale_read_pairs(icfg, reader_filter=reader_passes_sink, pair_stats=pair_stats, contextual_relations=MVSCAN_CONTEXTUAL_KEYS):
             write_contexts = icfg.entry_contexts_by_block.get(witness.writer_bid, set())
             read_contexts = icfg.entry_contexts_by_block.get(witness.reader_bid, set())
             if not write_contexts or not read_contexts:
@@ -1267,18 +1264,68 @@ class InconsistentState(AbstractDetector):
                             continue
 
                     if isinstance(witness.variable, MultiVarGroup):
+                        written_members = effective_relation_write_members(
+                            icfg,
+                            witness.variable,
+                            witness.writer_bid,
+                            write_context if MVSCAN_CONTEXTUAL_KEYS else None,
+                        )
+                        if not written_members or not written_members < frozenset(witness.variable.vars):
+                            pair_stats["invalid_partial_write_filtered"] += 1
+                            continue
+                        omitted_members = frozenset(witness.variable.vars) - written_members
+                        sensitive_events_by_member = sensitive_relation_member_events(icfg, witness.variable, witness.reader_bid, read_context)
+                        supporting_events = {
+                            event
+                            for member in omitted_members
+                            for event in sensitive_events_by_member.get(member, set())
+                        }
+                        if not supporting_events:
+                            pair_stats["omitted_member_not_sensitive_filtered"] += 1
+                            continue
+                        relation_evidence = tuple(
+                            evidence
+                            for evidence in relation_evidence
+                            if (
+                                evidence.writer_member in written_members
+                                and evidence.reader_member in omitted_members
+                                and evidence.reader_member in sensitive_events_by_member
+                            )
+                        )
+                        if not relation_evidence:
+                            pair_stats["omitted_member_evidence_filtered"] += 1
+                            continue
                         writer_root_fn = icfg.root_function_by_owner.get(write_context.owner)
                         write_sum = icfg.function_write_summaries.get(writer_root_fn)
                         if (write_sum is not None and summary_covers_relation(write_sum, witness.variable)):
                             pair_stats["must_full_relation_filtered"] += 1
                             continue
 
+                    sink_events = (
+                        supporting_events
+                        if isinstance(witness.variable, MultiVarGroup)
+                        else {
+                            event
+                            for event in icfg.sensitive_read_events_by_owner.get(read_context.owner, set())
+                            if event.block_id == witness.reader_bid
+                        }
+                    )
                     sink_sites = {
                         sink_site
-                        for event in icfg.sensitive_read_events_by_owner.get(read_context.owner, set())
-                        if event.block_id == witness.reader_bid
+                        for event in sink_events
                         for sink_site in icfg.sink_sites_by_owner_and_event.get((read_context.owner, event), set())
                     }
+                    if isinstance(witness.variable, MultiVarGroup):
+                        relation_members = frozenset(witness.variable.vars)
+                        assert written_members
+                        assert written_members < relation_members
+                        assert supporting_events
+                        assert relation_evidence
+                        assert all(
+                            evidence.writer_member in written_members
+                            and evidence.reader_member in relation_members - written_members
+                            for evidence in relation_evidence
+                        )
                     all_records.add(FindingWitnessRecord(
                         subject=witness.variable,
                         writer_bid=witness.writer_bid,
@@ -1292,12 +1339,12 @@ class InconsistentState(AbstractDetector):
                         reader_file=reader_file,
                         reader_line=reader_line,
                         relation_evidence=relation_evidence,
-                        sink_sites=tuple(sorted(
-                            sink_sites,
-                            key=lambda sink: (sink.block_id, sink.ir_index, sink.kind),
-                        )),
+                        written_members=written_members if isinstance(witness.variable, MultiVarGroup) else frozenset(),
+                        sink_sites=tuple(sorted(sink_sites, key=lambda sink: (sink.block_id, sink.ir_index, sink.kind))),
                         writer_bindings=write_context.bindings,
                         reader_bindings=read_context.bindings,
+                        writer_active_sender=write_context.active_sender,
+                        reader_active_sender=read_context.active_sender,
                         writer_reaches_reader=witness.writer_reaches_reader,
                         reader_reaches_writer=witness.reader_reaches_writer,
                     ))
@@ -1308,7 +1355,7 @@ class InconsistentState(AbstractDetector):
         for record in sorted(all_records, key=witness_sort_key):
             relation = record.subject
             if not isinstance(relation, MultiVarGroup): continue
-            written_members = frozenset(evidence.writer_member for evidence in record.relation_evidence)
+            written_members = record.written_members
             potentially_stale = set(relation.vars) - set(written_members)
             if not potentially_stale: continue
             key = CandidateKey(
@@ -1322,8 +1369,10 @@ class InconsistentState(AbstractDetector):
             candidate.context_instances.add((
                 record.writer_owner,
                 record.writer_storage_context,
+                record.writer_active_sender,
                 record.reader_owner,
                 record.reader_storage_context,
+                record.reader_active_sender,
                 record.writer_bid,
                 record.reader_bid,
             ))
@@ -1377,10 +1426,12 @@ class InconsistentState(AbstractDetector):
                     {
                         "writer_owner": item[0],
                         "writer_storage_context": item[1],
-                        "reader_owner": item[2],
-                        "reader_storage_context": item[3],
-                        "writer_bid": item[4],
-                        "reader_bid": item[5],
+                        "writer_active_sender": item[2],
+                        "reader_owner": item[3],
+                        "reader_storage_context": item[4],
+                        "reader_active_sender": item[5],
+                        "writer_bid": item[6],
+                        "reader_bid": item[7],
                     }
                     for item in sorted(candidate.context_instances, key=repr)
                 ],
@@ -1392,10 +1443,7 @@ class InconsistentState(AbstractDetector):
                         "ir_index": sink.ir_index,
                         "kind": sink.kind,
                     }
-                    for sink in sorted(
-                        candidate.sink_sites,
-                        key=lambda sink: (sink.block_id, sink.ir_index, sink.kind),
-                    )
+                    for sink in sorted(candidate.sink_sites, key=lambda sink: (sink.block_id, sink.ir_index, sink.kind))
                 ],
                 "call_paths": [list(path) for path in sorted(candidate.call_paths)],
                 "key_equality_constraints": [
@@ -1426,6 +1474,9 @@ class InconsistentState(AbstractDetector):
             + pair_stats["storage_context_mismatch"]
             + pair_stats["root_context_sink_filtered"]
             + pair_stats["relation_context_incompatible"]
+            + pair_stats["invalid_partial_write_filtered"]
+            + pair_stats["omitted_member_not_sensitive_filtered"]
+            + pair_stats["omitted_member_evidence_filtered"]
             + pair_stats["must_full_relation_filtered"]
             + pair_stats["owner_context_pairs"]
         )
@@ -1465,7 +1516,7 @@ class InconsistentState(AbstractDetector):
         pair_stats["call_target_digest"] = _structural_digest(dispatch_catalog)
         pair_stats["execution_context_digest"] = _structural_digest([
             (
-                block_id, (context.owner, context.storage_context, context.bindings)
+                block_id, (context.owner, context.storage_context, context.bindings, context.active_sender)
                 if isinstance(context, ExecutionContext) else context,
             )
             for block_id, contexts in sorted(icfg.entry_contexts_by_block.items(), key=repr)

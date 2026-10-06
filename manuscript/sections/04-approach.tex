@@ -1,0 +1,58 @@
+\section{\sys}
+\label{s:mvscan}
+
+\subsection{Overview}
+
+\sys is an annotation-free static may-analysis. It builds a state-annotated interprocedural CFG; infers relation hypotheses; summarizes write coverage and read-to-sink influence; enumerates context-compatible writers and consumers; and aggregates the surviving evidence around a writer-centered native candidate. The output is for review, not a proved bug.
+
+\subsection{Relation hypotheses}
+\label{s:relation-discovery}
+
+\paragraph{Control co-influence.}
+For each modeled control sink, \sys collects abstract variables whose read-derived values may reach the condition. After eligibility filtering and normalization, two or more variables form an origin-specific hypothesis. Co-influence is useful because it identifies one decision made from several values; it is not independent evidence that those values must obey an invariant.
+
+\paragraph{Return-derived relations.}
+The second source is a return site in a function with no directly detected storage writes. This is not a transitive purity guarantee: the helper can call a mutating callee. One returned component must carry at least two variables; a tuple does not qualify merely because separate components expose one variable each. The analysis tracks components, but if a selected component has no recorded facts it falls back to tuple-wide information and can therefore mix components. The frozen environment option retains its historical ``multi-return'' name, while the paper uses the more accurate term \emph{return-derived relation}.
+
+Scalar storage, complete keyed variables, and abstract external-state observations are eligible. Constants and immutables are excluded, and a precise keyed variable shadows its coarse mapping base. Every hypothesis retains an \emph{origin identity} (origin plus normalized members) and a member-only equivalence identity used for aggregation.
+
+\subsection{Writer evidence}
+\label{s:writer-analysis}
+
+At writer site \(w\), the detector contextualizes each write description and independently matches it against relation members. After removing recognized syntactic self-copy patterns, the union of matches is \(\widehat{U}(w,\rho)\). A site survives when \(\varnothing\subset\widehat{U}\subset M\); the omitted set is \(M\setminus\widehat{U}\).
+
+\(\widehat{U}\) is an abstract match set, not the semantic change set \(\Delta_M\), and its members need not be jointly realizable. A single \cc{m[k]} write can independently match \cc{m[0]} and \cc{m[1]} under different assumptions. The self-copy filter is also textual and lowercases identifiers, so Solidity names that differ only by case can be conflated.
+
+Key matching preserves complete nested paths, substitutes formal arguments, and emits witness-local equality constraints when terms may coincide. The term language is deliberately restricted. State-variable references used as keys are treated as syntactically fixed even though their runtime values can change or coincide. Parameter canonicalization uses single-origin provenance; a phi merge carrying one parameter origin is not proof that the merged value equals that parameter on every branch. External-return template substitution is not uniform across all variable kinds, so receiver and argument translation is not claimed complete.
+
+The frozen detector then applies a \emph{whole-root write-coverage heuristic}. It filters a writer when the root summary's syntactic targets cover every relation member. Coverage is not reconciliation: the generated sets can retain self-copies, do not establish appropriate value changes, and do not prove the relation holds before a sink. This heuristic can therefore lose recall.
+
+\subsection{Consumer evidence}
+\label{s:consumer-analysis}
+
+Read origins propagate through assignments, phi operations, references, tuple handling, resolved calls, and returns. Summaries record which parameters and physical read events may influence:
+
+\begin{itemize}[leftmargin=*,nosep]
+  \item control operands, including branches and \cc{require}/\cc{assert};
+  \item recorded value operands of modeled storage writes; and
+  \item external effects.
+\end{itemize}
+
+Destination-key-only dependence is not generally recorded as a storage-write sink. An influence edge is behavioral evidence, not proof of a defect or changed concrete outcome.
+
+Acceptance requires a location-specific read of an omitted variable under an owner-qualified root. Owner qualification remains mandatory even when the optional early root-context sink gate is disabled; the option controls an earlier filter, not the later multi-variable test. This is root sensitivity, not full callsite or invocation sensitivity.
+
+\subsection{Candidates and structural buckets}
+\label{s:candidate-construction}
+
+Native candidates are keyed by writer root, writer site, member-set equivalence, matched set, and omitted set. Reader witnesses retain roots, abstract storage domains, parameter bindings, senders, sink sites, and witness-local key constraints. Candidate-level constraints are a union for search and display; constraints from different witnesses are alternatives, not one conjunction.
+
+The context-instance count is a projection over roots, storage domains, senders, and block identifiers. Argument-binding tuples remain in reader-witness records but are omitted from that count. Reported call provenance is a representative root-to-writer function chain chosen by the implementation's parent selection. It is not guaranteed shortest, feasible, binding-exact, or a complete writer-to-reader execution trace.
+
+For audit sampling, each native record maps to one structural payload containing dataset, subject, revision role, writer owner and block, relation members, matched and omitted members, transaction-context owners, sink kinds, origin sites, retained witness sites and their relation evidence, key constraints, and relation-shape tags. The native identifier, compilation-unit identity, and other details are discarded; identical payloads are deduplicated. A native record is not split into several buckets. Thus 3,732 \config{B0} native records become 2,868 structural buckets through many-to-one merging. \emph{Structural-bucket precision} is the fraction of audited buckets validated as MV-SI, not precision over native reports or distinct vulnerabilities.
+
+\subsection{Approximation and cost drivers}
+
+The analysis can over-approximate because a relation may be incidental, paths may not coexist, key constraints may be infeasible, or reconciliation may occur. It can under-approximate because relation origins, calls, keys, inheritance exposures, external observations, and whole-root coverage are incomplete abstractions.
+
+The dominant costs are repeated summary propagation over IR, relation registration against access indexes, writer--reader Cartesian products, and contextual member matching. Call resolution and contexts are bounded, but fixed-point rounds, set sizes, and fan-out vary by program. We therefore report measured time and memory distributions instead of asserting an underspecified formal polynomial bound.

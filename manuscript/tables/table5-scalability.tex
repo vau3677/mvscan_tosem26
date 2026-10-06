@@ -1,0 +1,25 @@
+\begin{table*}
+  \caption{Completion, scalability, and deterministic reproducibility.}
+  \label{tab:scalability}
+  \centering
+  \small
+  \begin{tabular}{llrrrrrr}
+    \toprule
+    Benchmark & Config. & Success & Median time & Time IQR & Max time & Median RSS & Max RSS \\
+    \midrule
+    ISU & \config{B0} & 88/88 & 12.90 s & 5.80--23.03 s & 659.39 s & 332.9 MiB & 15,534.9 MiB \\
+        & \config{A1} & 88/88 & 11.42 s & 5.61--21.58 s & 316.72 s & 322.5 MiB &  5,167.7 MiB \\
+        & \config{A2} & 88/88 & 12.67 s & 5.80--22.90 s & 396.66 s & 321.1 MiB &  8,327.4 MiB \\
+        & \config{A4} & 88/88 & 14.73 s & 5.96--22.65 s & 420.74 s & 340.3 MiB &  9,155.9 MiB \\
+        & \config{A5} & 88/88 & 12.82 s & 5.78--21.89 s & 502.09 s & 331.2 MiB & 12,529.7 MiB \\
+    \addlinespace
+    Web3Bugs & \config{B0} & 61/65 & 7.61 s & 3.84--20.99 s & 59.58 s & 237.0 MiB & 1,047.4 MiB \\
+             & \config{A1} & 61/65 & 7.31 s & 3.74--14.78 s & 58.32 s & 229.2 MiB & 1,044.1 MiB \\
+             & \config{A2} & 61/65 & 7.60 s & 3.84--18.49 s & 59.72 s & 231.4 MiB & 1,046.8 MiB \\
+             & \config{A4} & 61/65 & 8.06 s & 3.84--20.90 s & 64.88 s & 244.5 MiB & 1,048.5 MiB \\
+             & \config{A5} & 61/65 & 7.61 s & 3.79--20.20 s & 59.72 s & 233.1 MiB & 1,043.0 MiB \\
+    \bottomrule
+  \end{tabular}
+  \Description{Successful analyses, runtime distributions, and peak resident-set size for the reference and ablated configurations on both benchmarks.}
+  \parbox{\textwidth}{\footnotesize\emph{Determinism:} For \config{B0}, 76 of 80 available ISU seed pairs and all 61 Web3Bugs seed pairs had identical canonical output; four ISU pairs mismatched. Eight ISU and four Web3Bugs pairs were missing. No run timed out, exhausted memory, or reached the context bound.}
+\end{table*}

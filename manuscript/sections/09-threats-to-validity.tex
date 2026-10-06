@@ -1,0 +1,70 @@
+% REVISION NOTE (2026-09-03):
+% Threats below are tied to the rebuilt benchmarks and current implementation.
+% Obsolete claims about selector-only external state, forward slicing, and a
+% theoretical O(T^{2+N}) dynamic-search cost are preserved only in comments.
+
+\section{Limitations and Threats to Validity}
+\label{s:limitations}
+
+\subsection{Construct validity}
+\label{s:limitations-construct}
+
+\paragraph{MV-SI is semantic.}
+C1--C4 reduce ambiguity, but C2 and C3 still require protocol understanding. A relation may be documented incompletely, and whether a partial state is erroneous can depend on economic intent not recoverable from source alone. The 52 initial disagreements among 116 historical findings quantify this threat rather than eliminating it. Adjudication produces a consistent final oracle, but it does not make the construct objective in the way a compiler error is objective.
+
+\paragraph{Structural-bucket precision.}
+The 20.5\% reference result is the fraction of sampled structural buckets labeled MV-SI. It is not raw-report precision, native writer-candidate precision, per-project precision, vulnerability prevalence, or the probability that a random DeFi contract contains MV-SI. Structural bucketing can split one underlying defect across several readers or sinks, while native aggregation can combine several witnesses under one writer. We state the unit with every metric, but no one normalization is uniquely correct for auditor effort.
+
+\paragraph{Strict recovery is intentionally narrow.}
+A historical case counts only when one candidate matches the relation, writer, omitted state, and consumer role. This rule avoids inflating recall with adjacent variable warnings, but can count diagnostically useful near-matches as misses. Conversely, historical reports may omit enough detail that the adjudicated relation or sink is only one plausible reconstruction. The 13 insufficient-evidence findings are excluded rather than forced into the oracle, yet uncertainty may remain among retained cases.
+
+\paragraph{Behavioral sinks are proxies.}
+Control conditions, storage writes, and external effects are useful points where stale data can matter, but they are not equivalent to economic harm. A value can reach a sink without changing the concrete outcome, and an economically important use may occur through a pattern not recognized by the sink classifier. \sys therefore reports behavioral influence, not exploitability.
+
+\subsection{Internal validity}
+\label{s:limitations-internal}
+
+\paragraph{No joint path-feasibility proof.}
+The detector combines may-reachable writer and reader evidence under compatible contexts. It does not prove that one initial state and transaction sequence realizes all facts, that witness-local key equalities hold together, or that the reader precedes every reconciliation. This is the largest known source of imprecision: 813 of 969 nonbugs either lack a desynchronizing partial transition or reconcile before consumption.
+
+\paragraph{Whole-root write coverage.}
+The filter uses syntactic root-level storage targets, not a reconciliation proof. Self-copies can remain in its generated sets, independent key matches can form an unrealizable full set, and values are not checked. It can therefore remove real omissions as well as retain harmless writers.
+
+\paragraph{State and context abstraction.}
+Mapping keys are canonicalized syntactically and unified through a restricted term language. Equal runtime expressions with different syntax can be missed, while free transaction terms may produce equality obligations that are infeasible. Context propagation distinguishes roots, deployment storage, formal arguments, and active senders, but is bounded and does not model arbitrary delegatecall/proxy behavior. External state covers unresolved view results, not the complete mutable state of remote contracts.
+
+\paragraph{Call and inheritance resolution.}
+Internal and library calls generally require a unique statically resolved target; interface dispatch is optional and capped. Physical inherited implementations are not cloned for every exposure, and owner-specific summaries can under-approximate some inherited roots. These choices can create false negatives and can also remove reconciliation facts, indirectly creating false positives.
+
+\paragraph{Front-end and build dependence.}
+The analysis depends on Slither's source mapping, CFG, SSA IR, reference recovery, and call objects~\cite{feist2019slither}. Historical repositories depend on old compilers and packages. A best-effort no-edit build policy prevents source repair from contaminating the subject, but accepted builds may still differ in dependency environment from the original audit. Four canonical-output mismatches among the available ISU seed pairs show that the complete toolchain is not perfectly deterministic.
+
+\paragraph{Manual labeling.}
+The final labels are based on human inspection. Initial disagreement is reported for the historical set, but the frozen tables do not provide a separate inter-rater coefficient for every Web3Bugs bucket packet. Adjudication and preserved evidence reduce accidental inconsistency, yet reviewer expectations about intended synchronization can still bias labels. The same reviewers also know that buckets were generated by \sys, which can anchor attention on the proposed relation.
+
+\subsection{External validity}
+\label{s:limitations-external}
+
+\paragraph{Benchmark coverage.}
+The historical population covers 116 published ISU findings, but only 64 are adjudicated MV-SI and 62 of those build. Web3Bugs provides realistic repository snapshots and dependency context, yet only 65 of 102 snapshots receive accepted builds and 61 complete under each configuration. Results may not generalize to unbuildable projects, newer Solidity features, proxy-heavy deployments, non-EVM platforms, closed-source contracts, or protocols whose invariants live primarily in documentation.
+
+\paragraph{Corpus composition.}
+Both benchmarks are security-oriented and concentrate on audited or reported DeFi code. Their relation density, coding style, and defect distribution may differ from ordinary contracts or other domains. The 97.6\% relation-support rate should therefore be read as evidence that the chosen signals work in these corpora, not as a universal rate for all Solidity programs.
+
+\paragraph{Sampling and configuration comparisons.}
+Each configuration contributes an equal-probability sample of 400 structural buckets, not a census of its full population. Wilson intervals quantify binomial sampling uncertainty within each sample, but the samples overlap and are not paired. Differences such as \config{A1}'s +8.0 percentage points cannot be isolated from population and identity changes. Configuration-only buckets further show that ablations are not monotone subsets.
+
+\paragraph{No open-world recall.}
+Web3Bugs is used for detector-output precision, not as a complete negative-and-positive oracle for MV-SI. Unreported MV-SI cases may exist outside sampled output, and unsampled candidates are unlabeled. Strict recall is reported only for the adjudicated historical positive set.
+
+\subsection{Resource and reproducibility threats}
+\label{s:limitations-resources}
+
+Median runtimes and memory are practical, but the ISU maxima of 659.39 seconds and 15,534.9 MiB reveal a heavy tail. Hardware, compiler caching, filesystem behavior, and Slither version can affect these measurements. Because the evaluation does not compare matched targets on identical corpora, the values should not be converted into cross-tool speedups.
+
+Canonical-output equality holds for all available Web3Bugs seed pairs and 76 of 80 available ISU pairs, with four mismatches and additional missing pairs. Candidate hashing and deterministic sorting do not guarantee deterministic upstream analysis. Future releases should preserve exact environments and investigate each mismatch before treating the output digest as a reproducibility oracle.
+
+\subsection{Claims deliberately not made}
+\label{s:limitations-claims}
+
+The evaluation does not establish that \sys proves vulnerabilities, discovers a particular number of zero-days, outperforms adjacent detectors in precision or recall, or is uniformly lightweight. It establishes strict recovery on one historical MV-SI oracle, structural-bucket precision on sampled output, component-sensitive population changes, measured resource distributions, and a concentrated error profile.

@@ -1,0 +1,26 @@
+\begin{table}
+  \caption{Where audited Web3Bugs candidates fail semantic validation.}
+  \label{tab:error-analysis}
+  \centering
+  \small
+  \begin{tabularx}{\linewidth}{Xrr}
+    \toprule
+    Outcome & Count & Share \\
+    \midrule
+    \multicolumn{3}{l}{\emph{First failed criterion (all 1,270 audited buckets)}} \\
+    C2: unsupported relation & 31 & 2.4\% of all \\
+    C3: no persistent partial transition & 937 & 73.8\% of all \\
+    C4: no behavioral consumption & 1 & 0.1\% of all \\
+    \addlinespace
+    \multicolumn{3}{l}{\emph{Primary cause (969 nonbugs)}} \\
+    No desynchronizing partial transition & 522 & 53.9\% \\
+    Reconciliation precedes consumption & 291 & 30.0\% \\
+    Analysis abstraction error & 104 & 10.7\% \\
+    Unsupported or overbroad relation & 31 & 3.2\% \\
+    Incompatible context, key, or ordering & 20 & 2.1\% \\
+    Omitted state not behaviorally consumed & 1 & 0.1\% \\
+    \bottomrule
+  \end{tabularx}
+  \Description{The first failed semantic criterion among 1,270 audited structural buckets and the mutually exclusive primary causes assigned to 969 nonbugs.}
+  \parbox{\linewidth}{\footnotesize\emph{Note:} Reviewers judged 1,239 of 1,270 inferred relations (97.6\%) to be supported by protocol semantics. The first two primary causes account for 813 of 969 nonbugs (83.9\%).}
+\end{table}

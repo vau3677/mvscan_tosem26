@@ -1,0 +1,80 @@
+% REVISION NOTE (2026-09-03):
+% This new section separates interpretation and practical implications from raw
+% results. It deliberately avoids resurrecting the old unreported zero-day and
+% cross-tool speedup claims.
+
+\section{Discussion and Practical Implications}
+\label{s:discussion}
+
+\subsection{Relation discovery is feasible, but relation discovery is not detection}
+\label{s:discussion-relations}
+
+The strongest positive result is the 97.6\% semantic support rate for inferred relations. It answers the initial feasibility question behind \sys: useful multi-variable structure can be recovered from code without project annotations or a mined natural-language specification. Control decisions and state-returning APIs encode enough of the developer's model to produce credible member sets across a large and heterogeneous corpus.
+
+That result should not be conflated with candidate precision. A relation can be real while a particular writer is harmless. In fact, most false positives contain exactly this shape: the protocol genuinely relates the locations, and an omitted member genuinely reaches a behavioral sink, but the alleged writer does not commit an inconsistent state. Relation inference solves the absence of an aliasing anchor; it does not solve path feasibility, transactional completion, or reconciliation.
+
+This distinction changes the research agenda. A detector that responds to 20.5\% precision by mining ever narrower relations risks deleting useful coverage while leaving the dominant error untouched. The audit suggests a better decomposition: retain broad but provenance-rich relation hypotheses, then spend precision budget on transition summaries that answer whether the relation can remain partially updated at an observable boundary.
+
+\subsection{Persistent-transition modeling is the central bottleneck}
+\label{s:discussion-transitions}
+
+The C3 failures reveal two different analytical problems. The first is \emph{desynchronization}: a block writes one member, but the transaction does not actually change the relation in the relevant way. The write may assign an equivalent value, operate on a different logical account, occur only on an infeasible branch, or be dominated by conditions that preserve the relation. The second is \emph{reconciliation}: the transaction temporarily writes a proper subset, but another mandatory operation restores the relation before a consumer can observe it.
+
+The whole-root write-coverage heuristic addresses only a coarse subset of reconciliation. It removes a writer when the root's syntactic targets cover all relation variables, but it does not prove effective changes, compatible values, or restoration of the obligation. Conversely, self-copies and independently possible key matches can make coverage look complete and lose recall.
+
+A natural next analysis is a relation-specific transaction summary. Rather than summarize only which locations a root may or must write, such a summary would preserve ordered phases: the first relation member changed, the set known synchronized at each exit, and key substitutions under which the synchronization holds. Post-dominance and path-sensitive must analysis could discharge common cases without invoking a solver. A targeted solver could then be reserved for candidates whose static summary leaves one or two concrete path or key obligations, instead of exploring arbitrary transaction sequences from scratch.
+
+The distinction also matters to manual review. Auditors should not begin by re-litigating whether the relation is plausible. They should trace the writer root to its non-reverting exits and ask a narrower question: after all internal calls, modifiers, and deferred accounting complete, can any omitted member remain semantically stale for the same key? This ordering makes review faster because it follows the empirical failure distribution.
+
+\subsection{What the ablations do and do not show}
+\label{s:discussion-ablations}
+
+Disabling branch-derived relations removes 80.8\% of \config{B0}'s structural population and raises sample precision by 8.0 percentage points. The most defensible interpretation is that return-derived relation candidates are denser in the sampled corpus, while branch-derived relations provide much broader coverage. It would be incorrect to conclude that control-derived relations are mostly unsupported: only 2.4\% of all distinct audited buckets first fail the relation criterion. More likely, broad control relations expose many genuine couplings whose apparent writers are not persistent partial transitions.
+
+The result creates a practical operating choice. An auditor with a tight review budget may begin with return-derived candidates or rank branch relations lower. A benchmark or discovery campaign that values coverage should retain branch relations but apply stronger writer-side prioritization. The complete configuration is therefore not justified because every component maximizes point precision; it is justified because it preserves the full detection hypothesis under study.
+
+The mapping and contextual-key ablations require even more caution. \config{A4} and \config{A5} do not merely relax a final filter. They alter the identity of state locations and the way evidence aggregates, creating thousands of configuration-only structural buckets. Their modest sample-precision changes cannot capture the semantic value of avoiding a false equality such as \cc{balance[alice]} = \cc{balance[bob]} or of separating the same implementation under two deployed storage contexts. For a reviewer, those distinctions are non-negotiable even when a coarser configuration happens to sample a denser set.
+
+Disabling return-derived relations slightly lowers sampled precision but leaves a large structural population. The 326 \config{A2}-only buckets are not explained by the documented origin-insensitive aggregation, so we do not assign that non-monotonicity a cause without stronger provenance evidence.
+
+\subsection{A practical triage workflow}
+\label{s:discussion-triage}
+
+The writer-centered output supports a disciplined review sequence:
+\begin{enumerate}[leftmargin=*,nosep]
+  \item \textbf{Validate the relation origin.} Inspect the control sink or return site and state why the members participate in one protocol rule. Reject incidental conjunctions immediately.
+  \item \textbf{Select one concrete witness.} Use one writer context, reader context, and its local key constraints. Do not conjoin the candidate-wide union of constraints.
+  \item \textbf{Establish the effective writer transition.} Follow the outer writer root through modifiers and calls; determine which relation members change for the same logical key and whether their new values can violate the relation.
+  \item \textbf{Search for mandatory reconciliation.} Check post-dominating writes, settlement helpers, hooks, and exit-specific clean-up. A block-level omission is not sufficient.
+  \item \textbf{Validate the consumer.} Confirm that the omitted member reaches the reported control, state write, or external effect before any synchronization and that the inconsistent value can change behavior.
+  \item \textbf{Assess impact separately.} Only after C1--C4 hold should review proceed to exploit preconditions, privileges, liquidity, ordering, or economic loss.
+\end{enumerate}
+
+This sequence mirrors the evidence already serialized by \sys and the observed false-positive distribution. It also avoids a common reporting error: calling every supported relation plus partial-looking assignment an MV-SI before checking transaction completion.
+
+For continuous integration, a lower-volume profile can prioritize candidates with a small relation, concrete mapping keys, one writer root, a control or external-effect sink, and no observed reconciliation write in the root summary. For security review, the full configuration is more appropriate because it preserves branch-derived relations and context metadata. These are ranking strategies over the same candidate semantics, not alternate definitions of MV-SI.
+
+\subsection{Implications for automated analysis}
+\label{s:discussion-analysis-implications}
+
+First, multi-variable analysis benefits from separating \emph{relation evidence} from \emph{violation evidence}. The former can be mined broadly and audited independently; the latter requires transition and consumer reasoning. Combining them into one opaque score would make it impossible to see that relation support is already high while writer validity is low.
+
+Second, state identity is part of the semantic model, not an implementation detail. Complete mapping-key paths, deployment storage, formal substitutions, and active-sender changes determine whether two accesses refer to one logical fact. The large configuration-only populations in \config{A4} and \config{A5} show how quickly candidate structure changes when these identities are weakened.
+
+Third, consumer gating remains valuable even though only one final nonbug fails C4. That low count does not mean sink analysis is unnecessary; it means the pipeline filters out nonbehavioral reads before sampling and reports candidates with explicit consumer evidence. Removing the gate would change the candidate universe. The error table characterizes survivors, not every coarse access pair considered internally.
+
+Fourth, a hybrid design is most promising after static narrowing. Symbolic execution supplied with one relation, one writer root, one reader root, and concrete witness-local equality constraints faces a different problem from unconstrained whole-program exploration. The static analysis can therefore serve as a specification and target generator for selective feasibility checking. Any future hybrid evaluation should compare that complete workflow on the same cases and report the additional cases proved, rejected, and timed out; published runtimes from unrelated detectors are not an adequate baseline.
+
+\subsection{Scope relative to adjacent tools}
+\label{s:discussion-positioning}
+
+\sys does not replace same-state race, reentrancy, transaction-ordering, symbolic-execution, or general static-analysis tools. Those systems answer complementary questions and may provide the mechanism through which an MV-SI is exposed. A transaction-ordering detector can show that two calls may be reordered; a symbolic executor can validate a concrete sequence; a general framework can expose access control or call hazards. \sys contributes the relation--partial-transition--consumer hypothesis that tells those analyses which distinct locations should be reasoned about together.
+
+Accordingly, the meaningful comparison is qualitative. Does a tool infer or accept a multi-location relation? Does it represent a proper-subset transition? Does it require behaviorally consumed omitted state? Does it prove feasibility or merely triage? Comparing raw warning counts, per-contract runtimes, or precision values across different answers to these questions would obscure rather than clarify progress.
+
+\subsection{Resource profile and deployment}
+\label{s:discussion-resources}
+
+The runtime medians support use during repository-scale audits and repeated experimentation. The heavy ISU tail nevertheless matters operationally. A 15,534.9-MiB maximum does not by itself invalidate the characterization of \sys as a static, scalable analysis; it does show that resource provisioning and tail monitoring are necessary. CI deployments should impose transparent process limits, persist partial metadata, and report whether a project was missing, failed, or completed with no candidates. Research evaluations should continue reporting distributions and maxima rather than converting total time into a deceptively uniform per-contract rate.
+
+The four ISU determinism mismatches deserve similar treatment. Stable sorting and structural digests already reduce incidental nondeterminism, but compiler, Slither, dependency, or set-order effects may still alter upstream facts. Reproducibility should be treated as a measured property of the complete toolchain, not assumed from deterministic candidate hashing alone.

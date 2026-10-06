@@ -1,0 +1,47 @@
+% Keep packages conservative for ACM/TAPS compatibility. Do not change page
+% geometry, fonts, spacing, headings, captions, or bibliography formatting.
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{minted}
+\usepackage{enumitem}
+
+% Editor-style syntax colors on a light page background.
+\setminted{style=vs,breaklines=true}
+
+\sisetup{
+  detect-all,
+  group-separator={,},
+  group-minimum-digits=4,
+  table-number-alignment=center
+}
+
+\newcommand{\tool}{M\textsc{V}-\textsc{SCAN}\xspace}
+\newcommand{\mvsi}{MV-SI\xspace}
+\newcommand{\sys}{\tool}
+\newcommand{\cc}[1]{\texttt{#1}}
+\newcommand{\eg}{e.g.,\xspace}
+\newcommand{\etal}{et al.}
+\newcommand{\PP}[1]{\medskip\noindent\textbf{#1.}\quad}
+
+% Author comments. Use \VU{...} and \YL{...} for inline discussion, and the
+% TODO variants for concrete actions. Switching \internalcommentsfalse in
+% main.tex removes every comment without editing section files.
+\ifinternalcomments
+  \newcommand{\VU}[1]{\textcolor{blue!70!black}{[VU: #1]}}
+  \newcommand{\YL}[1]{\textcolor{violet!80!black}{[YL: #1]}}
+  \newcommand{\VUTODO}[1]{\textcolor{blue!70!black}{\textbf{[VU TODO: #1]}}}
+  \newcommand{\YLTODO}[1]{\textcolor{violet!80!black}{\textbf{[YL TODO: #1]}}}
+\else
+  \newcommand{\VU}[1]{}
+  \newcommand{\YL}[1]{}
+  \newcommand{\VUTODO}[1]{}
+  \newcommand{\YLTODO}[1]{}
+\fi
+
+% Semantic helpers keep recurring evaluation language consistent.
+\newcommand{\RQ}[1]{\textbf{RQ#1}}
+\newcommand{\config}[1]{\textsc{#1}}

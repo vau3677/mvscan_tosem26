@@ -1,0 +1,52 @@
+% REVISION NOTE (2026-09-03):
+% Related work is organized by analysis target rather than by a quantitative
+% leaderboard. All cited systems have different objectives or output schemas;
+% no cross-corpus precision or runtime comparison is implied.
+
+\section{Related Work}
+\label{s:related-work}
+
+\subsection{Inconsistent updates and multi-variable correlations}
+\label{s:related-isu}
+
+MUVI established that access correlations among distinct variables can expose semantic and concurrency bugs even when the variables have no aliasing relation~\cite{lu2007muvi}. Its central observation---that program logic often reveals which variables should be reasoned about together---is also the starting point for \sys. The target and setting differ: MUVI studies correlated accesses in systems software, whereas \sys constructs origin- and key-qualified persistent-state relations and asks whether an omitted member reaches a behavioral consumer in Solidity.
+
+Li \etal provide the closest empirical account of inconsistent state update (ISU) vulnerabilities in smart contracts~\cite{li2026understanding}. Their study organizes 116 real-world findings by root cause, fixes, and exploitation method and demonstrates a proof-of-concept checker for one local symptom. We use the full finding population as the source of the historical classification in \autoref{s:evaluation-design}. MV-SI is not proposed as a replacement for ISU. It is an operational subset: at least two persistent locations participate in a supported relation, a feasible transition commits a proper-subset update, and omitted state is behaviorally consumed before reconciliation. This restriction makes relation-plus-transition-plus-consumer candidates measurable, while excluding many ordinary initialization, single-state, or incorrect-update cases within the broader ISU family.
+
+\subsection{Automatic invariant and property generation}
+\label{s:related-invariants}
+
+Several systems automatically generate contract-specific properties, so MV-Scan's contribution is not the first automatic inference of cross-variable relations. InvCon+ combines dynamic inference with static verification and includes mapping-sum, supply, and pre/postcondition relations~\cite{invconplus2025}. SmartInv uses code and natural-language context to infer invariants that can contain old values, mapping sums, and cross-function or cross-contract properties~\cite{smartinv2024}. SmartOracle mines fine-grained likely invariants from transaction histories, while Trace2Inv instantiates guards from templates and historical executions~\cite{smartoracle2025,trace2inv2024}. PropertyGPT generates properties through retrieval and checks them with a prover; ScType targets accounting errors with a type-based analysis~\cite{propertygpt2025,sctype2024}.
+
+These systems differ in inputs, property languages, and validation obligations. MV-Scan contributes a narrower witness structure assembled without project annotations or transaction traces: a relation hypothesis, an abstract proper-subset writer, and an omitted-variable consumer. We do not compare precision numbers across unmatched corpora or claim that neighboring systems cannot find a defect that also satisfies MV-SI.
+
+\subsection{Same-state inconsistency, reentrancy, and transaction ordering}
+\label{s:related-si}
+
+A large body of smart-contract analysis starts from conflicting accesses to one storage location. Reentrancy analyses identify executions in which an external call permits a state-dependent operation to be re-entered before an expected update~\cite{luu2016making,rodler2018sereum,xue2020cross,brent2020ethainter,cecchetti2021compositional}. Transaction-ordering analyses reason about outcomes that depend on how independently submitted calls are sequenced~\cite{kolluri2019exploiting,wang2019detecting,munir2023todler,ma2023transracer,zhang2023combatting}. These mechanisms can enable or expose an MV-SI, but they do not by themselves identify which distinct state locations are required to remain related.
+
+\textsc{Sailfish} uses storage-dependency reasoning to vet state-inconsistency bugs efficiently~\cite{bose2022sailfish}. \textsc{DivertScan} combines flow-divergence analysis with multiplex symbolic execution to determine whether a same-state conflict can reach critical behavior from a common starting state~\cite{liu2025detecting}. Its distinction between a state conflict and a consequential use motivates \sys{}'s consumer condition, and the frozen implementation adapts parts of its self-copy and sink logic. These analyses begin from a shared-variable or race candidate, whereas MV-SI constructs a relation--writer--consumer report unit. This anchor distinction does not mean DivertScan categorically cannot find a defect that also satisfies MV-SI.
+
+\subsection{General static analysis and formal reasoning for smart contracts}
+\label{s:related-static}
+
+Slither provides the source-level CFG, SSA IR, storage-access facts, and detector interface on which \sys is implemented~\cite{feist2019slither}. Other static systems encode syntactic checks, semantic facts, Datalog rules, bytecode dependencies, or composite vulnerability patterns, including SmartCheck, Securify, SmartDagger, Vandal, and Ethainter~\cite{tikhomirov2018smartcheck,tsankov2018securify,liao2022smartdagger,brent2018vandal,brent2020ethainter}. Zeus and related verification systems translate contracts into intermediate verification conditions~\cite{kalra2018zeus}. These frameworks can express or host checks over multiple variables when supplied with an appropriate rule or specification. \sys contributes a particular automatic source of that specification: code-derived relation hypotheses paired with a proper-subset writer and omitted-member consumer.
+
+Symbolic execution and bounded model checking explore concrete or symbolic paths and can validate a supplied vulnerability hypothesis. Mythril, Manticore, TeEther, EthBMC, and summary-based symbolic evaluation represent different points in this design space~\cite{mythril,manticore,krupp2018teether,frank2020ethbmc,feng2020summary}. Solver-backed storage arrays and keccak-derived slot expressions can reason more precisely about symbolic keys than \sys{}'s bounded term unification. In return, \sys avoids whole-program path exploration and emits target-specific constraints that could seed a later selective solver. The two approaches are complementary: static relation and consumer discovery narrows the question; symbolic reasoning can attempt to prove one writer--reader sequence.
+
+\subsection{Fuzzing and learned exploration}
+\label{s:related-fuzzing}
+
+ContractFuzzer, sFuzz, Echidna, Harvey, SMARTIAN, and SmarTest use randomized, feedback-directed, data-flow-guided, or learned exploration to reach contract failures~\cite{jiang2018contractfuzzer,nguyen2020sfuzz,echidna,wustholz2020harvey,choi2021smartian,so2021smartest}. Targeted greybox techniques improve the chance of reaching selected program points or transaction sequences~\cite{wustholz2020targeted}. Dynamic exploration is well suited to validating concrete properties, but an MV-SI may not revert or violate a generic runtime oracle: every local operation can succeed while the joint state is economically wrong. A relation or exploit predicate is therefore still required. \sys can supply candidate relations, writers, omitted members, and sinks as targets for property-based or directed testing; it does not claim to replace execution-based confirmation.
+
+\subsection{State identity, storage cost, and protocol structure}
+\label{s:related-state}
+
+Precise storage identity is a recurring requirement in smart-contract analysis. Symbolic executors and bounded model checkers represent keyed storage with array or slot expressions~\cite{mythril,manticore,frank2020ethbmc}; \sys adopts the same principle at a lighter abstraction level by retaining complete nested mapping-key paths and call-context substitutions. Unlike a solver, it records syntactic matches and constrained runtime equalities rather than proving arbitrary key equivalence.
+
+Gas-oriented research explains why developers care about storage layout, caching, repeated accesses, and avoiding unnecessary writes~\cite{he2025save}. The EVM gas schedule explicitly prices cold storage access and state changes~\cite{eip2929,eip2200}. This economic context helps explain why protocols maintain checkpoints and derived views, but MV-SI is not defined by gas optimization. The same failure can arise from modular architecture, external mirrors, migration state, or duplicated business rules. For this reason, the present paper treats redundancy as one important source of latent relations rather than as a mandatory or exhaustive root cause.
+
+\subsection{Positioning}
+\label{s:related-positioning}
+
+The nearest lines of work each provide one part of the problem: multi-variable correlation mining identifies related state; ISU studies characterize update failures; same-state detectors reason about ordering and consequential use; static frameworks recover program facts; and symbolic or dynamic tools test path feasibility. \sys combines these ideas around a different report unit: an annotation-free relation hypothesis, a writer that may update a proper subset, and a sink-influencing read of an omitted member. Its evaluation is correspondingly internal and semantic. We measure whether those candidates reconstruct historical MV-SI and how often sampled structural buckets satisfy C1--C4, rather than treating warnings from adjacent objectives as interchangeable baseline outputs.

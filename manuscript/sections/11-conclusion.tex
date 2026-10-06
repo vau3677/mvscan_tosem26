@@ -1,0 +1,16 @@
+% REVISION NOTE (2026-09-03):
+% The conclusion is rewritten around the frozen evaluation. Prior claims about
+% nine autonomous zero-day discoveries and divergence-aware forward slicing are
+% preserved only in the archive because they are not supported by these tables
+% or by the current core algorithm.
+
+\section{Conclusion}
+\label{s:conclusion}
+
+Multi-variable state inconsistency arises when separately stored protocol state participates in one semantic relation, a feasible transition commits an update to only part of that relation, and omitted state affects behavior before reconciliation. The important boundary is not the local partial write alone. Cached, checkpointed, and lazy state can diverge safely; the defect is the consumption of an invalid joint state.
+
+\sys operationalizes this boundary as an annotation-free static may-analysis. It infers relation hypotheses from control-sink co-influence and non-mutating return summaries, preserves mapping-key and execution context, requires a nonempty proper-subset writer, tracks omitted members, and retains only persistent reads that may reach control, storage-write, or external-effect sinks. Its writer-centered output records the provenance and constraints needed for review without claiming to prove the relation, path, reconciliation behavior, or exploitability.
+
+The rebuilt evaluation gives a measured account of both capability and limitation. Reviewers classify 64 of 116 published ISU findings as MV-SI; 62 build, and \sys strictly recovers 13 (21.0\%). In the complete configuration, 82 of 400 sampled Web3Bugs structural buckets are MV-SI (20.5\% precision). Yet 97.6\% of all 1,270 audited relations are semantically supported. The dominant errors occur later: no desynchronizing persistent transition or reconciliation before consumption accounts for 83.9\% of nonbugs. Most successful project runs complete in seconds at the median, with a material heavy tail in the ISU corpus.
+
+Annotation-free discovery of latent multi-variable relations is feasible, but relation discovery is not the principal remaining bottleneck. Progress now depends on transaction-level partial-transition, reconciliation, and joint-feasibility reasoning that preserves the state identities and behavioral consumers already exposed by \sys.

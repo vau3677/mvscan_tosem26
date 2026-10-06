@@ -1,0 +1,76 @@
+% REVISION NOTE (2026-09-03):
+% The frozen tables under tables/ are included verbatim and are authoritative.
+% This section replaces the prior 46-case/61-repository protocol and keeps raw
+% reports, native candidates, structural buckets, and semantic cases separate.
+
+\section{Evaluation Design}
+\label{s:evaluation-design}
+
+We evaluate \sys as an automatic static detector for a semantic property that existing smart-contract benchmarks do not label directly. The evaluation therefore separates historical-case recovery from output precision. Historical recovery asks whether a candidate reconstructs an already documented MV-SI end to end. Candidate precision asks how often a sampled detector-output unit satisfies the semantic criteria. The latter is not an open-world recall measurement and does not estimate MV-SI prevalence in all contracts.
+
+\subsection{Research questions}
+\label{s:evaluation-rqs}
+
+The evaluation addresses four questions:
+\begin{itemize}[leftmargin=*,nosep]
+  \item \textbf{RQ1---Historical recovery.} How many published inconsistent-state-update findings satisfy the MV-SI definition, and how often does the complete detector strictly recover the buildable cases?
+  \item \textbf{RQ2---Candidate precision and component sensitivity.} What fraction of sampled structural buckets are MV-SI under the reference configuration and four single-component ablations, and how do the candidate populations change?
+  \item \textbf{RQ3---Scalability and reproducibility.} How often do accepted projects complete, what time and memory do they require, and how stable is canonical output across paired seeds?
+  \item \textbf{RQ4---Error concentration.} At which semantic criterion do nonbugs fail, and which implementation or program behaviors account for those failures?
+\end{itemize}
+
+We do not use adjacent tools as a head-to-head accuracy or throughput baseline. Their target properties, required inputs, report units, corpora, and validation procedures differ. \autoref{s:related-work} instead positions them qualitatively by the evidence they are designed to produce.
+
+\subsection{Benchmarks and build policy}
+\label{s:evaluation-benchmarks}
+
+The first benchmark is the complete set of 116 published inconsistent-state-update findings assembled by Li \etal~\cite{li2026understanding}. The second is the 102 archived project snapshots in Web3Bugs~\cite{zhang2023demystifying}. For both populations, we resolve the referenced source revision and apply a best-effort no-edit build policy: dependencies and historical toolchains may be restored, but the evaluated Solidity source is not rewritten merely to make the detector run. A resolved item is marked built only when the accepted compilation artifacts support the analysis. \autoref{tab:benchmarks} reports the resulting coverage; exclusions remain outside denominators that require executable detector output.
+
+\input{tables/table1-benchmarks.tex}
+
+The unit of the historical benchmark is a published finding. Several findings may map to the same repository or source revision, whereas runtime is measured per accepted analysis run. The unit of the Web3Bugs build population is a project snapshot. We preserve these distinct units rather than converting project-level executions into per-contract rates.
+
+\subsection{Historical MV-SI oracle and strict matching}
+\label{s:historical-oracle}
+
+Two authors independently classify each of the 116 published findings under C1--C4 from \autoref{s:mvsi-definition}; disagreements are then adjudicated through discussion. The source report can therefore receive one of three final labels: MV-SI, non-MVSI, or insufficient evidence. The last label is used when the available report, source, and reproduction material do not support a reliable decision; it is not silently counted as either positive or negative. Initial labels are recorded before adjudication so that disagreement remains visible as evidence of the construct's semantic difficulty.
+
+Only adjudicated MV-SI findings with an accepted build enter the strict-recovery denominator. A \sys candidate is a strict match when the evidence corresponds to the same documented failure rather than merely touching one involved variable. In particular, the match must recover (i) the relevant coupled relation or a directly specialized keyed instance, (ii) the writer transition that updates the documented proper subset, (iii) at least one documented omitted member, and (iv) a reader/sink role equivalent to the behavior described by the finding. A variable-level localization, adjacent relation, or warning in the same function is not a strict recovery.
+
+This protocol measures a lower bound on end-to-end recovery over known cases. It does not imply that every historical report contains enough detail for a unique oracle, nor that a nonmatching candidate has no diagnostic value. The separate insufficient-evidence class and the strict semantic rule prevent those ambiguities from inflating recall.
+
+\subsection{Configurations}
+\label{s:evaluation-configurations}
+
+\autoref{tab:configurations} defines the frozen reference and four component ablations. Each ablation changes one named relation or identity mechanism from \config{B0}; all other evaluation settings and the build population remain fixed. The experiment is a configuration-sensitivity study rather than a monotone feature-addition sequence. Removing a component can delete candidates, split or merge candidate identities, change the sampled population, and alter which semantic cases are represented.
+
+\input{tables/table-configurations.tex}
+
+\subsection{Native candidates, structural buckets, and sampling}
+\label{s:evaluation-bucketing}
+
+The detector's native JSON unit is the writer-centered candidate defined in \autoref{s:candidate-construction}. The frozen bucketing script maps each native record to one structural payload and deduplicates identical payloads; it does not split a native record by reader or sink. The payload contains dataset, subject, revision role, writer owner and block, relation members, matched and omitted members, transaction-context owners, sink kinds, origin sites, retained witness sites and relation evidence, key constraints, and shape tags. This exact projection discards native IDs and compilation-unit identity, allowing multiple native records to merge.
+
+For each configuration, we draw an equal-probability sample of 400 distinct structural buckets without replacement and audit every selected bucket under C1--C4. The label is positive only when all criteria hold. Structural-bucket precision is
+\[
+  \widehat{p} =
+  \frac{\#\text{audited structural buckets labeled MV-SI}}
+       {\#\text{audited structural buckets}}.
+\]
+We report ordinary Wilson 95\% intervals as binomial approximations for each 400-bucket sample. They do not apply a finite-population correction, which matters most for the 400-of-550 \config{A1} sample. Since samples are drawn separately from configuration-specific populations, differences are descriptive rather than paired treatment effects.
+
+To interpret population changes, we report both all buckets containing each configuration and buckets unique to that configuration. The latter identify evidence introduced only under one analysis setting, but they still do not isolate a causal component effect because disabling a mechanism can change relation and candidate identities upstream.
+
+\subsection{Error analysis}
+\label{s:evaluation-error-protocol}
+
+For every distinct audited bucket that does not satisfy MV-SI, reviewers record the first failed semantic criterion. The frozen form begins at C2 because construction enforces structural eligibility; C1 is therefore an assumption of this table, not a proved fact about distinct concrete cells. Each nonbug also receives one mutually exclusive primary cause. The causes distinguish, for example, a writer that never produces a partial persistent state from one that reconciles before consumption.
+
+Sampled buckets receive a binary final label. When review cannot establish a feasible MV-SI, the bucket is counted negative; the metric is therefore a strict confirmation fraction, not proof that every negative is infeasible. Relation support is measured independently of final candidate validity. A bucket can contain a well-supported relation and still fail C3 or C4.
+
+\subsection{Scalability and deterministic reproducibility}
+\label{s:evaluation-performance-protocol}
+
+For each accepted analysis run and configuration, the evaluation records completion, wall-clock time, and peak resident-set size. We report medians, interquartile ranges, and maxima rather than only means because repository costs are strongly skewed. We make no cross-tool speedup claim and do not normalize the measurements to seconds per contract.
+
+Deterministic reproducibility is assessed by comparing canonical output from available paired seeds under \config{B0}. Equality is based on canonicalized detector output rather than raw object order. Missing pairs are reported separately from mismatched pairs, and the evaluation records whether any run exhausted time, memory, or the explicit context bound.

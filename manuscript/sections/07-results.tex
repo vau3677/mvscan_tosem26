@@ -1,0 +1,72 @@
+% REVISION NOTE (2026-09-03):
+% Every table included below is copied byte-for-byte from the user's frozen
+% evaluation attachments. The prose interprets those values without changing
+% denominators or presenting cross-configuration samples as paired effects.
+
+\section{Results}
+\label{s:results}
+
+\subsection{RQ1: Historical recovery}
+\label{s:results-recovery}
+
+\input{tables/table2-historical-recovery.tex}
+
+The historical classification confirms that MV-SI is a narrower target than the published ISU population. Of 116 findings, reviewers adjudicate 64 (55.2\%) as MV-SI, 39 (33.6\%) as non-MVSI, and 13 (11.2\%) as having insufficient evidence. The 52 initial disagreements, or 44.8\% of the population, show that even with a written criterion set, deciding whether a reported update error is relational, persistent, and behaviorally consumed requires substantial semantic judgment.
+
+Build coverage is high within the positive class: 62 of 64 MV-SI findings have an accepted build. \sys strictly matches 13 of those 62 cases, yielding 21.0\% end-to-end recovery. The result should not be read as variable localization. A strict match requires the relation, the relevant partial writer, an omitted member, and the corresponding consumer role in one candidate. The remaining 49 buildable cases include both complete misses and nearby evidence that does not satisfy that strict rule. We did not classify these misses by cause and therefore do not infer a false-negative taxonomy.
+
+\paragraph{Answer to RQ1.}
+The complete detector recovers roughly one fifth of buildable, adjudicated historical MV-SI cases under a strict semantic oracle. This establishes nontrivial coverage while leaving substantial room for relation origins and transition patterns not represented by the current static model.
+
+\subsection{RQ2: Candidate precision and component sensitivity}
+\label{s:results-precision}
+
+\input{tables/table3-candidate-precision.tex}
+
+Under \config{B0}, 82 of 400 audited structural buckets satisfy C1--C4, for 20.5\% structural-bucket precision with an ordinary Wilson 95\% interval of 16.8--24.7\%. The four ablations range from 18.2\% to 28.5\%. \config{A1}, which disables branch-derived relations, has the highest sampled precision at 28.5\%; \config{A2}, which disables return-derived relations, has the lowest at 18.2\%. The intervals are binomial approximations without a finite-population correction, and the samples are not paired, so the ranking is descriptive.
+
+\input{tables/table4-cross-ablation.tex}
+
+The population changes are larger than the precision changes. \config{B0} emits 3,732 native candidates, which project to 2,868 structural buckets. Disabling branch-derived relations reduces that structural population to 550, an 80.8\% reduction, while retaining a denser sampled subset. This result indicates that control-derived relations are the main coverage-expanding relation source in the frozen corpus; it does not show that those relations are generally invalid. Indeed, the error analysis below finds unsupported relations to be rare across the audited union.
+
+Disabling return-derived relations yields 2,636 structural buckets, close to \config{B0}, but the frozen table reports 326 buckets unique to \config{A2}. The origin-insensitive native key and independently computed return-location summaries do not explain this non-monotonicity. A downstream projection difference, mismatched run inputs, or upstream nondeterminism could do so, but the preserved records do not establish which; we retain the count and treat its provenance as unresolved. Mapping-insensitive \config{A4} expands the population to 3,502 buckets, including 2,100 configuration-only buckets. Disabling contextual keys in \config{A5} produces 3,007 buckets, 1,254 configuration-only.
+
+Across all configurations, the frozen union contains 6,873 structural buckets. The five samples contain 2,000 selections and 1,270 distinct audited buckets. Direct reconciliation of the frozen membership sets shows that 376 buckets were selected in more than one configuration: 143 appear twice, 112 three times, and 121 four times. The previously reported value 156 did not describe this overlap and is removed. Precision deltas compare separate samples, not paired counterfactuals.
+
+\paragraph{Answer to RQ2.}
+The reference detector yields 20.5\% structural-bucket precision under strict MV-SI labeling. Relation and identity mechanisms substantially reshape the candidate population; branch-derived relations provide the largest expansion, while precise mapping and contextual keys prevent many alternative groupings. Sample precision alone is insufficient to rank the mechanisms because each setting changes the population being sampled.
+
+\subsection{RQ3: Scalability and deterministic reproducibility}
+\label{s:results-scalability}
+
+\input{tables/table5-scalability.tex}
+
+All 88 ISU analysis runs complete under every configuration. On Web3Bugs, 61 of 65 accepted snapshots produce successful results under every configuration. The measurement record reports no timeout, memory exhaustion, or context-bound event; the frozen table therefore does not attribute the four unsuccessful snapshots to any of those resource failures.
+
+For \config{B0}, the median Web3Bugs runtime is 7.61 seconds, with an interquartile range of 3.84--20.99 seconds and a maximum of 59.58 seconds. Median peak RSS is 237.0 MiB and the maximum is 1,047.4 MiB. The ISU runs are heavier: median time is 12.90 seconds, but the maximum reaches 659.39 seconds; median RSS is 332.9 MiB and the maximum reaches 15,534.9 MiB. The medians support repository-scale triage, while the long ISU tail rules out a blanket claim that every run is low-cost.
+
+The ablations have similar medians. On Web3Bugs, median times range from 7.31 to 8.06 seconds and median RSS from 229.2 to 244.5 MiB. On ISU, median times range from 11.42 to 14.73 seconds and median RSS from 321.1 to 340.3 MiB. The largest tail costs vary more substantially. Because the mechanisms change the number and shape of propagated facts, the table is best interpreted as an empirical resource profile rather than an asymptotic ranking.
+
+Canonical output is identical for all 61 available Web3Bugs \config{B0} seed pairs and for 76 of 80 available ISU pairs. Four ISU pairs mismatch; eight ISU and four Web3Bugs pairs are missing. The detector is therefore highly, but not perfectly, reproducible under the measured environment. The mismatches matter because candidate identities, contexts, and relation catalogs should ideally be independent of incidental front-end ordering.
+
+\paragraph{Answer to RQ3.}
+Most accepted projects complete in seconds with hundreds of MiB at the median, including every ISU run and 61 of 65 Web3Bugs snapshots. A small heavy tail and four canonical-output mismatches remain important engineering limitations.
+
+\subsection{RQ4: Error concentration}
+\label{s:results-errors}
+
+\input{tables/table6-error-analysis.tex}
+
+The 1,270 distinct audited buckets contain 969 nonbugs and therefore 301 buckets that satisfy the MV-SI criteria. Reviewers support the proposed relation in 1,239 buckets, or 97.6\%; this bucket-weighted conditional rate is not a census of distinct relations. Only 31 buckets first fail C2. Only one bucket first fails C4, but first-failure coding censors C4 among every C2- or C3-negative bucket. The table therefore does not independently measure consumer-gate effectiveness.
+
+The primary-cause labels explain why. In 522 nonbugs, the candidate's writer evidence does not correspond to a desynchronizing partial transition. In another 291, reconciliation precedes the relevant consumption. These two causes total 813 of 969 nonbugs (83.9\%). The preserved summary does not establish whether every reconciliation occurred before writer commit or later before use.
+
+The remaining causes are smaller but actionable. Analysis abstraction errors account for 104 nonbugs, and incompatible context, key, or ordering accounts for 20. These categories reflect the cost of may-reachability, bounded call resolution, key unification, and witness combination. Unsupported or overbroad relations account for 31, matching the C2 first-failure count. One nonbug contains an omitted state member that does not behaviorally reach the claimed use.
+
+\paragraph{Answer to RQ4.}
+Among reported buckets, the current bottleneck is transition semantics. The detector usually finds a defensible relation and recorded consumer evidence, but often cannot distinguish a persistent proper-subset transition from a local write that is impossible, non-desynchronizing, or reconciled before use.
+
+\subsection{Summary of findings}
+\label{s:results-summary}
+
+Together, the results establish a clear evidence hierarchy. Annotation-free relation recovery is viable: relations are semantically supported in nearly all audited buckets. The complete pipeline nevertheless achieves 20.5\% sampled precision and 21.0\% strict historical recovery because relation support alone is far weaker than an end-to-end MV-SI. The gap concentrates in one place---proving that the writer can commit only part of the relation and that no reconciliation occurs before the omitted member affects behavior. \autoref{s:discussion} develops the implications of that concentration.

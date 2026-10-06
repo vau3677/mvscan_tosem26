@@ -2,7 +2,15 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Iterable
 import mvscan_plugin.utils.icfg as icfg_module
-from mvscan_plugin.utils.icfg import ICFG, stale_read_pairs
+from mvscan_plugin.utils.icfg import (
+    ExecutionContext,
+    ExternalStateVar,
+    ICFG,
+    ReadEvent,
+    effective_relation_write_members,
+    sensitive_relation_member_events,
+    stale_read_pairs,
+)
 
 @dataclass(frozen=True)
 class FakeVar:
@@ -65,10 +73,54 @@ def witness_signature(witness):
     return (
         witness.writer_bid,
         witness.reader_bid,
-        witness.operation_pattern,
         witness.writer_reaches_reader,
         witness.reader_reaches_writer,
     )
+
+
+def test_effective_writer_subset_includes_same_member_write() -> None:
+    alpha = FakeVar("alpha", "Test.alpha")
+    beta = FakeVar("beta", "Test.beta")
+    writer = ("contracts/Test.sol::Test.writeBoth()", 10)
+    relation = type("Relation", (), {"vars": (alpha, beta)})()
+    graph = ICFG()
+    graph.relation_writes[relation][writer].update((alpha, beta))
+
+    assert effective_relation_write_members(graph, relation, writer) == frozenset((alpha, beta))
+
+
+def test_sensitive_relation_members_are_event_specific() -> None:
+    alpha = FakeVar("alpha", "Test.alpha")
+    beta = FakeVar("beta", "Test.beta")
+    reader = ("contracts/Test.sol::Test.consume()", 20)
+    relation = type("Relation", (), {"vars": (alpha, beta)})()
+    context = ExecutionContext("Test.consume()", "Test")
+    graph = ICFG()
+    beta_event = ReadEvent(reader, beta)
+    graph.sensitive_read_events_by_owner[context.owner].add(beta_event)
+
+    events = sensitive_relation_member_events(graph, relation, reader, context)
+
+    assert set(events) == {beta}
+    assert events[beta] == {beta_event}
+
+
+def test_contextual_sender_is_independent_of_outer_owner() -> None:
+    graph = ICFG()
+    location = ExternalStateVar("balanceOf(address)", "$sender", ())
+    outer = ExecutionContext(
+        "contracts/Root.sol::Root.start()",
+        "contracts/Root.sol::Root",
+        active_sender="@sender::external-user",
+    )
+    callee = ExecutionContext(
+        outer.owner,
+        "contracts/Callee.sol::Callee",
+        active_sender="@contract::contracts/Root.sol::Root",
+    )
+
+    assert graph.contextualize_location(location, outer).addr == "@sender::external-user"
+    assert graph.contextualize_location(location, callee).addr == "@contract::contracts/Root.sol::Root"
 
 def test_multiple_reader_blocks_survive() -> None:
     variable = FakeVar("x", "Test.x")
@@ -148,7 +200,6 @@ def test_cfg_order_replaces_node_id_order() -> None:
 
     witness = witnesses[0]
 
-    assert witness.operation_pattern == "stale_read"
     assert witness.writer_reaches_reader is True
     assert witness.reader_reaches_writer is False
 

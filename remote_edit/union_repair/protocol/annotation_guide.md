@@ -1,0 +1,13 @@
+# Historical Annotation Guide
+
+The definitions below are copied verbatim from the frozen evaluation protocol. Annotators must work independently and must not inspect MV-Scan output.
+
+| Condition | Definition |
+| --- | --- |
+| **C1: Multiple persistent entities** | `>=2` persistent-state variables participate in the defect. "Variables" may be scalar state variables, precise mapping or array locations, semantically distinct slots of one base mapping, or state-backed values obtained through external view calls when independent evidence shows that they represent persistent protocol state. Multiple names for one logical location do not satisfy C1. |
+| **C2: Protocol relation** | Independent evidence must support a semantic relationship among the participating variables. Acceptable evidence includes protocol logic, documentation, tests, reports, economics, a proof of concept, a concrete trace, comments corroborated by behavior, or the documented rationale for a fix. Detector co-influence, a shared branch or return, naming similarity, and proximity are insufficient by themselves. An emitted relation may contain a semantic core of `>=2` variables; additional emitted members are recorded as over-approximation. |
+| **C3: Desynchronizing partial transition** | A feasible operation changes a nonempty proper subset of the semantic relation, leaves `>=1` related entity unreconciled, and makes the relationship stale, violated, or otherwise inconsistent. It fails C3 when the omitted entity is independent, the intermediate state is permitted, reconciliation necessarily precedes relevant use, the write is a semantic no-op, or writer and reader cannot occur in one protocol execution. Feasibility requires at least one valid state, call sequence, actor set, and required external conditions, not an unprivileged attacker. |
+| **C4: Omitted-member consumption before reconciliation** | `>=1` omitted relation member is read from persistent state after the desynchronizing transition and before reconciliation, and that read reaches a behaviorally relevant modeled `control`, `storage_write`, or `external_effect` sink. Record the omitted entity, exact read, consumer, sink, ordering, reconciliation point, transaction relationship, and behavioral relevance. Logging, debugging, dead computation, and outcome-insensitive uses fail C4. |
+| **C5: Multi-variable essentiality** | The defect must depend essentially on the relationship between `>=2` persistent-state variables. A unary stale-variable defect fails C5 even when additional emitted entities are incidental. |
+
+Allowed historical classes are exactly: `MV_SI`, `SV_SI`, `ISU_OTHER`, `OTHER`, and `INSUFFICIENT_EVIDENCE`.

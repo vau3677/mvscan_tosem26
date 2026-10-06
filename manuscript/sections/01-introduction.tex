@@ -1,0 +1,61 @@
+\section{Introduction}
+\label{s:intro}
+
+Decentralized finance (DeFi) protocols store balances, debt, and other financial records in persistent variables, and protocol correctness usually depends on enforcing relationships between several variables. Calculating a fee, for example, requires both an amount to charge and an associated period. Accurate amounts produce incorrect fee calculations when paired with the wrong accounting period.
+
+Kuiper, a protocol within the Ethereum ecosystem, directly illustrates this problem~\cite{kuiper2022fees}. A contract calculates fees using its share supply, read through \cc{totalSupply()}, and \cc{lastFee}, the timestamp from which the next fee period is measured. After all shares are withdrawn, the supply becomes zero. If a user later deposits funds, the contract issues new shares but leaves \cc{lastFee} unchanged. Subsequent fee calculations combine the new supply with the old timestamp, charging new holders for a preceding interval in which the basket had no shares. The resulting excess fee shares can severely dilute holdings. The obligation is specific: new holders should not be charged for that empty-supply interval. It does not require every mint to reset a legitimately accrued fee period.
+
+We call this defect \emph{multi-variable state inconsistency} (MV-SI). An operation changes only some related variables, commits the resulting inconsistency, and a later transaction relies on an omitted variable before reconciliation. In Kuiper, the relationship connects share supply to its fee period. The incomplete update changes the supply without advancing the timestamp and later fee calculations use stale values.
+
+Not every delayed update is a defect. A protocol may synchronize related variables eagerly, as part of the operation that changes them, or lazily, when later interactions require them. Lazy synchronization is safe when the protocol completes that accounting before relying on the values. Synchronization does not always require equal values (\eg, a share count and a timestamp represent different quantities). Thus, the relationship validity downstream is significant.
+
+MV-SI specializes the broader inconsistent-state-update problem studied by Li \etal~\cite{li2026understanding}; consistency among related variables also has a long history in systems software~\cite{lu2007muvi}. Automatic invariant and property generators infer contract-specific relations from executions, code, templates, or natural language~\cite{invconplus2025,smartinv2024,smartoracle2025,trace2inv2024,propertygpt2025,sctype2024}. A different line of smart-contract research, including \textsc{Sailfish} and \textsc{DivertScan}, studies schedule-dependent inconsistencies involving conflicting accesses to the same variable~\cite{bose2022sailfish,liu2025detecting}. Our focus is the specific report unit that connects an inferred relation, an omission-shaped writer, and a later consumer.
+
+This setting introduces three key analysis challenges:
+\begin{enumerate}[leftmargin=*,nosep]
+    \item \textbf{Implicit relationships:}
+    different functions or contracts may maintain relationships between
+    variables without directly assigning one to another.
+
+    \item \textbf{Intentional partial updates:}
+    a partial update may be deliberate, with a subsequent operation
+    restoring consistency before the affected state is used.
+
+    \item \textbf{Ambiguous access relationships:}
+    seemingly related accesses may refer to different users,
+    mappings, or contracts.
+\end{enumerate}
+
+A may-analysis must therefore identify
+\emph{(i)} a plausible relationship,
+\emph{(ii)} an update that may leave it violated, and
+\emph{(iii)} a subsequent use that may be affected,
+while distinguishing these cases from benign or intentional updates.
+
+We present \sys{}, a static may-analysis for uncovering MV-SI candidates. It infers variable relationships that jointly influence program conditions or one returned component. It searches for operations whose abstract matched writes cover a proper subset of the related group, applying a whole-root write-coverage heuristic. Finally, it follows reads of potentially outdated variables to modeled decisions and effects. The analysis follows resolved calls and tracks mapping keys, roots, senders, and abstract contract storage domains.
+
+Each report connects a potentially incomplete update to code that could rely on an outdated variable. It identifies the inferred relationship, matched and omitted variables, downstream uses, and representative root-to-writer call-chain provenance. Since \sys{} assists auditors rather than inferring semantic intent, reports cannot prove whether inferred relationships are required, whether one execution realizes all recorded facts, or whether candidates are exploitable.
+
+We evaluate \sys{} against published defects from two datasets, beginning with Web3Bugs~\cite{zhang2023demystifying}. Later manual review and adjudication classify 64 of the 116 inconsistent-state-update findings published by Li \etal~\cite{li2026understanding} as MV-SI in our second dataset. Of these, 62 have accepted builds, and \sys{} strictly recovers 13, or 21.0\% (\autoref{tab:historical-recovery}) of them. Strict recovery requires identifying the relevant relationship, incomplete update, the omitted variable, and consequential downstream use. In Web3Bugs, we manually review 1,270 distinct structural buckets across the complete configuration and four component ablations. Under the baseline configuration, 82 of 400 sampled buckets satisfy the MV-SI criteria, yielding 20.5\% structural-bucket precision (\autoref{tab:candidate-precision}).
+
+The false positives identify the principal remaining challenge. Among the 1,270 distinct audited buckets across configurations, reviewers support the proposed relations in 1,239 (97.6\%). This is a bucket-weighted conditional rate, not a census of distinct relation hypotheses. However, 522 nonbugs contain no persistent, desynchronizing partial update, and 291 restore consistency before the relevant use. These causes account for 813 of 969 nonbugs (83.9\%; \autoref{tab:error-analysis}). Thus, recognizing related variables is an easier problem than determining whether incomplete updates persist until downstream usage.
+
+The ablations expose a \textit{precision-coverage tradeoff}. Disabling relationships inferred from branches reduces the candidate population from 2,868 to 550 and increases sampled precision from 20.5\% to 28.5\%. Our configurations use separately drawn, partially overlapping samples. The complete configuration has median analysis times of 7.61 seconds on successful Web3Bugs runs and 12.90 seconds on the historical-defect runs, although the largest tested projects require substantially more time and memory (\autoref{tab:scalability}). Based on these numbers, we position \sys{} as a static may-analysis to be used for triage in complex ISU scenarios involving several variables.
+
+This paper makes four contributions:
+
+\begin{itemize}[leftmargin=*,nosep]
+
+  \item \textbf{We define the MV-SI analysis target.}
+  We connect relationships among variables, persistent incomplete updates, and consequential uses, distinguishing actual defects from safe delayed synchronization and from the weaker evidence available to an automated detector.
+
+  \item \textbf{An annotation-free candidate generator.}
+  We combine relationship inference, partial-update analysis, and tracking of later uses while accounting for resolved calls, mapping keys, roots, senders, and abstract storage domains.
+
+  \item \textbf{Reports that support manual validation.}
+  We organize candidates around incomplete updates and provide their affected variables, later uses, call paths, and explicit assumptions, while distinguishing detector reports from the groups used in evaluation.
+
+  \item \textbf{An empirical evaluation and diagnosis.}
+  We measure strict recovery of published defects, structural-bucket precision, four component ablations, scalability, and reproducibility. Our error analysis identifies persistent partial updates and intervening synchronization as the principal remaining limitations.
+
+\end{itemize}

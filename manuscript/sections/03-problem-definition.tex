@@ -1,0 +1,50 @@
+\section{Multi-Variable State Inconsistencies}
+\label{s:mvsi}
+
+\subsection{Failure pattern and temporal scope}
+\label{s:mvsi-definition}
+
+We study an omission-shaped failure across transaction boundaries. Several persistent variables participate in one protocol obligation; one transaction changes a nonempty proper subset, commits before restoring that obligation, and a later transaction consumes an omitted variable while the relation remains invalid. A temporary divergence that is always reconciled before the writer returns is outside this target. So is a same-transaction use that occurs before eventual reconciliation. Such intermediate-state effects can be real because calls within a transaction observe intermediate state, but the frozen oracle and detector's whole-root gate were not designed to label them consistently. We therefore do not reinterpret the existing labels as validating that broader target.
+
+This boundary also makes the omission focus explicit. A bug that updates every related variable to mutually incompatible values may be relational, but it is not an MV-SI as defined here.
+
+Let a concrete execution start from reachable protocol state \(S\), execute writer transaction \(\tau_w\), and commit state \(S'\). For related concrete persistent cells \(M\), define the semantic change set
+\[
+  \Delta_M(S,S') = \{\ell\in M \mid S(\ell)\ne S'(\ell)\}.
+\]
+This is different from executing a store instruction: \cc{x = x} stores without changing a value, and a transaction can change a value and restore it before commit.
+
+An MV-SI exists in one feasible execution from a reachable protocol state when all four conditions hold:
+
+\begin{itemize}[leftmargin=*,nosep]
+  \item \textbf{C1 (distinct persistent variables).} \(M\) contains at least two distinct mutable persistent cells whose values coexist across transaction boundaries.
+  \item \textbf{C2 (supported relation).} Evidence beyond the co-influence signal that generated the hypothesis supports a protocol obligation \(\Phi\) over \(M\). Such evidence may come from other update logic, documentation, tests, accounting semantics, or the original audit.
+  \item \textbf{C3 (committed omission).} \(\varnothing\subset\Delta_M(S,S')\subset M\), the writer creates an outstanding reconciliation obligation rather than merely beginning in an unrelated invalid state, and the required relation remains invalid at commit.
+  \item \textbf{C4 (incorrect consumption).} Before reconciliation, a later transaction reads an omitted variable and the inconsistent joint state contributes to behavior that conflicts with the supported protocol obligation.
+\end{itemize}
+
+The writer and consumer are quantified over one coherent execution; separate feasible executions are insufficient. For protocols with lazy settlement, the relevant starting point may be a preceding synchronization boundary rather than a global invariant that holds at every intermediate step. The obligation may also depend on protocol phase or preceding transitions. The Kuiper fee-period rule, for example, cannot always be expressed as a predicate over only the current numerical supply and timestamp.
+
+C4 distinguishes behavioral dependence from a defect. A read reaching \cc{require} is evidence, not proof that the decision is wrong: the check may deliberately reject an inconsistent input. Conversely, stale state that incorrectly blocks an authorized action can be a genuine availability defect. We do not add an exploitability requirement, but validation must explain why the consumption conflicts with \(\Phi\).
+
+\subsection{Static evidence contract}
+\label{s:program-model}
+
+\sys does not operate on concrete cells or synthesize \(\Phi\). It records abstract variables: scalar storage declarations, keyed variables such as \(m[k_1]\cdots[k_j]\), and abstract external-state observations identified by receiver, selector, and arguments. An external observation is not automatically a persistent cell: a view may return a constant, an environmental value, or a combination of storage cells. Its persistence, mutability, and relevance require semantic review.
+
+A relation hypothesis is \(\rho=\langle M,\omega\rangle\), where \(M\) is a normalized set of eligible abstract variables and \(\omega\) is the code origin that suggested their joint use. Construction guarantees at least two eligible descriptions, not two distinct concrete persistent cells. Mapping terms may alias, and an external observation may not denote a cell. Accordingly, C1 is a structural eligibility assumption in the bucket-level first-failure table, not a semantic theorem proved by candidate construction.
+
+For a writer site \(w\), the detector computes \(\widehat{U}(w,\rho)\): the union of relation members independently matched by its abstraction to writes at that site. This is neither \(\Delta_M\) nor necessarily a jointly realizable update set. For example, one symbolic write \cc{m[k]} may independently match \cc{m[0]} and \cc{m[1]} under different assumptions even though no one value of \cc{k} updates both cells.
+
+A location-specific read event is \(e_r=\langle b_r,\ell\rangle\). The detector records \(e_r\leadsto d\) when the read's abstract origin may influence a modeled sink \(d\). Sinks comprise control operands, recorded value operands of modeled storage writes, and external effects. Destination-key-only dependence is not generally collected as a storage-write sink. May-influence supports review; it does not prove an incorrect decision or concrete outcome.
+
+The resulting native candidate is writer-centered. It retains the hypothesis, writer, \(\widehat{U}\), omitted variables, reader and sink evidence, abstract roots and storage domains, key constraints, and representative root-to-writer call-chain provenance. One static transaction root may represent many dynamic invocations with different inputs. The recorded chain is not guaranteed shortest, feasible, or a complete writer-to-reader trace.
+
+\subsection{Analysis objective}
+\label{s:analysis-objective}
+
+The static acceptance test requires: (i) a structurally eligible relation hypothesis; (ii) a nonempty proper subset under \(\widehat{U}\); (iii) failure of a whole-root write-coverage heuristic that would otherwise filter the writer; (iv) a root-qualified omitted-variable read that may reach a modeled sink; and (v) compatibility under the represented storage, sender, argument, and key abstractions.
+
+These conditions deliberately under- and over-approximate C1--C4. The whole-root filter records syntactic targets and is not a reconciliation proof: self-copies can remain in its generated sets, appropriate values are not checked, and coverage at return says nothing about an earlier same-transaction sink. We therefore call it a \emph{whole-root write-coverage heuristic}, not a proof of a complete-group operation.
+
+The objective is to preserve a compact relation--writer--omitted-consumer witness for an auditor. The detector does not prove concrete cell distinctness, protocol intent, a jointly feasible sequence, semantic value change, absence of reconciliation, incorrect behavior, or exploitability.

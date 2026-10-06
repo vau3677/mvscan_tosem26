@@ -1,0 +1,30 @@
+\section{Implementation}
+\label{s:implementation}
+
+We implement \sys as a Python detector integrated with Slither~\cite{feist2019slither}. \cc{inconsistent\_state.py} controls relation registration, context expansion, witness checks, aggregation, and reporting. \cc{icfg.py} provides the physical ICFG, variable abstractions, call resolution, context propagation, influence and write summaries, and matching. \cc{mvscan\_env.py} parses configuration. The detector code and evaluation runs are frozen; this section documents the measured implementation rather than an idealized algorithm.
+
+\subsection{Front end and contexts}
+
+Each declared function or modifier receives a source-qualified key, and each physical Slither CFG node is materialized once even when inheritance exposes it through several contracts. Direct calls resolve by canonical identity. Internal dispatch requires one concrete matching function in the inheritance lineage; library dispatch follows the library and signature. Optional interface dispatch is bounded. Excessive interface-dispatch fan-out leaves the call unresolved, whereas context overflow terminates the run.
+
+Contexts track the external root, abstract contract storage domain, formal bindings, and active sender. The storage key uses source file and canonical contract declaration; it has no deployed-address or receiver-instance component. Different instances of one declaration can therefore share an abstract domain. One static root can represent many dynamic invocations.
+
+The front end prefers Slither SSA IR and recovers complete nested mapping paths when possible. Formal parameters, senders, literals, state references, contracts, locals, and unknowns occupy separate term namespaces. Restricted parameter provenance can both create false matches and miss real ones: carrying one parameter-origin index through a merge does not prove equality on every branch. State-valued key terms are compared by syntactic identity even though their runtime values can change or coincide.
+
+The no-op filter recognizes textual self-copy patterns and lowercases identifiers. It is therefore a heuristic, not semantic elimination. The storage-write sink collector records value influence on modeled operands and does not generally add dependencies carried only by a destination key.
+
+\subsection{Return and external observations}
+
+Return-derived hypotheses use functions with no directly detected storage writes, not functions proved transitively pure. One return component must carry at least two variables. Component information can fall back to tuple-wide facts when the selected component has none.
+
+An unresolved high-level view result is represented as an abstract external-state observation identified by receiver, selector, and arguments. This identity does not establish a persistent cell; a view can return a constant, an environmental value, or a combination of cells, and can depend on caller context. Template substitution is not uniform across all observation kinds. View recognition also depends on the Slither attributes exposed by the pinned environment, so we claim only the behavior preserved in the frozen records.
+
+\subsection{Configuration and output}
+
+The reference configuration and four single-component ablations appear in \autoref{tab:configurations}. The historical environment-variable name for return-derived relations retains the term ``multi-return.'' Other settings control scalar witnesses, root differences, contextual keys, optional early root-specific sink filtering, dispatch and context bounds, root inclusion, entry-name normalization, and an optional secondary sink gate. The mandatory omitted-variable test remains root-qualified even when the optional early filter is disabled.
+
+JSON output records versions, detector-module hashes, compiler and source digests, effective configuration, stage counts, relation and call catalogs, and deterministic candidate records. A candidate includes its writer, relation and origin sites, matched and omitted variables, projected context instances, reader witnesses, sink sites, representative call-chain provenance, and witness-local key constraints. Binding tuples remain in witness records but are omitted from the projected context count.
+
+\subsection{Frozen implementation limitations}
+
+The detector does not synthesize \(\Phi\), solve paths or transaction sequences, or prove exploitability. Its whole-root write-coverage filter is syntactic and can remove real omissions. Independently possible member matches can be unioned into an unrealizable full-write set. Calls, inheritance, keyed identity, external observations, and concrete deployment instances are approximated. The recorded call chain is selected lexically from available parents rather than by shortest-path distance and is neither a complete trace nor a feasibility proof. These are scope and validity limits; we do not propose detector changes or reinterpret the frozen results around a stronger implementation.
