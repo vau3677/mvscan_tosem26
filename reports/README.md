@@ -8,7 +8,7 @@ Restore their exact paths and verify hashes from the repository root:
 python3.10 publication/restore.py historical --download
 ```
 
-This restores all ignored historical material, including the paths under `reports/audit_attempts/` cited by `deviations/deviation_log.csv`. It refuses to overwrite locally changed files.
+This restores all ignored historical material, including historical setup reports under `reports/audit_attempts/`. It refuses to overwrite locally changed files.
 
 Hidden administrative records:
 

@@ -14,7 +14,7 @@ python3.10 publication/restore.py tables
 
 The large union inventory is stored losslessly as `freeze/CROSS_ABLATION_UNION_INVENTORY.json.gz`. The bootstrap restores its original bytes and checks SHA-256 before generating tables. Completed Web3Bugs review, both ISU reviews, final adjudication, and strict-match decisions remain under `human_review/` and `benchmarks/isu/`.
 
-The five samples contain 2,000 selections, 1,270 distinct reviewed buckets, and 376 buckets selected by multiple configurations. The original frozen sample's summary field says 156; the generator now derives overlap from the unchanged selection lists. See [the preparation record](publication/PREPARATION.md). Precision, labels, recovery counts, and detector outputs are unchanged.
+The five samples contain 2,000 selections, 1,270 distinct reviewed buckets, and 376 buckets selected by multiple configurations. The original frozen sample's summary field says 156; the generator now derives overlap from the unchanged selection lists. Precision, labels, recovery counts, and detector outputs are unchanged.
 
 ## Restore the evaluated inputs and runtime
 
@@ -25,7 +25,6 @@ python3.10 publication/restore.py inputs --download
 python3.10 publication/restore.py runtime --download
 python3.10 publication/restore.py verify
 python3.10 -m unittest discover -s tests -q
-python3.10 publication/check_detector_regressions.py
 ```
 
 [The bundle manifest](publication/artifact-bundles.json) lists each asset's size and SHA-256. Download hosting is derived from the clone's Git origin; set `MVSCAN_BUNDLE_BASE_URL` explicitly for an exported checkout. Downloaded bundles live in ignored `publication/data/`; extracted workspaces and runtime files are also ignored. Repository internals, repeated dependency installations, failed build workspaces, and housekeeping archives are excluded from the publication distribution.
@@ -60,7 +59,7 @@ python3.10 publication/restore.py historical --download
 
 This checks every original file or symlink, restores missing paths, and refuses to overwrite locally changed files. The option fetches the preserved commit only if it is missing from the clone. Table regeneration and new detector execution do not require these historical copies.
 
-The locally authored Backd tests under `validation/` are also preserved locally and through the same restoration command. They are ignored in the submission checkout because they are outside the reported evaluation and are not used by the manuscript build or reproduction commands.
+The locally authored Backd tests under `validation/` are preserved locally and through the same restoration command. They are ignored in the submission checkout because they are outside the reported evaluation and are not used by the manuscript build or reproduction commands.
 
 ## Evidence and preservation
 
@@ -70,7 +69,6 @@ The locally authored Backd tests under `validation/` are also preserved locally 
 - `benchmarks/`: populations, scope, acquisition/build decisions, adjudications, and subject manifests.
 - `manuscript/`: the current local manuscript and pinned ACM template.
 - `publication/VALIDATION.json`: preservation checks and explicit historical snapshot differences.
-- `reports/README.md`: locations and restoration instructions for hidden historical setup reports referenced by the deviation ledger.
 
 The three evaluated detector modules retain their original frozen hashes. At initial publication, the historical evaluation snapshot had 185 matching artifacts and nine later review/protocol/interface changes that were already present on the remote before this copy. These differences are listed explicitly; the historical snapshot itself remains unchanged.
 
@@ -82,4 +80,4 @@ The manuscript source and PDF omit study-author identities, affiliations, contac
 
 These metadata copies have different byte hashes from the historical snapshot. The anonymization mapping distinguishes those changes from scientific changes. All twelve generated result files are checked against their pre-anonymization bytes.
 
-**The complete hosted artifact is not anonymous:** the hosting account and earlier Git history identify investigators, and original release bundles contain investigator names in archive ownership headers and absolute paths in frozen build artifacts. See [the anonymity audit](publication/ANONYMITY.md). An anonymous manuscript alone does not remove these disclosures.
+**The complete hosted artifact is not anonymous:** the hosting account and earlier Git history identify investigators, and original release bundles contain investigator names in archive ownership headers and absolute paths in frozen build artifacts. An anonymous manuscript alone does not remove these disclosures.
